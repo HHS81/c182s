@@ -92,14 +92,10 @@
    <name>gear-lock</name>
    <path>Sounds/gear-lck.wav</path>
    <condition>
-    <greather-than>
+    <equals>
      <property>/gear/gear[0]/position-norm</property>
-     <value>0.01</value>
-    </greather-than>
-    <less-than>
-     <property>/gear/gear[0]/position-norm</property>
-     <value>0.1</value>
-    </less-than>
+     <value>0</value>
+    </equals>
    </condition>
   </gear>
 
@@ -139,7 +135,7 @@
    <path>Sounds/flaps.wav</path>
    <property>/surface-positions/flap-pos-norm</property>
    <volume>
-    <offset>0.25</offset>
+    <factor>0.15</factor>
    </volume>
   </flap>
 

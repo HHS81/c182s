@@ -167,7 +167,7 @@
   <stall>
    <name>stall</name>
    <path>Sounds/stall.wav</path>
-   <property>/sim/aero/alarms/stall-warning</property>
+   <property>/sim/alarms/stall-warning</property>
    <volume>
     <property>/velocities/airspeed-kt</property>
     <min>30.0</min>

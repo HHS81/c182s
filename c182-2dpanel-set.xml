@@ -18,7 +18,7 @@ JSBSim Cessna 182 with 2D panel.
    <visibility archive="y">true</visibility>
   </panel>
   <panel_2>
-   <path>Aircraft/c182/Panels/c172-trans-mini-panel.xml</path>
+   <path>Aircraft/c182/Panels/c182-trans-mini-panel.xml</path>
   </panel_2>
 
   <!-- Look down a bit over the top of the panel -->

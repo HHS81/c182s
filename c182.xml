@@ -1,4 +1,4 @@
-<FDM_CONFIG NAME="c182" VERSION="1.60">
+<FDM_CONFIG NAME="c182" VERSION="1.61">
 <!--
 
   File:        c182.xml
@@ -48,6 +48,7 @@
     AC_CGLOC     41.0  0.0 36.5
     AC_POINTMASS 180.0 36.0 -14.0 24.0
     AC_EYEPTLOC  37.0  0.0 48.0
+    AC_VRP       43.9  0.0 40.6
 
   </METRICS>
 

@@ -1,7 +1,125 @@
 <?xml version="1.0"?>
+<!--
+************************************************************************
+Cessna 182 simulation config. This files ties together all the components
+used by FGFS to represent the C182. Components include the flight data 
+model, instrument panel, and external 3D model.
+3D models can be downloaded from http://home.t-online.de/home/Wolfram.Kuss/
+n
+October 23 2001 John Check, fgpanels@rockfish.net
+************************************************************************
+-->
 
-<PropertyList include="c182-jsbsim-set.xml">
+<PropertyList>
+
  <sim>
-  <description>Alias for c182-jsbsim.</description>
+
+  <description>Cessna 182</description>
+ 
+  <flight-model>jsb</flight-model>
+  <aero>c182</aero>
+  
+  <systems>
+    <electrical>
+      <path>Aircraft/c172/c172-electrical.xml</path>
+    </electrical>
+  </systems>
+
+  <sound>
+   <audible>true</audible>
+   <path>Aircraft/c182/c182-sound.xml</path>
+  </sound>
+
+  <panel>
+   <visibility archive="y">false</visibility>
+  </panel>
+
+  <model>
+   <path>Aircraft/c172/Models/c172-dpm.xml</path>
+  </model>
+
+  <view>
+   <internal archive="y">true</internal>
+   <config>
+     <x-offset-m archive="y">-0.14</x-offset-m>
+     <y-offset-m archive="y">0.17</y-offset-m>
+     <z-offset-m archive="y">0.48</z-offset-m>
+     <pitch-offset-deg>-12</pitch-offset-deg>
+   </config>
+  </view>
+
  </sim>
+ 
+ <consumables>
+  <fuel>
+   <tank n="0">
+    <level-gal_us>40</level-gal_us>
+   </tank>
+   <tank n="1">
+    <level-gal_us>40</level-gal_us>
+   </tank>
+  </fuel>
+ </consumables>
+  
+ <input>
+
+  <keyboard>
+    <key n="60">
+     <name>&lt;</name>
+     <desc>Rudder Trim Left</desc>
+     <binding>
+      <command>property-adjust</command>
+      <property>/controls/flight/rudder-trim</property>
+      <min type="double">-1.0</min>
+      <step type="double">-0.001</step>
+     </binding>
+    </key>
+    <key n="62">
+     <name>&gt;</name>
+     <desc>Rudder Trim Right</desc>
+     <binding>
+      <command>property-adjust</command>
+      <property>/controls/flight/rudder-trim</property>
+      <max type="double">1.0</max>
+      <step type="double">0.001</step>
+     </binding>
+    </key>
+  </keyboard>
+ </input>
+
+ <autopilot>
+   <config>
+     <min-climb-speed-kt type="float">70.0</min-climb-speed-kt>
+     <best-climb-speed-kt type="float">95.0</best-climb-speed-kt>
+     <target-climb-rate-fpm type="float">800.0</target-climb-rate-fpm>
+     <target-descent-rate-fpm type="float">1000.0</target-descent-rate-fpm>
+     <elevator-adj-factor type="float">6000.0</elevator-adj-factor>
+     <integral-contribution type="float">0.004</integral-contribution> 
+     <zero-pitch-throttle type="float">0.45</zero-pitch-throttle>
+     <zero-pitch-trim-full-throttle type="float">0.07</zero-pitch-trim-full-throttle>
+   </config>
+ </autopilot>
+
+ <controls>
+  <engines>
+   <engine n="0">
+    <magnetos>3</magnetos>
+   </engine>
+  </engines>
+ </controls>
+
+ <instrumentation>
+  <attitude-indicator>
+   <config>
+    <tumble-flag>true</tumble-flag>
+   </config>
+  </attitude-indicator>
+ </instrumentation>
+
+ <engines>
+  <engine>
+   <rpm>900</rpm>
+  </engine>
+ </engines>
+  
 </PropertyList>

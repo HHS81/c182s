@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<PropertyList include="c182-jsbsim-set.xml">
+ <sim>
+  <description>Alias for c182-jsbsim.</description>
+ </sim>
+</PropertyList>

@@ -3,13 +3,45 @@
 <PropertyList>
 
  <fx>
+
+  <crank>
+   <name>engstart</name>
+   <path>Sounds/engstart.wav</path>
+   <property>/engines/engine/cranking</property>
+   <volume>
+    <offset>0.4</offset>
+   </volume>
+  </crank>
  
   <crank>
    <name>crank</name>
    <path>Sounds/cranking.wav</path>
    <property>/engines/engine/cranking</property>
+   <mode>looped</mode>
    <volume>
     <offset>0.5</offset>
+   </volume>
+  </crank>
+
+  <!--
+     - Stop enginge cranking when then engine is running
+     - Note: The name is intentionaly the same as from the previous event.
+    -->
+  <crank>
+   <name>crank</name>
+   <property>/engines/engine/running</property>
+   <type>inverted</type>
+   <volume>
+    <property>/engines/engine/running</property>
+   </volume>
+  </crank>
+
+  <crank>
+   <name>cough</name>
+   <path>Sounds/coughing.wav</path>
+   <property>/engines/engine/running</property>
+   <volume>
+    <offset>0.3</offset>
    </volume>
   </crank>
  
@@ -42,22 +74,10 @@
    <volume>
     <property>/velocities/airspeed-kt</property>
     <type>log</type>
-    <factor>0.23</factor>
+    <factor>0.15</factor>
    </volume>
-   <volume>
-    <property>/gear/gear[0]/wow</property>
-   </volume>
-   <volume>
-    <property>/gear/gear[1]/wow</property>
-   </volume>
-   <volume>
-    <property>/gear/gear[2]/wow</property>
-   </volume>
-   <pitch>
-    <offset>1.0</offset>
-   </pitch>
   </rumble>
- 
+
   <gear>
    <name>gear-down</name>
    <path>Sounds/gear-dn.wav</path>
@@ -132,30 +152,30 @@
   <flap>
    <name>flaps</name>
    <path>Sounds/flaps.wav</path>
-   <property>/controls/flaps</property>
-   <factor>1e17</factor>
+   <property>/surface-positions/flap-pos-norm</property>
+   <offset>0.999</offset>
    <type>flipflop</type>
    <volume>
     <offset>0.25</offset>
    </volume>
   </flap>
- 
+
   <flap>
    <name>flaps</name>
    <path>Sounds/flaps.wav</path>
-   <property>/controls/flaps</property>
-   <factor>3.0</factor>
+   <property>/surface-positions/flap-pos-norm</property>
+   <offset>0.659</offset>
    <type>flipflop</type>
    <volume>
     <offset>0.25</offset>
    </volume>
   </flap>
- 
-   <flap>
+
+  <flap>
    <name>flaps</name>
    <path>Sounds/flaps.wav</path>
-   <property>/controls/flaps</property>
-   <factor>1.5</factor>
+   <property>/surface-positions/flap-pos-norm</property>
+   <offset>0.319</offset>
    <type>flipflop</type>
    <volume>
     <offset>0.25</offset>

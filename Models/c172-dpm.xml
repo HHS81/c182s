@@ -297,10 +297,10 @@
  <animation>
   <type>rotate</type>
   <object-name>RightAileron</object-name>
-  <property>surface-positions/right-aileron-pos-norm</property>
+  <property>surface-positions/left-aileron-pos-norm</property>
   <interpolation>
    <entry>
-    <ind>-1.0</ind>
+    <ind>1.0</ind>
     <dep>-20</dep>
    </entry>
    <entry>
@@ -308,7 +308,7 @@
     <dep>0</dep>
    </entry>
    <entry>
-    <ind>1.0</ind>
+    <ind>-1.0</ind>
     <dep>15</dep>
    </entry>
   </interpolation>

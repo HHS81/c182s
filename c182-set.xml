@@ -60,32 +60,6 @@ October 23 2001 John Check, fgpanels@rockfish.net
   </fuel>
  </consumables>
   
- <input>
-
-  <keyboard>
-    <key n="60">
-     <name>&lt;</name>
-     <desc>Rudder Trim Left</desc>
-     <binding>
-      <command>property-adjust</command>
-      <property>/controls/flight/rudder-trim</property>
-      <min type="double">-1.0</min>
-      <step type="double">-0.001</step>
-     </binding>
-    </key>
-    <key n="62">
-     <name>&gt;</name>
-     <desc>Rudder Trim Right</desc>
-     <binding>
-      <command>property-adjust</command>
-      <property>/controls/flight/rudder-trim</property>
-      <max type="double">1.0</max>
-      <step type="double">0.001</step>
-     </binding>
-    </key>
-  </keyboard>
- </input>
-
  <autopilot>
    <config>
      <min-climb-speed-kt type="float">70.0</min-climb-speed-kt>

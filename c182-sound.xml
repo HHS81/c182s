@@ -78,6 +78,28 @@
    </volume>
   </rumble>
 
+  <rumble>
+   <name>rumble</name>
+   <mode>looped</mode>
+   <property>/gear/gear[1]/wow</property>
+   <volume>
+    <property>/velocities/airspeed-kt</property>
+    <type>log</type>
+    <factor>0.15</factor>
+   </volume>
+  </rumble>
+
+  <rumble>
+   <name>rumble</name>
+   <mode>looped</mode>
+   <property>/gear/gear[2]/wow</property>
+   <volume>
+    <property>/velocities/airspeed-kt</property>
+    <type>log</type>
+    <factor>0.15</factor>
+   </volume>
+  </rumble>
+
   <gear>
    <name>gear-down</name>
    <path>Sounds/gear-dn.wav</path>

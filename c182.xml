@@ -412,7 +412,7 @@
        -->
        <COEFFICIENT NAME="CDDe" TYPE="VALUE">
          Drag_due_to_Elevator_Deflection
-         FG_QBAR|FG_WINGAREA|FG_ELEVATOR_POS
+         FG_QBAR|FG_WINGAREA|FG_AELEVATOR_POS
           0.00
        </COEFFICIENT>
 

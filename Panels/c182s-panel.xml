@@ -12,17 +12,25 @@ David Megginson <david@megginson.com>
 
  <name>Cessna C182S Skylane Panel</name>
  <background>Aircraft/c182/Panels/Textures/panel-bg.rgb</background>
- <w>1024</w>
- <h>768</h>
- <y-offset>-305</y-offset>
- <view-height>195</view-height>
+ <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-01.rgb</multibackground>
+ <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-02.rgb</multibackground>
+ <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-03.rgb</multibackground>
+ <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-04.rgb</multibackground>
+ <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-03.rgb</multibackground>
+ <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-04.rgb</multibackground>
+ <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-05.rgb</multibackground>
+ <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-06.rgb</multibackground>
+ <w>1424</w>
+ <h>488</h>
+ <y-offset>0</y-offset>
+ <view-height>500</view-height>
 
  <instruments>
 
   <instrument include="../../Instruments/logo.xml">
    <name>Tail Number Plate</name>
    <x>412</x>
-   <y>725</y>
+   <y>420</y>
    <w>72</w>
    <h>32</h>
   </instrument>
@@ -31,7 +39,7 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/clock.xml">
    <name>Chronometer</name>
    <x>177</x>
-   <y>626</y>
+   <y>321</y>
    <w>74</w>
    <h>74</h>
   </instrument>
@@ -39,7 +47,7 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/egt.xml">
    <name>Exhaust Gas Temperature Gauge</name>
    <x>177</x>
-   <y>552</y>
+   <y>247</y>
    <w>74</w>
    <h>74</h>
   </instrument>
@@ -47,7 +55,7 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/fuel.xml">
    <name>Fuel Gauge</name>
    <x>100</x>
-   <y>552</y>
+   <y>247</y>
    <w>74</w>
    <h>74</h>
   </instrument>
@@ -55,7 +63,7 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/oil.xml">
    <name>Oil Gauge</name>
    <x>100</x>
-   <y>475</y>
+   <y>170</y>
    <w>74</w>
    <h>74</h>
   </instrument>
@@ -63,7 +71,7 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/vacamp.xml">
    <name>Vacuum Pressure Gauge</name>
    <x>177</x>
-   <y>475</y>
+   <y>170</y>
    <w>74</w>
    <h>74</h>
   </instrument>
@@ -71,7 +79,7 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/single-manifold-pressure.xml">
    <name>Manifold Pressure Gauge</name>
    <x>279</x>
-   <y>379</y>
+   <y>74</y>
    <w>120</w>
    <h>120</h>
   </instrument>
@@ -82,7 +90,7 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/rpm.xml">
    <name>RPM Gauge</name>
    <x>542</x>
-   <y>379</y>
+   <y>74</y>
    <w>120</w>
    <h>120</h>
   </instrument>
@@ -90,25 +98,25 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/throttle-knob.xml">
    <name>Throttle Knob</name>
    <x>790</x>
-   <y>360</y>
+   <y>55</y>
   </instrument>
 
   <instrument include="../../Instruments/propeller-knob.xml">
    <name>Propeller Knob</name>
    <x>860</x>
-   <y>360</y>
+   <y>55</y>
   </instrument>
 
   <instrument include="../../Instruments/mixture-knob.xml">
    <name>Fuel Mixture Knob</name>
    <x>930</x>
-   <y>360</y>
+   <y>55</y>
   </instrument>
 
   <instrument include="../../Instruments/single-magneto-switch.xml">
    <name>Magneto switch panel</name>
    <x>137</x>
-   <y>358</y>
+   <y>53</y>
   </instrument>
 
 <!-- end engine controls cluster -->
@@ -118,19 +126,19 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/flap.xml">
    <name>Flaps Control</name>
    <x>995</x>
-   <y>365</y>
+   <y>60</y>
   </instrument>
 
   <instrument include="../../Instruments/brakes.xml">
    <name>Brake Indicator Light</name>
    <x>412</x>
-   <y>430</y>
+   <y>125</y>
   </instrument>
 
   <instrument include="../../Instruments/controls.xml">
    <name>Control Position Indicators</name>
    <x>412</x>
-   <y>370</y>
+   <y>65</y>
    <w>90</w>
    <h>90</h>
   </instrument>
@@ -142,7 +150,7 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/asi-160-knot.xml">
    <name>Airspeed Indicator</name>
    <x>279</x>
-   <y>645</y>
+   <y>340</y>
    <w>128</w>
    <h>128</h>
   </instrument>
@@ -150,7 +158,7 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/attitude-indicator.xml">
    <name>Attitude Gyro</name>
    <x>412</x>
-   <y>645</y>
+   <y>340</y>
    <w>128</w>
    <h>128</h>
   </instrument>
@@ -158,7 +166,7 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/altimeter.xml">
    <name>Altimeter</name>
    <x>542</x>
-   <y>645</y>
+   <y>340</y>
    <w>120</w>
    <h>120</h>
   </instrument>
@@ -166,7 +174,7 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/turn.xml">
    <name>Turn Coordinator</name>
    <x>279</x>
-   <y>512</y>
+   <y>207</y>
    <w>120</w>
    <h>120</h>
   </instrument>
@@ -174,7 +182,7 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/hsi.xml">
    <name>Directional Gyro</name>
    <x>412</x>
-   <y>512</y>
+   <y>207</y>
    <w>120</w>
    <h>120</h>
   </instrument>
@@ -182,7 +190,7 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/vertical.xml">
    <name>Vertical Velocity Indicator</name>
    <x>542</x>
-   <y>512</y>
+   <y>207</y>
    <w>120</w>
    <h>120</h>
   </instrument>
@@ -203,7 +211,7 @@ David Megginson <david@megginson.com>
     <nav-needles-pivot>/sim/instrument-options/nav[1]/needles-pivot</nav-needles-pivot>
   </params>
   <x>675</x>
-  <y>645</y>
+  <y>340</y>
   <w>120</w>
   <h>120</h>
   </instrument>
@@ -217,7 +225,7 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/dme.xml">
    <name>DME Display</name>
    <x>880</x>
-   <y>671</y>
+   <y>366</y>
    <w>122</w>
    <h>59</h>
   </instrument>
@@ -225,13 +233,13 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/markerbeacon.xml">
    <name>Marker Beacon Indicators</name>
    <x>786</x>
-   <y>651</y>
+   <y>346</y>
    </instrument>
 
   <instrument include="../../Instruments/navcom-radio.xml">
    <name>NavCom 1 Radio</name>
    <x>880</x>
-   <y>607</y>
+   <y>302</y>
   </instrument>
 
   <instrument include="../../Instruments/navcom-radio.xml">
@@ -245,19 +253,19 @@ David Megginson <david@megginson.com>
     <nav-morse-ident-toggle-prop>/radios/nav[1]/ident</nav-morse-ident-toggle-prop>
    </params>
    <x>880</x>
-   <y>542</y>
+   <y>237</y>
   </instrument>
   
   <instrument include="../../Instruments/adf-radio.xml">
    <name>ADF Radio</name>
    <x>880</x>
-   <y>479</y>
+   <y>174</y>
   </instrument>
 
   <instrument include="../../Instruments/autopilot.xml">
    <name>Autopilot</name>
    <x>880</x>
-   <y>431</y>
+   <y>126</y>
   </instrument>
 
 <!-- end radio stack -->
@@ -265,9 +273,11 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/magcompass.xml">
    <name>Magnetic Compass</name>
    <x>768</x>
-   <y>782</y>
+   <y>497</y>
   </instrument>
  </instruments>
 
 
 </PropertyList>
+
+

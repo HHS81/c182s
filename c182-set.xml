@@ -21,7 +21,7 @@ October 23 2001 John Check, fgpanels@rockfish.net
   
   <systems>
     <electrical>
-      <path>Aircraft/c172/c172-electrical.xml</path>
+      <path>Aircraft/c182/c182-electrical.xml</path>
     </electrical>
   </systems>
 
@@ -34,7 +34,7 @@ October 23 2001 John Check, fgpanels@rockfish.net
   </panel>
 
   <model>
-   <path>Aircraft/c172/Models/c172-dpm.xml</path>
+   <path>Aircraft/c182/Models/c172-dpm.xml</path>
   </model>
 
   <view>

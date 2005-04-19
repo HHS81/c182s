@@ -30,6 +30,10 @@ JSBSim Cessna 182 with 2D panel.
    </config>
   </view>
 
+  <help>
+   <title>Cessna 182</title>
+  </help>
+
  </sim>
 
 </PropertyList>

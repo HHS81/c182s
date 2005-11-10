@@ -11,31 +11,15 @@ David Megginson <david@megginson.com>
 <PropertyList>
 
  <name>Cessna C182S Skylane Panel</name>
- <background>Aircraft/c182/Panels/Textures/panel-bg.rgb</background>
- <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-01.rgb</multibackground>
- <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-02.rgb</multibackground>
- <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-03.rgb</multibackground>
- <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-04.rgb</multibackground>
- <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-03.rgb</multibackground>
- <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-04.rgb</multibackground>
- <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-05.rgb</multibackground>
- <multibackground>Aircraft/c182/Panels/Textures/c182s-panel-06.rgb</multibackground>
- <w>1424</w>
+ <background>Aircraft/c182/Panels/Textures/transparent-bg.rgb</background>
+ <w>1709</w>
  <h>488</h>
  <y-offset>0</y-offset>
  <view-height>500</view-height>
 
  <instruments>
 
-  <instrument include="../../Instruments/logo.xml">
-   <name>Tail Number Plate</name>
-   <x>412</x>
-   <y>420</y>
-   <w>72</w>
-   <h>32</h>
-  </instrument>
-
-  <!-- engine gauge cluster -->  
+ <!-- engine gauge cluster -->  
   <instrument include="../../Instruments/clock.xml">
    <name>Chronometer</name>
    <x>177</x>
@@ -95,25 +79,7 @@ David Megginson <david@megginson.com>
    <h>120</h>
   </instrument>
 
-  <instrument include="../../Instruments/throttle-knob.xml">
-   <name>Throttle Knob</name>
-   <x>790</x>
-   <y>55</y>
-  </instrument>
-
-  <instrument include="../../Instruments/propeller-knob.xml">
-   <name>Propeller Knob</name>
-   <x>860</x>
-   <y>55</y>
-  </instrument>
-
-  <instrument include="../../Instruments/mixture-knob.xml">
-   <name>Fuel Mixture Knob</name>
-   <x>930</x>
-   <y>55</y>
-  </instrument>
-
-  <instrument include="../../Instruments/single-magneto-switch.xml">
+ <instrument include="../../Instruments/single-magneto-switch.xml">
    <name>Magneto switch panel</name>
    <x>137</x>
    <y>53</y>
@@ -123,25 +89,9 @@ David Megginson <david@megginson.com>
   
 <!-- controls visual feedback cluster -->  
 
-  <instrument include="../../Instruments/flap.xml">
-   <name>Flaps Control</name>
-   <x>995</x>
-   <y>60</y>
-  </instrument>
+ 
 
-  <instrument include="../../Instruments/brakes.xml">
-   <name>Brake Indicator Light</name>
-   <x>412</x>
-   <y>125</y>
-  </instrument>
-
-  <instrument include="../../Instruments/controls.xml">
-   <name>Control Position Indicators</name>
-   <x>412</x>
-   <y>65</y>
-   <w>90</w>
-   <h>90</h>
-  </instrument>
+ 
 
 <!-- end controls visual feedback cluster -->
 
@@ -219,6 +169,13 @@ David Megginson <david@megginson.com>
 
 <!-- end radio nav instruments -->
 
+  <instrument include="../../Instruments/logo.xml">
+   <name>Tail Number Plate</name>
+   <x>675</x>
+   <y>200</y>
+   <w>72</w>
+   <h>32</h>
+  </instrument>
 
 <!-- radio stack -->
 
@@ -262,21 +219,189 @@ David Megginson <david@megginson.com>
    <y>174</y>
   </instrument>
 
+<!--
   <instrument include="../../Instruments/autopilot.xml">
    <name>Autopilot</name>
    <x>880</x>
    <y>126</y>
   </instrument>
+-->
 
+  <instrument include="../../Instruments/KAP140TwoAxisAlt.xml">
+   <name>KAP140 Autopilot</name>
+   <x>880</x>
+   <y>110</y>
+   <w>256</w>
+   <h>85</h>
+  </instrument>
 <!-- end radio stack -->
 
-  <instrument include="../../Instruments/magcompass.xml">
-   <name>Magnetic Compass</name>
-   <x>768</x>
-   <y>497</y>
-  </instrument>
- </instruments>
+<!-- center stack controls -->
 
+  <instrument include="../../Instruments/brakes.xml">
+   <name>Brake Indicator Light</name>
+   <x>900</x>
+   <y>30</y>
+  </instrument>
+
+<!-- end center stack controls -->
+
+<!-- Other click-able contols -->
+ <instrument>
+   <name>3D Action Placeholder</name>
+   <x>660</x>
+   <y>-220</y>
+   <w>1424</w>
+   <h>1488</h>
+   <w-base>1424</w-base>
+   <h-base>1488</h-base>
+
+
+<!-- throttle control -->
+<actions>
+
+<action>
+   <name>decrease</name>
+   <button>0</button>
+   <x>0</x>
+   <y>0</y>
+   <w>75</w>
+   <h>100</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.adjTrottle(1)</script>
+   </binding>
+  </action>
+
+  <action>
+   <name>increase</name>
+   <button>0</button>
+   <x>0</x>
+   <y>-100</y>
+   <w>75</w>
+   <h>100</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.adjTrottle(-1)</script>
+   </binding>
+  </action> 
+
+<!-- propeller control -->
+
+<action>
+   <name>IncreaseRPM</name>
+   <button>0</button>
+   <x>90</x>
+   <y>0</y>
+   <w>75</w>
+   <h>100</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.adjPropeller(1)</script>
+   </binding>
+  </action>
+
+  <action>
+   <name>DecreaseRPM</name>
+   <button>0</button>
+   <x>90</x>
+   <y>-100</y>
+   <w>75</w>
+   <h>100</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.adjPropeller(-1)</script>
+   </binding>
+  </action>
+
+
+<!-- mixture control -->
+
+<action>
+   <name>RichMixture</name>
+   <button>0</button>
+   <x>180</x>
+   <y>0</y>
+   <w>75</w>
+   <h>100</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.adjMixture(1)</script>
+   </binding>
+  </action>
+
+  <action>
+   <name>LeanMixture</name>
+   <button>0</button>
+   <x>180</x>
+   <y>-100</y>
+   <w>75</w>
+   <h>100</h>
+   <binding>
+    <command>nasal</command>
+    <script>controls.adjMixture(-1)</script>
+   </binding>
+  </action>
+
+  <action>
+   <name>FlapRetract</name>
+   <button>0</button>
+   <x>300</x>
+   <y>0</y>
+   <w>75</w>
+   <h>100</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.flapsDown(-1)</script>
+   </binding>
+  </action>
+
+  <action>
+   <name>FlapExtend</name>
+   <button>0</button>
+   <x>300</x>
+   <y>-100</y>
+   <w>75</w>
+   <h>100</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.flapsDown(1)</script>
+   </binding>
+  </action>
+
+
+<action>
+   <name>TrimUp</name>
+   <button>0</button>
+   <x>60</x>
+   <y>-450</y>
+   <w>75</w>
+   <h>150</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.elevatorTrim(0.75)</script>
+   </binding>
+  </action>  
+
+  <action>
+   <name>TrimDown</name>
+   <button>0</button>
+   <x>60</x>
+   <y>-600</y>
+   <w>75</w>
+   <h>150</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.elevatorTrim(-0.75)</script>
+   </binding>
+  </action>
+
+
+</actions>
+
+</instrument>
+
+ </instruments>
 
 </PropertyList>
 

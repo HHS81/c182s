@@ -4,9 +4,8 @@
 Cessna 182 simulation config. This files ties together all the components
 used by FGFS to represent the C182. Components include the flight data 
 model, instrument panel, and external 3D model.
-3D models can be downloaded from http://home.t-online.de/home/Wolfram.Kuss/
-n
-October 23 2001 John Check, fgpanels@rockfish.net
+
+Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
 ************************************************************************
 -->
 
@@ -20,6 +19,9 @@ October 23 2001 John Check, fgpanels@rockfish.net
   <aero>c182</aero>
   
   <systems>
+    <autopilot>
+      <path>Aircraft/c182/Systems/KAP140.xml</path>
+    </autopilot>
     <electrical>
       <path>Aircraft/c182/c182-electrical.xml</path>
     </electrical>
@@ -34,21 +36,43 @@ October 23 2001 John Check, fgpanels@rockfish.net
   </panel>
 
   <model>
-   <path>Aircraft/c182/Models/c172-dpm.xml</path>
+   <path archive="y">Aircraft/c182/Models/c182-dpm.xml</path>
   </model>
 
   <view>
    <internal archive="y">true</internal>
    <config>
-     <x-offset-m archive="y">-0.14</x-offset-m>
-     <y-offset-m archive="y">0.17</y-offset-m>
+     <x-offset-m archive="y">-0.24</x-offset-m>
+     <y-offset-m archive="y">0.2</y-offset-m>
      <z-offset-m archive="y">0.48</z-offset-m>
      <pitch-offset-deg>-12</pitch-offset-deg>
    </config>
   </view>
 
   <help>
-   <title>Cessna 182</title>
+   <title>Cessna 182s</title>
+   <line>Velocities</line>
+   <line>  Va1 (maneuvering)   : 110 KIAS</line>
+   <line>  Vno (max cruise)    : 140 KIAS</line>
+   <line>  Vne (never exceed)  : 175 KIAS</line>
+   <line>  Vx (angle of climb) : 63 KIAS</line>
+   <line>  Vy (rate of climb)  : 80 KIAS</line>
+   <line>  Stall, no flaps     : 56 KIAS</line>
+   <line>  Stall, full flaps   : 50 KIAS</line>
+   <line></line>
+   <line>Performance</line>
+   <line>  Cruise, 80% power,  6,000 ft: 140 kt</line>
+   <line>  Cruise, 65% power,  8,000 ft: 130 kt</line>
+   <line>  Cruise, 55% power, 10,000 ft: 121 kt</line>
+   <line></line>
+   <line>  Range,  75% power,  6,000 ft: 820 nm</line>
+   <line>  Range,  65% power,  8,000 ft: 910 nm</line>
+   <line>  Range,  55% power, 10,000 ft: 968 nm</line>
+   <line></line>
+   <line>  Best Climb: 924fpm</line>
+   <line>  Service Ceiling: 18,100ft</line>
+   <line>  Takeoff ground roll: 795ft  over 50ft obstacle: 1,514ft</line>
+   <line>  Landing ground roll: 590ft  over 50ft obstacle: 1,390ft</line>
   </help>
 
  </sim>
@@ -70,8 +94,12 @@ October 23 2001 John Check, fgpanels@rockfish.net
      <best-climb-speed-kt type="float">95.0</best-climb-speed-kt>
      <target-climb-rate-fpm type="float">800.0</target-climb-rate-fpm>
      <target-descent-rate-fpm type="float">1000.0</target-descent-rate-fpm>
-     <elevator-adj-factor type="float">6000.0</elevator-adj-factor>
+<!--     <elevator-adj-factor type="float">6000.0</elevator-adj-factor>
      <integral-contribution type="float">0.004</integral-contribution> 
+-->
+     <elevator-adj-factor type="float">2000.0</elevator-adj-factor>
+     <integral-contribution type="float">0.004</integral-contribution>
+
      <zero-pitch-throttle type="float">0.45</zero-pitch-throttle>
      <zero-pitch-trim-full-throttle type="float">0.07</zero-pitch-trim-full-throttle>
    </config>
@@ -98,5 +126,42 @@ October 23 2001 John Check, fgpanels@rockfish.net
    <rpm>900</rpm>
   </engine>
  </engines>
+
+<nasal>
+  <kap140>
+   <file>Aircraft/c182/kap140.nas</file>
+  </kap140>
+ </nasal>
+
+
+ <!-- ================ map keyboard ================ -->
+ <input> 
+    <keyboard> 
+       <!-- map keys for Propeller Control -->
+        <key n="78"> 
+          <name>N</name>
+          <desc>Propeller Course.</desc>
+          <binding> 
+            <command>property-adjust</command>
+            <property>/controls/engines/engine/propeller-pitch</property>
+            <step type="double">0.1</step>
+            <min type="double">-1</min>
+            <max type="double">1</max>
+          </binding>
+        </key>
+        <key n="110"> 
+          <name>n</name>
+          <desc>Propeller Fine.</desc>
+          <binding> 
+            <command>property-adjust</command>
+            <property>/controls/engines/engine/propeller-pitch</property>
+            <step type="double">-0.1</step>
+            <min type="double">-1</min>
+            <max type="double">1</max>
+          </binding>
+        </key>
+      </keyboard>
+    </input>
+
   
 </PropertyList>

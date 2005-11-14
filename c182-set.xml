@@ -140,7 +140,7 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
        <!-- map keys for Propeller Control -->
         <key n="78"> 
           <name>N</name>
-          <desc>Propeller Course.</desc>
+          <desc>Propeller Coarse.</desc>
           <binding> 
             <command>property-adjust</command>
             <property>/controls/engines/engine/propeller-pitch</property>

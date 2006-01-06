@@ -128,11 +128,21 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
    <rpm>900</rpm>
   </engine>
  </engines>
+ 
+ <limits>
+   <max-flap-extension-speed>100</max-flap-extension-speed>
+   <max-positive-g>3.5</max-positive-g>
+   <max-negative-g>-1.52</max-negative-g>
+   <vne>175</vne>
+ </limits>
 
 <nasal>
   <kap140>
    <file>Aircraft/c182/kap140.nas</file>
   </kap140>
+  <failures> 
+    <file>Aircraft/Generic/limits.nas</file>
+  </failures>
  </nasal>
 
 
@@ -143,23 +153,21 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
         <key n="78"> 
           <name>N</name>
           <desc>Propeller Coarse.</desc>
-          <binding> 
-            <command>property-adjust</command>
-            <property>/controls/engines/engine/propeller-pitch</property>
-            <step type="double">0.1</step>
-            <min type="double">-1</min>
-            <max type="double">1</max>
+           <binding> 
+           <command>nasal</command>
+           <script>
+	     controls.adjPropeller(-1);
+	   </script>
           </binding>
         </key>
         <key n="110"> 
           <name>n</name>
           <desc>Propeller Fine.</desc>
           <binding> 
-            <command>property-adjust</command>
-            <property>/controls/engines/engine/propeller-pitch</property>
-            <step type="double">-0.1</step>
-            <min type="double">-1</min>
-            <max type="double">1</max>
+           <command>nasal</command>
+           <script>
+  	     controls.adjPropeller(1);
+	   </script>
           </binding>
         </key>
       </keyboard>

@@ -62,6 +62,11 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
    <line>  Stall, no flaps     : 56 KIAS</line>
    <line>  Stall, full flaps   : 50 KIAS</line>
    <line></line>
+   <line>Maximum Flap Extension Speeds</line>
+   <line>  10 degrees : 140 KIAS</line>
+   <line>  20 degrees : 120 KIAS</line>
+   <line>  30 degrees : 100 KIAS</line>
+   <line></line>
    <line>Performance</line>
    <line>  Cruise, 80% power,  6,000 ft: 140 kt</line>
    <line>  Cruise, 65% power,  8,000 ft: 130 kt</line>
@@ -130,7 +135,18 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
  </engines>
  
  <limits>
-   <max-flap-extension-speed>100</max-flap-extension-speed>
+   <max-flap-extension-speed>
+     <flaps>0.3</flaps>
+     <speed>140</speed>
+   </max-flap-extension-speed>
+   <max-flap-extension-speed>
+     <flaps>0.6</flaps>
+     <speed>120</speed>
+   </max-flap-extension-speed>
+   <max-flap-extension-speed>
+     <flaps>0.9</flaps>
+     <speed>100</speed>
+   </max-flap-extension-speed>
    <max-positive-g>3.5</max-positive-g>
    <max-negative-g>-1.52</max-negative-g>
    <vne>175</vne>

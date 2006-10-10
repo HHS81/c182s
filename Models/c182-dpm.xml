@@ -7,6 +7,7 @@
  <!-- 3D Panel -->
 
  <panel>
+  <name>Panel</name>
   <path>Aircraft/c182/Panels/c182s-3d-panel.xml</path>
   <bottom-left>
    <x-m>-0.11</x-m>
@@ -69,7 +70,7 @@
   <name>FlapControl</name>
   <path>Aircraft/Instruments-3d/flaps/flaps.xml</path>
   <offsets>
-   <x-m>-0.13</x-m>
+   <x-m>-0.14</x-m>
    <y-m>0.15</y-m>
    <z-m>-0.35</z-m>
   </offsets>
@@ -85,6 +86,33 @@
 
  <!-- LOD for specific objects -->
 
+ <animation>
+   <name>InteriorGroup</name>
+   <object-name>Pedal.1</object-name>
+   <object-name>Pedal.2</object-name>
+   <object-name>Pedal.3</object-name>
+   <object-name>Pedal.4</object-name>
+   <object-name>propcontrolsurround</object-name>
+   <object-name>PropControl</object-name>
+   <object-name>mixturesurround</object-name>
+   <object-name>Mixture</object-name>
+   <object-name>Throttle</object-name>
+   <object-name>throttlesurround</object-name>
+   <object-name>Pedestal</object-name>
+   <object-name>MagCompass</object-name>
+   <object-name>FlapControl</object-name>
+   <object-name>RightYoke</object-name>
+   <object-name>LeftYoke</object-name>
+   <object-name>TrimWheel</object-name>
+   <object-name>Panel</object-name>
+ </animation> 
+ 
+ <animation>
+  <type>range</type>
+  <object-name>InteriorGroup</object-name>
+  <min-m>0</min-m>
+  <max-m>100</max-m>
+ </animation>
 
  <!-- Object movements -->
 
@@ -105,10 +133,20 @@
   <condition>
    <greater-than>
     <property>engines/engine[0]/rpm</property>
-    <value>300</value>
+    <value>400</value>
    </greater-than>
   </condition>
  </animation>
+
+<animation>
+   <type>blend</type>
+   <object-name>Propeller.2</object-name>
+   <property>engines/engine[0]/rpm</property>
+   <factor>0.0004</factor>
+   <max>1.0</max>
+   <min>0.0</min>
+ </animation>
+ 
 
 <animation>
   <type>translate</type>
@@ -126,7 +164,7 @@
   <type>translate</type>
   <object-name>Mixture</object-name>
   <property>controls/engines/engine[0]/mixture</property>
-  <factor>-0.088</factor>
+  <factor>-0.08</factor>
   <axis>
    <x>1.0</x>
    <y>0.0</y>
@@ -138,7 +176,7 @@
   <type>translate</type>
   <object-name>PropControl</object-name>
   <property>controls/engines/engine[0]/propeller-pitch</property>
-  <factor>-0.088</factor>
+  <factor>-0.08</factor>
   <axis>
    <x>1.0</x>
    <y>0.0</y>
@@ -233,7 +271,24 @@
   <center>
    <x-m>0</x-m>
    <y-m>0</y-m>
-   <z-m>-.25</z-m>
+   <z-m>-0.214544</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>spin</type>
+  <object-name>Propeller.2</object-name>
+  <property>engines/engine[0]/rpm</property>
+  <factor>-1</factor>
+  <center>
+   <x-m>0</x-m>
+   <y-m>0</y-m>
+   <z-m>-0.214544</z-m>
   </center>
   <axis>
    <x>1.0</x>
@@ -311,7 +366,7 @@
   <center>
    <x-m>1.1</x-m>
    <y-m>0.0</y-m>
-   <z-m>0.45</z-m>
+   <z-m>0.28</z-m>
   </center>
   <axis>
    <x>0.0</x>
@@ -367,5 +422,7 @@
    <z>1.0</z>
   </axis>
  </animation>
+
+ 
 
 </PropertyList>

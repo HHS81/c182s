@@ -346,10 +346,10 @@ David Megginson <david@megginson.com>
   <action>
    <name>FlapRetract</name>
    <button>0</button>
-   <x>300</x>
-   <y>0</y>
-   <w>75</w>
-   <h>100</h>
+   <x>265</x>
+   <y>85</y>
+   <w>65</w>
+   <h>75</h>
    <binding>
      <command>nasal</command>
      <script>controls.flapsDown(-1)</script>
@@ -359,10 +359,10 @@ David Megginson <david@megginson.com>
   <action>
    <name>FlapExtend</name>
    <button>0</button>
-   <x>300</x>
-   <y>-100</y>
-   <w>75</w>
-   <h>100</h>
+   <x>265</x>
+   <y>10</y>
+   <w>65</w>
+   <h>75</h>
    <binding>
      <command>nasal</command>
      <script>controls.flapsDown(1)</script>
@@ -374,9 +374,9 @@ David Megginson <david@megginson.com>
    <name>TrimUp</name>
    <button>0</button>
    <x>60</x>
-   <y>-450</y>
+   <y>-600</y>
    <w>75</w>
-   <h>150</h>
+   <h>250</h>
    <binding>
      <command>nasal</command>
      <script>controls.elevatorTrim(0.75)</script>
@@ -387,9 +387,9 @@ David Megginson <david@megginson.com>
    <name>TrimDown</name>
    <button>0</button>
    <x>60</x>
-   <y>-600</y>
+   <y>-850</y>
    <w>75</w>
-   <h>150</h>
+   <h>250</h>
    <binding>
      <command>nasal</command>
      <script>controls.elevatorTrim(-0.75)</script>

@@ -175,6 +175,7 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
 	     controls.adjPropeller(-1);
 	   </script>
           </binding>
+          <repeatable type="bool">true</repeatable>
         </key>
         <key n="110"> 
           <name>n</name>
@@ -185,6 +186,7 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
   	     controls.adjPropeller(1);
 	   </script>
           </binding>
+          <repeatable type="bool">true</repeatable>
         </key>
       </keyboard>
     </input>

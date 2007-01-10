@@ -4,6 +4,7 @@
 Cessna 182S Skylane panel.
 January 2002
 David Megginson <david@megginson.com>
+#++ To download this file, click here: <a href="./${bn}">./${bn}</a> ....
 -->
 
 <!DOCTYPE PropertyList>
@@ -22,48 +23,48 @@ David Megginson <david@megginson.com>
  <!-- engine gauge cluster -->  
   <instrument include="../../Instruments/clock.xml">
    <name>Chronometer</name>
-   <x>177</x>
-   <y>321</y>
+   <x>279</x>
+   <y>74</y>
    <w>74</w>
    <h>74</h>
   </instrument>
 
   <instrument include="../../Instruments/egt.xml">
    <name>Exhaust Gas Temperature Gauge</name>
-   <x>177</x>
-   <y>247</y>
+   <x>1025</x>
+   <y>397</y>
    <w>74</w>
    <h>74</h>
   </instrument>
 
   <instrument include="../../Instruments/fuel.xml">
    <name>Fuel Gauge</name>
-   <x>100</x>
-   <y>247</y>
+   <x>950</x>
+   <y>397</y>
    <w>74</w>
    <h>74</h>
   </instrument>
 
   <instrument include="../../Instruments/oil.xml">
    <name>Oil Gauge</name>
-   <x>100</x>
-   <y>170</y>
+   <x>950</x>
+   <y>320</y>
    <w>74</w>
    <h>74</h>
   </instrument>
   
   <instrument include="../../Instruments/vacamp.xml">
    <name>Vacuum Pressure Gauge</name>
-   <x>177</x>
-   <y>170</y>
+   <x>1025</x>
+   <y>320</y>
    <w>74</w>
    <h>74</h>
   </instrument>
 
   <instrument include="../../Instruments/single-manifold-pressure.xml">
    <name>Manifold Pressure Gauge</name>
-   <x>279</x>
-   <y>74</y>
+   <x>980</x>
+   <y>207</y>
    <w>120</w>
    <h>120</h>
   </instrument>
@@ -73,7 +74,7 @@ David Megginson <david@megginson.com>
  
   <instrument include="../../Instruments/rpm.xml">
    <name>RPM Gauge</name>
-   <x>542</x>
+   <x>980</x>
    <y>74</y>
    <w>120</w>
    <h>120</h>
@@ -99,23 +100,23 @@ David Megginson <david@megginson.com>
 
   <instrument include="../../Instruments/asi-160-knot.xml">
    <name>Airspeed Indicator</name>
-   <x>279</x>
-   <y>340</y>
+   <x>146</x>
+   <y>300</y>
    <w>128</w>
    <h>128</h>
   </instrument>
 
   <instrument include="../../Instruments/attitude-indicator.xml">
    <name>Attitude Gyro</name>
-   <x>412</x>
-   <y>340</y>
+   <x>279</x>
+   <y>330</y>
    <w>128</w>
    <h>128</h>
   </instrument>
 
   <instrument include="../../Instruments/altimeter.xml">
    <name>Altimeter</name>
-   <x>542</x>
+   <x>412</x>
    <y>340</y>
    <w>120</w>
    <h>120</h>
@@ -123,23 +124,23 @@ David Megginson <david@megginson.com>
 
   <instrument include="../../Instruments/turn.xml">
    <name>Turn Coordinator</name>
-   <x>279</x>
-   <y>207</y>
+   <x>146</x>
+   <y>167</y>
    <w>120</w>
    <h>120</h>
   </instrument>
 
   <instrument include="../../Instruments/hsi.xml">
    <name>Directional Gyro</name>
-   <x>412</x>
-   <y>207</y>
+   <x>279</x>
+   <y>197</y>
    <w>120</w>
    <h>120</h>
   </instrument>
 
   <instrument include="../../Instruments/vertical.xml">
    <name>Vertical Velocity Indicator</name>
-   <x>542</x>
+   <x>412</x>
    <y>207</y>
    <w>120</w>
    <h>120</h>
@@ -160,7 +161,7 @@ David Megginson <david@megginson.com>
     <nav-has-gs-needle>/sim/instrument-options/nav[1]/has-gs-needle</nav-has-gs-needle>
     <nav-needles-pivot>/sim/instrument-options/nav[1]/needles-pivot</nav-needles-pivot>
   </params>
-  <x>675</x>
+  <x>545</x>
   <y>340</y>
   <w>120</w>
   <h>120</h>
@@ -171,8 +172,8 @@ David Megginson <david@megginson.com>
 
   <instrument include="../../Instruments/logo.xml">
    <name>Tail Number Plate</name>
-   <x>675</x>
-   <y>200</y>
+   <x>345</x>
+   <y>410</y>
    <w>72</w>
    <h>32</h>
   </instrument>
@@ -181,7 +182,7 @@ David Megginson <david@megginson.com>
 
   <instrument include="../../Instruments/dme.xml">
    <name>DME Display</name>
-   <x>880</x>
+   <x>775</x>
    <y>366</y>
    <w>122</w>
    <h>59</h>
@@ -189,13 +190,13 @@ David Megginson <david@megginson.com>
 
   <instrument include="../../Instruments/markerbeacon.xml">
    <name>Marker Beacon Indicators</name>
-   <x>786</x>
+   <x>680</x>
    <y>346</y>
    </instrument>
 
   <instrument include="../../Instruments/navcom-radio.xml">
    <name>NavCom 1 Radio</name>
-   <x>880</x>
+   <x>775</x>
    <y>302</y>
   </instrument>
 
@@ -209,27 +210,27 @@ David Megginson <david@megginson.com>
     <nav-morse-id-volume-prop>/instrumentation/nav[1]/volume</nav-morse-id-volume-prop>
     <nav-morse-ident-toggle-prop>/instrumentation/nav[1]/ident</nav-morse-ident-toggle-prop>
    </params>
-   <x>880</x>
+   <x>775</x>
    <y>237</y>
   </instrument>
   
   <instrument include="../../Instruments/adf-radio.xml">
    <name>ADF Radio</name>
-   <x>880</x>
+   <x>775</x>
    <y>174</y>
   </instrument>
 
 <!--
   <instrument include="../../Instruments/autopilot.xml">
    <name>Autopilot</name>
-   <x>880</x>
+   <x>775</x>
    <y>126</y>
   </instrument>
 -->
 
   <instrument include="../../Instruments/KAP140TwoAxisAlt.xml">
    <name>KAP140 Autopilot</name>
-   <x>880</x>
+   <x>775</x>
    <y>110</y>
    <w>256</w>
    <h>85</h>

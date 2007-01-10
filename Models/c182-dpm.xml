@@ -76,6 +76,19 @@
   </offsets>
  </model>
 
+  <!-- Switches -->
+
+  <model>
+    <name>lights</name>
+    <path>Aircraft/c182/Models/lights.xml</path>
+    <offsets>
+      <x-m>-0.12</x-m>
+      <y-m>-0.2</y-m>
+      <z-m>-0.35</z-m>
+    </offsets>
+  </model>
+  
+
  <!-- LOD for the model as a whole -->
 
  <animation>
@@ -88,10 +101,7 @@
 
  <animation>
    <name>InteriorGroup</name>
-   <object-name>Pedal.1</object-name>
-   <object-name>Pedal.2</object-name>
-   <object-name>Pedal.3</object-name>
-   <object-name>Pedal.4</object-name>
+   <object-name>lights</object-name>
    <object-name>propcontrolsurround</object-name>
    <object-name>PropControl</object-name>
    <object-name>mixturesurround</object-name>
@@ -110,13 +120,40 @@
  <animation>
   <type>range</type>
   <object-name>InteriorGroup</object-name>
-  <min-m>0</min-m>
+   <object-name>Pedal.1</object-name>
+   <object-name>Pedal.2</object-name>
+   <object-name>Pedal.3</object-name>
+   <object-name>Pedal.4</object-name>
+   <min-m>0</min-m>
   <max-m>100</max-m>
  </animation>
 
- <!-- Object movements -->
+  <animation>
+    <type>material</type>
+    <object-name>InteriorGroup</object-name>
+    <emission>
+      <red>0.45</red>
+      <green>0.09</green>
+      <blue>0.000045</blue>
+      <factor-prop>/controls/lighting/panel-norm</factor-prop>
+    </emission>
+  </animation>
 
- <animation>
+  <!-- Allow the yokes to be toggled on/off. -->
+  <animation>
+    <type>select</type>
+    <object-name>LeftYoke</object-name>
+    <object-name>RightYoke</object-name>
+    <condition>
+      <equals>
+        <property>sim/model/hide-yoke</property>
+        <value>false</value>
+      </equals>
+    </condition>
+  </animation>
+
+  <!-- Object movements -->
+  <animation>
   <type>select</type>
   <object-name>Propeller</object-name>
   <condition>
@@ -423,6 +460,152 @@
   </axis>
  </animation>
 
- 
+  <!-- Chrome animation for spinner -->
+
+  <animation>
+    <type>shader</type>
+    <shader>chrome</shader>
+    <texture>chrome2.rgb</texture>
+    <object-name>spinner</object-name>
+  </animation>
+
+  <!-- Lights -->
+  
+  <model>
+    <name>LeftNavLight</name>
+    <path>Aircraft/c182/Models/BeaconLight.xml</path>
+    <offsets>
+      <x-m>0.18</x-m>
+      <y-m>-5.27</y-m>
+      <z-m>0.49</z-m>
+    </offsets>
+  </model>
+
+  <animation>
+    <type>material</type>
+    <object-name>LeftNavLight</object-name>
+    <emission>
+      <red>1.0</red>
+      <green>0.0</green>
+      <blue>0.0</blue>
+      <factor-prop>/controls/switches/nav-lights</factor-prop>
+    </emission>
+  </animation>
+
+  <model>
+    <name>RightNavLight</name>
+    <path>Aircraft/c182/Models/BeaconLight.xml</path>
+    <offsets>
+      <x-m>0.18</x-m>
+      <y-m>5.27</y-m>
+      <z-m>0.49</z-m>
+    </offsets>
+  </model>
+
+  <animation>
+    <type>material</type>
+    <object-name>RightNavLight</object-name>
+    <emission>
+      <red>0.0</red>
+      <green>1.0</green>
+      <blue>0.0</blue>
+      <factor-prop>/controls/switches/nav-lights</factor-prop>
+    </emission>
+  </animation>
+
+  <model>
+    <name>RearNavLight</name>
+    <path>Aircraft/c182/Models/BeaconLight.xml</path>
+    <offsets>
+      <x-m>5.97</x-m>
+      <y-m>0</y-m>
+      <z-m>1.19</z-m>
+    </offsets>
+  </model>
+
+  <animation>
+    <type>material</type>
+    <object-name>RearNavLight</object-name>
+    <emission>
+      <red>1.0</red>
+      <green>1.0</green>
+      <blue>1.0</blue>
+      <factor-prop>/controls/switches/nav-lights</factor-prop>
+    </emission>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>LeftNavLight</object-name>
+    <object-name>RightNavLight</object-name>
+    <object-name>RearNavLight</object-name>
+    <condition>
+      <property>/controls/switches/nav-lights</property>
+    </condition>
+  </animation>
+
+  
+  <model>
+    <name>BeaconOn</name>
+    <path>Aircraft/c182/Models/BeaconLight.xml</path>
+    <offsets>
+      <x-m>0.3</x-m>
+      <y-m>0.0</y-m>
+      <z-m>0.5</z-m>
+    </offsets>
+  </model>
+
+  <animation>
+    <type>material</type>
+    <object-name>BeaconOn</object-name>
+    <emission>
+      <red>1.0</red>
+      <green>0.0</green>
+      <blue>0.0</blue>
+      <factor-prop>/controls/switches/beacon-lights</factor-prop>
+    </emission>
+  </animation>
+
+  <animation>
+    <name>timed_beacon</name>
+    <type>timed</type>
+    <object-name>BeaconOn</object-name>
+    <object-name>BeaconOff</object-name>
+    <duration-sec>1.0</duration-sec>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>timed_beacon</object-name>
+    <condition>
+      <property>/controls/switches/beacon-lights</property>
+    </condition>
+  </animation>
+
+  <model>
+    <name>StrobeOn</name>
+    <path>Aircraft/c182/Models/StrobeLight.xml</path>
+    <offsets>
+      <x-m>0.5</x-m>
+      <y-m>0.0</y-m>
+      <z-m>-1.05</z-m>
+    </offsets>
+  </model>
+
+  <animation>
+    <name>timed_strobe</name>
+    <type>timed</type>
+    <object-name>StrobeOff</object-name>
+    <object-name>StrobeOn</object-name>
+    <duration-sec>0.9</duration-sec>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>timed_strobe</object-name>
+    <condition>
+      <property>/controls/switches/strobe-lights</property>
+    </condition>
+  </animation>
 
 </PropertyList>

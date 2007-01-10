@@ -39,6 +39,7 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
 
   <model>
    <path archive="y">Aircraft/c182/Models/c182-dpm.xml</path>
+    <hide-yoke>false</hide-yoke>
   </model>
 
   <view>
@@ -80,6 +81,11 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
    <line>  Service Ceiling: 18,100ft</line>
    <line>  Takeoff ground roll: 795ft  over 50ft obstacle: 1,514ft</line>
    <line>  Landing ground roll: 590ft  over 50ft obstacle: 1,390ft</line>
+   <line></line>
+   <line>Key Assignments:</line>
+   <line>  n/N - Propellor Coarse/Fine </line>
+   <line>  Y - Toggle yoke visibility</line>
+   <line>  L - Cockpit Illumination</line>
   </help>
 
  </sim>
@@ -172,8 +178,8 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
            <binding> 
            <command>nasal</command>
            <script>
-	     controls.adjPropeller(-1);
-	   </script>
+	           controls.adjPropeller(-1);
+	         </script>
           </binding>
           <repeatable type="bool">true</repeatable>
         </key>
@@ -183,12 +189,37 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
           <binding> 
            <command>nasal</command>
            <script>
-  	     controls.adjPropeller(1);
-	   </script>
+  	         controls.adjPropeller(1);
+	         </script> 
           </binding>
           <repeatable type="bool">true</repeatable>
         </key>
-      </keyboard>
+
+      <key n="76">
+        <name>L</name>
+        <desc>Cockpit Illumination.</desc>
+        <repeatable type="bool">false</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/lighting/panel-norm</property>
+          <step>0.25</step>
+          <min>0</min>
+          <max>1</max>
+          <wrap>1.25</wrap>
+        </binding>
+      </key>
+
+      <key n="89">
+        <name>Y</name>
+        <desc>Toggle Yoke visibility.</desc>
+        <repeatable type="bool">false</repeatable>
+        <binding>
+          <command>property-toggle</command>
+          <property>sim/model/hide-yoke</property>
+        </binding>
+      </key>
+
+    </keyboard>
     </input>
 
   

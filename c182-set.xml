@@ -81,11 +81,18 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
    <line>  Service Ceiling: 18,100ft</line>
    <line>  Takeoff ground roll: 795ft  over 50ft obstacle: 1,514ft</line>
    <line>  Landing ground roll: 590ft  over 50ft obstacle: 1,390ft</line>
-   <line></line>
-   <line>Key Assignments:</line>
-   <line>  n/N - Propellor Coarse/Fine </line>
-   <line>  Y - Toggle yoke visibility</line>
-   <line>  L - Cockpit Illumination</line>
+   <key>
+    <name>n/N</name>
+    <desc>Propeller finer/coarser</desc>
+   </key>
+   <key>
+    <name>Y</name>
+    <desc>Toggle yoke visibility</desc>
+   </key>
+   <key>
+    <name>L</name>
+    <desc>Cockpit illumination</desc>
+   </key>
   </help>
 
  </sim>
@@ -171,33 +178,9 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
  <!-- ================ map keyboard ================ -->
  <input> 
     <keyboard> 
-       <!-- map keys for Propeller Control -->
-        <key n="78"> 
-          <name>N</name>
-          <desc>Propeller Coarse.</desc>
-           <binding> 
-           <command>nasal</command>
-           <script>
-	           controls.adjPropeller(-1);
-	         </script>
-          </binding>
-          <repeatable type="bool">true</repeatable>
-        </key>
-        <key n="110"> 
-          <name>n</name>
-          <desc>Propeller Fine.</desc>
-          <binding> 
-           <command>nasal</command>
-           <script>
-  	         controls.adjPropeller(1);
-	         </script> 
-          </binding>
-          <repeatable type="bool">true</repeatable>
-        </key>
-
       <key n="76">
         <name>L</name>
-        <desc>Cockpit Illumination.</desc>
+        <desc>Cockpit illumination.</desc>
         <repeatable type="bool">false</repeatable>
         <binding>
           <command>property-adjust</command>
@@ -211,7 +194,7 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
 
       <key n="89">
         <name>Y</name>
-        <desc>Toggle Yoke visibility.</desc>
+        <desc>Toggle yoke visibility.</desc>
         <repeatable type="bool">false</repeatable>
         <binding>
           <command>property-toggle</command>

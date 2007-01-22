@@ -23,8 +23,8 @@ David Megginson <david@megginson.com>
  <!-- engine gauge cluster -->  
   <instrument include="../../Instruments/clock.xml">
    <name>Chronometer</name>
-   <x>279</x>
-   <y>74</y>
+   <x>45</x>
+   <y>234</y>
    <w>74</w>
    <h>74</h>
   </instrument>
@@ -191,13 +191,13 @@ David Megginson <david@megginson.com>
   <instrument include="../../Instruments/markerbeacon.xml">
    <name>Marker Beacon Indicators</name>
    <x>680</x>
-   <y>346</y>
+   <y>348</y>
    </instrument>
 
   <instrument include="../../Instruments/navcom-radio.xml">
    <name>NavCom 1 Radio</name>
    <x>775</x>
-   <y>302</y>
+   <y>303</y>
   </instrument>
 
   <instrument include="../../Instruments/navcom-radio.xml">
@@ -211,29 +211,35 @@ David Megginson <david@megginson.com>
     <nav-morse-ident-toggle-prop>/instrumentation/nav[1]/ident</nav-morse-ident-toggle-prop>
    </params>
    <x>775</x>
-   <y>237</y>
+   <y>240</y>
   </instrument>
   
   <instrument include="../../Instruments/adf-radio.xml">
    <name>ADF Radio</name>
    <x>775</x>
-   <y>174</y>
+   <y>176</y>
   </instrument>
 
 <!--
   <instrument include="../../Instruments/autopilot.xml">
    <name>Autopilot</name>
    <x>775</x>
-   <y>126</y>
+   <y>166</y>
   </instrument>
 -->
 
   <instrument include="../../Instruments/KAP140TwoAxisAlt.xml">
    <name>KAP140 Autopilot</name>
    <x>775</x>
-   <y>110</y>
+   <y>104</y>
    <w>256</w>
    <h>85</h>
+  </instrument>
+
+  <instrument include="../../Instruments/xpdr-kt76c.xml">
+   <name>KT76c Transponder</name>
+   <x>775</x>
+   <y>29</y>
   </instrument>
 <!-- end radio stack -->
 
@@ -241,8 +247,8 @@ David Megginson <david@megginson.com>
 
   <instrument include="../../Instruments/brakes.xml">
    <name>Brake Indicator Light</name>
-   <x>900</x>
-   <y>30</y>
+   <x>279</x>
+   <y>-200</y>
   </instrument>
 
 <!-- end center stack controls -->

@@ -189,8 +189,8 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
           <property>/controls/lighting/panel-norm</property>
           <step>0.25</step>
           <min>0</min>
-          <max>1</max>
-          <wrap>1.25</wrap>
+          <max>1.1</max>
+          <wrap>1</wrap>
         </binding>
       </key>
 

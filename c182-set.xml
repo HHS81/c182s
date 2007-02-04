@@ -139,6 +139,9 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
     <tumble-flag>true</tumble-flag>
    </config>
   </attitude-indicator>
+  <encoder>
+   <serviceable type="bool">true</serviceable>
+  </encoder>
  </instrumentation>
 
  <engines>
@@ -165,15 +168,14 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
    <vne>175</vne>
  </limits>
 
-<nasal>
+ <nasal>
   <kap140>
-   <file>Aircraft/c182/kap140.nas</file>
+   <file>Aircraft/Generic/kap140.nas</file>
   </kap140>
   <failures> 
     <file>Aircraft/Generic/limits.nas</file>
   </failures>
  </nasal>
-
 
  <!-- ================ map keyboard ================ -->
  <input> 

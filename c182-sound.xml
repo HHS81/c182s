@@ -73,7 +73,7 @@
     </or>
    </condition>
    <volume>
-    <property>/velocities/airspeed-kt</property>
+    <property>/velocities/groundspeed-kt</property>
     <type>log</type>
     <factor>0.5</factor>
    </volume>
@@ -117,7 +117,7 @@
     <factor>0.05</factor>
    </volume>
    <volume>
-    <property>/velocities/airspeed-kt</property>
+    <property>/velocities/groundspeed-kt</property>
     <factor>0.01</factor>
    </volume>
    <volume>
@@ -126,7 +126,7 @@
     <max>1.0</max>
    </volume>
    <pitch>
-    <property>/velocities/airspeed-kt</property>
+    <property>/velocities/groundspeed-kt</property>
     <factor>0.0025</factor>
     <offset>1.2</offset>
    </pitch>

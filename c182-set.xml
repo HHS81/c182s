@@ -15,7 +15,13 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
 
   <description>Cessna 182</description>
   <author>Stuart Buchanan</author>
-  <status>production</status>
+  <status>beta</status>
+  <rating>
+    <FDM type="int">3</FDM>
+    <systems type="int">3</systems>
+    <cockpit type="int">2</cockpit>
+    <model type="int">4</model>
+  </rating>
  
   <flight-model>jsb</flight-model>
   <aero>c182</aero>

@@ -45,7 +45,7 @@ override those by providing <w>Aircraft</w> and <h>..</h> properties with the
 
 <!-- engine controls cluster --> 
  
-  <instrument include="../../Instruments/rpm.xml">
+  <instrument include="Aircraft/Instruments/rpm.xml">
    <name>RPM Gauge</name>
    <x>885</x>
    <y>70</y>
@@ -53,7 +53,7 @@ override those by providing <w>Aircraft</w> and <h>..</h> properties with the
    <h>120</h>
   </instrument>
 
-  <instrument include="../../Instruments/mixture-knob.xml">
+  <instrument include="Aircraft/Instruments/mixture-knob.xml">
    <name>Fuel Mixture Knob</name>
    <x>980</x>
    <y>115</y>
@@ -65,7 +65,7 @@ override those by providing <w>Aircraft</w> and <h>..</h> properties with the
   
 <!-- controls visual feedback cluster --> 
 
-  <instrument include="../../Instruments/flap.xml">
+  <instrument include="Aircraft/Instruments/flap.xml">
    <name>Flaps Control</name>
    <x>980</x>
    <y>55</y>
@@ -73,13 +73,13 @@ override those by providing <w>Aircraft</w> and <h>..</h> properties with the
    <h>70</h>
   </instrument>
 
-  <instrument include="../../Instruments/brakes.xml">
+  <instrument include="Aircraft/Instruments/brakes.xml">
    <name>Brake Indicator Light</name>
    <x>410</x>
    <y>120</y>
   </instrument>
 
-  <instrument include="../../Instruments/controls.xml">
+  <instrument include="Aircraft/Instruments/controls.xml">
    <name>Control Position Indicators</name>
    <x>410</x>
    <y>60</y>
@@ -91,7 +91,7 @@ override those by providing <w>Aircraft</w> and <h>..</h> properties with the
 
 <!-- sacred six -->
 
-  <instrument include="../../Instruments/asi-160-knot.xml">
+  <instrument include="Aircraft/Instruments/asi-160-knot.xml">
    <name>Airspeed Indicator</name>
    <x>65</x>
    <y>70</y>
@@ -99,7 +99,7 @@ override those by providing <w>Aircraft</w> and <h>..</h> properties with the
    <h>120</h>
   </instrument>
 
-  <instrument include="../../Instruments/attitude-indicator.xml">
+  <instrument include="Aircraft/Instruments/attitude-indicator.xml">
    <name>Attitude Gyro</name>
    <x>305</x>
    <y>70</y>
@@ -107,7 +107,7 @@ override those by providing <w>Aircraft</w> and <h>..</h> properties with the
    <h>120</h>
   </instrument>
 
-  <instrument include="../../Instruments/altimeter.xml">
+  <instrument include="Aircraft/Instruments/altimeter.xml">
    <name>Altimeter</name>
    <x>638</x>
    <y>70</y>
@@ -115,7 +115,7 @@ override those by providing <w>Aircraft</w> and <h>..</h> properties with the
    <h>120</h>
   </instrument>
 
-  <instrument include="../../Instruments/turn.xml">
+  <instrument include="Aircraft/Instruments/turn.xml">
    <name>Turn Coordinator</name>
    <x>185</x>
    <y>70</y>
@@ -123,7 +123,7 @@ override those by providing <w>Aircraft</w> and <h>..</h> properties with the
    <h>120</h>
   </instrument>
 
-  <instrument include="../../Instruments/gyro.xml">
+  <instrument include="Aircraft/Instruments/gyro.xml">
    <name>Directional Gyro</name>
    <x>515</x>
    <y>70</y>
@@ -131,7 +131,7 @@ override those by providing <w>Aircraft</w> and <h>..</h> properties with the
    <h>120</h>
   </instrument>
 
-  <instrument include="../../Instruments/vertical.xml">
+  <instrument include="Aircraft/Instruments/vertical.xml">
    <name>Vertical Velocity Indicator</name>
    <x>761</x>
    <y>70</y>
@@ -142,7 +142,7 @@ override those by providing <w>Aircraft</w> and <h>..</h> properties with the
 <!-- end sacred six -->
 
 
-  <instrument include="../../Instruments/magcompass.xml">
+  <instrument include="Aircraft/Instruments/magcompass.xml">
    <name>Magnetic Compass</name>
    <x>768</x>
    <y>170</y>

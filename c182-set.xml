@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+Cessna 182 simulation config. This files ties together all the components
+used by FGFS to represent the C182. Components include the flight data 
+model, instrument panel, and external 3D model.
+
+Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
+************************************************************************
+-->
+
+<PropertyList>
+
+ <sim>
+
+  <description>Cessna 182</description>
+  <author>Stuart Buchanan</author>
+  <status>beta</status>
+  <rating>
+    <FDM type="int">3</FDM>
+    <systems type="int">3</systems>
+    <cockpit type="int">2</cockpit>
+    <model type="int">4</model>
+  </rating>
+ 
+  <flight-model>jsb</flight-model>
+  <aero>c182</aero>
+  
+  <systems>
+    <autopilot>
+      <path>Aircraft/c182/Systems/KAP140.xml</path>
+    </autopilot>
+    <electrical>
+      <path>Aircraft/c182/c182-electrical.xml</path>
+    </electrical>
+  </systems>
+
+  <sound>
+   <path>Aircraft/c182/c182-sound.xml</path>
+  </sound>
+
+  <panel>
+   <visibility archive="y">false</visibility>
+  </panel>
+
+  <model>
+   <path archive="y">Aircraft/c182/Models/c182-dpm.xml</path>
+    <hide-yoke>false</hide-yoke>
+  </model>
+
+  <view>
+   <internal archive="y">true</internal>
+   <config>
+     <x-offset-m archive="y">-0.24</x-offset-m>
+     <y-offset-m archive="y">0.2</y-offset-m>
+     <z-offset-m archive="y">0.48</z-offset-m>
+     <pitch-offset-deg>-12</pitch-offset-deg>
+   </config>
+  </view>
+
+  <help>
+   <title>Cessna 182s</title>
+   <line>Velocities</line>
+   <line>  Va1 (maneuvering)   : 110 KIAS</line>
+   <line>  Vno (max cruise)    : 140 KIAS</line>
+   <line>  Vne (never exceed)  : 175 KIAS</line>
+   <line>  Vx (angle of climb) : 63 KIAS</line>
+   <line>  Vy (rate of climb)  : 80 KIAS</line>
+   <line>  Stall, no flaps     : 56 KIAS</line>
+   <line>  Stall, full flaps   : 50 KIAS</line>
+   <line></line>
+   <line>Maximum Flap Extension Speeds</line>
+   <line>  10 degrees : 140 KIAS</line>
+   <line>  20 degrees : 120 KIAS</line>
+   <line>  30 degrees : 100 KIAS</line>
+   <line></line>
+   <line>Performance</line>
+   <line>  Cruise, 80% power,  6,000 ft: 140 kt</line>
+   <line>  Cruise, 65% power,  8,000 ft: 130 kt</line>
+   <line>  Cruise, 55% power, 10,000 ft: 121 kt</line>
+   <line></line>
+   <line>  Range,  75% power,  6,000 ft: 820 nm</line>
+   <line>  Range,  65% power,  8,000 ft: 910 nm</line>
+   <line>  Range,  55% power, 10,000 ft: 968 nm</line>
+   <line></line>
+   <line>  Best Climb: 924fpm</line>
+   <line>  Service Ceiling: 18,100ft</line>
+   <line>  Takeoff ground roll: 795ft  over 50ft obstacle: 1,514ft</line>
+   <line>  Landing ground roll: 590ft  over 50ft obstacle: 1,390ft</line>
+   <key>
+    <name>n/N</name>
+    <desc>Propeller finer/coarser</desc>
+   </key>
+   <key>
+    <name>Y</name>
+    <desc>Toggle yoke visibility</desc>
+   </key>
+   <key>
+    <name>L</name>
+    <desc>Cockpit illumination</desc>
+   </key>
+  </help>
+
+ </sim>
+ 
+ <consumables>
+  <fuel>
+   <tank n="0">
+    <level-gal_us>40</level-gal_us>
+   </tank>
+   <tank n="1">
+    <level-gal_us>40</level-gal_us>
+   </tank>
+  </fuel>
+ </consumables>
+  
+ <autopilot>
+   <config>
+     <min-climb-speed-kt type="float">70.0</min-climb-speed-kt>
+     <best-climb-speed-kt type="float">95.0</best-climb-speed-kt>
+     <target-climb-rate-fpm type="float">800.0</target-climb-rate-fpm>
+     <target-descent-rate-fpm type="float">1000.0</target-descent-rate-fpm>
+<!--     <elevator-adj-factor type="float">6000.0</elevator-adj-factor>
+     <integral-contribution type="float">0.004</integral-contribution> 
+-->
+     <elevator-adj-factor type="float">2000.0</elevator-adj-factor>
+     <integral-contribution type="float">0.004</integral-contribution>
+
+     <zero-pitch-throttle type="float">0.45</zero-pitch-throttle>
+     <zero-pitch-trim-full-throttle type="float">0.07</zero-pitch-trim-full-throttle>
+   </config>
+ </autopilot>
+
+ <controls>
+  <engines>
+   <engine n="0">
+    <magnetos>3</magnetos>
+   </engine>
+  </engines>
+ </controls>
+
+ <instrumentation>
+  <attitude-indicator>
+   <config>
+    <tumble-flag>true</tumble-flag>
+   </config>
+  </attitude-indicator>
+  <encoder>
+   <serviceable type="bool">true</serviceable>
+  </encoder>
+ </instrumentation>
+
+ <engines>
+  <engine>
+   <rpm>900</rpm>
+  </engine>
+ </engines>
+ 
+ <limits>
+   <max-flap-extension-speed>
+     <flaps>0.3</flaps>
+     <speed>140</speed>
+   </max-flap-extension-speed>
+   <max-flap-extension-speed>
+     <flaps>0.6</flaps>
+     <speed>120</speed>
+   </max-flap-extension-speed>
+   <max-flap-extension-speed>
+     <flaps>0.9</flaps>
+     <speed>100</speed>
+   </max-flap-extension-speed>
+   <max-positive-g>3.5</max-positive-g>
+   <max-negative-g>-1.52</max-negative-g>
+   <vne>175</vne>
+ </limits>
+
+ <nasal>
+  <kap140>
+   <file>Aircraft/Generic/kap140.nas</file>
+  </kap140>
+  <failures> 
+    <file>Aircraft/Generic/limits.nas</file>
+  </failures>
+ </nasal>
+
+ <!-- ================ map keyboard ================ -->
+ <input> 
+    <keyboard> 
+      <key n="76">
+        <name>L</name>
+        <desc>Cockpit illumination.</desc>
+        <repeatable type="bool">false</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/lighting/panel-norm</property>
+          <step>0.25</step>
+          <min>0</min>
+          <max>1.1</max>
+          <wrap>1</wrap>
+        </binding>
+      </key>
+
+      <key n="89">
+        <name>Y</name>
+        <desc>Toggle yoke visibility.</desc>
+        <repeatable type="bool">false</repeatable>
+        <binding>
+          <command>property-toggle</command>
+          <property>sim/model/hide-yoke</property>
+        </binding>
+      </key>
+
+    </keyboard>
+    </input>
+
+  
+</PropertyList>

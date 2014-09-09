@@ -1,0 +1,415 @@
+<?xml version="1.0"?>
+
+<!--
+Cessna 182S Skylane panel.
+January 2002
+David Megginson <david@megginson.com>
+#++ To download this file, click here: <a href="./${bn}">./${bn}</a> ....
+-->
+
+<!DOCTYPE PropertyList>
+
+<PropertyList>
+
+ <name>Cessna C182S Skylane Panel</name>
+ <background>Aircraft/c182/Panels/Textures/transparent-bg.rgb</background>
+ <w>1709</w>
+ <h>488</h>
+ <y-offset>0</y-offset>
+ <view-height>500</view-height>
+
+ <instruments>
+
+ <!-- engine gauge cluster -->  
+  <instrument include="Aircraft/Instruments/clock.xml">
+   <name>Chronometer</name>
+   <x>45</x>
+   <y>234</y>
+   <w>74</w>
+   <h>74</h>
+  </instrument>
+
+  <instrument include="Aircraft/Instruments/egt.xml">
+   <name>Exhaust Gas Temperature Gauge</name>
+   <x>1025</x>
+   <y>397</y>
+   <w>74</w>
+   <h>74</h>
+  </instrument>
+
+  <instrument include="Aircraft/Instruments/fuel.xml">
+   <name>Fuel Gauge</name>
+   <x>950</x>
+   <y>397</y>
+   <w>74</w>
+   <h>74</h>
+  </instrument>
+
+  <instrument include="Aircraft/Instruments/oil.xml">
+   <name>Oil Gauge</name>
+   <x>950</x>
+   <y>320</y>
+   <w>74</w>
+   <h>74</h>
+  </instrument>
+  
+  <instrument include="Aircraft/Instruments/vacamp.xml">
+   <name>Vacuum Pressure Gauge</name>
+   <x>1025</x>
+   <y>320</y>
+   <w>74</w>
+   <h>74</h>
+  </instrument>
+
+  <instrument include="Aircraft/Instruments/single-manifold-pressure.xml">
+   <name>Manifold Pressure Gauge</name>
+   <x>980</x>
+   <y>207</y>
+   <w>120</w>
+   <h>120</h>
+  </instrument>
+<!-- end engine gauges cluster -->
+
+<!-- engine controls cluster -->  
+ 
+  <instrument include="Aircraft/c182/Panels/tach-skylane.xml">
+   <name>RPM Gauge</name>
+   <x>980</x>
+   <y>74</y>
+   <w>120</w>
+   <h>120</h>
+  </instrument>
+
+  <instrument include="Aircraft/Instruments/single-magneto-switch.xml">
+   <name>Magneto switch panel</name>
+   <x>137</x>
+   <y>53</y>
+  </instrument>
+
+<!-- end engine controls cluster -->
+  
+<!-- controls visual feedback cluster -->  
+
+ 
+
+ 
+
+<!-- end controls visual feedback cluster -->
+
+<!-- sacred six -->
+
+  <instrument include="Aircraft/Instruments/asi-160-knot.xml">
+   <name>Airspeed Indicator</name>
+   <x>146</x>
+   <y>300</y>
+   <w>128</w>
+   <h>128</h>
+  </instrument>
+
+  <instrument include="Aircraft/Instruments/attitude-indicator.xml">
+   <name>Attitude Gyro</name>
+   <x>279</x>
+   <y>330</y>
+   <w>128</w>
+   <h>128</h>
+  </instrument>
+
+  <instrument include="Aircraft/Instruments/altimeter.xml">
+   <name>Altimeter</name>
+   <x>412</x>
+   <y>340</y>
+   <w>120</w>
+   <h>120</h>
+  </instrument>
+
+  <instrument include="Aircraft/Instruments/turn.xml">
+   <name>Turn Coordinator</name>
+   <x>146</x>
+   <y>167</y>
+   <w>120</w>
+   <h>120</h>
+  </instrument>
+
+  <instrument include="Aircraft/Instruments/hsi.xml">
+   <name>Directional Gyro</name>
+   <x>279</x>
+   <y>197</y>
+   <w>120</w>
+   <h>120</h>
+  </instrument>
+
+  <instrument include="Aircraft/Instruments/vertical.xml">
+   <name>Vertical Velocity Indicator</name>
+   <x>412</x>
+   <y>207</y>
+   <w>120</w>
+   <h>120</h>
+  </instrument>
+
+<!-- end sacred six -->
+
+<!-- radio nav instruments --> 
+
+  <instrument include="Aircraft/Instruments/nav1.xml">
+  <name>VOR 2 Gauge</name>
+  <params>
+   <nav-to-flag>/instrumentation/nav[1]/to-flag</nav-to-flag>
+   <nav-from-flag>/instrumentation/nav[1]/from-flag</nav-from-flag>
+   <nav-radial-selected>/instrumentation/nav[1]/radials/selected-deg</nav-radial-selected>
+   <nav-gs-needle-deflection>/instrumentation/nav[1]/gs-needle-deflection</nav-gs-needle-deflection>
+   <nav-heading-needle-deflection>/instrumentation/nav[1]/heading-needle-deflection</nav-heading-needle-deflection>
+    <nav-has-gs-needle>/sim/instrument-options/nav[1]/has-gs-needle</nav-has-gs-needle>
+    <nav-needles-pivot>/sim/instrument-options/nav[1]/needles-pivot</nav-needles-pivot>
+  </params>
+  <x>545</x>
+  <y>340</y>
+  <w>120</w>
+  <h>120</h>
+  </instrument>
+
+
+<!-- end radio nav instruments -->
+
+  <instrument include="Aircraft/Instruments/logo.xml">
+   <name>Tail Number Plate</name>
+   <x>345</x>
+   <y>410</y>
+   <w>72</w>
+   <h>32</h>
+  </instrument>
+
+<!-- radio stack -->
+
+  <instrument include="Aircraft/Instruments/dme.xml">
+   <name>DME Display</name>
+   <x>775</x>
+   <y>366</y>
+   <w>122</w>
+   <h>59</h>
+  </instrument>
+
+  <instrument include="Aircraft/Instruments/markerbeacon.xml">
+   <name>Marker Beacon Indicators</name>
+   <x>680</x>
+   <y>348</y>
+   </instrument>
+
+  <instrument include="Aircraft/Instruments/navcom-radio.xml">
+   <name>NavCom 1 Radio</name>
+   <x>775</x>
+   <y>303</y>
+  </instrument>
+
+  <instrument include="Aircraft/Instruments/navcom-radio.xml">
+   <name>NavCom 2 Radio</name>
+   <params>
+    <comm-freq-selected-prop>/instrumentation/comm[1]/frequencies/selected-mhz</comm-freq-selected-prop>
+    <comm-freq-standby-prop>/instrumentation/comm[1]/frequencies/standby-mhz</comm-freq-standby-prop>
+    <nav-freq-selected-prop>/instrumentation/nav[1]/frequencies/selected-mhz</nav-freq-selected-prop>
+    <nav-freq-standby-prop>/instrumentation/nav[1]/frequencies/standby-mhz</nav-freq-standby-prop>
+    <nav-morse-id-volume-prop>/instrumentation/nav[1]/volume</nav-morse-id-volume-prop>
+    <nav-morse-ident-toggle-prop>/instrumentation/nav[1]/ident</nav-morse-ident-toggle-prop>
+   </params>
+   <x>775</x>
+   <y>240</y>
+  </instrument>
+  
+  <instrument include="Aircraft/Instruments/adf-radio.xml">
+   <name>ADF Radio</name>
+   <x>775</x>
+   <y>176</y>
+  </instrument>
+
+<!--
+  <instrument include="Aircraft/Instruments/autopilot.xml">
+   <name>Autopilot</name>
+   <x>775</x>
+   <y>166</y>
+  </instrument>
+-->
+
+  <instrument include="Aircraft/Instruments/KAP140TwoAxisAlt.xml">
+   <name>KAP140 Autopilot</name>
+   <x>775</x>
+   <y>104</y>
+   <w>256</w>
+   <h>85</h>
+  </instrument>
+
+  <instrument include="Aircraft/Instruments/xpdr-kt76c.xml">
+   <name>KT76c Transponder</name>
+   <x>775</x>
+   <y>29</y>
+  </instrument>
+<!-- end radio stack -->
+
+<!-- center stack controls -->
+
+  <instrument include="Aircraft/Instruments/brakes.xml">
+   <name>Brake Indicator Light</name>
+   <x>279</x>
+   <y>-200</y>
+  </instrument>
+
+<!-- end center stack controls -->
+
+<!-- Other click-able contols -->
+ <instrument>
+   <name>3D Action Placeholder</name>
+   <x>660</x>
+   <y>-220</y>
+   <w>1424</w>
+   <h>1488</h>
+   <w-base>1424</w-base>
+   <h-base>1488</h-base>
+
+
+<!-- throttle control -->
+<actions>
+
+<action>
+   <name>decrease</name>
+   <button>0</button>
+   <x>0</x>
+   <y>0</y>
+   <w>75</w>
+   <h>100</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.adjTrottle(1)</script>
+   </binding>
+  </action>
+
+  <action>
+   <name>increase</name>
+   <button>0</button>
+   <x>0</x>
+   <y>-100</y>
+   <w>75</w>
+   <h>100</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.adjTrottle(-1)</script>
+   </binding>
+  </action> 
+
+<!-- propeller control -->
+
+<action>
+   <name>IncreaseRPM</name>
+   <button>0</button>
+   <x>90</x>
+   <y>0</y>
+   <w>75</w>
+   <h>100</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.adjPropeller(1)</script>
+   </binding>
+  </action>
+
+  <action>
+   <name>DecreaseRPM</name>
+   <button>0</button>
+   <x>90</x>
+   <y>-100</y>
+   <w>75</w>
+   <h>100</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.adjPropeller(-1)</script>
+   </binding>
+  </action>
+
+
+<!-- mixture control -->
+
+<action>
+   <name>RichMixture</name>
+   <button>0</button>
+   <x>180</x>
+   <y>0</y>
+   <w>75</w>
+   <h>100</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.adjMixture(1)</script>
+   </binding>
+  </action>
+
+  <action>
+   <name>LeanMixture</name>
+   <button>0</button>
+   <x>180</x>
+   <y>-100</y>
+   <w>75</w>
+   <h>100</h>
+   <binding>
+    <command>nasal</command>
+    <script>controls.adjMixture(-1)</script>
+   </binding>
+  </action>
+
+  <action>
+   <name>FlapRetract</name>
+   <button>0</button>
+   <x>265</x>
+   <y>85</y>
+   <w>65</w>
+   <h>75</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.flapsDown(-1)</script>
+   </binding>
+  </action>
+
+  <action>
+   <name>FlapExtend</name>
+   <button>0</button>
+   <x>265</x>
+   <y>10</y>
+   <w>65</w>
+   <h>75</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.flapsDown(1)</script>
+   </binding>
+  </action>
+
+
+<action>
+   <name>TrimUp</name>
+   <button>0</button>
+   <x>60</x>
+   <y>-600</y>
+   <w>75</w>
+   <h>250</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.elevatorTrim(0.75)</script>
+   </binding>
+  </action>  
+
+  <action>
+   <name>TrimDown</name>
+   <button>0</button>
+   <x>60</x>
+   <y>-850</y>
+   <w>75</w>
+   <h>250</h>
+   <binding>
+     <command>nasal</command>
+     <script>controls.elevatorTrim(-0.75)</script>
+   </binding>
+  </action>
+
+
+</actions>
+
+</instrument>
+
+ </instruments>
+
+</PropertyList>
+
+

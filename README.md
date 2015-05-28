@@ -1,5 +1,9 @@
 Cessna 182S, approved 1996-10-03
 
+Based on Stuart's model 
+
+![My image](http://abload.de/img/fgfs-screen-011qns7a.jpg)
+
 Engine (from TCDS)
 ------------------
 

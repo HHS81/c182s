@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+    <path>Tach.ac</path>
+    
+    <animation>
+        <type>material</type>
+        <object-name>Face</object-name>
+        <object-name>TachNeedle</object-name>
+             <emission>
+            <red>0.028</red>
+            <green>0.014</green>
+            <blue>0.007</blue>
+            <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
+        </emission>
+    </animation>
+    
+    
+
+    <animation>
+        <type>rotate</type>
+        <object-name>TachNeedle</object-name>
+        <property>engines/engine/thruster/rpm</property>
+ <interpolation>
+      <entry><ind>0</ind><dep>0</dep></entry>
+      <entry><ind>500</ind><dep>45 </dep></entry>
+      <entry><ind>1000</ind><dep> 90</dep></entry>
+      <entry><ind>1500</ind><dep>135</dep></entry>
+      <entry><ind>2000</ind><dep>180 </dep></entry>
+       <entry><ind>2100</ind><dep>190</dep></entry>
+      <entry><ind>2200</ind><dep> 198</dep></entry>
+      <entry><ind>2300</ind><dep>207</dep></entry>
+      <entry><ind>2400</ind><dep>215</dep></entry>
+      <entry><ind>2500</ind><dep> 225</dep></entry>
+      <entry><ind>3000</ind><dep>270</dep></entry>
+    </interpolation>
+    <axis>
+      <x> -1 </x>
+      <y>  0 </y>
+      <z>  0 </z>
+    </axis>
+    <center>
+      <x-m> 0 </x-m>
+      <y-m> 0 </y-m>
+      <z-m> 0 </z-m>
+    </center>
+    </animation>
+
+   
+
+</PropertyList>

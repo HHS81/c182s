@@ -1,0 +1,352 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+Cessna 182 simulation config. This files ties together all the components
+used by FGFS to represent the C182. Components include the flight data 
+model, instrument panel, and external 3D model.
+
+Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
+************************************************************************
+-->
+
+<PropertyList>
+
+ <sim>
+
+  <description>Cessna 182S</description>
+  <author>Heiko H. Schulz, Stuart Buchanan</author>
+  <status>beta</status>
+  <rating>
+    <FDM type="int">3</FDM>
+    <systems type="int">3</systems>
+    <cockpit type="int">2</cockpit>
+    <model type="int">4</model>
+  </rating>
+ 
+  <flight-model>jsb</flight-model>
+  <aero>c182s</aero>
+  
+  <systems>
+    <autopilot>
+      <path>Aircraft/c182/Systems/KAP140.xml</path>
+    </autopilot>
+ <property-rule n="100">
+      <name>FiltersOnly</name>
+      <path>Aircraft/c172p/Systems/NAVandGSfilters.xml</path>
+    </property-rule>
+    <electrical>
+      <!-- null electrical system path here so we can use a nasal based -->
+      <!-- model defined later in the nasal section of this file. -->
+      <path></path>
+    </electrical>
+  </systems>
+  
+<instrumentation n="0">
+    <path>Aircraft/c182/Systems/instrumentation.xml</path>
+  </instrumentation>
+
+  <sound>
+   <path>Aircraft/c182/c182-sound.xml</path>
+  </sound>
+
+  <panel>
+   <visibility archive="y">false</visibility>
+  </panel>
+
+  <model>
+   <path archive="y">Aircraft/c182/Models/c182-dpm.xml</path>
+    <hide-yoke>false</hide-yoke>
+
+    <livery>
+      <file type="string">Default</file>
+      <index type="int">0</index>
+    </livery>
+    
+  <c182>
+      <chrome_spinner type="bool">false</chrome_spinner>
+    </c182>
+    
+  <rendering>
+    <refl_correction type="string">-0.3</refl_correction>
+    </rendering>
+    
+  </model>
+
+  <view>
+   <internal archive="y">true</internal>
+   <config>
+     <x-offset-m archive="y">-0.25</x-offset-m>
+     <y-offset-m archive="y">0.65</y-offset-m>
+     <z-offset-m archive="y">0.0</z-offset-m>
+     <pitch-offset-deg>-5</pitch-offset-deg>
+   </config>
+  </view>
+  
+   <flaps>
+      <setting>0.000</setting>
+      <!-- flaps up -->
+      <setting>0.26315</setting>
+      <!-- flaps 10  -->
+      <setting>0.526315</setting>
+      <!-- flaps 20  -->
+      <setting>1.00</setting>
+      <!-- flaps 38  -->
+</flaps>
+
+
+
+
+  <help>
+   <title>Cessna 182s</title>
+   <line>Velocities</line>
+   <line>  Va1 (maneuvering)   : 110 KIAS</line>
+   <line>  Vno (max cruise)    : 140 KIAS</line>
+   <line>  Vne (never exceed)  : 175 KIAS</line>
+   <line>  Vx (angle of climb) : 63 KIAS</line>
+   <line>  Vy (rate of climb)  : 80 KIAS</line>
+   <line>  Stall, no flaps     : 56 KIAS</line>
+   <line>  Stall, full flaps   : 50 KIAS</line>
+   <line></line>
+   <line>Maximum Flap Extension Speeds</line>
+   <line>  10 degrees : 140 KIAS</line>
+   <line>  20 degrees : 120 KIAS</line>
+   <line>  30 degrees : 100 KIAS</line>
+   <line></line>
+   <line>Performance</line>
+   <line>  Cruise, 80% power,  6,000 ft: 140 kt</line>
+   <line>  Cruise, 65% power,  8,000 ft: 130 kt</line>
+   <line>  Cruise, 55% power, 10,000 ft: 121 kt</line>
+   <line></line>
+   <line>  Range,  75% power,  6,000 ft: 820 nm</line>
+   <line>  Range,  65% power,  8,000 ft: 910 nm</line>
+   <line>  Range,  55% power, 10,000 ft: 968 nm</line>
+   <line></line>
+   <line>  Best Climb: 924fpm</line>
+   <line>  Service Ceiling: 18,100ft</line>
+   <line>  Takeoff ground roll: 795ft  over 50ft obstacle: 1,514ft</line>
+   <line>  Landing ground roll: 590ft  over 50ft obstacle: 1,390ft</line>
+   <key>
+    <name>n/N</name>
+    <desc>Propeller finer/coarser</desc>
+   </key>
+   <key>
+    <name>Y</name>
+    <desc>Toggle yoke visibility</desc>
+   </key>
+   <key>
+    <name>L</name>
+    <desc>Cockpit illumination</desc>
+   </key>
+  </help>
+
+		<menubar>
+			<default>
+				<menu n="10">
+				<label>Cessna 182 S</label>
+					<enabled type="bool">true</enabled>
+					<item>
+						<label>Select Livery</label>
+						<binding>
+							<command>nasal</command>
+							<script>aircraft.livery.dialog.toggle()</script>
+						</binding>
+					</item>
+				</menu>
+			</default>
+		</menubar>
+
+ </sim>
+ 
+ <consumables>
+  <fuel>
+   <tank n="0">
+    <level-gal_us>40</level-gal_us>
+   </tank>
+   <tank n="1">
+    <level-gal_us>40</level-gal_us>
+   </tank>
+  </fuel>
+ </consumables>
+  
+ 
+
+ <controls>
+  <flight>
+   <aileron-trim type="double">0.027</aileron-trim>
+   <rudder-trim type="double">0.05</rudder-trim>
+  </flight>
+  <engines>
+   <engine n="0">
+    <magnetos type="int">3</magnetos>
+    <master-bat type="bool">true</master-bat>
+    <master-alt type="bool">true</master-alt>
+   </engine>
+  </engines>
+  <lighting>
+   <landing-lights type="bool">false</landing-lights>
+   <taxi-light type="bool">false</taxi-light>
+   <strobe type="bool">false</strobe>
+   <beacon type="bool">false</beacon>
+   <nav-lights type="bool">false</nav-lights>
+  </lighting>
+  <switches>
+   <master-avionics type="bool">true</master-avionics>
+   <starter type="bool">false</starter>
+   <kt-76c type="double">0</kt-76c>
+   <kn-62a type="double">0</kn-62a>
+  </switches>
+  </controls>
+ 
+ <autopilot>
+  <KAP140>
+   <settings>
+    <auto-pitch-trim type="bool">true</auto-pitch-trim>
+   </settings>
+  </KAP140>
+ </autopilot>
+ 
+<instrumentation include="Systems/init-instrumentation.xml"/>
+
+
+ <engines>
+  <engine>
+   <rpm type="double">0</rpm>
+   <magnetos type="int">0</magnetos>
+   <mixture type="double">0</mixture>
+   <running type="bool">false</running>
+  </engine>
+ </engines>
+
+<payload>
+  <weight>
+   <name type="string">Pilot</name>
+   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">300.0</max-lb>
+  </weight>
+  <weight>
+   <name type="string">Co-Pilot</name>
+   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">300.0</max-lb>
+  </weight>
+  <weight>
+   <name type="string">Left Passenger</name>
+   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">300.0</max-lb>
+  </weight>
+  <weight>
+   <name type="string">Right Passenger</name>
+   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">300.0</max-lb>
+  </weight>
+  <weight>
+   <name type="string">Baggage A</name>
+   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">150.0</max-lb> <!-- WARNING: Max baggage A "by the book" is 120lbs or less! -->
+  </weight>
+  <weight>
+   <name type="string">Baggage B</name>
+   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[5]"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">120.0</max-lb> <!-- WARNING: Max baggage B "by the book" is 80lbs or less! -->
+  </weight>
+ </payload>
+
+ <limits>
+   <max-flap-extension-speed>
+     <flaps>0.26315</flaps>
+     <speed>140</speed>
+   </max-flap-extension-speed>
+   <max-flap-extension-speed>
+     <flaps>0.52</flaps>
+     <speed>120</speed>
+   </max-flap-extension-speed>
+   <max-flap-extension-speed>
+     <flaps>1.0</flaps>
+     <speed>100</speed>
+   </max-flap-extension-speed>
+   <max-positive-g>3.5</max-positive-g>
+   <max-negative-g>-1.52</max-negative-g>
+   <vne>175</vne>
+ </limits>
+
+ <nasal>
+ <c182>
+	<file>Aircraft/c182/Nasal/liveries.nas</file>
+	<file>Aircraft/c182/Nasal/doors.nas</file>
+	<file>Aircraft/c182/Nasal/kt76c.nas</file>
+	<file>Aircraft/c182/Nasal/kn62a.nas</file>
+    </c182>
+  <electrical>
+   <file>Aircraft/c182/Nasal/c182-electrical.nas</file>
+  </electrical>
+   <kap140>
+   <file>Aircraft/Generic/kap140.nas</file>
+   <!-- We can set some variables that might be
+        aircraft specific. We must do it after the file
+        to override the ones that are in the .nas file.-->
+   <script><![CDATA[
+                    headingNeedleDeflection = "/instrumentation/nav/heading-needle-deflection";
+                    gsNeedleDeflection = "/instrumentation/nav/gs-needle-deflection-norm";
+                    staticPressure = "systems/static/pressure-inhg";
+    ]]>
+   </script>
+  </kap140>
+    <failures> 
+    <file>Aircraft/Generic/limits.nas</file>
+  </failures>
+ </nasal>
+
+ <!-- ================ map keyboard ================ -->
+ <input> 
+    <keyboard> 
+      <key n="76">
+        <name>L</name>
+        <desc>Cockpit illumination.</desc>
+        <repeatable type="bool">false</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/lighting/panel-norm</property>
+          <step>0.25</step>
+          <min>0</min>
+          <max>1.1</max>
+          <wrap>1</wrap>
+        </binding>
+      </key>
+
+      <key n="89">
+        <name>Y</name>
+        <desc>Toggle yoke visibility.</desc>
+        <repeatable type="bool">false</repeatable>
+        <binding>
+          <command>property-toggle</command>
+          <property>sim/model/hide-yoke</property>
+        </binding>
+      </key>
+      
+<key n="115">
+   <name>s</name>
+   <desc>Toggle Starter Switch</desc>
+   <binding>
+    <command>property-assign</command>
+    <property>/controls/switches/starter</property>
+    <value >1</value>
+   </binding>
+   <mod-up>
+    <binding>
+     <command>property-assign</command>
+     <property>/controls/switches/starter</property>
+     <value>0</value>
+    </binding>
+   </mod-up>
+  </key>
+
+    </keyboard>
+    </input>
+
+  
+</PropertyList>

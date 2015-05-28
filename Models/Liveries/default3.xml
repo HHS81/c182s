@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <sim>
+    <model>
+      
+      
+      
+      <livery>
+        <name type="string">default3</name>
+	 <index type="int">1</index>
+	 <texture>Liveries/Default3.png</texture>
+      </livery>
+<c182>
+<chrome_spinner>true</chrome_spinner>
+</c182>
+    </model>
+    
+<rendering>
+    <refl_correction type="string">-0.25</refl_correction>
+    </rendering>
+   
+  </sim>
+</PropertyList>

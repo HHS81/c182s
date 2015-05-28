@@ -1,0 +1,229 @@
+<PropertyList>
+  <path>lights.ac</path>
+  
+  <!-- Panel Lights-->
+  <model>
+    <name>PanelKnob</name>
+    <path>Aircraft/Instruments-3d/controls/knob-flat.ac</path>
+    <offsets>
+      <x-m>0.0</x-m>
+      <y-m>-0.15</y-m>
+      <z-m>0.02</z-m>
+    </offsets>
+  </model>
+
+  <animation>
+    <object-name>PanelKnob</object-name>
+    <type>rotate</type>
+    <property>/controls/lighting/panel-norm</property>
+    <factor>-270.0</factor>
+    <offset>-60.0</offset>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>-0.15</y-m>
+      <z-m>0.02</z-m>
+    </center>
+    <axis>
+      <x>1.0</x>
+      <y>0.0</y>
+      <z>0.0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>PanelKnob</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-adjust</command>
+        <property>/controls/lighting/panel-norm</property>
+        <step>0.25</step>
+        <min>0</min>
+        <max>1</max>
+        <wrap>1.25</wrap>
+      </binding>
+    </action>
+  </animation>
+
+  <!-- Navigation lights -->
+  <model>
+    <name>NavSwitch</name>
+    <path>Aircraft/c182/Models/toggle-white.ac</path>
+    <offsets>
+      <x-m>0.0</x-m>
+      <y-m>-0.051</y-m>
+      <z-m>0.00</z-m>
+    </offsets>
+  </model>
+
+  <animation>
+    <object-name>NavSwitch</object-name>
+    <type>rotate</type>
+    <property>/controls/switches/nav-lights</property>
+    <factor>-40.0</factor>
+    <axis>
+      <x>0.0</x>
+      <y>1.0</y>
+      <z>0.0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>NavSwitch</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-toggle</command>
+        <property>/controls/switches/nav-lights</property>
+      </binding>
+    </action>
+  </animation>
+
+  <!-- Beacon light -->
+  <model>
+    <name>BeaconSwitch</name>
+    <path>Aircraft/c182/Models/toggle-white.ac</path>
+    <offsets>
+      <x-m>0.0</x-m>
+      <y-m>-0.02</y-m>
+      <z-m>0.00</z-m>
+    </offsets>
+  </model>
+
+  <animation>
+    <object-name>BeaconSwitch</object-name>
+    <type>rotate</type>
+    <property>/controls/switches/beacon-lights</property>
+    <factor>-40.0</factor>
+    <axis>
+      <x>0.0</x>
+      <y>1.0</y>
+      <z>0.0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>BeaconSwitch</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-toggle</command>
+        <property>/controls/switches/beacon-lights</property>
+      </binding>
+    </action>
+  </animation>
+
+  <!-- Strobe light -->
+  <model>
+    <name>StrobeSwitch</name>
+    <path>Aircraft/c182/Models/toggle-white.ac</path>
+    <offsets>
+      <x-m>0.0</x-m>
+      <y-m>0.011</y-m>
+      <z-m>0.00</z-m>
+    </offsets>
+  </model>
+
+  <animation>
+    <object-name>StrobeSwitch</object-name>
+    <type>rotate</type>
+    <property>controls/switches/strobe-lights</property>
+    <factor>-40.0</factor>
+    <axis>
+      <x>0.0</x>
+      <y>1.0</y>
+      <z>0.0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>StrobeSwitch</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-toggle</command>
+        <property>/controls/switches/strobe-lights</property>
+      </binding>
+    </action>
+  </animation>
+
+  <!-- Tax lights -->
+  <model>
+    <name>TaxiSwitch</name>
+    <path>Aircraft/c182/Models/toggle-white.ac</path>
+    <offsets>
+      <x-m>0.0</x-m>
+      <y-m>0.042</y-m>
+      <z-m>0.00</z-m>
+    </offsets>
+  </model>
+
+  <animation>
+    <object-name>TaxiSwitch</object-name>
+    <type>rotate</type>
+    <property>/controls/switches/taxi-lights</property>
+    <factor>-40.0</factor>
+    <axis>
+      <x>0.0</x>
+      <y>1.0</y>
+      <z>0.0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>TaxiSwitch</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-toggle</command>
+        <property>/controls/switches/taxi-lights</property>
+      </binding>
+    </action>
+  </animation>
+
+  <!-- Landing light -->
+  <model>
+    <name>LandingSwitch</name>
+    <path>Aircraft/c182/Models/toggle-white.ac</path>
+    <offsets>
+      <x-m>0.0</x-m>
+      <y-m>0.074</y-m>
+      <z-m>0.00</z-m>
+    </offsets>
+  </model>
+
+  <animation>
+    <object-name>LandingSwitch</object-name>
+    <type>rotate</type>
+    <property>/controls/switches/landing-lights</property>
+    <factor>-40.0</factor>
+    <axis>
+      <x>0.0</x>
+      <y>1.0</y>
+      <z>0.0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>LandingSwitch</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-toggle</command>
+        <property>/controls/switches/landing-lights</property>
+      </binding>
+    </action>
+  </animation>
+</PropertyList>

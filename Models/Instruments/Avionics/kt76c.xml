@@ -1,0 +1,373 @@
+<?xml version="1.0"?>
+
+<!--
+Bendix/King KT76c Transponder
+Gary "Buckaroo" Neely
+Released under GNU GENERAL PUBLIC LICENSE Version 2
+-->
+
+<PropertyList>
+
+<path>kt76c.ac</path>
+
+<animation>
+  <type>material</type>
+  <object-name>Bezel</object-name>
+  <object-name>Knob</object-name>
+  <object-name>BtnIDT</object-name>
+  <object-name>BtnCLR</object-name>
+  <object-name>BtnVFR</object-name>
+  <object-name>Btn0</object-name>
+  <object-name>Btn1</object-name>
+  <object-name>Btn2</object-name>
+  <object-name>Btn3</object-name>
+  <object-name>Btn4</object-name>
+  <object-name>Btn5</object-name>
+  <object-name>Btn6</object-name>
+  <object-name>Btn7</object-name>
+  <emission>
+    <red>0.2</red>
+    <green>0.1</green>
+    <blue>0.05</blue>
+    <factor-prop>/systems/electrical/outputs/panel-norm</factor-prop>
+  </emission>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>LabelsAlt</object-name>
+  <object-name>LabelReply</object-name>
+  <object-name>CodeDigit1</object-name>
+  <object-name>CodeDigit2</object-name>
+  <object-name>CodeDigit3</object-name>
+  <object-name>CodeDigit4</object-name>
+  <object-name>AltDigit1</object-name>
+  <object-name>AltDigit2</object-name>
+  <object-name>AltDigit3</object-name>
+  <emission>
+    <red>0.8</red>
+    <green>0.4</green>
+    <blue>0.2</blue>
+    <factor-prop>/systems/electrical/outputs/panel-norm</factor-prop>
+  </emission>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>LabelsAlt</object-name>
+  <object-name>AltDigit1</object-name>
+  <object-name>AltDigit2</object-name>
+  <object-name>AltDigit3</object-name>
+  <condition>
+    <and>
+    <property>/systems/electrical/outputs/kt-76c</property>
+    <equals>
+    <property>/controls/switches/kt-76c</property>
+    <value>4</value>
+    </equals>
+    </and>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>LabelReply</object-name>
+  <object-name>CodeDigit1</object-name>
+  <object-name>CodeDigit2</object-name>
+  <object-name>CodeDigit3</object-name>
+  <object-name>CodeDigit4</object-name>
+  <condition>
+    <property>/systems/electrical/outputs/kt-76c</property>
+  </condition>
+</animation>
+
+<animation>
+  <type>textranslate</type>
+  <object-name>AltDigit1</object-name>
+  <property>/instrumentation/transponder/flight-level</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>AltDigit2</object-name>
+  <property>/instrumentation/transponder/flight-level</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>AltDigit3</object-name>
+  <property>/instrumentation/transponder/flight-level</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<animation>
+  <type>textranslate</type>
+  <object-name>CodeDigit1</object-name>
+  <property>/instrumentation/transponder/id-code</property>
+  <factor>0.0001</factor>
+  <step>1000</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CodeDigit2</object-name>
+  <property>/instrumentation/transponder/id-code</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CodeDigit3</object-name>
+  <property>/instrumentation/transponder/id-code</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CodeDigit4</object-name>
+  <property>/instrumentation/transponder/id-code</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+
+<animation>
+  <type>rotate</type>
+  <object-name>Knob</object-name>
+  <property>/controls/switches/kt-76c</property>
+  <interpolation>
+    <entry><ind>0</ind><dep>  0</dep></entry>
+    <entry><ind>1</ind><dep> 40</dep></entry>
+    <entry><ind>2</ind><dep> 80</dep></entry>
+    <entry><ind>3</ind><dep>140</dep></entry>
+    <entry><ind>4</ind><dep>180</dep></entry>
+  </interpolation>
+  <center>
+    <x-m>0</x-m>
+    <y-m>0.063</y-m>
+    <z-m>0</z-m>
+  </center>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+
+<animation>
+    <type>pick</type>
+    <object-name>Knob</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/switches/kt-76c</property>
+          <step>1</step>
+          <min>0</min>
+          <max>4</max>
+          <wrap>false</wrap>
+        </binding>
+     </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+    <object-name>Knob</object-name>
+    <visible>true</visible>
+    <action>
+      <button>1</button>
+      <repeatable>false</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/switches/kt-76c</property>
+          <step>-1</step>
+          <min>0</min>
+          <max>4</max>
+          <wrap>false</wrap>
+        </binding>
+     </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+    <object-name>Btn0</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+ <binding>
+          <command>nasal</command>
+          <script>c182.kt76c_button_code(0);</script>
+        </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+    <object-name>Btn1</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+ <binding>
+          <command>nasal</command>
+          <script>c182.kt76c_button_code(1);</script>
+        </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+    <object-name>Btn2</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+ <binding>
+          <command>nasal</command>
+          <script>c182.kt76c_button_code(2);</script>
+        </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+    <object-name>Btn3</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+ <binding>
+          <command>nasal</command>
+          <script>c182.kt76c_button_code(3);</script>
+        </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+    <object-name>Btn4</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+ <binding>
+          <command>nasal</command>
+          <script>c182.kt76c_button_code(4);</script>
+        </binding>
+    </action>
+  </animation>
+
+<animation>
+    <type>pick</type>
+    <object-name>Btn5</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+ <binding>
+          <command>nasal</command>
+          <script>c182.kt76c_button_code(5);</script>
+        </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+    <object-name>Btn6</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+ <binding>
+          <command>nasal</command>
+          <script>c182.kt76c_button_code(6);</script>
+        </binding>
+    </action>
+  </animation>
+
+<animation>
+    <type>pick</type>
+    <object-name>Btn7</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+ <binding>
+          <command>nasal</command>
+          <script>c182.kt76c_button_code(7);</script>
+        </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+    <object-name>BtnCLR</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+ <binding>
+        <command>nasal</command>
+          <script>c182.kt76c_button_clr();</script>
+        </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+    <object-name>BtnVFR</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+ <binding>
+        <command>nasal</command>
+          <script>c182.kt76c_button_vfr();</script>
+        </binding>
+    </action>
+  </animation>
+
+
+</PropertyList>
+
+

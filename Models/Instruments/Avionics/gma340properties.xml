@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+ This file is part of FlightGear, the free flight simulator
+ http://www.flightgear.org/
+
+ Copyright (C) 2009 Torsten Dreyer, Torsten (at) t3r _dot_ de
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 2 of the
+ License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+-->
+<PropertyList>
+  <dme           archive="y" type="bool">false</dme>
+  <hi            archive="y" type="bool">true</hi>
+  <lo            archive="y" type="bool">false</lo>
+  <com     n="0" archive="y" type="bool">true</com>
+  <com     n="1" archive="y" type="bool">false</com>
+  <com     n="2" archive="y" type="bool">false</com>
+  <com-mic n="0" archive="y" type="bool">true</com-mic>
+  <com-mic n="1" archive="y" type="bool">false</com-mic>
+  <com-mic n="2" archive="y" type="bool">false</com-mic>
+  <com1-2        archive="y" type="bool">false</com1-2>
+  <spkr          archive="y" type="bool">false</spkr>
+  <pa            archive="y" type="bool">false</pa>
+  <crew          archive="y" type="bool">false</crew>
+  <pilot         archive="y" type="bool">false</pilot>
+
+  <test          archive="y" type="bool">false</test>
+</PropertyList>

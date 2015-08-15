@@ -8,11 +8,11 @@ JSBSim Cessna 182 with 2D panel.
 <PropertyList include="c182-set.xml">
 
  <sim>
-
+  <variant-of>c182</variant-of>
   <description>Cessna 182 (2D panel)</description>
 
   <!-- Use a 2D instrument panel -->
- 
+
   <panel>
    <path>Aircraft/c182/Panels/c182s-panel.xml</path>
    <visibility archive="y">true</visibility>

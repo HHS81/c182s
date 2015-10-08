@@ -1,0 +1,614 @@
+<?xml version="1.0"?>
+
+<!--
+Bendix/King KN62a DME
+Gary "Buckaroo" Neely
+Released under GNU GENERAL PUBLIC LICENSE Version 2
+-->
+
+<PropertyList>
+
+<path>kn62a.ac</path>
+
+<animation>
+  <type>material</type>
+  <object-name>Bezel</object-name>
+  <object-name>Knob1</object-name>
+  <object-name>Knob2</object-name>
+  <object-name>SwFunction</object-name>
+  <object-name>SwPower</object-name>
+  <emission>
+    <red>0.2</red>
+    <green>0.1</green>
+    <blue>0.05</blue>
+    <factor-prop>/systems/electrical/outputs/panel-norm</factor-prop>
+  </emission>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>DashesNM</object-name>
+  <object-name>DashesGST</object-name>
+  <object-name>LabelsNM</object-name>
+  <object-name>LabelsMHZ</object-name>
+  <object-name>LabelsKTMIN</object-name>
+  <object-name>NMDigit1</object-name>
+  <object-name>NMDigit2</object-name>
+  <object-name>NMDigit3</object-name>
+  <object-name>NMDigit4</object-name>
+  <object-name>NMDecimal</object-name>
+  <object-name>NavDigit1</object-name>
+  <object-name>NavDigit2</object-name>
+  <object-name>NavDigit3</object-name>
+  <object-name>NavDigit4</object-name>
+  <object-name>NavDigit5</object-name>
+  <object-name>NavDecimal</object-name>
+  <object-name>KtDigit1</object-name>
+  <object-name>KtDigit2</object-name>
+  <object-name>KtDigit3</object-name>
+  <object-name>MinDigit1</object-name>
+  <object-name>MinDigit2</object-name>
+  <object-name>Min99</object-name>
+  <emission>
+    <red>0.8</red>
+    <green>0.4</green>
+    <blue>0.2</blue>
+    <factor-prop>/systems/electrical/outputs/panel-norm</factor-prop>
+  </emission>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>NMDigit1</object-name>
+  <condition>
+    <and>
+    <property>/systems/electrical/outputs/dme</property>
+    <property>/instrumentation/dme/in-range</property>
+    <greater-than-equals>
+      <property>/instrumentation/dme/indicated-distance-nm</property>
+      <value>100</value>
+    </greater-than-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>NMDigit2</object-name>
+  <condition>
+    <and>
+    <property>/systems/electrical/outputs/dme</property>
+    <property>/instrumentation/dme/in-range</property>
+    <greater-than-equals>
+      <property>/instrumentation/dme/indicated-distance-nm</property>
+      <value>10</value>
+    </greater-than-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>NMDigit3</object-name>
+  <object-name>NMDigit4</object-name>
+  <object-name>NMDecimal</object-name>
+  <condition>
+    <and>
+    <property>/systems/electrical/outputs/dme</property>
+    <property>/instrumentation/dme/in-range</property>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>DashesNM</object-name>
+  <condition>
+    <and>
+    <property>/systems/electrical/outputs/dme</property>
+    <not><property>/instrumentation/dme/in-range</property></not>
+    </and>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>NavDigit1</object-name>
+  <object-name>NavDigit2</object-name>
+  <object-name>NavDigit3</object-name>
+  <object-name>NavDigit4</object-name>
+  <object-name>NavDigit5</object-name>
+  <object-name>NavDecimal</object-name>
+  <object-name>LabelsMHZ</object-name>
+  <condition>
+    <and>
+      <property>/systems/electrical/outputs/dme</property>
+      <equals><property>/controls/switches/kn-62a-mode</property><value>1</value></equals>
+    </and>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>LabelsNM</object-name>
+  <condition>
+    <property>/systems/electrical/outputs/dme</property>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>LabelsKTMIN</object-name>
+  <condition>
+    <and>
+      <property>/systems/electrical/outputs/dme</property>
+      <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
+    </and>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>KtDigit1</object-name>
+  <condition>
+    <and>
+      <property>/systems/electrical/outputs/dme</property>
+      <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
+      <property>/instrumentation/dme/in-range</property>
+      <greater-than-equals>
+        <property>/instrumentation/dme/indicated-ground-speed-kt</property>
+        <value>100</value>
+      </greater-than-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>KtDigit2</object-name>
+  <condition>
+    <and>
+      <property>/systems/electrical/outputs/dme</property>
+      <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
+      <property>/instrumentation/dme/in-range</property>
+      <greater-than-equals>
+        <property>/instrumentation/dme/indicated-ground-speed-kt</property>
+        <value>10</value>
+      </greater-than-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>KtDigit3</object-name>
+  <condition>
+    <and>
+      <property>/systems/electrical/outputs/dme</property>
+      <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
+      <property>/instrumentation/dme/in-range</property>
+    </and>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>MinDigit1</object-name>
+  <condition>
+    <and>
+      <property>/systems/electrical/outputs/dme</property>
+      <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
+      <property>/instrumentation/dme/in-range</property>
+      <less-than><property>/instrumentation/dme/indicated-time-min</property><value>99</value></less-than>
+      <greater-than-equals>
+        <property>/instrumentation/dme/indicated-time-min</property>
+        <value>10</value>
+      </greater-than-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>MinDigit2</object-name>
+  <condition>
+    <and>
+      <property>/systems/electrical/outputs/dme</property>
+      <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
+      <property>/instrumentation/dme/in-range</property>
+      <less-than><property>/instrumentation/dme/indicated-time-min</property><value>99</value></less-than>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>Min99</object-name>
+  <condition>
+    <and>
+      <property>/systems/electrical/outputs/dme</property>
+      <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
+      <property>/instrumentation/dme/in-range</property>
+      <greater-than-equals><property>/instrumentation/dme/indicated-time-min</property><value>99</value></greater-than-equals>
+    </and>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>DashesGST</object-name>
+  <condition>
+    <and>
+      <property>/systems/electrical/outputs/dme</property>
+      <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
+      <not><property>/instrumentation/dme/in-range</property></not>
+    </and>
+  </condition>
+</animation>
+
+<!-- Nav Freq Display -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>NavDigit1</object-name>
+  <property>/instrumentation/dme/frequencies/display-sel-mhz</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>NavDigit2</object-name>
+  <property>/instrumentation/dme/frequencies/display-sel-mhz</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>NavDigit3</object-name>
+  <property>/instrumentation/dme/frequencies/display-sel-mhz</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>NavDigit4</object-name>
+  <property>/instrumentation/dme/frequencies/display-sel-khz</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>NavDigit5</object-name>
+  <property>/instrumentation/dme/frequencies/display-sel-khz</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<!-- NM Display -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>NMDigit1</object-name>
+  <property>/instrumentation/dme/indicated-distance-nm</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>NMDigit2</object-name>
+  <property>/instrumentation/dme/indicated-distance-nm</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>NMDigit3</object-name>
+  <property>/instrumentation/dme/indicated-distance-nm</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>NMDigit4</object-name>
+  <property>/instrumentation/dme/indicated-distance-nm</property>
+  <factor>1</factor>
+  <step>0.1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<!-- Knots Display -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>KtDigit1</object-name>
+  <property>/instrumentation/dme/indicated-ground-speed-kt</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>KtDigit2</object-name>
+  <property>/instrumentation/dme/indicated-ground-speed-kt</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>KtDigit3</object-name>
+  <property>/instrumentation/dme/indicated-ground-speed-kt</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<!-- Minutes Display -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>MinDigit1</object-name>
+  <property>/instrumentation/dme/indicated-time-min</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>MinDigit2</object-name>
+  <property>/instrumentation/dme/indicated-time-min</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<!-- Switches -->
+
+<animation>
+  <type>translate</type>
+  <object-name>SwPower</object-name>
+  <property>controls/switches/kn-62a</property>
+  <interpolation>
+    <entry><ind>0</ind><dep>0</dep></entry>
+    <entry><ind>1</ind><dep>0.004</dep></entry>
+  </interpolation>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<animation>
+  <type>translate</type>
+  <object-name>SwFunction</object-name>
+  <property>controls/switches/kn-62a-mode</property>
+  <interpolation>
+    <entry><ind>0</ind><dep>-0.004</dep></entry>
+    <entry><ind>1</ind><dep>0</dep></entry>
+    <entry><ind>2</ind><dep>0.004</dep></entry>
+  </interpolation>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<animation>
+    <type>pick</type>
+  <object-name>SwPower</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+        <binding>
+          <command>property-toggle</command>
+          <property>/controls/switches/kn-62a</property>
+        </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+ <object-name>SwFunction</object-name>   
+ <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/switches/kn-62a-mode</property>
+          <step>1</step>
+          <min>0</min>
+          <max>2</max>
+          <wrap>false</wrap>
+        </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+ <object-name>SwFunction</object-name>   
+ <visible>true</visible>
+    <action>
+      <button>1</button>
+      <repeatable>false</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/switches/kn-62a-mode</property>
+          <step>-1</step>
+          <min>0</min>
+          <max>2</max>
+          <wrap>false</wrap>
+        </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+ <object-name>Knob1</object-name>   
+ <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+        <binding>
+          <condition>
+            <and>
+            <property>/systems/electrical/outputs/dme</property>
+            <equals>
+              <property>/controls/switches/kn-62a-mode</property>
+              <value>1</value>
+            </equals>
+            </and>
+          </condition>
+          <command>property-adjust</command>
+          <property>/instrumentation/dme/frequencies/selected-mhz</property>
+          <step>1</step>
+          <min>108</min>
+          <max>117.95</max>
+          <wrap>true</wrap>
+        </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+ <object-name>Knob1</object-name>   
+ <visible>true</visible>
+    <action>
+      <button>1</button>
+      <repeatable>false</repeatable>
+      <binding>
+          <condition>
+            <and>
+            <property>/systems/electrical/outputs/dme</property>
+            <equals>
+              <property>/controls/switches/kn-62a-mode</property>
+              <value>1</value>
+            </equals>
+            </and>
+          </condition>
+          <command>property-adjust</command>
+          <property>/instrumentation/dme/frequencies/selected-mhz</property>
+          <step>-1</step>
+          <min>108</min>
+          <max>117.95</max>
+          <wrap>true</wrap>
+        </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+ <object-name>Knob2</object-name>   
+ <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+  <binding>
+          <condition>
+            <and>
+            <property>/systems/electrical/outputs/dme</property>
+            <equals>
+              <property>/controls/switches/kn-62a-mode</property>
+              <value>1</value>
+            </equals>
+            </and>
+          </condition>
+          <command>property-adjust</command>
+          <property>/instrumentation/dme/frequencies/selected-mhz</property>
+          <step>0.01</step>
+          <min>108</min>
+          <max>117.95</max>
+          <wrap>true</wrap>
+        </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+ <object-name>Knob2</object-name>   
+ <visible>true</visible>
+    <action>
+      <button>1</button>
+      <repeatable>false</repeatable>
+        <binding>
+          <condition>
+            <and>
+            <property>/systems/electrical/outputs/dme</property>
+            <equals>
+              <property>/controls/switches/kn-62a-mode</property>
+              <value>1</value>
+            </equals>
+            </and>
+          </condition>
+          <command>property-adjust</command>
+          <property>/instrumentation/dme/frequencies/selected-mhz</property>
+          <step>-0.01</step>
+          <min>108</min>
+          <max>117.95</max>
+          <wrap>true</wrap>
+        </binding>
+    </action>
+  </animation>
+
+</PropertyList>
+
+

@@ -54,7 +54,7 @@
    </volume>
    <pitch>
     <property>/engines/engine/rpm</property>
-    <factor>0.0004</factor>
+    <factor>0.00042</factor>
     <min>0.0</min>
     <max>2.0</max>
     <offset>0.15</offset>
@@ -102,35 +102,77 @@
    </condition>
   </gear>
 
-  <squeal>
-   <name>squeal</name>
+ <squeal1>
+   <name>squeal1</name>
+      <path>Sounds/squeal.wav</path>
+   <condition>
+     <property>/gear/gear[0]/wow</property>
+   </condition>
+      <volume>
+        <property>/gear/gear[0]/compression-norm</property>
+        <factor>3</factor>
+        <max>1.0</max>
+      </volume>
+      <volume>
+        <property>velocities/airspeed-kt</property>
+        <factor>0.01</factor>
+        <min>0.1</min>
+        <max>1.0</max>
+      </volume>
+      <pitch>
+        <property>velocities/airspeed-kt</property>
+        <factor>0.01</factor>
+        <max>2</max>
+      </pitch>
+     </squeal1>
+     
+<squeal2>
+   <name>squeal2</name>
    <path>Sounds/squeal.wav</path>
    <condition>
-    <or>
-     <property>/gear/gear[0]/wow</property>
      <property>/gear/gear[1]/wow</property>
-     <property>/gear/gear[2]/wow</property>
-    </or>
    </condition>
-   <volume>
-    <property>/velocities/speed-down-fps</property>
-    <factor>0.05</factor>
-   </volume>
-   <volume>
-    <property>/velocities/groundspeed-kt</property>
-    <factor>0.01</factor>
-   </volume>
-   <volume>
-    <internal>dt_stop</internal>
-    <factor>0.05</factor>
-    <max>1.0</max>
-   </volume>
-   <pitch>
-    <property>/velocities/groundspeed-kt</property>
-    <factor>0.0025</factor>
-    <offset>1.2</offset>
-   </pitch>
-  </squeal>
+      <volume>
+        <property>/gear/gear[1]/compression-norm</property>
+        <factor>3</factor>
+        <max>1.0</max>
+      </volume>
+      <volume>
+        <property>velocities/airspeed-kt</property>
+        <factor>0.01</factor>
+        <min>0.1</min>
+        <max>1.0</max>
+      </volume>
+      <pitch>
+        <property>velocities/airspeed-kt</property>
+        <factor>0.01</factor>
+        <max>2</max>
+      </pitch>
+     </squeal2>
+     
+<squeal3>
+   <name>squeal3</name>
+   <path>Sounds/squeal.wav</path>
+   <condition>
+     <property>/gear/gear[2]/wow</property>
+   </condition>
+      <volume>
+        <property>/gear/gear[2]/compression-norm</property>
+        <factor>3</factor>
+        <max>1.0</max>
+      </volume>
+      <volume>
+        <property>velocities/airspeed-kt</property>
+        <factor>0.01</factor>
+        <min>0.1</min>
+        <max>1.0</max>
+      </volume>
+      <pitch>
+        <property>velocities/airspeed-kt</property>
+        <factor>0.01</factor>
+        <max>2</max>
+      </pitch>
+     </squeal3>
  
   <flap>
    <name>flaps</name>
@@ -167,15 +209,30 @@
    </pitch>
   </wind>
  
-  <stall>
+   <stall>
    <name>stall</name>
+   <mode>looped</mode>
    <path>Sounds/stall.wav</path>
-   <property>/sim/alarms/stall-warning</property>
+   <condition>
+     <greater-than>
+       <property>/fdm/jsbsim/aero/alpha-wing-rad</property>
+       <value>0.14</value>
+     </greater-than>
+          </condition>
    <volume>
     <property>/velocities/airspeed-kt</property>
     <min>30.0</min>
    </volume>
+   <pitch>
+    <property>/velocities/airspeed-kt</property>
+    <factor>0.009</factor>
+    <offset>0.25</offset>
+   </pitch>
+   <reference-dist>10.0</reference-dist>
+   <max-dist>20.0</max-dist>
   </stall>
+ 
+
  
 <!-- no binding yet?
   <click>

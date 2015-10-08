@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<!--
+ This file is part of FlightGear, the free flight simulator
+ http://www.flightgear.org/
+
+ Copyright (C) 2009 Torsten Dreyer, Torsten (at) t3r _dot_ de
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 2 of the
+ License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+-->
+
+<PropertyList>
+    <name>AirspeedIndicator</name>
+    <path>Airspeed.ac</path>
+    <params>
+      <tas-face-rotation>instrumentation/airspeed-indicator/tas-face-rotation</tas-face-rotation>
+      <indicated-speed-kts>instrumentation/airspeed-indicator/indicated-speed-kt</indicated-speed-kts>
+    </params>
+    
+    <animation>
+        <type>noshadow</type>
+    </animation>
+    <animation>
+        <type>range</type>
+        <min-m>0</min-m>
+        <max-m>10</max-m>
+    </animation>
+    
+    <animation>
+        <type>material</type>
+        <object-name>Airspeed.TAS</object-name>
+        <object-name>Airspeed.IAS</object-name>
+        <object-name>Airspeed.Needle</object-name>
+        <emission>
+            <red-prop>sim/model/instrument-lighting/emission/red</red-prop>
+            <green-prop>sim/model/instrument-lighting/emission/green</green-prop>
+            <blue-prop>sim/model/instrument-lighting/emission/blue</blue-prop>
+            <factor-prop>controls/lighting/instruments-norm</factor-prop>
+        </emission>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>Airspeed.TAS</object-name>
+        <property alias="../../params/tas-face-rotation"/>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Airspeed.Knob</object-name>
+        <property alias="../../params/tas-face-rotation"/>
+        <factor>5</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+          <x-m>0</x-m>
+          <y-m>0.0289782</y-m>
+          <z-m>-0.0293967</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>Airspeed.Needle</object-name>
+        <property alias="../../params/indicated-speed-kts"/>
+        <interpolation>
+            <entry>
+                <ind> 0</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind> 40</ind>
+                <dep> 31</dep>
+            </entry>
+            <entry>
+                <ind> 50</ind>
+                <dep> 52</dep>
+            </entry>
+            <entry>
+                <ind> 60</ind>
+                <dep> 75</dep>
+            </entry>
+            <entry>
+                <ind> 70</ind>
+                <dep> 95</dep>
+            </entry>
+            <entry>
+                <ind> 80</ind>
+                <dep>115</dep>
+            </entry>
+            <entry>
+                <ind> 90</ind>
+                <dep>135</dep>
+            </entry>
+            <entry>
+                <ind>100</ind>
+                <dep>153</dep>
+            </entry>
+            <entry>
+                <ind> 110</ind>
+                <dep>172</dep>
+            </entry>
+            <entry>
+                <ind> 120</ind>
+                <dep>191</dep>
+            </entry>
+            <entry>
+                <ind> 130</ind>
+                <dep>207</dep>
+            </entry>
+            <entry>
+                <ind> 140</ind>
+                <dep>223</dep>
+            </entry>
+            <entry>
+                <ind> 150</ind>
+                <dep>237</dep>
+            </entry>
+            <entry>
+                <ind> 160</ind>
+                <dep> 250</dep>
+            </entry>
+            <entry>
+                <ind>170</ind>
+                <dep> 267</dep>
+            </entry>
+            <entry>
+                <ind> 180</ind>
+                <dep> 280</dep>
+            </entry>
+            <entry>
+                <ind>190</ind>
+                <dep>293</dep>
+            </entry>
+            <entry>
+                <ind> 200</ind>
+                <dep> 307</dep>
+            </entry>
+            <entry>
+                <ind> 210</ind>
+                <dep> 314</dep>
+            </entry>
+            <entry>
+                <ind> 280</ind>
+                <dep> 355</dep>
+            </entry>
+        </interpolation>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>KnobPick.L</object-name>
+        <visible>false</visible>
+        <action>
+          <button>0</button>
+          <repeatable>true</repeatable>
+          <binding>
+            <command>property-adjust</command>
+            <property alias="../../../../params/tas-face-rotation"/>
+            <step>-1</step>
+            <min>-10</min>
+            <max>100</max>
+          </binding>
+        </action>
+        <action>
+          <button>1</button>
+          <repeatable>true</repeatable>
+          <binding>
+            <command>property-adjust</command>
+            <property alias="../../../../params/tas-face-rotation"/>
+            <step>-10</step>
+            <min>-10</min>
+            <max>100</max>
+          </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>KnobPick.R</object-name>
+        <visible>false</visible>
+        <action>
+          <button>0</button>
+          <repeatable>true</repeatable>
+          <binding>
+            <command>property-adjust</command>
+            <property alias="../../../../params/tas-face-rotation"/>
+            <step>1</step>
+            <min>-10</min>
+            <max>100</max>
+          </binding>
+        </action>
+        <action>
+          <button>1</button>
+          <repeatable>true</repeatable>
+          <binding>
+            <command>property-adjust</command>
+            <property alias="../../../../params/tas-face-rotation"/>
+            <step>10</step>
+            <min>-10</min>
+            <max>100</max>
+          </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Airspeed.Knob</object-name>
+        <visible>true</visible>
+        <action>
+          <button>3</button>
+          <repeatable>true</repeatable>
+          <binding>
+            <command>property-adjust</command>
+            <property alias="../../../../params/tas-face-rotation"/>
+            <step>-1</step>
+            <min>-10</min>
+            <max>100</max>
+          </binding>
+        </action>
+        <action>
+          <button>4</button>
+          <repeatable>true</repeatable>
+          <binding>
+            <command>property-adjust</command>
+            <property alias="../../../../params/tas-face-rotation"/>
+            <step>1</step>
+            <min>-10</min>
+            <max>100</max>
+          </binding>
+        </action>
+    </animation>
+
+</PropertyList>

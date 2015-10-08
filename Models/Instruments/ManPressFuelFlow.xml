@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+    <path>ManPressFuelFlow.ac</path>
+    
+    <animation>
+        <type>material</type>
+        <object-name>Face</object-name>
+        <object-name>ManPressNeedle</object-name>
+        <object-name>FuelFlowNeedle</object-name>
+             <emission>
+            <red>0.028</red>
+            <green>0.014</green>
+            <blue>0.007</blue>
+            <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
+        </emission>
+    </animation>
+    
+    
+
+    <animation>
+        <type>rotate</type>
+        <object-name>ManPressNeedle</object-name>
+        <property>engines/engine/mp-inhg</property>
+ <interpolation>
+      <entry><ind>10</ind><dep> 0</dep></entry>
+      <entry><ind>15</ind><dep>18</dep></entry>
+      <entry><ind>20</ind><dep>37</dep></entry>
+      <entry><ind>25</ind><dep>57</dep></entry>
+      <entry><ind>30</ind><dep>76</dep></entry>
+      <entry><ind>35</ind><dep>96</dep></entry>
+    </interpolation>
+    <axis>
+      <x> 1 </x>
+      <y>  0 </y>
+      <z>  0 </z>
+    </axis>
+    <center>
+      <x-m> 0.001 </x-m>
+      <y-m> -0.035 </y-m>
+      <z-m> -0 </z-m>
+    </center>
+    </animation>
+    
+   <animation>
+        <type>rotate</type>
+        <object-name>FuelFlowNeedle</object-name>
+        <property>engines/engine/fuel-flow-gph</property>
+ <interpolation>
+      <entry><ind>0</ind><dep>0</dep></entry>
+      <entry><ind>10</ind><dep> 16</dep></entry>
+      <entry><ind>11</ind><dep>21</dep></entry>
+      <entry><ind>12</ind><dep>27 </dep></entry>
+      <entry><ind>13</ind><dep>33.61 </dep></entry>
+      <entry><ind>14</ind><dep>39.93 </dep></entry>
+      <entry><ind>15</ind><dep>46</dep></entry>
+      <entry><ind>16</ind><dep>55.2</dep></entry>
+      <entry><ind>17</ind><dep>64</dep></entry>
+      <entry><ind>18</ind><dep>72</dep></entry>
+      <entry><ind>19</ind><dep>80</dep></entry>
+      <entry><ind>20</ind><dep> 89</dep></entry>
+
+    </interpolation>
+    <axis>
+      <x> -1 </x>
+      <y>  0 </y>
+      <z>  0 </z>
+    </axis>
+    <center>
+      <x-m> 0.001 </x-m>
+      <y-m> 0.036 </y-m>
+      <z-m> -0 </z-m>
+    </center>
+    </animation>
+
+   
+
+</PropertyList>

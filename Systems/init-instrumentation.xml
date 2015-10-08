@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<audio-panel>
+  <test type="int">0</test>
+</audio-panel>
+
+<marker-beacon>
+  <test type="int">0</test>
+</marker-beacon>
+
+<nav n="0">
+  <frequencies>
+    <display-sel-khz type="int">0</display-sel-khz>
+    <display-sel-mhz type="int">0</display-sel-mhz>
+    <selected-mhz-fmt type="string">116.30</selected-mhz-fmt>
+    <display-sby-khz type="int">0</display-sby-khz>
+    <display-sby-mhz type="int">0</display-sby-mhz>
+    <standby-mhz-fmt type="string">116.30</standby-mhz-fmt>
+  </frequencies>
+</nav>
+<nav n="1">
+  <frequencies>
+    <display-sel-khz type="int">0</display-sel-khz>
+    <display-sel-mhz type="int">0</display-sel-mhz>
+    <selected-mhz-fmt type="string">116.30</selected-mhz-fmt>
+    <display-sby-khz type="int">0</display-sby-khz>
+    <display-sby-mhz type="int">0</display-sby-mhz>
+    <standby-mhz-fmt type="string">116.30</standby-mhz-fmt>
+  </frequencies>
+</nav>
+
+<comm n="0">
+  <frequencies>
+    <display-sel-khz type="int">0</display-sel-khz>
+    <display-sel-mhz type="int">0</display-sel-mhz>
+    <selected-mhz-fmt type="string">122.75</selected-mhz-fmt>
+    <display-sby-khz type="int">0</display-sby-khz>
+    <display-sby-mhz type="int">0</display-sby-mhz>
+    <standby-mhz-fmt type="string">122.75</standby-mhz-fmt>
+  </frequencies>
+</comm>
+<comm n="1">
+  <frequencies>
+    <display-sel-khz type="int">0</display-sel-khz>
+    <display-sel-mhz type="int">0</display-sel-mhz>
+    <selected-mhz-fmt type="string">122.75</selected-mhz-fmt>
+    <display-sby-khz type="int">0</display-sby-khz>
+    <display-sby-mhz type="int">0</display-sby-mhz>
+    <standby-mhz-fmt type="string">122.75</standby-mhz-fmt>
+  </frequencies>
+</comm>
+
+<transponder>
+  <id-code type="int">0</id-code>
+  <goodcode type="bool">0</goodcode>
+  <ready type="double">0</ready>
+  <replying type="bool">0</replying>
+
+</transponder>
+
+<dme>
+  <frequencies>
+    <source type="string">/instrumentation/dme/frequencies/selected-mhz</source>
+    <selected-mhz type="float">113.5</selected-mhz>
+    <display-sel-mhz type="int">113</display-sel-mhz>
+    <display-sel-khz type="int">50</display-sel-khz>
+  </frequencies>
+</dme>
+
+</PropertyList>

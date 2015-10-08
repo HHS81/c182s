@@ -1,9 +1,29 @@
 <?xml version="1.0"?>
-<!-- KAP 140 Autopilot Configuration -->
+<!-- KAP 140 Autopilot Configuration C182S-->
 <!-- Each component is evaluated in the order specified.  You can make up -->
 <!-- property names to pass the result of one component on to a subsequent -->
 <!-- component. -->
 <PropertyList>
+
+  <filter>
+    <name>heading bug error computer/normalizer</name>
+    <debug>false</debug>
+    <type>gain</type>
+    <input>
+      <property>autopilot/settings/heading-bug-deg</property>
+      <offset>
+        <property>instrumentation/heading-indicator/indicated-heading-deg</property>
+        <scale>-1.0</scale>
+      </offset>
+    </input>
+    <output>autopilot/internal/heading-bug-error-deg</output>
+    <period>
+      <min>-180</min>
+      <max>180</max>
+    </period>
+    <gain>1.0</gain>
+  </filter>
+
 
   <!-- =============================================================== -->
   <!-- Roll Axis Modes                                                 -->
@@ -28,13 +48,13 @@
       <prop>/autopilot/KAP140/settings/target-intercept-angle</prop>
     </output>
     <config>
-      <Kp>2.0</Kp>        <!-- proportional gain -->
+      <Kp>1.5</Kp>        <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
       <Ti>15.0</Ti>       <!-- integrator time -->
-      <Td>0.0</Td>    <!-- derivator time -->
+      <Td>0.1</Td>    <!-- derivator time -->
       <u_min>-45.0</u_min> <!-- minimum output clamp -->
       <u_max>45.0</u_max>  <!-- maximum output clamp -->
     </config>
@@ -58,13 +78,13 @@
       <prop>/autopilot/KAP140/settings/target-intercept-angle</prop>
     </output>
     <config>
-      <Kp>2.0</Kp>        <!-- proportional gain -->
+      <Kp>1.5</Kp>        <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>15.0</Ti>       <!-- integrator time -->
-      <Td>0.001</Td>    <!-- derivator time -->
+      <Ti>20.0</Ti>       <!-- integrator time -->
+      <Td>0.1</Td>    <!-- derivator time -->
       <u_min>-45.0</u_min> <!-- minimum output clamp -->
       <u_max>45.0</u_max>  <!-- maximum output clamp -->
     </config>
@@ -89,12 +109,12 @@
       <prop>/autopilot/KAP140/settings/target-intercept-angle</prop>
     </output>
     <config>
-      <Kp>2.0</Kp>        <!-- proportional gain -->
+      <Kp>0.5</Kp>        <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>15.0</Ti>       <!-- integrator time -->
+      <Ti>7.0</Ti>       <!-- integrator time -->
       <Td>0.0</Td>    <!-- derivator time -->
       <u_min>-45.0</u_min> <!-- minimum output clamp -->
       <u_max>45.0</u_max>  <!-- maximum output clamp -->
@@ -152,7 +172,7 @@
       <prop>/controls/flight/aileron</prop>
     </output>
     <config>
-      <Kp>0.15</Kp>        <!-- proportional gain -->
+      <Kp>0.3</Kp>        <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
@@ -186,13 +206,13 @@
       <prop>/autopilot/KAP140/settings/target-pressure-rate</prop>
     </output>
     <config>
-      <Kp>0.125</Kp>      <!-- proportional gain -->
+      <Kp>0.0125</Kp>      <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>12.0</Ti>        <!-- integrator time -->
-      <Td>0.0</Td>    <!-- derivator time -->
+      <Ti>5.0</Ti>        <!-- integrator time -->
+      <Td>0.1</Td>    <!-- derivator time -->
       <u_min>-0.007</u_min> <!-- minimum output clamp -->
       <u_max>0.007</u_max>  <!-- maximum output clamp -->
     </config>
@@ -207,7 +227,7 @@
       <value type="bool">true</value>
     </enable>
     <input>
-      <prop>/instrumentation/nav/gs-needle-deflection</prop>
+      <prop>/instrumentation/nav/gs-needle-deflection-norm</prop>
     </input>
     <reference>
       <value>0.0</value>
@@ -216,17 +236,26 @@
       <prop>/autopilot/KAP140/settings/target-pressure-rate</prop>
     </output>
     <config>
-      <Kp>0.025</Kp>      <!-- proportional gain -->
+      <Kp>0.0125</Kp>      <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>15.0</Ti>        <!-- integrator time -->
-      <Td>0.0</Td>    <!-- derivator time -->
+      <Ti>20.0</Ti>        <!-- integrator time -->
+      <Td>0.1</Td>    <!-- derivator time -->
       <u_min>-0.001</u_min> <!-- minimum output clamp -->
       <u_max>0.017</u_max>  <!-- maximum output clamp -->
     </config>
    </pid-controller>
+
+  <filter>
+    <name>static port pressure rate computer</name>
+    <debug>false</debug>
+    <type>derivative</type>
+    <input>systems/static[0]/pressure-inhg</input>
+    <output>autopilot/internal/pressure-rate</output>
+    <filter-time>1.0</filter-time>
+  </filter>
 
    <filter>
     <name>pressure-rate-filter</name>
@@ -235,6 +264,15 @@
     <input>/autopilot/internal/pressure-rate</input>
     <output>/autopilot/internal/filtered-pressure-rate</output>
     <filter-time>0.1</filter-time>
+   </filter>
+
+   <filter>
+    <name>conversion to fpm</name>
+    <debug>false</debug>
+    <type>gain</type>
+    <input>/autopilot/KAP140/settings/target-pressure-rate</input>
+    <output>/autopilot/KAP140/settings/target-pressure-rate-fpm</output>
+    <gain>-58000</gain>
    </filter>
 
   <!-- Vertical Speed (VS) Mode --> 
@@ -260,8 +298,8 @@
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>4.0</Ti>        <!-- integrator time -->
-      <Td>0.0</Td>    <!-- derivator time -->
+      <Ti>8.0</Ti>        <!-- integrator time -->
+      <Td>0.1</Td>    <!-- derivator time -->
       <u_min>-0.5</u_min> <!-- minimum output clamp -->
       <u_max>0.5</u_max>  <!-- maximum output clamp -->
     </config>

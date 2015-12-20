@@ -41,12 +41,13 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
     </electrical>
   </systems>
   
+  
 <instrumentation n="0">
     <path>Aircraft/c182/Systems/instrumentation.xml</path>
   </instrumentation>
 
   <sound>
-   <path>Aircraft/c182/c182-sound.xml</path>
+   <path>Aircraft/c182/c182s-sound.xml</path>
   </sound>
 
   <panel>
@@ -54,7 +55,7 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
   </panel>
 
   <model>
-   <path archive="y">Aircraft/c182/Models/c182-dpm.xml</path>
+   <path archive="y">Aircraft/c182/Models/c182s.xml</path>
     <hide-yoke>false</hide-yoke>
 
     <livery>
@@ -139,21 +140,7 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
    </key>
   </help>
 
-		<menubar>
-			<default>
-				<menu n="10">
-				<label>Cessna 182 S</label>
-					<enabled type="bool">true</enabled>
-					<item>
-						<label>Select Livery</label>
-						<binding>
-							<command>nasal</command>
-							<script>aircraft.livery.dialog.toggle()</script>
-						</binding>
-					</item>
-				</menu>
-			</default>
-		</menubar>
+        <menubar include="gui/dialogs/c182s-menu.xml"/>
 
  </sim>
  
@@ -276,13 +263,13 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
 
  <nasal>
  <c182>
-	<file>Aircraft/c182/Nasal/liveries.nas</file>
+	<file>Aircraft/c182/Nasal/c182s.nas</file>
 	<file>Aircraft/c182/Nasal/doors.nas</file>
 	<file>Aircraft/c182/Nasal/kt76c.nas</file>
 	<file>Aircraft/c182/Nasal/kn62a.nas</file>
     </c182>
   <electrical>
-   <file>Aircraft/c182/Nasal/c182-electrical.nas</file>
+   <file>Aircraft/c182/Nasal/c182s-electrical.nas</file>
   </electrical>
    <kap140>
    <file>Aircraft/Generic/kap140.nas</file>

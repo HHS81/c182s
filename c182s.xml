@@ -110,7 +110,7 @@
             <dynamic_friction> 0.5 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">5100 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 1950 </damping_coeff>
+            <damping_coeff unit="LBS/FT/SEC"> 950 </damping_coeff>
             <max_steer unit="DEG"> 11 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
@@ -121,10 +121,10 @@
                 <y> -49.99 </y>
                 <z> -45.7 </z>
             </location>
-            <static_friction> 0.8 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
+            <static_friction> 0.5 </static_friction>
+            <dynamic_friction> 0.4 </dynamic_friction>
             <spring_coeff unit="LBS/FT"> 5000 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">720 </damping_coeff>
+            <damping_coeff unit="LBS/FT/SEC">320 </damping_coeff>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> LEFT </brake_group>
             <retractable>0</retractable>
@@ -135,11 +135,11 @@
                 <y> 49.99 </y>
                 <z> -45.7 </z>
             </location>
-            <static_friction> 0.8 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
+            <static_friction> 0.5 </static_friction>
+            <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 5000 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">720 </damping_coeff>
+            <damping_coeff unit="LBS/FT/SEC">320 </damping_coeff>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> RIGHT </brake_group>
             <retractable>0</retractable>
@@ -276,7 +276,7 @@
                     <yaw> 0.0 </yaw>
                 </orient>
                 <sense> 1 </sense>
-                <p_factor> 2.5 </p_factor>
+                <p_factor> 1.25 </p_factor>
             </thruster>
         </engine>
         <tank type="FUEL">    <!-- Tank number 0 -->
@@ -791,13 +791,14 @@
                       <table>
                           <independentVar>aero/beta-rad</independentVar>
                           <tableData>
-                              -0.3490	0.0772
+                              -0.3490	0.0172
                               0.0000	0.0000
-                              0.3490	-0.0772
+                              0.3490	-0.0172
                           </tableData>
                       </table>
                 </product>
             </function>
+	    
             <function name="aero/coefficient/Clp">
                 <description>Roll_moment_due_to_roll_rate_(roll_damping)</description>
                 <product>
@@ -805,8 +806,29 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
-                    <property>velocities/p-aero-rad_sec</property>
-                    <value>-0.4840</value>
+                    <table>
+                        <independentVar lookup="row">velocities/p-aero-rad_sec</independentVar>
+                        <tableData>
+                              -20     20
+                              -10     9.68
+                              -5      2.42
+                               0      0
+                               5     -2.42
+                               10    -9.68
+                               20    -20
+                          </tableData>
+                    </table>
+                    <!--
+                          stall and spin (2): 
+                          less roll damping
+                      <table> 
+                        <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
+                        <tableData>
+                           0.279    1
+                           0.297    0.4
+                        </tableData>
+                      </table>
+                      -->
                 </product>
             </function>
             <function name="aero/coefficient/Clr">
@@ -835,7 +857,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
-                    <value>0.2290</value>
+                    <value>0.17</value>
                 </product>
             </function>
             <function name="aero/coefficient/Cldr">
@@ -845,7 +867,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
-                    <value>0.0130</value>
+                    <value>-0.0130</value>
                 </product>
             </function>
         </axis>

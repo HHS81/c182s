@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+    <default>
+
+        <menu n="10">
+            <label>Cessna C182S</label>
+            <enabled type="bool">true</enabled>
+
+            <!--<item>
+                <label>Aircraft Options</label>
+                <binding>
+                    <command>dialog-show</command>
+                    <dialog-name>aircraft-dialog</dialog-name>
+                </binding>
+            </item>-->
+
+            <item>
+                <label>Select Livery</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>aircraft.livery.dialog.toggle()</script>
+                </binding>
+            </item>
+
+            <!--<item>
+                <label>Registration</label>
+                <binding>
+                    <command>dialog-show</command>
+                    <dialog-name>registration-dialog</dialog-name>
+                </binding>
+            </item>
+
+            <item>
+                <label>Flashlight</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>c182s.toggle_flashlight()</script>
+                </binding>
+            </item>
+
+            <item>
+                <label>Show/Hide Yokes</label>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/sim/model/hide-yoke</property>
+                </binding>
+            </item>
+
+            <item>
+                <label>Autostart</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>c182s.autostart()</script>
+                </binding>
+            </item>-->
+        </menu>
+
+    </default>
+
+</PropertyList>

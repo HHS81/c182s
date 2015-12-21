@@ -1,0 +1,1280 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>c182s.ac</path>
+ <offsets>
+   <pitch-deg>0.0</pitch-deg>
+   <z-m> -0.0 </z-m>
+ </offsets>
+ 
+  <nasal>
+   <load>
+       var livery_update = aircraft.livery_update.new(
+     "Aircraft/c182/Models/Liveries", 10,
+     func { print("c182 livery update") });
+   </load>
+</nasal>
+
+<effect>
+    <inherits-from>Aircraft/c182/Models/Effects/c182sreflect-uber</inherits-from>
+   <object-name>Fuselage</object-name>
+   <!--<object-name>Spinner</object-name>
+   <object-name>WheelFairingNose</object-name>
+   <object-name>WheelFairing.R</object-name>
+   <object-name>WheelFairing.L</object-name>
+   <object-name>MainStrut.L</object-name>
+   <object-name>MainStrut.R</object-name>
+   <object-name>CowlFlap.L</object-name>
+   <object-name>CowlFlap.R</object-name>
+<object-name>NoseWheelFork</object-name>
+   <object-name>Damp</object-name>
+<object-name>Door.L</object-name>
+   <object-name>DoorHandle.L</object-name>
+<object-name>Door.R</object-name>
+   <object-name>DoorHandle.R</object-name>
+   <object-name>WindowFrame.R</object-name>
+   <object-name>WindowFrame.L</object-name>
+   <object-name>BaggageDoor</object-name>
+   <object-name>VStab</object-name>
+<object-name>Elevator</object-name>
+   <object-name>Rudder</object-name>
+<object-name>ElevatorTrim</object-name>
+   <object-name>Aileron.L</object-name>
+   <object-name>Aileron.R</object-name>
+   <object-name>Flap.L</object-name>
+   <object-name>Flap.R</object-name>-->
+ </effect>
+ 
+  <effect>
+       <inherits-from>Aircraft/c182/Models/Effects/c182sreflectglas-uber</inherits-from>
+    <object-name>Windscreen</object-name>
+    <object-name>Window.L</object-name>
+    <object-name>Window.R</object-name>
+   </effect>
+   
+   <effect>
+       <inherits-from>Effects/model-transparent</inherits-from>
+       <object-name>Fast.Prop</object-name>
+       <object-name>Slow.Prop</object-name>
+   </effect>
+   
+<effect>
+	<inherits-from>Aircraft/c182/Models/Effects/c182sreflect-uber</inherits-from>
+	<parameters>
+			<reflection-correction type="float">1.0</reflection-correction>
+			<reflection-dynamic type="int">1</reflection-dynamic>
+	</parameters>
+	<object-name>chrome_spinner</object-name>
+</effect>
+
+    <effect>
+        <inherits-from>Aircraft/c182/Models/Effects/c182sreflectglas_interior_front</inherits-from>
+        <object-name>Windscreen.Int</object-name>
+    </effect>
+    
+    <effect>
+        <inherits-from>Aircraft/c182/Models/Effects/c182sreflectglas_interior_side</inherits-from>
+        <object-name>Windscreen.Side</object-name>
+        <object-name>Window.L.001</object-name>
+        <object-name>Window.R.001</object-name>
+    </effect>
+
+ <animation>
+   <type>material</type>
+   <object-name>Fuselage</object-name> <!-- grouped in Blender for faster loading of liveries-->
+  <!--<object-name>Spinner</object-name>
+   <object-name>WheelFairingNose</object-name>
+   <object-name>WheelFairing.R</object-name>
+   <object-name>WheelFairing.L</object-name>
+   <object-name>MainStrut.L</object-name>
+   <object-name>MainStrut.R</object-name>
+   <object-name>FrontWheel</object-name>
+   <object-name>MainWheel.L</object-name>
+   <object-name>MainWheel.R</object-name>
+   <object-name>CowlFlap.L</object-name>
+   <object-name>CowlFlap.R</object-name>
+   <object-name>NoseWheelFork</object-name>
+   <object-name>Damp</object-name>
+<object-name>Door.L</object-name>
+   <object-name>DoorHandle.L</object-name>
+<object-name>Door.R</object-name>
+   <object-name>DoorHandle.R</object-name>
+   <object-name>WindowFrame.R</object-name>
+   <object-name>WindowFrame.L</object-name>
+   <object-name>BaggageDoor</object-name>
+   <object-name>VStab</object-name>
+<object-name>Elevator</object-name>
+   <object-name>Rudder</object-name>
+<object-name>ElevatorTrim</object-name>
+   <object-name>Aileron.L</object-name>
+   <object-name>Aileron.R</object-name>
+   <object-name>Flap.L</object-name>
+   <object-name>Flap.R</object-name>-->
+   <property-base>sim/model/livery/</property-base>
+   <texture-prop>texture</texture-prop>
+   <texture>Default.png</texture>
+ </animation>
+ 
+ <animation>
+     <type>material</type>
+     <object-name>Fuselage</object-name>
+      <shininess>128</shininess>
+     <specular>
+         <r>1</r>
+         <g>1</g>
+         <b>1</b>
+     </specular>
+     <ambient>
+         <r>1</r>
+         <g>1</g>
+         <b>1</b>
+     </ambient>
+ </animation>
+ 
+ 
+
+ <model>
+  <name>MagCompass</name>
+  <path>Aircraft/c182/Models/Instruments/Compass.xml</path>
+  <offsets>
+   <x-m>-0.960</x-m>
+   <y-m>0.00</y-m>
+   <z-m>0.730</z-m>
+  </offsets>
+ </model>
+
+ 
+  
+
+ 
+
+
+  <!-- Object movements -->
+<animation>
+        <name>Prop</name>
+        <object-name>Blade1</object-name>
+        <object-name>Blade2</object-name>
+         <object-name>Blade3</object-name>
+    </animation>  
+
+  <animation>
+  <type>select</type>
+  <object-name>Prop</object-name>
+  <condition>
+   <less-than>
+    <property>engines/engine[0]/rpm</property>
+    <value>833</value>
+   </less-than>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>SlowProp</object-name>
+  <condition>
+   <greater-than>
+    <property>engines/engine[0]/rpm</property>
+    <value>833</value>
+   </greater-than>
+   <less-than>
+    <property>engines/engine[0]/rpm</property>
+    <value>1899</value>
+    </less-than>
+  </condition>
+ </animation>
+ 
+ <animation>
+  <type>select</type>
+  <object-name>FastProp</object-name>
+  <condition>
+   <greater-than>
+    <property>engines/engine[0]/rpm</property>
+    <value>1900</value>
+   </greater-than>
+  </condition>
+ </animation>
+
+<animation>
+   <type>blend</type>
+   <object-name>FastProp</object-name>
+   <property>engines/engine[0]/rpm</property>
+   <factor>0.0002</factor>
+   <max>1.0</max>
+   <min>0.0</min>
+ </animation>
+ 
+<animation>
+   <type>blend</type>
+   <object-name>SlowProp</object-name>
+   <property>engines/engine[0]/rpm</property>
+   <factor>0.0001</factor>
+   <max>1.0</max>
+   <min>0.0</min>
+ </animation>
+ 
+ <animation>
+   <type>spin</type>
+  <object-name>FastProp</object-name>
+   <property>engines/engine[0]/rpm</property>
+   <factor>-0.005</factor>
+   <center>
+     <x-m>-3.015</x-m>
+     <y-m>0</y-m>
+     <z-m>0.029</z-m>
+   </center>
+   <axis>
+     <x>1.0</x>
+     <y>0.0</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>spin</type>
+  <object-name>SlowProp</object-name>
+   <property>engines/engine[0]/rpm</property>
+   <factor>-1</factor>
+   <center>
+     <x-m>-3.015</x-m>
+     <y-m>0</y-m>
+     <z-m>0.029</z-m>
+   </center>
+   <axis>
+     <x>1.0</x>
+     <y>0.0</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>spin</type>
+  <object-name>Prop</object-name>
+   <property>engines/engine[0]/rpm</property>
+   <factor>-1</factor>
+   <center>
+     <x-m>-3.015</x-m>
+     <y-m>0</y-m>
+     <z-m>0.029</z-m>
+   </center>
+   <axis>
+     <x>1.0</x>
+     <y>0.0</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ 
+<animation>
+  <type>rotate</type>
+  <object-name>Yoke.L</object-name>
+  <property>controls/flight/aileron</property>
+  <factor>90</factor>
+		<center>
+			<x-m>-0.861709</x-m>
+			<y-m>-0.251527</y-m>
+			<z-m>0.244845</z-m>
+		</center>
+		<axis>
+			<x>-0.027774</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+ </animation>
+ 
+<animation>
+  <type>translate</type>
+  <object-name>Yoke.L</object-name>
+  <property>controls/flight/elevator</property>
+  <factor>-0.11</factor>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+ 
+ 
+<animation>
+  <type>rotate</type>
+  <object-name>Yoke.R</object-name>
+  <property>controls/flight/aileron</property>
+  <factor>90</factor>
+		<center>
+			<x-m>-0.861709</x-m>
+			<y-m>0.251527</y-m>
+			<z-m>0.244845</z-m>
+		</center>
+		<axis>
+			<x>-0.027774</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+ </animation>
+ 
+<animation>
+  <type>translate</type>
+  <object-name>Yoke.R</object-name>
+  <property>controls/flight/elevator</property>
+  <factor>-0.11</factor>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+<animation>
+  <type>translate</type>
+  <object-name>Throttle</object-name>
+  <property>controls/engines/engine[0]/throttle</property>
+  <factor>-0.088</factor>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>translate</type>
+  <object-name>Mixture</object-name>
+  <property>controls/engines/engine[0]/mixture</property>
+  <factor>-0.08</factor>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>translate</type>
+  <object-name>PropControl</object-name>
+  <property>controls/engines/engine[0]/propeller-pitch</property>
+  <factor>-0.08</factor>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>translate</type>
+  <object-name>Pedal11</object-name>
+  <object-name>Pedal21</object-name>
+  <property>controls/flight/rudder</property>
+  <factor>0.1</factor>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Pedal11</object-name>
+  <object-name>Pedal21</object-name>
+  <property>controls/gear/brake-left</property>
+  <factor>-15</factor>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+  <center>
+   <x-m>-1.252</x-m>
+   <y-m>0</y-m>
+   <z-m>-0.565</z-m>
+  </center>
+ </animation>
+
+ <animation>
+  <type>translate</type>
+  <object-name>Pedal12</object-name>
+  <object-name>Pedal22</object-name>
+  <property>controls/flight/rudder</property>
+  <factor>-0.1</factor>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Pedal12</object-name>
+  <object-name>Pedal22</object-name>
+  <property>controls/gear/brake-right</property>
+  <factor>-15</factor>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+  <center>
+   <x-m>-1.252</x-m>
+   <y-m>0</y-m>
+   <z-m>-0.565</z-m>
+  </center>
+ </animation>
+
+
+
+ 
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Aileron.L</object-name>
+  <property>surface-positions/left-aileron-pos-norm</property>
+  <interpolation>
+   <entry>
+    <ind>-1.0</ind>
+    <dep>15</dep>
+   </entry>
+   <entry>
+    <ind>0.0</ind>
+    <dep>0</dep>
+   </entry>
+   <entry>
+    <ind>1.0</ind>
+    <dep>-20</dep>
+   </entry>
+  </interpolation>
+		<center>
+			<x-m>0.371878</x-m>
+			<y-m>-4.342496</y-m>
+			<z-m>0.923901</z-m>
+		</center>
+		<axis>
+			<x>-0.258313</x>
+			<y>-3.086858</y>
+			<z>0.149865</z>
+		</axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Aileron.R</object-name>
+  <property>surface-positions/left-aileron-pos-norm</property>
+  <interpolation>
+   <entry>
+    <ind>-1.0</ind>
+    <dep>15</dep>
+   </entry>
+   <entry>
+    <ind>0.0</ind>
+    <dep>0</dep>
+   </entry>
+   <entry>
+    <ind>1.0</ind>
+    <dep>-20</dep>
+   </entry>
+  </interpolation>
+		<center>
+			<x-m>0.371877</x-m>
+			<y-m>4.342489</y-m>
+			<z-m>0.923894</z-m>
+		</center>
+		<axis>
+			<x>-0.258313</x>
+			<y>3.086858</y>
+			<z>0.149865</z>
+		</axis>
+ </animation>
+ 
+ 
+ <animation>
+   <type>translate</type>
+   <object-name>Flap.L</object-name>
+   <object-name>Flap.R</object-name>
+   <property>surface-positions/flap-pos-norm</property>
+   <factor>0.15</factor>
+   <axis>
+     <x>1.0</x>
+     <y>0.0</y>
+     <z>0.0</z>
+   </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Flap.L</object-name>
+  <property>surface-positions/flap-pos-norm</property>
+  <factor>-38</factor>
+		<center>
+			<x-m>0.41474</x-m>
+			<y-m>-1.724126</y-m>
+			<z-m>0.807039</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-2.150022</y>
+			<z>0.075075</z>
+		</axis>
+ </animation>
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>Flap.R</object-name>
+  <property>surface-positions/flap-pos-norm</property>
+  <factor>38</factor>
+		<center>
+			<x-m>0.41474</x-m>
+			<y-m>1.724126</y-m>
+			<z-m>0.807039</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>2.150022</y>
+			<z>0.075075</z>
+		</axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Elevator</object-name>
+  <object-name>ElevatorTrim</object-name>
+  <property>surface-positions/elevator-pos-norm</property>
+  <interpolation>
+   <entry>
+    <ind>-1.0</ind>
+    <dep>-28</dep>
+   </entry>
+   <entry>
+    <ind>0</ind>
+    <dep>0</dep>
+   </entry>
+   <entry>
+    <ind>1.0</ind>
+    <dep>23</dep>
+   </entry>
+  </interpolation>
+		<center>
+			<x-m>4.783356</x-m>
+			<y-m>0.166203</y-m>
+			<z-m>0.431168</z-m>
+		</center>
+		<axis>
+			<x>-0.000169</x>
+			<y>0.600953</y>
+			<z>-0</z>
+		</axis>
+ </animation>
+ 
+
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Rudder</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <factor>17.5</factor>
+		<center>
+			<x-m>4.834604</x-m>
+			<y-m>0.001766</y-m>
+			<z-m>0.603871</z-m>
+		</center>
+		<axis>
+			<x>0.080065</x>
+			<y>0.00042</y>
+			<z>0.128952</z>
+		</axis>
+ </animation>
+ 
+ <animation>
+   <type>rotate</type>
+   <object-name>WheelFairingNose</object-name>
+   <object-name>FrontWheel</object-name>
+   <object-name>NoseWheelFork</object-name>
+   <object-name>Damp</object-name>
+    <object-name>TrenDEL_05_TrenDEL_05</object-name>
+   <object-name>TrenDEL_01_TrenDEL_01</object-name>
+   <object-name>TrenDEL_04_TrenDEL_04</object-name>
+   <property>gear/gear[0]/steering-norm</property>
+   <factor>24</factor>
+		<center>
+			<x-m>-1.636689</x-m>
+			<y-m>0.000525</y-m>
+			<z-m>-0.757954</z-m>
+		</center>
+		<axis>
+			<x>-0.041781</x>
+			<y>0</y>
+			<z>-0.152552</z>
+		</axis>
+ </animation> 
+ 
+<!--compression--> 
+ <animation>
+   <type>translate</type>
+   <object-name>WheelFairingNose</object-name>
+   <object-name>FrontWheel</object-name>
+<object-name>NoseWheelFork</object-name>
+   <object-name>Damp</object-name>
+   <property>gear/gear[0]/compression-norm</property>
+   <factor>0.3</factor>
+   <axis>
+     <x>0.27</x>
+     <y>0</y>
+     <z>1.0</z>
+   </axis>
+ </animation>
+ 
+ <!--gear scissors tracking animation-->
+ <animation>
+    <type>locked-track</type>
+    <object-name>TrenDEL_04_TrenDEL_04</object-name>
+    <center>
+      <x-m>-1.582</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.716</z-m>
+    </center>
+    <lock-axis>
+      <x>0</x>
+      <y>1</y>
+      <z>0</z>
+    </lock-axis>
+    <track-axis>
+     <x>0.27</x>
+     <y>0</y>
+     <z>1.0</z>
+    </track-axis>
+ 
+    <target-name>NoseWheelFork</target-name>
+    <target-center>
+      <x-m>-1.607</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.806</z-m>
+    </target-center>
+ 
+    <slave-name>TrenDEL_05_TrenDEL_05</slave-name>
+    <slave-center>
+      <x-m>-1.480</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.781</z-m>
+    </slave-center>
+  </animation>
+ 
+<!-- gear compression-->
+  <animation>
+    <type>rotate</type>
+    <object-name>WheelFairing.L</object-name>
+    <object-name>MainWheel.L</object-name>
+    <object-name>MainStrut.L</object-name>
+    <property>gear/gear[1]/compression-norm</property>
+    <interpolation>
+        <entry>
+        <ind>0.0</ind>
+        <dep>-5</dep>
+      </entry>
+      <entry>
+        <ind>0.1</ind>
+        <dep>-2.3</dep>
+      </entry>
+      <entry>
+        <ind>0.2</ind>
+        <dep>0</dep>
+      </entry>
+      <entry>
+        <ind>0.3</ind>
+        <dep>2.62</dep>
+      </entry>
+      <entry>
+        <ind>0.4</ind>
+        <dep>5</dep>
+      </entry>
+      <entry>
+        <ind>0.5</ind>
+        <dep>7</dep>
+      </entry>
+      <entry>
+        <ind>0.6</ind>
+        <dep>9</dep>
+      </entry>
+      <entry>
+        <ind>0.7</ind>
+        <dep>11</dep>
+      </entry>
+ 
+    </interpolation>
+		<center>
+			<x-m>-0.175519</x-m>
+			<y-m>-0.5994</y-m>
+			<z-m>-0.514864</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+  </animation>
+  
+<animation>
+    <type>rotate</type>
+    <object-name>WheelFairing.R</object-name>
+    <object-name>MainWheel.R</object-name>
+    <object-name>MainStrut.R</object-name>
+    <property>gear/gear[2]/compression-norm</property>
+    <interpolation>
+  <entry>
+        <ind>0.0</ind>
+        <dep>5</dep>
+      </entry>
+      <entry>
+        <ind>0.1</ind>
+        <dep>2.3</dep>
+      </entry>
+      <entry>
+        <ind>0.2</ind>
+        <dep>0</dep>
+      </entry>
+      <entry>
+        <ind>0.3</ind>
+        <dep>-2.62</dep>
+      </entry>
+      <entry>
+        <ind>0.4</ind>
+        <dep>-5</dep>
+      </entry>
+      <entry>
+        <ind>0.5</ind>
+        <dep>-7</dep>
+      </entry>
+      <entry>
+        <ind>0.6</ind>
+        <dep>-9</dep>
+      </entry>
+      <entry>
+        <ind>0.7</ind>
+        <dep>-11</dep>
+      </entry>
+    </interpolation>
+		<center>
+			<x-m>-0.175519</x-m>
+			<y-m>0.5994</y-m>
+			<z-m>-0.514864</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+  </animation>
+
+
+ <animation>
+   <type>pick</type>
+   <object-name>Door.L</object-name>
+   <visible>true</visible>
+   <action>
+     <button>0</button>
+     <repeatable>false</repeatable>
+     <binding>
+        <command>nasal</command>
+        <script>c182.DoorL.toggle();</script>
+     </binding>
+   </action>
+   </animation>
+   
+ <animation>
+   <type>rotate</type>
+<object-name>Door.L</object-name>
+   <object-name>DoorHandle.L</object-name>
+   <object-name>WindowFrame.L</object-name>
+<object-name>Window.L</object-name>
+<object-name>IntDoor.L</object-name>
+<object-name>FrameInt.L</object-name>
+<object-name>Window.L.001</object-name>
+<object-name>doorhandleint_left</object-name>
+   <property>sim/model/door-positions/DoorL/position-norm</property>
+   <interpolation>
+     <entry>
+       <ind>0.0</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind>0.5</ind>
+       <dep>0</dep>
+     </entry>
+     <entry>
+       <ind>1</ind>
+       <dep>70.0</dep>
+     </entry>
+   </interpolation>
+		<center>
+			<x-m>-0.701064</x-m>
+			<y-m>-0.628652</y-m>
+			<z-m>-0.10139</z-m>
+		</center>
+		<axis>
+			<x>-0.067187</x>
+			<y>0.026566</y>
+			<z>-0.613997</z>
+		</axis>
+ </animation>
+ 
+<animation>
+   <type>pick</type>
+   <object-name>Door.R</object-name>
+   <visible>true</visible>
+   <action>
+     <button>0</button>
+     <repeatable>false</repeatable>
+     <binding>
+        <command>nasal</command>
+        <script>c182.DoorR.toggle();</script>
+     </binding>
+   </action>
+  </animation>
+  
+ <animation>
+   <type>rotate</type>
+<object-name>Door.R</object-name>
+   <object-name>DoorHandle.R</object-name>
+   <object-name>WindowFrame.R</object-name>
+<object-name>Window.R</object-name>
+<object-name>IntDoor.R</object-name>
+<object-name>FrameInt.R</object-name>
+<object-name>Window.R.001</object-name>
+<object-name>doorhandleint_right</object-name>
+   <property>sim/model/door-positions/DoorR/position-norm</property>
+   <interpolation>
+     <entry>
+       <ind>0.0</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind>0.5</ind>
+       <dep>0</dep>
+     </entry>
+     <entry>
+       <ind>1</ind>
+       <dep>-70.0</dep>
+     </entry>
+   </interpolation>
+		<center>
+			<x-m>-0.701064</x-m>
+			<y-m>0.628652</y-m>
+			<z-m>-0.10139</z-m>
+		</center>
+		<axis>
+			<x>-0.067187</x>
+			<y>0.026566</y>
+			<z>-0.613997</z>
+		</axis>
+ </animation>
+ 
+
+    <animation>
+        <type>pick</type>
+        <object-name>rightdoor</object-name>
+        <object-name>doorhandleint_right</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+        <script>c182.DoorR.toggle();</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>door-handle-r</tooltip-id>
+                <label>Right Door Open/Close</label>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>leftdoor</object-name>
+        <object-name>doorhandleint_left</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+        <script>c182.DoorL.toggle();</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>door-handle-l</tooltip-id>
+                <label>Left Door Open/Close</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>doorhandleint_right</object-name>
+   <property>sim/model/door-positions/DoorR/position-norm</property>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>50.0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>50.0</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.366</x-m>
+            <y-m>0.570</y-m>
+            <z-m>0.138</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>doorhandleint_left</object-name>
+   <property>sim/model/door-positions/DoorL/position-norm</property>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>50.0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>50.0</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.366</x-m>
+            <y-m>-0.570</y-m>
+            <z-m>0.138</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+ 
+<animation>
+   <type>pick</type>
+   <object-name>BaggageDoor</object-name>
+   <visible>true</visible>
+   <action>
+     <button>0</button>
+     <repeatable>false</repeatable>
+     <binding>
+        <command>nasal</command>
+        <script>c182.BaggageDoor.toggle();</script>
+     </binding>
+   </action>
+ </animation>
+ 
+ <animation>
+   <type>rotate</type>
+   <object-name>BaggageDoor</object-name>
+<object-name>BaggageIntDoor</object-name>
+   <property>sim/model/door-positions/BaggageDoor/position-norm</property>
+   <interpolation>
+     <entry>
+       <ind>0.0</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind>1</ind>
+       <dep>-90.0</dep>
+     </entry>
+   </interpolation>
+		<center>
+			<x-m>0.979951</x-m>
+			<y-m>-0.563392</y-m>
+			<z-m>-0.034502</z-m>
+		</center>
+		<axis>
+			<x>0.014226</x>
+			<y>-0.033766</y>
+			<z>0.463769</z>
+		</axis>
+ </animation>
+ 
+    <!-- Parking Brake -->
+    <animation>
+        <type>translate</type>
+        <object-name>ParkingBrake</object-name>
+        <property>/controls/gear//brake-parking</property>
+        <factor>0.04</factor>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>ParkingBrake</object-name>
+        <property>/controls/gear//brake-parking</property>
+        <factor>90</factor>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>-1.013</x-m>
+            <y-m>-0.204</y-m>
+            <z-m>0.028</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>ParkingBrake</object-name>
+        <visible>true</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+        <property>/controls/gear//brake-parking</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Parking brake: %s</label>
+        <property>/controls/gear//brake-parking</property>
+                <tooltip-id>parking-brake</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+ 
+<!--instruments-->
+<!--avionics-->
+    <model>
+        <path>Aircraft/c182/Models/Instruments/Avionics/gma340.xml</path>
+        <name>gma340</name>
+        <offsets>
+            <x-m>-1.033</x-m>
+            <y-m>0.083</y-m>
+            <z-m>0.437</z-m>
+        </offsets>
+    </model>
+    
+    
+    <model>
+        <path>Aircraft/c182/Models/Instruments/Avionics/kn62a.xml</path>
+        <name>kn62a</name>
+        <offsets>
+            <x-m>-1.033</x-m>
+            <y-m>0.083</y-m>
+            <z-m>0.405</z-m>
+        </offsets>
+    </model>
+
+
+    
+    <model>
+        <path>Aircraft/c182/Models/Instruments/Avionics/kx165-1.xml</path>
+        <name>kx155</name>
+        <offsets>
+            <x-m>-1.033</x-m>
+            <y-m>0.083</y-m>
+            <z-m>0.364</z-m>
+        </offsets>
+    </model>
+    
+
+    
+    <model>
+        <path>Aircraft/c182/Models/Instruments/Avionics/kx165-2.xml</path>
+        <name>kx155</name>
+        <offsets>
+            <x-m>-1.033</x-m>
+            <y-m>0.083</y-m>
+            <z-m>0.311</z-m>
+        </offsets>
+    </model>
+    
+
+    
+    <model>
+        <path>Aircraft/c182/Models/Instruments/Avionics/kr87.xml</path>
+        <name>kr87</name>
+        <offsets>
+            <x-m>-1.033</x-m>
+            <y-m>0.083</y-m>
+            <z-m>0.266</z-m>
+        </offsets>
+    </model>
+    
+    <model>
+        <path>Aircraft/c182/Models/Instruments/Avionics/kap140/KAP140TwoAxisAlt.xml</path>
+        <name>kap140</name>
+        <offsets>
+            <x-m>-1.033</x-m>
+            <y-m>0.083</y-m>
+            <z-m>0.230</z-m>
+        </offsets>
+    </model>
+    
+   <model>
+        <path>Aircraft/c182/Models/Instruments/Avionics/kt76c.xml</path>
+        <name>kt76c</name>
+        <offsets>
+            <x-m>-1.033</x-m>
+            <y-m>0.083</y-m>
+            <z-m>0.185</z-m>
+        </offsets>
+    </model>  
+
+  
+    
+<!--gauges-->
+   <model>
+        <path>Aircraft/c182/Models/Instruments/Airspeed.xml</path>
+        <name>Airspeed</name>
+        <offsets>
+            <x-m>-1.043</x-m>
+            <y-m>-0.347</y-m>
+            <z-m>0.412</z-m>
+        </offsets>
+    </model>
+
+   <model>
+        <path>Aircraft/c182/Models/Instruments/ai-gauge.xml</path>
+        <name>AI</name>
+        <offsets>
+            <x-m>-1.043</x-m>
+            <y-m>-0.253</y-m>
+            <z-m>0.419</z-m>
+        </offsets>
+    </model>
+
+    <model>
+        <path>Aircraft/c182/Models/Instruments/altimeter.xml</path>
+        <name>Altimeter</name>
+        <offsets>
+            <x-m>-1.043</x-m>
+            <y-m>-0.158</y-m>
+            <z-m>0.421</z-m>
+        </offsets>
+    </model>
+    
+    <model>
+        <path>Aircraft/c182/Models/Instruments/vsi.xml</path>
+        <name>VSI</name>
+        <offsets>
+            <x-m>-1.043</x-m>
+            <y-m>-0.158</y-m>
+            <z-m>0.323</z-m>
+        </offsets>
+    </model>
+    
+    <model>
+        <path>Aircraft/c182/Models/Instruments/hi.xml</path>
+        <name>HI</name>
+        <offsets>
+            <x-m>-1.043</x-m>
+            <y-m>-0.253</y-m>
+            <z-m>0.320</z-m>
+        </offsets>
+    </model>
+    
+<model>
+   <name>vor</name>
+   <path>Aircraft/Instruments-3d/vor/vor.xml</path>
+   <offsets>
+     <x-m>-1.043</x-m>
+     <y-m>-0.065</y-m>
+     <z-m>0.423</z-m>
+   </offsets>
+ </model>
+
+ <model>
+   <name>vor2</name>
+   <path>Aircraft/Instruments-3d/vor/vor2.xml</path>
+   <offsets>
+     <x-m>-1.043</x-m>
+     <y-m>-0.065</y-m>
+     <z-m>0.325</z-m>
+   </offsets>
+ </model>
+ 
+    <model>
+        <path>Aircraft/c182/Models/Instruments/ki227_228.xml</path>
+        <name>KI227</name>
+        <offsets>
+            <x-m>-1.043</x-m>
+            <y-m>-0.065</y-m>
+            <z-m>0.222</z-m>
+        </offsets>
+    </model>
+ 
+ <model>
+   <name>Turn</name>
+   <path>Aircraft/c182/Models/Instruments/turn.xml</path>
+   <offsets>
+     <x-m>-1.043</x-m>
+     <y-m>-0.347</y-m>
+     <z-m>0.320</z-m>
+   </offsets>
+ </model>
+ 
+<model>
+   <name>Tach</name>
+   <path>Aircraft/c182/Models/Instruments/Tach.xml</path>
+   <offsets>
+     <x-m>-1.037</x-m>
+     <y-m>-0.158</y-m>
+     <z-m>0.223</z-m>
+   </offsets>
+ </model>
+ 
+ <model>
+   <name>ManPressFuelFlow</name>
+   <path>Aircraft/c182/Models/Instruments/ManPressFuelFlow.xml</path>
+   <offsets>
+     <x-m>-1.037</x-m>
+     <y-m>-0.347</y-m>
+     <z-m>0.223</z-m>
+   </offsets>
+ </model>
+ 
+<!--object animation-->
+ <animation>
+   <type>select</type>
+   <object-name>Spinner</object-name>
+   <condition>
+   <not>
+     <property>sim/model/c182/chrome_spinner</property>
+     </not>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+   <object-name>chrome_spinner</object-name>
+   <condition>
+     <property>sim/model/c182/chrome_spinner</property>
+   </condition>
+ </animation>
+
+
+
+
+</PropertyList>

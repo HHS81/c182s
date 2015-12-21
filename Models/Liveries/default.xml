@@ -12,11 +12,12 @@
 	 <texture>Liveries/Default.png</texture>
       </livery>
 <c182>
-<chrome_spinner>false</chrome_spinner>
+<chrome_spinner>true</chrome_spinner>
 </c182>
     </model>
 <rendering>
-    <refl_correction type="string">-0.3</refl_correction>
+    <refl_correction type="string">-0.375</refl_correction>
+<ambient_correction type="string">0.1</ambient_correction>
     </rendering>
    
   </sim>

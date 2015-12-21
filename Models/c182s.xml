@@ -132,89 +132,19 @@
      </ambient>
  </animation>
  
- <!-- 3D Panel 
-
- <panel>
-  <name>Panel</name>
-  <path>Aircraft/c182/Panels/c182s-3d-panel.xml</path>
-  <bottom-left>
-   <x-m>-0.11</x-m>
-   <y-m>-0.55</y-m>
-   <z-m>-0.25</z-m>
-  </bottom-left>
-  <bottom-right>
-   <x-m>-0.11</x-m>
-   <y-m> 0.65</y-m>
-   <z-m>-0.25</z-m>
-  </bottom-right>
-  <top-left>
-   <x-m>-0.11</x-m>
-   <y-m>-0.55</y-m>
-   <z-m> 0.08</z-m>
-  </top-left>
- </panel>
+ 
 
  <model>
   <name>MagCompass</name>
-  <path>Aircraft/Instruments-3d/mag-compass.xml</path>
+  <path>Aircraft/c182/Models/Instruments/Compass.xml</path>
   <offsets>
-   <x-m>-0.11</x-m>
+   <x-m>-0.960</x-m>
    <y-m>0.00</y-m>
-   <z-m>0.07</z-m>
+   <z-m>0.730</z-m>
   </offsets>
  </model>
 
- <model>
-  <name>TrimWheel</name>
-  <path>Aircraft/Instruments-3d/trim/trimwheel.xml</path>
-  <offsets>
-   <x-m>-0.05</x-m>
-   <y-m>-0.06</y-m>
-   <z-m>-0.65</z-m>
-  </offsets>
- </model>
-
- <model>
-  <name>LeftYoke</name>
-  <path>Aircraft/Instruments-3d/yoke/yoke.xml</path>
-  <offsets>
-   <x-m>-0.12</x-m>
-   <y-m>-0.26</y-m>
-   <z-m>-0.25</z-m>
-  </offsets>
- </model>
-
- <model>
-  <name>RightYoke</name>
-  <path>Aircraft/Instruments-3d/yoke/yoke.xml</path>
-  <offsets>
-   <x-m>-0.12</x-m>
-   <y-m>0.26</y-m>
-   <z-m>-0.25</z-m>
-  </offsets>
- </model>
-
- <model>
-  <name>FlapControl</name>
-  <path>Aircraft/Instruments-3d/flaps/flaps.xml</path>
-  <offsets>
-   <x-m>-0.14</x-m>
-   <y-m>0.15</y-m>
-   <z-m>-0.35</z-m>
-  </offsets>
- </model>-->
-
-  <!-- Switches 
-
-  <model>
-    <name>lights</name>
-    <path>Aircraft/c182/Models/lights.xml</path>
-    <offsets>
-      <x-m>-0.12</x-m>
-      <y-m>-0.2</y-m>
-      <z-m>-0.35</z-m>
-    </offsets>
-  </model>-->
+ 
   
 
  
@@ -432,8 +362,8 @@
 
  <animation>
   <type>translate</type>
-  <object-name>Pedal.1</object-name>
-  <object-name>Pedal.3</object-name>
+  <object-name>Pedal11</object-name>
+  <object-name>Pedal21</object-name>
   <property>controls/flight/rudder</property>
   <factor>0.1</factor>
   <axis>
@@ -445,8 +375,8 @@
 
  <animation>
   <type>rotate</type>
-  <object-name>Pedal.1</object-name>
-  <object-name>Pedal.3</object-name>
+  <object-name>Pedal11</object-name>
+  <object-name>Pedal21</object-name>
   <property>controls/gear/brake-left</property>
   <factor>-15</factor>
   <axis>
@@ -455,16 +385,16 @@
    <z>0.0</z>
   </axis>
   <center>
-   <x-m>-0.1</x-m>
+   <x-m>-1.252</x-m>
    <y-m>0</y-m>
-   <z-m>-0.9</z-m>
+   <z-m>-0.565</z-m>
   </center>
  </animation>
 
  <animation>
   <type>translate</type>
-  <object-name>Pedal.2</object-name>
-  <object-name>Pedal.4</object-name>
+  <object-name>Pedal12</object-name>
+  <object-name>Pedal22</object-name>
   <property>controls/flight/rudder</property>
   <factor>-0.1</factor>
   <axis>
@@ -476,8 +406,8 @@
 
  <animation>
   <type>rotate</type>
-  <object-name>Pedal.2</object-name>
-  <object-name>Pedal.4</object-name>
+  <object-name>Pedal12</object-name>
+  <object-name>Pedal22</object-name>
   <property>controls/gear/brake-right</property>
   <factor>-15</factor>
   <axis>
@@ -486,9 +416,9 @@
    <z>0.0</z>
   </axis>
   <center>
-   <x-m>-0.1</x-m>
+   <x-m>-1.252</x-m>
    <y-m>0</y-m>
-   <z-m>-0.9</z-m>
+   <z-m>-0.565</z-m>
   </center>
  </animation>
 
@@ -834,7 +764,7 @@
 		</axis>
   </animation>
 
-<!--pick animation for the doors-->
+
  <animation>
    <type>pick</type>
    <object-name>Door.L</object-name>
@@ -858,6 +788,7 @@
 <object-name>IntDoor.L</object-name>
 <object-name>FrameInt.L</object-name>
 <object-name>Window.L.001</object-name>
+<object-name>doorhandleint_left</object-name>
    <property>sim/model/door-positions/DoorL/position-norm</property>
    <interpolation>
      <entry>
@@ -908,6 +839,7 @@
 <object-name>IntDoor.R</object-name>
 <object-name>FrameInt.R</object-name>
 <object-name>Window.R.001</object-name>
+<object-name>doorhandleint_right</object-name>
    <property>sim/model/door-positions/DoorR/position-norm</property>
    <interpolation>
      <entry>
@@ -934,6 +866,110 @@
 			<z>-0.613997</z>
 		</axis>
  </animation>
+ 
+
+    <animation>
+        <type>pick</type>
+        <object-name>rightdoor</object-name>
+        <object-name>doorhandleint_right</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+        <script>c182.DoorR.toggle();</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>door-handle-r</tooltip-id>
+                <label>Right Door Open/Close</label>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>leftdoor</object-name>
+        <object-name>doorhandleint_left</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+        <script>c182.DoorL.toggle();</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>door-handle-l</tooltip-id>
+                <label>Left Door Open/Close</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>doorhandleint_right</object-name>
+   <property>sim/model/door-positions/DoorR/position-norm</property>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>50.0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>50.0</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.366</x-m>
+            <y-m>0.570</y-m>
+            <z-m>0.138</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>doorhandleint_left</object-name>
+   <property>sim/model/door-positions/DoorL/position-norm</property>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>0.5</ind>
+                <dep>50.0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>50.0</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-0.366</x-m>
+            <y-m>-0.570</y-m>
+            <z-m>0.138</z-m>
+        </center>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
  
 <animation>
    <type>pick</type>
@@ -975,6 +1011,57 @@
 			<z>0.463769</z>
 		</axis>
  </animation>
+ 
+    <!-- Parking Brake -->
+    <animation>
+        <type>translate</type>
+        <object-name>ParkingBrake</object-name>
+        <property>/controls/gear//brake-parking</property>
+        <factor>0.04</factor>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>ParkingBrake</object-name>
+        <property>/controls/gear//brake-parking</property>
+        <factor>90</factor>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>-1.013</x-m>
+            <y-m>-0.204</y-m>
+            <z-m>0.028</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>ParkingBrake</object-name>
+        <visible>true</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+        <property>/controls/gear//brake-parking</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Parking brake: %s</label>
+        <property>/controls/gear//brake-parking</property>
+                <tooltip-id>parking-brake</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
  
 <!--instruments-->
 <!--avionics-->

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
 <!-- Source: http://forum.flightgear.org/viewtopic.php?f=25&t=21664&start=45 -->
-<fdm_config name="c182t" version="2.0" release="BETA"
+<fdm_config name="c182s" version="2.0" release="BETA"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
@@ -12,7 +12,7 @@
         <!-- experimental stall and spin, up to flat spin March 2014 -->
         <!-- Source: http://forum.flightgear.org/viewtopic.php?f=25&t=21664&start=45 -->
         <!-- this file with comments for stall and spin to help -->
-        <!-- further modifications for c172p-detailed 2015 -->
+        <!-- from further modifications for c172p-detailed 2015 -->
         <description> Cessna C-182S </description>
     </fileheader>
 

@@ -12,8 +12,8 @@
         <!-- experimental stall and spin, up to flat spin March 2014 -->
         <!-- Source: http://forum.flightgear.org/viewtopic.php?f=25&t=21664&start=45 -->
         <!-- this file with comments for stall and spin to help -->
-        <!-- further modifications for c172p-detailed 2015 -->
-        <description> Cessna C-182S </description>
+        <!-- from further modifications for c172p-detailed 2015 -->
+        <description> Cessna C-182T </description>
     </fileheader>
 
     <metrics>

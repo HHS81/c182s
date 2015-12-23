@@ -14,7 +14,7 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
  <sim>
 
   <description>Cessna 182S</description>
-  <author>Heiko H. Schulz, Stuart Buchanan</author>
+  <author>Heiko H. Schulz, Stuart Buchanan, </author>
   <status>beta</status>
   <rating>
     <FDM type="int">3</FDM>
@@ -32,8 +32,8 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
     </autopilot>
  <property-rule n="100">
       <name>FiltersOnly</name>
-      <path>Aircraft/c172p/Systems/NAVandGSfilters.xml</path>
-    </property-rule>
+      <path>Aircraft/c182/Systems/NAVandGSfilters.xml</path>
+</property-rule>
     <electrical>
       <!-- null electrical system path here so we can use a nasal based -->
       <!-- model defined later in the nasal section of this file. -->
@@ -147,10 +147,10 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
  <consumables>
   <fuel>
    <tank n="0">
-    <level-gal_us>40</level-gal_us>
+    <level-gal_us>46</level-gal_us>
    </tank>
    <tank n="1">
-    <level-gal_us>40</level-gal_us>
+    <level-gal_us>46</level-gal_us>
    </tank>
   </fuel>
  </consumables>

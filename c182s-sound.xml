@@ -79,28 +79,7 @@
    </volume>
   </rumble>
 
-  <gear>
-   <name>gear</name>
-   <mode>in-transit</mode>
-   <path>Sounds/gear.wav</path>
-   <property>/gear/gear[0]/position-norm</property>
-   <pitch>
-    <internal>dt_play</internal>
-    <offset>1.0</offset>
-    <factor>-0.001</factor>
-   </pitch>
-  </gear>
 
-  <gear>
-   <name>gear-lock</name>
-   <path>Sounds/gear-lck.wav</path>
-   <condition>
-    <equals>
-     <property>/gear/gear[0]/position-norm</property>
-     <value>0</value>
-    </equals>
-   </condition>
-  </gear>
 
  <squeal1>
    <name>squeal1</name>
@@ -209,29 +188,34 @@
    </pitch>
   </wind>
  
-   <stall>
-   <name>stall</name>
-   <mode>looped</mode>
-   <path>Sounds/stall.wav</path>
-   <condition>
-     <greater-than>
-       <property>/fdm/jsbsim/aero/alpha-wing-rad</property>
-       <value>0.14</value>
-     </greater-than>
-          </condition>
-   <volume>
-    <property>/velocities/airspeed-kt</property>
-    <min>30.0</min>
-   </volume>
-   <pitch>
-    <property>/velocities/airspeed-kt</property>
-    <factor>0.009</factor>
-    <offset>0.25</offset>
-   </pitch>
-   <reference-dist>10.0</reference-dist>
-   <max-dist>20.0</max-dist>
-  </stall>
- 
+        <stall>
+            <name>stall</name>
+            <mode>looped</mode>
+            <path>Aircraft/c182/Sounds/stall2.wav</path>
+            <condition>
+                    <greater-than>
+                        <property>velocities/airspeed-kt</property>
+                        <value>10</value>
+                    </greater-than>
+                    <not>
+                        <property>gear/gear[0]/wow</property>
+                    </not>
+            </condition>
+            <position>
+                <x>-0.0360</x>
+                <y>0.5174</y>
+                <z>0.4831</z>
+            </position>
+            <volume>
+                <property>/fdm/jsbsim/sounds/stall-horn-volume</property>
+            </volume>
+            <pitch>
+                <property>/fdm/jsbsim/sounds/stall-horn-pitch</property>
+                <offset>0.0</offset>
+            </pitch>
+            <reference-dist>0.5</reference-dist>
+            <max-dist>50.0</max-dist>
+        </stall>
 
  
 <!-- no binding yet?

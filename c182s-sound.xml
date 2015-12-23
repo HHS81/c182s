@@ -198,7 +198,7 @@
                         <value>10</value>
                     </greater-than>
                     <not>
-                        <property>gear/gear[0]/wow</property>
+                        <property>gear/gear[0]/wow</property> <!--stall sound audible as long nose wheel don't touch the ground-->
                     </not>
             </condition>
             <position>

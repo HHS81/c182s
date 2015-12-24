@@ -7,7 +7,7 @@
    <pitch-deg>0.0</pitch-deg>
    <z-m> -0.0 </z-m>
  </offsets>
- 
+
   <nasal>
    <load>
        var livery_update = aircraft.livery_update.new(
@@ -19,7 +19,7 @@
 <effect>
     <inherits-from>Aircraft/c182/Models/Effects/c182sreflect-uber</inherits-from>
    <object-name>Fuselage</object-name>
-   <!--<object-name>Spinner</object-name>
+  <!-- <object-name>Spinner</object-name>
    <object-name>WheelFairingNose</object-name>
    <object-name>WheelFairing.R</object-name>
    <object-name>WheelFairing.L</object-name>
@@ -57,6 +57,15 @@
        <inherits-from>Effects/model-transparent</inherits-from>
        <object-name>Fast.Prop</object-name>
        <object-name>Slow.Prop</object-name>
+        <object-name>TaxiLight</object-name>
+		<object-name>PlaneX</object-name>
+		<object-name>Plane.002X</object-name>
+		<object-name>Plane.003X</object-name>
+        <object-name>LandingLight</object-name>
+        <object-name>TaxiLight</object-name>
+        <object-name>PlaneTailLight</object-name>
+        <object-name>NavLightRed</object-name>
+        <object-name>NavLightGreen</object-name>
    </effect>
    
 <effect>
@@ -75,14 +84,19 @@
     
     <effect>
         <inherits-from>Aircraft/c182/Models/Effects/c182sreflectglas_interior_side</inherits-from>
-        <object-name>Windscreen.Side</object-name>
+        <object-name>Windscreen.Side.Left</object-name>
         <object-name>Window.L.001</object-name>
+    </effect>
+    
+        <effect>
+        <inherits-from>Aircraft/c182/Models/Effects/c182sreflectglas_interior_side</inherits-from>
+        <object-name>Windscreen.Side.Right</object-name>
         <object-name>Window.R.001</object-name>
     </effect>
 
  <animation>
    <type>material</type>
-   <object-name>Fuselage</object-name> <!-- grouped in Blender for faster loading of liveries-->
+   <object-name>Fuselage</object-name><!-- grouped in Blender for faster loading of liveries-->
   <!--<object-name>Spinner</object-name>
    <object-name>WheelFairingNose</object-name>
    <object-name>WheelFairing.R</object-name>
@@ -133,22 +147,8 @@
  </animation>
  
  
-
- <model>
-  <name>MagCompass</name>
-  <path>Aircraft/c182/Models/Instruments/Compass.xml</path>
-  <offsets>
-   <x-m>-0.960</x-m>
-   <y-m>0.00</y-m>
-   <z-m>0.730</z-m>
-  </offsets>
- </model>
-
  
-  
-
  
-
 
   <!-- Object movements -->
 <animation>
@@ -584,6 +584,7 @@
 		</axis>
  </animation>
  
+ 
  <animation>
    <type>rotate</type>
    <object-name>WheelFairingNose</object-name>
@@ -623,7 +624,7 @@
    </axis>
  </animation>
  
- <!--gear scissors tracking animation-->
+ <!--gear scissors tracking animation
  <animation>
     <type>locked-track</type>
     <object-name>TrenDEL_04_TrenDEL_04</object-name>
@@ -656,7 +657,7 @@
       <y-m>0</y-m>
       <z-m>-0.781</z-m>
     </slave-center>
-  </animation>
+  </animation>-->
  
 <!-- gear compression-->
   <animation>
@@ -1062,8 +1063,260 @@
             </binding>
         </hovered>
     </animation>
+    
+<!--switches-->
+    <!-- MasterSwitch -->
+    <animation>
+        <type>pick</type>
+        <object-name>MasterSwitch</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/engines/engine/master-bat</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>master-switch</tooltip-id>
+                <label>Battery: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/engines/engine/master-bat</property>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <!-- MasterSwitch -->
+    <animation>
+        <type>pick</type>
+        <object-name>AltBattSwitch</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/engines/engine/master-alt</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>AltBatt-switch</tooltip-id>
+                <label>Alternator: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/engines/engine/master-alt</property>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <!-- FuelPump -->
+    <animation>
+        <type>pick</type>
+        <object-name>FuelPumpSwitch</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/engines/engine/fuel-pump</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>Fuelpump-Switch</tooltip-id>
+                <label>Fuel-Pump: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/engines/engine/fuel-pump</property>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <!-- Beacon swt-->
+    <animation>
+        <type>pick</type>
+        <object-name>BeaconSwitch</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/beacon</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>Beacon-Switch</tooltip-id>
+                <label>Beacon: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/lighting/beacon</property>
+            </binding>
+        </hovered>
+    </animation>
+    
+        <!-- strobe swt-->
+    <animation>
+        <type>pick</type>
+        <object-name>StrobeLightSwitch</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/strobe</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>Strobe-Switch</tooltip-id>
+                <label>Strobe: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/lighting/strobe</property>
+            </binding>
+        </hovered>
+    </animation>
+    
+        <!-- LL swt-->
+    <animation>
+        <type>pick</type>
+        <object-name>LandingLightSwitch</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/landing-lights</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>LandingLights-Switch</tooltip-id>
+                <label>LandingLights: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/lighting/landing-lights</property>
+            </binding>
+        </hovered>
+    </animation>
+    
+        <!-- TL swt-->
+    <animation>
+        <type>pick</type>
+        <object-name>TaxiLightSwitch</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/taxi-light</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>TaxiLights-Switch</tooltip-id>
+                <label>TaxiLights: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/lighting/taxi-light</property>
+            </binding>
+        </hovered>
+    </animation>
+    
+        <!-- NL swt-->
+    <animation>
+        <type>pick</type>
+        <object-name>NavLightSwitch</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/nav-lights</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>NavLights-Switch</tooltip-id>
+                <label>NavLights: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/lighting/nav-lights</property>
+            </binding>
+        </hovered>
+    </animation>
+    
+        <!-- PH swt-->
+    <animation>
+        <type>pick</type>
+        <object-name>PitotHeatSwitch</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/controls/anti-ice/pitot-heat</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>pitotheat-Switch</tooltip-id>
+                <label>pitotheat: %s</label>
+                <mapping>on-off</mapping>
+                <property>/controls/anti-ice/pitot-heat</property>
+            </binding>
+        </hovered>
+    </animation>
+    
+            <!-- avionic swt-->
+    <animation>
+        <type>pick</type>
+        <object-name>AvionikSwitch</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/controls/switches/master-avionics</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>MasterAvionik-Switch</tooltip-id>
+                <label>MasterAvionik: %s</label>
+                <mapping>on-off</mapping>
+                <property>/controls/switches/master-avionics</property>
+            </binding>
+        </hovered>
+    </animation>
  
 <!--instruments-->
+
+ <model>
+  <name>MagCompass</name>
+  <path>Aircraft/c182/Models/Instruments/Compass.xml</path>
+  <offsets>
+   <x-m>-0.960</x-m>
+   <y-m>0.00</y-m>
+   <z-m>0.730</z-m>
+  </offsets>
+ </model>
+
 <!--avionics-->
     <model>
         <path>Aircraft/c182/Models/Instruments/Avionics/gma340.xml</path>
@@ -1255,6 +1508,365 @@
    </offsets>
  </model>
  
+<!--Exterior Lights-->
+<!--Beacon-->
+
+<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>25000</max-m>
+	</animation>
+
+	<PlaneXparams>
+		<light-near>0.8</light-near>
+		<light-med>1.6</light-med>
+		<light-far>10</light-far>
+	</PlaneXparams>
+
+
+	<animation>
+		<type>alpha-test</type>
+		<object-name>PlaneX</object-name>
+		<alpha-factor>0.001</alpha-factor>
+	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>PlaneX</object-name>
+		<offset-m>5.911617</offset-m>
+		<axis>
+			<x>5.46691</x>
+			<y>0</y>
+			<z>2.249469</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>billboard</type>
+		<object-name>PlaneX</object-name>
+		<spherical type="bool">true</spherical>
+	</animation>
+
+	<animation>
+		<type>dist-scale</type>
+		<object-name>PlaneX</object-name>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep alias="../../../../PlaneXparams/light-near"/>
+			</entry>
+			<entry>
+				<ind>500</ind>
+				<dep alias="../../../../PlaneXparams/light-med"/>
+			</entry>
+			<entry>
+				<ind>16000</ind>
+				<dep alias="../../../../PlaneXparams/light-far"/>
+			</entry>
+		</interpolation>
+	</animation>
+	
+<animation>
+	<type>select</type>
+        <object-name>PlaneX</object-name>
+	<condition>
+	<property>/systems/electrical/outputs/beacon</property>
+	</condition>
+</animation>
+
+<animation>
+	<type>select</type>
+        <object-name>BeaconOff</object-name>
+	<condition>
+	 <less-than>
+	<property>/systems/electrical/outputs/beacon</property>
+	<value>23</value>
+	 </less-than>
+	</condition>
+</animation>
+
+<!--left strobe-->
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>25000</max-m>
+	</animation>
+
+	<Plane.002Xparams>
+		<light-near>1.6</light-near>
+		<light-med>3.2</light-med>
+		<light-far>10</light-far>
+	</Plane.002Xparams>
+
+
+	<animation>
+		<type>alpha-test</type>
+		<object-name>Plane.002X</object-name>
+		<alpha-factor>0.001</alpha-factor>
+	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>Plane.002X</object-name>
+		<offset-m>6.209646</offset-m>
+		<axis>
+			<x>-0.367867</x>
+			<y>-6.123683</y>
+			<z>0.961708</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>billboard</type>
+		<object-name>Plane.002X</object-name>
+		<spherical type="bool">true</spherical>
+	</animation>
+
+	<animation>
+		<type>dist-scale</type>
+		<object-name>Plane.002X</object-name>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep alias="../../../../Plane.002Xparams/light-near"/>
+			</entry>
+			<entry>
+				<ind>500</ind>
+				<dep alias="../../../../Plane.002Xparams/light-med"/>
+			</entry>
+			<entry>
+				<ind>16000</ind>
+				<dep alias="../../../../Plane.002Xparams/light-far"/>
+			</entry>
+		</interpolation>
+	</animation>
+	
+<animation>
+	<type>select</type>
+        <object-name>Plane.002X</object-name>
+	<condition>
+	<property>/systems/electrical/outputs/strobe</property>
+	</condition>
+</animation>
+	
+<!-- right strobe-->
+<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>25000</max-m>
+	</animation>
+
+	<Plane.003Xparams>
+		<light-near>1.6</light-near>
+		<light-med>3.2</light-med>
+		<light-far>10</light-far>
+	</Plane.003Xparams>
+
+
+	<animation>
+		<type>alpha-test</type>
+		<object-name>Plane.003X</object-name>
+		<alpha-factor>0.001</alpha-factor>
+	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>Plane.003X</object-name>
+		<offset-m>6.209646</offset-m>
+		<axis>
+			<x>-0.367867</x>
+			<y>6.123683</y>
+			<z>0.961708</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>billboard</type>
+		<object-name>Plane.003X</object-name>
+		<spherical type="bool">true</spherical>
+	</animation>
+
+	<animation>
+		<type>dist-scale</type>
+		<object-name>Plane.003X</object-name>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep alias="../../../../Plane.003Xparams/light-near"/>
+			</entry>
+			<entry>
+				<ind>500</ind>
+				<dep alias="../../../../Plane.003Xparams/light-med"/>
+			</entry>
+			<entry>
+				<ind>16000</ind>
+				<dep alias="../../../../Plane.003Xparams/light-far"/>
+			</entry>
+		</interpolation>
+	</animation>
+	
+<animation>
+	<type>select</type>
+        <object-name>Plane.003X</object-name>
+	<condition>
+	<property>/systems/electrical/outputs/strobe</property>
+	</condition>
+</animation>
+
+<!--LandingLight-->
+ <animation>
+        <type>flash</type>
+        <object-name>LandingLight</object-name>
+        <center>
+            <x-m>-0.849</x-m>
+            <y-m>-4.292</y-m>
+            <z-m>0.946</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <power>8</power>
+        <factor>6</factor>
+        <offset>0</offset>
+        <two-sides type="bool">false</two-sides>
+        <min>0.5</min>
+        <max>80</max>
+    </animation>
+    
+    
+<animation>
+	<type>select</type>
+        <object-name>LandingLight</object-name>
+	<condition>
+	<property>/systems/electrical/outputs/landing-lights</property>
+	</condition>
+</animation>
+
+<!--TaxiLight-->
+ <animation>
+        <type>flash</type>
+        <object-name>TaxiLight</object-name>
+        <center>
+            <x-m>-0.815</x-m>
+            <y-m>-4.132</y-m>
+            <z-m>0.948</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <power>8</power>
+        <factor>6</factor>
+        <offset>0</offset>
+        <two-sides type="bool">false</two-sides>
+        <min>0.5</min>
+        <max>80</max>
+    </animation>
+    
+    
+<animation>
+	<type>select</type>
+        <object-name>TaxiLight</object-name>
+	<condition>
+	<property>/systems/electrical/outputs/taxi-light</property>
+	</condition>
+</animation>
+
+<!--NavLightTail-->
+ <animation>
+        <type>flash</type>
+        <object-name>PlaneTailLight</object-name>
+        <center>
+            <x-m>5.469</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.478</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <power>8</power>
+        <factor>3</factor>
+        <offset>0</offset>
+        <two-sides type="bool">false</two-sides>
+        <min>0.5</min>
+        <max>20</max>
+    </animation>
+    
+    
+<animation>
+	<type>select</type>
+        <object-name>PlaneTailLight</object-name>
+	<condition>
+	<property>/systems/electrical/outputs/nav-lights</property>
+	</condition>
+</animation>
+
+<!--NavLightWings-->
+ <animation>
+        <type>flash</type>
+        <object-name>NavLightRed</object-name>
+        <center>
+            <x-m>-0.457</x-m>
+            <y-m>-6.122</y-m>
+            <z-m>0.943</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <power>8</power>
+        <factor>3</factor>
+        <offset>0</offset>
+        <two-sides type="bool">false</two-sides>
+        <min>0.5</min>
+        <max>20</max>
+    </animation>
+    
+    
+<animation>
+	<type>select</type>
+        <object-name>NavLightRed</object-name>
+	<condition>
+	<property>/systems/electrical/outputs/nav-lights</property>
+	</condition>
+</animation>
+
+ <animation>
+        <type>flash</type>
+        <object-name>NavLightGreen</object-name>
+        <center>
+            <x-m>-0.457</x-m>
+            <y-m>6.122</y-m>
+            <z-m>0.943</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <power>8</power>
+        <factor>3</factor>
+        <offset>0</offset>
+        <two-sides type="bool">false</two-sides>
+        <min>0.5</min>
+        <max>20</max>
+    </animation>
+    
+    
+<animation>
+	<type>select</type>
+        <object-name>NavLightGreen</object-name>
+	<condition>
+	<property>/systems/electrical/outputs/nav-lights</property>
+	</condition>
+</animation>
+ 
 <!--object animation-->
  <animation>
    <type>select</type>
@@ -1273,6 +1885,8 @@
      <property>sim/model/c182/chrome_spinner</property>
    </condition>
  </animation>
+ 
+ 
 
 
 

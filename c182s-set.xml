@@ -1,20 +1,10 @@
 <?xml version="1.0"?>
-<!--
-************************************************************************
-Cessna 182 simulation config. This files ties together all the components
-used by FGFS to represent the C182. Components include the flight data 
-model, instrument panel, and external 3D model.
-
-Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
-************************************************************************
--->
-
 <PropertyList>
 
  <sim>
 
-  <description>Cessna 182S</description>
-  <author>Heiko H. Schulz, Stuart Buchanan, </author>
+  <description>Cessna 182S (1996)</description>
+  <author>Heiko H. Schulz, Stuart Buchanan, Gilberto Agostinho, onox </author>
   <status>beta</status>
   <rating>
     <FDM type="int">3</FDM>
@@ -170,11 +160,11 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
    </engine>
   </engines>
   <lighting>
-   <landing-lights type="bool">false</landing-lights>
+   <landing-lights type="bool">true</landing-lights>
    <taxi-light type="bool">false</taxi-light>
-   <strobe type="bool">false</strobe>
-   <beacon type="bool">false</beacon>
-   <nav-lights type="bool">false</nav-lights>
+   <strobe type="bool">true</strobe>
+   <beacon type="bool">true</beacon>
+   <nav-lights type="bool">true</nav-lights>
   </lighting>
   <switches>
    <master-avionics type="bool">true</master-avionics>

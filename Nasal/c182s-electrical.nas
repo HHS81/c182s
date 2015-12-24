@@ -1,7 +1,8 @@
 ##
-# Procedural model of a Cessna 178S electrical system.  Includes a
+# Procedural model of a Cessna 172S electrical system.  Includes a
 # preliminary battery charge/discharge model and realistic ammeter
 # gauge modeling.
+#
 #
 
 
@@ -19,6 +20,11 @@ var ebus1_volts = 0.0;
 var ebus2_volts = 0.0;
 
 var ammeter_ave = 0.0;
+
+var strobe_switch = props.globals.getNode("controls/lighting/strobe", 1);
+aircraft.light.new("controls/lighting/strobe-state", [0.015, 1.985], strobe_switch);
+var beacon_switch = props.globals.getNode("controls/lighting/beacon", 1);
+aircraft.light.new("controls/lighting/beacon-state", [0.10, 1.8], beacon_switch);
 
 ##
 # Initialize the electrical system
@@ -326,7 +332,7 @@ electrical_bus_1 = func() {
     }
 
     # Beacon Power
-    if ( getprop("/controls/lighting/beacon" ) ) {
+    if ( getprop("controls/lighting/beacon-state/state" ) ) {
         setprop("/systems/electrical/outputs/beacon", bus_volts);
         load += bus_volts / 28;
     } else {
@@ -361,9 +367,9 @@ electrical_bus_2 = func() {
     setprop("/systems/electrical/outputs/instrument-lights", bus_volts);
   
     # Strobe Lights Power
-    if ( getprop("/controls/lighting/strobe" ) ) {
+    if ( getprop("controls/lighting/strobe-state/state" ) ) {
         setprop("/systems/electrical/outputs/strobe", bus_volts);
-        load += bus_volts / 14;
+        load += bus_volts / 28;
     } else {
         setprop("/systems/electrical/outputs/strobe", 0.0);
     }

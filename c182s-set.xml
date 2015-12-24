@@ -254,7 +254,6 @@
  <nasal>
  <c182>
 	<file>Aircraft/c182/Nasal/c182s.nas</file>
-	<file>Aircraft/c182/Nasal/doors.nas</file>
 	<file>Aircraft/c182/Nasal/kt76c.nas</file>
 	<file>Aircraft/c182/Nasal/kn62a.nas</file>
     </c182>

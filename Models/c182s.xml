@@ -1512,6 +1512,29 @@
    </offsets>
  </model>
  
+<!--ELT-->
+ <model>
+   <name>ELT</name>
+   <path>Aircraft/c182/Models/Instruments/ELT/ArtexELT.xml</path>
+   <offsets>
+     <x-m>-1.033</x-m>
+     <y-m>0.440</y-m>
+     <z-m>0.425</z-m>
+   </offsets>
+ </model>
+ 
+ <!--Hobbs-->
+  <model>
+   <name>Hobbs</name>
+   <path>Aircraft/c182/Models/Instruments/hobbs/hobbs.xml</path>
+   <offsets>
+     <x-m>-1.033</x-m>
+     <y-m>0.483</y-m>
+     <z-m>0.38</z-m>
+   </offsets>
+ </model>
+
+ 
 <!--Exterior Lights-->
 <!--Beacon-->
 
@@ -1537,11 +1560,11 @@
 	<animation>
 		<type>translate</type>
 		<object-name>PlaneX</object-name>
-		<offset-m>5.911617</offset-m>
+		<offset-m>5.912332</offset-m>
 		<axis>
 			<x>5.46691</x>
 			<y>0</y>
-			<z>2.249469</z>
+			<z>2.251347</z>
 		</axis>
 	</animation>
 
@@ -1722,7 +1745,7 @@
         <type>flash</type>
         <object-name>LandingLight</object-name>
         <center>
-            <x-m>-0.849</x-m>
+            <x-m>-0.774</x-m>
             <y-m>-4.292</y-m>
             <z-m>0.946</z-m>
         </center>
@@ -1753,7 +1776,7 @@
         <type>flash</type>
         <object-name>TaxiLight</object-name>
         <center>
-            <x-m>-0.815</x-m>
+            <x-m>-0.779</x-m>
             <y-m>-4.132</y-m>
             <z-m>0.948</z-m>
         </center>

@@ -4,6 +4,18 @@
  <sim>
 
   <description>Cessna 182S (1996)</description>
+   <long-description>The Cessna 182 Skylane is a four-seat, single-engine, high-wing fixed-wing aircraft. 
+      First flown in 1956 and still in production, it is the second most popular Cessna model, after the 172.
+      The  model represents the "S" Variant, built between 1996 and 2001. 
+        </long-description><tags>
+            <tag>ga</tag>
+            <tag>cessna</tag>
+            <tag>piston</tag>
+            <tag>90's</tag>
+            <tag>single-engine</tag>
+            <tag>fixed-gear</tag>
+        </tags>
+  
   <author>Heiko H. Schulz, Stuart Buchanan, Gilberto Agostinho, onox </author>
   <status>beta</status>
   <rating>

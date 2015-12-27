@@ -199,8 +199,8 @@
    <type>blend</type>
    <object-name>FastProp</object-name>
    <property>engines/engine[0]/rpm</property>
-   <factor>0.0002</factor>
-   <max>1.0</max>
+   <factor>0.0004</factor>
+   <max>0.5</max>
    <min>0.0</min>
  </animation>
  
@@ -208,8 +208,8 @@
    <type>blend</type>
    <object-name>SlowProp</object-name>
    <property>engines/engine[0]/rpm</property>
-   <factor>0.0001</factor>
-   <max>1.0</max>
+   <factor>0.0002</factor>
+   <max>0.5</max>
    <min>0.0</min>
  </animation>
  

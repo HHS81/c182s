@@ -301,12 +301,12 @@
   <property>controls/flight/aileron</property>
   <factor>90</factor>
 		<center>
-			<x-m>-0.861709</x-m>
-			<y-m>0.251527</y-m>
-			<z-m>0.244845</z-m>
+			<x-m>-1.015141</x-m>
+			<y-m>0.249688</y-m>
+			<z-m>0.247786</z-m>
 		</center>
 		<axis>
-			<x>-0.027774</x>
+			<x>-0.021757</x>
 			<y>0</y>
 			<z>0</z>
 		</axis>
@@ -790,6 +790,8 @@
 <object-name>FrameInt.L</object-name>
 <object-name>Window.L.001</object-name>
 <object-name>doorhandleint_left</object-name>
+<object-name>FrameLock1.L</object-name>
+<object-name>FrameLock2.L</object-name>
    <property>sim/model/door-positions/DoorL/position-norm</property>
    <interpolation>
      <entry>
@@ -841,6 +843,8 @@
 <object-name>FrameInt.R</object-name>
 <object-name>Window.R.001</object-name>
 <object-name>doorhandleint_right</object-name>
+<object-name>FrameLock1.R</object-name>
+<object-name>FrameLock2.R</object-name>
    <property>sim/model/door-positions/DoorR/position-norm</property>
    <interpolation>
      <entry>

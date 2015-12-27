@@ -284,23 +284,23 @@
                 <p_factor> 1.25 </p_factor>
             </thruster>
         </engine>
-        <tank type="FUEL">    <!-- Tank number 0 with 46 gallons =276lbs -->
+        <tank type="FUEL">    <!-- Tank number 0 with 44 gallons =290.5lbs -->
             <location unit="IN">
                 <x> 0.66 </x>
                 <y> -112 </y>
                 <z> 34.74 </z>
             </location>
-            <capacity unit="LBS"> 276 </capacity>
-            <contents unit="LBS"> 276 </contents>
+            <capacity unit="LBS"> 290.5 </capacity>
+            <contents unit="LBS"> 290.5 </contents>
         </tank>
-        <tank type="FUEL">    <!-- Tank number 1 with 46 gallons =276lbs-->
+        <tank type="FUEL">    <!-- Tank number 1 with 44 gallons =290.5lbs-->
             <location unit="IN">
                 <x> 0.66 </x>
                 <y> 112 </y>
                 <z> 34.74 </z>
             </location>
-            <capacity unit="LBS"> 276 </capacity>
-            <contents unit="LBS"> 276 </contents>
+            <capacity unit="LBS"> 290.5 </capacity>
+            <contents unit="LBS"> 290.5 </contents>
         </tank>
     </propulsion>
     

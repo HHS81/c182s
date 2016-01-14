@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!-- from HAL V. Engel's p51d-->
+
+<system name="Propulsion">
+
+    <channel name="engine power">
+
+<fcs_function name="systems/engine/MP-alt-volumetric-efficiency-curve">
+          <function>
+                <table>
+                    <independentVar lookup="row">atmosphere/density-altitude</independentVar>
+                    <independentVar lookup="column">/engines/engine/mp-inhg</independentVar>
+                    <tableData breakPoint="0">
+				15	16	17	18	19	20	21	22	23	24	25	26	27	28.5
+                        0		0.65	0.65	0.65	0.65	0.65	0.65	0.64	0.64	0.64	0.64	0.66	0.66	0.7	0.9
+                        2000	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.67	0.67	0.67	0.67   
+                        4000	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.67	0.68   0.69	0.70	0.71	0.72
+                        6000	0.66	0.66	0.66	0.66	0.66	0.66	0.591	0.64	0.642	0.642	0.642	0.642	0.642	0.642	  
+                        8000	0.66	0.66	0.66	0.66	0.66	0.67	0.67	0.67	0.67	0.67	0.67	0.67	0.67	0.67	
+                        10000	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66   
+                        12000	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	 
+                        14000	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66	0.66   
+                   </tableData> 
+                </table>  
+          </function>
+          <clipto>
+             <min> 0.0 </min>
+             <max> 1.00 </max>
+           </clipto>
+          <output>propulsion/engine/volumetric-efficiency</output>   
+        </fcs_function>
+
+<fcs_function name="systems/engine/MP-alt-bsfc-lbs_hphr-curve">
+          <function>
+                <table>
+                    <independentVar lookup="row">atmosphere/density-altitude</independentVar>
+                    <independentVar lookup="column">/engines/engine/mp-inhg</independentVar>
+                    <tableData breakPoint="0">
+				15	16	17	18	19	20	21	22	23	24	25	26	27	28.5
+                        0		0.31	0.31	0.31	0.31	0.31	0.31	0.31	0.31	0.31	0.31	0.31	0.31	0.31	0.31		
+                        2000	0.278	0.278	0.278	0.278	0.278	0.278	0.278	0.278	0.278	0.283	0.283		0.283			0.283		
+                        4000	0.318	0.318	0.318	0.318	0.318	0.318	0.318	0.318	0.3212	0.3212	0.3212	0.3212	
+                        6000	
+                        8000	
+                        10000	 
+                        12000	
+                        14000	
+                   </tableData>
+                </table>  
+          </function>
+          <clipto>
+             <min> 0.0 </min>
+             <max> 1.00 </max>
+           </clipto>
+          <output>propulsion/engine/bsfc-lbs_hphr</output>   
+        </fcs_function>
+
+    </channel>
+</system>

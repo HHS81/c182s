@@ -4,18 +4,6 @@
  <sim>
 
   <description>Cessna 182S (1996)</description>
-   <long-description>The Cessna 182 Skylane is a four-seat, single-engine, high-wing fixed-wing aircraft. 
-      First flown in 1956 and still in production, it is the second most popular Cessna model, after the 172.
-      The  model represents the "S" Variant, built between 1996 and 2001. 
-        </long-description><tags>
-            <tag>ga</tag>
-            <tag>cessna</tag>
-            <tag>piston</tag>
-            <tag>90's</tag>
-            <tag>single-engine</tag>
-            <tag>fixed-gear</tag>
-        </tags>
-  
   <author>Heiko H. Schulz, Stuart Buchanan, Gilberto Agostinho, onox </author>
   <status>beta</status>
   <rating>
@@ -30,7 +18,8 @@
   
   <systems>
     <autopilot>
-      <path>Aircraft/c182/Systems/KAP140.xml</path>
+          <!--<path>Aircraft/c182/generic-autopilot.xml</path>-->
+    <path>Aircraft/c182/Systems/KAP140.xml</path>
     </autopilot>
  <property-rule n="100">
       <name>FiltersOnly</name>
@@ -61,12 +50,31 @@
     <hide-yoke>false</hide-yoke>
 
     <livery>
-      <file type="string">Default</file>
+      <file type="string">liveries/Default.png</file>
       <index type="int">0</index>
     </livery>
     
   <c182>
-      <chrome_spinner type="bool">false</chrome_spinner>
+      <chrome_spinner type="bool">true</chrome_spinner>
+	<material>
+		<fuselage>
+			<diffuse>
+				<red>1.0</red>
+				<green>1.0</green>
+				<blue>1.0</blue>
+			</diffuse>
+			<specular>
+				<red>0.15</red>
+				<green>0.15</green>
+				<blue>0.15</blue>
+			</specular>
+			<ambient>
+				<red>1.0</red>
+				<green>1.0</green>
+				<blue>1.0</blue>
+			</ambient>
+		</fuselage>
+	</material>
     </c182>
     
   <rendering>
@@ -79,11 +87,47 @@
    <internal archive="y">true</internal>
    <config>
      <x-offset-m archive="y">-0.25</x-offset-m>
-     <y-offset-m archive="y">0.65</y-offset-m>
-     <z-offset-m archive="y">0.0</z-offset-m>
+     <y-offset-m archive="y">0.6</y-offset-m>
+     <z-offset-m archive="y">1.26</z-offset-m>
      <pitch-offset-deg>-5</pitch-offset-deg>
+<default-field-of-view-deg>73.6</default-field-of-view-deg>
    </config>
   </view>
+		<view n="1">
+			<config>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
+
+		<view n="2">
+			<config>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
+
+		<view n="3">
+			<config>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
+
+		<view n="4">
+			<config>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
+
+		<view n="5">
+			<config>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
+
+		<view n="6">
+			<config>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
   
    <flaps>
       <setting>0.000</setting>
@@ -100,7 +144,7 @@
 
 
   <help>
-   <title>Cessna 182s</title>
+   <title>Cessna 182S</title>
    <line>Velocities</line>
    <line>  Va1 (maneuvering)   : 110 KIAS</line>
    <line>  Vno (max cruise)    : 140 KIAS</line>
@@ -145,17 +189,22 @@
         <menubar include="gui/dialogs/c182s-menu.xml"/>
 
  </sim>
- 
- <consumables>
-  <fuel>
-   <tank n="0">
-    <level-gal_us>46</level-gal_us>
-   </tank>
-   <tank n="1">
-    <level-gal_us>46</level-gal_us>
-   </tank>
-  </fuel>
- </consumables>
+   <consumables>
+<fuel>
+      <tank n="0">
+        <name type="string">Left Wing</name>
+        <capacity-gal_us type="double">46</capacity-gal_us>
+        <unusable-gal_us type="double">2</unusable-gal_us>
+        <level-gal_us type="double">36.2857</level-gal_us>
+      </tank>
+      <tank n="1">
+        <name type="string">Right Wing</name>
+        <capacity-gal_us type="double">46.0</capacity-gal_us>
+        <unusable-gal_us type="double">2</unusable-gal_us>
+        <level-gal_us type="double">36.2857</level-gal_us>
+      </tank>
+    </fuel>
+  </consumables>
   
  
 

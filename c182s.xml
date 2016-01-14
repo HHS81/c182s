@@ -13,6 +13,7 @@
         <!-- Source: http://forum.flightgear.org/viewtopic.php?f=25&t=21664&start=45 -->
         <!-- this file with comments for stall and spin to help -->
         <!-- from further modifications for c172p-detailed 2015 -->
+	<!--many coefficients from David Megginson: http://www.megginson.com/Aviation/roskam-coefficients.html#sec.data-->
         <description> Cessna C-182S </description>
     </fileheader>
 
@@ -25,71 +26,71 @@
         <vtailarea unit="FT2"> 16.5 </vtailarea>
         <vtailarm unit="FT"> 0 </vtailarm>
         <location name="AERORP" unit="IN">
-            <x> -17.88 </x>
+            <x>37.37 </x>
             <y> 0 </y>
-            <z> 34.78 </z>
+            <z>32.94 </z>
         </location>
         <location name="EYEPOINT" unit="IN">
             <x> -13 </x>
             <y> 0 </y>
             <z> 23.68 </z>
         </location>
-        <location name="VRP" unit="IN">
-            <x> 0 </x>
+        <location name="VRP" unit="IN"><!--Datum according POH -->
+            <x>-3.25</x>
             <y> 0 </y>
             <z>0 </z>
         </location>
     </metrics>
 
-    <mass_balance>
-        <ixx unit="SLUG*FT2"> 1036 </ixx>
-        <iyy unit="SLUG*FT2"> 1658 </iyy>
-        <izz unit="SLUG*FT2"> 2424</izz>
+    <mass_balance> <!--SLUG*FT2 from http://www.megginson.com/Aviation/roskam-coefficients.html#sec.data-->
+        <ixx unit="SLUG*FT2"> 948 </ixx>
+        <iyy unit="SLUG*FT2"> 1346 </iyy>
+        <izz unit="SLUG*FT2"> 1967</izz>
         <ixy unit="SLUG*FT2"> -0 </ixy>
         <ixz unit="SLUG*FT2"> -0 </ixz>
         <iyz unit="SLUG*FT2"> -0 </iyz>
         <emptywt unit="LBS"> 1925 </emptywt>
         <location name="CG" unit="IN">
-            <x> -20.07 </x>
+            <x>40.37</x><!--according to POH-->
             <y> 0 </y>
-            <z> 1.96 </z>
+            <z> 0 </z>
         </location>
         <pointmass name="Pilot">
             <weight unit="LBS"> 180 </weight>
             <location name="POINTMASS" unit="IN">
-                <x> 16.43 </x>
-                <y> -15 </y>
+                <x> 37 </x>
+                <y>-9.88</y>
                 <z> 0 </z>
             </location>
         </pointmass>
         <pointmass name="Co-Pilot">
-            <weight unit="LBS"> 0 </weight>
+            <weight unit="LBS"> 180 </weight>
             <location name="POINTMASS" unit="IN">
-                <x> 16.43 </x>
-                <y> 15 </y>
+                <x> 37 </x>
+                <y> 9.88 </y>
                 <z> 0 </z>
             </location>
         </pointmass>
         <pointmass name="Left Passenger">
-            <weight unit="LBS"> 0 </weight>
+            <weight unit="LBS"> 180 </weight>
             <location name="POINTMASS" unit="IN">
-                <x> 16.58 </x>
-                <y> -15 </y>
+                <x> 74 </x>
+                <y> -9.88 </y>
                 <z> 0 </z>
             </location>
         </pointmass>
         <pointmass name="Right Passenger">
-            <weight unit="LBS"> 0 </weight>
+            <weight unit="LBS"> 180 </weight>
             <location name="POINTMASS" unit="IN">
-                <x> 16.58 </x>
-                <y> 15 </y>
+                <x> 74 </x>
+                <y> 9.88 </y>
                 <z> 0 </z>
             </location>
         </pointmass>
         <pointmass name="BaggageA">
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
-                <x> 39.21 </x>
+                <x> 97 </x>
                 <y>  0 </y>
                 <z> 0 </z>
             </location>
@@ -97,7 +98,7 @@
         <pointmass name="BaggageB">
             <weight unit="LBS"> 0 </weight>
             <location name="POINTMASS" unit="IN">
-                <x> 58.58 </x>
+                <x> 116 </x>
                 <y>  0 </y>
                 <z> 0 </z>
             </location>
@@ -107,53 +108,53 @@
     <ground_reactions>
         <contact type="BOGEY" name="NOSE">
             <location unit="IN">
-                <x> -67.86 </x>
+                <x>-10.31 </x>
                 <y> 0 </y>
-                <z> -51.25</z>
+                <z>-48.09</z><!--includes offset due to gear compression animation, should be -47.17-->
             </location>
             <static_friction> 0.99 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
+            <dynamic_friction> 0.8 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">3600 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 950 </damping_coeff>
+            <damping_coeff unit="LBS/FT/SEC">1800 </damping_coeff>
             <max_steer unit="DEG"> 11 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
         </contact>
         <contact type="BOGEY" name="LEFT_MAIN">
             <location unit="IN">
-                <x> 2.79 </x>
-                <y> -49.99 </y>
-                <z> -45.7 </z>
+                <x>54.43 </x>
+                <y>-51.56 </y>
+                <z>-44.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
             <static_friction> 0.99 </static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
-            <spring_coeff unit="LBS/FT"> 4600 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">520 </damping_coeff>
+            <spring_coeff unit="LBS/FT"> 5400 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC">400 </damping_coeff>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> LEFT </brake_group>
             <retractable>0</retractable>
         </contact>
         <contact type="BOGEY" name="RIGHT_MAIN">
             <location unit="IN">
-                <x> 2.79 </x>
-                <y> 49.99 </y>
-                <z> -45.7 </z>
+                <x>54.43 </x>
+                <y>51.56 </y>
+                <z>-44.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
             <static_friction> 0.99 </static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 4600 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">520 </damping_coeff>
+            <spring_coeff unit="LBS/FT">5400 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC">400 </damping_coeff>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> RIGHT </brake_group>
             <retractable>0</retractable>
         </contact>
         <contact type="BOGEY" name="TAIL_SKID">
             <location unit="IN">
-                <x> 184 </x>
+                <x> 219.33 </x>
                 <y> 0 </y>
-                <z> 3.176 </z>
+                <z> 4.15 </z>
             </location>
             <static_friction> 0.2 </static_friction>
             <dynamic_friction> 0.2 </dynamic_friction>
@@ -166,9 +167,9 @@
         </contact>
         <contact type="STRUCTURE" name="LEFT_WINGTIP">
             <location unit="IN">
-                <x> -14.8 </x>
-                <y> -241.88 </y>
-                <z> 37 </z>
+                <x>12.03 </x>
+                <y>-212.86 </y>
+                <z> 33.37 </z>
             </location>
             <static_friction> 0.2 </static_friction>
             <dynamic_friction> 0.2 </dynamic_friction>
@@ -181,9 +182,9 @@
         </contact>
         <contact type="STRUCTURE" name="RIGHT_WINGTIP">
             <location unit="IN">
-                <x> -14.8 </x>
-                <y> 241.88 </y>
-                <z> 37 </z>
+                <x> 12.03 </x>
+                <y> 212.86 </y>
+                <z> 33.37 </z>
             </location>
             <static_friction> 0.2 </static_friction>
             <dynamic_friction> 0.2 </dynamic_friction>
@@ -196,9 +197,9 @@
         </contact>
         <contact type="STRUCTURE" name="NOSETIP">
             <location unit="IN">
-                <x> -117.64 </x>
+                <x> -92.50 </x>
                 <y> 0</y>
-                <z> -0.9 </z>
+                <z> 0 </z>
             </location>
             <static_friction> 0.2 </static_friction>
             <dynamic_friction> 0.2 </dynamic_friction>
@@ -211,9 +212,9 @@
         </contact>
         <contact type="STRUCTURE" name="ROOF_FRONT">
             <location unit="IN">
-                <x> -27.17 </x>
+                <x> -4.82 </x>
                 <y> 0</y>
-                <z> 33.64 </z>
+                <z> 31.37 </z>
             </location>
             <static_friction> 0.2 </static_friction>
             <dynamic_friction> 0.2 </dynamic_friction>
@@ -226,7 +227,7 @@
         </contact>
         <contact type="STRUCTURE" name="ROOF_BACK">
             <location unit="IN">
-                <x> 36.7 </x>
+                <x>58.47</x>
                 <y> 0</y>
                 <z>30.62 </z>
             </location>
@@ -241,9 +242,9 @@
         </contact>
         <contact type="STRUCTURE" name="HSTAB_TIP">
             <location unit="IN">
-                <x> 220.7 </x>
+                <x> 214.47 </x>
                 <y> 0</y>
-                <z>86.66 </z>
+                <z>79.41 </z>
             </location>
             <static_friction> 0.2 </static_friction>
             <dynamic_friction> 0.2 </dynamic_friction>
@@ -258,9 +259,9 @@
     <propulsion>
         <engine file="engIO540AB1A5">
             <location unit="IN">
-                <x> -81.6 </x>
+                <x>-40.94 </x>
                 <y> 0 </y>
-                <z> 1.96 </z>
+                <z> 0 </z>
             </location>
             <orient unit="DEG">
                 <roll> 0.0 </roll>
@@ -271,9 +272,9 @@
             <feed>1</feed>
             <thruster file="prop_79in3v">
                 <location unit="IN">
-                    <x> -99.21 </x>
+                    <x> -73.62 </x>
                     <y> 0 </y>
-                    <z> 1.96 </z>
+                    <z> 0</z>
                 </location>
                 <orient unit="DEG">
                     <roll> 0.0 </roll>
@@ -284,23 +285,28 @@
                 <p_factor> 1.25 </p_factor>
             </thruster>
         </engine>
-        <tank type="FUEL">    <!-- Tank number 0 with 44 gallons =290.5lbs -->
+        <tank type="FUEL">    <!-- Tank number 0 with 44 gallons =290.5lbs ?? kerosin but should be AVGas!-->
             <location unit="IN">
-                <x> 0.66 </x>
-                <y> -112 </y>
-                <z> 34.74 </z>
+                <x>36.27 </x>
+                <y>-59.49 </y>
+                <z> 31.21</z>
             </location>
-            <capacity unit="LBS"> 290.5 </capacity>
-            <contents unit="LBS"> 290.5 </contents>
+            <capacity unit="LBS"> 264.88 </capacity>
+            <contents unit="LBS"> 264.88</contents>
+<density unit="LBS/GAL"> 6.02 </density>
+<type>  AVGAS</type>
         </tank>
-        <tank type="FUEL">    <!-- Tank number 1 with 44 gallons =290.5lbs-->
+	
+        <tank type="FUEL">    <!-- Tank number 1 with 44 gallons =290.5lbs kerosin but should be AVGas!-->
             <location unit="IN">
-                <x> 0.66 </x>
-                <y> 112 </y>
-                <z> 34.74 </z>
+                <x> 36.27 </x>
+                <y>59.49 </y>
+                <z> 31.21 </z>
             </location>
-            <capacity unit="LBS"> 290.5 </capacity>
-            <contents unit="LBS"> 290.5 </contents>
+            <capacity unit="LBS"> 264.88 </capacity>
+            <contents unit="LBS"> 264.88 </contents>
+<density unit="LBS/GAL"> 6.02 </density>
+<type>  AVGAS</type>
         </tank>
     </propulsion>
     
@@ -441,15 +447,15 @@
                     </setting>
                     <setting>
                         <position>0.26315</position>
-                        <time>2</time>
+                        <time>4</time>
                     </setting>
                     <setting>
                         <position>0.526315</position>
-                        <time>2</time>
+                        <time>4</time>
                     </setting>
                     <setting>
                         <position>1</position>
-                        <time>2</time>
+                        <time>4</time>
                     </setting>
                 </traverse>
                 <output>fcs/flap-pos-norm</output>
@@ -467,7 +473,42 @@
               <output>fcs/flap-pos-deg</output>
             </aerosurface_scale>
         </channel>
-    </flight_control>
+	
+<!--
+            Cowl Flaps 
+        -->
+        <channel name="Cowl Flaps">
+            <kinematic name="Cowl Flaps">
+                <input>/controls/engines/engine[0]/cowl-flaps-norm</input>
+                <traverse>
+                    <setting>
+                        <position>0</position>
+                        <time>0</time>
+                    </setting>
+                    <setting>
+                        <position>1</position>
+                        <time>1</time>
+                    </setting>
+                </traverse>
+                <output>propulsion/engine[0]/cowl-flaps-norm</output>
+            </kinematic>
+            <aerosurface_scale name="Left Cooling Factor">
+                <input>propulsion/engine[0]/cowl-flaps-norm</input>
+                <gain>1.0</gain>
+                <zero_centered>false</zero_centered>
+                <domain>
+                  <min>0</min>
+                  <max>1</max>
+                </domain>
+                <range>
+                    <min>0.48</min>
+                    <max>0.75</max>
+                </range>
+                <output>propulsion/engine[0]/cooling-factor</output>
+            </aerosurface_scale>
+	</channel>
+    </flight_control>	
+
 
     <aerodynamics>
         <alphalimits unit="RAD">
@@ -638,6 +679,23 @@
                     <value>0.1500</value>
                 </product>
             </function>
+	    
+            <function name="aero/coefficient/CDcowl">
+                <description>Drag_due_to_cowl_flaps</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>aero/function/kCLge</property>
+                        <property>propulsion/engine[0]/cowl-flaps-norm</property>
+                    <value>0.0082</value>
+                </product>
+            </function>
+	    
+
+
+	    
+
+	    
         </axis>
 
         <axis name="SIDE">
@@ -651,9 +709,9 @@
                         <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
                         <tableData>
                                        0.0000   38.0000
-                             -0.3490   0.1370   0.13462
+                             -0.3490   0.0819   0.0799
                               0.0000   0.0000   0.0000
-                              0.3490  -0.1370  -0.13462
+                              0.3490  -0.0819  -0.0799
                           </tableData>
                     </table>
                 </product>
@@ -665,12 +723,14 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>fcs/rudder-pos-rad</property>
-                    <value>0.0374</value>
+                    <value>0.187</value>
                 </product>
             </function>
         </axis>
 
         <axis name="LIFT">
+	
+	    
             <function name="aero/coefficient/CLwbh">
                 <description>Lift_due_to_alpha</description>
                 <product>
@@ -744,7 +804,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>aero/alphadot-rad_sec</property>
                     <property>aero/ci2vel</property>
-                    <value>1.37200</value>
+                    <value>1.700</value>
                 </product>
             </function>
             <function name="aero/coefficient/CLq">
@@ -754,7 +814,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>velocities/q-aero-rad_sec</property>
                     <property>aero/ci2vel</property>
-                    <value>3.03</value>
+                    <value>3.9</value>
                 </product>
             </function>
         </axis>
@@ -769,9 +829,9 @@
                     <table>
                         <independentVar>aero/beta-rad</independentVar>
                         <tableData>
-                              -0.3490	0.0072
+                              -0.3490	0.0923
                               0.0000	0.0000
-                              0.3490	-0.0072
+                              0.3490	-0.0923
                         </tableData>
                         <value>0.25</value>
                     </table>
@@ -907,7 +967,7 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
-                    <value>0.1000</value>
+                    <value>0.040</value>
                 </product>
             </function>
 
@@ -920,7 +980,7 @@
                     <sin>
                         <property>aero/alpha-rad</property>
                     </sin>
-                    <value>-1.6000</value>
+                    <value>-1.5000</value><!---should be 0.613 ?? from http://www.megginson.com/Aviation/roskam-coefficients.html#sec.data   -->
                     <!-- 
                         stall and spin (5):
                         horizontal tail stall (for flat spin)
@@ -971,7 +1031,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
                     <property>fcs/elevator-pos-rad</property>
-                    <value>-0.995</value>
+                    <value>-1.369</value> <!--use climb stability derivates here-->
                     <!--
                         stall and spin (6):
                         elevator loss of efficiency when stalled
@@ -1020,9 +1080,9 @@
                     <table>
                         <independentVar>aero/beta-rad</independentVar>
                         <tableData>
-                              -0.3490	-0.0205
+                              -0.3490	-0.0587
                               0.0000	0.0000
-                              0.3490	0.0205
+                              0.3490	0.0587
                         </tableData>
                     </table>
                 </product>
@@ -1086,7 +1146,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
-                    <value>-0.016</value>
+                    <value>-0.0216</value>
                 </product>
             </function>
 
@@ -1097,7 +1157,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
-                    <value>-0.07</value>
+                    <value>-0.0645</value>
                 </product>
             </function>
         </axis>
@@ -1148,5 +1208,7 @@
     </external_reactions>-->
     
     <system file="c182s-stallhorn"/>
+    <!--<system file="propulsion"/> still in work to provide power and fuel rate according POH!)-->
+
 
 </fdm_config>

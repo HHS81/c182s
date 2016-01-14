@@ -22,9 +22,9 @@ var ebus2_volts = 0.0;
 var ammeter_ave = 0.0;
 
 var strobe_switch = props.globals.getNode("controls/lighting/strobe", 1);
-aircraft.light.new("controls/lighting/strobe-state", [0.015, 1.985], strobe_switch);
+aircraft.light.new( "controls/lighting/strobe-state", [0.05, 0.05, 0.05, 1.7 ], strobe_switch );
 var beacon_switch = props.globals.getNode("controls/lighting/beacon", 1);
-aircraft.light.new("controls/lighting/beacon-state", [0.10, 1.8], beacon_switch);
+aircraft.light.new("controls/lighting/beacon-state", [1.0, 1.0], beacon_switch);
 
 ##
 # Initialize the electrical system
@@ -333,10 +333,13 @@ electrical_bus_1 = func() {
 
     # Beacon Power
     if ( getprop("controls/lighting/beacon-state/state" ) ) {
-        setprop("/systems/electrical/outputs/beacon", bus_volts);
+     interpolate ("/systems/electrical/outputs/beacon", bus_volts, 0.5);
+       # setprop("/systems/electrical/outputs/beacon", bus_volts);
         load += bus_volts / 28;
     } else {
-        setprop("/systems/electrical/outputs/beacon", 0.0);
+        #setprop("/systems/electrical/outputs/beacon", 0.0);
+	 interpolate ("/systems/electrical/outputs/beacon", 0.0, 0.5);
+	
     }
 
     # Flaps Power
@@ -368,7 +371,7 @@ electrical_bus_2 = func() {
   
     # Strobe Lights Power
     if ( getprop("controls/lighting/strobe-state/state" ) ) {
-        setprop("/systems/electrical/outputs/strobe", bus_volts);
+            setprop("/systems/electrical/outputs/strobe", bus_volts);
         load += bus_volts / 28;
     } else {
         setprop("/systems/electrical/outputs/strobe", 0.0);

@@ -11,6 +11,25 @@
       </livery>
       
 <c182>
+<material>
+			<fuselage>
+						<diffuse>
+							<red>1.0</red>
+							<green>1.0</green>
+							<blue>1.0</blue>
+						</diffuse>
+ 					         <specular>
+							<red>0.5</red>
+							<green>0.5</green>
+							<blue>0.5</blue>
+						</specular>
+						<ambient>
+							<red>1.0</red>
+							<green>1.0</green>
+							<blue>1.0</blue>
+						</ambient>
+				</fuselage>
+                               </material>
 <chrome_spinner>false</chrome_spinner>
 </c182>
    </model>

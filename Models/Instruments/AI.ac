@@ -535,7 +535,7 @@ OBJECT poly
 name "Aircraft"
 data 10
 Circle.011
-texture "AI1.rgb"
+texture "AI1.png"
 texrep 1 1
 crease 30.000000
 numvert 109
@@ -1651,7 +1651,7 @@ OBJECT poly
 name "Bracket"
 data 9
 Plane.003
-texture "AI1.rgb"
+texture "AI1.png"
 texrep 1 1
 crease 30.000000
 numvert 12
@@ -1743,7 +1743,7 @@ OBJECT poly
 name "CageKnob"
 data 10
 Circle.009
-texture "AI1.rgb"
+texture "AI1.png"
 texrep 1 1
 crease 30.000000
 numvert 65
@@ -2250,7 +2250,7 @@ OBJECT poly
 name "CagedIndicator"
 data 10
 Circle.014
-texture "AI1.rgb"
+texture "AI1.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -2851,7 +2851,7 @@ OBJECT poly
 name "Pitch"
 data 10
 Circle.002
-texture "AI2.rgb"
+texture "AI2.png"
 texrep 1 1
 crease 30.000000
 numvert 128
@@ -3661,7 +3661,7 @@ OBJECT poly
 name "Roll"
 data 10
 Circle.013
-texture "AI1.rgb"
+texture "AI1.png"
 texrep 1 1
 crease 30.000000
 numvert 97
@@ -4187,7 +4187,7 @@ OBJECT poly
 name "RollReference_0"
 data 9
 Plane.001
-texture "AI1.rgb"
+texture "AI1.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -4233,7 +4233,7 @@ OBJECT poly
 name "RollReference_1"
 data 9
 Plane.001
-texture "AI1.rgb"
+texture "AI1.png"
 texrep 1 1
 crease 30.000000
 numvert 4

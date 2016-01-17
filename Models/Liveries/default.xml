@@ -20,9 +20,9 @@
 							<blue>1.0</blue>
 						</diffuse>
  					         <specular>
-							<red>0.15</red>
-							<green>0.15</green>
-							<blue>0.15</blue>
+							<red>0.75</red>
+							<green>0.75</green>
+							<blue>0.75</blue>
 						</specular>
 						<ambient>
 							<red>1.0</red>

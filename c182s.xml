@@ -313,6 +313,57 @@
 
     
     <flight_control name="FCS: c182s">
+<!--Cessna 182S POH Page 7-12: nose gear steer deg=11deg, by applying left or right brake increasing steer deg up to 29deg-->
+ <channel name = "groundcontrol">
+
+
+ 
+<fcs_function name="left brake nose-gear">
+          <function name="fcs/nose-gear-left-brake-steer-factor">
+                	<product>
+		 <property>fcs/left-brake-cmd-norm</property>
+                <value>-1</value>
+                	</product>
+	</function>
+        </fcs_function>
+	
+<fcs_function name="right brake nose-gear">
+          <function name="fcs/nose-gear-right-brake-steer-factor">
+                	<product>
+		 <property>fcs/right-brake-cmd-norm</property>
+                <value>1</value>
+                	</product>
+	</function>
+        </fcs_function>
+
+            <summer name="Brake-Sum">
+                <input>fcs/nose-gear-right-brake-steer-factor</input>
+                <input>fcs/nose-gear-left-brake-steer-factor</input>
+                <clipto>
+                    <min>-1</min>
+                    <max>1</max>
+                </clipto>
+            </summer>
+
+	    
+<fcs_function name="Nose Wheel Steering">
+          <function name="fcs/brake-steer-influence">
+            <description>Steering command for nose gear</description>
+		<table>
+                   <independentVar lookup="row">fcs/brake-sum</independentVar>
+                   <independentVar lookup="column">fcs/steer-cmd-norm</independentVar>
+                   <tableData>
+			-1	0	1
+                  -1	-29	0	11 
+                   0	-11	0	11
+                   1	-11	0	29  
+                   </tableData>
+                </table>
+	</function>
+          <output>fcs/steer-pos-deg</output> 
+        </fcs_function>
+ </channel>
+
         <channel name="Pitch">
             <summer name="Pitch Trim Sum">
                 <input>fcs/elevator-cmd-norm</input>
@@ -507,6 +558,7 @@
                 <output>propulsion/engine[0]/cooling-factor</output>
             </aerosurface_scale>
 	</channel>
+	
     </flight_control>	
 
 
@@ -687,15 +739,10 @@
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCLge</property>
                         <property>propulsion/engine[0]/cowl-flaps-norm</property>
-                    <value>0.0082</value>
+                    <value>0.0097</value>
                 </product>
             </function>
-	    
 
-
-	    
-
-	    
         </axis>
 
         <axis name="SIDE">
@@ -873,7 +920,7 @@
                     </table>
                     <!--
                           stall and spin (2): 
-                          less roll damping
+                          less roll damping-->
                       <table> 
                         <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
                         <tableData>
@@ -881,7 +928,7 @@
                            0.297    0.4
                         </tableData>
                       </table>
-                      -->
+                    
                 </product>
             </function>
 
@@ -1031,7 +1078,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
                     <property>fcs/elevator-pos-rad</property>
-                    <value>-1.369</value> <!--use climb stability derivates here-->
+                    <value>-1.122</value> <!--use cruise stability derivates here so uncorrected airspeed doesn't make take-off worse-->
                     <!--
                         stall and spin (6):
                         elevator loss of efficiency when stalled
@@ -1100,8 +1147,8 @@
                 </product>
             </function>
 
-            <!--<function name="aero/coefficient/Cnrf">
-                <description>Yaw_moment_due_to_flat_spin</description>-->
+            <function name="aero/coefficient/Cnrf">
+                <description>Yaw_moment_due_to_flat_spin</description>
                 <!-- 
                     stall and spin (7):
                     Feedback loop on yaw rate for flat spin.
@@ -1111,7 +1158,7 @@
                     Too great coefficients give an divergent effect and a non-recoverable spin.
                     (tricky)
                 -->
-                <!--<product>
+                <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
@@ -1133,7 +1180,7 @@
                         </tableData>
                     </table>
                 </product>
-            </function>-->
+            </function>
 
             <function name="aero/coefficient/Cnda">
                 <description>Yaw_moment_due_to_aileron</description>
@@ -1208,7 +1255,7 @@
     </external_reactions>-->
     
     <system file="c182s-stallhorn"/>
-    <!--<system file="propulsion"/> still in work to provide power and fuel rate according POH!)-->
-
+    <system file="propulsion"/>
+    <system file="indicated-airspeed"/>     
 
 </fdm_config>

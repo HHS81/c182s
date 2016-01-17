@@ -21,7 +21,8 @@
     <path>Airspeed.ac</path>
     <params>
       <tas-face-rotation>instrumentation/airspeed-indicator/tas-face-rotation</tas-face-rotation>
-      <indicated-speed-kts>instrumentation/airspeed-indicator/indicated-speed-kt</indicated-speed-kts>
+      <!--<indicated-speed-kts>instrumentation/airspeed-indicator/indicated-speed-kt</indicated-speed-kts>-->
+<indicated-speed-kts>fdm/jsbsim/velocities/vias-kts</indicated-speed-kts><!-- does include error ccording POH Cessna 182S Page 5-9-->
     </params>
     
     <animation>

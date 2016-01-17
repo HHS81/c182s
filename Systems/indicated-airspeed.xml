@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!-- IAS Indicated airspeed (IAS) is the airspeed indicator reading (ASIR) uncorrected for instrument, position, and other errors. 
+From current EASA definitions: Indicated airspeed means the speed of an aircraft as shown on its pitot static airspeed indicator calibrated to reflect 
+standard atmosphere adiabatic compressible flow at sea level uncorrected for airspeed system errors
+
+Calibrated airspeed (CAS) is indicated airspeed corrected for instrument errors, position error (due to incorrect pressure at the static port) and installation errors.
+
+According the POH C182S on Page 5-9 airspeed calibration shows a large difference between KIAS and KCAS at lower speeds than 90 and above. 
+It seems this is not reflected by JSBSim or FlightGear in a realistic way.
+So use this numbers and create a table which corrects the output shown on the ASI
+-->
+
+<system name="indicated-airspeed">
+
+    <channel name="indicated airspeed">
+
+<fcs_function name="systems/asi/indicated-airspeed">
+          <function>
+                <table>
+                    <independentVar lookup="row">velocities/vc-kts</independentVar>
+                    <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+                    <tableData breakPoint="0">
+			0	10	20	38	
+		0	0	0	0	0	
+		49	35	35	35	35
+		50	36	36	36	36
+		52	38	38	38	38
+		53	39	40	40	40
+		54	40	40	40	40
+		55	42	42	42	42
+		56	43	43	43	43
+		58	45	45	50	50
+		62	55	55	55	55
+		64	57	57	60	60
+		65	60	60	60	60
+		73	70	70	70	70	
+		82	80	80	80	80
+		90	90	90	90	90
+		100	100	100	100	100
+		109	110	110	110	110
+		118	120	120	120	120
+		127	130	130	130	130
+		137	140	140	140	140
+		146	150	150	150	150
+		156	160	150	150	150
+                  </tableData> 
+                </table>  
+          </function>
+          <output>velocities/vias-kts</output>   
+        </fcs_function>
+    </channel>
+</system>

@@ -520,7 +520,7 @@
             <z>0.0</z>
         </axis>
         <center>
-            <x-m>0.166</x-m>
+            <x-m>0.1835</x-m>
             <y-m>-0.204</y-m>
             <z-m>0.016</z-m>
         </center>
@@ -554,7 +554,7 @@
   <property>controls/flight/aileron</property>
   <factor>90</factor>
 		<center>
-			<x-m>-0.5</x-m>
+			<x-m>-0.4825</x-m>
 			<y-m>-0.252</y-m>
 			<z-m>0.238</z-m>
 		</center>
@@ -584,7 +584,7 @@
   <property>controls/flight/aileron</property>
   <factor>90</factor>
 		<center>
-			<x-m>0.5</x-m>
+			<x-m>0.5175</x-m>
 			<y-m>0.250</y-m>
 			<z-m>0.240</z-m>
 		</center>
@@ -691,7 +691,7 @@
             <z>0.0</z>
         </axis>
         <center>
-            <x-m>0.307</x-m>
+            <x-m>0.3245</x-m>
             <y-m>-0.052</y-m>
             <z-m>-0.109</z-m>
         </center>
@@ -725,7 +725,7 @@
             <z>0.0</z>
         </axis>
         <center>
-            <x-m>0.307</x-m>
+            <x-m>0.3245</x-m>
             <y-m>-0.052</y-m>
             <z-m>-0.109</z-m>
         </center>
@@ -744,7 +744,7 @@
             <z>1.0</z>
         </axis>
         <center>
-            <x-m>0.321</x-m>
+            <x-m>0.3385</x-m>
             <y-m>0.044</y-m>
             <z-m>-0.073</z-m>
         </center>
@@ -778,7 +778,7 @@
             <z>1.0</z>
         </axis>
         <center>
-            <x-m>0.321</x-m>
+            <x-m>0.3385</x-m>
             <y-m>0.044</y-m>
             <z-m>-0.073</z-m>
         </center>
@@ -799,7 +799,7 @@
         <z>0.0</z>
       </axis>
       <center>
-        <x-m>-0.057</x-m>
+        <x-m>-0.0395</x-m>
         <y-m>0.0</y-m>
         <z-m>0.0</z-m>
       </center>
@@ -832,7 +832,7 @@
         <z>0.0</z>
       </axis>
       <center>
-        <x-m>-0.057</x-m>
+        <x-m>-0.0395</x-m>
         <y-m>0.0</y-m>
         <z-m>0.0</z-m>
       </center>
@@ -865,7 +865,7 @@
    <z>0.0</z>
   </axis>
   <center>
-   <x-m>0.145</x-m>
+   <x-m>0.1625</x-m>
    <y-m>0</y-m>
    <z-m>-0.318</z-m>
   </center>
@@ -898,7 +898,7 @@
    <z>0.0</z>
   </axis>
   <center>
-   <x-m>0.145</x-m>
+   <x-m>0.1625</x-m>
    <y-m>0</y-m>
    <z-m>-0.318</z-m>
   </center>
@@ -1162,7 +1162,7 @@
         <path>Aircraft/c182/Models/Instruments/Avionics/gma340.xml</path>
         <name>gma340</name>
         <offsets>
-            <x-m>0.334</x-m>
+            <x-m>0.3515</x-m>
             <y-m>0.083</y-m>
             <z-m>0.397</z-m>
         </offsets>
@@ -1173,7 +1173,7 @@
         <path>Aircraft/c182/Models/Instruments/Avionics/kn62a.xml</path>
         <name>kn62a</name>
         <offsets>
-            <x-m>0.334</x-m>
+            <x-m>0.3515</x-m>
             <y-m>0.083</y-m>
             <z-m>0.355</z-m>
         </offsets>
@@ -1185,7 +1185,7 @@
         <path>Aircraft/c182/Models/Instruments/Avionics/kx165-1.xml</path>
         <name>kx155</name>
         <offsets>
-            <x-m>0.334</x-m>
+            <x-m>0.3515</x-m>
             <y-m>0.083</y-m>
             <z-m>0.314</z-m>
         </offsets>
@@ -1197,7 +1197,7 @@
         <path>Aircraft/c182/Models/Instruments/Avionics/kx165-2.xml</path>
         <name>kx155</name>
         <offsets>
-            <x-m>0.334</x-m>
+            <x-m>0.3515</x-m>
             <y-m>0.083</y-m>
             <z-m>0.261</z-m>
         </offsets>
@@ -1209,7 +1209,7 @@
         <path>Aircraft/c182/Models/Instruments/Avionics/kr87.xml</path>
         <name>kr87</name>
         <offsets>
-            <x-m>0.334</x-m>
+            <x-m>0.3515</x-m>
             <y-m>0.083</y-m>
             <z-m>0.216</z-m>
         </offsets>
@@ -1219,7 +1219,7 @@
         <path>Aircraft/c182/Models/Instruments/Avionics/kap140/KAP140TwoAxisAlt.xml</path>
         <name>kap140</name>
         <offsets>
-            <x-m>0.334</x-m>
+            <x-m>0.3515</x-m>
             <y-m>0.083</y-m>
             <z-m>0.180</z-m>
         </offsets>
@@ -1229,7 +1229,7 @@
         <path>Aircraft/c182/Models/Instruments/Avionics/kt76c.xml</path>
         <name>kt76c</name>
         <offsets>
-            <x-m>0.334</x-m>
+            <x-m>0.3515</x-m>
             <y-m>0.083</y-m>
             <z-m>0.135</z-m>
         </offsets>
@@ -1242,7 +1242,7 @@
         <path>Aircraft/c182/Models/Instruments/Airspeed.xml</path>
         <name>Airspeed</name>
         <offsets>
-            <x-m>0.328</x-m>
+            <x-m>0.3455</x-m>
             <y-m>-0.347</y-m>
             <z-m>0.405</z-m>
         </offsets>
@@ -1252,7 +1252,7 @@
         <path>Aircraft/c182/Models/Instruments/ai-gauge.xml</path>
         <name>AI</name>
         <offsets>
-            <x-m>0.328</x-m>
+            <x-m>0.3455</x-m>
             <y-m>-0.253</y-m>
             <z-m>0.412</z-m>
         </offsets>
@@ -1262,7 +1262,7 @@
         <path>Aircraft/c182/Models/Instruments/altimeter.xml</path>
         <name>Altimeter</name>
         <offsets>
-            <x-m>0.328</x-m>
+            <x-m>0.3455</x-m>
             <y-m>-0.158</y-m>
             <z-m>0.413</z-m>
         </offsets>
@@ -1272,7 +1272,7 @@
         <path>Aircraft/c182/Models/Instruments/vsi.xml</path>
         <name>VSI</name>
         <offsets>
-            <x-m>0.328</x-m>
+            <x-m>0.3455</x-m>
             <y-m>-0.158</y-m>
             <z-m>0.315</z-m>
         </offsets>
@@ -1282,7 +1282,7 @@
         <path>Aircraft/c182/Models/Instruments/hi.xml</path>
         <name>HI</name>
         <offsets>
-            <x-m>0.331</x-m>
+            <x-m>0.3485</x-m>
             <y-m>-0.253</y-m>
             <z-m>0.313</z-m>
         </offsets>
@@ -1292,7 +1292,7 @@
    <name>vor</name>
    <path>Aircraft/Instruments-3d/vor/vor.xml</path>
    <offsets>
-     <x-m>0.328</x-m>
+     <x-m>0.3455</x-m>
      <y-m>-0.065</y-m>
      <z-m>0.413</z-m>
    </offsets>
@@ -1302,7 +1302,7 @@
    <name>vor2</name>
    <path>Aircraft/Instruments-3d/vor/vor2.xml</path>
    <offsets>
-     <x-m>0.328</x-m>
+     <x-m>0.3455</x-m>
      <y-m>-0.065</y-m>
      <z-m>0.317</z-m>
    </offsets>
@@ -1312,7 +1312,7 @@
         <path>Aircraft/c182/Models/Instruments/ki227_228.xml</path>
         <name>KI227</name>
         <offsets>
-            <x-m>0.328</x-m>
+            <x-m>0.3455</x-m>
             <y-m>-0.065</y-m>
             <z-m>0.214</z-m>
         </offsets>
@@ -1322,7 +1322,7 @@
    <name>Turn</name>
    <path>Aircraft/c182/Models/Instruments/turn.xml</path>
    <offsets>
-     <x-m>0.328</x-m>
+     <x-m>0.3455</x-m>
      <y-m>-0.347</y-m>
      <z-m>0.312</z-m>
    </offsets>
@@ -1332,7 +1332,7 @@
    <name>Tach</name>
    <path>Aircraft/c182/Models/Instruments/Tach.xml</path>
    <offsets>
-     <x-m>0.328</x-m>
+     <x-m>0.3455</x-m>
      <y-m>-0.158</y-m>
      <z-m>0.215</z-m>
    </offsets>
@@ -1342,7 +1342,7 @@
    <name>ManPressFuelFlow</name>
    <path>Aircraft/c182/Models/Instruments/ManPressFuelFlow.xml</path>
    <offsets>
-     <x-m>0.328</x-m>
+     <x-m>0.3455</x-m>
      <y-m>-0.347</y-m>
      <z-m>0.215</z-m>
    </offsets>
@@ -1353,7 +1353,7 @@
    <name>ELT</name>
    <path>Aircraft/c182/Models/Instruments/ELT/ArtexELT.xml</path>
    <offsets>
-     <x-m>0.333</x-m>
+     <x-m>0.3505</x-m>
      <y-m>0.435</y-m>
      <z-m>0.415</z-m>
    </offsets>
@@ -1364,7 +1364,7 @@
    <name>Hobbs</name>
    <path>Aircraft/c182/Models/Instruments/hobbs/hobbs.xml</path>
    <offsets>
-     <x-m>0.334</x-m>
+     <x-m>0.3515</x-m>
      <y-m>0.470</y-m>
      <z-m>0.375</z-m>
    </offsets>

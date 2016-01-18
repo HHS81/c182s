@@ -86,16 +86,185 @@
     
   </model>
 
-  <view>
+  <view n="0">
    <internal archive="y">true</internal>
    <config>
+<default-field-of-view-deg>75</default-field-of-view-deg>
      <x-offset-m archive="y">-0.25</x-offset-m>
-     <y-offset-m archive="y">0.6</y-offset-m>
+     <y-offset-m archive="y">0.59</y-offset-m>
      <z-offset-m archive="y">1.26</z-offset-m>
-     <pitch-offset-deg>-5</pitch-offset-deg>
-<default-field-of-view-deg>73.6</default-field-of-view-deg>
+     <pitch-offset-deg>-10</pitch-offset-deg>
+<limits>
+                <enabled type="bool">true</enabled>
+                <left>
+                  <heading-max-deg type="double">160</heading-max-deg>
+                  <x-offset-max-m type="double">0.15</x-offset-max-m>
+                  <x-offset-threshold-deg type="double">40</x-offset-threshold-deg>
+                </left>
+                <right>
+                    <heading-max-deg type="double">160</heading-max-deg>
+                    <x-offset-max-m type="double">0.22</x-offset-max-m>
+                    <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                </right>
+            </limits>
    </config>
   </view>
+  
+<view n="100">
+        <name>CoPilot View</name>
+        <enabled type="bool">true</enabled>
+        <type>lookfrom</type>
+        <internal type="bool">true</internal>
+        <config>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+            <default-field-of-view-deg type="double">75</default-field-of-view-deg>
+            <default-pitch-deg type="double">-10</default-pitch-deg>
+            <default-heading-deg type="double">0</default-heading-deg>
+            <front-direction-deg type="double">0</front-direction-deg>
+            <front-left-direction-deg type="double">45</front-left-direction-deg>
+            <left-direction-deg type="double">90</left-direction-deg>
+            <back-left-direction-deg type="double">135</back-left-direction-deg>
+            <back-direction-deg type="double">180</back-direction-deg>
+            <back-right-direction-deg type="double">225</back-right-direction-deg>
+            <right-direction-deg type="double">270</right-direction-deg>
+            <front-right-direction-deg type="double">315</front-right-direction-deg>
+            <dynamic-view type="bool">true</dynamic-view>
+     <x-offset-m archive="y">0.25</x-offset-m>
+     <y-offset-m archive="y">0.59</y-offset-m>
+     <z-offset-m archive="y">1.26</z-offset-m>
+            <pitch-offset-deg>-10</pitch-offset-deg>
+             <limits>
+                <enabled type="bool">true</enabled>
+                <left>
+                  <heading-max-deg type="double">160</heading-max-deg>
+                  <x-offset-max-m type="double">0.25</x-offset-max-m>
+                  <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                </left>
+                <right>
+                    <heading-max-deg type="double">160</heading-max-deg>
+                    <x-offset-max-m type="double">0.15</x-offset-max-m>
+                    <x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
+                </right>
+            </limits>
+        </config>
+    </view>
+    
+<view n="101">
+        <name>Rearseat Left</name>
+        <enabled type="bool">true</enabled>
+        <type>lookfrom</type>
+        <internal type="bool">true</internal>
+        <config>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+            <default-field-of-view-deg type="double">75</default-field-of-view-deg>
+            <default-pitch-deg type="double">-10</default-pitch-deg>
+            <default-heading-deg type="double">0</default-heading-deg>
+            <front-direction-deg type="double">0</front-direction-deg>
+            <front-left-direction-deg type="double">45</front-left-direction-deg>
+            <left-direction-deg type="double">90</left-direction-deg>
+            <back-left-direction-deg type="double">135</back-left-direction-deg>
+            <back-direction-deg type="double">180</back-direction-deg>
+            <back-right-direction-deg type="double">225</back-right-direction-deg>
+            <right-direction-deg type="double">270</right-direction-deg>
+            <front-right-direction-deg type="double">315</front-right-direction-deg>
+            <dynamic-view type="bool">true</dynamic-view>
+     <x-offset-m archive="y">-0.25</x-offset-m>
+     <y-offset-m archive="y">0.54</y-offset-m>
+     <z-offset-m archive="y">1.88</z-offset-m>
+            <pitch-offset-deg>-10</pitch-offset-deg>
+        </config>
+    </view>
+    
+<view n="102">
+        <name>Rearseat Right</name>
+        <enabled type="bool">true</enabled>
+        <type>lookfrom</type>
+        <internal type="bool">true</internal>
+        <config>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+            <default-field-of-view-deg type="double">75</default-field-of-view-deg>
+            <default-pitch-deg type="double">-10</default-pitch-deg>
+            <default-heading-deg type="double">0</default-heading-deg>
+            <front-direction-deg type="double">0</front-direction-deg>
+            <front-left-direction-deg type="double">45</front-left-direction-deg>
+            <left-direction-deg type="double">90</left-direction-deg>
+            <back-left-direction-deg type="double">135</back-left-direction-deg>
+            <back-direction-deg type="double">180</back-direction-deg>
+            <back-right-direction-deg type="double">225</back-right-direction-deg>
+            <right-direction-deg type="double">270</right-direction-deg>
+            <front-right-direction-deg type="double">315</front-right-direction-deg>
+            <dynamic-view type="bool">true</dynamic-view>
+     <x-offset-m archive="y">0.25</x-offset-m>
+     <y-offset-m archive="y">0.54</y-offset-m>
+     <z-offset-m archive="y">1.88</z-offset-m>
+            <pitch-offset-deg>-10</pitch-offset-deg>
+        </config>
+    </view>
+    
+ <view n="103">
+        <name>Tail Camera</name>
+        <enabled type="bool">true</enabled>
+        <type>lookfrom</type>
+        <internal type="bool">false</internal>
+        <config>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+            <default-field-of-view-deg type="double">120</default-field-of-view-deg>
+            <default-pitch-deg type="double">-15</default-pitch-deg>
+            <default-heading-deg type="double">0</default-heading-deg>
+            <front-direction-deg type="double">0</front-direction-deg>
+            <front-left-direction-deg type="double">45</front-left-direction-deg>
+            <left-direction-deg type="double">90</left-direction-deg>
+            <back-left-direction-deg type="double">135</back-left-direction-deg>
+            <back-direction-deg type="double">180</back-direction-deg>
+            <back-right-direction-deg type="double">225</back-right-direction-deg>
+            <right-direction-deg type="double">270</right-direction-deg>
+            <front-right-direction-deg type="double">315</front-right-direction-deg>
+            <dynamic-view type="bool">true</dynamic-view>
+            <x-offset-m type="double"> 0</x-offset-m>
+            <y-offset-m type="double"> 2.03</y-offset-m>
+            <z-offset-m type="double"> 5.9</z-offset-m>
+            <pitch-offset-deg>-15</pitch-offset-deg>
+        </config>
+    </view>
+    
+<view n="104">
+        <name>Left Wing</name>
+        <enabled type="bool">true</enabled>
+        <type>lookfrom</type>
+        <internal type="bool">false</internal>
+        <config>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+            <default-field-of-view-deg type="double">120</default-field-of-view-deg>
+            <default-pitch-deg type="double">-4</default-pitch-deg>
+            <default-heading-deg type="double">300</default-heading-deg>
+            <front-direction-deg type="double">0</front-direction-deg>
+            <front-left-direction-deg type="double">45</front-left-direction-deg>
+            <left-direction-deg type="double">90</left-direction-deg>
+            <back-left-direction-deg type="double">135</back-left-direction-deg>
+            <back-direction-deg type="double">180</back-direction-deg>
+            <back-right-direction-deg type="double">225</back-right-direction-deg>
+            <right-direction-deg type="double">270</right-direction-deg>
+            <front-right-direction-deg type="double">315</front-right-direction-deg>
+            <dynamic-view type="bool">true</dynamic-view>
+            <x-offset-m type="double">-4.0</x-offset-m>
+            <y-offset-m type="double"> 0.75</y-offset-m>
+            <z-offset-m type="double"> 1.01</z-offset-m>
+            <pitch-offset-deg>-4</pitch-offset-deg>
+            <heading-offset-deg>300</heading-offset-deg>
+        </config>
+    </view>
+
+    
 		<view n="1">
 			<config>
 				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>

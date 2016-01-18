@@ -313,6 +313,11 @@
    <max-positive-g>3.5</max-positive-g>
    <max-negative-g>-1.52</max-negative-g>
    <vne>175</vne>
+   <mass-and-balance>
+            <maximum-ramp-mass-lbs>3110</maximum-ramp-mass-lbs>
+            <maximum-takeoff-mass-lbs>3100</maximum-takeoff-mass-lbs>
+            <maximum-landing-mass-lbs>2950</maximum-landing-mass-lbs>
+        </mass-and-balance>
  </limits>
 
  <nasal>

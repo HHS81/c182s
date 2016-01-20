@@ -423,7 +423,7 @@ avionics_bus_1 = func() {
     var load = 0.0;
 
     # we are fed from the electrical bus 1
-    var master_av = getprop("/controls/switches/master-avionics");
+    var master_av = getprop("/controls/switches/AVMBus1");
     if ( master_av ) {
         bus_volts = ebus1_volts;
     }
@@ -468,7 +468,7 @@ avionics_bus_1 = func() {
 
 
 avionics_bus_2 = func() {
-    var master_av = getprop("/controls/switches/master-avionics");
+    var master_av = getprop("/controls/switches/AVMBus2");
     # we are fed from the electrical bus 2
     var bus_volts = 0.0;
     if ( master_av ) {

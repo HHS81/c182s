@@ -1198,7 +1198,7 @@
             <!-- avionic swt-->
     <animation>
         <type>pick</type>
-        <object-name>AvionikSwitch</object-name>
+        <object-name>AVMBus1</object-name>
         <visible>true</visible>
         <action>
             <button>0</button>
@@ -1211,7 +1211,30 @@
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <tooltip-id>MasterAvionik-Switch</tooltip-id>
+                <tooltip-id>MasterAvionik-Switch Bus1</tooltip-id>
+                <label>MasterAvionik: %s</label>
+                <mapping>on-off</mapping>
+                <property>/controls/switches/master-avionics</property>
+            </binding>
+        </hovered>
+    </animation>
+    
+<animation>
+        <type>pick</type>
+        <object-name>AVMBus2</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/controls/switches/master-avionics</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>MasterAvionik-Switch Bus2</tooltip-id>
                 <label>MasterAvionik: %s</label>
                 <mapping>on-off</mapping>
                 <property>/controls/switches/master-avionics</property>

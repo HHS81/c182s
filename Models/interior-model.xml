@@ -1467,7 +1467,7 @@
         <path>Aircraft/c182/Models/Instruments/ai-gauge.xml</path>
         <name>AI</name>
         <offsets>
-            <x-m>0.3455</x-m>
+            <x-m>0.3555</x-m>
             <y-m>-0.253</y-m>
             <z-m>0.412</z-m>
         </offsets>
@@ -1570,7 +1570,7 @@
    <offsets>
      <x-m>0.3505</x-m>
      <y-m>0.435</y-m>
-     <z-m>0.415</z-m>
+     <z-m>0.413</z-m>
    </offsets>
  </model>
  
@@ -1581,7 +1581,7 @@
    <offsets>
      <x-m>0.3515</x-m>
      <y-m>0.432</y-m>
-     <z-m>0.375</z-m>
+     <z-m>0.372</z-m>
    </offsets>
  </model>
     

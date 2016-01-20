@@ -4,6 +4,8 @@ aircraft.livery.init("Aircraft/c182/Models/Liveries", "sim/model/livery/name", "
 
 #wheel chocks======================================================
 
+	
+
 # doors ============================================================
 DoorL = aircraft.door.new( "/sim/model/door-positions/DoorL", 2, 0 );
 DoorR = aircraft.door.new( "/sim/model/door-positions/DoorR", 2, 0 );

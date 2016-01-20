@@ -8,13 +8,13 @@
             <label>Cessna C182S</label>
             <enabled type="bool">true</enabled>
 
-            <!--<item>
+            <!----><item>
                 <label>Aircraft Options</label>
                 <binding>
                     <command>dialog-show</command>
                     <dialog-name>aircraft-dialog</dialog-name>
                 </binding>
-            </item>-->
+            </item><!---->
 
             <item>
                 <label>Select Livery</label>

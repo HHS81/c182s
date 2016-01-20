@@ -534,18 +534,53 @@
             <button>0</button>
             <binding>
                 <command>property-toggle</command>
-        <property>/controls/gear//brake-parking</property>
+        <property>/controls/gear/brake-parking</property>
             </binding>
         </action>
         <hovered>
             <binding>
                 <command>set-tooltip</command>
                 <label>Parking brake: %s</label>
-        <property>/controls/gear//brake-parking</property>
+        <property>/controls/gear/brake-parking</property>
                 <tooltip-id>parking-brake</tooltip-id>
                 <mapping>on-off</mapping>
             </binding>
         </hovered>
+    </animation>
+    
+<!-- yoke animation-->
+<animation>
+        <type>pick</type>
+        <object-name>CS.Yokes</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+        <property>sim/model/hide-yoke</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Hide Yokes: %s</label>
+        <property>sim/model/hide-yoke</property>
+                <tooltip-id>hide-yokes</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+    
+ <animation>
+        <type>select</type>
+        <object-name>Yoke.L</object-name>
+        <object-name>Yoke.R</object-name>
+        <condition>
+            <not>
+                <property>sim/model/hide-yoke</property>
+            </not>
+        </condition>
     </animation>
     
 <animation>
@@ -785,49 +820,94 @@
     </animation>
 
 <!-- ================================================================== -->
-    <!-- Flaps position indicator      taken from c172p-detailed                                     -->
+    <!-- Flaps position indicator                             -->
     <!-- ================================================================== -->
-
-    <animation>
-        <type>translate</type>
-        <property>surface-positions/flap-pos-norm</property>
-        <object-name>FlapPos</object-name>
-        <axis>
-            <x>0.0</x>
-            <y>0.0</y>
-            <z>-1.0</z>
-        </axis>
-        <interpolation>
+<animation>
+ <type>translate</type>
+     <property>surface-positions/flap-pos-norm</property>
+       <object-name>FlapPos</object-name>
+       <axis>
+         <x>0.0</x>
+         <y>0.0</y>
+         <z>1.0</z>
+       </axis>
+<interpolation>
             <entry>
                 <ind>0.0</ind>
-                <dep>-0.004</dep>
+                <dep>0.022</dep>
             </entry>
             <entry>
                 <ind>0.25315</ind>
-                <dep>0.012</dep>
+                <dep>0.0150</dep>
             </entry>
             <entry>
                 <ind>0.526315</ind>
-                <dep>0.030</dep>
+                <dep>0.0</dep>
             </entry>
             <entry>
                 <ind>1.0</ind>
-                <dep>0.064</dep>
+                <dep>-0.0235</dep>
             </entry>
         </interpolation>
-    </animation>
+      </animation>
+     
+     <animation>
+ <type>rotate</type>
+     <property>surface-positions/flap-pos-norm</property>
+       <object-name>FlapPos</object-name>
+       <axis>
+         <x>0.0</x>
+         <y>1.0</y>
+         <z>0.0</z>
+       </axis>
+       <center>
+         <x-m>0.330</x-m>
+         <y-m>0.201</y-m>
+         <z-m>0.094</z-m>
+       </center>
+<interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>-30</dep>
+            </entry>
+            <entry>
+                <ind>0.25315</ind>
+                <dep>-15</dep>
+            </entry>
+            <entry>
+                <ind>0.526315</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1.0</ind>
+                <dep>30</dep>
+            </entry>
+        </interpolation>
+      </animation>
+      
+  
+    
 
     <!-- ================================================================== -->
-    <!-- Flaps lever   taken from c172p-detailed                                                      -->
+    <!-- Flaps lever                                                       -->
     <!-- ================================================================== -->
     <animation>
     <type>knob</type>
       <property>controls/flight/flaps</property>
       <object-name>FlapSwitch</object-name>
-      <factor>10</factor>
-      <offset-deg>0</offset-deg>
-      <drag-direction>vertical</drag-direction>
-      <drag-scale-px>20</drag-scale-px>
+           <drag-direction>vertical</drag-direction>
+      <drag-scale-px>10</drag-scale-px>
+	<axis>
+         <x>0.0</x>
+       <y>1.0</y>
+        <z>0.0</z>
+	</axis>
+      <center>
+        <x-m>-0.0395</x-m>
+        <y-m>0.0</y-m>
+	<z-m>0.0</z-m>
+      </center>
+
         <!-- Flaps moving down -->
         <decrease>
             <binding>
@@ -844,35 +924,73 @@
             </binding>
         </increase>
     </animation>
-
-    <animation>
-        <type>translate</type>
+    
+<animation>
+ <type>translate</type>
       <property>controls/flight/flaps</property>
         <object-name>FlapSwitch</object-name>
-        <axis>
-            <x>0.0</x>
-            <y>0.0</y>
-            <z>-1.0</z>
-        </axis>
-        <interpolation>
+       <axis>
+         <x>0.0</x>
+         <y>0.0</y>
+         <z>1.0</z>
+       </axis>
+<interpolation>
             <entry>
                 <ind>0.0</ind>
-                <dep>0.0</dep>
+                <dep>0.027</dep>
             </entry>
             <entry>
                 <ind>0.25315</ind>
-                <dep>0.018</dep>
+                <dep>0.0135</dep>
             </entry>
             <entry>
                 <ind>0.526315</ind>
-                <dep>0.032</dep>
+                <dep>0.0045</dep>
             </entry>
             <entry>
                 <ind>1.0</ind>
-                <dep>0.060</dep>
+                <dep>-0.007</dep>
             </entry>
         </interpolation>
-    </animation>
+      </animation>
+      
+<animation>
+        <type>rotate</type>
+      <property>controls/flight/flaps</property>
+        <object-name>FlapSwitch</object-name>
+        <axis>
+         <x>0.0</x>
+         <y>1.0</y>
+         <z>0.0</z>
+       </axis>
+       <center>
+         <x-m>0.330</x-m>
+         <y-m>0.216</y-m>
+         <z-m>0.094</z-m>
+       </center>
+<interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>-25</dep>
+            </entry>
+            <entry>
+                <ind>0.25315</ind>
+                <dep>-13.5</dep>
+            </entry>
+            <entry>
+                <ind>0.526315</ind>
+                <dep>-10</dep>
+            </entry>
+            <entry>
+                <ind>1.0</ind>
+                <dep>25</dep>
+            </entry>
+        </interpolation>
+      </animation>
+      
+
+
+      
 
     <animation>
         <type>translate</type>
@@ -894,19 +1012,19 @@
             </entry>
             <entry>
                 <ind>0.345</ind>
-                <dep>0.0035</dep>
+                <dep>0.0015</dep>
             </entry>
             <entry>
                 <ind>0.666666</ind>
-                <dep>0.0035</dep>
+                <dep>0.0015</dep>
             </entry>
             <entry>
                 <ind>0.675</ind>
-                <dep>0.0055</dep>
+                <dep>0.0035</dep>
             </entry>
             <entry>
                 <ind>1.0</ind>
-                <dep>0.0055</dep>
+                <dep>0.0035</dep>
             </entry>
         </interpolation>
     </animation>

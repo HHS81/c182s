@@ -1462,7 +1462,7 @@
    <path>Aircraft/c182/Models/Instruments/hobbs/hobbs.xml</path>
    <offsets>
      <x-m>0.3515</x-m>
-     <y-m>0.470</y-m>
+     <y-m>0.432</y-m>
      <z-m>0.375</z-m>
    </offsets>
  </model>

@@ -400,7 +400,8 @@
    <nav-lights type="bool">true</nav-lights>
   </lighting>
   <switches>
-   <master-avionics type="bool">true</master-avionics>
+   <AVMBus1 type="bool">true</AVMBus1>
+   <AVMBus2 type="bool">true</AVMBus2>
    <starter type="bool">false</starter>
    <kt-76c type="double">0</kt-76c>
    <kn-62a type="double">0</kn-62a>

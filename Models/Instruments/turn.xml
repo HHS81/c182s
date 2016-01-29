@@ -17,18 +17,9 @@
     <object-name>vitre</object-name>
   </animation>
 
-  <effect>
-    <inherits-from>Aircraft/DR400-dauphin/Models/Effects/effects-glasses-interior</inherits-from>
-    <object-name>vitre</object-name>
-  </effect>
 
-  <animation>
-    <type>select</type>
-    <object-name>vitre</object-name>
-    <condition>
-      <property>sim/model/config/glass-reflection-instruments</property>
-    </condition>
-  </animation>
+
+
 
   <animation>
     <type>material</type>
@@ -37,12 +28,12 @@
     <condition>
       <not><property>sim/rendering/rembrandt/enabled</property></not>
     </condition>
-    <emission>
-      <red>   0.07 </red>
-      <green> 0.04 </green>
-      <blue>  0.04 </blue>
-      <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
-    </emission>
+  <emission>
+   <red>1.0</red>
+   <green>0.8</green>
+   <blue>0.4</blue>
+   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
+  </emission>
   </animation>
 
   <animation>

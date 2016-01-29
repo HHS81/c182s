@@ -1403,7 +1403,7 @@
     
     <model>
         <path>Aircraft/c182/Models/Instruments/Avionics/kx165-1.xml</path>
-        <name>kx155</name>
+        <name>kx165</name>
         <offsets>
             <x-m>0.3515</x-m>
             <y-m>0.083</y-m>
@@ -1415,7 +1415,7 @@
     
     <model>
         <path>Aircraft/c182/Models/Instruments/Avionics/kx165-2.xml</path>
-        <name>kx155</name>
+        <name>kx165</name>
         <offsets>
             <x-m>0.3515</x-m>
             <y-m>0.083</y-m>
@@ -1510,7 +1510,7 @@
     
 <model>
    <name>vor</name>
-   <path>Aircraft/Instruments-3d/vor/vor.xml</path>
+   <path>Aircraft/c182/Models/Instruments/vor/vor.xml</path>
    <offsets>
      <x-m>0.3455</x-m>
      <y-m>-0.065</y-m>
@@ -1520,7 +1520,7 @@
 
  <model>
    <name>vor2</name>
-   <path>Aircraft/Instruments-3d/vor/vor2.xml</path>
+   <path>Aircraft/c182/Models/Instruments/vor/vor2.xml</path>
    <offsets>
      <x-m>0.3455</x-m>
      <y-m>-0.065</y-m>

@@ -39,16 +39,11 @@
     <type>material</type>
     <object-name>gma340.Chassis</object-name>
 
-    <emission>
-      <!--
-            <red-prop>/sim/model/instrument-lighting/emission/red</red-prop>
-            <green-prop>/sim/model/instrument-lighting/emission/green</green-prop>
-            <blue-prop>/sim/model/instrument-lighting/emission/blue</blue-prop>
-            -->
-      <red>0.05</red>
-      <green>0.1.</green>
-      <blue>0.05</blue>
-      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+     <emission>
+      <red>1.0</red>
+      <green>1.0</green>
+      <blue>1.0</blue>
+      <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
     </emission>
   </animation>
 

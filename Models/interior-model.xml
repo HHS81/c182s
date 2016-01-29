@@ -498,10 +498,13 @@
   </animation>
   <!--Controls-->
  <!-- Parking Brake -->
+    <params>
+        <brake-lever>/sim/model/c182/cockpit/brake-lever</brake-lever>
+    </params>
     <animation>
         <type>translate</type>
         <object-name>ParkingBrake</object-name>
-        <property>/controls/gear//brake-parking</property>
+        <property alias="/params/brake-lever"/>
         <factor>0.04</factor>
         <axis>
             <x>1.0</x>
@@ -512,7 +515,7 @@
     <animation>
         <type>rotate</type>
         <object-name>ParkingBrake</object-name>
-        <property>/controls/gear//brake-parking</property>
+        <property alias="/params/brake-lever"/>
         <factor>90</factor>
         <axis>
             <x>1.0</x>
@@ -891,7 +894,9 @@
     <!-- ================================================================== -->
     <!-- Flaps lever                                                       -->
     <!-- ================================================================== -->
-    <animation>
+
+
+<animation>
     <type>knob</type>
       <property>controls/flight/flaps</property>
       <object-name>FlapSwitch</object-name>
@@ -927,7 +932,7 @@
     
 <animation>
  <type>translate</type>
-      <property>controls/flight/flaps</property>
+      <property>/sim/model/c182/cockpit/flaps-lever</property>
         <object-name>FlapSwitch</object-name>
        <axis>
          <x>0.0</x>
@@ -956,7 +961,7 @@
       
 <animation>
         <type>rotate</type>
-      <property>controls/flight/flaps</property>
+      <property>/sim/model/c182/cockpit/flaps-lever</property>
         <object-name>FlapSwitch</object-name>
         <axis>
          <x>0.0</x>
@@ -994,7 +999,7 @@
 
     <animation>
         <type>translate</type>
-      <property>controls/flight/flaps</property>
+      <property>/sim/model/c182/cockpit/flaps-lever</property>
         <object-name>FlapSwitch</object-name>
         <axis>
             <x>0.0</x>

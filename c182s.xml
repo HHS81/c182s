@@ -313,11 +313,10 @@
 
     
     <flight_control name="FCS: c182s">
+    
 <!--Cessna 182S POH Page 7-12: nose gear steer deg=11deg, by applying left or right brake increasing steer deg up to 29deg-->
  <channel name = "groundcontrol">
 
-
- 
 <fcs_function name="left brake nose-gear">
           <function name="fcs/nose-gear-left-brake-steer-factor">
                 	<product>
@@ -488,7 +487,9 @@
                 <output>fcs/rudder-pos-norm</output>
             </aerosurface_scale>
         </channel>
+	
         <channel name="Flaps">
+		    
             <kinematic name="Flaps Control">
                 <input>fcs/flap-cmd-norm</input>
                 <traverse>
@@ -511,7 +512,8 @@
                 </traverse>
                 <output>fcs/flap-pos-norm</output>
             </kinematic>
-<aerosurface_scale name="Flap Position Normalizer">
+	    
+	<aerosurface_scale name="Flap Position Normalizer">
               <input>fcs/flap-pos-norm</input>
               <domain>
                 <min>0</min>  
@@ -523,6 +525,23 @@
               </range>
               <output>fcs/flap-pos-deg</output>
             </aerosurface_scale>
+	    
+	<kinematic name="Flaps Lever">
+                 <input>/controls/flight/flaps</input>
+                 <traverse>
+                     <setting>
+                         <position>0</position>
+                         <time>0</time>
+                     </setting>
+                     <setting>
+                         <position>1</position>
+                         <time>1</time>
+                     </setting>
+                 </traverse>
+                 <output>/sim/model/c182/cockpit/flaps-lever</output>
+             </kinematic>
+
+
         </channel>
 	
 <!--
@@ -558,6 +577,23 @@
                 <output>propulsion/engine[0]/cooling-factor</output>
             </aerosurface_scale>
 	</channel>
+	
+<channel name= "brake-lever">
+<kinematic name="brake-lever">
+                 <input>/controls/gear/brake-parking</input>
+                 <traverse>
+                     <setting>
+                         <position>0</position>
+                         <time>0</time>
+                     </setting>
+                     <setting>
+                         <position>1</position>
+                         <time>1</time>
+                     </setting>
+                 </traverse>
+                 <output>/sim/model/c182/cockpit/brake-lever</output>
+             </kinematic>
+</channel>
 	
     </flight_control>	
 

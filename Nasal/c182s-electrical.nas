@@ -1,5 +1,5 @@
 ##
-# Procedural model of a Cessna 172S electrical system.  Includes a
+# Procedural model of a Cessna 182S electrical system.  Includes a
 # preliminary battery charge/discharge model and realistic ammeter
 # gauge modeling.
 #
@@ -37,8 +37,16 @@ init_electrical = func {
     # set initial switch positions
     setprop("/controls/engines/engine[0]/master-bat", 1);
     setprop("/controls/engines/engine[0]/master-alt", 1);
-    setprop("/controls/switches/master-avionics", 1);
+    setprop("/controls/switches/AVMBus1", 1);
+    setprop("/controls/switches/AVMBus2", 1);
     setprop("/systems/electrical/outputs/autopilot",0.0);
+    setprop("/controls/lighting/dome-light-r", 0);
+    setprop("/controls/lighting/dome-light-l", 0);
+    setprop("/controls/lighting/dome-exterior-light", 0);
+    setprop("/controls/lighting/instrument-lights-norm", 0);
+    setprop("/controls/lighting/glareshield-lights-norm", 0);
+    setprop("/controls/lighting/pedestal-lights-norm", 0);
+    setprop("/controls/lighting/radio-lights-norm", 0);
 
     # Request that the update function be called next frame
     settimer(update_electrical, 0);
@@ -304,13 +312,6 @@ electrical_bus_1 = func() {
     var bus_volts = vbus_volts;
     var load = 0.0;
 
-    # Cabin Lights Power
-    if ( getprop("/controls/circuit-breakers/cabin-lights-pwr") ) {
-        setprop("/systems/electrical/outputs/cabin-lights", bus_volts);
-        load += bus_volts / 57;
-    } else {
-        setprop("/systems/electrical/outputs/cabin-lights", 0.0);
-    }
 
     # Instrument Power
     setprop("/systems/electrical/outputs/instr-ignition-switch", bus_volts);
@@ -366,9 +367,7 @@ electrical_bus_2 = func() {
         setprop("/systems/electrical/outputs/nav-lights", 0.0);
     }
   
-    # Instrument Lights Power
-    setprop("/systems/electrical/outputs/instrument-lights", bus_volts);
-  
+     
     # Strobe Lights Power
     if ( getprop("controls/lighting/strobe-state/state" ) ) {
             setprop("/systems/electrical/outputs/strobe", bus_volts);
@@ -411,7 +410,80 @@ cross_feed_bus = func() {
 
     var load = 0.0;
 
-    setprop("/systems/electrical/outputs/annunciators", bus_volts);
+
+setprop("/systems/electrical/outputs/annunciators", bus_volts);
+setprop("/systems/electrical/outputs/ecrf", bus_volts);#needed to dim lights
+
+    if ( getprop("/controls/lighting/dome-light-r")) {
+        setprop("/systems/electrical/outputs/dome-light-r", bus_volts);
+        load += bus_volts / 24;
+    } else {
+        setprop("/systems/electrical/outputs/dome-light-r", 0.0);
+    }
+    
+ if ( getprop("/controls/lighting/dome-light-l")) {
+        setprop("/systems/electrical/outputs/dome-light-l", bus_volts);
+        load += bus_volts / 24;
+    } else {
+        setprop("/systems/electrical/outputs/dome-light-l", 0.0);
+    }
+    
+ if ( getprop("/controls/lighting/dome-exterior-light")) {
+        setprop("/systems/electrical/outputs/dome-exterior-light", bus_volts);
+        load += bus_volts / 24;
+    } else {
+        setprop("/systems/electrical/outputs/dome-exterior-light", 0.0);
+    }
+
+
+
+
+var IL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/instrument-lights-norm"));
+	if (getprop ("/controls/lighting/instrument-lights-norm") >0.05){
+	setprop("/systems/electrical/outputs/instrument-lights",IL_DIMMER);
+	setprop("/systems/electrical/outputs/instrument-lights-norm",IL_DIMMER/24);
+	}else{
+	setprop("/systems/electrical/outputs/instrument-lights",0);
+	setprop("/systems/electrical/outputs/instrument-lights-norm",0);
+	}
+	if (getprop("/systems/electrical/outputs/instrument-lights-norm") >1.0){
+	setprop("/systems/electrical/outputs/instrument-lights-norm", 1.0)};
+	
+
+var GL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/glareshield-lights-norm"));
+	if (getprop ("/controls/lighting/glareshield-lights-norm") >0.05){
+	setprop("/systems/electrical/outputs/glareshield-lights",GL_DIMMER);
+	setprop("/systems/electrical/outputs/glareshield-lights-norm",GL_DIMMER/24);
+	}else{
+	setprop("/systems/electrical/outputs/glareshield-lights",0);
+	setprop("/systems/electrical/outputs/glareshield-lights-norm",0);
+	}
+	if (getprop("/systems/electrical/outputs/glareshield-lights-norm") >1.0){
+	setprop("/systems/electrical/outputs/glareshield-lights-norm", 1.0)};
+	
+var PL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/pedestal-lights-norm"));
+	if (getprop ("/controls/lighting/pedestal-lights-norm") >0.05){
+	setprop("/systems/electrical/outputs/pedestal-lights",PL_DIMMER);
+	setprop("/systems/electrical/outputs/pedestal-lights-norm",PL_DIMMER/24);
+	}else{
+	setprop("/systems/electrical/outputs/pedestal-lights",0);
+	setprop("/systems/electrical/outputs/pedestal-lights-norm",0);
+	}
+	if (getprop("/systems/electrical/outputs/glareshield-lights-norm") >1.0){
+	setprop("/systems/electrical/outputs/glareshield-lights-norm", 1.0)};
+	
+
+var RL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/radio-lights-norm"));
+	if (getprop ("/controls/lighting/radio-lights-norm") >0.05){
+	setprop("/systems/electrical/outputs/radio-lights",RL_DIMMER);
+	setprop("/systems/electrical/outputs/radio-lights-norm",RL_DIMMER/24);
+	}else{
+	setprop("/systems/electrical/outputs/radio-lights",0);
+	setprop("/systems/electrical/outputs/radio-lights-norm",0);
+	}
+	if (getprop("/systems/electrical/outputs/radio-lights-norm") >1.0){
+	setprop("/systems/electrical/outputs/radio-lights-norm", 1.0)};
+    
 
     # return cumulative load
     return load;
@@ -458,6 +530,8 @@ avionics_bus_1 = func() {
   
     # Audio Panel 1 Power
     setprop("/systems/electrical/outputs/audio-panel[0]", bus_volts);
+ #setprop("/instrumentation/audio-panel[0]/serviceable", true);
+    #setprop("/instrumentation/marker-beacon[0]/serviceable", true);
 
     # Com 1 Power
     setprop("systems/electrical/outputs/comm[0]", bus_volts);
@@ -481,7 +555,9 @@ avionics_bus_2 = func() {
     setprop("/systems/electrical/outputs/nav[1]", bus_volts);
 
     # Audio Panel 2 Power
-    setprop("/systems/electrical/outputs/audio-panel[1]", bus_volts);
+    setprop("/systems/electrical/outputs/audio-panel[0]", bus_volts);
+ #setprop("/instrumentation/audio-panel[0]/serviceable, 1");
+    #setprop("/instrumentation/marker-beacon[0]/serviceable, 1");
 
     # Com 2 Power
     setprop("systems/electrical/outputs/comm[1]", bus_volts);

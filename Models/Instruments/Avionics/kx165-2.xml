@@ -40,7 +40,7 @@
     <nav-volume>instrumentation/nav[1]/volume</nav-volume>
     <nav-audio>instrumentation/nav[1]/audio-btn</nav-audio>
 
-    <dimming>instrumentation/comm[1]/dimming-norm</dimming>
+    <!--<dimming>/systems/electrical/outputs/radio-lights-norm</dimming>-->
   </params>
 
   <path>kx165.ac</path>
@@ -72,10 +72,10 @@
     <object-name>NavMHz</object-name>
     <object-name>NavVolume</object-name>
     <emission>
-      <red>0.5</red>
-      <green>0.1</green>
-      <blue>0.00005</blue>
-      <factor-prop>sim/model/material/instruments/factor</factor-prop>
+      <red>1.0</red>
+      <green>1.0</green>
+      <blue>1.0</blue>
+      <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
     </emission>
   </animation>
 
@@ -87,7 +87,7 @@
       <red>0.4</red>
       <green>0.08</green>
       <blue>0.00004</blue>
-      <factor-prop>sim/model/material/instruments/factor</factor-prop>
+      <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
     </emission>
   </animation>
 

@@ -1100,6 +1100,123 @@
    <z-m>-0.318</z-m>
   </center>
  </animation>
+
+<!-- knobs-->
+<animation>
+    <type>knob</type>
+    <object-name>RadioLightKnob</object-name>
+    <property>/controls/lighting/radio-lights-norm</property>
+    <factor>1</factor>
+<drag-direction>vertical</drag-direction>
+    <offset-deg>0</offset-deg>
+		<center>
+			<x-m>0.387</x-m>
+			<y-m>-0.121</y-m>
+			<z-m>0.116</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>/controls/lighting/radio-lights-norm</property>
+        <factor>0.1</factor>
+        <min>0</min>
+        <max>1</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>knob</type>
+    <object-name>PanelLightKnob</object-name>
+    <property>/controls/lighting/instrument-lights-norm</property>
+    <factor>1</factor>
+<drag-direction>horizontal</drag-direction>
+    <offset-deg>0</offset-deg>
+		<center>
+			<x-m>0.387</x-m>
+			<y-m>-0.121</y-m>
+			<z-m>0.116</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>/controls/lighting/instrument-lights-norm</property>
+        <factor>0.1</factor>
+        <min>0</min>
+        <max>1</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>knob</type>
+    <object-name>GlareshieldLightKnob</object-name>
+    <property>/controls/lighting/glareshield-lights-norm</property>
+    <factor>1</factor>
+<drag-direction>vertical</drag-direction>
+    <offset-deg>0</offset-deg>
+		<center>
+			<x-m>0.371</x-m>
+			<y-m>-0.121</y-m>
+			<z-m>0.073</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>/controls/lighting/glareshield-lights-norm</property>
+        <factor>0.1</factor>
+        <min>0</min>
+        <max>1</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+  </animation>
+  
+<animation>
+    <type>knob</type>
+    <object-name>PedestalLightKnob</object-name>
+    <property>/controls/lighting/pedestal-lights-norm</property>
+    <factor>1</factor>
+<drag-direction>horizontal</drag-direction>
+    <offset-deg>0</offset-deg>
+		<center>
+			<x-m>0.371</x-m>
+			<y-m>-0.121</y-m>
+			<z-m>0.073</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>/controls/lighting/pedestal-lights-norm</property>
+        <factor>0.1</factor>
+        <min>0</min>
+        <max>1</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+  </animation>
  
 <!--switches-->
     <!-- MasterSwitch -->
@@ -1328,7 +1445,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-                <property>/controls/switches/master-avionics</property>
+                <property>/controls/switches/AVMBus1</property>
             </binding>
         </action>
         <hovered>
@@ -1337,7 +1454,7 @@
                 <tooltip-id>MasterAvionik-Switch Bus1</tooltip-id>
                 <label>MasterAvionik: %s</label>
                 <mapping>on-off</mapping>
-                <property>/controls/switches/master-avionics</property>
+                <property>/controls/switches/AVMBus1</property>
             </binding>
         </hovered>
     </animation>
@@ -1351,7 +1468,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-                <property>/controls/switches/master-avionics</property>
+                <property>/controls/switches/AVMBus2</property>
             </binding>
         </action>
         <hovered>
@@ -1360,7 +1477,7 @@
                 <tooltip-id>MasterAvionik-Switch Bus2</tooltip-id>
                 <label>MasterAvionik: %s</label>
                 <mapping>on-off</mapping>
-                <property>/controls/switches/master-avionics</property>
+                <property>/controls/switches/AVMBus2</property>
             </binding>
         </hovered>
     </animation>
@@ -1403,7 +1520,7 @@
     
     <model>
         <path>Aircraft/c182/Models/Instruments/Avionics/kx165-1.xml</path>
-        <name>kx155</name>
+        <name>kx165</name>
         <offsets>
             <x-m>0.3515</x-m>
             <y-m>0.083</y-m>
@@ -1415,7 +1532,7 @@
     
     <model>
         <path>Aircraft/c182/Models/Instruments/Avionics/kx165-2.xml</path>
-        <name>kx155</name>
+        <name>kx165</name>
         <offsets>
             <x-m>0.3515</x-m>
             <y-m>0.083</y-m>
@@ -1510,7 +1627,7 @@
     
 <model>
    <name>vor</name>
-   <path>Aircraft/Instruments-3d/vor/vor.xml</path>
+   <path>Aircraft/c182/Models/Instruments/vor/vor.xml</path>
    <offsets>
      <x-m>0.3455</x-m>
      <y-m>-0.065</y-m>
@@ -1520,7 +1637,7 @@
 
  <model>
    <name>vor2</name>
-   <path>Aircraft/Instruments-3d/vor/vor2.xml</path>
+   <path>Aircraft/c182/Models/Instruments/vor/vor2.xml</path>
    <offsets>
      <x-m>0.3455</x-m>
      <y-m>-0.065</y-m>

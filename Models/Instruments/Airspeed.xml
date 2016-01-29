@@ -39,12 +39,12 @@
         <object-name>Airspeed.TAS</object-name>
         <object-name>Airspeed.IAS</object-name>
         <object-name>Airspeed.Needle</object-name>
-        <emission>
-            <red-prop>sim/model/instrument-lighting/emission/red</red-prop>
-            <green-prop>sim/model/instrument-lighting/emission/green</green-prop>
-            <blue-prop>sim/model/instrument-lighting/emission/blue</blue-prop>
-            <factor-prop>controls/lighting/instruments-norm</factor-prop>
-        </emission>
+  <emission>
+   <red>1.0</red>
+   <green>0.8</green>
+   <blue>0.4</blue>
+   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
+  </emission>
     </animation>
     
     <animation>

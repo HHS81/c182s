@@ -17,12 +17,12 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>Knob2</object-name>
   <object-name>SwFunction</object-name>
   <object-name>SwPower</object-name>
-  <emission>
-    <red>0.2</red>
-    <green>0.1</green>
-    <blue>0.05</blue>
-    <factor-prop>/systems/electrical/outputs/panel-norm</factor-prop>
-  </emission>
+    <emission>
+      <red>1.0</red>
+      <green>1.0</green>
+      <blue>1.0</blue>
+      <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
+    </emission>
 </animation>
 <animation>
   <type>material</type>
@@ -52,7 +52,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
     <red>0.8</red>
     <green>0.4</green>
     <blue>0.2</blue>
-    <factor-prop>/systems/electrical/outputs/panel-norm</factor-prop>
+    <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
   </emission>
 </animation>
 

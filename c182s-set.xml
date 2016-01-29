@@ -400,7 +400,8 @@
    <nav-lights type="bool">true</nav-lights>
   </lighting>
   <switches>
-   <master-avionics type="bool">true</master-avionics>
+   <AVMBus1 type="bool">true</AVMBus1>
+   <AVMBus2 type="bool">true</AVMBus2>
    <starter type="bool">false</starter>
    <kt-76c type="double">0</kt-76c>
    <kn-62a type="double">0</kn-62a>
@@ -494,6 +495,7 @@
 	<file>Aircraft/c182/Nasal/c182s.nas</file>
 	<file>Aircraft/c182/Nasal/kt76c.nas</file>
 	<file>Aircraft/c182/Nasal/kn62a.nas</file>
+	<file>Aircraft/c182/Nasal/kr87.nas</file>
     </c182>
   <electrical>
    <file>Aircraft/c182/Nasal/c182s-electrical.nas</file>

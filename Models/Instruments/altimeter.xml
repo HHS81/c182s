@@ -12,12 +12,12 @@
         <object-name>needle10000</object-name>
         <object-name>inhg</object-name>
         <object-name>InhgKnob</object-name>
-        <emission>
-            <red>0.028</red>
-            <green>0.014</green>
-            <blue>0.007</blue>
-            <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
-        </emission>
+  <emission>
+   <red>1.0</red>
+   <green>0.8</green>
+   <blue>0.4</blue>
+   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
+  </emission>
     </animation>
     
     <animation>

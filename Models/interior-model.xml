@@ -1006,25 +1006,25 @@
             <y>1.0</y>
             <z>0.0</z>
         </axis>
-        <interpolation>
+<interpolation>
             <entry>
                 <ind>0.0</ind>
                 <dep>-0.001</dep>
             </entry>
             <entry>
-                <ind>0.333333</ind>
+                <ind>0.26315</ind>
                 <dep>-0.001</dep>
             </entry>
             <entry>
-                <ind>0.345</ind>
+                <ind>0.27315</ind>
                 <dep>0.0015</dep>
             </entry>
             <entry>
-                <ind>0.666666</ind>
+                <ind>0.526315</ind>
                 <dep>0.0015</dep>
             </entry>
             <entry>
-                <ind>0.675</ind>
+                <ind>0.536315</ind>
                 <dep>0.0035</dep>
             </entry>
             <entry>

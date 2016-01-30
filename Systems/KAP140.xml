@@ -5,6 +5,20 @@
 <!-- component. -->
 <PropertyList>
 
+<predict-simple>
+     <input>/systems/electrical/battery-charge-percent</input>
+     <output>/systems/electrical/battery-charge-percent-lookahead-30-min</output>
+     <seconds>1800.0</seconds>
+     <filter-gain>0.0</filter-gain>
+  </predict-simple>
+  
+<predict-simple>
+     <input>/systems/electrical/volts</input>
+     <output>/systems/electrical/volts-30-min</output>
+     <seconds>1800.0</seconds>
+     <filter-gain>0.0</filter-gain>
+  </predict-simple>
+
   <filter>
     <name>heading bug error computer/normalizer</name>
     <debug>false</debug>

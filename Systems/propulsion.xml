@@ -4,6 +4,7 @@
 <system name="Propulsion">
 
     <channel name="engine power">
+    
 
 -<fcs_function name="systems/engine/MP-alt-volumetric-efficiency-curve">
           <function>
@@ -24,10 +25,6 @@
                    </tableData> 
                 </table>  
           </function>
-          <clipto>
-             <min> 0.0 </min>
-             <max> 1.00 </max>
-           </clipto>
           <output>propulsion/engine/volumetric-efficiency</output>   
         </fcs_function>
 

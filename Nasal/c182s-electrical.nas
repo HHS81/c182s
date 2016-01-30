@@ -327,7 +327,7 @@ electrical_bus_1 = func() {
     # Landing Light Power
     if ( getprop("/controls/lighting/landing-lights") ) {
         setprop("/systems/electrical/outputs/landing-lights", bus_volts);
-        load += bus_volts / 5;
+        load += bus_volts / 28;
     } else {
         setprop("/systems/electrical/outputs/landing-lights", 0.0 );
     }
@@ -362,7 +362,7 @@ electrical_bus_2 = func() {
     # Nav Lights Power
     if ( getprop("/controls/lighting/nav-lights" ) ) {
         setprop("/systems/electrical/outputs/nav-lights", bus_volts);
-        load += bus_volts / 14;
+        load += bus_volts / 28;
     } else {
         setprop("/systems/electrical/outputs/nav-lights", 0.0);
     }
@@ -379,7 +379,7 @@ electrical_bus_2 = func() {
     # Taxi Lights Power
     if ( getprop("/controls/lighting/taxi-light" ) ) {
         setprop("/systems/electrical/outputs/taxi-light", bus_volts);
-        load += bus_volts / 10;
+        load += bus_volts / 28;
     } else {
         setprop("/systems/electrical/outputs/taxi-light", 0.0);
     }
@@ -416,21 +416,21 @@ setprop("/systems/electrical/outputs/ecrf", bus_volts);#needed to dim lights
 
     if ( getprop("/controls/lighting/dome-light-r")) {
         setprop("/systems/electrical/outputs/dome-light-r", bus_volts);
-        load += bus_volts / 24;
+        load += bus_volts / 28;
     } else {
         setprop("/systems/electrical/outputs/dome-light-r", 0.0);
     }
     
  if ( getprop("/controls/lighting/dome-light-l")) {
         setprop("/systems/electrical/outputs/dome-light-l", bus_volts);
-        load += bus_volts / 24;
+        load += bus_volts / 28;
     } else {
         setprop("/systems/electrical/outputs/dome-light-l", 0.0);
     }
     
  if ( getprop("/controls/lighting/dome-exterior-light")) {
         setprop("/systems/electrical/outputs/dome-exterior-light", bus_volts);
-        load += bus_volts / 24;
+        load += bus_volts / 28;
     } else {
         setprop("/systems/electrical/outputs/dome-exterior-light", 0.0);
     }

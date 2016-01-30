@@ -29,6 +29,7 @@
       <path>Aircraft/c182/Systems/NAVandGSfilters.xml</path>
 </property-rule>
     <electrical>
+        
       <!-- null electrical system path here so we can use a nasal based -->
       <!-- model defined later in the nasal section of this file. -->
       <path></path>
@@ -361,6 +362,9 @@
         <menubar include="gui/dialogs/c182s-menu.xml"/>
 
  </sim>
+ 
+ 
+ 
    <consumables>
 <fuel>
       <tank n="0">

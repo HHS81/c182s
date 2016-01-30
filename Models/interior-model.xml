@@ -1451,8 +1451,8 @@
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <tooltip-id>MasterAvionik-Switch Bus1</tooltip-id>
-                <label>MasterAvionik: %s</label>
+                <tooltip-id>Avionics Master-Switch Bus1</tooltip-id>
+                <label>Avionics Master: %s</label>
                 <mapping>on-off</mapping>
                 <property>/controls/switches/AVMBus1</property>
             </binding>
@@ -1474,8 +1474,8 @@
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <tooltip-id>MasterAvionik-Switch Bus2</tooltip-id>
-                <label>MasterAvionik: %s</label>
+                <tooltip-id>Avionics Master-Switch Bus2</tooltip-id>
+                <label>Avionics Master: %s</label>
                 <mapping>on-off</mapping>
                 <property>/controls/switches/AVMBus2</property>
             </binding>

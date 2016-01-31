@@ -1,4 +1,23 @@
-Cessna 182S, approved 1996-10-03
+Cessna 182S
+===========
+
+A high detailed version of the Cessna 182S aircraft for FlightGear.
+
+Development thread: http://forum.flightgear.org/viewtopic.php?f=4&t=28475
+
+![c182 cockpit](https://cloud.githubusercontent.com/assets/12649375/12699423/b039a070-c7ba-11e5-8a22-0a50399bb08f.jpg)
+
+For the repository containing the xcf files for the textures and liveries, visit: https://github.com/HHS81/c182-Textures/
+
+---
+
+This aircraft was modified and updated in a joint effort by the following people:
+
+* HHS81: 3D model, programming, textures, bug tracking, testing
+
+* Gilberto Agostinho (gsagostinho): textures, bug tracking, testing
+
+---
 
 Engine (from TCDS)
 ------------------

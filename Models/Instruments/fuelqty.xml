@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+    <path>fuelqty.ac</path>
+    
+<animation>
+  <type>scale</type>
+  <x-offset>0.59</x-offset>
+  <y-offset>0.59</y-offset>
+  <z-offset>0.59</z-offset>
+ </animation>
+    
+    <animation>
+        <type>material</type>
+        <object-name>Face</object-name>
+        <object-name>FuelLeftNeedle</object-name>
+        <object-name>FuelRightNeedle</object-name>
+  <emission>
+   <red>1.0</red>
+   <green>0.8</green>
+   <blue>0.4</blue>
+   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
+  </emission>
+    </animation>
+    
+    
+
+    <animation>
+  <type>rotate</type>
+        <object-name>FuelLeftNeedle</object-name>
+  <property>consumables/fuel/tank[0]/level-gal_us</property>
+  <interpolation>
+   <entry><ind>  0.0</ind><dep>0 </dep></entry>     
+   <entry><ind>5</ind><dep> -18.66 </dep></entry>     
+   <entry><ind> 10</ind><dep> -39 </dep></entry>     
+   <entry><ind>20</ind><dep>  -59.40</dep></entry>     
+   <entry><ind> 30</ind><dep>  -79.50 </dep></entry>     
+   <entry><ind> 44</ind><dep> -99.0 </dep></entry> 
+  </interpolation>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+    <center>
+      <x-m> 0.001 </x-m>
+      <y-m>-0.035 </y-m>
+      <z-m> -0 </z-m>
+    </center>
+ </animation>
+    
+   <animation>
+        <type>rotate</type>
+        <object-name>FuelRightNeedle</object-name>
+  <property>consumables/fuel/tank[1]/level-gal_us</property>
+  <interpolation>
+   <entry><ind>  0.0</ind><dep>0 </dep></entry>     
+   <entry><ind>5</ind><dep> 20.64 </dep></entry>     
+   <entry><ind> 10</ind><dep> 41.52 </dep></entry>     
+   <entry><ind>20</ind><dep>  62.64</dep></entry>     
+   <entry><ind> 30</ind><dep>  83.82 </dep></entry>     
+   <entry><ind> 44</ind><dep> 103 </dep></entry> 
+  </interpolation>
+    <axis>
+      <x> -1 </x>
+      <y>  0 </y>
+      <z>  0 </z>
+    </axis>
+    <center>
+      <x-m> 0.001 </x-m>
+      <y-m> 0.036 </y-m>
+      <z-m> 0 </z-m>
+    </center>
+    </animation>
+
+</PropertyList>

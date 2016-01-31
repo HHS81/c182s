@@ -1685,6 +1685,57 @@
    </offsets>
  </model>
  
+ <model>
+   <name>VacAmp</name>
+   <path>Aircraft/c182/Models/Instruments/vacamp.xml</path>
+   <offsets>
+     <x-m>0.3477</x-m>
+     <y-m>-0.497</y-m>
+     <z-m>0.254</z-m>
+   </offsets>
+ </model>
+ 
+ 
+ <model>
+   <name>Oil</name>
+   <path>Aircraft/c182/Models/Instruments/oil.xml</path>
+   <offsets>
+     <x-m>0.3472</x-m>
+     <y-m>-0.432</y-m>
+     <z-m>0.253</z-m>
+   </offsets>
+ </model>
+ 
+ <model>
+   <name>EGT</name>
+   <path>Aircraft/c182/Models/Instruments/egt.xml</path>
+   <offsets>
+     <x-m>0.3475</x-m>
+     <y-m>-0.432</y-m>
+     <z-m>0.327</z-m>
+   </offsets>
+ </model>
+ 
+ <model>
+   <name>FuelQty</name>
+   <path>Aircraft/c182/Models/Instruments/fuelqty.xml</path>
+   <offsets>
+     <x-m>0.3485</x-m>
+     <y-m>-0.497</y-m>
+     <z-m>0.327</z-m>
+   </offsets>
+ </model>
+ 
+<model>
+        <path>Aircraft/c182/Models/Instruments/Davtron803/davtron803.xml</path>
+        <name>Davtron803</name>
+        <offsets>
+            <x-m>0.352</x-m>
+            <y-m>-0.433</y-m>
+            <z-m>0.402</z-m>
+        </offsets>
+    </model>
+ 
 <!--ELT-->
  <model>
    <name>ELT</name>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ cap10b-set.xml  - Cap10B by PAF team  - http://equipe-flightgear.forumactif.com
+
+ Written by Flavien BLANC
+ Modified by PAF team  - April 2012
+
+ Copyright (C) 2011-2012  Flavien BLANC  - http://equipe-flightgear.forumactif.com/u56
+ Copyright (C) 2012  Clément DE L'HAMAIDE  - http://equipe-flightgear.forumactif.com/u115
+ Copyright (C) 2016 Heiko Schulz
+
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 2 of the
+ License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not see <http://www.gnu.org/licenses/>.
+-->
+
+<PropertyList>
+
+  <path>Davtron803.ac</path>
+
+  
+  <animation>
+    <object-name>face</object-name>
+    <object-name>lcd</object-name>
+    <object-name>oat.swt</object-name>
+    <object-name>select.button</object-name> <!--reset btn-->
+    <object-name>control.button</object-name><!--start, pause, stop-btn-->
+  </animation>
+
+
+
+  <animation>
+    <type>material</type>
+    <object-name>lcd</object-name>
+    <condition>
+      <not><property>sim/rendering/rembrandt/enabled</property></not>
+    </condition>
+    <emission>
+      <red>   1.0 </red>
+      <green> 0.8 </green>
+      <blue>  0.4 </blue>
+      <factor-prop>systems/electrical/outputs/instrument-lights-norm</factor-prop>
+    </emission>
+  </animation>
+
+  <!--<animation>
+    <type>pick</type>
+    <object-name>on-off.button</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+        <command>property-toggle</command>
+        <property>instrumentation/chrono/power-btn</property>
+      </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182.chrono.stop()</script>
+      </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182.chrono.reset()</script>
+      </binding>
+    </action>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>start.button</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+        <command>nasal</command>
+        <script>c182.chrono.start()</script>
+        <condition>
+          <property>instrumentation/chrono/power-btn</property>
+        </condition>
+      </binding>
+    </action>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>stop.button</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+        <command>nasal</command>
+        <script>c182.chrono.stop()</script>
+        <condition>
+          <property>instrumentation/chrono/power-btn</property>
+        </condition>
+      </binding>
+    </action>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>reset.button</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+        <command>nasal</command>
+        <script>c182.chrono.reset()</script>
+        <condition>
+          <property>instrumentation/chrono/power-btn</property>
+        </condition>
+      </binding>
+    </action>
+  </animation>
+
+  <text>
+    <name>chronoValue</name>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/chrono/formated-time</property>
+    <format type="string">%s</format>
+    <draw-text type="bool">true</draw-text>
+    <font>led.txf</font>
+    <character-size type="double">0.0105</character-size>
+    <character-aspect-ratio type="double">1</character-aspect-ratio>
+    <axis-alignment>yz-plane</axis-alignment>
+    <max-height>0.06</max-height>
+    <max-width>0.05</max-width>
+    <font-resolution>
+      <width type="int">64</width>
+      <height type="int">64</height>
+    </font-resolution>
+    <alignment>center-center</alignment>
+    <offsets>
+      <x-m>  0.000 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m> -0.0015 </z-m>
+    </offsets>
+  </text>
+
+  <animation>
+    <type>select</type>
+    <object-name>chronoValue</object-name>
+    <condition>
+      <and>
+        <property>instrumentation/chrono/power-btn</property>
+        <greater-than-equals>
+          <property>systems/electrical/volts</property>
+          <value>3</value>
+        </greater-than-equals>
+      </and>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>chronoValue</object-name>
+    <emission>
+      <red>   0.0 </red>
+      <green> 0.0 </green>
+      <blue>  0.0 </blue>
+    </emission>
+    <ambient>
+      <red>   0.0 </red>
+      <green> 1.0 </green>
+      <blue>  0.2 </blue>
+    </ambient>
+    <diffuse>
+      <red>   0.0 </red>
+      <green> 0.0 </green>
+      <blue>  0.0 </blue>
+    </diffuse>
+    <specular>
+      <red>   0.0 </red>
+      <green> 0.0 </green>
+      <blue>  0.0 </blue>
+    </specular>
+  </animation>-->
+
+  
+
+  <!-- TEXT OSG 
+  <text>
+    <name>textosg</name>
+    <type type="string">literal</type>
+    <text type="string">Chronometer</text>
+    <draw-text type="bool">true</draw-text>
+    <font>Helvetica.txf</font>
+    <character-size type="double">0.014</character-size>
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <axis-alignment>yz-plane</axis-alignment>
+    <max-height>0.06</max-height>
+    <max-width>0.07</max-width>
+    <font-resolution>
+      <width type="int">64</width>
+      <height type="int">64</height>
+    </font-resolution>
+    <alignment>center-center</alignment>
+    <offsets>
+      <x-m>  0.005 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m>  0.000 </z-m>
+    </offsets>
+  </text>
+
+  <animation>
+    <type>material</type>
+    <object-name>textosg</object-name>
+    <emission>
+      <red>   0.8 </red>
+      <green> 0.8 </green>
+      <blue>  0.0 </blue>
+    </emission>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>textosg</object-name>
+    <condition>
+      <property>sim/panel-hotspots</property>
+    </condition>
+  </animation>-->
+  
+</PropertyList>
+

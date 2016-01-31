@@ -13,7 +13,7 @@ For the repository containing the xcf files for the textures and liveries, visit
 
 This aircraft was modified and updated in a joint effort by the following people:
 
-* HHS81: 3D model, programming, textures, bug tracking, testing
+* HHS81: 3D model, fdm, programming, textures, bug tracking, testing
 
 * Gilberto Agostinho (gsagostinho): textures, bug tracking, testing
 
@@ -74,9 +74,9 @@ Vx (best angle of climb): 63 KIAS
 
 Vy (best rate of climb): 80 KIAS
 
-Stall speed, no flaps: 56 kt
+Stall speed, no flaps: 56 kt KCAS
 
-Stall speed, full flaps: 50 kt
+Stall speed, full flaps: 50 kt KACS
 
 Best climb: 924 fpm
 

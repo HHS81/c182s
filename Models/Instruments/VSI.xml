@@ -12,13 +12,7 @@
 
   <path>vsi.ac</path>
 
-  <animation>
-    <object-name>PointerCentre</object-name>
-    <object-name>PointerTip</object-name>
-    <object-name>Face</object-name>
-
-    <object-name>vitre</object-name>
-  </animation>
+  
 
 
 

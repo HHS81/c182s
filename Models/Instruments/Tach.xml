@@ -8,6 +8,13 @@
         <type>material</type>
         <object-name>Face</object-name>
         <object-name>TachNeedle</object-name>
+<object-name>Drum.0</object-name>
+    <object-name>Drum.1</object-name>
+    <object-name>Drum.2</object-name>
+    <object-name>Drum.3</object-name>
+    <object-name>Drum.4</object-name>
+    <object-name>Drum.4</object-name>
+    <object-name>Drum.5</object-name>
   <emission>
    <red>1.0</red>
    <green>0.8</green>
@@ -24,16 +31,14 @@
         <property>engines/engine/thruster/rpm</property>
  <interpolation>
       <entry><ind>0</ind><dep>0</dep></entry>
-      <entry><ind>500</ind><dep>45 </dep></entry>
-      <entry><ind>1000</ind><dep> 90</dep></entry>
-      <entry><ind>1500</ind><dep>135</dep></entry>
-      <entry><ind>2000</ind><dep>180 </dep></entry>
-       <entry><ind>2100</ind><dep>190</dep></entry>
-      <entry><ind>2200</ind><dep> 198</dep></entry>
-      <entry><ind>2300</ind><dep>207</dep></entry>
-      <entry><ind>2400</ind><dep>215</dep></entry>
-      <entry><ind>2500</ind><dep> 225</dep></entry>
-      <entry><ind>3000</ind><dep>270</dep></entry>
+      <entry><ind>500</ind><dep>38.92 </dep></entry>
+      <entry><ind>1000</ind><dep>77.8</dep></entry>
+      <entry><ind>1500</ind><dep>116.5</dep></entry>
+      <entry><ind>2000</ind><dep>155.11 </dep></entry>
+      <entry><ind>2400</ind><dep> 186.33</dep></entry>
+      <entry><ind>2500</ind><dep> 193.41</dep></entry>
+      <entry><ind>3000</ind><dep>232.22</dep></entry>
+      <entry><ind>3500</ind><dep>270</dep></entry>
     </interpolation>
     <axis>
       <x> -1 </x>
@@ -46,6 +51,87 @@
       <z-m> 0 </z-m>
     </center>
     </animation>
+    
+
+  
+  <animation>
+    <type>textranslate</type>
+    <object-name>Drum.0</object-name>
+    <property>instrumentation/hobbs-meter/digits0</property>
+    <factor>0.1</factor>
+    <step>1</step>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+  
+  <animation>
+    <type>textranslate</type>
+    <object-name>Drum.1</object-name>
+    <property>instrumentation/hobbs-meter/digits1</property>
+    <factor>0.1</factor>
+    <step>1</step>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+  
+  <animation>
+    <type>textranslate</type>
+    <object-name>Drum.2</object-name>
+    <property>instrumentation/hobbs-meter/digits2</property>
+    <factor>0.1</factor>
+    <step>1</step>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+  
+  <animation>
+    <type>textranslate</type>
+    <object-name>Drum.3</object-name>
+    <property>instrumentation/hobbs-meter/digits3</property>
+    <factor>0.1</factor>
+    <step>1</step>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+  
+  <animation>
+    <type>textranslate</type>
+    <object-name>Drum.4</object-name>
+    <property>instrumentation/hobbs-meter/digits4</property>
+    <factor>0.1</factor>
+    <step>1</step>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>Drum.5</object-name>
+    <property>instrumentation/hobbs-meter/digits5</property>
+    <factor>0.1</factor>
+    <step>1</step>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+
 
    
 

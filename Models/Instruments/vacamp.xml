@@ -4,12 +4,6 @@
 
     <path>vacamp.ac</path>
     
-<animation>
-  <type>scale</type>
-  <x-offset>0.58</x-offset>
-  <y-offset>0.58</y-offset>
-  <z-offset>0.58</z-offset>
- </animation>
     
     <animation>
         <type>material</type>
@@ -32,11 +26,11 @@
   <property>systems/vacuum/suction-inhg</property>
   <interpolation>
    <entry><ind>  0.0</ind><dep>0 </dep></entry>     
-   <entry><ind> 3.0</ind><dep> -8.77 </dep></entry>     
-   <entry><ind> 4.0</ind><dep> -33.80 </dep></entry>     
-   <entry><ind> 5.0</ind><dep>  -61.12</dep></entry>     
-   <entry><ind> 6.0</ind><dep>  -88.55 </dep></entry>     
-   <entry><ind> 7.00</ind><dep> -112.93 </dep></entry>     
+   <entry><ind> 3.0</ind><dep> -9.10 </dep></entry>     
+   <entry><ind> 4.0</ind><dep> -40 </dep></entry>     
+   <entry><ind> 5.0</ind><dep>  -72</dep></entry>     
+   <entry><ind> 6.0</ind><dep>  -104.6 </dep></entry>     
+   <entry><ind> 7.00</ind><dep> -136 </dep></entry>     
   </interpolation>
   <axis>
    <x>-1</x>
@@ -45,7 +39,7 @@
   </axis>
     <center>
       <x-m> 0.001 </x-m>
-      <y-m> -0.029 </y-m>
+      <y-m> -0.015 </y-m>
       <z-m> -0 </z-m>
     </center>
  </animation>
@@ -55,15 +49,15 @@
         <object-name>AmpNeedle</object-name>
         <property>systems/electrical/amps</property>
  <interpolation>
-      <entry><ind>60</ind><dep> 55.85</dep></entry>
-      <entry><ind>45</ind><dep>42.96</dep></entry>
-      <entry><ind>30</ind><dep>29.15 </dep></entry>
-      <entry><ind>15</ind><dep>14.63 </dep></entry>
+      <entry><ind>60</ind><dep> 61.80</dep></entry>
+      <entry><ind>45</ind><dep>45.18</dep></entry>
+      <entry><ind>30</ind><dep>29.37 </dep></entry>
+      <entry><ind>15</ind><dep>14.24 </dep></entry>
       <entry><ind>0</ind><dep>0 </dep></entry>
-      <entry><ind>-15</ind><dep>-14.63</dep></entry>
-      <entry><ind>-30</ind><dep>-29.15</dep></entry>
-      <entry><ind>-45</ind><dep>-42.96</dep></entry>
-      <entry><ind>-60</ind><dep>-55.85</dep></entry>
+      <entry><ind>-15</ind><dep>-14.24</dep></entry>
+      <entry><ind>-30</ind><dep>-29.37</dep></entry>
+      <entry><ind>-45</ind><dep>-45.18</dep></entry>
+      <entry><ind>-60</ind><dep>-61.80</dep></entry>
     </interpolation>
     <axis>
       <x> -1 </x>
@@ -72,8 +66,8 @@
     </axis>
     <center>
       <x-m> 0.001 </x-m>
-      <y-m> 0.036 </y-m>
-      <z-m> 0 </z-m>
+      <y-m> 0.015 </y-m>
+      <z-m> -0 </z-m>
     </center>
     </animation>
 

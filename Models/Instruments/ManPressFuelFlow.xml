@@ -24,21 +24,22 @@
         <object-name>ManPressNeedle</object-name>
         <property>engines/engine/mp-inhg</property>
  <interpolation>
-      <entry><ind>10</ind><dep> 0</dep></entry>
-      <entry><ind>15</ind><dep>18</dep></entry>
-      <entry><ind>20</ind><dep>37</dep></entry>
-      <entry><ind>25</ind><dep>57</dep></entry>
-      <entry><ind>30</ind><dep>76</dep></entry>
-      <entry><ind>35</ind><dep>96</dep></entry>
+      <entry><ind>0</ind><dep> 0</dep></entry>
+      <entry><ind>10</ind><dep> -12.54</dep></entry>
+      <entry><ind>15</ind><dep>-38.84</dep></entry>
+      <entry><ind>20</ind><dep>-57.33</dep></entry>
+      <entry><ind>25</ind><dep>-80.84</dep></entry>
+      <entry><ind>30</ind><dep>-103.25</dep></entry>
+      <entry><ind>35</ind><dep>-125</dep></entry>
     </interpolation>
     <axis>
-      <x> 1 </x>
+      <x> -1 </x>
       <y>  0 </y>
       <z>  0 </z>
     </axis>
     <center>
       <x-m> 0.001 </x-m>
-      <y-m> -0.035 </y-m>
+      <y-m> -0.026 </y-m>
       <z-m> -0 </z-m>
     </center>
     </animation>
@@ -49,17 +50,11 @@
         <property>engines/engine/fuel-flow-gph</property>
  <interpolation>
       <entry><ind>0</ind><dep>0</dep></entry>
-      <entry><ind>10</ind><dep> 16</dep></entry>
-      <entry><ind>11</ind><dep>21</dep></entry>
-      <entry><ind>12</ind><dep>27 </dep></entry>
-      <entry><ind>13</ind><dep>33.61 </dep></entry>
-      <entry><ind>14</ind><dep>39.93 </dep></entry>
-      <entry><ind>15</ind><dep>46</dep></entry>
-      <entry><ind>16</ind><dep>55.2</dep></entry>
-      <entry><ind>17</ind><dep>64</dep></entry>
-      <entry><ind>18</ind><dep>72</dep></entry>
-      <entry><ind>19</ind><dep>80</dep></entry>
-      <entry><ind>20</ind><dep> 89</dep></entry>
+      <entry><ind>5</ind><dep> 5.27</dep></entry>
+      <entry><ind>10</ind><dep> 20.17</dep></entry>
+     <entry><ind>15</ind><dep>61.22</dep></entry>
+      <entry><ind>20</ind><dep> 112.3</dep></entry>
+      <entry><ind>21</ind><dep> 122.5</dep></entry>
 
     </interpolation>
     <axis>
@@ -69,7 +64,7 @@
     </axis>
     <center>
       <x-m> 0.001 </x-m>
-      <y-m> 0.036 </y-m>
+      <y-m> 0.026 </y-m>
       <z-m> -0 </z-m>
     </center>
     </animation>

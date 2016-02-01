@@ -13,7 +13,7 @@
     <object-name>Drum.2</object-name>
     <object-name>Drum.3</object-name>
     <object-name>Drum.4</object-name>
-  </animation>
+</animation>
   
   <animation>
     <type>material</type>
@@ -22,14 +22,13 @@
     <object-name>Drum.2</object-name>
     <object-name>Drum.3</object-name>
     <object-name>Drum.4</object-name>
-    <condition>
-      <property>/controls/lighting/instrument-lights</property>
-    </condition>
-    <emission>
-      <red>   0.80 </red>
-      <green> 0.50 </green>
-      <blue>  0.50 </blue>
-    </emission>
+    <object-name>Drum.4</object-name>
+  <emission>
+   <red>1.0</red>
+   <green>0.8</green>
+   <blue>0.4</blue>
+   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
+  </emission>
   </animation>
   
   <animation>

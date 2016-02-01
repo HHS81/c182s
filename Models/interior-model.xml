@@ -1690,8 +1690,8 @@
    <path>Aircraft/c182/Models/Instruments/vacamp.xml</path>
    <offsets>
      <x-m>0.3477</x-m>
-     <y-m>-0.497</y-m>
-     <z-m>0.254</z-m>
+     <y-m>-0.432</y-m>
+     <z-m>0.253</z-m>
    </offsets>
  </model>
  
@@ -1701,8 +1701,8 @@
    <path>Aircraft/c182/Models/Instruments/oil.xml</path>
    <offsets>
      <x-m>0.3472</x-m>
-     <y-m>-0.432</y-m>
-     <z-m>0.253</z-m>
+     <y-m>-0.497</y-m>
+     <z-m>0.2535</z-m>
    </offsets>
  </model>
  

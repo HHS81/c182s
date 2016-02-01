@@ -1752,9 +1752,9 @@
    <name>Hobbs</name>
    <path>Aircraft/c182/Models/Instruments/hobbs/hobbs.xml</path>
    <offsets>
-     <x-m>0.3515</x-m>
-     <y-m>0.432</y-m>
-     <z-m>0.372</z-m>
+     <x-m>0.350</x-m>
+     <y-m>0.444</y-m>
+     <z-m>0.376</z-m>
    </offsets>
  </model>
     

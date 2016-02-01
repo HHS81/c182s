@@ -3,18 +3,12 @@
 <PropertyList>
 
     <path>oil.ac</path>
-    
-<animation>
-  <type>scale</type>
-  <x-offset>0.59</x-offset>
-  <y-offset>0.59</y-offset>
-  <z-offset>0.59</z-offset>
- </animation>
+
     
     <animation>
         <type>material</type>
         <object-name>Face</object-name>
-        <object-name>TempOilNeedle</object-name>
+        <object-name>OilTempNeedle</object-name>
         <object-name>OilPressNeedle</object-name>
   <emission>
    <red>1.0</red>
@@ -28,16 +22,16 @@
 
     <animation>
   <type>rotate</type>
-  <object-name>TempOilNeedle</object-name>
+  <object-name>OilTempNeedle</object-name>
   <property>engines/engine/oil-temperature-degf</property>
   <interpolation>
    <entry><ind>  0.0</ind><dep>0 </dep></entry>     
-   <entry><ind>75</ind><dep> -5.83 </dep></entry>     
-   <entry><ind> 100</ind><dep> -16.00 </dep></entry>     
-   <entry><ind> 150</ind><dep>  -39.67</dep></entry>     
-   <entry><ind> 200</ind><dep>  -75.64 </dep></entry>     
-   <entry><ind> 245</ind><dep> -110.94 </dep></entry> 
-   <entry><ind> 260</ind><dep> -120.94 </dep></entry>     
+   <entry><ind>75</ind><dep> -7.07 </dep></entry>     
+   <entry><ind> 100</ind><dep> -28.84 </dep></entry>     
+   <entry><ind> 150</ind><dep>  -48.31</dep></entry>     
+   <entry><ind> 200</ind><dep>  -90.22 </dep></entry>     
+   <entry><ind> 245</ind><dep> -129.824 </dep></entry> 
+   <entry><ind> 260</ind><dep> -140.00 </dep></entry>     
   </interpolation>
   <axis>
    <x>-1</x>
@@ -46,7 +40,7 @@
   </axis>
     <center>
       <x-m> 0.001 </x-m>
-      <y-m> -0.035 </y-m>
+      <y-m> -0.015 </y-m>
       <z-m> -0 </z-m>
     </center>
  </animation>
@@ -57,12 +51,11 @@
   <property>engines/engine/oil-pressure-psi</property>
  <interpolation>
       <entry><ind>0</ind><dep> 0</dep></entry>
-      <entry><ind>20</ind><dep>18.94</dep></entry>
-      <entry><ind>40</ind><dep>38.86 </dep></entry>
-      <entry><ind>60</ind><dep>59.14</dep></entry>
-      <entry><ind>100</ind><dep>80 </dep></entry>
-      <entry><ind>110</ind><dep>101.24</dep></entry>
-      <entry><ind>115</ind><dep>109.32</dep></entry>
+      <entry><ind>20</ind><dep>19.63</dep></entry>
+      <entry><ind>40</ind><dep>39.25 </dep></entry>
+      <entry><ind>60</ind><dep>58.33</dep></entry>
+      <entry><ind>100</ind><dep>97.91 </dep></entry>
+      <entry><ind>115</ind><dep>117.29</dep></entry>
     </interpolation>
     <axis>
       <x> -1 </x>
@@ -71,8 +64,8 @@
     </axis>
     <center>
       <x-m> 0.001 </x-m>
-      <y-m> 0.036 </y-m>
-      <z-m> 0 </z-m>
+      <y-m> 0.015 </y-m>
+      <z-m> -0 </z-m>
     </center>
     </animation>
 

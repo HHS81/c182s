@@ -4,12 +4,7 @@
 
     <path>egt.ac</path>
     
-<animation>
-  <type>scale</type>
-  <x-offset>0.59</x-offset>
-  <y-offset>0.59</y-offset>
-  <z-offset>0.59</z-offset>
- </animation>
+
     
     <animation>
         <type>material</type>
@@ -33,12 +28,12 @@
   <property>engines/engine/egt-degf</property>
   <interpolation>
    <entry><ind>  0.0</ind><dep>0 </dep></entry>     
-   <entry><ind>1250</ind><dep> -11.67 </dep></entry>     
-   <entry><ind> 1300</ind><dep> -22.40 </dep></entry>     
-   <entry><ind> 1400</ind><dep>  -46.0</dep></entry>     
-   <entry><ind> 1500</ind><dep>  -69.50 </dep></entry>     
-   <entry><ind> 1600</ind><dep> -93.29 </dep></entry> 
-   <entry><ind> 1675</ind><dep> -110.0 </dep></entry>       
+   <entry><ind>1250</ind><dep> -11.0 </dep></entry>     
+   <entry><ind> 1300</ind><dep> -33.40 </dep></entry>     
+   <entry><ind> 1400</ind><dep>  -56.41</dep></entry>     
+   <entry><ind> 1500</ind><dep>  -79.50 </dep></entry>     
+   <entry><ind> 1600</ind><dep> -102.50 </dep></entry> 
+   <entry><ind> 1650</ind><dep> -113.94 </dep></entry>       
   </interpolation>
   <axis>
    <x>-1</x>
@@ -47,7 +42,7 @@
   </axis>
     <center>
       <x-m> 0.001 </x-m>
-      <y-m> -0.035 </y-m>
+      <y-m> -0.015 </y-m>
       <z-m> -0 </z-m>
     </center>
  </animation>
@@ -58,14 +53,14 @@
   <property>engines/engine/cht-degf</property>
  <interpolation>
       <entry><ind>0</ind><dep> 0</dep></entry>
-      <entry><ind>200</ind><dep>5.51</dep></entry>
-      <entry><ind>250</ind><dep>22.57 </dep></entry>
-      <entry><ind>300</ind><dep>40.17</dep></entry>
-      <entry><ind>350</ind><dep>57.64 </dep></entry>
-      <entry><ind>400</ind><dep>74.77</dep></entry>
-      <entry><ind>450</ind><dep>91.56</dep></entry>
-      <entry><ind>500</ind><dep>108.5</dep></entry>
-      <entry><ind>600</ind><dep>128.5</dep></entry>
+      <entry><ind>200</ind><dep>9.83</dep></entry>
+      <entry><ind>250</ind><dep>29.12 </dep></entry>
+      <entry><ind>300</ind><dep>48.50</dep></entry>
+      <entry><ind>350</ind><dep>67.76 </dep></entry>
+      <entry><ind>400</ind><dep>88.76</dep></entry>
+      <entry><ind>450</ind><dep>105.5</dep></entry>
+      <entry><ind>500</ind><dep>124.79</dep></entry>
+      <entry><ind>600</ind><dep>139</dep></entry>
     </interpolation>
     <axis>
       <x> -1 </x>
@@ -74,8 +69,8 @@
     </axis>
     <center>
       <x-m> 0.001 </x-m>
-      <y-m> 0.036 </y-m>
-      <z-m> 0 </z-m>
+      <y-m> 0.015 </y-m>
+      <z-m> -0 </z-m>
     </center>
     </animation>
     
@@ -83,7 +78,7 @@
     <type>rotate</type>
     <object-name>Bug</object-name>
   <property>engines/engine[0]/egt-bug-norm</property>
-    <factor>-110.0</factor>
+    <factor>-115.0</factor>
   <axis>
    <x>-1</x>
    <y>0</y>
@@ -91,7 +86,7 @@
   </axis>
     <center>
       <x-m> 0.001 </x-m>
-      <y-m> -0.035 </y-m>
+      <y-m> -0.015 </y-m>
       <z-m> -0 </z-m>
     </center>
   </animation>

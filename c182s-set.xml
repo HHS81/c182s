@@ -68,9 +68,9 @@
 				<blue>1.0</blue>
 			</diffuse>
 			<specular>
-				<red>0.15</red>
-				<green>0.15</green>
-				<blue>0.15</blue>
+				<red>0.3</red>
+				<green>0.3</green>
+				<blue>0.3</blue>
 			</specular>
 			<ambient>
 				<red>1.0</red>
@@ -82,7 +82,7 @@
     </c182>
     
   <rendering>
-    <refl_correction type="string">-0.3</refl_correction>
+    <refl_correction type="string">-0.6</refl_correction>
     </rendering>
     
   </model>

@@ -1222,23 +1222,23 @@
     <!-- MasterSwitch -->
     <animation>
         <type>pick</type>
-        <object-name>MasterSwitch</object-name>
+        <object-name>MasterAltSwitch</object-name>
         <visible>true</visible>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-                <property>controls/engines/engine/master-bat</property>
+                <property>controls/engines/engine/master-alt</property>
             </binding>
         </action>
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <tooltip-id>master-switch</tooltip-id>
-                <label>Battery: %s</label>
+                <tooltip-id>Master-Alt-switch</tooltip-id>
+                <label>Alternator: %s</label>
                 <mapping>on-off</mapping>
-                <property>controls/engines/engine/master-bat</property>
+                <property>controls/engines/engine/master-alt</property>
             </binding>
         </hovered>
     </animation>
@@ -1246,23 +1246,23 @@
     <!-- MasterSwitch -->
     <animation>
         <type>pick</type>
-        <object-name>AltBattSwitch</object-name>
+        <object-name>MasterBattSwitch</object-name>
         <visible>true</visible>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-                <property>controls/engines/engine/master-alt</property>
+                <property>controls/engines/engine/master-bat</property>
             </binding>
         </action>
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <tooltip-id>AltBatt-switch</tooltip-id>
-                <label>Alternator: %s</label>
+                <tooltip-id>Master-Batt-switch</tooltip-id>
+                <label>Battery: %s</label>
                 <mapping>on-off</mapping>
-                <property>controls/engines/engine/master-alt</property>
+                <property>controls/engines/engine/master-bat</property>
             </binding>
         </hovered>
     </animation>
@@ -1452,7 +1452,7 @@
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>Avionics Master-Switch Bus1</tooltip-id>
-                <label>Avionics Master: %s</label>
+                <label>Avionics Master 1: %s</label>
                 <mapping>on-off</mapping>
                 <property>/controls/switches/AVMBus1</property>
             </binding>
@@ -1475,12 +1475,310 @@
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>Avionics Master-Switch Bus2</tooltip-id>
-                <label>Avionics Master: %s</label>
+                <label>Avionics Master 2: %s</label>
                 <mapping>on-off</mapping>
                 <property>/controls/switches/AVMBus2</property>
             </binding>
         </hovered>
     </animation>
+    
+<animation>
+        <type>pick</type>
+        <object-name>DL.swt.L</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/controls/lighting/dome-light-l</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>Domelight Front Pilot</tooltip-id>
+                <label>Domelight Front Pilot: %s</label>
+                <mapping>on-off</mapping>
+                <property>/controls/lighting/dome-light-l</property>
+            </binding>
+        </hovered>
+    </animation>
+    
+<animation>
+        <type>pick</type>
+        <object-name>DL.swt.R</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/controls/lighting/dome-light-r</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>Domelight Front CoPilot</tooltip-id>
+                <label>Domelight Front CoPilot: %s</label>
+                <mapping>on-off</mapping>
+                <property>/controls/lighting/dome-light-r</property>
+            </binding>
+        </hovered>
+    </animation>
+    
+<animation>
+        <type>pick</type>
+        <object-name>DEL.swt</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/controls/lighting/dome-exterior-light</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>DomelightRearExterior</tooltip-id>
+                <label>Domelight Rear and Courtesy: %s</label>
+                <mapping>on-off</mapping>
+                <property>/controls/lighting/dome-exterior-light</property>
+            </binding>
+        </hovered>
+    </animation>
+    
+<!-- Switch animation -->
+    <animation>
+        <type>rotate</type>
+        <object-name>PitotHeatSwitch</object-name>
+        <property>/controls/anti-ice/pitot-heat</property>
+        <factor>-55</factor>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>0.348</x-m>
+            <y-m>0</y-m>
+            <z-m>0.073</z-m>
+        </center>
+    </animation>
+    
+ <animation>
+        <type>rotate</type>
+        <object-name>StrobeLightSwitch</object-name>
+        <property>controls/lighting/strobe</property>
+        <factor>-55</factor>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>0.348</x-m>
+            <y-m>0</y-m>
+            <z-m>0.073</z-m>
+        </center>
+    </animation>
+    
+<animation>
+        <type>rotate</type>
+        <object-name>NavLightSwitch</object-name>
+        <property>controls/lighting/nav-lights</property>
+        <factor>-55</factor>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>0.348</x-m>
+            <y-m>0</y-m>
+            <z-m>0.073</z-m>
+        </center>
+    </animation>
+    
+<animation>
+        <type>rotate</type>
+        <object-name>TaxiLightSwitch</object-name>
+        <property>controls/lighting/taxi-light</property>
+        <factor>-55</factor>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>0.348</x-m>
+            <y-m>0</y-m>
+            <z-m>0.073</z-m>
+        </center>
+    </animation>
+    
+<animation>
+        <type>rotate</type>
+        <object-name>LandingLightSwitch</object-name>
+        <property>controls/lighting/landing-lights</property>
+        <factor>-55</factor>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>0.348</x-m>
+            <y-m>0</y-m>
+            <z-m>0.073</z-m>
+        </center>
+    </animation>
+    
+<animation>
+        <type>rotate</type>
+        <object-name>BeaconSwitch</object-name>
+        <property>controls/lighting/beacon</property>
+        <factor>-55</factor>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>0.348</x-m>
+            <y-m>0</y-m>
+            <z-m>0.073</z-m>
+        </center>
+    </animation>
+    
+<animation>
+        <type>rotate</type>
+        <object-name>FuelPumpSwitch</object-name>
+        <property>controls/engines/engine/fuel-pump</property>
+        <factor>-55</factor>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>0.348</x-m>
+            <y-m>0</y-m>
+            <z-m>0.073</z-m>
+        </center>
+    </animation>
+    
+<!--Master ALT BAT and AVMBus1+2-->
+<animation>
+        <type>rotate</type>
+        <object-name>MasterAltSwitch</object-name>
+        <property>controls/engines/engine/master-alt</property>
+        <factor>-20</factor>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>0.343</x-m>
+            <y-m>0</y-m>
+            <z-m>0.091</z-m>
+        </center>
+    </animation>
+    
+<animation>
+        <type>rotate</type>
+        <object-name>MasterBattSwitch</object-name>
+        <property>controls/engines/engine/master-bat</property>
+        <factor>-20</factor>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>0.343</x-m>
+            <y-m>0</y-m>
+            <z-m>0.091</z-m>
+        </center>
+    </animation>
+    
+<animation>
+        <type>rotate</type>
+        <object-name>AVMBus1</object-name>
+        <property>/controls/switches/AVMBus1</property>
+        <factor>-20</factor>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>0.346</x-m>
+            <y-m>0</y-m>
+            <z-m>0.091</z-m>
+        </center>
+    </animation>
+    
+<animation>
+        <type>rotate</type>
+        <object-name>AVMBus2</object-name>
+        <property>/controls/switches/AVMBus2</property>
+        <factor>-20</factor>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>0.346</x-m>
+            <y-m>0</y-m>
+            <z-m>0.091</z-m>
+        </center>
+    </animation>
+    
+    <!--Domelight Buttons-->
+    <animation>
+        <type>translate</type>
+        <object-name>DL.swt.L</object-name>
+        <property>/controls/lighting/dome-light-l</property>
+        <factor>0.0057</factor>
+        <axis>
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>1.0</z>
+        </axis>
+</animation>
+
+<animation>
+        <type>translate</type>
+        <object-name>DL.swt.R</object-name>
+        <property>/controls/lighting/dome-light-r</property>
+        <factor>0.0057</factor>
+        <axis>
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>1.0</z>
+        </axis>
+</animation>
+
+<animation>
+        <type>translate</type>
+        <object-name>DEL.swt</object-name>
+        <property>/controls/lighting/dome-exterior-light</property>
+        <factor>0.0062</factor>
+        <axis>
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>1.0</z>
+        </axis>
+</animation>
+
+
+
 
 <!--instruments-->
 

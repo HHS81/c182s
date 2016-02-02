@@ -23,8 +23,8 @@
 
 <effect>
     <inherits-from>Aircraft/c182/Models/Effects/c182sreflect-uber</inherits-from>
-   <object-name>Fuselage</object-name>
-   <object-name>Spinner</object-name>
+   <object-name>Fuselage</object-name><!-- model obejcts parented in Blender - gives faster livery loading-->
+   <!--<object-name>Spinner</object-name>
    <object-name>WheelFairingNose</object-name>
    <object-name>WheelFairing.R</object-name>
    <object-name>WheelFairing.L</object-name>
@@ -48,7 +48,7 @@
    <object-name>Aileron.L</object-name>
    <object-name>Aileron.R</object-name>
    <object-name>Flap.L</object-name>
-   <object-name>Flap.R</object-name>
+   <object-name>Flap.R</object-name>-->
  </effect>
  
   <effect>

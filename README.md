@@ -10,7 +10,7 @@ Development thread: http://forum.flightgear.org/viewtopic.php?f=4&t=28475
 ![c182s Wing View](https://cloud.githubusercontent.com/assets/12649375/12738920/4f06ae86-c965-11e5-852b-10bfbe5bf85e.jpg)
 
 
-For the repository containing the xcf files for the textures and liveries, visit: https://github.com/HHS81/c182-Textures/
+For the repository containing the .xcf and .svg files for the textures and liveries, visit: https://github.com/HHS81/c182-Textures/
 
 ---
 

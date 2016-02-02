@@ -96,11 +96,11 @@ Landing over 50 ft obstacle: 1,390 ft
 Performance
 -----------
 
-Cruise, 80% power, 6,000 ft: 140 kt
+Cruise, 80% power, 6,000 ft: 140 kt TAS
 
-Cruise, 65% power, 8,000 ft: 130 kt
+Cruise, 65% power, 8,000 ft: 130 kt TAS
 
-Cruise, 55% power, 10,000 ft: 121 kt
+Cruise, 55% power, 10,000 ft: 121 kt TAS
 
 Range, 75% power, 6,000 ft: 820 nm
 

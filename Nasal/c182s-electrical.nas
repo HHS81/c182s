@@ -19,6 +19,7 @@ var vbus_volts = 0.0;
 var ebus1_volts = 0.0;
 var ebus2_volts = 0.0;
 
+
 var ammeter_ave = 0.0;
 
 var strobe_switch = props.globals.getNode("controls/lighting/strobe", 1);
@@ -47,6 +48,8 @@ init_electrical = func {
     setprop("/controls/lighting/glareshield-lights-norm", 0);
     setprop("/controls/lighting/pedestal-lights-norm", 0);
     setprop("/controls/lighting/radio-lights-norm", 0);
+#set beacon
+ setprop("/systems/electrical/outputs/beacon-norm", 0);
 
     # Request that the update function be called next frame
     settimer(update_electrical, 0);
@@ -333,15 +336,27 @@ electrical_bus_1 = func() {
     }
 
     # Beacon Power
+    
+    
     if ( getprop("controls/lighting/beacon-state/state" ) ) {
      interpolate ("/systems/electrical/outputs/beacon", bus_volts, 0.5);
-       # setprop("/systems/electrical/outputs/beacon", bus_volts);
+	interpolate ("/systems/electrical/outputs/beacon-norm", (bus_volts/24), 0.5);
+       
         load += bus_volts / 28;
     } else {
-        #setprop("/systems/electrical/outputs/beacon", 0.0);
+       
 	 interpolate ("/systems/electrical/outputs/beacon", 0.0, 0.5);
+	 interpolate ("/systems/electrical/outputs/beacon-norm", 0.0, 0.5);
+	}
+
+	if (getprop("/systems/electrical/outputs/beacon-norm") >1.0){
+	setprop("/systems/electrical/outputs/beacon-norm", 1.0)};
 	
-    }
+	
+	
+	    
+
+
 
     # Flaps Power
     setprop("/systems/electrical/outputs/flaps", bus_volts);
@@ -362,19 +377,26 @@ electrical_bus_2 = func() {
     # Nav Lights Power
     if ( getprop("/controls/lighting/nav-lights" ) ) {
         setprop("/systems/electrical/outputs/nav-lights", bus_volts);
+	  setprop("/systems/electrical/outputs/nav-lights-norm", (bus_volts/24));
         load += bus_volts / 28;
     } else {
         setprop("/systems/electrical/outputs/nav-lights", 0.0);
+	 setprop("/systems/electrical/outputs/nav-lights-norm", 0.0);
     }
+    if (getprop("/systems/electrical/outputs/nav-lights-norm") >1.0){
+	setprop("/systems/electrical/outputs/nav-lights-norm", 1.0)};
   
      
     # Strobe Lights Power
     if ( getprop("controls/lighting/strobe-state/state" ) ) {
             setprop("/systems/electrical/outputs/strobe", bus_volts);
+	 setprop("/systems/electrical/outputs/strobe-norm", (bus_volts/24));
         load += bus_volts / 28;
     } else {
         setprop("/systems/electrical/outputs/strobe", 0.0);
+	setprop("/systems/electrical/outputs/strobe-norm", 0.0);
     }
+    
   
     # Taxi Lights Power
     if ( getprop("/controls/lighting/taxi-light" ) ) {

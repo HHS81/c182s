@@ -981,12 +981,19 @@
 	<type>select</type>
         <object-name>PlaneX</object-name>
 	<condition>
+	<and>
 	 <greater-than>
 	<property>/systems/electrical/outputs/beacon</property>
 	<value>1</value>
 	 </greater-than>
+	 <not>
+	 <property>/sim/rendering/shaders/skydome</property>
+	 </not>
+	 </and>
 	</condition>
 </animation>
+
+
 
 <!--left strobe-->
 	<animation>
@@ -1048,7 +1055,12 @@
 	<type>select</type>
         <object-name>Plane.002X</object-name>
 	<condition>
+	<and>
 	<property>/systems/electrical/outputs/strobe</property>
+		<not>
+	 <property>/sim/rendering/shaders/skydome</property>
+	 </not>
+	 </and>
 	</condition>
 </animation>
 	
@@ -1112,7 +1124,12 @@
 	<type>select</type>
         <object-name>Plane.003X</object-name>
 	<condition>
+	<and>
 	<property>/systems/electrical/outputs/strobe</property>
+	<not>
+ <property>/sim/rendering/shaders/skydome</property>
+	</not>
+	</and>
 	</condition>
 </animation>
 
@@ -1205,7 +1222,12 @@
 	<type>select</type>
         <object-name>PlaneTailLight</object-name>
 	<condition>
+	<and>
 	<property>/systems/electrical/outputs/nav-lights</property>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	</and>
 	</condition>
 </animation>
 
@@ -1236,7 +1258,12 @@
 	<type>select</type>
         <object-name>NavLightRed</object-name>
 	<condition>
+	<and>
 	<property>/systems/electrical/outputs/nav-lights</property>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	</and>
 	</condition>
 </animation>
 
@@ -1266,19 +1293,89 @@
 	<type>select</type>
         <object-name>NavLightGreen</object-name>
 	<condition>
+	<and>
 	<property>/systems/electrical/outputs/nav-lights</property>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	</and>
 	</condition>
 </animation>
 
 <!--procedural lights - ALS only-->
 <model>
-  <path>Aircraft/c182/Models/Effects/procedural_light.xml</path>
+<condition>
+	<property>/sim/rendering/shaders/skydome</property>
+</condition>
+  <path>Aircraft/c182/Models/Effects/beacon.xml</path>
         <offsets>
-            <x-m> 1.606 </x-m>
-            <y-m> -0.526 </y-m>
-            <z-m> 1.174 </z-m>
+            <x-m> 6.165 </x-m>
+            <y-m> 0.003 </y-m>
+            <z-m> 2.062 </z-m>
         </offsets>
  </model>
+ 
+<model>
+<condition>
+	<property>/sim/rendering/shaders/skydome</property>
+</condition>
+  <path>Aircraft/c182/Models/Effects/green-navlight.xml</path>
+        <offsets>
+	<x-m>0.854</x-m>
+	<y-m>5.47</y-m>
+	<z-m>0.897</z-m>
+        </offsets>
+ </model>
+ 
+ <model>
+ <condition>
+	<property>/sim/rendering/shaders/skydome</property>
+</condition>
+  <path>Aircraft/c182/Models/Effects/red-navlight.xml</path>
+        <offsets>
+	<x-m>0.854</x-m>
+	<y-m>-5.47</y-m>
+	<z-m>0.897</z-m>
+        </offsets>
+ </model>
+ 
+ <model>
+ <condition>
+	<property>/sim/rendering/shaders/skydome</property>
+</condition>
+  <path>Aircraft/c182/Models/Effects/tail-navlight.xml</path>
+        <offsets>
+            <x-m>6.162</x-m>
+            <y-m>-0.006</y-m>
+            <z-m>0.474</z-m>
+        </offsets>
+ </model>
+ 
+<model>
+<condition>
+	<property>/sim/rendering/shaders/skydome</property>
+</condition>
+  <path>Aircraft/c182/Models/Effects/left-strobe.xml</path>
+        <offsets>
+            <x-m>0.898882</x-m>
+            <y-m>-5.464475</y-m>
+            <z-m>0.892203</z-m>
+        </offsets>
+ </model>
+
+ 
+<model>
+<condition>
+	<property>/sim/rendering/shaders/skydome</property>
+</condition>
+  <path>Aircraft/c182/Models/Effects/right-strobe.xml</path>
+        <offsets>
+            <x-m>0.898882</x-m>
+            <y-m>5.464475</y-m>
+            <z-m>0.892203</z-m>
+        </offsets>
+ </model>
+
  
 <!--object animation-->
  <animation>

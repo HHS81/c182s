@@ -1269,6 +1269,16 @@
 	<property>/systems/electrical/outputs/nav-lights</property>
 	</condition>
 </animation>
+
+<!--procedural lights - ALS only-->
+<model>
+  <path>Aircraft/c182/Models/Effects/procedural_light.xml</path>
+        <offsets>
+            <x-m> 1.606 </x-m>
+            <y-m> -0.526 </y-m>
+            <z-m> 1.174 </z-m>
+        </offsets>
+ </model>
  
 <!--object animation-->
  <animation>

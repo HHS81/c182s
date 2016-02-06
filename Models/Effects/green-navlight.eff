@@ -9,12 +9,12 @@
       	<type>white</type>
     </texture>
 
-    <light_color_base_r type="float">0.17</light_color_base_r>
-    <light_color_base_g type="float">0.73</light_color_base_g>
-    <light_color_base_b type="float">0.29</light_color_base_b>
-    <light_color_center_r type="float">0.4</light_color_center_r>
-    <light_color_center_g type="float">0.7</light_color_center_g>
-    <light_color_center_b type="float">0.4</light_color_center_b>
+    <light_color_base_r type="float">0.3</light_color_base_r>
+    <light_color_base_g type="float">0.64</light_color_base_g>
+    <light_color_base_b type="float">0.33</light_color_base_b>
+    <light_color_center_r type="float">0.6</light_color_center_r>
+    <light_color_center_g type="float">0.98</light_color_center_g>
+    <light_color_center_b type="float">0.66</light_color_center_b>
     <intensity_scale type="float"><use>/systems/electrical/outputs/nav-lights-norm</use></intensity_scale>
     <pointing_x type="float">1.0</pointing_x>
     <pointing_y type="float">-0.97629600712</pointing_y>

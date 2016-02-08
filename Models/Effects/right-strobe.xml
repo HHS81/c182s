@@ -19,6 +19,8 @@
   <z-offset>0.75</z-offset>
  </animation>
  
+
+ 
 <animation>
   <type>dist-scale</type>
   <object-name>right-strobe</object-name>

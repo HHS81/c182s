@@ -1159,7 +1159,7 @@
             <y>0</y>
             <z>0</z>
         </axis>
-        <power>8</power>
+        <power>2</power>
         <factor>6</factor>
         <offset>0</offset>
         <two-sides type="bool">false</two-sides>
@@ -1190,7 +1190,7 @@
             <y>0</y>
             <z>0</z>
         </axis>
-        <power>8</power>
+        <power>2</power>
         <factor>6</factor>
         <offset>0</offset>
         <two-sides type="bool">false</two-sides>
@@ -1355,7 +1355,7 @@
   <path>Aircraft/c182/Models/Effects/green-navlight.xml</path>
         <offsets>
 	<x-m>0.854</x-m>
-	<y-m>5.47</y-m>
+	<y-m>5.46</y-m>
 	<z-m>0.897</z-m>
         </offsets>
  </model>
@@ -1370,7 +1370,7 @@
   <path>Aircraft/c182/Models/Effects/red-navlight.xml</path>
         <offsets>
 	<x-m>0.854</x-m>
-	<y-m>-5.47</y-m>
+	<y-m>-5.46</y-m>
 	<z-m>0.897</z-m>
         </offsets>
  </model>

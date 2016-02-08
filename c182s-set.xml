@@ -59,6 +59,9 @@
     </livery>
     
   <c182>
+  
+<procedural-lights type="bool">true</procedural-lights>
+  
       <chrome_spinner type="bool">true</chrome_spinner>
 	<material>
 		<fuselage>

@@ -12,6 +12,8 @@
   <z-offset>0.5</z-offset>
  </animation>
  
+
+ 
 <animation>
   <type>dist-scale</type>
   <object-name>beacon</object-name>

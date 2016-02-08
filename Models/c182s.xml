@@ -982,14 +982,16 @@
         <object-name>PlaneX</object-name>
 	<condition>
 	<and>
-	 <greater-than>
+	<or>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	<not>
+	<property>/sim/model/c182/procedural-lights</property>
+	</not>
+	</or>
 	<property>/systems/electrical/outputs/beacon</property>
-	<value>1</value>
-	 </greater-than>
-	 <not>
-	 <property>/sim/rendering/shaders/skydome</property>
-	 </not>
-	 </and>
+	</and>
 	</condition>
 </animation>
 
@@ -1056,11 +1058,16 @@
         <object-name>Plane.002X</object-name>
 	<condition>
 	<and>
+	<or>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	<not>
+	<property>/sim/model/c182/procedural-lights</property>
+	</not>
+	</or>
 	<property>/systems/electrical/outputs/strobe</property>
-		<not>
-	 <property>/sim/rendering/shaders/skydome</property>
-	 </not>
-	 </and>
+	</and>
 	</condition>
 </animation>
 	
@@ -1123,12 +1130,17 @@
 <animation>
 	<type>select</type>
         <object-name>Plane.003X</object-name>
-	<condition>
+<condition>
 	<and>
-	<property>/systems/electrical/outputs/strobe</property>
+	<or>
 	<not>
- <property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/rendering/shaders/skydome</property>
 	</not>
+	<not>
+	<property>/sim/model/c182/procedural-lights</property>
+	</not>
+	</or>
+	<property>/systems/electrical/outputs/strobe</property>
 	</and>
 	</condition>
 </animation>
@@ -1223,10 +1235,15 @@
         <object-name>PlaneTailLight</object-name>
 	<condition>
 	<and>
-	<property>/systems/electrical/outputs/nav-lights</property>
+	<or>
 	<not>
 	<property>/sim/rendering/shaders/skydome</property>
 	</not>
+	<not>
+	<property>/sim/model/c182/procedural-lights</property>
+	</not>
+	</or>
+	<property>/systems/electrical/outputs/nav-lights</property>
 	</and>
 	</condition>
 </animation>
@@ -1259,12 +1276,17 @@
         <object-name>NavLightRed</object-name>
 	<condition>
 	<and>
-	<property>/systems/electrical/outputs/nav-lights</property>
+	<or>
 	<not>
 	<property>/sim/rendering/shaders/skydome</property>
 	</not>
+	<not>
+	<property>/sim/model/c182/procedural-lights</property>
+	</not>
+	</or>
+	<property>/systems/electrical/outputs/nav-lights</property>
 	</and>
-	</condition>
+	</condition>	
 </animation>
 
  <animation>
@@ -1294,18 +1316,26 @@
         <object-name>NavLightGreen</object-name>
 	<condition>
 	<and>
-	<property>/systems/electrical/outputs/nav-lights</property>
+	<or>
 	<not>
 	<property>/sim/rendering/shaders/skydome</property>
 	</not>
+	<not>
+	<property>/sim/model/c182/procedural-lights</property>
+	</not>
+	</or>
+	<property>/systems/electrical/outputs/nav-lights</property>
 	</and>
-	</condition>
+	</condition>	
 </animation>
 
 <!--procedural lights - ALS only-->
 <model>
 <condition>
+<and>
 	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182/procedural-lights</property>
+</and>
 </condition>
   <path>Aircraft/c182/Models/Effects/beacon.xml</path>
         <offsets>
@@ -1317,7 +1347,10 @@
  
 <model>
 <condition>
+<and>
 	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182/procedural-lights</property>
+</and>
 </condition>
   <path>Aircraft/c182/Models/Effects/green-navlight.xml</path>
         <offsets>
@@ -1328,8 +1361,11 @@
  </model>
  
  <model>
- <condition>
+<condition>
+<and>
 	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182/procedural-lights</property>
+</and>
 </condition>
   <path>Aircraft/c182/Models/Effects/red-navlight.xml</path>
         <offsets>
@@ -1341,7 +1377,10 @@
  
  <model>
  <condition>
+<and>
 	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182/procedural-lights</property>
+</and>
 </condition>
   <path>Aircraft/c182/Models/Effects/tail-navlight.xml</path>
         <offsets>
@@ -1353,7 +1392,10 @@
  
 <model>
 <condition>
+<and>
 	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182/procedural-lights</property>
+</and>
 </condition>
   <path>Aircraft/c182/Models/Effects/left-strobe.xml</path>
         <offsets>
@@ -1366,7 +1408,10 @@
  
 <model>
 <condition>
+<and>
 	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182/procedural-lights</property>
+</and>
 </condition>
   <path>Aircraft/c182/Models/Effects/right-strobe.xml</path>
         <offsets>

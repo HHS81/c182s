@@ -56,6 +56,7 @@
     <object-name>Windscreen</object-name>
     <object-name>Window.L</object-name>
     <object-name>Window.R</object-name>
+    <object-name>llglas</object-name>
    </effect>
    
    <effect>
@@ -1150,9 +1151,9 @@
         <type>flash</type>
         <object-name>LandingLight</object-name>
         <center>
-            <x-m>0.609</x-m>
-            <y-m>-3.861</y-m>
-            <z-m>0.881</z-m>
+            <x-m>0.596</x-m>
+            <y-m>-3.844</y-m>
+            <z-m>0.875</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -1176,14 +1177,24 @@
 	</condition>
 </animation>
 
+<animation>
+	<type>select</type>
+        <object-name>llglas</object-name>
+	<condition>
+	<not>
+	<property>/systems/electrical/outputs/landing-lights</property>
+	</not>
+	</condition>
+</animation>
+
 <!--TaxiLight-->
  <animation>
         <type>flash</type>
         <object-name>TaxiLight</object-name>
-        <center>
-            <x-m>0.603</x-m>
-            <y-m>-3.722</y-m>
-            <z-m>0.883</z-m>
+		 <center>
+            <x-m>0.587</x-m>
+            <y-m>-3.704</y-m>
+            <z-m>0.869</z-m>
         </center>
         <axis>
             <x>-1</x>
@@ -1204,6 +1215,16 @@
         <object-name>TaxiLight</object-name>
 	<condition>
 	<property>/systems/electrical/outputs/taxi-light</property>
+	</condition>
+</animation>
+
+<animation>
+	<type>select</type>
+        <object-name>llglas</object-name>
+	<condition>
+	<not>
+	<property>/systems/electrical/outputs/taxi-light</property>
+	</not>
 	</condition>
 </animation>
 

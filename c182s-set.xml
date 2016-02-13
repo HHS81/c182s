@@ -52,6 +52,8 @@
    <path archive="y">Aircraft/c182/Models/c182s.xml</path>
     <hide-yoke>false</hide-yoke>
     
+ 
+    
 <!-- An exit for the walker -->
         <map>
             <default_exit>
@@ -503,6 +505,8 @@
             <maximum-landing-mass-lbs>2950</maximum-landing-mass-lbs>
         </mass-and-balance>
  </limits>
+
+
 
  <nasal>
  <c182>

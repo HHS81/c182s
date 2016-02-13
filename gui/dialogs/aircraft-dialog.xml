@@ -56,6 +56,26 @@
 	</checkbox>
         </group>
         <hrule/>
+	
+<group>
+	<layout>vbox</layout>
+	<padding>6</padding>
+	<checkbox>
+                <halign>left</halign>
+                <label>Place wheel chocks</label>
+                <property>/sim/chocks/enable</property>
+                <live>true</live>
+                <binding>
+                    <command>dialog-apply</command>
+                </binding>
+	</checkbox>
+        </group>
+        <hrule/>
+	
+
+	
+
+
 
        
 </PropertyList>

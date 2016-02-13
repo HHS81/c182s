@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<PropertyList>
-
+<PropertyList include="Aircraft/Generic/Human/Include/walker-include.xml">
  <sim>
 
   <description>Cessna 182S (1996)</description>
@@ -52,6 +51,14 @@
   <model>
    <path archive="y">Aircraft/c182/Models/c182s.xml</path>
     <hide-yoke>false</hide-yoke>
+    
+<!-- An exit for the walker -->
+        <map>
+            <default_exit>
+                <x-offset-m type="float">-1.5</x-offset-m>
+                <y-offset-m type="float">-1.5</y-offset-m>
+            </default_exit>
+        </map>
 
     <livery>
       <file type="string">liveries/Default.png</file>
@@ -527,19 +534,7 @@
  <!-- ================ map keyboard ================ -->
  <input> 
     <keyboard> 
-      <key n="76">
-        <name>L</name>
-        <desc>Cockpit illumination.</desc>
-        <repeatable type="bool">false</repeatable>
-        <binding>
-          <command>property-adjust</command>
-          <property>/controls/lighting/panel-norm</property>
-          <step>0.25</step>
-          <min>0</min>
-          <max>1.1</max>
-          <wrap>1</wrap>
-        </binding>
-      </key>
+     
 
       <key n="89">
         <name>Y</name>
@@ -551,8 +546,8 @@
         </binding>
       </key>
       
-<key n="115">
-   <name>s</name>
+<key n="83">
+   <name>S</name>
    <desc>Toggle Starter Switch</desc>
    <binding>
     <command>property-assign</command>
@@ -567,6 +562,7 @@
     </binding>
    </mod-up>
   </key>
+
 
     </keyboard>
     </input>

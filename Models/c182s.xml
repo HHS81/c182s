@@ -56,6 +56,7 @@
     <object-name>Windscreen</object-name>
     <object-name>Window.L</object-name>
     <object-name>Window.R</object-name>
+    <object-name>llglas</object-name>
    </effect>
    
    <effect>
@@ -981,12 +982,21 @@
 	<type>select</type>
         <object-name>PlaneX</object-name>
 	<condition>
-	 <greater-than>
+	<and>
+	<or>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	<not>
+	<property>/sim/model/c182/procedural-lights</property>
+	</not>
+	</or>
 	<property>/systems/electrical/outputs/beacon</property>
-	<value>1</value>
-	 </greater-than>
+	</and>
 	</condition>
 </animation>
+
+
 
 <!--left strobe-->
 	<animation>
@@ -1048,7 +1058,17 @@
 	<type>select</type>
         <object-name>Plane.002X</object-name>
 	<condition>
+	<and>
+	<or>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	<not>
+	<property>/sim/model/c182/procedural-lights</property>
+	</not>
+	</or>
 	<property>/systems/electrical/outputs/strobe</property>
+	</and>
 	</condition>
 </animation>
 	
@@ -1111,8 +1131,18 @@
 <animation>
 	<type>select</type>
         <object-name>Plane.003X</object-name>
-	<condition>
+<condition>
+	<and>
+	<or>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	<not>
+	<property>/sim/model/c182/procedural-lights</property>
+	</not>
+	</or>
 	<property>/systems/electrical/outputs/strobe</property>
+	</and>
 	</condition>
 </animation>
 
@@ -1121,16 +1151,16 @@
         <type>flash</type>
         <object-name>LandingLight</object-name>
         <center>
-            <x-m>0.609</x-m>
-            <y-m>-3.861</y-m>
-            <z-m>0.881</z-m>
+            <x-m>0.596</x-m>
+            <y-m>-3.844</y-m>
+            <z-m>0.875</z-m>
         </center>
         <axis>
             <x>-1</x>
             <y>0</y>
             <z>0</z>
         </axis>
-        <power>8</power>
+        <power>2</power>
         <factor>6</factor>
         <offset>0</offset>
         <two-sides type="bool">false</two-sides>
@@ -1147,21 +1177,31 @@
 	</condition>
 </animation>
 
+<animation>
+	<type>select</type>
+        <object-name>llglas</object-name>
+	<condition>
+	<not>
+	<property>/systems/electrical/outputs/landing-lights</property>
+	</not>
+	</condition>
+</animation>
+
 <!--TaxiLight-->
  <animation>
         <type>flash</type>
         <object-name>TaxiLight</object-name>
-        <center>
-            <x-m>0.603</x-m>
-            <y-m>-3.722</y-m>
-            <z-m>0.883</z-m>
+		 <center>
+            <x-m>0.587</x-m>
+            <y-m>-3.704</y-m>
+            <z-m>0.869</z-m>
         </center>
         <axis>
             <x>-1</x>
             <y>0</y>
             <z>0</z>
         </axis>
-        <power>8</power>
+        <power>2</power>
         <factor>6</factor>
         <offset>0</offset>
         <two-sides type="bool">false</two-sides>
@@ -1175,6 +1215,16 @@
         <object-name>TaxiLight</object-name>
 	<condition>
 	<property>/systems/electrical/outputs/taxi-light</property>
+	</condition>
+</animation>
+
+<animation>
+	<type>select</type>
+        <object-name>llglas</object-name>
+	<condition>
+	<not>
+	<property>/systems/electrical/outputs/taxi-light</property>
+	</not>
 	</condition>
 </animation>
 
@@ -1205,7 +1255,17 @@
 	<type>select</type>
         <object-name>PlaneTailLight</object-name>
 	<condition>
+	<and>
+	<or>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	<not>
+	<property>/sim/model/c182/procedural-lights</property>
+	</not>
+	</or>
 	<property>/systems/electrical/outputs/nav-lights</property>
+	</and>
 	</condition>
 </animation>
 
@@ -1236,8 +1296,18 @@
 	<type>select</type>
         <object-name>NavLightRed</object-name>
 	<condition>
+	<and>
+	<or>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	<not>
+	<property>/sim/model/c182/procedural-lights</property>
+	</not>
+	</or>
 	<property>/systems/electrical/outputs/nav-lights</property>
-	</condition>
+	</and>
+	</condition>	
 </animation>
 
  <animation>
@@ -1266,9 +1336,112 @@
 	<type>select</type>
         <object-name>NavLightGreen</object-name>
 	<condition>
+	<and>
+	<or>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	<not>
+	<property>/sim/model/c182/procedural-lights</property>
+	</not>
+	</or>
 	<property>/systems/electrical/outputs/nav-lights</property>
-	</condition>
+	</and>
+	</condition>	
 </animation>
+
+<!--procedural lights - ALS only-->
+<model>
+<condition>
+<and>
+	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182/procedural-lights</property>
+</and>
+</condition>
+  <path>Aircraft/c182/Models/Effects/beacon.xml</path>
+        <offsets>
+            <x-m> 6.165 </x-m>
+            <y-m> 0.003 </y-m>
+            <z-m> 2.062 </z-m>
+        </offsets>
+ </model>
+ 
+<model>
+<condition>
+<and>
+	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182/procedural-lights</property>
+</and>
+</condition>
+  <path>Aircraft/c182/Models/Effects/green-navlight.xml</path>
+        <offsets>
+	<x-m>0.854</x-m>
+	<y-m>5.46</y-m>
+	<z-m>0.897</z-m>
+        </offsets>
+ </model>
+ 
+ <model>
+<condition>
+<and>
+	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182/procedural-lights</property>
+</and>
+</condition>
+  <path>Aircraft/c182/Models/Effects/red-navlight.xml</path>
+        <offsets>
+	<x-m>0.854</x-m>
+	<y-m>-5.46</y-m>
+	<z-m>0.897</z-m>
+        </offsets>
+ </model>
+ 
+ <model>
+ <condition>
+<and>
+	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182/procedural-lights</property>
+</and>
+</condition>
+  <path>Aircraft/c182/Models/Effects/tail-navlight.xml</path>
+        <offsets>
+            <x-m>6.162</x-m>
+            <y-m>-0.006</y-m>
+            <z-m>0.474</z-m>
+        </offsets>
+ </model>
+ 
+<model>
+<condition>
+<and>
+	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182/procedural-lights</property>
+</and>
+</condition>
+  <path>Aircraft/c182/Models/Effects/left-strobe.xml</path>
+        <offsets>
+            <x-m>0.898882</x-m>
+            <y-m>-5.464475</y-m>
+            <z-m>0.892203</z-m>
+        </offsets>
+ </model>
+
+ 
+<model>
+<condition>
+<and>
+	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182/procedural-lights</property>
+</and>
+</condition>
+  <path>Aircraft/c182/Models/Effects/right-strobe.xml</path>
+        <offsets>
+            <x-m>0.898882</x-m>
+            <y-m>5.464475</y-m>
+            <z-m>0.892203</z-m>
+        </offsets>
+ </model>
+
  
 <!--object animation-->
  <animation>

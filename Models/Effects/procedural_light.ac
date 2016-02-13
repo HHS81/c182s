@@ -1,0 +1,119 @@
+AC3Db
+MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
+MATERIAL "DefaultWhite.001" rgb 1 1 1 amb 0.2 0.2 0.2 emis 0 0 0 spec 0.025 0.025 0.025 shi 50 trans 0.1
+OBJECT world
+kids 6
+OBJECT poly
+name "beacon"
+data 8
+Mesh.005
+crease 30.000000
+numvert 4
+0.057591 -0.247867 -0.249903
+0.057591 0.252133 -0.249903
+0.057592 -0.247867 0.250097
+0.057592 0.252133 0.250097
+numsurf 1
+SURF 0x20
+mat 1
+refs 4
+1 0.0 0.0
+0 0.0 0.0
+2 0.0 0.0
+3 0.0 0.0
+kids 0
+OBJECT poly
+name "green-navlight"
+data 8
+Mesh.001
+crease 30.000000
+numvert 4
+-1e-06 -0.5 -0.5
+0 0.5 -0.5
+0 -0.5 0.5
+1e-06 0.5 0.5
+numsurf 1
+SURF 0x20
+mat 1
+refs 4
+1 0.0 0.0
+0 0.0 0.0
+2 0.0 0.0
+3 0.0 0.0
+kids 0
+OBJECT poly
+name "left-strobe"
+data 8
+Mesh.004
+crease 30.000000
+numvert 4
+-1e-06 -0.5 -0.499903
+0 0.5 -0.499903
+0 -0.5 0.500097
+1e-06 0.5 0.500097
+numsurf 1
+SURF 0x20
+mat 1
+refs 4
+1 0.0 0.0
+0 0.0 0.0
+2 0.0 0.0
+3 0.0 0.0
+kids 0
+OBJECT poly
+name "red-navlight"
+data 4
+Mesh
+crease 30.000000
+numvert 4
+-1e-06 -0.5 -0.5
+0 0.5 -0.5
+0 -0.5 0.5
+1e-06 0.5 0.5
+numsurf 1
+SURF 0x20
+mat 1
+refs 4
+1 0.0 0.0
+0 0.0 0.0
+2 0.0 0.0
+3 0.0 0.0
+kids 0
+OBJECT poly
+name "right-strobe"
+data 8
+Mesh.003
+crease 30.000000
+numvert 4
+-1e-06 -0.5 -0.499903
+0 0.5 -0.499903
+0 -0.5 0.500097
+1e-06 0.5 0.500097
+numsurf 1
+SURF 0x20
+mat 1
+refs 4
+1 0.0 0.0
+0 0.0 0.0
+2 0.0 0.0
+3 0.0 0.0
+kids 0
+OBJECT poly
+name "tail-navlight"
+data 8
+Mesh.002
+crease 30.000000
+numvert 4
+-1e-06 -0.5 -0.499903
+0 0.5 -0.499903
+0 -0.5 0.500097
+1e-06 0.5 0.500097
+numsurf 1
+SURF 0x20
+mat 1
+refs 4
+1 0.0 0.0
+0 0.0 0.0
+2 0.0 0.0
+3 0.0 0.0
+kids 0

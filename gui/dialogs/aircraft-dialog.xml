@@ -38,81 +38,24 @@
             <binding>
                 <command>dialog-close</command>
             </binding>
-        </button>
-    </group>
-
-    <hrule/>
-
-
-        <group>
-            <layout>vbox</layout>
-        <padding>6</padding>
-	
+	</button>
+	</group>
+	<hrule/>
+    
+	<group>
+	<layout>vbox</layout>
+	<padding>6</padding>
 	<checkbox>
                 <halign>left</halign>
-                <label>Place chock</label>
-                <property>/sim/model/c182/securing/chock</property>
+                <label>Enable procedural-lights</label>
+                <property>/sim/model/c182/procedural-lights</property>
                 <live>true</live>
                 <binding>
                     <command>dialog-apply</command>
                 </binding>
-            </checkbox>
-
-	<checkbox>
-                <halign>left</halign>
-                <label>Enable left tie-down</label>
-                <property>/sim/model/c182/securing/tiedownL-visible</property>
-                <live>true</live>
-                <binding>
-                    <command>dialog-apply</command>
-                </binding>
-            </checkbox>
-            
-            <checkbox>
-                <halign>left</halign>
-                <label>Enable right tie-down</label>
-                <property>/sim/model/c182/securing/tiedownR-visible</property>
-                <live>true</live>
-                <binding>
-                    <command>dialog-apply</command>
-                </binding>
-            </checkbox>
-
-            <checkbox>
-                <halign>left</halign>
-                <label>Enable tail tie-down</label>
-                <property>/sim/model/c182/securing/tiedownT-visible</property>
-                <live>true</live>
-                <binding>
-                    <command>dialog-apply</command>
-                </binding>
-            </checkbox>
-            
+	</checkbox>
         </group>
-
         <hrule/>
 
-        
-
-      
-
        
-
-    <group>
-        <layout>hbox</layout>
-        <default-padding>6</default-padding>
-
-        <empty><stretch>true</stretch></empty>
-
-        <button>
-            <legend>Close</legend>
-            <equal>true</equal>
-            <key>Esc</key>
-            <default>true</default>
-            <binding>
-                <command>dialog-close</command>
-            </binding>
-        </button>
-    </group>
-
 </PropertyList>

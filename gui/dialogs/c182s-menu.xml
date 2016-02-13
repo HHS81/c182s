@@ -14,7 +14,9 @@
                     <command>dialog-show</command>
                     <dialog-name>aircraft-dialog</dialog-name>
                 </binding>
-            </item><!---->
+            </item>
+	    
+	    <!---->
 
             <item>
                 <label>Select Livery</label>

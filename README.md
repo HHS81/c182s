@@ -5,10 +5,10 @@ A high detailed version of the Cessna 182S aircraft for FlightGear.
 
 Development thread: http://forum.flightgear.org/viewtopic.php?f=4&t=28475
 
-![c182s cockpit](https://cloud.githubusercontent.com/assets/12649375/12699423/b039a070-c7ba-11e5-8a22-0a50399bb08f.jpg)
-![c182s Tail View](https://cloud.githubusercontent.com/assets/12649375/12738907/3dad6ca6-c965-11e5-808c-a34635e46aa4.jpg)
-![c182s Wing View](https://cloud.githubusercontent.com/assets/12649375/12738920/4f06ae86-c965-11e5-852b-10bfbe5bf85e.jpg)
-![c182s Takeoff](https://cloud.githubusercontent.com/assets/12649375/12739240/e26a1896-c967-11e5-8210-ad62946dbd20.jpg)
+![c182s cockpit](http://s11.postimg.org/tjhps14o3/image.jpg)
+![c182s Tail View](http://s11.postimg.org/eot4duv37/image.jpg)
+![c182s Wing View](http://s11.postimg.org/b9104axur/image.jpg)
+![c182s Takeoff](http://s11.postimg.org/x6xgy3cv7/image.jpg)
 
 
 For the repository containing the .xcf and .svg files for the textures and liveries, visit: https://github.com/HHS81/c182-Textures/

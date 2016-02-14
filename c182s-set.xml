@@ -27,7 +27,12 @@
       <name>FiltersOnly</name>
       <path>Aircraft/c182/Systems/NAVandGSfilters.xml</path>
 </property-rule>
-    <electrical>
+
+            <property-rule n="101">
+                <path>Aircraft/c182/Systems/ground-effects.xml</path>
+            </property-rule>
+
+<electrical>
         
       <!-- null electrical system path here so we can use a nasal based -->
       <!-- model defined later in the nasal section of this file. -->
@@ -64,7 +69,7 @@
    <path archive="y">Aircraft/c182/Models/c182s.xml</path>
     <hide-yoke>false</hide-yoke>
     
- 
+  
     
 <!-- An exit for the walker -->
         <map>
@@ -81,7 +86,35 @@
     
   <c182>
 
-
+<tiedowns>
+                    <left>
+                        <pitch-deg type="double">0.0</pitch-deg>
+                        <heading-deg type="double">0.0</heading-deg>
+                        <length type="double">0.0</length>
+                        <ref-length type="double">0.0</ref-length>
+                        <x type="double">0.0</x>
+                        <y type="double">-4.0</y>
+                    </left>
+                    <right>
+                        <pitch-deg type="double">0.0</pitch-deg>
+                        <heading-deg type="double">0.0</heading-deg>
+                        <length type="double">0.0</length>
+                        <ref-length type="double">0.0</ref-length>
+                        <x type="double">0.0</x>
+                        <y type="double">4.0</y>
+                    </right>
+                    <tail>
+                        <pitch-deg type="double">0.0</pitch-deg>
+                        <heading-deg type="double">0.0</heading-deg>
+                        <length type="double">0.0</length>
+                        <ref-length type="double">0.0</ref-length>
+                        <x type="double">-5.5</x>
+                        <y type="double">0.0</y>
+                    </tail>
+</tiedowns>
+  <securing>
+                    <allow-securing-aircraft type="bool">true</allow-securing-aircraft>
+</securing>
 
 <procedural-lights type="bool">true</procedural-lights>
   
@@ -520,20 +553,60 @@
         </mass-and-balance>
  </limits>
 
+<rotors>
+        <main>
 
+            <blade n="0">
+                <position-deg alias="/gear/gear[23]/rollspeed-ms"/>
+                <flap-deg alias="/sim/model/c182/tiedowns/right/heading-deg"/>
+            </blade>
+            <blade n="1">
+                <position-deg alias="/gear/gear[24]/rollspeed-ms"/>
+                <flap-deg alias="/sim/model/c182/tiedowns/right/pitch-deg"/>
+            </blade>
+            <blade n="2">
+                <position-deg alias="/gear/gear[25]/rollspeed-ms"/>
+                <flap-deg alias="/sim/model/c182/tiedowns/right/length"/>
+            </blade>
+
+
+            <blade n="3">
+                <position-deg alias="/sim/model/c182/tiedowns/left/heading-deg"/>
+                <flap-deg alias="/sim/model/c182/tiedowns/left/pitch-deg"/>
+            </blade>
+            <rpm alias="/sim/model/c182/tiedowns/left/length"/>
+        </main>
+
+
+        <tail>
+            <blade n="0">
+                <position-deg alias="/sim/model/c182/tiedowns/tail/heading-deg"/>
+            </blade>
+            <blade n="1">
+                <position-deg alias="/sim/model/c182/tiedowns/tail/pitch-deg"/>
+            </blade>
+            <rpm alias="/sim/model/c182/tiedowns/tail/length"/>
+        </tail>
+    </rotors>
 
  <nasal>
+ <math_ext>
+            <file>Aircraft/c182/Nasal/math_ext.nas</file>
+</math_ext>
+<updateloop>
+            <file>Aircraft/Generic/updateloop.nas</file>
+</updateloop>
  <c182>
 	<file>Aircraft/c182/Nasal/c182s.nas</file>
 	<file>Aircraft/c182/Nasal/kt76c.nas</file>
 	<file>Aircraft/c182/Nasal/kn62a.nas</file>
 	<file>Aircraft/c182/Nasal/kr87.nas</file>
-	<!--<file>Aircraft/c182/Nasal/test.nas</file>-->
-    </c182>
-  <electrical>
+            <file>Nasal/tiedowns.nas</file>
+</c182>
+<electrical>
    <file>Aircraft/c182/Nasal/c182s-electrical.nas</file>
-  </electrical>
-   <kap140>
+</electrical>
+<kap140>
    <file>Aircraft/Generic/kap140.nas</file>
    <!-- We can set some variables that might be
         aircraft specific. We must do it after the file
@@ -543,8 +616,8 @@
                     gsNeedleDeflection = "/instrumentation/nav/gs-needle-deflection-norm";
                     staticPressure = "systems/static/pressure-inhg";
     ]]>
-   </script>
-  </kap140>
+</script>
+</kap140>
     <failures> 
     <file>Aircraft/Generic/limits.nas</file>
   </failures>

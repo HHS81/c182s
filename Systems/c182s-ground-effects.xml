@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 
 <!--
-c182s ground effects from:
 
-  c172p damage effects for JSBSim.
+  c182S damage effects for JSBSim.
+  from: c172p damage effects for JSBSim.
 
     Copyright (c) 2015 Wayne Bragg
 
@@ -23,9 +23,9 @@ c182s ground effects from:
 
 -->
 
-<system name="c182s-ground-effects">
+<system name="c182s ground effects">
 
-
+    
 
     <channel name="tiedowns">
 
@@ -197,6 +197,7 @@ c182s ground effects from:
 
             <test logic="AND" value="fcs/tiedown-left-magnitude-pid">
                 /sim/model/c182/securing/tiedownL-visible EQ 1
+
             </test>
         </switch>
 
@@ -206,6 +207,7 @@ c182s ground effects from:
 
             <test logic="AND" value="fcs/tiedown-right-magnitude-pid">
                 /sim/model/c182/securing/tiedownR-visible EQ 1
+
             </test>
         </switch>
 
@@ -215,6 +217,7 @@ c182s ground effects from:
 
             <test logic="AND" value="fcs/tiedown-tail-magnitude-pid">
                 /sim/model/c182/securing/tiedownT-visible EQ 1
+
             </test>
         </switch>
 

@@ -26,7 +26,7 @@
 
         <empty><stretch>true</stretch></empty>
         <text>
-            <label>Aircraft Securing</label>
+            <label>Aircraft Securing on Ground</label>
         </text>
         <empty><stretch>true</stretch></empty>
 
@@ -103,7 +103,7 @@
                     <padding>6</padding>
                 </group>
 
-			<group>
+		<group>
                     <layout>vbox</layout>
 
                     
@@ -127,44 +127,65 @@
                     <command>dialog-update</command>
                 </binding>
                     </checkbox>
-                    
+		                        
                     <radio>
                         <halign>left</halign>
-                        <label>Enable left tie-down (not yet implemented)</label>
+                        <label>Enable left tie-down </label>
                         <property>/sim/model/c182/securing/tiedownL-visible</property>
                         <live>true</live>
                         <enable>
-                            <property>/sim/model/c182/securing/tiedowns-can-have</property>
-                        </enable>
-                        <binding>
-                            <command>dialog-apply</command>
-                        </binding>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>0.1</value>
+                                </less-than>
+			</enable>
+			<binding>
+			<command>property-toggle</command>
+                        <property>/sim/model/c182/securing/tiedownL-visible</property>
+			</binding>
+			<binding>
+			<command>dialog-update</command>
+			</binding>
                     </radio>
                     
                     <radio>
                         <halign>left</halign>
-                        <label>Enable right tie-down (not yet implemented)</label>
+                        <label>Enable right tie-down </label>
                         <property>/sim/model/c182/securing/tiedownR-visible</property>
                         <live>true</live>
-                        <enable>
-                            <property>/sim/model/c182/securing/tiedowns-can-have</property>
-                        </enable>
-                        <binding>
-                            <command>dialog-apply</command>
-                        </binding>
+                       <enable>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>0.1</value>
+                                </less-than>
+			</enable>
+			<binding>
+			<command>property-toggle</command>
+                        <property>/sim/model/c182/securing/tiedownR-visible</property>
+			</binding>
+			<binding>
+			<command>dialog-update</command>
+			</binding>
                     </radio>
 
                     <radio>
                         <halign>left</halign>
-                        <label>Enable tail tie-down (not yet implemented)</label>
+                        <label>Enable tail tie-down </label>
                         <property>/sim/model/c182/securing/tiedownT-visible</property>
                         <live>true</live>
                         <enable>
-                            <property>/sim/model/c182/securing/tiedowns-can-have</property>
-                        </enable>
-                        <binding>
-                            <command>dialog-apply</command>
-                        </binding>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>0.1</value>
+                                </less-than>
+			</enable>
+			<binding>
+			<command>property-toggle</command>
+                        <property>/sim/model/c182/securing/tiedownT-visible</property>
+			</binding>
+			<binding>
+			<command>dialog-update</command>
+			</binding>
                     </radio>
 
 			</group>

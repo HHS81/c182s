@@ -1298,15 +1298,15 @@
     </aerodynamics>
 
     
-    <!--<external_reactions>-->
+<external_reactions>
         <!-- Tiedowns use body frame (x positive forward, y positive
              right, z positive down).-->
 	     
-        <!--<force name="tiedown-left" frame="BODY">
+   <force name="tiedown-left" frame="BODY">
             <location unit="M">
-                <x> 0.1188</x>
-                <y>-2.2998</y>
-                <z> 0.4008</z>
+                <x> 0.794</x>
+                <y>-2.473</y>
+                <z> 0.691</z>
             </location>
             <direction>
                 <x>0.0</x>
@@ -1316,9 +1316,9 @@
         </force>
         <force name="tiedown-right" frame="BODY">
             <location unit="M">
-                <x> 0.1188</x>
-                <y> 2.2998</y>
-                <z> 0.4008</z>
+                <x> 0.794</x>
+                <y>-2.473</y>
+                <z> 0.691</z>
             </location>
             <direction>
                 <x>0.0</x>
@@ -1328,9 +1328,9 @@
         </force>
         <force name="tiedown-tail" frame="BODY">
             <location unit="M">
-                <x> 4.7116</x>
+                <x> 5.601</x>
                 <y> 0.0000</y>
-                <z>-0.6663</z>
+                <z>0.115</z>
             </location>
             <direction>
                 <x>0.0</x>
@@ -1338,10 +1338,11 @@
                 <z>1.0</z>
             </direction>
         </force>
-    </external_reactions>-->
+    </external_reactions>
     
     <system file="c182s-stallhorn"/>
     <system file="propulsion"/>
-    <system file="indicated-airspeed"/>   
+    <system file="indicated-airspeed"/>
+    <system file="c182s-ground-effects"/>  
     
 </fdm_config>

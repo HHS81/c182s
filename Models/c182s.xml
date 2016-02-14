@@ -1516,6 +1516,272 @@
             </binding>
         </hovered>
     </animation>
+    
+<!--tiedown-->
+<params>
+        <securing>
+            <tiedowns>
+                <left>
+                    <visible>sim/model/c182/securing/tiedownL-visible</visible>
+                </left>
+                <right>
+                    <visible>sim/model/c182/securing/tiedownR-visible</visible>
+                </right>
+                <tail>
+                    <visible>sim/model/c182/securing/tiedownT-visible</visible>
+                </tail>
+            </tiedowns>
+        </securing>
+</params>
+<!-- Left Tiedowns -->
+    <model>
+        <name>tiedownL</name>
+        <path>Aircraft/c182/Models/Exterior/tiedownL.xml</path>
+        <offsets>
+            <x-m>0.794</x-m>
+            <y-m>-2.473</y-m>
+            <z-m>0.691</z-m>
+            <heading-deg>-90.0</heading-deg>
+        </offsets>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>tiedownL</object-name>
+        <condition>
+            <property>sim/model/c182/securing/tiedownL-visible</property>
+        </condition>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>tiedownL</object-name>
+        <object-name>TieDownLeft</object-name><!-- tiedown handle -->
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+            <property>sim/model/c182/securing/tiedownL-visible</property>
+                <value>false</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+            <property>sim/model/c182/securing/tiedownL-visible</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>remove-left-tiedowns</tooltip-id>
+                <label>Remove Left Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>    
+    <animation>
+        <type>select</type>
+        <object-name>TiedownHotSpotLeft</object-name>
+        <condition>
+            <property>sim/model/c182/securing/tiedownL-addable</property>
+        </condition>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>TiedownHotSpotLeft</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <property>sim/model/c182/securing/tiedownL-addable</property>
+		<value>true</value>
+                </condition>
+                <command>property-assign</command>
+                <property alias="/params/securing/tiedowns/left/visible"/>
+                <value>true</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+                    <property>sim/model/c182/securing/tiedownL-addable</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>secure-with-left-tiedowns</tooltip-id>
+                <label>Secure With Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <!-- Right Tiedowns -->
+    <model>
+        <name>tiedownR</name>
+        <path>Aircraft/c182/Models/Exterior/tiedownR.xml</path>
+        <offsets>
+            <x-m>0.794</x-m>
+            <y-m>2.473</y-m>
+            <z-m>0.691</z-m>
+            <heading-deg>90.0</heading-deg>
+        </offsets>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>tiedownR</object-name>
+        <condition>
+        <property>sim/model/c182/securing/tiedownR-visible</property>
+        </condition>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>tiedownR</object-name>
+        <object-name>TieDownRight</object-name>	<!-- tiedown handle -->
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+        <property>sim/model/c182/securing/tiedownR-visible</property>
+                <value>false</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+        <property>sim/model/c182/securing/tiedownR-visible</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>remove-right-tiedowns</tooltip-id>
+                <label>Remove Right Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>    
+    <animation>
+        <type>select</type>
+        <object-name>TiedownHotSpotRight</object-name>
+        <condition>
+            <property>sim/model/c182/securing/tiedownR-addable</property>
+        </condition>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>TiedownHotSpotRight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <property>sim/model/c182/securing/tiedownR-addable</property>
+                </condition>
+                <command>property-assign</command>
+                   <property>sim/model/c182/securing/tiedownR-visible</property>
+                <value>true</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+                    <property>sim/model/c182/securing/tiedownR-addable</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>secure-with-right-tiedowns</tooltip-id>
+                <label>Secure With Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+
+
+<!-- Tail Tiedowns -->
+<!--<params>
+<securing>
+            <pitot-cover>sim/model/c182/securing/pitot-cover-visible</pitot-cover>
+            <chocks>sim/model/c182/securing/chock-visible</chocks>
+            <tiedowns>
+                <left>
+                    <visible>sim/model/c182/securing/tiedownL-visible</visible>
+                </left>
+                <right>
+                    <visible>sim/model/c182/securing/tiedownR-visible</visible>
+                </right>
+                <tail>
+                    <visible>sim/model/c182/securing/tiedownT-visible</visible>
+                </tail>
+            </tiedowns>
+        </securing>
+            <property>sim/model/c182/securing/tiedownT-visible</property>
+</params>-->
+
+    <model>
+        <name>tiedownT</name>
+        <path>Aircraft/c182/Models/Exterior/tiedownT.xml</path>
+        <offsets>
+            <x-m>5.601</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.115</z-m>
+            <heading-deg>180.0</heading-deg>
+        </offsets>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>tiedownT</object-name>
+        <condition>
+            <property>sim/model/c182/securing/tiedownT-visible</property>
+        </condition>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>tiedownT</object-name>
+        <object-name>TieDownTail</object-name> <!-- tiedown handle -->
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property alias="/params/securing/tiedowns/tail/visible"/>
+                <value>false</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+            <property>sim/model/c182/securing/tiedownT-visible</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>remove-tail-tiedowns</tooltip-id>
+                <label>Remove Tail Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>TiedownHotSpotTail</object-name>
+        <condition>
+            <property>/sim/model/c182/securing/tiedownT-addable</property>
+        </condition>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>TiedownHotSpotTail</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <property>/sim/model/c182/securing/tiedownT-addable</property>
+                </condition>
+                <command>property-assign</command>
+            <property>sim/model/c182/securing/tiedownT-visible</property>
+                <value>true</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+                    <property>/sim/model/c182/securing/tiedownT-addable</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>secure-with-tail-tiedowns</tooltip-id>
+                <label>Secure With Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+
 
  
 <!--object animation-->

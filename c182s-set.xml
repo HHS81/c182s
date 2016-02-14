@@ -35,6 +35,18 @@
     </electrical>
   </systems>
   
+  <chocks>
+  <enable type="bool">false</enable>
+  </chocks>
+  
+  <cones>
+  <enable type="bool">false</enable>
+  </cones>
+  
+  <gpu>
+  <enable>false</enable>
+  </gpu>
+  
   
 <instrumentation n="0">
     <path>Aircraft/c182/Systems/instrumentation.xml</path>
@@ -57,7 +69,7 @@
 <!-- An exit for the walker -->
         <map>
             <default_exit>
-                <x-offset-m type="float">-1.5</x-offset-m>
+                <x-offset-m type="float">3</x-offset-m>
                 <y-offset-m type="float">-1.5</y-offset-m>
             </default_exit>
         </map>
@@ -68,7 +80,9 @@
     </livery>
     
   <c182>
-  
+
+
+
 <procedural-lights type="bool">true</procedural-lights>
   
       <chrome_spinner type="bool">true</chrome_spinner>
@@ -514,6 +528,7 @@
 	<file>Aircraft/c182/Nasal/kt76c.nas</file>
 	<file>Aircraft/c182/Nasal/kn62a.nas</file>
 	<file>Aircraft/c182/Nasal/kr87.nas</file>
+	<!--<file>Aircraft/c182/Nasal/test.nas</file>-->
     </c182>
   <electrical>
    <file>Aircraft/c182/Nasal/c182s-electrical.nas</file>

@@ -10,9 +10,9 @@ aircraft.livery.init("Aircraft/c182/Models/Liveries", "sim/model/livery/name", "
        index:   0,
        add:   func {
             
-                #if (getprop("/sim/chocks/enable")) {
+
                    print("chocks_model.add");
-                #}
+
              var manager = props.globals.getNode("/models", 1);
                 var i = 0;
                 for (; 1; i += 1)
@@ -44,7 +44,7 @@ aircraft.livery.init("Aircraft/c182/Models/Liveries", "sim/model/livery/name", "
                 props.globals.getNode("models/model[" ~ i ~ "]/elevation-ft-prop", 1);
                 props.globals.getNode("models/model[" ~ i ~ "]/heading-deg-prop", 1);
                 
-                setprop ("models/model[" ~ i ~ "]/path", "Aircraft/c182/Models/Exterior/wooden-chocks.ac");
+                setprop ("models/model[" ~ i ~ "]/path", "Aircraft/c182/Models/Exterior/chock.ac");
                 setprop ("models/model[" ~ i ~ "]/longitude-deg-prop", "sim/chocks/longitude-deg");
                 setprop ("models/model[" ~ i ~ "]/latitude-deg-prop", "sim/chocks/latitude-deg");
                 setprop ("models/model[" ~ i ~ "]/elevation-ft-prop", "sim/chocks/altitude-ft");
@@ -64,13 +64,165 @@ aircraft.livery.init("Aircraft/c182/Models/Liveries", "sim/model/livery/name", "
 
 var init_common = func {
 
+
+
 	setlistener("/sim/chocks/enable", func(n) {
 		if (n.getValue()) {
+
 		
 				chocks_model.add();
 			
 		} else  {
 			chocks_model.remove();
+		}
+	});
+}
+settimer(init_common,0);
+
+#safety-cones======================================================
+#to-do:
+#credits
+
+ var cones_model = {
+       index:   0,
+       add:   func {
+            
+
+                   print("cones_model.add");
+
+             var manager = props.globals.getNode("/models", 1);
+                var i = 0;
+                for (; 1; i += 1)
+                   if (manager.getChild("model", i, 0) == nil)
+                      break;
+		      
+		
+		      
+		var heading = getprop("/orientation/heading-deg");
+		var pitch = getprop("/orientation/pitch-deg");
+		var roll = getprop("/orientation/roll-deg");
+
+		var lat = getprop("/position/latitude-deg");
+		var long = getprop("/position/longitude-deg");
+		var alt = getprop("/position/altitude-ft");
+		
+
+		setprop("sim/cones/latitude-deg", lat);
+		setprop("sim/cones/longitude-deg", long);
+		setprop("sim/cones/altitude-ft", (alt -3.8513828));
+		setprop("sim/cones/model-heading-deg", (heading ));
+		setprop("sim/cones/pitch-deg", pitch);
+		setprop("sim/cones/roll-deg", roll);
+		
+                
+                props.globals.getNode("models/model[" ~ i ~ "]/path", 1);
+                props.globals.getNode("models/model[" ~ i ~ "]/longitude-deg-prop", 1);
+                props.globals.getNode("models/model[" ~ i ~ "]/latitude-deg-prop", 1);
+                props.globals.getNode("models/model[" ~ i ~ "]/elevation-ft-prop", 1);
+                props.globals.getNode("models/model[" ~ i ~ "]/heading-deg-prop", 1);
+                
+                setprop ("models/model[" ~ i ~ "]/path", "Aircraft/c182/Models/Exterior/safety-cones.ac");
+                setprop ("models/model[" ~ i ~ "]/longitude-deg-prop", "sim/cones/longitude-deg");
+                setprop ("models/model[" ~ i ~ "]/latitude-deg-prop", "sim/cones/latitude-deg");
+                setprop ("models/model[" ~ i ~ "]/elevation-ft-prop", "sim/cones/altitude-ft");
+                setprop ("models/model[" ~ i ~ "]/heading-deg-prop", "sim/cones/model-heading-deg");
+                props.globals.getNode("models/model[" ~ i ~ "]/load", 1);
+                me.index = i;
+             
+          },
+       remove:   func {
+             
+                print("cones_model.remove");
+             
+             props.globals.getNode("/models", 1).removeChild("model", me.index);
+          },
+
+};
+
+var init_common = func {
+
+	setlistener("/sim/cones/enable", func(n) {
+		if (n.getValue()) {
+		
+				cones_model.add();
+			
+		} else  {
+			cones_model.remove();
+		}
+	});
+}
+settimer(init_common,0);
+
+
+#ground-power======================================================
+#to-do:
+#credits
+
+ var gpu_model = {
+       index:   0,
+       add:   func {
+            
+
+                   print("gpu_model.add");
+
+             var manager = props.globals.getNode("/models", 1);
+                var i = 0;
+                for (; 1; i += 1)
+                   if (manager.getChild("model", i, 0) == nil)
+                      break;
+		      
+		
+		      
+		var heading = getprop("/orientation/heading-deg");
+		var pitch = getprop("/orientation/pitch-deg");
+		var roll = getprop("/orientation/roll-deg");
+
+		var lat = getprop("/position/latitude-deg");
+		var long = getprop("/position/longitude-deg");
+		var alt = getprop("/position/altitude-ft");
+		
+
+		setprop("sim/gpu/latitude-deg", lat);
+		setprop("sim/gpu/longitude-deg", long);
+		setprop("sim/gpu/altitude-ft", (alt -3.8513828));
+		setprop("sim/gpu/model-heading-deg", (heading ));
+		setprop("sim/gpu/pitch-deg", pitch);
+		setprop("sim/gpu/roll-deg", roll);
+		
+                
+                props.globals.getNode("models/model[" ~ i ~ "]/path", 1);
+                props.globals.getNode("models/model[" ~ i ~ "]/longitude-deg-prop", 1);
+                props.globals.getNode("models/model[" ~ i ~ "]/latitude-deg-prop", 1);
+                props.globals.getNode("models/model[" ~ i ~ "]/elevation-ft-prop", 1);
+                props.globals.getNode("models/model[" ~ i ~ "]/heading-deg-prop", 1);
+                
+                setprop ("models/model[" ~ i ~ "]/path", "Aircraft/c182/Models/Exterior/external-power.xml");
+                setprop ("models/model[" ~ i ~ "]/longitude-deg-prop", "sim/gpu/longitude-deg");
+                setprop ("models/model[" ~ i ~ "]/latitude-deg-prop", "sim/gpu/latitude-deg");
+                setprop ("models/model[" ~ i ~ "]/elevation-ft-prop", "sim/gpu/altitude-ft");
+                setprop ("models/model[" ~ i ~ "]/heading-deg-prop", "sim/gpu/model-heading-deg");
+                props.globals.getNode("models/model[" ~ i ~ "]/load", 1);
+                me.index = i;
+             
+          },
+       remove:   func {
+             
+                print("gpu_model.remove");
+             
+             props.globals.getNode("/models", 1).removeChild("model", me.index);
+          },
+
+};
+
+var init_common = func {
+
+	setlistener("/sim/gpu/enable", func(n) {
+		if (n.getValue()) {
+		
+				gpu_model.add();
+			
+		} else  {
+			gpu_model.remove();
 		}
 	});
 }

@@ -57,20 +57,93 @@
         </group>
         <hrule/>
 	
+
+<group>
+	<layout>vbox</layout>
+	<padding>6</padding>
+	<radio>
+                <halign>left</halign>
+                <label>Place wheel chocks</label>
+                        <live>true</live>
+		<property>/sim/chocks/enable</property>
+               <binding>
+                    <command>property-toggle</command>
+		<property>/sim/chocks/enable</property>
+                </binding>
+	<binding>
+                    <command>dialog-update</command>
+                </binding>
+	</radio>
+        </group>
+
+
+<group>
+	<layout>vbox</layout>
+	<padding>6</padding>
+	<radio>
+                <halign>left</halign>
+                <label>Place cones</label>
+                        <live>true</live>
+		<property>/sim/cones/enable</property>
+               <binding>
+                    <command>property-toggle</command>
+		<property>/sim/cones/enable</property>
+                </binding>
+	<binding>
+                    <command>dialog-update</command>
+                </binding>
+	</radio>
+        </group>
+        <hrule/>
+
+	
+
+	
+	
 <group>
 	<layout>vbox</layout>
 	<padding>6</padding>
 	<checkbox>
                 <halign>left</halign>
-                <label>Place wheel chocks</label>
-                <property>/sim/chocks/enable</property>
-                <live>true</live>
-                <binding>
-                    <command>dialog-apply</command>
+                <label>Place Ground Power Unit</label>
+                        <live>true</live>
+		<property>/sim/gpu/enable</property>
+               <binding>
+                    <command>property-toggle</command>
+		<property>/sim/gpu/enable</property>
+                </binding>
+	<binding>
+                    <command>dialog-update</command>
+                </binding>
+	</checkbox>
+        </group>
+
+	
+<group>
+	<layout>vbox</layout>
+	<padding>6</padding>
+	<checkbox>
+                <halign>left</halign>
+                <label>Connect Groud Power Unit</label>
+                        <live>true</live>
+		<property>/controls/electric/external-power</property>
+	<enable>
+		<property>/sim/gpu/enable</property>
+	</enable>
+               <binding>
+                    <command>property-toggle</command>
+		<property>/controls/electric/external-power</property>
+                </binding>
+	<binding>
+                    <command>dialog-update</command>
                 </binding>
 	</checkbox>
         </group>
         <hrule/>
+	
+
+	
+
 	
 
 	

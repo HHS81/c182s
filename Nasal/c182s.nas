@@ -11,7 +11,7 @@ aircraft.livery.init("Aircraft/c182/Models/Liveries", "sim/model/livery/name", "
        add:   func {
             
 
-                   print("chocks_model.add");
+                   #print("chocks_model.add");
 
              var manager = props.globals.getNode("/models", 1);
                 var i = 0;
@@ -55,7 +55,7 @@ aircraft.livery.init("Aircraft/c182/Models/Liveries", "sim/model/livery/name", "
           },
        remove:   func {
              
-                print("chocks_model.remove");
+                #print("chocks_model.remove");
              
              props.globals.getNode("/models", 1).removeChild("model", me.index);
           },
@@ -88,7 +88,7 @@ settimer(init_common,0);
        add:   func {
             
 
-                   print("cones_model.add");
+                   #print("cones_model.add");
 
              var manager = props.globals.getNode("/models", 1);
                 var i = 0;
@@ -132,7 +132,7 @@ settimer(init_common,0);
           },
        remove:   func {
              
-                print("cones_model.remove");
+                #print("cones_model.remove");
              
              props.globals.getNode("/models", 1).removeChild("model", me.index);
           },
@@ -163,7 +163,7 @@ settimer(init_common,0);
        add:   func {
             
 
-                   print("gpu_model.add");
+                   #print("gpu_model.add");
 
              var manager = props.globals.getNode("/models", 1);
                 var i = 0;
@@ -207,7 +207,7 @@ settimer(init_common,0);
           },
        remove:   func {
              
-                print("gpu_model.remove");
+                #print("gpu_model.remove");
              
              props.globals.getNode("/models", 1).removeChild("model", me.index);
           },
@@ -223,6 +223,84 @@ var init_common = func {
 			
 		} else  {
 			gpu_model.remove();
+		}
+	});
+}
+settimer(init_common,0);
+
+
+#ladder======================================================
+#to-do:
+#credits
+
+ var ladder_model = {
+       index:   0,
+       add:   func {
+            
+
+                   #print("ladder_model.add");
+
+             var manager = props.globals.getNode("/models", 1);
+                var i = 0;
+                for (; 1; i += 1)
+                   if (manager.getChild("model", i, 0) == nil)
+                      break;
+		      
+		
+		      
+		var heading = getprop("/orientation/heading-deg");
+		var pitch = getprop("/orientation/pitch-deg");
+		var roll = getprop("/orientation/roll-deg");
+
+		var lat = getprop("/position/latitude-deg");
+		var long = getprop("/position/longitude-deg");
+		var alt = getprop("/position/altitude-ft");
+		
+
+		setprop("sim/ladder/latitude-deg", lat);
+		setprop("sim/ladder/longitude-deg", long);
+		setprop("sim/ladder/altitude-ft", (alt -3.8513828));
+		setprop("sim/ladder/model-heading-deg", (heading ));
+		setprop("sim/ladder/pitch-deg", pitch);
+		setprop("sim/ladder/roll-deg", roll);
+		
+                
+                props.globals.getNode("models/model[" ~ i ~ "]/path", 1);
+                props.globals.getNode("models/model[" ~ i ~ "]/longitude-deg-prop", 1);
+                props.globals.getNode("models/model[" ~ i ~ "]/latitude-deg-prop", 1);
+                props.globals.getNode("models/model[" ~ i ~ "]/elevation-ft-prop", 1);
+                props.globals.getNode("models/model[" ~ i ~ "]/heading-deg-prop", 1);
+                
+                setprop ("models/model[" ~ i ~ "]/path", "Aircraft/c182/Models/Exterior/ladder.xml");
+                setprop ("models/model[" ~ i ~ "]/longitude-deg-prop", "sim/ladder/longitude-deg");
+                setprop ("models/model[" ~ i ~ "]/latitude-deg-prop", "sim/ladder/latitude-deg");
+                setprop ("models/model[" ~ i ~ "]/elevation-ft-prop", "sim/ladder/altitude-ft");
+                setprop ("models/model[" ~ i ~ "]/heading-deg-prop", "sim/ladder/model-heading-deg");
+                props.globals.getNode("models/model[" ~ i ~ "]/load", 1);
+                me.index = i;
+             
+          },
+       remove:   func {
+             
+                #print("ladder_model.remove");
+             
+             props.globals.getNode("/models", 1).removeChild("model", me.index);
+          },
+
+};
+
+var init_common = func {
+
+
+
+	setlistener("/sim/ladder/enable", func(n) {
+		if (n.getValue()) {
+
+		
+				ladder_model.add();
+			
+		} else  {
+			ladder_model.remove();
 		}
 	});
 }

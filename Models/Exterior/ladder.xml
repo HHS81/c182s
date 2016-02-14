@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+    <path>ladder.ac</path>
+    <nopreview/>
+
+<animation>
+	<type>select</type>
+        <object-name>ladder.right</object-name>
+	<condition>
+	<property>/sim/ladder/right</property>
+<value>true</value>
+	</condition>
+</animation>
+
+<animation>
+	<type>select</type>
+        <object-name>ladder.left</object-name>
+	<condition>
+	<property>/sim/ladder/left</property>
+<value>true</value>
+	</condition>
+</animation>
+
+</PropertyList>

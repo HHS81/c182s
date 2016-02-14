@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+
+<!-- C182s Skylane
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 2 of the
+ License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+-->
+
+<PropertyList>
+
+    <name>securing</name>
+    <layout>vbox</layout>
+    <resizable>false</resizable>
+    <modal>false</modal>
+    <draggable>true</draggable>
+
+
+    <group>
+        <layout>hbox</layout>
+
+        <empty><stretch>true</stretch></empty>
+        <text>
+            <label>Aircraft Securing</label>
+        </text>
+        <empty><stretch>true</stretch></empty>
+
+        <button>
+            <legend/>
+            <key>Esc</key>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+	</button>
+	</group>
+	<hrule/>
+    
+	
+
+<group>
+	<layout>vbox</layout>
+	<padding>6</padding>
+	<radio>
+                <halign>left</halign>
+                <label>Place wheel chocks</label>
+                        <live>true</live>
+		<property>/sim/chocks/enable</property>
+			<enable>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>0.1</value>
+                                </less-than>
+			</enable>
+               <binding>
+                    <command>property-toggle</command>
+		<property>/sim/chocks/enable</property>
+                </binding>
+	<binding>
+                    <command>dialog-update</command><!--do not use dialog-apply - bad interactions with walker!-->
+                </binding>
+	</radio>
+        </group>
+
+
+<group>
+	<layout>vbox</layout>
+	<padding>6</padding>
+	<radio>
+                <halign>left</halign>
+                <label>Place cones</label>
+                        <live>true</live>
+		<property>/sim/cones/enable</property>
+			<enable>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>0.1</value>
+                                </less-than>
+			</enable>
+               <binding>
+                    <command>property-toggle</command>
+		<property>/sim/cones/enable</property>
+                </binding>
+	<binding>
+                    <command>dialog-update</command>
+                </binding>
+	</radio>
+        </group>
+        <hrule/>
+	
+<group>
+                <layout>hbox</layout>
+
+                <!-- Small left padding -->
+                <group>
+                    <layout>vbox</layout>
+                    <padding>6</padding>
+                </group>
+
+			<group>
+                    <layout>vbox</layout>
+
+                    
+
+                    <checkbox>
+                        <halign>left</halign>
+                        <label>Put pitot tube cover </label>
+                        <property>/sim/model/c182/securing/pitot-cover-visible</property>
+                        <live>true</live>
+                        <enable>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>1.0</value>
+                                </less-than>
+                        </enable>
+               <binding>
+                    <command>property-toggle</command>
+                        <property>/sim/model/c182/securing/pitot-cover-visible</property>
+                </binding>
+	<binding>
+                    <command>dialog-update</command>
+                </binding>
+                    </checkbox>
+                    
+                    <radio>
+                        <halign>left</halign>
+                        <label>Enable left tie-down (not yet implemented)</label>
+                        <property>/sim/model/c182/securing/tiedownL-visible</property>
+                        <live>true</live>
+                        <enable>
+                            <property>/sim/model/c182/securing/tiedowns-can-have</property>
+                        </enable>
+                        <binding>
+                            <command>dialog-apply</command>
+                        </binding>
+                    </radio>
+                    
+                    <radio>
+                        <halign>left</halign>
+                        <label>Enable right tie-down (not yet implemented)</label>
+                        <property>/sim/model/c182/securing/tiedownR-visible</property>
+                        <live>true</live>
+                        <enable>
+                            <property>/sim/model/c182/securing/tiedowns-can-have</property>
+                        </enable>
+                        <binding>
+                            <command>dialog-apply</command>
+                        </binding>
+                    </radio>
+
+                    <radio>
+                        <halign>left</halign>
+                        <label>Enable tail tie-down (not yet implemented)</label>
+                        <property>/sim/model/c182/securing/tiedownT-visible</property>
+                        <live>true</live>
+                        <enable>
+                            <property>/sim/model/c182/securing/tiedowns-can-have</property>
+                        </enable>
+                        <binding>
+                            <command>dialog-apply</command>
+                        </binding>
+                    </radio>
+
+			</group>
+
+                <!-- Force group to the left -->
+                <empty><stretch>true</stretch></empty>
+
+
+</group>
+
+        <hrule/>
+	
+
+       
+</PropertyList>

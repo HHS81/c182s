@@ -51,104 +51,33 @@
                 <property>/sim/model/c182/procedural-lights</property>
                 <live>true</live>
                 <binding>
-                    <command>dialog-apply</command>
+                    <command>property-toggle</command><!-- dialog-apply would apply values to all objects here - setlistener reacts on them in unfortunate way-->
+                <property>/sim/model/c182/procedural-lights</property>
+                </binding>
+	<binding>
+                    <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
                 </binding>
 	</checkbox>
         </group>
-        <hrule/>
-	
-
-<group>
-	<layout>vbox</layout>
-	<padding>6</padding>
-	<radio>
-                <halign>left</halign>
-                <label>Place wheel chocks</label>
-                        <live>true</live>
-		<property>/sim/chocks/enable</property>
-               <binding>
-                    <command>property-toggle</command>
-		<property>/sim/chocks/enable</property>
-                </binding>
-	<binding>
-                    <command>dialog-update</command>
-                </binding>
-	</radio>
-        </group>
-
-
-<group>
-	<layout>vbox</layout>
-	<padding>6</padding>
-	<radio>
-                <halign>left</halign>
-                <label>Place cones</label>
-                        <live>true</live>
-		<property>/sim/cones/enable</property>
-               <binding>
-                    <command>property-toggle</command>
-		<property>/sim/cones/enable</property>
-                </binding>
-	<binding>
-                    <command>dialog-update</command>
-                </binding>
-	</radio>
-        </group>
-        <hrule/>
-
-	
-
-	
 	
 <group>
 	<layout>vbox</layout>
 	<padding>6</padding>
 	<checkbox>
                 <halign>left</halign>
-                <label>Place Ground Power Unit</label>
-                        <live>true</live>
-		<property>/sim/gpu/enable</property>
-               <binding>
+                <label>Show/Hide Yokes</label>
+                    <property>/sim/model/hide-yoke</property>
+                <live>true</live>
+                <binding>
                     <command>property-toggle</command>
-		<property>/sim/gpu/enable</property>
+                    <property>/sim/model/hide-yoke</property>
                 </binding>
 	<binding>
                     <command>dialog-update</command>
                 </binding>
 	</checkbox>
-        </group>
-
+        </group>	
 	
-<group>
-	<layout>vbox</layout>
-	<padding>6</padding>
-	<checkbox>
-                <halign>left</halign>
-                <label>Connect Groud Power Unit</label>
-                        <live>true</live>
-		<property>/controls/electric/external-power</property>
-	<enable>
-		<property>/sim/gpu/enable</property>
-	</enable>
-               <binding>
-                    <command>property-toggle</command>
-		<property>/controls/electric/external-power</property>
-                </binding>
-	<binding>
-                    <command>dialog-update</command>
-                </binding>
-	</checkbox>
-        </group>
         <hrule/>
-	
 
-	
-
-	
-
-	
-
-
-
-       
 </PropertyList>

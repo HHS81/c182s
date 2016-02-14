@@ -1,20 +1,22 @@
 AC3Db
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
-MATERIAL "RedLightOff" rgb 0.7896 0.0161 0.0161 amb 0.7896 0.0161 0.0161 emis 0 0 0 spec 1 1 1 shi 128 trans 0.5
+MATERIAL "RedLightOff" rgb 0.7896 0.0161 0.0161 amb 0.79 0.79 0.79 emis 0 0 0 spec 1 1 1 shi 128 trans 0.75
 MATERIAL "FastProp" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 32 trans 0.925
 MATERIAL "Fuselage" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 64 trans 0
-MATERIAL "Lights" rgb 1 1 1 amb 1 1 1 emis 1 1 1 spec 1 1 1 shi 32 trans 0
-MATERIAL "NavLightRed" rgb 0.5 0 0 amb 0.5 0 0 emis 0 0 0 spec 1 1 1 shi 32 trans 0.1
-MATERIAL "NavLightGreen" rgb 0 0.4 0.5 amb 0 0.4 0.5 emis 0 0 0 spec 1 1 1 shi 32 trans 0.1
-MATERIAL "Cristal" rgb 0.64 0.64 0.64 amb 0.64 0.64 0.64 emis 0 0 0 spec 0.207 0.207 0.207 shi 50 trans 0.3
-MATERIAL "Plane.002Xmat" rgb 1 1 1 amb 1 1 1 emis 1 1 1 spec 0 0 0 shi 0 trans 0
-MATERIAL "Plane.003Xmat" rgb 1 1 1 amb 1 1 1 emis 1 1 1 spec 0 0 0 shi 0 trans 0
+MATERIAL "Lights" rgb 1 1 1 amb 2 2 2 emis 1 1 1 spec 1 1 1 shi 32 trans 0
+MATERIAL "NavLightRed" rgb 0.5 0 0 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 32 trans 0.1
+MATERIAL "NavLightGreen" rgb 0 0.4 0.5 amb 2 2 2 emis 0 0 0 spec 1 1 1 shi 32 trans 0.1
+MATERIAL "Cristal" rgb 0.64 0.64 0.64 amb 1 1 1 emis 0 0 0 spec 0.207 0.207 0.207 shi 50 trans 0.3
+MATERIAL "Plane.002Xmat" rgb 1 1 1 amb 0 0 0 emis 1 1 1 spec 0 0 0 shi 0 trans 0
+MATERIAL "Plane.003Xmat" rgb 1 1 1 amb 0 0 0 emis 1 1 1 spec 0 0 0 shi 0 trans 0
 MATERIAL "PlaneX" rgb 1 1 1 amb 0 0 0 emis 1 1 1 spec 0 0 0 shi 0 trans 0
-MATERIAL "prop.001" rgb 0.687279 0.687279 0.687279 amb 0.687279 0.687279 0.687279 emis 0 0 0 spec 1 1 1 shi 32 trans 0.835798
-MATERIAL "Windows" rgb 0.7 0.7 0.7 amb 0.7 0.7 0.7 emis 0 0 0 spec 1 1 1 shi 64 trans 0.5
+MATERIAL "prop.001" rgb 0.687279 0.687279 0.687279 amb 2.749116 2.749116 2.749116 emis 0 0 0 spec 1 1 1 shi 32 trans 0.835798
+MATERIAL "Windows" rgb 0.7 0.7 0.7 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 64 trans 0.5
 MATERIAL "Windows.Int" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 64 trans 0.95
+MATERIAL "chokes.cs" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 32 trans 0
+MATERIAL "pitotcover.cs" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 32 trans 0
 OBJECT world
-kids 33
+kids 35
 OBJECT poly
 name "BeaconOff"
 data 8
@@ -125876,6 +125878,164 @@ refs 4
 81 0.304179489613 0.606727838516
 kids 0
 OBJECT poly
+name "chokes.cs"
+data 8
+Cube.001
+crease 30.000000
+numvert 24
+0.066246 -1.239351 -0.206281
+0.066246 -1.239351 0.214404
+-0.553873 -1.239351 0.214404
+-0.553873 -1.239351 -0.206281
+0.066246 -0.863778 -0.206281
+0.066246 -0.863778 0.214404
+-0.553873 -0.863778 0.214404
+-0.553873 -0.863778 -0.206281
+1.639836 -1.126952 -1.502179
+1.639836 -1.126952 -1.081493
+1.019717 -1.126952 -1.081493
+1.019718 -1.126952 -1.502179
+1.639837 -0.751379 -1.502178
+1.639836 -0.751379 -1.081493
+1.019717 -0.751379 -1.081493
+1.019718 -0.751379 -1.502179
+1.639836 -1.126952 1.083004
+1.639836 -1.126952 1.50369
+1.019717 -1.126952 1.50369
+1.019718 -1.126952 1.083004
+1.639836 -0.751379 1.083004
+1.639836 -0.751379 1.50369
+1.019717 -0.751379 1.50369
+1.019717 -0.751379 1.083004
+numsurf 18
+SURF 0x00
+mat 14
+refs 4
+0 0 0
+3 0 0
+2 0 0
+1 0 0
+SURF 0x00
+mat 14
+refs 4
+4 0 0
+5 0 0
+6 0 0
+7 0 0
+SURF 0x00
+mat 14
+refs 4
+0 0 0
+1 0 0
+5 0 0
+4 0 0
+SURF 0x00
+mat 14
+refs 4
+1 0 0
+2 0 0
+6 0 0
+5 0 0
+SURF 0x00
+mat 14
+refs 4
+2 0 0
+3 0 0
+7 0 0
+6 0 0
+SURF 0x00
+mat 14
+refs 4
+3 0 0
+0 0 0
+4 0 0
+7 0 0
+SURF 0x00
+mat 14
+refs 4
+8 0 0
+11 0 0
+10 0 0
+9 0 0
+SURF 0x00
+mat 14
+refs 4
+12 0 0
+13 0 0
+14 0 0
+15 0 0
+SURF 0x00
+mat 14
+refs 4
+8 0 0
+9 0 0
+13 0 0
+12 0 0
+SURF 0x00
+mat 14
+refs 4
+9 0 0
+10 0 0
+14 0 0
+13 0 0
+SURF 0x00
+mat 14
+refs 4
+10 0 0
+11 0 0
+15 0 0
+14 0 0
+SURF 0x00
+mat 14
+refs 4
+12 0 0
+15 0 0
+11 0 0
+8 0 0
+SURF 0x00
+mat 14
+refs 4
+16 0 0
+19 0 0
+18 0 0
+17 0 0
+SURF 0x00
+mat 14
+refs 4
+20 0 0
+21 0 0
+22 0 0
+23 0 0
+SURF 0x00
+mat 14
+refs 4
+16 0 0
+17 0 0
+21 0 0
+20 0 0
+SURF 0x00
+mat 14
+refs 4
+17 0 0
+18 0 0
+22 0 0
+21 0 0
+SURF 0x00
+mat 14
+refs 4
+18 0 0
+19 0 0
+23 0 0
+22 0 0
+SURF 0x00
+mat 14
+refs 4
+20 0 0
+23 0 0
+19 0 0
+16 0 0
+kids 0
+OBJECT poly
 name "llglas"
 data 8
 Mesh.028
@@ -125938,4 +126098,62 @@ refs 4
 3 0.732128024101 0.233402997255
 13 0.734063029289 0.163352996111
 10 0.734300017357 0.163278996944
+kids 0
+OBJECT poly
+name "pitotcover.cs"
+data 9
+Plane.023
+crease 30.000000
+numvert 8
+0.649311 0.766542 1.253794
+0.649311 0.766542 1.491581
+0.649311 0.528755 1.491581
+0.649311 0.528755 1.253794
+0.65854 0.528755 1.253794
+0.65854 0.528755 1.491581
+0.65854 0.766542 1.491581
+0.65854 0.766542 1.253794
+numsurf 6
+SURF 0x00
+mat 15
+refs 4
+0 0 0
+1 0 0
+2 0 0
+3 0 0
+SURF 0x00
+mat 15
+refs 4
+2 0 0
+5 0 0
+4 0 0
+3 0 0
+SURF 0x00
+mat 15
+refs 4
+7 0 0
+0 0 0
+3 0 0
+4 0 0
+SURF 0x00
+mat 15
+refs 4
+0 0 0
+7 0 0
+6 0 0
+1 0 0
+SURF 0x00
+mat 15
+refs 4
+1 0 0
+6 0 0
+5 0 0
+2 0 0
+SURF 0x00
+mat 15
+refs 4
+5 0 0
+6 0 0
+7 0 0
+4 0 0
 kids 0

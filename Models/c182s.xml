@@ -1441,6 +1441,81 @@
             <z-m>0.892203</z-m>
         </offsets>
  </model>
+ 
+ 
+<!--exterior stuff which is not called by nasal-script-->
+
+<model>
+        <path>Aircraft/c182/Models/Exterior/pitot-cover.xml</path>
+        <name>pitot-cover</name>
+        <offsets>
+            <x-m>0.0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0</z-m>
+        </offsets>
+	<condition>
+	<property>/sim/model/c182/securing/pitot-cover-visible</property>
+	</condition>
+	</model>
+
+
+<animation>
+        <type>pick</type>
+        <object-name>pitotcover.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+		<enable>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>0.1</value>
+                                </less-than>
+		</enable>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/model/c182/securing/pitot-cover-visible</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Pitot Cover: %s</label>
+        <property>/sim/model/c182/securing/pitot-cover-visible</property>
+                <tooltip-id>pitot-cover</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+    
+<animation>
+        <type>pick</type>
+        <object-name>chokes.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+		<enable>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>0.1</value>
+                                </less-than>
+		</enable>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/chocks/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Wheel Chokes: %s</label>
+        <property>/sim/chocks/enable</property>
+                <tooltip-id>wheel-chokes</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
 
  
 <!--object animation-->
@@ -1461,6 +1536,11 @@
      <property>sim/model/c182/chrome_spinner</property>
    </condition>
  </animation>
+
+
+
+ 
+
  
  
  

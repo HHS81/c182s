@@ -409,12 +409,16 @@
     <desc>Propeller finer/coarser</desc>
    </key>
    <key>
+    <name>m/M</name>
+    <desc>Mixture rich/lean</desc>
+   </key>
+   <key>
     <name>Y</name>
     <desc>Toggle yoke visibility</desc>
    </key>
    <key>
-    <name>L</name>
-    <desc>Cockpit illumination</desc>
+    <name>S (shift-s)</name>
+    <desc>Engine Starter</desc>
    </key>
   </help>
 

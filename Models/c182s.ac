@@ -1,18 +1,18 @@
 AC3Db
-MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
-MATERIAL "RedLightOff" rgb 0.7896 0.0161 0.0161 amb 0.79 0.79 0.79 emis 0 0 0 spec 1 1 1 shi 128 trans 0.75
+MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 1 1 1  shi 64  trans 0
+MATERIAL "RedLightOff" rgb 0.7896 0.0161 0.0161 amb 7896 0.0161 0.0161 emis 0 0 0 spec 1 1 1 shi 128 trans 0.5
 MATERIAL "FastProp" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 32 trans 0.925
 MATERIAL "Fuselage" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 64 trans 0
-MATERIAL "Lights" rgb 1 1 1 amb 2 2 2 emis 1 1 1 spec 1 1 1 shi 32 trans 0
-MATERIAL "NavLightRed" rgb 0.5 0 0 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 32 trans 0.1
-MATERIAL "NavLightGreen" rgb 0 0.4 0.5 amb 2 2 2 emis 0 0 0 spec 1 1 1 shi 32 trans 0.1
-MATERIAL "Cristal" rgb 0.64 0.64 0.64 amb 1 1 1 emis 0 0 0 spec 0.207 0.207 0.207 shi 50 trans 0.3
+MATERIAL "Lights" rgb 1 1 1 amb 1 1 1 emis 1 1 1 spec 1 1 1 shi 32 trans 0
+MATERIAL "NavLightRed" rgb 0.5 0 0 amb 0.5 0 0 emis 0 0 0 spec 1 1 1 shi 32 trans 0.1
+MATERIAL "NavLightGreen" rgb 0 0.4 0.5 amb 0 0.4 0.5 emis 0 0 0 spec 1 1 1 shi 32 trans 0.1
+MATERIAL "Cristal" rgb 0.64 0.64 0.64 amb 0.64 0.64 0.64 emis 0 0 0 spec 0.207 0.207 0.207 shi 50 trans 0.3
 MATERIAL "Plane.002Xmat" rgb 1 1 1 amb 0 0 0 emis 1 1 1 spec 0 0 0 shi 0 trans 0
 MATERIAL "Plane.003Xmat" rgb 1 1 1 amb 0 0 0 emis 1 1 1 spec 0 0 0 shi 0 trans 0
 MATERIAL "PlaneX" rgb 1 1 1 amb 0 0 0 emis 1 1 1 spec 0 0 0 shi 0 trans 0
-MATERIAL "prop.001" rgb 0.687279 0.687279 0.687279 amb 2.749116 2.749116 2.749116 emis 0 0 0 spec 1 1 1 shi 32 trans 0.835798
+MATERIAL "prop.001" rgb 0.687279 0.687279 0.687279 amb 0.687279 0.687279 0.687279 emis 0 0 0 spec 1 1 1 shi 32 trans 0.835798
 MATERIAL "tdcs" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0 0 0 shi 32 trans 1
-MATERIAL "Windows" rgb 0.7 0.7 0.7 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 64 trans 0.5
+MATERIAL "Windows" rgb 0.7 0.7 0.7 amb 0.7 0.7 0.7 emis 0 0 0 spec 1 1 1 shi 64 trans 0.5
 MATERIAL "Windows.Int" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 64 trans 0.95
 MATERIAL "cs" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 32 trans 0
 OBJECT world
@@ -528,7 +528,7 @@ data 9
 Plane.013
 texture "PropBlur.png"
 texrep 1 1
-crease 1.000000
+crease 80.000000
 numvert 256
 -1.306761 1.00035 0.194396
 -1.230322 0.194552 0.033643
@@ -109368,7 +109368,7 @@ OBJECT poly
 name "NavLight.L"
 data 8
 Mesh.011
-crease 0.000000
+crease 80.000000
 numvert 73
 0.849885 0.897226 5.436224
 0.850245 0.893415 5.436224
@@ -109889,7 +109889,7 @@ OBJECT poly
 name "NavLight.R"
 data 8
 Mesh.015
-crease 0.000000
+crease 80.000000
 numvert 73
 0.849885 0.897227 -5.436298
 0.850245 0.893416 -5.436298
@@ -110412,7 +110412,7 @@ data 9
 Plane.009
 texture "Lights.png"
 texrep 1 1
-crease 0.000000
+crease 80.000000
 numvert 9
 0.734546 0.726234 -5.337941
 0.972752 0.726234 -5.575546
@@ -110459,7 +110459,7 @@ data 9
 Plane.012
 texture "Lights.png"
 texrep 1 1
-crease 0.000000
+crease 80.000000
 numvert 9
 0.734218 1.067484 5.333133
 0.972069 1.067484 5.569841
@@ -110504,7 +110504,7 @@ OBJECT poly
 name "NavLightRed.001"
 data 9
 Plane.010
-crease 0.000000
+crease 80.000000
 numvert 0
 numsurf 0
 kids 0
@@ -111403,7 +111403,7 @@ OBJECT poly
 name "NavlightTransp"
 data 8
 Mesh.066
-crease 0.000000
+crease 80.000000
 numvert 129
 6.146033 0.474245 0.022832
 6.146033 0.468391 0.021552
@@ -112474,7 +112474,7 @@ data 9
 Plane.011
 texture "Lights.png"
 texrep 1 1
-crease 1.000000
+crease 30.000000
 numvert 9
 6.170826 0.360707 -0.118845
 6.170826 0.360707 0.131155
@@ -112521,7 +112521,7 @@ data 14
 BeaconOffXmesh
 texture "Lights.png"
 texrep 1 1
-crease 1.000000
+crease 80.000000
 numvert 4
 -0.447989 -0.455 0.038236
 0.447989 -0.455 0.038236
@@ -112547,7 +112547,7 @@ data 9
 Plane.014
 texture "PropBlur.png"
 texrep 1 1
-crease 0.000000
+crease 80.000000
 numvert 261
 -1.304542 0.943372 -0.384546
 -1.33788 0.187679 -0.053242
@@ -114484,7 +114484,7 @@ OBJECT poly
 name "SlowProp.001"
 data 8
 Mesh.133
-crease 0.000000
+crease 80.000000
 numvert 0
 numsurf 0
 kids 0
@@ -114492,7 +114492,7 @@ OBJECT poly
 name "Strobe"
 data 8
 Mesh.014
-crease 0.000000
+crease 80.000000
 numvert 290
 0.881927 0.892203 5.453381
 0.881928 0.892203 -5.456207
@@ -116776,7 +116776,7 @@ data 9
 Plane.008
 texture "Lights.png"
 texrep 1 1
-crease 1.000000
+crease 80.000000
 numvert 9
 0.587066 0.982754 3.577977
 0.58734 0.982754 3.829716
@@ -123668,7 +123668,7 @@ OBJECT poly
 name "Windscreen.Int"
 data 8
 Mesh.557
-crease 0.000000
+crease 80.000000
 numvert 225
 2.249019 0.658779 0.42135
 2.214844 0.670435 0.409949
@@ -125195,7 +125195,7 @@ OBJECT poly
 name "Windscreen.Int.002"
 data 8
 Mesh.558
-crease 0.000000
+crease 80.000000
 numvert 0
 numsurf 0
 kids 0

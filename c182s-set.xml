@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!--<PropertyList>-->
 <PropertyList include="Aircraft/Generic/Human/Include/walker-include.xml">
  <sim>
 
@@ -417,7 +418,7 @@
     <desc>Toggle yoke visibility</desc>
    </key>
    <key>
-    <name>S (shift-s)</name>
+    <name>s</name>
     <desc>Engine Starter</desc>
    </key>
   </help>
@@ -608,7 +609,7 @@
             <file>Nasal/tiedowns.nas</file>
 </c182>
 <electrical>
-   <file>Aircraft/c182/Nasal/c182s-electrical.nas</file>
+ <file>Aircraft/c182/Nasal/c182s-electrical.nas</file>
 </electrical>
 <kap140>
    <file>Aircraft/Generic/kap140.nas</file>
@@ -642,22 +643,7 @@
         </binding>
       </key>
       
-<key n="83">
-   <name>S</name>
-   <desc>Toggle Starter Switch</desc>
-   <binding>
-    <command>property-assign</command>
-    <property>/controls/switches/starter</property>
-    <value >1</value>
-   </binding>
-   <mod-up>
-    <binding>
-     <command>property-assign</command>
-     <property>/controls/switches/starter</property>
-     <value>0</value>
-    </binding>
-   </mod-up>
-  </key>
+
 
 
     </keyboard>

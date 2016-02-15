@@ -24,13 +24,9 @@
     <object-name>clic-bug-L</object-name>
     <object-name>clic-bug-R</object-name>
 
-    <object-name>vitre</object-name>
+
   </animation>
 
-  <animation>
-    <type>noshadow</type>
-    <object-name>vitre</object-name>
-  </animation>
 
 
 

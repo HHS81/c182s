@@ -49,7 +49,7 @@
 		
 	<checkbox>
                     <halign>left</halign>
-                <label>Take ladder </label>
+                <label>Enable ladder </label>
                         <live>true</live>
 		<property>/sim/ladder/enable</property>
 			<enable>
@@ -69,7 +69,7 @@
 		
                 <radio>
                     <halign>left</halign>
-                <label>Place ladder left wing</label>
+                <label> ladder left wing</label>
                         <live>true</live>
 		<property>/sim/ladder/left</property>
 	<enable>
@@ -86,7 +86,7 @@
 
                 <radio>
                     <halign>right</halign>
-                <label>Place ladder right wing</label>
+                <label>... right wing</label>
                         <live>true</live>
 		<property>/sim/ladder/right</property>
 	<enable>

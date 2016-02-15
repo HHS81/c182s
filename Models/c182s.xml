@@ -1517,22 +1517,12 @@
         </hovered>
     </animation>
     
+
+    
+
+    
 <!--tiedown-->
-<params>
-        <securing>
-            <tiedowns>
-                <left>
-                    <visible>sim/model/c182/securing/tiedownL-visible</visible>
-                </left>
-                <right>
-                    <visible>sim/model/c182/securing/tiedownR-visible</visible>
-                </right>
-                <tail>
-                    <visible>sim/model/c182/securing/tiedownT-visible</visible>
-                </tail>
-            </tiedowns>
-        </securing>
-</params>
+
 <!-- Left Tiedowns -->
     <model>
         <name>tiedownL</name>
@@ -1687,26 +1677,6 @@
     </animation>
 
 
-<!-- Tail Tiedowns -->
-<!--<params>
-<securing>
-            <pitot-cover>sim/model/c182/securing/pitot-cover-visible</pitot-cover>
-            <chocks>sim/model/c182/securing/chock-visible</chocks>
-            <tiedowns>
-                <left>
-                    <visible>sim/model/c182/securing/tiedownL-visible</visible>
-                </left>
-                <right>
-                    <visible>sim/model/c182/securing/tiedownR-visible</visible>
-                </right>
-                <tail>
-                    <visible>sim/model/c182/securing/tiedownT-visible</visible>
-                </tail>
-            </tiedowns>
-        </securing>
-            <property>sim/model/c182/securing/tiedownT-visible</property>
-</params>-->
-
     <model>
         <name>tiedownT</name>
         <path>Aircraft/c182/Models/Exterior/tiedownT.xml</path>
@@ -1800,6 +1770,23 @@
    <object-name>chrome_spinner</object-name>
    <condition>
      <property>sim/model/c182/chrome_spinner</property>
+   </condition>
+ </animation>
+ 
+  <animation>
+   <type>select</type>
+   <object-name>WheelFairing.L</object-name>
+   <object-name>WheelFairing.R</object-name>
+   <condition>
+     <property>sim/model/c182/mw_fairing</property>
+   </condition>
+ </animation>
+ 
+  <animation>
+   <type>select</type>
+   <object-name>WheelFairingNose</object-name>
+   <condition>
+     <property>sim/model/c182/nw_fairing</property>
    </condition>
  </animation>
 

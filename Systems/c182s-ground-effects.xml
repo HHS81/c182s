@@ -5,7 +5,7 @@
   c182S damage effects for JSBSim.
   from: c172p damage effects for JSBSim.
 
-    Copyright (c) 2015 Wayne Bragg
+    Copyright (c) 2015 onox
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,8 +18,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
 
@@ -197,7 +196,6 @@
 
             <test logic="AND" value="fcs/tiedown-left-magnitude-pid">
                 /sim/model/c182/securing/tiedownL-visible EQ 1
-
             </test>
         </switch>
 
@@ -207,7 +205,6 @@
 
             <test logic="AND" value="fcs/tiedown-right-magnitude-pid">
                 /sim/model/c182/securing/tiedownR-visible EQ 1
-
             </test>
         </switch>
 
@@ -217,7 +214,6 @@
 
             <test logic="AND" value="fcs/tiedown-tail-magnitude-pid">
                 /sim/model/c182/securing/tiedownT-visible EQ 1
-
             </test>
         </switch>
 

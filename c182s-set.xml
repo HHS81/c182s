@@ -115,6 +115,9 @@
 </tiedowns>
   <securing>
                     <allow-securing-aircraft type="bool">true</allow-securing-aircraft>
+                    <tiedownL-visible type="bool">false</tiedownL-visible>
+                    <tiedownR-visible type="bool">false</tiedownR-visible>
+                    <tiedownT-visible type="bool">false</tiedownT-visible>
 </securing>
 
 <procedural-lights type="bool">true</procedural-lights>

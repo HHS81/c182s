@@ -1317,7 +1317,7 @@
         <force name="tiedown-right" frame="BODY">
             <location unit="M">
                 <x> 0.794</x>
-                <y>-2.473</y>
+                <y> 2.473</y>
                 <z> 0.691</z>
             </location>
             <direction>

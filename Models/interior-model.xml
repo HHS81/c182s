@@ -8,7 +8,11 @@
    <z-m> -0.0 </z-m>
  </offsets>
 
- 
+   <effect>
+       <inherits-from>Effects/model-transparent</inherits-from>
+    <object-name>SunVirsor.R</object-name>
+    <object-name>SunVirsor.L</object-name>
+   </effect>
   
 <!-- Doors-->
 

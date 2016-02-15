@@ -2,7 +2,7 @@
 
 <PropertyList>
 	<name>c182reflectglas-uber</name>
-	<inherits-from>Effects/model-combined-deferred</inherits-from>
+	<inherits-from>Effects/model-combined-transparent</inherits-from>
 
 	<parameters>
 		<rain-enabled type="int">2</rain-enabled>

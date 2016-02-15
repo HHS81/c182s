@@ -12,10 +12,7 @@
 
 <path>turn-gauge.ac</path>
 
-  <animation>
-    <type>noshadow</type>
-    <object-name>vitre</object-name>
-  </animation>
+
 
 
 

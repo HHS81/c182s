@@ -94,7 +94,7 @@
                         <length type="double">0.0</length>
                         <ref-length type="double">0.0</ref-length>
                         <x type="double">0.0</x>
-                        <y type="double">-4.0</y>
+                        <y type="double">-2.6</y>
                     </left>
                     <right>
                         <pitch-deg type="double">0.0</pitch-deg>
@@ -102,14 +102,14 @@
                         <length type="double">0.0</length>
                         <ref-length type="double">0.0</ref-length>
                         <x type="double">0.0</x>
-                        <y type="double">4.0</y>
+                        <y type="double">2.6</y>
                     </right>
                     <tail>
                         <pitch-deg type="double">0.0</pitch-deg>
                         <heading-deg type="double">0.0</heading-deg>
                         <length type="double">0.0</length>
                         <ref-length type="double">0.0</ref-length>
-                        <x type="double">-5.5</x>
+                        <x type="double">-6.5</x>
                         <y type="double">0.0</y>
                     </tail>
 </tiedowns>

@@ -23,11 +23,7 @@ Under the GPL. Used by shadows under ALS -->
         <name>Tiedowns Can Have</name>
         <input>
             <and>
-                <not-equals>
-                    <property>/fdm/jsbsim/bushkit</property>
-                    <value>3</value>
-                </not-equals>
-                <property>/sim/model/c182/securing/allow-securing-aircraft</property>
+                 <property>/sim/model/c182/securing/allow-securing-aircraft</property>
                 <property>/fdm/jsbsim/ground/solid</property>
                 <less-than>
                     <property>velocities/groundspeed-kt</property>

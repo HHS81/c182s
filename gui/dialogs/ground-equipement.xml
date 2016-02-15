@@ -47,26 +47,37 @@
 <group>
                 <layout>hbox</layout>
 		
-		
-                <radio>
+	<checkbox>
                     <halign>left</halign>
-                <label>Place ladder left wing</label>
+                <label>Take ladder </label>
                         <live>true</live>
-		<property>/sim/ladder/left</property>
+		<property>/sim/ladder/enable</property>
 			<enable>
                                 <less-than>
                                     <property>velocities/groundspeed-kt</property>
                                     <value>0.1</value>
                                 </less-than>
 			</enable>
+               <binding>
+                    <command>property-toggle</command>
+		<property>/sim/ladder/enable</property>
+                </binding>
+		<binding>
+                    <command>dialog-update</command>
+                </binding>
+	</checkbox>
+		
+                <radio>
+                    <halign>left</halign>
+                <label>Place ladder left wing</label>
+                        <live>true</live>
+		<property>/sim/ladder/left</property>
+	<enable>
+		<property>/sim/ladder/enable</property>
+	</enable>
 	<binding>
                     <command>property-toggle</command>
 		<property>/sim/ladder/left</property>
-                </binding>
-               <binding>
-                    <command>property-assign</command>
-		<property>/sim/ladder/enable</property>
-		<value>true</value>
                 </binding>
 	<binding>
                     <command>dialog-update</command>
@@ -78,21 +89,13 @@
                 <label>Place ladder right wing</label>
                         <live>true</live>
 		<property>/sim/ladder/right</property>
-			<enable>
-                                <less-than>
-                                    <property>velocities/groundspeed-kt</property>
-                                    <value>0.1</value>
-                                </less-than>
-			</enable>
+	<enable>
+		<property>/sim/ladder/enable</property>
+	</enable>
 	<binding>
                     <command>property-toggle</command>
 		<property>/sim/ladder/right</property>
                   </binding>
-               <binding>
-                    <command>property-assign</command>
-		<property>/sim/ladder/enable</property>
-		<value>true</value>
-                </binding>
 	<binding>
                     <command>dialog-update</command>
                 </binding>

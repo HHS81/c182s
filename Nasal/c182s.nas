@@ -271,7 +271,8 @@ settimer(init_common,0);
                 props.globals.getNode("models/model[" ~ i ~ "]/elevation-ft-prop", 1);
                 props.globals.getNode("models/model[" ~ i ~ "]/heading-deg-prop", 1);
                 
-                setprop ("models/model[" ~ i ~ "]/path", "Aircraft/c182/Models/Exterior/ladder.xml");
+
+		setprop ("models/model[" ~ i ~ "]/path", "Aircraft/c182/Models/Exterior/ladder.xml");
                 setprop ("models/model[" ~ i ~ "]/longitude-deg-prop", "sim/ladder/longitude-deg");
                 setprop ("models/model[" ~ i ~ "]/latitude-deg-prop", "sim/ladder/latitude-deg");
                 setprop ("models/model[" ~ i ~ "]/elevation-ft-prop", "sim/ladder/altitude-ft");

@@ -782,6 +782,7 @@
         </axis>
 
         <axis name="SIDE">
+	
             <function name="aero/coefficient/CYb">
                 <description>Side_force_due_to_beta</description>
                 <product>
@@ -809,10 +810,10 @@
                     <value>0.187</value>
                 </product>
             </function>
+	    
         </axis>
 
         <axis name="LIFT">
-	
 	    
             <function name="aero/coefficient/CLwbh">
                 <description>Lift_due_to_alpha</description>
@@ -890,6 +891,7 @@
                     <value>1.700</value>
                 </product>
             </function>
+	    
             <function name="aero/coefficient/CLq">
                 <description>Lift_due_to_pitch_rate</description>
                 <product>
@@ -900,6 +902,7 @@
                     <value>3.9</value>
                 </product>
             </function>
+	    
         </axis>
 
         <axis name="ROLL">

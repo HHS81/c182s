@@ -282,7 +282,7 @@
                     <yaw> 0.0 </yaw>
                 </orient>
                 <sense> 1 </sense>
-                <p_factor> 2.5 </p_factor>
+                <p_factor> 0.5 </p_factor>
             </thruster>
         </engine>
         <tank type="FUEL">    <!-- Tank number 0 with 44 gallons =290.5lbs ?? kerosin but should be AVGas!-->

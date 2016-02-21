@@ -282,7 +282,7 @@
                     <yaw> 0.0 </yaw>
                 </orient>
                 <sense> 1 </sense>
-                <p_factor> 1.25 </p_factor>
+                <p_factor> 0.1 </p_factor>
             </thruster>
         </engine>
         <tank type="FUEL">    <!-- Tank number 0 with 44 gallons =290.5lbs ?? kerosin but should be AVGas!-->
@@ -562,7 +562,7 @@
     </flight_control>	
 
 
-    <aerodynamics>
+<aerodynamics>
         <alphalimits unit="RAD">
             <min>-0.087</min>
             <max>0.28</max>
@@ -595,7 +595,6 @@
                       </tableData>
                 </table>
             </product>
-<value>1.0</value>
         </function>
 
         <function name="aero/function/kCLge">
@@ -620,7 +619,6 @@
                       </tableData>
                 </table>
             </product>
-<value>1.0</value>
         </function>
 
         <function name="aero/function/velocity-induced-fps">
@@ -641,7 +639,7 @@
             </product>
         </function>
 
-
+        
         <axis name="DRAG">
             <function name="aero/coefficient/CDo">
                 <description>Drag_at_zero_lift</description>
@@ -742,7 +740,7 @@
                     <value>0.0097</value>
                 </product>
             </function>
-
+	    
         </axis>
 
         <axis name="SIDE">
@@ -756,9 +754,9 @@
                         <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
                         <tableData>
                                        0.0000   38.0000
-                             -0.3490   0.0819   0.0799
+                             -0.3490   0.1370   0.1060
                               0.0000   0.0000   0.0000
-                              0.3490  -0.0819  -0.0799
+                              0.3490  -0.1370  -0.1060
                           </tableData>
                     </table>
                 </product>
@@ -770,14 +768,12 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>fcs/rudder-pos-rad</property>
-                    <value>0.187</value>
+                    <value>0.0374</value>
                 </product>
             </function>
         </axis>
 
         <axis name="LIFT">
-	
-	    
             <function name="aero/coefficient/CLwbh">
                 <description>Lift_due_to_alpha</description>
                 <product>
@@ -828,7 +824,7 @@
                             0.0000	0.0000
                             10.0000	0.2000
                             20.0000	0.3000
-                            38.0000	0.4445
+                            38.0000	0.3500
                         </tableData>
                     </table>
                 </product>
@@ -851,9 +847,10 @@
                     <property>metrics/Sw-sqft</property>
                     <property>aero/alphadot-rad_sec</property>
                     <property>aero/ci2vel</property>
-                    <value>1.700</value>
+                    <value>1.7000</value>
                 </product>
             </function>
+
             <function name="aero/coefficient/CLq">
                 <description>Lift_due_to_pitch_rate</description>
                 <product>
@@ -861,7 +858,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>velocities/q-aero-rad_sec</property>
                     <property>aero/ci2vel</property>
-                    <value>3.9</value>
+                    <value>3.9000</value>
                 </product>
             </function>
         </axis>
@@ -876,9 +873,9 @@
                     <table>
                         <independentVar>aero/beta-rad</independentVar>
                         <tableData>
-                              -0.3490	0.0923
+                              -0.3490	0.0322
                               0.0000	0.0000
-                              0.3490	-0.0923
+                              0.3490	-0.0322
                         </tableData>
                         <value>0.25</value>
                     </table>
@@ -909,18 +906,18 @@
                     <table>
                         <independentVar lookup="row">velocities/p-aero-rad_sec</independentVar>
                         <tableData>
-                              -20     40
-                              -10     18.68
-                              -5      4.42
+                              -20     20
+                              -10     9.68
+                              -5      2.42
                                0      0
-                               5     -4.42
-                               10    -18.68
-                               20    -40
+                               5     -2.42
+                               10    -9.68
+                               20    -20
                           </tableData>
                     </table>
                     <!--
                           stall and spin (2): 
-                          less roll damping-->
+                          less roll damping
                       <table> 
                         <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
                         <tableData>
@@ -928,7 +925,7 @@
                            0.297    0.4
                         </tableData>
                       </table>
-                    
+                      -->
                 </product>
             </function>
 
@@ -977,7 +974,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
-                    <value>0.229</value>
+                    <value>0.2290</value>
                     <!--
                         stall and spin (4):
                         less efficient ailerons
@@ -1005,6 +1002,7 @@
                     <value>0.0147</value>
                 </product>
             </function>
+
         </axis>
 
         <axis name="PITCH">
@@ -1014,7 +1012,7 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
-                    <value>0.040</value>
+                    <value>0.1000</value>
                 </product>
             </function>
 
@@ -1027,7 +1025,7 @@
                     <sin>
                         <property>aero/alpha-rad</property>
                     </sin>
-                    <value>-1.5000</value><!---should be 0.613 ?? from http://www.megginson.com/Aviation/roskam-coefficients.html#sec.data   -->
+                    <value>-1.8000</value>
                     <!-- 
                         stall and spin (5):
                         horizontal tail stall (for flat spin)
@@ -1078,7 +1076,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
                     <property>fcs/elevator-pos-rad</property>
-                    <value>-1.122</value> <!--use cruise stability derivates here so uncorrected airspeed doesn't make take-off worse-->
+                    <value>-1.8</value>
                     <!--
                         stall and spin (6):
                         elevator loss of efficiency when stalled
@@ -1110,7 +1108,7 @@
                             0.0000	    0.0000
                             10.0000	   -0.0654
                             20.0000	   -0.0981
-                            30.0000    -0.1140
+                            38.0000    -0.1140
                         </tableData>
                     </table>
                 </product>
@@ -1127,9 +1125,9 @@
                     <table>
                         <independentVar>aero/beta-rad</independentVar>
                         <tableData>
-                              -0.3490	-0.0587
+                              -0.3490	-0.0205
                               0.0000	0.0000
-                              0.3490	0.0587
+                              0.3490	0.0205
                         </tableData>
                     </table>
                 </product>
@@ -1193,7 +1191,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
-                    <value>-0.0216</value>
+                    <value>-0.016</value>
                 </product>
             </function>
 
@@ -1204,12 +1202,13 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
-                    <value>-0.0645</value>
+                    <value>-0.07</value>
                 </product>
             </function>
         </axis>
 
     </aerodynamics>
+
 
     
 

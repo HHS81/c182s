@@ -17,12 +17,12 @@
         </tags>
  
   <flight-model>jsb</flight-model>
-  <aero>ct182t</aero>
+  <aero>c182t</aero>
   
   <systems>
     <autopilot>
-          <path>Aircraft/c182/generic-autopilot.xml</path>
-  <!--<path>Aircraft/c182/Systems/KAP140.xml</path>-->
+         <!-- <path>Aircraft/c182/generic-autopilot.xml</path>-->
+  <path>Aircraft/c182/Systems/KAP140.xml</path>
     </autopilot>
  <property-rule n="100">
       <name>FiltersOnly</name>
@@ -389,8 +389,8 @@
 
  <controls>
   <flight>
-   <aileron-trim type="double">0.0</aileron-trim>
-   <rudder-trim type="double">0.15</rudder-trim>
+   <aileron-trim type="double">0.07</aileron-trim>
+   <rudder-trim type="double">0.0</rudder-trim>
   </flight>
 <gear>
 <brake-parking>1</brake-parking>

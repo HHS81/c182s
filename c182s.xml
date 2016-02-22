@@ -571,8 +571,8 @@
                   <max>1</max>
                 </domain>
                 <range>
-                    <min>0.38</min>
-                    <max>0.85</max>
+                    <min>0.48</min>
+                    <max>0.75</max>
                 </range>
                 <output>propulsion/engine[0]/cooling-factor</output>
             </aerosurface_scale>
@@ -782,7 +782,6 @@
         </axis>
 
         <axis name="SIDE">
-	
             <function name="aero/coefficient/CYb">
                 <description>Side_force_due_to_beta</description>
                 <product>
@@ -810,10 +809,10 @@
                     <value>0.187</value>
                 </product>
             </function>
-	    
         </axis>
 
         <axis name="LIFT">
+	
 	    
             <function name="aero/coefficient/CLwbh">
                 <description>Lift_due_to_alpha</description>
@@ -891,7 +890,6 @@
                     <value>1.700</value>
                 </product>
             </function>
-	    
             <function name="aero/coefficient/CLq">
                 <description>Lift_due_to_pitch_rate</description>
                 <product>
@@ -902,7 +900,6 @@
                     <value>3.9</value>
                 </product>
             </function>
-	    
         </axis>
 
         <axis name="ROLL">
@@ -979,13 +976,12 @@
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
                     <property>velocities/r-aero-rad_sec</property>
-		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
+                    <table>
+                        <independentVar lookup="row">fcs/flap-pos-deg</independentVar>
                         <tableData>
-                            13.6	  0.2039<!--approach-->
-                            21.2	0.1869<!--climb-->
-                            49.6	  0.0798<!--cruise-->
-		</tableData>
+                             0.0000  0.0798
+                             30      0.1246
+                        </tableData>
                     </table>
                     <table>
                         <!--
@@ -1054,14 +1050,7 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
-		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
-                        <tableData>
-                            13.6	  0.090<!--approach-->
-                            21.2	0.040<!--climb-->
-                            49.6	  0.040<!--cruise-->
-		</tableData>
-                    </table>
+                    <value>0.040</value>
                 </product>
             </function>
 
@@ -1102,14 +1091,7 @@
                     <property>metrics/cbarw-ft</property>
                     <property>aero/ci2vel</property>
                     <property>velocities/q-aero-rad_sec</property>
-		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
-                        <tableData>
-                            13.6	  -11.40<!--approach-->
-                            21.2	-15.20<!--climb-->
-                            49.6	  -12.40<!--cruise-->
-		</tableData>
-                    </table>
+                    <value>-12.4000</value>
                 </product>
             </function>
 
@@ -1121,14 +1103,7 @@
                     <property>metrics/cbarw-ft</property>
                     <property>aero/ci2vel</property>
                     <property>aero/alphadot-rad_sec</property>
-		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
-                        <tableData>
-                            13.6	  -5.40<!--approach-->
-                            21.2	-5.57<!--climb-->
-                            49.6	  -7.27<!--cruise-->
-		</tableData>
-                    </table>
+                    <value>-7.2700</value>
                 </product>
             </function>
 
@@ -1139,14 +1114,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
                     <property>fcs/elevator-pos-rad</property>
-		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
-                        <tableData>
-                            13.6	   -1.029<!--approach-->
-                            21.2	-1.369 <!--climb-->
-                            49.6	  -1.122 <!--cruise-->
-		</tableData>
-                    </table>
+                    <value>-1.122</value> <!--use cruise stability derivates here so uncorrected airspeed doesn't make take-off worse-->
                     <!--
                         stall and spin (6):
                         elevator loss of efficiency when stalled
@@ -1211,14 +1179,7 @@
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
                     <property>velocities/r-aero-rad_sec</property>
-		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
-                        <tableData>
-                            13.6	   -0.1151<!--approach-->
-                            21.2	 -0.1199 <!--climb-->
-                            49.6	  -0.0937 <!--cruise-->
-                        </tableData>
-                    </table>
+                    <value>-0.0937</value>
                 </product>
             </function>
 
@@ -1268,14 +1229,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
-		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
-                        <tableData>
-                            13.6	   -0.0786<!--approach-->
-                            21.2	  -0.0504 <!--climb-->
-                            49.6	  -0.0216 <!--cruise-->
-                        </tableData>
-                    </table>
+                    <value>-0.0216</value>
                 </product>
             </function>
 
@@ -1286,14 +1240,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
-		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
-                        <tableData>
-                            13.6	    -0.0604<!--approach-->
-                            21.2	   -0.0805 <!--climb-->
-                            49.6	  -0.0645 <!--cruise-->
-                        </tableData>
-                    </table>
+                    <value>-0.0645</value>
                 </product>
             </function>
         </axis>

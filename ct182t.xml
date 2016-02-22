@@ -282,7 +282,7 @@
                     <yaw> 0.0 </yaw>
                 </orient>
                 <sense> 1 </sense>
-                <p_factor> 0.5 </p_factor>
+                <p_factor> 5 </p_factor>
             </thruster>
         </engine>
         <tank type="FUEL">    <!-- Tank number 0 with 44 gallons =290.5lbs ?? kerosin but should be AVGas!-->
@@ -919,7 +919,7 @@
                               0.0000	0.0000	0.000	          0.000
                               0.3490	-0.0969	-0.0895	-0.0923	
                         </tableData>
-                        <value>0.001</value>
+                        <value>0.25</value>
                     </table>
                     <!--
                           stall and spin (1): 
@@ -1076,7 +1076,7 @@
                     <sin>
                         <property>aero/alpha-rad</property>
                     </sin>
-                    <value>-1.8000</value> 
+                    <value>-1.8</value> 
                     <!-- 
                         stall and spin (5):
                         horizontal tail stall (for flat spin)
@@ -1280,6 +1280,7 @@
                               220.1	 -0.0216 <!--cruise-->
                         </tableData>
                     </table>
+		<value>1.0</value>
 		</product>
             </function>
 
@@ -1348,7 +1349,7 @@
     </external_reactions>-->
     
     <system file="c182s-stallhorn"/>
-    <system file="propulsion"/>
+ <system file="propulsion"/>
     <system file="indicated-airspeed"/>     
 
 </fdm_config>

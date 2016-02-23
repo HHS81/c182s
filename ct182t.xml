@@ -1409,7 +1409,7 @@
     </external_reactions>-->
     
     <system file="c182s-stallhorn"/>
- <system file="propulsion"/>
+ <!--<system file="propulsion"/>-->
     <system file="indicated-airspeed"/>     
 
 </fdm_config>

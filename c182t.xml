@@ -744,7 +744,7 @@
         </product>
             </function>
 	    
-	<!--<function name="aero/coefficient/CYp">
+	<function name="aero/coefficient/CYp">
                 <description>sideforce variation due to roll rate</description>
         <product>
           <property>aero/qbar-psf</property>
@@ -766,7 +766,7 @@
                     <property>velocities/r-rad_sec</property>
                     <value>0.214</value>
                 </product>
-            </function>	 --> 
+            </function>	
 	    
 
             <function name="aero/coefficient/CYdr">
@@ -1129,6 +1129,7 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
+		<property>aero/bi2vel</property>
                     <property>velocities/r-aero-rad_sec</property>
                     <value>-0.0937</value>
                 </product>

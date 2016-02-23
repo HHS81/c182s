@@ -389,7 +389,7 @@
 
  <controls>
   <flight>
-   <aileron-trim type="double">0.07</aileron-trim>
+   <aileron-trim type="double">0.027</aileron-trim>
    <rudder-trim type="double">0.0</rudder-trim>
   </flight>
 <gear>

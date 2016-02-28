@@ -429,6 +429,18 @@
   </help>
 
         <menubar include="gui/dialogs/c182s-menu.xml"/>
+        
+        <!-- Splash screens. One is randomly chosen when FlightGear starts -->
+        <startup>
+            <splash-texture>Aircraft/c182/splash1.png</splash-texture>
+            <splash-texture>Aircraft/c182/splash2.png</splash-texture>
+            <splash-texture>Aircraft/c182/splash3.png</splash-texture>
+            <splash-texture>Aircraft/c182/splash4.png</splash-texture>
+            <splash-texture>Aircraft/c182/splash5.png</splash-texture>
+            <splash-texture>Aircraft/c182/splash6.png</splash-texture>
+            <splash-texture>Aircraft/c182/splash7.png</splash-texture>
+            <splash-texture>Aircraft/c182/splash8.png</splash-texture>
+        </startup>
 
  </sim>
  

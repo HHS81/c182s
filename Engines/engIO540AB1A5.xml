@@ -30,7 +30,7 @@
   <maxthrottle>    1.0 </maxthrottle>
   <minthrottle>    0.0 </minthrottle>
   <sparkfaildrop>  0.24 </sparkfaildrop>
-  
+
           
   
 </piston_engine>

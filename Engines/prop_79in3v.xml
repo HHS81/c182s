@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <propeller name="prop"><!--Thanks to Jentron- modified prop from Corvalis-->
-  <ixx>   3.34 </ixx>
+  <ixx>   1.65 </ixx>
   <diameter unit="IN">  79.0 </diameter>
   <numblades> 3 </numblades>
   <gearratio>  1.0 </gearratio>
@@ -11,7 +11,7 @@
   <maxpitch> 31.7 </maxpitch>
   <minrpm>   900 </minrpm>
   <maxrpm>   2400 </maxrpm>
-  <p_factor>2.5 </p_factor>
+
 
  <!-- thrust coefficient as a function of advance ratio and blade angle -->
   <table name="C_THRUST" type="internal">

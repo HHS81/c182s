@@ -76,7 +76,7 @@
                 <halign>left</halign>
                 <label>Place cones</label>
                         <live>true</live>
-		<property>/sim/cones/enable</property>
+		<property>/sim/test/enable</property>
 			<enable>
                                 <less-than>
                                     <property>velocities/groundspeed-kt</property>
@@ -85,7 +85,7 @@
 			</enable>
                <binding>
                     <command>property-toggle</command>
-		<property>/sim/cones/enable</property>
+		<property>/sim/test/enable</property>
                 </binding>
 	<binding>
                     <command>dialog-update</command>

@@ -151,5 +151,29 @@
 	</checkbox>
         </group>
         <hrule/>
+	
+<group>
+	<layout>vbox</layout>
+	<padding>6</padding>
+	<radio>
+                <halign>left</halign>
+                <label>TEST</label>
+                        <live>true</live>
+		<property>/sim/test/enable</property>
+			<enable>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>0.1</value>
+                                </less-than>
+			</enable>
+               <binding>
+                    <command>property-toggle</command>
+		<property>/sim/test/enable</property>
+                </binding>
+	<binding>
+                    <command>dialog-update</command><!--do not use dialog-apply - bad interactions with walker!-->
+                </binding>
+	</radio>
+        </group>
   
 </PropertyList>

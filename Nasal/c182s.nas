@@ -233,6 +233,7 @@ settimer(init_common,0);
 #to-do:
 #credits
 
+
  var ladder_model = {
        index:   0,
        add:   func {
@@ -283,7 +284,7 @@ settimer(init_common,0);
           },
        remove:   func {
              
-                #print("ladder_model.remove");
+                #print("test_model.remove");
              
              props.globals.getNode("/models", 1).removeChild("model", me.index);
           },
@@ -306,6 +307,46 @@ var init_common = func {
 	});
 }
 settimer(init_common,0);
+
+#test======================================================
+#to-do:
+#credits
+
+	
+ var test_model = {
+       index:   0,
+       add:   func {
+                          print("test_model.add");
+  var manager = props.globals.getNode("/models", 1);
+                var i = 0;
+                for (; 1; i += 1)
+                   if (manager.getChild("model", i, 0) == nil)
+                      break;
+		var test = geo.aircraft_position().set_alt(
+				props.globals.getNode("/position/ground-elev-m").getValue());
+				
+		geo.put_model("Aircraft/c182/Models/Exterior/external-power.xml", test,
+				props.globals.getNode("/orientation/heading-deg").getValue());
+          },
+	  
+       remove:   func {
+                print("test_model.remove");
+             props.globals.getNode("/models", 1).removeChild("model", me.index);
+          },
+};
+
+var init_common = func {
+	setlistener("/sim/test/enable", func(n) {
+		if (n.getValue()) {
+				test_model.add();
+		} else  {
+			test_model.remove();
+		}
+	});
+}
+settimer(init_common,0);
+	
+
 	
 
 # doors ============================================================

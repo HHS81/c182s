@@ -1348,6 +1348,7 @@
 
  </aerodynamics>
 
+<external_reactions>
  <!-- Tiedowns use body frame (x positive forward, y positive
              right, z positive down).-->
 	     
@@ -1392,6 +1393,6 @@
     <system file="c182s-stallhorn"/>
     <system file="propulsion"/>
     <system file="indicated-airspeed"/>   
-    <system file="skidslip"/>      
+    
 
 </fdm_config>

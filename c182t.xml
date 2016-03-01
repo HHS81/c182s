@@ -1393,6 +1393,6 @@
     <system file="c182s-stallhorn"/>
     <system file="propulsion"/>
     <system file="indicated-airspeed"/>   
-    
+   <system file="c182s-ground-effects"/>    
 
 </fdm_config>

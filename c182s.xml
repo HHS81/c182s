@@ -282,7 +282,6 @@
                     <yaw> 0.0 </yaw>
                 </orient>
                 <sense> 1 </sense>
-                <p_factor> 1.25 </p_factor>
             </thruster>
         </engine>
         <tank type="FUEL">    <!-- Tank number 0 with 44 gallons =290.5lbs ?? kerosin but should be AVGas!-->
@@ -389,7 +388,7 @@
                 <input>fcs/elevator-pos-deg</input>
                 <domain>
                     <min>-28</min>
-                    <max>23</max>
+                    <max>21</max>
                 </domain>
                 <range>
                     <min>-1</min>
@@ -468,8 +467,8 @@
                 <input>fcs/yaw-trim-sum</input>
                 <gain>0.01745</gain>
                 <range>
-                    <min>-16</min>
-                    <max>16</max>
+                    <min>-27</min>
+                    <max>27</max>
                 </range>
                 <output>fcs/rudder-pos-rad</output>
             </aerosurface_scale>
@@ -477,8 +476,8 @@
             <aerosurface_scale name="Rudder Position Normalized">
                 <input>fcs/rudder-pos-deg</input>
                 <domain>
-                    <min>-16</min>
-                    <max>16</max>
+                    <min>-27</min>
+                    <max>27</max>
                 </domain>
                 <range>
                     <min>-1</min>
@@ -598,7 +597,7 @@
     </flight_control>	
 
 
-    <aerodynamics>
+     <aerodynamics>
         <alphalimits unit="RAD">
             <min>-0.087</min>
             <max>0.28</max>
@@ -631,7 +630,6 @@
                       </tableData>
                 </table>
             </product>
-<value>1.0</value>
         </function>
 
         <function name="aero/function/kCLge">
@@ -656,7 +654,6 @@
                       </tableData>
                 </table>
             </product>
-<value>1.0</value>
         </function>
 
         <function name="aero/function/velocity-induced-fps">
@@ -677,6 +674,7 @@
             </product>
         </function>
 
+        
 
         <axis name="DRAG">
             <function name="aero/coefficient/CDo">
@@ -685,7 +683,7 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <value>0.027</value>
-                </product>
+		</product>
             </function>
 
             <function name="aero/coefficient/CDDf">
@@ -706,7 +704,7 @@
                 </product>
             </function>
 
-             <function name="aero/coefficient/CDwbh">
+            <function name="aero/coefficient/CDwbh">
                 <description>Drag_due_to_alpha</description>
                 <product>
                     <property>aero/qbar-psf</property>
@@ -748,6 +746,7 @@
                 </product>
             </function>
 
+
             <function name="aero/coefficient/CDDe">
                 <description>Drag_due_to_Elevator_Deflection</description>
                 <product>
@@ -778,32 +777,71 @@
                     <value>0.0097</value>
                 </product>
             </function>
-
+	    
         </axis>
 
         <axis name="SIDE">
-            <function name="aero/coefficient/CYb">
+          <function name="aero/coefficient/CYb">
                 <description>Side_force_due_to_beta</description>
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>aero/beta-rad</property>
+		<table>
+                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <tableData>
+                              107.1	-0.303
+                              133.5	-0.404
+                              220.1	 -0.393
+                        </tableData>
+                    </table>
+        </product>
+            </function>
+	    
+<function name="aero/coefficient/CYp">
+                <description>sideforce variation due to roll rate</description>
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+	<property>aero/bi2vel</property>
+	<property>velocities/p-aero-rad_sec</property>
+		<table>
+                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <tableData>
+                              107.1	-0.2130	
+                              133.5	-0.1450
+                              220.1	-0.0750
+                        </tableData>
+                    </table>
+        </product>
+            </function>
+	    
+     
+	    
+	<function name="aero/coefficient/CYr">
+                <description>Side_force_due_to_yaw_rate</description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <table>
-                        <independentVar lookup="row">aero/beta-rad</independentVar>
-                        <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+                    <property>aero/bi2vel</property>
+                    <property>velocities/r-rad_sec</property>
+		<table>
+                        <independentVar>velocities/u-aero-fps</independentVar>
                         <tableData>
-                                       0.0000   38.0000
-                             -0.3490   0.0819   0.0799
-                              0.0000   0.0000   0.0000
-                              0.3490  -0.0819  -0.0799
-                          </tableData>
+                              107.1	0.267
+                              133.5	0.267
+                              220.1	0.214
+                        </tableData>
                     </table>
                 </product>
-            </function>
+            </function>	
+	    
+
 
             <function name="aero/coefficient/CYdr">
                 <description>Side_force_due_to_rudder</description>
                 <product>
-                    <property>aero/qbar-psf</property>
+                      <property>aero/function/qbar-induced-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>fcs/rudder-pos-rad</property>
                     <value>0.187</value>
@@ -812,9 +850,8 @@
         </axis>
 
         <axis name="LIFT">
-	
-	    
-            <function name="aero/coefficient/CLwbh">
+
+           <function name="aero/coefficient/CLwbh">
                 <description>Lift_due_to_alpha</description>
                 <product>
                     <property>aero/qbar-psf</property>
@@ -852,7 +889,7 @@
 		</product>
             </function>
 
-            <function name="aero/coefficient/CLDf">
+             <function name="aero/coefficient/CLDf">
                 <description>Delta_lift_due_to_flap_deflection</description>
                 <product>
                     <property>aero/qbar-psf</property>
@@ -887,9 +924,10 @@
                     <property>metrics/Sw-sqft</property>
                     <property>aero/alphadot-rad_sec</property>
                     <property>aero/ci2vel</property>
-                    <value>1.700</value>
+                    <value>1.7000</value>
                 </product>
             </function>
+
             <function name="aero/coefficient/CLq">
                 <description>Lift_due_to_pitch_rate</description>
                 <product>
@@ -897,24 +935,26 @@
                     <property>metrics/Sw-sqft</property>
                     <property>velocities/q-aero-rad_sec</property>
                     <property>aero/ci2vel</property>
-                    <value>3.9</value>
+                    <value>3.9000</value>
                 </product>
             </function>
+	    
         </axis>
 
         <axis name="ROLL">
-            <function name="aero/coefficient/Clb">
+             <function name="aero/coefficient/Clb">
                 <description>Roll_moment_due_to_beta</description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
-                    <table>
-                        <independentVar>aero/beta-rad</independentVar>
+		<property>aero/beta-rad</property>
+		<table>
+                        <independentVar>velocities/u-aero-fps</independentVar>
                         <tableData>
-                              -0.3490	0.0923
-                              0.0000	0.0000
-                              0.3490	-0.0923
+                              107.1	-0.0969
+                              133.5	-0.0895
+                              220.1	 -0.0923 
                         </tableData>
                         <value>0.25</value>
                     </table>
@@ -942,21 +982,11 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
-                    <table>
-                        <independentVar lookup="row">velocities/p-aero-rad_sec</independentVar>
-                        <tableData>
-                              -20     40
-                              -10     18.68
-                              -5      4.42
-                               0      0
-                               5     -4.42
-                               10    -18.68
-                               20    -40
-                          </tableData>
-                    </table>
+		<property>velocities/p-aero-rad_sec</property>
+		<value>-0.484</value>
                     <!--
                           stall and spin (2): 
-                          less roll damping-->
+                          less roll damping
                       <table> 
                         <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
                         <tableData>
@@ -964,11 +994,11 @@
                            0.297    0.4
                         </tableData>
                       </table>
-                    
+                      -->
                 </product>
             </function>
 
-            <function name="aero/coefficient/Clr">
+             <function name="aero/coefficient/Clr">
                 <description>Roll_moment_due_to_yaw_rate</description>
                 <product>
                     <property>aero/qbar-psf</property>
@@ -976,14 +1006,7 @@
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
                     <property>velocities/r-aero-rad_sec</property>
-		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
-                        <tableData>
-                            13.6	  0.2039<!--approach-->
-                            21.2	0.1869<!--climb-->
-                            49.6	  0.0798<!--cruise-->
-		</tableData>
-                    </table>
+		<value>0.0798</value>
                     <table>
                         <!--
                             stall and spin (3):
@@ -1007,6 +1030,7 @@
                 </product>
             </function>
 
+
             <function name="aero/coefficient/ClDa">
                 <description>Roll_moment_due_to_aileron</description>
                 <product>
@@ -1014,7 +1038,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
-                    <value>0.229</value>
+                    <value>0.2290</value>
                     <!--
                         stall and spin (4):
                         less efficient ailerons
@@ -1029,19 +1053,21 @@
                             0.611   -0.1  -0.1
                         </tableData>
                     </table>
-                </product>
+		</product>
             </function>
 
             <function name="aero/coefficient/Cldr">
                 <description>Roll_moment_due_to_rudder</description>
                 <product>
-                    <property>aero/qbar-psf</property>
+                    <property>aero/function/qbar-induced-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
                     <value>0.0147</value>
                 </product>
             </function>
+
+            
         </axis>
 
         <axis name="PITCH">
@@ -1052,12 +1078,12 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
 		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
+                        <independentVar>velocities/u-aero-fps</independentVar>
                         <tableData>
-                            13.6	  0.090<!--approach-->
-                            21.2	0.040<!--climb-->
-                            49.6	  0.040<!--cruise-->
-		</tableData>
+                              107.1	0.090 <!--Approach-->
+                              133.5	0.040 <!--climb-->
+                              220.1	 0.040<!--cruise-->
+                        </tableData>
                     </table>
                 </product>
             </function>
@@ -1071,7 +1097,7 @@
                     <sin>
                         <property>aero/alpha-rad</property>
                     </sin>
-                    <value>-1.5000</value><!---should be 0.613 ?? from http://www.megginson.com/Aviation/roskam-coefficients.html#sec.data   -->
+                    <value>-1.5</value> 
                     <!-- 
                         stall and spin (5):
                         horizontal tail stall (for flat spin)
@@ -1100,12 +1126,12 @@
                     <property>aero/ci2vel</property>
                     <property>velocities/q-aero-rad_sec</property>
 		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
+                        <independentVar>velocities/u-aero-fps</independentVar>
                         <tableData>
-                            13.6	  -11.40<!--approach-->
-                            21.2	-15.20<!--climb-->
-                            49.6	  -12.40<!--cruise-->
-		</tableData>
+                              107.1	-11.40 <!--Approach-->
+                              133.5	-15.20 <!--climb-->
+                             220.1	 -12.40<!--cruise-->
+                        </tableData>
                     </table>
                 </product>
             </function>
@@ -1119,12 +1145,12 @@
                     <property>aero/ci2vel</property>
                     <property>aero/alphadot-rad_sec</property>
 		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
+                        <independentVar>velocities/u-aero-fps</independentVar>
                         <tableData>
-                            13.6	  -5.40<!--approach-->
-                            21.2	-5.57<!--climb-->
-                            49.6	  -7.27<!--cruise-->
-		</tableData>
+                              107.1	-5.40 <!--Approach-->
+                              133.5	-5.57 <!--climb-->
+                             220.1	 -7.27 <!--cruise-->
+                        </tableData>
                     </table>
                 </product>
             </function>
@@ -1136,13 +1162,13 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
                     <property>fcs/elevator-pos-rad</property>
-		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
+                   <table>
+                        <independentVar>velocities/u-aero-fps</independentVar>
                         <tableData>
-                            13.6	   -1.029<!--approach-->
-                            21.2	-1.369 <!--climb-->
-                            49.6	  -1.122 <!--cruise-->
-		</tableData>
+                              107.1	-1.029 <!--Approach-->
+                              133.5	-1.369 <!--climb-->
+                              220.1	 -1.122 <!--cruise-->
+                        </tableData>
                     </table>
                     <!--
                         stall and spin (6):
@@ -1175,7 +1201,7 @@
                             0.0000	    0.0000
                             10.0000	   -0.0654
                             20.0000	   -0.0981
-                            30.0000    -0.1140
+                            38.0000  	-0.1140
                         </tableData>
                     </table>
                 </product>
@@ -1183,7 +1209,8 @@
         </axis>
 
         <axis name="YAW">
-            <function name="aero/coefficient/Cnb">
+
+          <function name="aero/coefficient/Cnb">
                 <description>Yaw_moment_due_to_beta</description>
                 <product>
                     <property>aero/qbar-psf</property>
@@ -1197,8 +1224,48 @@
                               0.3490	0.0587
                         </tableData>
                     </table>
+<value>1.0</value>
                 </product>
             </function>
+	    
+ <!--<function name="aero/coefficient/Cnb">
+                <description>Yaw_moment_due_to_beta</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/bw-ft</property>
+		<property>aero/beta-rad</property>
+		<table>
+                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <tableData>
+                              107.1	0.0701 
+                              133.5	0.0907 
+                              220.1	 0.0587 
+                        </tableData>
+                    </table>
+                </product>
+            </function>-->
+	    
+<function name="aero/coefficient/Cnp">
+                <description>yawing moment due to roll rate</description>
+                <product>
+                    <property>aero/function/qbar-induced-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/bw-ft</property>
+                    <property>aero/bi2vel</property>
+		<property>velocities/p-aero-rad_sec</property>
+		<table>
+                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <tableData>
+                              107.1	-0.0960
+                              133.5	-0.0649
+                              220.1	 -0.0278 
+                        </tableData>
+                    </table>
+                </product>
+            </function>
+	    
+
 
             <function name="aero/coefficient/Cnr">
                 <description>Yaw_moment_due_to_yaw_rate</description>
@@ -1209,11 +1276,11 @@
                     <property>aero/bi2vel</property>
                     <property>velocities/r-aero-rad_sec</property>
 		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
+                        <independentVar>velocities/u-aero-fps</independentVar>
                         <tableData>
-                            13.6	   -0.1151<!--approach-->
-                            21.2	 -0.1199 <!--climb-->
-                            49.6	  -0.0937 <!--cruise-->
+                              107.1	-0.1151 
+                              133.5	-0.1199 
+                              220.1	 -0.0937 
                         </tableData>
                     </table>
                 </product>
@@ -1266,14 +1333,15 @@
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
 		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
+                        <independentVar>velocities/u-aero-fps</independentVar>
                         <tableData>
-                            13.6	   -0.0786<!--approach-->
-                            21.2	  -0.0504 <!--climb-->
-                            49.6	  -0.0216 <!--cruise-->
+                              107.1	-0.0786 <!--Approach-->
+                              133.5	-0.0504 <!--climb-->
+                              220.1	 -0.0216 <!--cruise-->
                         </tableData>
                     </table>
-                </product>
+		<value>1.0</value>
+		</product>
             </function>
 
             <function name="aero/coefficient/Cndr">
@@ -1284,11 +1352,11 @@
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
 		<table>
-                        <independentVar>aero/qbar-psf</independentVar>
+                        <independentVar>velocities/u-aero-fps</independentVar>
                         <tableData>
-                            13.6	    -0.0604<!--approach-->
-                            21.2	   -0.0805 <!--climb-->
-                            49.6	  -0.0645 <!--cruise-->
+                              107.1	-0.0604 <!--Approach-->
+                              133.5	-0.0805 <!--climb-->
+                              220.1	-0.0645 <!--cruise-->
                         </tableData>
                     </table>
                 </product>
@@ -1341,7 +1409,7 @@
     </external_reactions>-->
     
     <system file="c182s-stallhorn"/>
-    <system file="propulsion"/>
+ <system file="propulsion"/>
     <system file="indicated-airspeed"/>     
 
 </fdm_config>

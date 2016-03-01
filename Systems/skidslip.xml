@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--(c) 2013 Soitanen  http://forum.flightgear.org/viewtopic.php?f=14&t=21637#p196698-->
+<system name="SkidSlipBallInstrument">
+
+  <channel name="Skidslip">
+
+    <!-- Check for z accel not-zero -->
+    <switch name="instrumentation/slip-skid-indicator/a-pilot-z-ft_sec2-not-zero">
+      <default value="accelerations/a-pilot-z-ft_sec2"/>
+      <test value="0.000001">
+        accelerations/a-pilot-z-ft_sec2 == 0
+      </test>
+    </switch> 
+
+    <fcs_function name="instrumentation/slip-skid-indicator/slip-skid-deg">
+      <function>
+        <product>
+          <atan>
+            <quotient>
+              <property>accelerations/a-pilot-y-ft_sec2</property>
+              <property>instrumentation/slip-skid-indicator/a-pilot-z-ft_sec2-not-zero</property>
+            </quotient>
+          </atan>
+          <value>-57.2957795131</value>
+        </product>
+      </function>
+    </fcs_function>
+
+  </channel>
+
+</system>

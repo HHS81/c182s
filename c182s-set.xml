@@ -17,7 +17,7 @@
         </tags>
  
   <flight-model>jsb</flight-model>
-  <aero>c182s</aero>
+  <aero>c182t</aero>
   
   <systems>
     <autopilot>

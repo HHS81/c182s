@@ -155,11 +155,11 @@
 <group>
 	<layout>vbox</layout>
 	<padding>6</padding>
-	<radio>
+	<checkbox>
                 <halign>left</halign>
-                <label>TEST</label>
+                <label>Fueltanktrailer</label>
                         <live>true</live>
-		<property>/sim/test/enable</property>
+		<property>/sim/fueltanktrailer/enable</property>
 			<enable>
                                 <less-than>
                                     <property>velocities/groundspeed-kt</property>
@@ -168,12 +168,39 @@
 			</enable>
                <binding>
                     <command>property-toggle</command>
-		<property>/sim/test/enable</property>
+		<property>/sim/fueltanktrailer/enable</property>
                 </binding>
 	<binding>
-                    <command>dialog-update</command><!--do not use dialog-apply - bad interactions with walker!-->
+                    <command>dialog-update</command>
                 </binding>
-	</radio>
+	</checkbox>
         </group>
+
+	
+<group>
+	<layout>vbox</layout>
+	<padding>6</padding>
+	<checkbox>
+                <halign>left</halign>
+                <label>Connect Fueltanktrailer</label>
+                        <live>true</live>
+		<property></property>
+	<enable>
+		<property>/sim/fueltanktrailer/enable</property>
+	</enable>
+               <binding>
+                    <command>property-toggle</command>
+		<property></property>
+                </binding>
+	<binding>
+                    <command>dialog-update</command>
+                </binding>
+	</checkbox>
+        </group>
+        <hrule/>
+	
+
+	
+
   
 </PropertyList>

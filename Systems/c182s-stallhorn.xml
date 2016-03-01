@@ -30,9 +30,9 @@
                                 <independentVar>fcs/flap-pos-deg</independentVar>
                                 <!-- 85 % of max alpha at 0 deg flap, adjusted to values retrieved from POH  (5-10ktn above stall speed)-->
                                 <tableData>
-                                     0.0    -13.5
-                                    10.0   -12.9
-                                    20.0    -8.2
+                                     0.0    -11.5
+                                    10.0   -9.9
+                                    20.0    -8.4
                                     38.0    -7.5
                                 </tableData>
                             </table>

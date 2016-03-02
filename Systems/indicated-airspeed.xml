@@ -11,13 +11,13 @@ So use this numbers and create a table which corrects the output shown on the AS
 -->
 
 <system name="indicated-airspeed">
-
+     <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
     <channel name="indicated airspeed">
 
 <fcs_function name="systems/asi/indicated-airspeed">
           <function>
                 <table>
-                    <independentVar lookup="row">velocities/vc-kts</independentVar>
+                    <independentVar lookup="row">/instrumentation/airspeed-indicator/indicated-speed-kt</independentVar><!--FlightGear assuems a CAS behind!-->
                     <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
                     <tableData breakPoint="0">
 			0	10	20	38	

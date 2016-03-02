@@ -24,7 +24,7 @@
         <htailarea unit="FT2"> 21.9 </htailarea>
         <htailarm unit="FT"> 17.7 </htailarm>
         <vtailarea unit="FT2"> 16.5 </vtailarea>
-        <vtailarm unit="FT"> 0 </vtailarm>
+        <vtailarm unit="FT">17.7 </vtailarm>
         <location name="AERORP" unit="IN">
             <x>37.37 </x>
             <y> 0 </y>
@@ -400,61 +400,55 @@
             </aerosurface_scale>
         </channel>
         <channel name="Roll">
-            <summer name="Roll Trim Sum">
-                <input>fcs/aileron-cmd-norm</input>
-                <input>fcs/roll-trim-cmd-norm</input>
-                <clipto>
-                    <min>-1</min>
-                    <max>1</max>
-                </clipto>
-            </summer>
 
-            <aerosurface_scale name="Left Aileron Control">
-                <input>fcs/roll-trim-sum</input>
-                <gain>0.01745</gain>
-                <range>
-                    <min>-20</min>
-                    <max>15</max>
-                </range>
-                <output>fcs/left-aileron-pos-rad</output>
-            </aerosurface_scale>
+   <summer name="Roll Trim Sum">
+      <input>fcs/aileron-cmd-norm</input>
+      <input>fcs/roll-trim-cmd-norm</input>
+      <clipto>
+        <min>-1</min>
+        <max>1</max>
+      </clipto>
+      <output>fcs/roll-trim-sum</output>
+   </summer>
 
-            <aerosurface_scale name="Left Aileron Position Normalized">
-                <input>fcs/left-aileron-pos-deg</input>
-                <domain>
-                    <min>-20</min>
-                    <max>15</max>
-                </domain>
-                <range>
-                    <min>-1</min>
-                    <max>1</max>
-                </range>
-                <output>fcs/left-aileron-pos-norm</output>
-            </aerosurface_scale>
+  <summer name="Aileron Norm Left">
+      <input>fcs/roll-trim-sum</input>
+      <clipto>
+        <min>-1.0</min>
+        <max>1.0</max>
+      </clipto>
+      <output>fcs/left-aileron-pos-norm</output>
+   </summer>
 
-            <aerosurface_scale name="Right Aileron Control">
-                <input>fcs/roll-trim-sum</input>
-                <gain>-0.01745</gain>
-                <range>
-                    <min>-20</min>
-                    <max>15</max>
-                </range>
-                <output>fcs/right-aileron-pos-rad</output>
-            </aerosurface_scale>
+   <aerosurface_scale name="Left Aileron Control">
+      <input>fcs/roll-trim-sum</input>
+      <range>
+        <min>-0.349066</min>
+        <max>0.261799</max>
+      </range>
+      <output>fcs/left-aileron-pos-rad</output>
+   </aerosurface_scale>
+   
+  <summer name="Aileron Norm Right">
+      <input>fcs/roll-trim-sum</input>
+      <clipto>
+        <min>1.0</min>
+        <max>-1.0</max>
+      </clipto>
+      <output>fcs/right-aileron-pos-norm</output>
+   </summer>
+   
+   <aerosurface_scale name="Right Aileron Control">
+      <input>fcs/roll-trim-sum</input>
+      <range>
+        <min>0.261799 </min>
+        <max>-0.349066</max>
+      </range>
+      <output>fcs/right-aileron-pos-rad</output>
+   </aerosurface_scale>
 
-            <aerosurface_scale name="Right Aileron Position Normalized">
-                <input>fcs/right-aileron-pos-deg</input>
-                <domain>
-                    <min>-15</min>
-                    <max>20</max>
-                </domain>
-                <range>
-                    <min>1</min>
-                    <max>-1</max>
-                </range>
-                <output>fcs/right-aileron-pos-norm</output>
-            </aerosurface_scale>
-        </channel>
+  </channel>
+  
         <channel name="Yaw">
             <summer name="Yaw Trim Sum">
                 <input>fcs/rudder-cmd-norm</input>
@@ -569,7 +563,7 @@
                 </domain>
                 <range>
                     <min>0.48</min>
-                    <max>0.75</max>
+                    <max>0.85</max>
                 </range>
                 <output>propulsion/engine[0]/cooling-factor</output>
             </aerosurface_scale>
@@ -862,7 +856,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCLge</property>
                         <property>propulsion/engine[0]/cowl-flaps-norm</property>
-                    <value>0.0097</value>
+                    <value>0.0077</value>
                 </product>
             </function>
 
@@ -976,17 +970,14 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
-                    <table>
-                        <independentVar lookup="row">velocities/p-aero-rad_sec</independentVar>
+                        <property>velocities/p-aero-rad_sec</property>
+		<table>
+                        <independentVar>velocities/u-fps</independentVar>
                         <tableData>
-                              -20     20
-                              -10     9.68
-                              -5      2.42
-                               0      0
-                               5     -2.42
-                               10    -9.68
-                               20    -20
-                          </tableData>
+                              107.1	-0.494 <!--Approach-->
+                              133.5	-0.487 <!--climb-->
+                              220.1	 -0.484<!--cruise-->
+                        </tableData>
                     </table>
                     <!--
                           stall and spin (2): 
@@ -1086,7 +1077,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
 		<table>
-                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                               107.1	0.090 <!--Approach-->
                               133.5	0.040 <!--climb-->
@@ -1134,7 +1125,7 @@
                     <property>aero/ci2vel</property>
                     <property>velocities/q-aero-rad_sec</property>
 		<table>
-                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                               107.1	-11.40 <!--Approach-->
                               133.5	-15.20 <!--climb-->
@@ -1153,7 +1144,7 @@
                     <property>aero/ci2vel</property>
                     <property>aero/alphadot-rad_sec</property>
 		<table>
-                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                               107.1	-5.40 <!--Approach-->
                               133.5	-5.57 <!--climb-->
@@ -1171,7 +1162,7 @@
                     <property>metrics/cbarw-ft</property>
                     <property>fcs/elevator-pos-rad</property>
                    <table>
-                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                               107.1	-1.029 <!--Approach-->
                               133.5	-1.369 <!--climb-->
@@ -1312,19 +1303,22 @@
                 <!--
                     stall and spin (8):
                     adverse yaw: can induce a adverse turn and spin when stalled
+		    David Megginson's values are negative, but positive values in cruise seems to match the real aircraft behavior much better 
                 -->
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
-                      <table>
-                          <independentVar>aero/alpha-rad</independentVar>
-                          <tableData>
-                              0.0000	-0.0216
-                              0.0943	-0.0504
-                          </tableData>
-                      </table>
+		<table>
+                        <independentVar>velocities/u-fps</independentVar>
+                        <tableData>
+                              107.1	-0.0786 <!--Approach-->
+                              133.5	-0.0504 <!--climb-->
+                              220.1	 0.0216<!--cruise-->
+                        </tableData>
+                    </table>
+<value>1</value>
                 </product>
             </function>
 

@@ -69,37 +69,20 @@
 		
                 <radio>
                     <halign>left</halign>
-                <label> ladder left wing</label>
+                <label> ladder left or right wing</label>
                         <live>true</live>
-		<property>/sim/ladder/left</property>
-	<enable>
-		<property>/sim/ladder/enable</property>
-	</enable>
+			<enable>
+                                    <property>/sim/ladder/enable</property>
+			</enable>
 	<binding>
                     <command>property-toggle</command>
-		<property>/sim/ladder/left</property>
-                </binding>
-	<binding>
-                    <command>dialog-update</command>
-                </binding>
-	</radio>
-
-                <radio>
-                    <halign>right</halign>
-                <label>... right wing</label>
-                        <live>true</live>
-		<property>/sim/ladder/right</property>
-	<enable>
-		<property>/sim/ladder/enable</property>
-	</enable>
-	<binding>
-                    <command>property-toggle</command>
-		<property>/sim/ladder/right</property>
+		<property>/sim/ladderleft/enable</property>
                   </binding>
 	<binding>
                     <command>dialog-update</command>
                 </binding>
 	</radio>
+
         </group>
         <hrule/>
 

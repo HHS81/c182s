@@ -42,8 +42,6 @@
 	</group>
 	<hrule/>
     
-
-	
 <group>
                 <layout>hbox</layout>
 		
@@ -66,24 +64,49 @@
                     <command>dialog-update</command>
                 </binding>
 	</checkbox>
-		
+
                 <radio>
                     <halign>left</halign>
-                <label> ladder left or right wing</label>
-                        <live>true</live>
-			<enable>
-                                    <property>/sim/ladder/enable</property>
-			</enable>
-	<binding>
-                    <command>property-toggle</command>
-		<property>/sim/ladderleft/enable</property>
-                  </binding>
-	<binding>
-                    <command>dialog-update</command>
-                </binding>
-	</radio>
+                    <label>ladder left</label>
+                    <property>sim/model/c182/ladder_position_l</property>
+                    <live>true</live>
+                    <enable>
+                            <property>/sim/ladder/enable</property>
+                    </enable>
+                    <binding>
+                        <command>dialog-update</command>
+                    </binding>
+                    <binding>
+                        <command>nasal</command>
+                        <script>
+                            setprop("sim/model/c182/ladder_position_l", 1);
+                            setprop("sim/model/c182/ladder_position_r", 0);
+                        </script>
+                    </binding>
+                </radio>
 
-        </group>
+                <radio>
+                    <halign>right</halign>
+                    <label>ladder right</label>
+                    <enable>
+                            <property>/sim/ladder/enable</property>
+                    </enable>
+                    <property>sim/model/c182/ladder_position_r</property>
+                    <live>true</live>
+                    <binding>
+                        <command>dialog-update</command>
+                    </binding>
+                    <binding>
+                        <command>nasal</command>
+                        <script>
+                            setprop("sim/model/c182/ladder_position_l", 0);
+                            setprop("sim/model/c182/ladder_position_r", 1);
+                        </script>
+                    </binding>
+                </radio>
+            </group>
+
+
         <hrule/>
 
 	
@@ -160,7 +183,7 @@
         </group>
 
 	
-<group>
+<!--<group>
 	<layout>vbox</layout>
 	<padding>6</padding>
 	<checkbox>
@@ -179,7 +202,7 @@
                     <command>dialog-update</command>
                 </binding>
 	</checkbox>
-        </group>
+        </group>-->
         <hrule/>
 	
 

@@ -38,6 +38,12 @@
     </electrical>
   </systems>
   
+  <rendering>
+      <als-secondary-lights>
+          <landing-light1-offset-deg type="float">-4.0</landing-light1-offset-deg>
+          <landing-light2-offset-deg type="float">-3.5</landing-light2-offset-deg>
+      </als-secondary-lights>
+  </rendering>
   
 <instrumentation n="0">
     <path>Aircraft/c182/Systems/instrumentation.xml</path>
@@ -62,7 +68,7 @@
     
   <c182>
   
-<procedural-lights type="bool">true</procedural-lights>
+  <procedural-lights type="bool">true</procedural-lights>
   
       <chrome_spinner type="bool">true</chrome_spinner>
 	<material>
@@ -86,8 +92,8 @@
 	</material>
     </c182>
     
-  <rendering>
-    <refl_correction type="string">-0.6</refl_correction>
+    <rendering>
+        <refl_correction type="string">-0.6</refl_correction>
     </rendering>
     
   </model>

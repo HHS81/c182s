@@ -649,41 +649,122 @@
   </axis>
  </animation>
 
-<animation>
-  <type>translate</type>
-  <object-name>Throttle</object-name>
-  <property>controls/engines/engine[0]/throttle</property>
-  <factor>-0.0594</factor>
-  <axis>
-   <x>1.0</x>
-   <y>0.0</y>
-   <z>0.0</z>
-  </axis>
- </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>Throttle</object-name>
+        <property>controls/engines/engine[0]/throttle</property>
+        <factor>-0.0594</factor>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>slider</type>
+        <object-name>Throttle</object-name>
+        <visible>true</visible>
+        <drag-direction>vertical</drag-direction>
+        <!-- no translation, we handle that seperately -->
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>/controls/engines/engine[0]/throttle</property>
+                <factor>-0.05</factor>
+                <min>0</min>
+                <max>1</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Throttle: %3d%%</label>
+                <measure-text>Throttle: 100%</measure-text>
+                <tooltip-id>throttle</tooltip-id>
+                <mapping>percent</mapping>
+                <property>/controls/engines/engine[0]/throttle</property>
+            </binding>
+        </hovered>
+    </animation>
 
- <animation>
-  <type>translate</type>
-  <object-name>Mixture</object-name>
-  <property>controls/engines/engine[0]/mixture</property>
-  <factor>-0.0654</factor>
-  <axis>
-   <x>1.0</x>
-   <y>0.0</y>
-   <z>0.0</z>
-  </axis>
- </animation>
-
- <animation>
-  <type>translate</type>
-  <object-name>PropControl</object-name>
-  <property>controls/engines/engine[0]/propeller-pitch</property>
-  <factor>-0.0654</factor>
-  <axis>
-   <x>1.0</x>
-   <y>0.0</y>
-   <z>0.0</z>
-  </axis>
- </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>Mixture</object-name>
+        <property>controls/engines/engine[0]/mixture</property>
+        <factor>-0.0654</factor>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>slider</type>
+        <object-name>Mixture</object-name>
+        <visible>true</visible>
+        <drag-direction>vertical</drag-direction>
+        <!-- no translation, we handle that seperately -->
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>/controls/engines/engine[0]/mixture</property>
+                <factor>-0.05</factor>
+                <min>0</min>
+                <max>1</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Mixture: %3d%%</label>
+                <measure-text>Mixture: 100%</measure-text>
+                <tooltip-id>Mixture</tooltip-id>
+                <mapping>percent</mapping>
+                <property>/controls/engines/engine[0]/mixture</property>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <animation>
+        <type>translate</type>
+        <object-name>PropControl</object-name>
+        <property>controls/engines/engine[0]/propeller-pitch</property>
+        <factor>-0.0654</factor>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>slider</type>
+        <object-name>PropControl</object-name>
+        <visible>true</visible>
+        <drag-direction>vertical</drag-direction>
+        <!-- no translation, we handle that seperately -->
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>/controls/engines/engine[0]/propeller-pitch</property>
+                <factor>-0.05</factor>
+                <min>0</min>
+                <max>1</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Propeller Pitch: %3d%%</label>
+                <measure-text>Propeller Pitch: 100%</measure-text>
+                <tooltip-id>Propeller Pitch</tooltip-id>
+                <mapping>percent</mapping>
+                <property>/controls/engines/engine[0]/propeller-pitch</property>
+            </binding>
+        </hovered>
+    </animation>
  
  <animation>
     <type>knob</type>

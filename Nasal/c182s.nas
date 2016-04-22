@@ -6,36 +6,110 @@ aircraft.livery.init("Aircraft/c182/Models/Liveries", "sim/model/livery/name", "
 #to-do:
 #credits
 
-var chocks_model = {
+var chocks001_model = {
        index:   0,
        add:   func {
-                          print("chocks_model.add");
+                          #print("chocks001_model.add");
   var manager = props.globals.getNode("/models", 1);
                 var i = 0;
                 for (; 1; i += 1)
                    if (manager.getChild("model", i, 0) == nil)
                       break;
 		      
-		var chocks = geo.aircraft_position().set_alt(
+		var chocks001 = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
 				
-		geo.put_model("Aircraft/c182/Models/Exterior/chock.ac", chocks,
+		geo.put_model("Aircraft/c182/Models/Exterior/chock001.ac", chocks001,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 					 me.index = i;	
           },
 	  
        remove:   func {
-                print("chocks_model.remove");
+                #print("chocks001_model.remove");
              props.globals.getNode("/models", 1).removeChild("model", me.index);
           },
 };
 
 var init_common = func {
-	setlistener("/sim/chocks/enable", func(n) {
+	setlistener("/sim/chocks001/enable", func(n) {
 		if (n.getValue()) {
-				chocks_model.add();
+				chocks001_model.add();
 		} else  {
-			chocks_model.remove();
+			chocks001_model.remove();
+		}
+	});
+}
+settimer(init_common,0);
+
+##
+
+var chocks002_model = {
+       index:   0,
+       add:   func {
+                          #print("chocks002_model.add");
+  var manager = props.globals.getNode("/models", 1);
+                var i = 0;
+                for (; 1; i += 1)
+                   if (manager.getChild("model", i, 0) == nil)
+                      break;
+		      
+		var chocks002 = geo.aircraft_position().set_alt(
+				props.globals.getNode("/position/ground-elev-m").getValue());
+				
+		geo.put_model("Aircraft/c182/Models/Exterior/chock002.ac", chocks002,
+				props.globals.getNode("/orientation/heading-deg").getValue());
+					 me.index = i;	
+          },
+	  
+       remove:   func {
+                #print("chocks002_model.remove");
+             props.globals.getNode("/models", 1).removeChild("model", me.index);
+          },
+};
+
+var init_common = func {
+	setlistener("/sim/chocks002/enable", func(n) {
+		if (n.getValue()) {
+				chocks002_model.add();
+		} else  {
+			chocks002_model.remove();
+		}
+	});
+}
+settimer(init_common,0);
+
+##
+
+var chocks003_model = {
+       index:   0,
+       add:   func {
+                          #print("chocks003_model.add");
+  var manager = props.globals.getNode("/models", 1);
+                var i = 0;
+                for (; 1; i += 1)
+                   if (manager.getChild("model", i, 0) == nil)
+                      break;
+		      
+		var chocks003 = geo.aircraft_position().set_alt(
+				props.globals.getNode("/position/ground-elev-m").getValue());
+				
+		geo.put_model("Aircraft/c182/Models/Exterior/chock003.ac", chocks003,
+				props.globals.getNode("/orientation/heading-deg").getValue());
+					 me.index = i;	
+          },
+	  
+       remove:   func {
+                #print("chocks003_model.remove");
+             props.globals.getNode("/models", 1).removeChild("model", me.index);
+          },
+};
+
+var init_common = func {
+	setlistener("/sim/chocks003/enable", func(n) {
+		if (n.getValue()) {
+				chocks003_model.add();
+		} else  {
+			chocks003_model.remove();
 		}
 	});
 }
@@ -46,10 +120,10 @@ settimer(init_common,0);
 #to-do:
 #credits
 
-var cones_model = {
+var coneR_model = {
        index:   0,
        add:   func {
-                          print("cones_model.add");
+                          #print("coneR_model.add");
   var manager = props.globals.getNode("/models", 1);
                 var i = 0;
                 for (; 1; i += 1)
@@ -58,27 +132,64 @@ var cones_model = {
 		var cones = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
 				
-		geo.put_model("Aircraft/c182/Models/Exterior/safety-cones.ac", cones,
+		geo.put_model("Aircraft/c182/Models/Exterior/safety-cone_R.ac", cones,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 				 me.index = i;
           },
 	  
        remove:   func {
-                print("cones_model.remove");
+                #print("coneR_model.remove");
              props.globals.getNode("/models", 1).removeChild("model", me.index);
           },
 };
 
 var init_common = func {
-	setlistener("/sim/cones/enable", func(n) {
+	setlistener("/sim/coneR/enable", func(n) {
 		if (n.getValue()) {
-				cones_model.add();
+				coneR_model.add();
 		} else  {
-			cones_model.remove();
+			coneR_model.remove();
 		}
 	});
 }
 settimer(init_common,0);
+
+##
+
+var coneL_model = {
+       index:   0,
+       add:   func {
+                          #print("coneL_model.add");
+  var manager = props.globals.getNode("/models", 1);
+                var i = 0;
+                for (; 1; i += 1)
+                   if (manager.getChild("model", i, 0) == nil)
+                      break;
+		var cones = geo.aircraft_position().set_alt(
+				props.globals.getNode("/position/ground-elev-m").getValue());
+				
+		geo.put_model("Aircraft/c182/Models/Exterior/safety-cone_L.ac", cones,
+				props.globals.getNode("/orientation/heading-deg").getValue());
+				 me.index = i;
+          },
+	  
+       remove:   func {
+                #print("coneL_model.remove");
+             props.globals.getNode("/models", 1).removeChild("model", me.index);
+          },
+};
+
+var init_common = func {
+	setlistener("/sim/coneL/enable", func(n) {
+		if (n.getValue()) {
+				coneL_model.add();
+		} else  {
+			coneL_model.remove();
+		}
+	});
+}
+settimer(init_common,0);
+
 
 
 #ground-power======================================================
@@ -88,7 +199,7 @@ settimer(init_common,0);
 var gpu_model = {
        index:   0,
        add:   func {
-                          print("gpu_model.add");
+                          #print("gpu_model.add");
   var manager = props.globals.getNode("/models", 1);
                 var i = 0;
                 for (; 1; i += 1)
@@ -104,7 +215,7 @@ var gpu_model = {
           },
 	  
        remove:   func {
-                print("gpu_model.remove");
+                #print("gpu_model.remove");
              props.globals.getNode("/models", 1).removeChild("model", me.index);
           },
 };
@@ -129,7 +240,7 @@ settimer(init_common,0);
 var ladder_model = {
        index:   0,
        add:   func {
-                          print("ladder_model.add");
+                          #print("ladder_model.add");
   var manager = props.globals.getNode("/models", 1);
                 var i = 0;
                 for (; 1; i += 1)
@@ -146,7 +257,7 @@ var ladder_model = {
           },
 	  
        remove:   func {
-                print("ladder_model.remove");
+                #print("ladder_model.remove");
              props.globals.getNode("/models", 1).removeChild("model", me.index);
           },
 };
@@ -169,7 +280,7 @@ settimer(init_common,0);
 var fueltanktrailer_model = {
        index:   0,
        add:   func {
-                          print("fueltanktrailer_model.add");
+                          #print("fueltanktrailer_model.add");
   var manager = props.globals.getNode("/models", 1);
                 var i = 0;
                 for (; 1; i += 1)
@@ -186,7 +297,7 @@ var fueltanktrailer_model = {
           },
 	  
        remove:   func {
-                print("fueltanktrailer_model.remove");
+                #print("fueltanktrailer_model.remove");
              props.globals.getNode("/models", 1).removeChild("model", me.index);
           },
 };

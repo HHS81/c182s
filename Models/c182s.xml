@@ -1490,7 +1490,7 @@
     
 <animation>
         <type>pick</type>
-        <object-name>chokes.cs</object-name>
+        <object-name>chokes.cs.001</object-name>
         <visible>false</visible>
         <action>
             <name>Select</name>
@@ -1503,15 +1503,131 @@
 		</enable>
             <binding>
                 <command>property-toggle</command>
-        <property>/sim/chocks/enable</property>
+        <property>/sim/chocks001/enable</property>
             </binding>
         </action>
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <label>Wheel Chokes: %s</label>
-        <property>/sim/chocks/enable</property>
+                <label>Wheel Choke Nose Gear: %s</label>
+        <property>/sim/chocks001/enable</property>
                 <tooltip-id>wheel-chokes</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+    
+<animation>
+        <type>pick</type>
+        <object-name>chokes.cs.002</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+		<enable>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>0.1</value>
+                                </less-than>
+		</enable>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/chocks002/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Wheel Choke Left Main Gear: %s</label>
+        <property>/sim/chocks002/enable</property>
+                <tooltip-id>wheel-chokes</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+    
+<animation>
+        <type>pick</type>
+        <object-name>chokes.cs.003</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+		<enable>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>0.1</value>
+                                </less-than>
+		</enable>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/chocks003/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Wheel Choke Right Main Gear: %s</label>
+        <property>/sim/chocks003/enable</property>
+                <tooltip-id>wheel-chokes</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+    
+<animation>
+        <type>pick</type>
+        <object-name>safety-cone.cs.R</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+		<enable>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>0.1</value>
+                                </less-than>
+		</enable>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/coneR/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Safety Cone: Right: %s</label>
+        <property>/sim/coneR/enable</property>
+                <tooltip-id>Safety Cone Right</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+    
+<animation>
+        <type>pick</type>
+        <object-name>safety-cone.cs.L</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+		<enable>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>0.1</value>
+                                </less-than>
+		</enable>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/coneL/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Safety Cone: Left: %s</label>
+        <property>/sim/coneL/enable</property>
+                <tooltip-id>Safety Cone Left</tooltip-id>
                 <mapping>on-off</mapping>
             </binding>
         </hovered>

@@ -325,10 +325,21 @@ WindowR = aircraft.door.new( "/sim/model/door-positions/WindowR", 2, 0 );
 WindowL = aircraft.door.new( "/sim/model/door-positions/WindowL", 2, 0 );
 
 #####################
+# external electrical disconnect when groundspeed higher than 0.1ktn (replace later with distance less than 0.01...)
+ad = func {
+GROUNDSPEED = getprop("/velocities/groundspeed-kt") or 0; 
 
+ if (GROUNDSPEED > 0.1) {
+ setprop("/controls/electric/external-power", "false");
+  setprop("/controls/electric/TEST", "true");
+ }
+   settimer(ad, 0.1);   
+}
+init = func {
+   settimer(ad, 0.0);
+}
 
-
-	
+init();	
 
 
 

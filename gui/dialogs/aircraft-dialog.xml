@@ -51,11 +51,69 @@
                 <property>/sim/model/c182/procedural-lights</property>
                 <live>true</live>
                 <binding>
-                    <command>dialog-apply</command>
+                    <command>property-toggle</command><!-- dialog-apply would apply values to all objects here - setlistener reacts on them in unfortunate way-->
+                <property>/sim/model/c182/procedural-lights</property>
+                </binding>
+	<binding>
+                    <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
                 </binding>
 	</checkbox>
         </group>
+<hrule/>
+
+<group>
+	<layout>hbox</layout>
+	<padding>6</padding>
+	<radio>
+                <halign>left</halign>
+                <label>add/ remove nose wheel fairing</label>
+                <property>/sim/model/c182/nw_fairing</property>
+                <live>true</live>
+                <binding>
+                    <command>property-toggle</command><!-- dialog-apply would apply values to all objects here - setlistener reacts on them in unfortunate way-->
+                <property>/sim/model/c182/nw_fairing</property>
+                </binding>
+	<binding>
+                    <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
+                </binding>
+	</radio>
+
+	
+
+	<radio>
+                <halign>right</halign>
+                <label>add/ remove main wheels fairing</label>
+                <property>/sim/model/c182/mw_fairing</property>
+                <live>true</live>
+                <binding>
+                    <command>property-toggle</command><!-- dialog-apply would apply values to all objects here - setlistener reacts on them in unfortunate way-->
+                <property>/sim/model/c182/mw_fairing</property>
+                </binding>
+	<binding>
+                    <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
+                </binding>
+	</radio>
+        </group>
+	<hrule/>
+	
+<group>
+	<layout>vbox</layout>
+	<padding>6</padding>
+	<checkbox>
+                <halign>left</halign>
+                <label>Show/Hide Yokes</label>
+                    <property>/sim/model/hide-yoke</property>
+                <live>true</live>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/sim/model/hide-yoke</property>
+                </binding>
+	<binding>
+                    <command>dialog-update</command>
+                </binding>
+	</checkbox>
+        </group>	
+	
         <hrule/>
 
-       
 </PropertyList>

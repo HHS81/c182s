@@ -110,7 +110,7 @@
             <location unit="IN">
                 <x>-10.31 </x>
                 <y> 0 </y>
-                <z>-48.09</z><!--includes offset due to gear compression animation, should be -47.17-->
+                <z>-47.09</z><!--includes offset due to gear compression animation, should be -47.17-->
             </location>
             <static_friction> 0.99 </static_friction>
             <dynamic_friction> 0.8 </dynamic_friction>
@@ -125,7 +125,7 @@
             <location unit="IN">
                 <x>54.43 </x>
                 <y>-51.56 </y>
-                <z>-44.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
+                <z>-43.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
             <static_friction> 0.99 </static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
@@ -139,7 +139,7 @@
             <location unit="IN">
                 <x>54.43 </x>
                 <y>51.56 </y>
-                <z>-44.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
+                <z>-43.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
             <static_friction> 0.99 </static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
@@ -1385,8 +1385,11 @@
     </external_reactions>
     
     <system file="c182s-stallhorn"/>
- <system file="propulsion"/>
+    <system file="propulsion"/>
     <system file="indicated-airspeed"/>
+   <system file="c182s-ground-effects"/>    
+    <system file="indicated-airspeed"/>
+
 
 
 

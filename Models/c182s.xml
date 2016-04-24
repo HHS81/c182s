@@ -1441,6 +1441,485 @@
             <z-m>0.892203</z-m>
         </offsets>
  </model>
+ 
+ 
+<!--exterior stuff which is not called by nasal-script-->
+
+<model>
+        <path>Aircraft/c182/Models/Exterior/pitot-cover.xml</path>
+        <name>pitot-cover</name>
+        <offsets>
+            <x-m>0.0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0</z-m>
+        </offsets>
+	<condition>
+	<property>/sim/model/c182/securing/pitot-cover-visible</property>
+	</condition>
+	</model>
+
+
+<animation>
+        <type>pick</type>
+        <object-name>pitotcover.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/model/c182/securing/pitot-cover-visible</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Pitot Cover: %s</label>
+        <property>/sim/model/c182/securing/pitot-cover-visible</property>
+                <tooltip-id>pitot-cover</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+    
+ <animation>
+   <type>select</type>
+        <object-name>pitotcover.cs</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation> 
+    
+<animation>
+        <type>pick</type>
+        <object-name>chokes.cs.001</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/chocks001/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Wheel Choke Nose Gear: %s</label>
+        <property>/sim/chocks001/enable</property>
+                <tooltip-id>wheel-chokes</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+    
+<animation>
+        <type>pick</type>
+        <object-name>chokes.cs.002</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/chocks002/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Wheel Choke Left Main Gear: %s</label>
+        <property>/sim/chocks002/enable</property>
+                <tooltip-id>wheel-chokes</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+    
+<animation>
+        <type>pick</type>
+        <object-name>chokes.cs.003</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/chocks003/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Wheel Choke Right Main Gear: %s</label>
+        <property>/sim/chocks003/enable</property>
+                <tooltip-id>wheel-chokes</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+
+ <animation>
+   <type>select</type>
+        <object-name>chokes.cs.001</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation> 
+
+ <animation>
+   <type>select</type>
+        <object-name>chokes.cs.002</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation> 
+
+ <animation>
+   <type>select</type>
+        <object-name>chokes.cs.003</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>    
+
+<animation>
+        <type>pick</type>
+        <object-name>safety-cone.cs.R</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/coneR/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Safety Cone: Right: %s</label>
+        <property>/sim/coneR/enable</property>
+                <tooltip-id>Safety Cone Right</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+    
+<animation>
+        <type>pick</type>
+        <object-name>safety-cone.cs.L</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/coneL/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Safety Cone: Left: %s</label>
+        <property>/sim/coneL/enable</property>
+                <tooltip-id>Safety Cone Left</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+    
+ <animation>
+   <type>select</type>
+        <object-name>safety-cone.cs.L</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+        <object-name>safety-cone.cs.R</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+    
+
+    
+
+    
+<!--tiedown-->
+
+<!-- Left Tiedowns -->
+    <model>
+        <name>tiedownL</name>
+        <path>Aircraft/c182/Models/Exterior/tiedownL.xml</path>
+        <offsets>
+            <x-m>0.794</x-m>
+            <y-m>-2.473</y-m>
+            <z-m>0.691</z-m>
+            <heading-deg>-90.0</heading-deg>
+        </offsets>
+    </model>
+    
+ <animation>
+        <type>select</type>
+        <object-name>tiedownL</object-name>
+        <object-name>TieDownLeft</object-name>	<!-- tiedown handle -->
+        <condition>
+        <property>sim/model/c182/securing/tiedownL-visible</property>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>tiedownL</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+        <property>sim/model/c182/securing/tiedownL-visible</property>
+                <value>false</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+        <property>sim/model/c182/securing/tiedownL-visible</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>remove-left-tiedowns</tooltip-id>
+                <label>Remove Left Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>   
+    
+     <animation>
+        <type>pick</type>
+        <object-name>TiedownHotSpotLeft</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                   <property>sim/model/c182/securing/tiedownL-visible</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>secure-with-left-tiedowns</tooltip-id>
+                <label>Secure With Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <!-- Right Tiedowns -->
+    <model>
+        <name>tiedownR</name>
+        <path>Aircraft/c182/Models/Exterior/tiedownR.xml</path>
+        <offsets>
+            <x-m>0.794</x-m>
+            <y-m>2.473</y-m>
+            <z-m>0.691</z-m>
+            <heading-deg>90.0</heading-deg>
+        </offsets>
+    </model>
+    
+    <animation>
+        <type>select</type>
+        <object-name>tiedownR</object-name>
+        <object-name>TieDownRight</object-name>	<!-- tiedown handle -->
+        <condition>
+        <property>sim/model/c182/securing/tiedownR-visible</property>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>tiedownR</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+        <property>sim/model/c182/securing/tiedownR-visible</property>
+                <value>false</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+        <property>sim/model/c182/securing/tiedownR-visible</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>remove-right-tiedowns</tooltip-id>
+                <label>Remove Right Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+     <animation>
+        <type>pick</type>
+        <object-name>TiedownHotSpotRight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                   <property>sim/model/c182/securing/tiedownR-visible</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>secure-with-right-tiedowns</tooltip-id>
+                <label>Secure With Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+
+
+    <!-- Tail Tiedowns -->
+    <model>
+        <name>tiedownT</name>
+        <path>Aircraft/c182/Models/Exterior/tiedownT.xml</path>
+        <offsets>
+            <x-m>5.601</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.115</z-m>
+            <heading-deg>180.0</heading-deg>
+        </offsets>
+    </model>
+    
+    <animation>
+        <type>select</type>
+        <object-name>tiedownT</object-name>
+        <object-name>TieDownTail</object-name> <!-- tiedown handle -->
+        <condition>
+            <property>sim/model/c182/securing/tiedownT-visible</property>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>tiedownT</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+            <property>sim/model/c182/securing/tiedownT-visible</property>
+                <value>false</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+            <property>sim/model/c182/securing/tiedownT-visible</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>remove-tail-tiedowns</tooltip-id>
+                <label>Remove Tail Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>TiedownHotSpotTail</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+            <property>sim/model/c182/securing/tiedownT-visible</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>secure-with-tail-tiedowns</tooltip-id>
+                <label>Secure With Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+ <animation>
+   <type>select</type>
+        <object-name>TiedownHotSpotRight</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+        <object-name>TiedownHotSpotLeft</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+    
+ <animation>
+   <type>select</type>
+        <object-name>TiedownHotSpotTail</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+        <object-name>TieDownRight</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+        <object-name>TieDownLeft</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+
 
  
 <!--object animation-->
@@ -1461,6 +1940,28 @@
      <property>sim/model/c182/chrome_spinner</property>
    </condition>
  </animation>
+ 
+  <animation>
+   <type>select</type>
+   <object-name>WheelFairing.L</object-name>
+   <object-name>WheelFairing.R</object-name>
+   <condition>
+     <property>sim/model/c182/mw_fairing</property>
+   </condition>
+ </animation>
+ 
+  <animation>
+   <type>select</type>
+   <object-name>WheelFairingNose</object-name>
+   <condition>
+     <property>sim/model/c182/nw_fairing</property>
+   </condition>
+ </animation>
+
+
+
+ 
+
  
  
  

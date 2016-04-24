@@ -31,9 +31,21 @@ aircraft.light.new("controls/lighting/beacon-state", [1.0, 1.0], beacon_switch);
 # Initialize the electrical system
 #
 
+var epu = func{
+var EP  = props.globals.getNode("/controls/electric/external-power").getValue() or 0;
+if (EP >0){
+setprop("/systems/electrical/external_volts", 29);
+}else{
+setprop("/systems/electrical/external_volts", 0);
+}
+settimer(epu, 0.1);
+}
+epu();
+
 init_electrical = func {
     battery = BatteryClass.new();
     alternator = AlternatorClass.new();
+    
 
     # set initial switch positions
     setprop("/controls/engines/engine[0]/master-bat", 1);
@@ -50,6 +62,7 @@ init_electrical = func {
     setprop("/controls/lighting/radio-lights-norm", 0);
 #set beacon
  setprop("/systems/electrical/outputs/beacon-norm", 0);
+ 
 
     # Request that the update function be called next frame
     settimer(update_electrical, 0);
@@ -254,19 +267,19 @@ update_virtual_bus = func( dt ) {
     # print( "virtual bus volts = ", bus_volts );
 
     # starter motor
-    var starter_switch = getprop("controls/switches/starter");
-    var starter_volts = 0.0;
-    if ( starter_switch ) {
-        starter_volts = bus_volts;
-        load += 12;
-    }
-    setprop("systems/electrical/outputs/starter[0]", starter_volts);
-    if (starter_volts > 12) {
-        setprop("controls/engines/engine[0]/starter",1);
-        setprop("controls/engines/engine[0]/magnetos",3);
-    } else {
-        setprop("controls/engines/engine[0]/starter",0);
-    }
+    #var starter_switch = getprop("controls/switches/starter");
+    #var starter_volts = 0.0;
+   # if ( starter_switch ) {
+     #   starter_volts = bus_volts;
+    #    load += 12;
+    #}
+   # setprop("systems/electrical/outputs/starter[0]", starter_volts);
+  #  if (starter_volts > 12) {
+   #     setprop("controls/engines/engine[0]/starter",1);
+   #     setprop("controls/engines/engine[0]/magnetos",3);
+   # } else {
+   #     setprop("controls/engines/engine[0]/starter",0);
+   # }
 
     # bus network (1. these must be called in the right order, 2. the
     # bus routine itself determins where it draws power from.)
@@ -414,6 +427,15 @@ electrical_bus_2 = func() {
         setprop("/systems/electrical/outputs/pitot-heat", 0.0);
     }
     
+# engine starter
+        if ( bus_volts > 12 ) {
+    if ( getprop("/controls/engines/engine/starter" )) {
+        setprop("systems/electrical/outputs/starter", bus_volts);
+            load += bus_volts / 1.4;
+    } else {
+        setprop("systems/electrical/outputs/starter", 0.0);
+    }
+ } 
   
     # register bus voltage
     ebus2_volts = bus_volts;

@@ -8,7 +8,7 @@
             <label>Cessna C182S</label>
             <enabled type="bool">true</enabled>
 
-            <!----><item>
+<item>
                 <label>Aircraft Options</label>
                 <binding>
                     <command>dialog-show</command>
@@ -16,7 +16,23 @@
                 </binding>
             </item>
 	    
-	    <!---->
+	<item>
+                <label>Aircraft Securing</label>
+                <binding>
+                    <command>dialog-show</command>
+                    <dialog-name>securing</dialog-name>
+                </binding>
+            </item>
+	    
+	<item>
+                <label>Ground Equipement</label>
+                <binding>
+                    <command>dialog-show</command>
+                    <dialog-name>ground-equipement</dialog-name>
+                </binding>
+            </item>
+	    
+
 
             <item>
                 <label>Select Livery</label>
@@ -42,13 +58,6 @@
                 </binding>
             </item>
 
-            <item>
-                <label>Show/Hide Yokes</label>
-                <binding>
-                    <command>property-toggle</command>
-                    <property>/sim/model/hide-yoke</property>
-                </binding>
-            </item>
 
             <item>
                 <label>Autostart</label>

@@ -28,6 +28,9 @@
 						</ambient>
 				</fuselage>
                                </material>
+			       
+<nw_fairing type="bool">true</nw_fairing>
+<mw_fairing type="bool">true</mw_fairing>
 <chrome_spinner>false</chrome_spinner>
 </c182>
     </model>

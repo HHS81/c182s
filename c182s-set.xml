@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<PropertyList>
-
+<!--<PropertyList>-->
+<PropertyList include="Aircraft/Generic/Human/Include/walker-include.xml">
  <sim>
 
   <description>Cessna 182S (1996)</description>
@@ -37,7 +37,19 @@
       <path></path>
     </electrical>
   </systems>
+
+  <chocks>
+  <enable type="bool">false</enable>
+  </chocks>
   
+  <cones>
+  <enable type="bool">false</enable>
+  </cones>
+  
+  <gpu>
+  <enable>false</enable>
+  </gpu>
+
   <rendering>
       <als-secondary-lights>
           <landing-light1-offset-deg type="float">-4.0</landing-light1-offset-deg>
@@ -61,12 +73,60 @@
    <path archive="y">Aircraft/c182/Models/c182s.xml</path>
     <hide-yoke>false</hide-yoke>
 
+  
+    
+<!-- An exit for the walker -->
+        <map>
+            <default_exit>
+                <x-offset-m type="float">3</x-offset-m>
+                <y-offset-m type="float">-1.5</y-offset-m>
+            </default_exit>
+        </map>
+
     <livery>
       <file type="string">liveries/Default.png</file>
       <index type="int">0</index>
     </livery>
     
   <c182>
+<ladder_position_l type ="int">1</ladder_position_l>
+<tiedowns>
+                    <left>
+                        <pitch-deg type="double">0.0</pitch-deg>
+                        <heading-deg type="double">0.0</heading-deg>
+                        <length type="double">0.0</length>
+                        <ref-length type="double">0.0</ref-length>
+                        <x type="double">0.0</x>
+                        <y type="double">-2.6</y>
+                    </left>
+                    <right>
+                        <pitch-deg type="double">0.0</pitch-deg>
+                        <heading-deg type="double">0.0</heading-deg>
+                        <length type="double">0.0</length>
+                        <ref-length type="double">0.0</ref-length>
+                        <x type="double">0.0</x>
+                        <y type="double">2.6</y>
+                    </right>
+                    <tail>
+                        <pitch-deg type="double">0.0</pitch-deg>
+                        <heading-deg type="double">0.0</heading-deg>
+                        <length type="double">0.0</length>
+                        <ref-length type="double">0.0</ref-length>
+                        <x type="double">-6.5</x>
+                        <y type="double">0.0</y>
+                    </tail>
+</tiedowns>
+  <securing>
+                    <allow-securing-aircraft type="bool">true</allow-securing-aircraft>
+                    <tiedownL-visible type="bool">false</tiedownL-visible>
+                    <tiedownR-visible type="bool">false</tiedownR-visible>
+                    <tiedownT-visible type="bool">false</tiedownT-visible>
+</securing>
+
+<procedural-lights type="bool">true</procedural-lights>
+<nw_fairing type="bool">true</nw_fairing>
+<mw_fairing type="bool">true</mw_fairing>
+
   
   <procedural-lights type="bool">true</procedural-lights>
   
@@ -361,12 +421,16 @@
     <desc>Propeller finer/coarser</desc>
    </key>
    <key>
+    <name>m/M</name>
+    <desc>Mixture rich/lean</desc>
+   </key>
+   <key>
     <name>Y</name>
     <desc>Toggle yoke visibility</desc>
    </key>
    <key>
-    <name>L</name>
-    <desc>Cockpit illumination</desc>
+    <name>s</name>
+    <desc>Engine Starter</desc>
    </key>
   </help>
 
@@ -520,17 +584,60 @@
         </mass-and-balance>
  </limits>
 
+<rotors>
+        <main>
+
+            <blade n="0">
+                <position-deg alias="/gear/gear[23]/rollspeed-ms"/>
+                <flap-deg alias="/sim/model/c182/tiedowns/right/heading-deg"/>
+            </blade>
+            <blade n="1">
+                <position-deg alias="/gear/gear[24]/rollspeed-ms"/>
+                <flap-deg alias="/sim/model/c182/tiedowns/right/pitch-deg"/>
+            </blade>
+            <blade n="2">
+                <position-deg alias="/gear/gear[25]/rollspeed-ms"/>
+                <flap-deg alias="/sim/model/c182/tiedowns/right/length"/>
+            </blade>
+
+
+            <blade n="3">
+                <position-deg alias="/sim/model/c182/tiedowns/left/heading-deg"/>
+                <flap-deg alias="/sim/model/c182/tiedowns/left/pitch-deg"/>
+            </blade>
+            <rpm alias="/sim/model/c182/tiedowns/left/length"/>
+        </main>
+
+
+        <tail>
+            <blade n="0">
+                <position-deg alias="/sim/model/c182/tiedowns/tail/heading-deg"/>
+            </blade>
+            <blade n="1">
+                <position-deg alias="/sim/model/c182/tiedowns/tail/pitch-deg"/>
+            </blade>
+            <rpm alias="/sim/model/c182/tiedowns/tail/length"/>
+        </tail>
+    </rotors>
+
  <nasal>
+ <math_ext>
+            <file>Aircraft/c182/Nasal/math_ext.nas</file>
+</math_ext>
+<updateloop>
+            <file>Aircraft/Generic/updateloop.nas</file>
+</updateloop>
  <c182>
 	<file>Aircraft/c182/Nasal/c182s.nas</file>
 	<file>Aircraft/c182/Nasal/kt76c.nas</file>
 	<file>Aircraft/c182/Nasal/kn62a.nas</file>
 	<file>Aircraft/c182/Nasal/kr87.nas</file>
-    </c182>
-  <electrical>
-   <file>Aircraft/c182/Nasal/c182s-electrical.nas</file>
-  </electrical>
-   <kap140>
+            <file>Nasal/tiedowns.nas</file>
+</c182>
+<electrical>
+ <file>Aircraft/c182/Nasal/c182s-electrical.nas</file>
+</electrical>
+<kap140>
    <file>Aircraft/Generic/kap140.nas</file>
    <!-- We can set some variables that might be
         aircraft specific. We must do it after the file
@@ -540,8 +647,8 @@
                     gsNeedleDeflection = "/instrumentation/nav/gs-needle-deflection-norm";
                     staticPressure = "systems/static/pressure-inhg";
     ]]>
-   </script>
-  </kap140>
+</script>
+</kap140>
     <failures> 
     <file>Aircraft/Generic/limits.nas</file>
   </failures>
@@ -550,19 +657,7 @@
  <!-- ================ map keyboard ================ -->
  <input> 
     <keyboard> 
-      <key n="76">
-        <name>L</name>
-        <desc>Cockpit illumination.</desc>
-        <repeatable type="bool">false</repeatable>
-        <binding>
-          <command>property-adjust</command>
-          <property>/controls/lighting/panel-norm</property>
-          <step>0.25</step>
-          <min>0</min>
-          <max>1.1</max>
-          <wrap>1</wrap>
-        </binding>
-      </key>
+     
 
       <key n="89">
         <name>Y</name>
@@ -574,22 +669,8 @@
         </binding>
       </key>
       
-<key n="115">
-   <name>s</name>
-   <desc>Toggle Starter Switch</desc>
-   <binding>
-    <command>property-assign</command>
-    <property>/controls/switches/starter</property>
-    <value >1</value>
-   </binding>
-   <mod-up>
-    <binding>
-     <command>property-assign</command>
-     <property>/controls/switches/starter</property>
-     <value>0</value>
-    </binding>
-   </mod-up>
-  </key>
+
+
 
     </keyboard>
     </input>

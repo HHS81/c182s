@@ -1466,12 +1466,6 @@
         <action>
             <name>Select</name>
             <button>0</button>
-		<enable>
-                                <less-than>
-                                    <property>velocities/groundspeed-kt</property>
-                                    <value>0.1</value>
-                                </less-than>
-		</enable>
             <binding>
                 <command>property-toggle</command>
         <property>/sim/model/c182/securing/pitot-cover-visible</property>
@@ -1488,6 +1482,17 @@
         </hovered>
     </animation>
     
+ <animation>
+   <type>select</type>
+        <object-name>pitotcover.cs</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation> 
+    
 <animation>
         <type>pick</type>
         <object-name>chokes.cs.001</object-name>
@@ -1495,12 +1500,6 @@
         <action>
             <name>Select</name>
             <button>0</button>
-		<enable>
-                                <less-than>
-                                    <property>velocities/groundspeed-kt</property>
-                                    <value>0.1</value>
-                                </less-than>
-		</enable>
             <binding>
                 <command>property-toggle</command>
         <property>/sim/chocks001/enable</property>
@@ -1524,12 +1523,6 @@
         <action>
             <name>Select</name>
             <button>0</button>
-		<enable>
-                                <less-than>
-                                    <property>velocities/groundspeed-kt</property>
-                                    <value>0.1</value>
-                                </less-than>
-		</enable>
             <binding>
                 <command>property-toggle</command>
         <property>/sim/chocks002/enable</property>
@@ -1553,12 +1546,6 @@
         <action>
             <name>Select</name>
             <button>0</button>
-		<enable>
-                                <less-than>
-                                    <property>velocities/groundspeed-kt</property>
-                                    <value>0.1</value>
-                                </less-than>
-		</enable>
             <binding>
                 <command>property-toggle</command>
         <property>/sim/chocks003/enable</property>
@@ -1574,7 +1561,40 @@
             </binding>
         </hovered>
     </animation>
-    
+
+ <animation>
+   <type>select</type>
+        <object-name>chokes.cs.001</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation> 
+
+ <animation>
+   <type>select</type>
+        <object-name>chokes.cs.002</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation> 
+
+ <animation>
+   <type>select</type>
+        <object-name>chokes.cs.003</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>    
+
 <animation>
         <type>pick</type>
         <object-name>safety-cone.cs.R</object-name>
@@ -1582,12 +1602,6 @@
         <action>
             <name>Select</name>
             <button>0</button>
-		<enable>
-                                <less-than>
-                                    <property>velocities/groundspeed-kt</property>
-                                    <value>0.1</value>
-                                </less-than>
-		</enable>
             <binding>
                 <command>property-toggle</command>
         <property>/sim/coneR/enable</property>
@@ -1611,12 +1625,6 @@
         <action>
             <name>Select</name>
             <button>0</button>
-		<enable>
-                                <less-than>
-                                    <property>velocities/groundspeed-kt</property>
-                                    <value>0.1</value>
-                                </less-than>
-		</enable>
             <binding>
                 <command>property-toggle</command>
         <property>/sim/coneL/enable</property>
@@ -1632,6 +1640,28 @@
             </binding>
         </hovered>
     </animation>
+    
+ <animation>
+   <type>select</type>
+        <object-name>safety-cone.cs.L</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+        <object-name>safety-cone.cs.R</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
     
 
     
@@ -1650,65 +1680,53 @@
             <heading-deg>-90.0</heading-deg>
         </offsets>
     </model>
-    <animation>
+    
+ <animation>
         <type>select</type>
         <object-name>tiedownL</object-name>
+        <object-name>TieDownLeft</object-name>	<!-- tiedown handle -->
         <condition>
-            <property>sim/model/c182/securing/tiedownL-visible</property>
+        <property>sim/model/c182/securing/tiedownL-visible</property>
         </condition>
     </animation>
+    
     <animation>
         <type>pick</type>
         <object-name>tiedownL</object-name>
-        <object-name>TieDownLeft</object-name><!-- tiedown handle -->
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-assign</command>
-            <property>sim/model/c182/securing/tiedownL-visible</property>
+        <property>sim/model/c182/securing/tiedownL-visible</property>
                 <value>false</value>
             </binding>
         </action>
         <hovered>
             <binding>
                 <condition>
-            <property>sim/model/c182/securing/tiedownL-visible</property>
+        <property>sim/model/c182/securing/tiedownL-visible</property>
                 </condition>
                 <command>set-tooltip</command>
                 <tooltip-id>remove-left-tiedowns</tooltip-id>
                 <label>Remove Left Tie-Down</label>
             </binding>
         </hovered>
-    </animation>    
-    <animation>
-        <type>select</type>
-        <object-name>TiedownHotSpotLeft</object-name>
-        <condition>
-            <property>sim/model/c182/securing/tiedownL-addable</property>
-        </condition>
-    </animation>
-    <animation>
+    </animation>   
+    
+     <animation>
         <type>pick</type>
         <object-name>TiedownHotSpotLeft</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-                <condition>
-                    <property>sim/model/c182/securing/tiedownL-addable</property>
-		<value>true</value>
-                </condition>
-                <command>property-assign</command>
-                <property alias="/params/securing/tiedowns/left/visible"/>
-                <value>true</value>
+                <command>property-toggle</command>
+                   <property>sim/model/c182/securing/tiedownL-visible</property>
             </binding>
         </action>
         <hovered>
             <binding>
-                <condition>
-                    <property>sim/model/c182/securing/tiedownL-addable</property>
-                </condition>
                 <command>set-tooltip</command>
                 <tooltip-id>secure-with-left-tiedowns</tooltip-id>
                 <label>Secure With Tie-Down</label>
@@ -1727,17 +1745,19 @@
             <heading-deg>90.0</heading-deg>
         </offsets>
     </model>
+    
     <animation>
         <type>select</type>
         <object-name>tiedownR</object-name>
+        <object-name>TieDownRight</object-name>	<!-- tiedown handle -->
         <condition>
         <property>sim/model/c182/securing/tiedownR-visible</property>
         </condition>
     </animation>
+    
     <animation>
         <type>pick</type>
         <object-name>tiedownR</object-name>
-        <object-name>TieDownRight</object-name>	<!-- tiedown handle -->
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
@@ -1757,34 +1777,21 @@
                 <label>Remove Right Tie-Down</label>
             </binding>
         </hovered>
-    </animation>    
-    <animation>
-        <type>select</type>
-        <object-name>TiedownHotSpotRight</object-name>
-        <condition>
-            <property>sim/model/c182/securing/tiedownR-addable</property>
-        </condition>
     </animation>
-    <animation>
+    
+     <animation>
         <type>pick</type>
         <object-name>TiedownHotSpotRight</object-name>
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-                <condition>
-                    <property>sim/model/c182/securing/tiedownR-addable</property>
-                </condition>
-                <command>property-assign</command>
+                <command>property-toggle</command>
                    <property>sim/model/c182/securing/tiedownR-visible</property>
-                <value>true</value>
             </binding>
         </action>
         <hovered>
             <binding>
-                <condition>
-                    <property>sim/model/c182/securing/tiedownR-addable</property>
-                </condition>
                 <command>set-tooltip</command>
                 <tooltip-id>secure-with-right-tiedowns</tooltip-id>
                 <label>Secure With Tie-Down</label>
@@ -1803,23 +1810,25 @@
             <heading-deg>180.0</heading-deg>
         </offsets>
     </model>
+    
     <animation>
         <type>select</type>
         <object-name>tiedownT</object-name>
+        <object-name>TieDownTail</object-name> <!-- tiedown handle -->
         <condition>
             <property>sim/model/c182/securing/tiedownT-visible</property>
         </condition>
     </animation>
+    
     <animation>
         <type>pick</type>
         <object-name>tiedownT</object-name>
-        <object-name>TieDownTail</object-name> <!-- tiedown handle -->
         <action>
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-assign</command>
-                <property alias="/params/securing/tiedowns/tail/visible"/>
+            <property>sim/model/c182/securing/tiedownT-visible</property>
                 <value>false</value>
             </binding>
         </action>
@@ -1834,13 +1843,7 @@
             </binding>
         </hovered>
     </animation>
-    <animation>
-        <type>select</type>
-        <object-name>TiedownHotSpotTail</object-name>
-        <condition>
-            <property>/sim/model/c182/securing/tiedownT-addable</property>
-        </condition>
-    </animation>
+    
     <animation>
         <type>pick</type>
         <object-name>TiedownHotSpotTail</object-name>
@@ -1848,25 +1851,51 @@
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
-                <condition>
-                    <property>/sim/model/c182/securing/tiedownT-addable</property>
-                </condition>
-                <command>property-assign</command>
+                <command>property-toggle</command>
             <property>sim/model/c182/securing/tiedownT-visible</property>
-                <value>true</value>
             </binding>
         </action>
         <hovered>
             <binding>
-                <condition>
-                    <property>/sim/model/c182/securing/tiedownT-addable</property>
-                </condition>
                 <command>set-tooltip</command>
                 <tooltip-id>secure-with-tail-tiedowns</tooltip-id>
                 <label>Secure With Tie-Down</label>
             </binding>
         </hovered>
     </animation>
+    
+ <animation>
+   <type>select</type>
+        <object-name>TiedownHotSpotTail</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+        <object-name>TieDownRight</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+        <object-name>TieDownLeft</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
 
 
  

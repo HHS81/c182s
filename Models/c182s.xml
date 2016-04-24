@@ -1800,6 +1800,7 @@
     </animation>
 
 
+    <!-- Tail Tiedowns -->
     <model>
         <name>tiedownT</name>
         <path>Aircraft/c182/Models/Exterior/tiedownT.xml</path>
@@ -1863,6 +1864,28 @@
             </binding>
         </hovered>
     </animation>
+    
+ <animation>
+   <type>select</type>
+        <object-name>TiedownHotSpotRight</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+        <object-name>TiedownHotSpotLeft</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
     
  <animation>
    <type>select</type>

@@ -163,7 +163,7 @@
 	<padding>6</padding>
 	<checkbox>
                 <halign>left</halign>
-                <label>Fueltanktrailer</label>
+                <label>Fuel Tank Trailer</label>
                         <live>true</live>
 		<property>/sim/fueltanktrailer/enable</property>
 			<enable>

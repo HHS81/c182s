@@ -31,9 +31,21 @@ aircraft.light.new("controls/lighting/beacon-state", [1.0, 1.0], beacon_switch);
 # Initialize the electrical system
 #
 
+var epu = func{
+var EP  = props.globals.getNode("/controls/electric/external-power").getValue() or 0;
+if (EP >0){
+setprop("/systems/electrical/external_volts", 29);
+}else{
+setprop("/systems/electrical/external_volts", 0);
+}
+settimer(epu, 0.1);
+}
+epu();
+
 init_electrical = func {
     battery = BatteryClass.new();
     alternator = AlternatorClass.new();
+    
 
     # set initial switch positions
     setprop("/controls/engines/engine[0]/master-bat", 1);
@@ -50,6 +62,7 @@ init_electrical = func {
     setprop("/controls/lighting/radio-lights-norm", 0);
 #set beacon
  setprop("/systems/electrical/outputs/beacon-norm", 0);
+ 
 
     # Request that the update function be called next frame
     settimer(update_electrical, 0);

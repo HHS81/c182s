@@ -5,6 +5,7 @@ A high detailed version of the Cessna 182S aircraft for FlightGear.
 
 Development thread: http://forum.flightgear.org/viewtopic.php?f=4&t=28475
 
+![c182s Climb](http://abload.de/img/fgfs-screen-006boeqb.jpg)
 ![c182s cockpit](http://s11.postimg.org/tjhps14o3/image.jpg)
 ![c182s Tail View](http://s11.postimg.org/eot4duv37/image.jpg)
 ![c182s Wing View](http://s11.postimg.org/b9104axur/image.jpg)

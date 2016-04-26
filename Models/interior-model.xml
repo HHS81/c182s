@@ -13,6 +13,61 @@
     <object-name>SunVirsor.R</object-name>
     <object-name>SunVirsor.L</object-name>
    </effect>
+   
+   <effect>
+       <inherits-from>Effects/c182s_panel</inherits-from>
+    <object-name>Panel</object-name>
+    <object-name>PanelLight</object-name>
+    <object-name>Pedestal</object-name>
+    <object-name>FuelTankSelector</object-name>
+    
+    <object-name>MasterAltSwitch</object-name>
+    <object-name>MasterBattSwitch</object-name>
+    <object-name>AVMBus1</object-name>
+    <object-name>AVMBus2</object-name>
+    
+  <object-name>PanelLightKnob</object-name>
+    <object-name>RadioLightKnob</object-name>
+    <object-name>PedestalLightKnob</object-name>
+    <object-name>GlareshieldLightKnob</object-name>
+    
+  <object-name>Throttle</object-name>
+    <object-name>PropControl</object-name>
+    <object-name>Mixture</object-name>
+    <object-name>AltStaticAir</object-name>
+    
+    <object-name>CabinHeat</object-name>
+    <object-name>DeFrost</object-name>
+   </effect>
+   
+<effect>
+       <inherits-from>Effects/c182s_controls</inherits-from>
+   
+    <object-name>Yoke.R</object-name>
+    <object-name>Yoke.L</object-name>
+   </effect>
+   
+<effect>
+       <inherits-from>Effects/c182s_seatsfront</inherits-from>
+   
+    <object-name>FrontSeat.R</object-name>
+    <object-name>FrontSeat.L</object-name>
+   </effect>
+   
+<effect>
+       <inherits-from>Effects/c182s_seatsback</inherits-from>
+    <object-name>RearSeats</object-name>
+   </effect>
+   
+<effect>
+       <inherits-from>Effects/c182s_cabinback</inherits-from>
+    <object-name>BaggageIntDoor</object-name>
+    <object-name>IntWallBack</object-name>
+    <object-name>DomeLight3</object-name>
+    <object-name>DEL.swt</object-name>
+   </effect>
+   
+
   
 <!-- Doors-->
 

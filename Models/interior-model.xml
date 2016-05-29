@@ -15,7 +15,7 @@
    </effect>
    
    <effect>
-       <inherits-from>Effects/c182s_panel</inherits-from>
+       <inherits-from>Effects/c182s_glareshield</inherits-from>
     <object-name>Panel</object-name>
     <object-name>PanelLight</object-name>
     <object-name>Pedestal</object-name>
@@ -38,6 +38,15 @@
     
     <object-name>CabinHeat</object-name>
     <object-name>DeFrost</object-name>
+    <object-name>CabinAir</object-name>
+    
+    <object-name>FuelPumpSwitch</object-name>
+    <object-name>BeaconSwitch</object-name>
+    <object-name>LandingLightSwitch</object-name>
+    <object-name>TaxiLightSwitch</object-name>
+    <object-name>NavLightSwitch</object-name>
+    <object-name>StrobeLightSwitch</object-name>
+    <object-name>PitotHeatSwitch</object-name>
    </effect>
    
 <effect>
@@ -45,27 +54,56 @@
    
     <object-name>Yoke.R</object-name>
     <object-name>Yoke.L</object-name>
+    
+    <object-name>Pedal22</object-name>
+    <object-name>Pedal21</object-name>
+    <object-name>Pedal12</object-name>
+    <object-name>Pedal11</object-name>
+    
+    <object-name>Pedal22.001</object-name>
+    <object-name>Pedal21.001</object-name>
+    <object-name>Pedal12.001</object-name>
+    <object-name>Pedal11.001</object-name>
+    <object-name>ParkingBrake</object-name>
    </effect>
    
 <effect>
-       <inherits-from>Effects/c182s_seatsfront</inherits-from>
+       <inherits-from>Effects/c182s_seats</inherits-from>
    
     <object-name>FrontSeat.R</object-name>
     <object-name>FrontSeat.L</object-name>
-   </effect>
-   
-<effect>
-       <inherits-from>Effects/c182s_seatsback</inherits-from>
     <object-name>RearSeats</object-name>
    </effect>
-   
+
+
 <effect>
-       <inherits-from>Effects/c182s_cabinback</inherits-from>
+       <inherits-from>Effects/c182s_cabin</inherits-from>
+    <object-name>IntWallFront</object-name>
+    <object-name>Glareshield</object-name>
+    <object-name>IntDoor.L</object-name>
+    <object-name>IntDoor.R</object-name>
+    
+    <object-name>FrameInt.L</object-name>
+    <object-name>FrameInt.R</object-name>
+    <object-name>FrameLock1.L</object-name>
+    <object-name>FrameLock1.R</object-name>
+    
+    <object-name>FrameLock2.L</object-name>
+    <object-name>FrameLock2.R</object-name>
+    <object-name>doorhandleint_right</object-name>
+    <object-name>doorhandleint_left</object-name>
+    
+    <object-name>DomeLight1</object-name>
+    <object-name>DomeLight2</object-name>
+    <object-name>DL.swt.L</object-name>
+    <object-name>DL.swt.R</object-name>
     <object-name>BaggageIntDoor</object-name>
     <object-name>IntWallBack</object-name>
     <object-name>DomeLight3</object-name>
     <object-name>DEL.swt</object-name>
    </effect>
+
+
    
 
   

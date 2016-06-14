@@ -1,7 +1,7 @@
 Cessna 182S
 ===========
 
-A high detailed version of the Cessna 182S aircraft for FlightGear.
+A high detailed, realistic version of the Cessna 182S aircraft for FlightGear. Can be flown according real pilot manual.
 
 Development thread: http://forum.flightgear.org/viewtopic.php?f=4&t=28475
 
@@ -18,9 +18,11 @@ For the repository containing the .xcf and .svg files for the textures and liver
 
 This aircraft was modified and updated in a joint effort by the following people:
 
-* HHS81: 3D model, fdm, programming, textures, bug tracking, testing
+* HHS81 (HHS): 3D model, fdm, programming, textures, bug tracking, testing
 
 * Gilberto Agostinho (gsagostinho): textures, bug tracking, testing
+*
+* onox: advice, nasal-scripts, testing
 
 ---
 

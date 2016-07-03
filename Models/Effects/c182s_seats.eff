@@ -22,5 +22,19 @@
 <lightmap-color type="vec3d" n="2">0.99 0.99 1.0</lightmap-color>
 <lightmap-factor type="float" n="3"><use>/systems/electrical/outputs/dome-exterior-light</use></lightmap-factor>
 <lightmap-color type="vec3d" n="3">0.0 0.0 0.0</lightmap-color><!--disable light until render noise issue has been fixed-->
+  <texture n="4">
+	  <type>cubemap</type>
+	  <images>
+		 <positive-x>Models/Effects/001.png</positive-x>
+		 <negative-x>Models/Effects/002.png</negative-x>
+		 <positive-y>Models/Effects/003.png</positive-y>
+		 <negative-y>Models/Effects/004.png</negative-y>
+		 <positive-z>Models/Effects/005.png</positive-z>
+		 <negative-z>Models/Effects/006.png</negative-z>
+	  </images>
+	</texture>
+	<opacity-cube-center type="vec3d" n="0"> 0.5 0.0 0.3</opacity-cube-center>
+	<opacity-cube-scale type="vec3d" n="0"> 1.5 0.5 0.7</opacity-cube-scale>
+	<opacity-cube-angle type="float">0.0</opacity-cube-angle> 
     </parameters>
 </PropertyList>

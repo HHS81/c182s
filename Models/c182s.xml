@@ -1460,7 +1460,8 @@
 
 
 <animation>
-        <type>pick</type>
+ <nopreview/>
+         <type>pick</type>
         <object-name>pitotcover.cs</object-name>
         <visible>false</visible>
         <action>
@@ -1483,6 +1484,7 @@
     </animation>
     
  <animation>
+ <nopreview/>
    <type>select</type>
         <object-name>pitotcover.cs</object-name>
    <condition>
@@ -1494,6 +1496,7 @@
  </animation> 
     
 <animation>
+ <nopreview/>
         <type>pick</type>
         <object-name>chokes.cs.001</object-name>
         <visible>false</visible>
@@ -1517,6 +1520,7 @@
     </animation>
     
 <animation>
+ <nopreview/>
         <type>pick</type>
         <object-name>chokes.cs.002</object-name>
         <visible>false</visible>
@@ -1540,6 +1544,7 @@
     </animation>
     
 <animation>
+ <nopreview/>
         <type>pick</type>
         <object-name>chokes.cs.003</object-name>
         <visible>false</visible>
@@ -1563,6 +1568,7 @@
     </animation>
 
  <animation>
+  <nopreview/>
    <type>select</type>
         <object-name>chokes.cs.001</object-name>
    <condition>
@@ -1574,6 +1580,7 @@
  </animation> 
 
  <animation>
+  <nopreview/>
    <type>select</type>
         <object-name>chokes.cs.002</object-name>
    <condition>
@@ -1585,6 +1592,7 @@
  </animation> 
 
  <animation>
+  <nopreview/>
    <type>select</type>
         <object-name>chokes.cs.003</object-name>
    <condition>
@@ -1596,6 +1604,7 @@
  </animation>    
 
 <animation>
+ <nopreview/>
         <type>pick</type>
         <object-name>safety-cone.cs.R</object-name>
         <visible>false</visible>
@@ -1619,6 +1628,7 @@
     </animation>
     
 <animation>
+ <nopreview/>
         <type>pick</type>
         <object-name>safety-cone.cs.L</object-name>
         <visible>false</visible>
@@ -1642,6 +1652,7 @@
     </animation>
     
  <animation>
+  <nopreview/>
    <type>select</type>
         <object-name>safety-cone.cs.L</object-name>
    <condition>
@@ -1653,6 +1664,7 @@
  </animation>
  
  <animation>
+  <nopreview/>
    <type>select</type>
         <object-name>safety-cone.cs.R</object-name>
    <condition>
@@ -1682,6 +1694,7 @@
     </model>
     
  <animation>
+  <nopreview/>
         <type>select</type>
         <object-name>tiedownL</object-name>
         <object-name>TieDownLeft</object-name>	<!-- tiedown handle -->
@@ -1691,6 +1704,7 @@
     </animation>
     
     <animation>
+     <nopreview/>
         <type>pick</type>
         <object-name>tiedownL</object-name>
         <action>
@@ -1715,6 +1729,7 @@
     </animation>   
     
      <animation>
+      <nopreview/>
         <type>pick</type>
         <object-name>TiedownHotSpotLeft</object-name>
         <action>
@@ -1747,6 +1762,7 @@
     </model>
     
     <animation>
+     <nopreview/>
         <type>select</type>
         <object-name>tiedownR</object-name>
         <object-name>TieDownRight</object-name>	<!-- tiedown handle -->
@@ -1756,6 +1772,7 @@
     </animation>
     
     <animation>
+     <nopreview/>
         <type>pick</type>
         <object-name>tiedownR</object-name>
         <action>
@@ -1780,6 +1797,7 @@
     </animation>
     
      <animation>
+      <nopreview/>
         <type>pick</type>
         <object-name>TiedownHotSpotRight</object-name>
         <action>
@@ -1813,6 +1831,7 @@
     </model>
     
     <animation>
+     <nopreview/>
         <type>select</type>
         <object-name>tiedownT</object-name>
         <object-name>TieDownTail</object-name> <!-- tiedown handle -->
@@ -1822,6 +1841,7 @@
     </animation>
     
     <animation>
+     <nopreview/>
         <type>pick</type>
         <object-name>tiedownT</object-name>
         <action>
@@ -1846,6 +1866,7 @@
     </animation>
     
     <animation>
+     <nopreview/>
         <type>pick</type>
         <object-name>TiedownHotSpotTail</object-name>
         <action>
@@ -1866,6 +1887,7 @@
     </animation>
     
  <animation>
+  <nopreview/>
    <type>select</type>
         <object-name>TiedownHotSpotRight</object-name>
    <condition>
@@ -1877,6 +1899,7 @@
  </animation>
  
  <animation>
+  <nopreview/>
    <type>select</type>
         <object-name>TiedownHotSpotLeft</object-name>
    <condition>
@@ -1888,6 +1911,7 @@
  </animation>
     
  <animation>
+  <nopreview/>
    <type>select</type>
         <object-name>TiedownHotSpotTail</object-name>
    <condition>
@@ -1899,6 +1923,7 @@
  </animation>
  
  <animation>
+  <nopreview/>
    <type>select</type>
         <object-name>TieDownRight</object-name>
    <condition>
@@ -1910,6 +1935,7 @@
  </animation>
  
  <animation>
+  <nopreview/>
    <type>select</type>
         <object-name>TieDownLeft</object-name>
    <condition>

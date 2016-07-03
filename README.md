@@ -1,12 +1,12 @@
 Cessna 182S
 ===========
 
-A high detailed version of the Cessna 182S aircraft for FlightGear.
+A high detailed, realistic version of the Cessna 182S aircraft for FlightGear. Can be flown according real pilot manual.
 
 Development thread: http://forum.flightgear.org/viewtopic.php?f=4&t=28475
 
 ![c182s Climb](http://abload.de/img/fgfs-screen-006boeqb.jpg)
-![c182s cockpit](http://s11.postimg.org/tjhps14o3/image.jpg)
+![c182s cockpit](https://abload.de/img/fgfs-screen-002tpq3h.jpg)
 ![c182s Tail View](http://s11.postimg.org/eot4duv37/image.jpg)
 ![c182s Wing View](http://s11.postimg.org/b9104axur/image.jpg)
 ![c182s Takeoff](http://s11.postimg.org/x6xgy3cv7/image.jpg)
@@ -18,9 +18,11 @@ For the repository containing the .xcf and .svg files for the textures and liver
 
 This aircraft was modified and updated in a joint effort by the following people:
 
-* HHS81: 3D model, fdm, programming, textures, bug tracking, testing
+* HHS81 (HHS): 3D model, fdm, programming, textures, bug tracking, testing
 
 * Gilberto Agostinho (gsagostinho): textures, bug tracking, testing
+*
+* onox: advice, nasal-scripts, testing
 
 ---
 

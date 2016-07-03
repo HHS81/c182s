@@ -5,7 +5,7 @@ Under the GPL. Used by shadows under ALS -->
 
 <PropertyList>
 
-    <filter>
+<filter>
         <type>gain</type>
         <gain>0.3048</gain>
         <input>

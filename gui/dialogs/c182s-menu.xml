@@ -41,6 +41,8 @@
                     <script>aircraft.livery.dialog.toggle()</script>
                 </binding>
             </item>
+	    
+
 
             <!--<item>
                 <label>Registration</label>

@@ -47,6 +47,8 @@
     <object-name>NavLightSwitch</object-name>
     <object-name>StrobeLightSwitch</object-name>
     <object-name>PitotHeatSwitch</object-name>
+    <object-name>Panel.001</object-name>
+    <object-name>FlapSwitch</object-name>
    </effect>
    
 <effect>

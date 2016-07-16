@@ -26,8 +26,8 @@ So use this numbers and create a table which corrects the output shown on the AS
 -->
 
 <system name="indicated-airspeed">
-     <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
-    <property> /sim/model/c182/securing/pitot-cover-visible</property>
+<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+<property> /sim/model/c182/securing/pitot-cover-visible</property>
     <channel name="indicated airspeed">
 
 <fcs_function name="/systems/asi/indicated-airspeed">

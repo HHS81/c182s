@@ -24,6 +24,9 @@
         <!-- <path>Aircraft/c182/generic-autopilot.xml</path>-->
         <path>Aircraft/c182/Systems/KAP140.xml</path>
     </autopilot>
+            <autopilot>
+                <path>Systems/glass-rain.xml</path>
+            </autopilot>
     <property-rule n="100">
         <name>FiltersOnly</name>
         <path>Aircraft/c182/Systems/NAVandGSfilters.xml</path>
@@ -31,6 +34,9 @@
     <property-rule n="101">
         <path>Aircraft/c182/Systems/als-lights.xml</path>
     </property-rule>
+            <property-rule n="102">
+                <path>Aircraft/c182/Systems/ground-effects.xml</path>
+            </property-rule>
     <electrical>        
       <!-- null electrical system path here so we can use a nasal based -->
       <!-- model defined later in the nasal section of this file. -->
@@ -60,6 +66,11 @@
 <instrumentation n="0">
     <path>Aircraft/c182/Systems/instrumentation.xml</path>
   </instrumentation>
+  
+<!-- Enable the ALS shadow volume by default -->
+<rendering>
+<shadow-volume type="bool">true</shadow-volume>
+</rendering>
 
   <sound>
    <path>Aircraft/c182/c182s-sound.xml</path>
@@ -513,6 +524,7 @@
 <instrumentation include="Systems/init-instrumentation.xml"/>
 
 
+
  <engines>
   <engine>
    <rpm type="double">0</rpm>
@@ -521,6 +533,8 @@
    <running type="bool">false</running>
   </engine>
  </engines>
+ 
+
 
 <payload>
   <weight>

@@ -99,7 +99,12 @@
         <object-name>Windscreen.Side.Right</object-name>
         <object-name>Window.R.001</object-name>
     </effect>
-
+    
+<!-- ALS volume shadow  -->
+    <model>
+        <path>Effects/shadow.xml</path>
+    </model>
+    
  <animation>
    <type>material</type>
    <object-name>Fuselage</object-name><!-- grouped in Blender for faster loading of liveries-->

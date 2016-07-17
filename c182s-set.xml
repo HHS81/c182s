@@ -457,6 +457,7 @@
             <splash-texture>Aircraft/c182/splash6.png</splash-texture>
             <splash-texture>Aircraft/c182/splash7.png</splash-texture>
             <splash-texture>Aircraft/c182/splash8.png</splash-texture>
+            <splash-texture>Aircraft/c182/splash9.png</splash-texture>
         </startup>
 
  </sim>

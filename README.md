@@ -20,9 +20,11 @@ This aircraft was modified and updated in a joint effort by the following people
 
 * HHS81 (HHS): 3D model, fdm, programming, textures, bug tracking, testing
 
-* Gilberto Agostinho (gsagostinho): textures, bug tracking, testing
-*
+* Gilberto Agostinho (gsagostinho): textures, xml, bug tracking, testing
+
 * onox: advice, nasal-scripts, testing
+
+* Wayne Bragg (wlbragg): rain effect, advice
 
 ---
 

@@ -459,21 +459,21 @@ setprop("/systems/electrical/outputs/annunciators", bus_volts);
 setprop("/systems/electrical/outputs/ecrf", bus_volts);#needed to dim lights
 
     if ( getprop("/controls/lighting/dome-light-r")) {
-        setprop("/systems/electrical/outputs/dome-light-r", bus_volts);
+        setprop("/systems/electrical/outputs/dome-light-r", bus_volts/28);
         load += bus_volts / 28;
     } else {
         setprop("/systems/electrical/outputs/dome-light-r", 0.0);
     }
     
  if ( getprop("/controls/lighting/dome-light-l")) {
-        setprop("/systems/electrical/outputs/dome-light-l", bus_volts);
+        setprop("/systems/electrical/outputs/dome-light-l", bus_volts/28);
         load += bus_volts / 28;
     } else {
         setprop("/systems/electrical/outputs/dome-light-l", 0.0);
     }
     
  if ( getprop("/controls/lighting/dome-exterior-light")) {
-        setprop("/systems/electrical/outputs/dome-exterior-light", bus_volts);
+        setprop("/systems/electrical/outputs/dome-exterior-light", bus_volts/28);
         load += bus_volts / 28;
     } else {
         setprop("/systems/electrical/outputs/dome-exterior-light", 0.0);
@@ -497,7 +497,7 @@ var IL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("contro
 var GL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/glareshield-lights-norm"));
 	if (getprop ("/controls/lighting/glareshield-lights-norm") >0.05){
 	setprop("/systems/electrical/outputs/glareshield-lights",GL_DIMMER);
-	setprop("/systems/electrical/outputs/glareshield-lights-norm",GL_DIMMER/24);
+	setprop("/systems/electrical/outputs/glareshield-lights-norm",GL_DIMMER/28);
 	}else{
 	setprop("/systems/electrical/outputs/glareshield-lights",0);
 	setprop("/systems/electrical/outputs/glareshield-lights-norm",0);
@@ -508,7 +508,7 @@ var GL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("contro
 var PL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/pedestal-lights-norm"));
 	if (getprop ("/controls/lighting/pedestal-lights-norm") >0.05){
 	setprop("/systems/electrical/outputs/pedestal-lights",PL_DIMMER);
-	setprop("/systems/electrical/outputs/pedestal-lights-norm",PL_DIMMER/24);
+	setprop("/systems/electrical/outputs/pedestal-lights-norm",PL_DIMMER/28);
 	}else{
 	setprop("/systems/electrical/outputs/pedestal-lights",0);
 	setprop("/systems/electrical/outputs/pedestal-lights-norm",0);

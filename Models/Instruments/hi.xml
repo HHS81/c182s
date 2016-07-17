@@ -81,6 +81,40 @@
       <z>  0 </z>
     </axis>
   </animation>
+  
+  <animation>
+    <type>rotate</type>
+    <object-name>Hdg-Knob</object-name>
+     <property>/autopilot/settings/heading-bug-deg</property>
+<factor>10</factor>
+		<center>
+			<x-m>0.012891</x-m>
+			<y-m>0.035372</y-m>
+			<z-m>-0.033017</z-m>
+		</center>
+		<axis>
+			<x>-0.013332</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+  </animation>
+  
+  <animation>
+    <type>rotate</type>
+    <object-name>OBS-Knob</object-name>
+     <property>/instrumentation/heading-indicator/offset-deg</property>
+<factor>10</factor>
+		<center>
+			<x-m>0.012842</x-m>
+			<y-m>-0.034351</y-m>
+			<z-m>-0.033017</z-m>
+		</center>
+		<axis>
+			<x>-0.01343</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+  </animation>
 
 <!--     Heading Bug control    -->
  <animation>

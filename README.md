@@ -26,6 +26,14 @@ This aircraft was modified and updated in a joint effort by the following people
 
 * Wayne Bragg (wlbragg): rain effect, advice
 
+* Ron Jensen (jentron)
+
+* Daniel Dubreuil (Dany93)
+
+* Stuart Buchanan
+
+* David Megginson 
+
 ---
 
 Engine (from TCDS)

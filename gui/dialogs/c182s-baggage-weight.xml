@@ -97,7 +97,7 @@
                 <halign>left</halign>
                 <format>%.0f</format>
                 <live>true</live>
-                <property>/payload/weight[4]/weight-lb</property>
+                <property>/payload/weight[5]/weight-lb</property>
             </text>
             <text>
                 <label>pounds</label>

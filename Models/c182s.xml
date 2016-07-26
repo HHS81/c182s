@@ -2024,17 +2024,46 @@
    </condition>
  </animation>
 
-
-
- 
-
- 
- 
- 
- 
- 
-
-
-
+    <!-- Baggage models -->
+    <model>
+        <name>suitcase1</name>
+        <path>Interior/Baggages/suitcase1.xml</path>
+        <offsets>
+            <x-m>2.43</x-m>
+            <y-m>-0.14</y-m>
+            <z-m>-0.1</z-m>
+            <pitch-deg>-7</pitch-deg>
+        </offsets>
+    </model>
+    <model>
+        <name>suitcase2</name>
+        <path>Interior/Baggages/suitcase2.xml</path>
+        <offsets>
+            <x-m>2.43</x-m>
+            <y-m>0.14</y-m>
+            <z-m>-0.1</z-m>
+            <pitch-deg>-7</pitch-deg>
+        </offsets>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>suitcase1</object-name>
+        <condition>
+            <greater-than>
+                <property>payload/weight[4]/weight-lb</property>
+                <value>20.0</value>
+            </greater-than>
+        </condition>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>suitcase2</object-name>
+        <condition>
+            <greater-than>
+                <property>payload/weight[5]/weight-lb</property>
+                <value>20.0</value>
+            </greater-than>
+        </condition>
+    </animation>
 
 </PropertyList>

@@ -878,12 +878,12 @@
         <condition>
             <or>
                 <equals>
-                    <property>/sim/model/door-positions/baggageDoor/position-norm</property>
+                    <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
                     <value>1</value>
                 </equals>
                 <and>
                     <equals>
-                        <property>/sim/model/door-positions/baggageDoor/position-norm</property>
+                        <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
                         <value>0</value>
                     </equals>
                     <less-than>
@@ -899,7 +899,7 @@
       <binding>
           <condition>
               <equals>
-                  <property>/sim/model/door-positions/baggageDoor/position-norm</property>
+                  <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
                   <value>0</value>
               </equals>
           </condition>
@@ -919,7 +919,7 @@
  <animation>
    <type>rotate</type>
    <object-name>BaggageDoor</object-name>
-   <property>sim/model/door-positions/baggageDoor/position-norm</property>
+   <property>sim/model/door-positions/BaggageDoor/position-norm</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>

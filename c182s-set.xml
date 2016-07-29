@@ -136,15 +136,16 @@
                     <tiedownL-visible type="bool">false</tiedownL-visible>
                     <tiedownR-visible type="bool">false</tiedownR-visible>
                     <tiedownT-visible type="bool">false</tiedownT-visible>
+                    <pitot-cover-visible type="bool">false</pitot-cover-visible>
 </securing>
 
 <procedural-lights type="bool">true</procedural-lights>
 <nw_fairing type="bool">true</nw_fairing>
 <mw_fairing type="bool">true</mw_fairing>
 
-  
+
   <procedural-lights type="bool">true</procedural-lights>
-  
+
       <chrome_spinner type="bool">true</chrome_spinner>
 	<material>
 		<fuselage>
@@ -170,7 +171,7 @@
     <rendering>
         <refl_correction type="string">-0.6</refl_correction>
     </rendering>
-    
+
   </model>
 
   <view n="0">
@@ -196,7 +197,7 @@
             </limits>
    </config>
   </view>
-  
+
 <view n="100">
         <name>CoPilot View</name>
         <enabled type="bool">true</enabled>
@@ -237,7 +238,7 @@
             </limits>
         </config>
     </view>
-    
+
 <view n="101">
         <name>Rearseat Left</name>
         <enabled type="bool">true</enabled>
@@ -466,7 +467,7 @@
 
  </sim>
  
- 
+  <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
  
    <consumables>
 <fuel>

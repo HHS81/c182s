@@ -16,26 +16,33 @@
             <tag>fixed-gear</tag>
         </tags>
  
+    <rating>
+      <FDM type="int">4</FDM>
+      <systems type="int">2</systems>
+      <model type="int">5</model>
+      <cockpit type="int">5</cockpit>
+    </rating>
+ 
   <flight-model>jsb</flight-model>
   <aero>c182s</aero>
   
   <systems>
     <autopilot>
-        <!-- <path>Aircraft/c182/generic-autopilot.xml</path>-->
-        <path>Aircraft/c182/Systems/KAP140.xml</path>
+        <!-- <path>Aircraft/c182s/generic-autopilot.xml</path>-->
+        <path>Aircraft/c182s/Systems/KAP140.xml</path>
     </autopilot>
             <autopilot>
                 <path>Systems/glass-rain.xml</path>
             </autopilot>
     <property-rule n="100">
         <name>FiltersOnly</name>
-        <path>Aircraft/c182/Systems/NAVandGSfilters.xml</path>
+        <path>Aircraft/c182s/Systems/NAVandGSfilters.xml</path>
     </property-rule>
     <property-rule n="101">
-        <path>Aircraft/c182/Systems/als-lights.xml</path>
+        <path>Aircraft/c182s/Systems/als-lights.xml</path>
     </property-rule>
             <property-rule n="102">
-                <path>Aircraft/c182/Systems/ground-effects.xml</path>
+                <path>Aircraft/c182s/Systems/ground-effects.xml</path>
             </property-rule>
     <electrical>        
       <!-- null electrical system path here so we can use a nasal based -->
@@ -61,19 +68,16 @@
           <landing-light1-offset-deg type="float">-4.0</landing-light1-offset-deg>
           <landing-light2-offset-deg type="float">-3.5</landing-light2-offset-deg>
       </als-secondary-lights>
+      <!-- Enable the ALS shadow volume by default -->
+      <shadow-volume type="bool">true</shadow-volume>
   </rendering>
   
 <instrumentation n="0">
-    <path>Aircraft/c182/Systems/instrumentation.xml</path>
-  </instrumentation>
-  
-<!-- Enable the ALS shadow volume by default -->
-<rendering>
-<shadow-volume type="bool">true</shadow-volume>
-</rendering>
+    <path>Aircraft/c182s/Systems/instrumentation.xml</path>
+  </instrumentation>  
 
   <sound>
-   <path>Aircraft/c182/c182s-sound.xml</path>
+   <path>Aircraft/c182s/c182s-sound.xml</path>
   </sound>
 
   <panel>
@@ -81,7 +85,7 @@
   </panel>
 
   <model>
-   <path archive="y">Aircraft/c182/Models/c182s.xml</path>
+   <path archive="y">Aircraft/c182s/Models/c182s.xml</path>
     <hide-yoke>false</hide-yoke>
 
   
@@ -99,7 +103,7 @@
       <index type="int">0</index>
     </livery>
     
-  <c182>
+  <c182s>
 <ladder_position_l type ="int">1</ladder_position_l>
 <tiedowns>
                     <left>
@@ -132,15 +136,16 @@
                     <tiedownL-visible type="bool">false</tiedownL-visible>
                     <tiedownR-visible type="bool">false</tiedownR-visible>
                     <tiedownT-visible type="bool">false</tiedownT-visible>
+                    <pitot-cover-visible type="bool">false</pitot-cover-visible>
 </securing>
 
 <procedural-lights type="bool">true</procedural-lights>
 <nw_fairing type="bool">true</nw_fairing>
 <mw_fairing type="bool">true</mw_fairing>
 
-  
+
   <procedural-lights type="bool">true</procedural-lights>
-  
+
       <chrome_spinner type="bool">true</chrome_spinner>
 	<material>
 		<fuselage>
@@ -161,12 +166,12 @@
 			</ambient>
 		</fuselage>
 	</material>
-    </c182>
+    </c182s>
     
     <rendering>
         <refl_correction type="string">-0.6</refl_correction>
     </rendering>
-    
+
   </model>
 
   <view n="0">
@@ -192,7 +197,7 @@
             </limits>
    </config>
   </view>
-  
+
 <view n="100">
         <name>CoPilot View</name>
         <enabled type="bool">true</enabled>
@@ -233,7 +238,7 @@
             </limits>
         </config>
     </view>
-    
+
 <view n="101">
         <name>Rearseat Left</name>
         <enabled type="bool">true</enabled>
@@ -449,20 +454,20 @@
         
         <!-- Splash screens. One is randomly chosen when FlightGear starts -->
         <startup>
-            <splash-texture>Aircraft/c182/splash1.png</splash-texture>
-            <splash-texture>Aircraft/c182/splash2.png</splash-texture>
-            <splash-texture>Aircraft/c182/splash3.png</splash-texture>
-            <splash-texture>Aircraft/c182/splash4.png</splash-texture>
-            <splash-texture>Aircraft/c182/splash5.png</splash-texture>
-            <splash-texture>Aircraft/c182/splash6.png</splash-texture>
-            <splash-texture>Aircraft/c182/splash7.png</splash-texture>
-            <splash-texture>Aircraft/c182/splash8.png</splash-texture>
-            <splash-texture>Aircraft/c182/splash9.png</splash-texture>
+            <splash-texture>Aircraft/c182s/splash1.png</splash-texture>
+            <splash-texture>Aircraft/c182s/splash2.png</splash-texture>
+            <splash-texture>Aircraft/c182s/splash3.png</splash-texture>
+            <splash-texture>Aircraft/c182s/splash4.png</splash-texture>
+            <splash-texture>Aircraft/c182s/splash5.png</splash-texture>
+            <splash-texture>Aircraft/c182s/splash6.png</splash-texture>
+            <splash-texture>Aircraft/c182s/splash7.png</splash-texture>
+            <splash-texture>Aircraft/c182s/splash8.png</splash-texture>
+            <splash-texture>Aircraft/c182s/splash9.png</splash-texture>
         </startup>
 
  </sim>
  
- 
+  <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
  
    <consumables>
 <fuel>
@@ -604,53 +609,53 @@
 
             <blade n="0">
                 <position-deg alias="/gear/gear[23]/rollspeed-ms"/>
-                <flap-deg alias="/sim/model/c182/tiedowns/right/heading-deg"/>
+                <flap-deg alias="/sim/model/c182s/tiedowns/right/heading-deg"/>
             </blade>
             <blade n="1">
                 <position-deg alias="/gear/gear[24]/rollspeed-ms"/>
-                <flap-deg alias="/sim/model/c182/tiedowns/right/pitch-deg"/>
+                <flap-deg alias="/sim/model/c182s/tiedowns/right/pitch-deg"/>
             </blade>
             <blade n="2">
                 <position-deg alias="/gear/gear[25]/rollspeed-ms"/>
-                <flap-deg alias="/sim/model/c182/tiedowns/right/length"/>
+                <flap-deg alias="/sim/model/c182s/tiedowns/right/length"/>
             </blade>
 
 
             <blade n="3">
-                <position-deg alias="/sim/model/c182/tiedowns/left/heading-deg"/>
-                <flap-deg alias="/sim/model/c182/tiedowns/left/pitch-deg"/>
+                <position-deg alias="/sim/model/c182s/tiedowns/left/heading-deg"/>
+                <flap-deg alias="/sim/model/c182s/tiedowns/left/pitch-deg"/>
             </blade>
-            <rpm alias="/sim/model/c182/tiedowns/left/length"/>
+            <rpm alias="/sim/model/c182s/tiedowns/left/length"/>
         </main>
 
 
         <tail>
             <blade n="0">
-                <position-deg alias="/sim/model/c182/tiedowns/tail/heading-deg"/>
+                <position-deg alias="/sim/model/c182s/tiedowns/tail/heading-deg"/>
             </blade>
             <blade n="1">
-                <position-deg alias="/sim/model/c182/tiedowns/tail/pitch-deg"/>
+                <position-deg alias="/sim/model/c182s/tiedowns/tail/pitch-deg"/>
             </blade>
-            <rpm alias="/sim/model/c182/tiedowns/tail/length"/>
+            <rpm alias="/sim/model/c182s/tiedowns/tail/length"/>
         </tail>
     </rotors>
 
  <nasal>
  <math_ext>
-            <file>Aircraft/c182/Nasal/math_ext.nas</file>
+            <file>Aircraft/c182s/Nasal/math_ext.nas</file>
 </math_ext>
 <updateloop>
             <file>Aircraft/Generic/updateloop.nas</file>
 </updateloop>
- <c182>
-	<file>Aircraft/c182/Nasal/c182s.nas</file>
-	<file>Aircraft/c182/Nasal/kt76c.nas</file>
-	<file>Aircraft/c182/Nasal/kn62a.nas</file>
-	<file>Aircraft/c182/Nasal/kr87.nas</file>
+ <c182s>
+	<file>Aircraft/c182s/Nasal/c182s.nas</file>
+	<file>Aircraft/c182s/Nasal/kt76c.nas</file>
+	<file>Aircraft/c182s/Nasal/kn62a.nas</file>
+	<file>Aircraft/c182s/Nasal/kr87.nas</file>
             <file>Nasal/tiedowns.nas</file>
-</c182>
+</c182s>
 <electrical>
- <file>Aircraft/c182/Nasal/c182s-electrical.nas</file>
+ <file>Aircraft/c182s/Nasal/c182s-electrical.nas</file>
 </electrical>
 <kap140>
    <file>Aircraft/Generic/kap140.nas</file>

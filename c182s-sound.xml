@@ -191,7 +191,7 @@
         <stall>
             <name>stall</name>
             <mode>looped</mode>
-            <path>Aircraft/c182/Sounds/stall2.wav</path>
+            <path>Aircraft/c182s/Sounds/stall2.wav</path>
             <condition>
                     <greater-than>
                         <property>velocities/airspeed-kt</property>

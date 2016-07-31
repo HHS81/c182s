@@ -173,7 +173,7 @@
                     <checkbox>
                         <halign>left</halign>
                         <label>Put pitot tube cover </label>
-                        <property>/sim/model/c182/securing/pitot-cover-visible</property>
+                        <property>/sim/model/c182s/securing/pitot-cover-visible</property>
                         <live>true</live>
                         <enable>
                                 <less-than>
@@ -193,7 +193,7 @@
                     <radio>
                         <halign>left</halign>
                         <label>Enable left tie-down </label>
-                        <property>/sim/model/c182/securing/tiedownL-visible</property>
+                        <property>/sim/model/c182s/securing/tiedownL-visible</property>
                         <live>true</live>
                         <enable>
                                 <less-than>
@@ -213,7 +213,7 @@
                     <radio>
                         <halign>left</halign>
                         <label>Enable right tie-down </label>
-                        <property>/sim/model/c182/securing/tiedownR-visible</property>
+                        <property>/sim/model/c182s/securing/tiedownR-visible</property>
                         <live>true</live>
                        <enable>
                                 <less-than>
@@ -233,7 +233,7 @@
                     <radio>
                         <halign>left</halign>
                         <label>Enable tail tie-down </label>
-                        <property>/sim/model/c182/securing/tiedownT-visible</property>
+                        <property>/sim/model/c182s/securing/tiedownT-visible</property>
                         <live>true</live>
                         <enable>
                                 <less-than>

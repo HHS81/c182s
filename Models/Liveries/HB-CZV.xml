@@ -8,7 +8,7 @@
 	 <index type="int">1</index>
 	 <texture>Liveries/HB-CZV.png</texture>
       </livery>
-<c182>
+<c182s>
 <material>
 			<fuselage>
 						<diffuse>
@@ -29,7 +29,7 @@
 				</fuselage>
                                </material>
 <chrome_spinner>false</chrome_spinner>
-</c182>
+</c182s>
     </model>
 <rendering>
     <refl_correction type="string">-0.8</refl_correction>

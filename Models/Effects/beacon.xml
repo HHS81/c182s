@@ -36,7 +36,7 @@
 
  
 <effect>
-   <inherits-from>Aircraft/c182/Models/Effects/beacon</inherits-from>
+   <inherits-from>Aircraft/c182s/Models/Effects/beacon</inherits-from>
    <object-name>beacon</object-name>
  </effect>
 

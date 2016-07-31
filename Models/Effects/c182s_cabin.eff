@@ -5,7 +5,7 @@
     <inherits-from>Effects/model-interior</inherits-from>
     <parameters>
         <texture n="3">
-<image>Aircraft/c182/Models/Effects/LMCabin.png</image>
+<image>Aircraft/c182s/Models/Effects/LMCabin.png</image>
 <type>2d</type>
 <filter>linear-mipmap-linear</filter>
 <wrap-s>clamp</wrap-s>

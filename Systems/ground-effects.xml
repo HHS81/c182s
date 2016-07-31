@@ -23,7 +23,7 @@ Under the GPL. Used by shadows under ALS -->
         <name>Tiedowns Can Have</name>
         <input>
             <and>
-                 <property>/sim/model/c182/securing/allow-securing-aircraft</property>
+                 <property>/sim/model/c182s/securing/allow-securing-aircraft</property>
                 <property>/fdm/jsbsim/ground/solid</property>
                 <less-than>
                     <property>velocities/groundspeed-kt</property>
@@ -32,7 +32,7 @@ Under the GPL. Used by shadows under ALS -->
             </and>
         </input>
         <output>
-            <property>/sim/model/c182/securing/tiedowns-can-have</property>
+            <property>/sim/model/c182s/securing/tiedowns-can-have</property>
         </output>
     </logic>
 
@@ -41,13 +41,13 @@ Under the GPL. Used by shadows under ALS -->
         <input>
             <and>
                 <not>
-                    <property>/sim/model/c182/securing/tiedownL-visible</property>
+                    <property>/sim/model/c182s/securing/tiedownL-visible</property>
                 </not>
-                <property>/sim/model/c182/securing/tiedowns-can-have</property>
+                <property>/sim/model/c182s/securing/tiedowns-can-have</property>
             </and>
         </input>
         <output>
-            <property>/sim/model/c182/securing/tiedownL-addable</property>
+            <property>/sim/model/c182s/securing/tiedownL-addable</property>
         </output>
     </logic>
 
@@ -56,13 +56,13 @@ Under the GPL. Used by shadows under ALS -->
         <input>
             <and>
                 <not>
-                    <property>/sim/model/c182/securing/tiedownR-visible</property>
+                    <property>/sim/model/c182s/securing/tiedownR-visible</property>
                 </not>
-                <property>/sim/model/c182/securing/tiedowns-can-have</property>
+                <property>/sim/model/c182s/securing/tiedowns-can-have</property>
             </and>
         </input>
         <output>
-            <property>/sim/model/c182/securing/tiedownR-addable</property>
+            <property>/sim/model/c182s/securing/tiedownR-addable</property>
         </output>
     </logic>
 
@@ -71,13 +71,13 @@ Under the GPL. Used by shadows under ALS -->
         <input>
             <and>
                 <not>
-                    <property>/sim/model/c182/securing/tiedownT-visible</property>
+                    <property>/sim/model/c182s/securing/tiedownT-visible</property>
                 </not>
-                <property>/sim/model/c182/securing/tiedowns-can-have</property>
+                <property>/sim/model/c182s/securing/tiedowns-can-have</property>
             </and>
         </input>
         <output>
-            <property>/sim/model/c182/securing/tiedownT-addable</property>
+            <property>/sim/model/c182s/securing/tiedownT-addable</property>
         </output>
     </logic>
 

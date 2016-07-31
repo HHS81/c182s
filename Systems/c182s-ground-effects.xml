@@ -2,7 +2,7 @@
 
 <!--
 
-  c182S damage effects for JSBSim.
+  c182sS damage effects for JSBSim.
   from: c172p damage effects for JSBSim.
 
     Copyright (c) 2015 onox
@@ -22,7 +22,7 @@
 
 -->
 
-<system name="c182s ground effects">
+<system name="c182ss ground effects">
 
     
 
@@ -33,7 +33,7 @@
             <function>
                 <sin>
                     <toradians>
-                        <property>/sim/model/c182/tiedowns/left/heading-deg</property>
+                        <property>/sim/model/c182s/tiedowns/left/heading-deg</property>
                     </toradians>
                 </sin>
             </function>
@@ -46,7 +46,7 @@
                     <value>-1</value>
                     <cos>
                         <toradians>
-                            <property>/sim/model/c182/tiedowns/left/heading-deg</property>
+                            <property>/sim/model/c182s/tiedowns/left/heading-deg</property>
                         </toradians>
                     </cos>
                 </product>
@@ -60,7 +60,7 @@
                     <value>-1</value>
                     <sin>
                         <toradians>
-                            <property>/sim/model/c182/tiedowns/left/pitch-deg</property>
+                            <property>/sim/model/c182s/tiedowns/left/pitch-deg</property>
                         </toradians>
                     </sin>
                 </product>
@@ -74,7 +74,7 @@
                     <value>-1</value>
                     <sin>
                         <toradians>
-                            <property>/sim/model/c182/tiedowns/right/heading-deg</property>
+                            <property>/sim/model/c182s/tiedowns/right/heading-deg</property>
                         </toradians>
                     </sin>
                 </product>
@@ -86,7 +86,7 @@
             <function>
                 <cos>
                     <toradians>
-                        <property>/sim/model/c182/tiedowns/right/heading-deg</property>
+                        <property>/sim/model/c182s/tiedowns/right/heading-deg</property>
                     </toradians>
                 </cos>
             </function>
@@ -99,7 +99,7 @@
                     <value>-1</value>
                     <sin>
                         <toradians>
-                            <property>/sim/model/c182/tiedowns/right/pitch-deg</property>
+                            <property>/sim/model/c182s/tiedowns/right/pitch-deg</property>
                         </toradians>
                     </sin>
                 </product>
@@ -111,7 +111,7 @@
             <function>
                 <cos>
                     <toradians>
-                        <property>/sim/model/c182/tiedowns/tail/heading-deg</property>
+                        <property>/sim/model/c182s/tiedowns/tail/heading-deg</property>
                     </toradians>
                 </cos>
             </function>
@@ -122,7 +122,7 @@
             <function>
                 <sin>
                     <toradians>
-                        <property>/sim/model/c182/tiedowns/tail/heading-deg</property>
+                        <property>/sim/model/c182s/tiedowns/tail/heading-deg</property>
                     </toradians>
                 </sin>
             </function>
@@ -135,7 +135,7 @@
                     <value>-1</value>
                     <sin>
                         <toradians>
-                            <property>/sim/model/c182/tiedowns/tail/pitch-deg</property>
+                            <property>/sim/model/c182s/tiedowns/tail/pitch-deg</property>
                         </toradians>
                     </sin>
                 </product>
@@ -143,18 +143,18 @@
         </fcs_function>
 
         <summer name="fcs/tiedown-left-mag-error">
-            <input>/sim/model/c182/tiedowns/left/length</input>
-            <input>-/sim/model/c182/tiedowns/left/ref-length</input>
+            <input>/sim/model/c182s/tiedowns/left/length</input>
+            <input>-/sim/model/c182s/tiedowns/left/ref-length</input>
         </summer>
 
         <summer name="fcs/tiedown-right-mag-error">
-            <input>/sim/model/c182/tiedowns/right/length</input>
-            <input>-/sim/model/c182/tiedowns/right/ref-length</input>
+            <input>/sim/model/c182s/tiedowns/right/length</input>
+            <input>-/sim/model/c182s/tiedowns/right/ref-length</input>
         </summer>
 
         <summer name="fcs/tiedown-tail-mag-error">
-            <input>/sim/model/c182/tiedowns/tail/length</input>
-            <input>-/sim/model/c182/tiedowns/tail/ref-length</input>
+            <input>/sim/model/c182s/tiedowns/tail/length</input>
+            <input>-/sim/model/c182s/tiedowns/tail/ref-length</input>
         </summer>
 
         <pid name="fcs/tiedown-left-magnitude-pid">
@@ -195,7 +195,7 @@
             <default value="0"/>
 
             <test logic="AND" value="fcs/tiedown-left-magnitude-pid">
-                /sim/model/c182/securing/tiedownL-visible EQ 1
+                /sim/model/c182s/securing/tiedownL-visible EQ 1
             </test>
         </switch>
 
@@ -204,7 +204,7 @@
             <default value="0"/>
 
             <test logic="AND" value="fcs/tiedown-right-magnitude-pid">
-                /sim/model/c182/securing/tiedownR-visible EQ 1
+                /sim/model/c182s/securing/tiedownR-visible EQ 1
             </test>
         </switch>
 
@@ -213,7 +213,7 @@
             <default value="0"/>
 
             <test logic="AND" value="fcs/tiedown-tail-magnitude-pid">
-                /sim/model/c182/securing/tiedownT-visible EQ 1
+                /sim/model/c182s/securing/tiedownT-visible EQ 1
             </test>
         </switch>
 

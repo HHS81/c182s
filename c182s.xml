@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
 <!-- Source: http://forum.flightgear.org/viewtopic.php?f=25&t=21664&start=45 -->
-<fdm_config name="c182t" version="2.0" release="BETA"
+<fdm_config name="c182st" version="2.0" release="BETA"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
@@ -64,7 +64,7 @@
             </location>
         </pointmass>
         <pointmass name="Co-Pilot">
-            <weight unit="LBS"> 180 </weight>
+            <weight unit="LBS"> 0 </weight> <!-- <weight unit="LBS">180</weight> -->
             <location name="POINTMASS" unit="IN">
                 <x> 37 </x>
                 <y> 9.88 </y>
@@ -72,7 +72,7 @@
             </location>
         </pointmass>
         <pointmass name="Left Passenger">
-            <weight unit="LBS"> 180 </weight>
+            <weight unit="LBS"> 0 </weight> <!-- <weight unit="LBS">180</weight> -->
             <location name="POINTMASS" unit="IN">
                 <x> 74 </x>
                 <y> -9.88 </y>
@@ -80,7 +80,7 @@
             </location>
         </pointmass>
         <pointmass name="Right Passenger">
-            <weight unit="LBS"> 180 </weight>
+            <weight unit="LBS"> 0 </weight> <!-- <weight unit="LBS">180</weight> -->
             <location name="POINTMASS" unit="IN">
                 <x> 74 </x>
                 <y> 9.88 </y>
@@ -532,7 +532,7 @@
                          <time>1</time>
                      </setting>
                  </traverse>
-                 <output>/sim/model/c182/cockpit/flaps-lever</output>
+                 <output>/sim/model/c182s/cockpit/flaps-lever</output>
              </kinematic>
         </channel>
 <!--
@@ -582,7 +582,7 @@
                          <time>1</time>
                      </setting>
                  </traverse>
-                 <output>/sim/model/c182/cockpit/brake-lever</output>
+                 <output>/sim/model/c182s/cockpit/brake-lever</output>
              </kinematic>
 </channel>
 	
@@ -1388,9 +1388,5 @@
     <system file="propulsion"/>
     <system file="indicated-airspeed"/>
    <system file="c182s-ground-effects"/>    
-    <system file="indicated-airspeed"/>
-
-
-
 
 </fdm_config>

@@ -1,6 +1,6 @@
 
 # liveries =========================================================
-aircraft.livery.init("Aircraft/c182/Models/Liveries", "sim/model/livery/name", "sim/model/livery/index");
+aircraft.livery.init("Aircraft/c182s/Models/Liveries", "sim/model/livery/name", "sim/model/livery/index");
 
 #wheel chocks======================================================
 #to-do:
@@ -19,7 +19,7 @@ var chocks001_model = {
 		var chocks001 = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
 				
-		geo.put_model("Aircraft/c182/Models/Exterior/chock001.ac", chocks001,
+		geo.put_model("Aircraft/c182s/Models/Exterior/chock001.ac", chocks001,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 					 me.index = i;	
           },
@@ -56,7 +56,7 @@ var chocks002_model = {
 		var chocks002 = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
 				
-		geo.put_model("Aircraft/c182/Models/Exterior/chock002.ac", chocks002,
+		geo.put_model("Aircraft/c182s/Models/Exterior/chock002.ac", chocks002,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 					 me.index = i;	
           },
@@ -93,7 +93,7 @@ var chocks003_model = {
 		var chocks003 = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
 				
-		geo.put_model("Aircraft/c182/Models/Exterior/chock003.ac", chocks003,
+		geo.put_model("Aircraft/c182s/Models/Exterior/chock003.ac", chocks003,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 					 me.index = i;	
           },
@@ -132,7 +132,7 @@ var coneR_model = {
 		var cones = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
 				
-		geo.put_model("Aircraft/c182/Models/Exterior/safety-cone_R.ac", cones,
+		geo.put_model("Aircraft/c182s/Models/Exterior/safety-cone_R.ac", cones,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 				 me.index = i;
           },
@@ -168,7 +168,7 @@ var coneL_model = {
 		var cones = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
 				
-		geo.put_model("Aircraft/c182/Models/Exterior/safety-cone_L.ac", cones,
+		geo.put_model("Aircraft/c182s/Models/Exterior/safety-cone_L.ac", cones,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 				 me.index = i;
           },
@@ -209,7 +209,7 @@ var gpu_model = {
 		var gpu = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
 				
-		geo.put_model("Aircraft/c182/Models/Exterior/external-power.xml", gpu,
+		geo.put_model("Aircraft/c182s/Models/Exterior/external-power.xml", gpu,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 		 me.index = i;
           },
@@ -249,7 +249,7 @@ var ladder_model = {
 		var ladder = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
 				
-		geo.put_model("Aircraft/c182/Models/Exterior/ladder.xml", ladder,
+		geo.put_model("Aircraft/c182s/Models/Exterior/ladder.xml", ladder,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 				
 		 me.index = i;
@@ -289,7 +289,7 @@ var fueltanktrailer_model = {
 		var fueltanktrailer = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
 				
-		geo.put_model("Aircraft/c182/Models/Exterior/fueltanktrailer.ac", fueltanktrailer,
+		geo.put_model("Aircraft/c182s/Models/Exterior/fueltanktrailer.ac", fueltanktrailer,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 				
 		 me.index = i;

@@ -68,7 +68,7 @@
                 <radio>
                     <halign>left</halign>
                     <label>ladder left</label>
-                    <property>sim/model/c182/ladder_position_l</property>
+                    <property>sim/model/c182s/ladder_position_l</property>
                     <live>true</live>
                     <enable>
                             <property>/sim/ladder/enable</property>
@@ -79,8 +79,8 @@
                     <binding>
                         <command>nasal</command>
                         <script>
-                            setprop("sim/model/c182/ladder_position_l", 1);
-                            setprop("sim/model/c182/ladder_position_r", 0);
+                            setprop("sim/model/c182s/ladder_position_l", 1);
+                            setprop("sim/model/c182s/ladder_position_r", 0);
                         </script>
                     </binding>
                 </radio>
@@ -91,7 +91,7 @@
                     <enable>
                             <property>/sim/ladder/enable</property>
                     </enable>
-                    <property>sim/model/c182/ladder_position_r</property>
+                    <property>sim/model/c182s/ladder_position_r</property>
                     <live>true</live>
                     <binding>
                         <command>dialog-update</command>
@@ -99,8 +99,8 @@
                     <binding>
                         <command>nasal</command>
                         <script>
-                            setprop("sim/model/c182/ladder_position_l", 0);
-                            setprop("sim/model/c182/ladder_position_r", 1);
+                            setprop("sim/model/c182s/ladder_position_l", 0);
+                            setprop("sim/model/c182s/ladder_position_r", 1);
                         </script>
                     </binding>
                 </radio>

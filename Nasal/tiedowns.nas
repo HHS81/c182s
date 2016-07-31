@@ -38,7 +38,7 @@ var point_coords = {
     },
 };
 
-# Values must be the same as in Models/c182.xml
+# Values must be the same as in Models/c182s.xml
 var model_offsets_pitch_deg = -0.0;
 var model_offsets_z_m = -0.00;
 
@@ -75,8 +75,8 @@ var TiedownPositionUpdater = {
         me.end_point = geo.aircraft_position();
         var heading = getprop("/orientation/heading-deg");
 
-        var x = getprop("/sim/model/c182/tiedowns", me.name, "x");
-        var y = getprop("/sim/model/c182/tiedowns", me.name, "y");
+        var x = getprop("/sim/model/c182s/tiedowns", me.name, "x");
+        var y = getprop("/sim/model/c182s/tiedowns", me.name, "y");
 
         # Set position of end point
         var course = heading + geo.normdeg(math_ext.atan(y, x));
@@ -93,8 +93,8 @@ var TiedownPositionUpdater = {
     init_ref_length: func {
         # Call update() to compute initial length
         me.update(0);
-        var length = getprop("/sim/model/c182/tiedowns", me.name, "length");
-        setprop("/sim/model/c182/tiedowns", me.name, "ref-length", length);
+        var length = getprop("/sim/model/c182s/tiedowns", me.name, "length");
+        setprop("/sim/model/c182s/tiedowns", me.name, "ref-length", length);
     },
 
     update: func (dt) {
@@ -114,9 +114,9 @@ var TiedownPositionUpdater = {
         var (yaw, pitch, distance) = math_ext.get_yaw_pitch_distance_inert(start_point_2d, start_point, me.end_point, heading);
         (yaw, pitch) = math_ext.get_yaw_pitch_body(roll_deg, pitch_deg, yaw, pitch, point.offset);
 
-        setprop("/sim/model/c182/tiedowns", me.name, "heading-deg", yaw);
-        setprop("/sim/model/c182/tiedowns", me.name, "pitch-deg", pitch);
-        setprop("/sim/model/c182/tiedowns", me.name, "length", distance);
+        setprop("/sim/model/c182s/tiedowns", me.name, "heading-deg", yaw);
+        setprop("/sim/model/c182s/tiedowns", me.name, "pitch-deg", pitch);
+        setprop("/sim/model/c182s/tiedowns", me.name, "length", distance);
     },
 
 };
@@ -126,15 +126,15 @@ var tiedown_right_updater = TiedownPositionUpdater.new("right");
 var tiedown_tail_updater  = TiedownPositionUpdater.new("tail");
 
 setlistener("/sim/signals/fdm-initialized", func {
-    setlistener("/sim/model/c182/securing/tiedownL-visible", func (node) {
+    setlistener("/sim/model/c182s/securing/tiedownL-visible", func (node) {
         tiedown_left_updater.enable_or_disable(node.getValue());
     }, 1, 0);
 
-    setlistener("/sim/model/c182/securing/tiedownR-visible", func (node) {
+    setlistener("/sim/model/c182s/securing/tiedownR-visible", func (node) {
         tiedown_right_updater.enable_or_disable(node.getValue());
     }, 1, 0);
 
-    setlistener("/sim/model/c182/securing/tiedownT-visible", func (node) {
+    setlistener("/sim/model/c182s/securing/tiedownT-visible", func (node) {
         tiedown_tail_updater.enable_or_disable(node.getValue());
     }, 1, 0);
 

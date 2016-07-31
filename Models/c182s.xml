@@ -866,6 +866,47 @@
 		</axis>
  </animation>
  
+    <animation>
+        <type>pick</type>
+        <object-name>LeftTank.cs</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-left-fuel-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuel-cap-port</tooltip-id>
+                <label>Fuel Cap</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>RightTank.cs</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-right-fuel-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuel-cap-starboard</tooltip-id>
+                <label>Fuel Cap</label>
+            </binding>
+        </hovered>
+    </animation>
  
 <animation>
    <type>pick</type>

@@ -866,6 +866,47 @@
 		</axis>
  </animation>
  
+    <animation>
+        <type>pick</type>
+        <object-name>LeftTank.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-left-fuel-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuel-cap-port</tooltip-id>
+                <label>Fuel Cap</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>RightTank.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-right-fuel-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuel-cap-starboard</tooltip-id>
+                <label>Fuel Cap</label>
+            </binding>
+        </hovered>
+    </animation>
  
 <animation>
    <type>pick</type>
@@ -2027,7 +2068,7 @@
     <!-- Baggage models -->
     <model>
         <name>suitcase1</name>
-        <path>Interior/Baggages/suitcase1.xml</path>
+        <path>Baggages/suitcase1.xml</path>
         <offsets>
             <x-m>2.43</x-m>
             <y-m>-0.14</y-m>
@@ -2037,7 +2078,7 @@
     </model>
     <model>
         <name>suitcase2</name>
-        <path>Interior/Baggages/suitcase2.xml</path>
+        <path>Baggages/suitcase2.xml</path>
         <offsets>
             <x-m>2.43</x-m>
             <y-m>0.14</y-m>

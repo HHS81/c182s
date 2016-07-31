@@ -40,7 +40,7 @@
             </and>
         </input>
         <output>
-            <property>/sim/model/c182/lighting/landing</property>
+            <property>/sim/model/c182ss/lighting/landing</property>
         </output>
     </logic>
 
@@ -59,7 +59,7 @@
             </and>
         </input>
         <output>
-            <property>/sim/model/c182/lighting/taxi</property>
+            <property>/sim/model/c182s/lighting/taxi</property>
         </output>
     </logic>
 
@@ -68,7 +68,7 @@
         <input>
             <and>
                 <property>/sim/current-view/internal</property>
-                <property>/sim/model/c182/lighting/landing</property>
+                <property>/sim/model/c182s/lighting/landing</property>
             </and>
         </input>
         <output>
@@ -81,7 +81,7 @@
         <input>
             <and>
                 <property>/sim/current-view/internal</property>
-                <property>/sim/model/c182/lighting/taxi</property>
+                <property>/sim/model/c182s/lighting/taxi</property>
             </and>
         </input>
         <output>

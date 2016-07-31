@@ -17,7 +17,7 @@
 <animation>
         <type>rotate</type>
         <object-name>ladder.left</object-name>
-        <property>sim/model/c182/ladder_position_r</property>
+        <property>sim/model/c182s/ladder_position_r</property>
         <factor>180</factor>
 		<center>
 			<x-m>0</x-m>
@@ -34,7 +34,7 @@
 <animation>
         <type>rotate</type>
         <object-name>ladder.left</object-name>
-        <property>sim/model/c182/ladder_position_r</property>
+        <property>sim/model/c182s/ladder_position_r</property>
         <factor>180</factor>
 		<center>
 			<x-m>0.343</x-m>

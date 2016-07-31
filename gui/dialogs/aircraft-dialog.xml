@@ -48,11 +48,11 @@
 	<checkbox>
                 <halign>left</halign>
                 <label>Enable procedural-lights</label>
-                <property>/sim/model/c182/procedural-lights</property>
+                <property>/sim/model/c182s/procedural-lights</property>
                 <live>true</live>
                 <binding>
                     <command>property-toggle</command><!-- dialog-apply would apply values to all objects here - setlistener reacts on them in unfortunate way-->
-                <property>/sim/model/c182/procedural-lights</property>
+                <property>/sim/model/c182s/procedural-lights</property>
                 </binding>
 	<binding>
                     <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
@@ -67,11 +67,11 @@
 	<radio>
                 <halign>left</halign>
                 <label>add/ remove nose wheel fairing</label>
-                <property>/sim/model/c182/nw_fairing</property>
+                <property>/sim/model/c182s/nw_fairing</property>
                 <live>true</live>
                 <binding>
                     <command>property-toggle</command><!-- dialog-apply would apply values to all objects here - setlistener reacts on them in unfortunate way-->
-                <property>/sim/model/c182/nw_fairing</property>
+                <property>/sim/model/c182s/nw_fairing</property>
                 </binding>
 	<binding>
                     <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
@@ -83,11 +83,11 @@
 	<radio>
                 <halign>right</halign>
                 <label>add/ remove main wheels fairing</label>
-                <property>/sim/model/c182/mw_fairing</property>
+                <property>/sim/model/c182s/mw_fairing</property>
                 <live>true</live>
                 <binding>
                     <command>property-toggle</command><!-- dialog-apply would apply values to all objects here - setlistener reacts on them in unfortunate way-->
-                <property>/sim/model/c182/mw_fairing</property>
+                <property>/sim/model/c182s/mw_fairing</property>
                 </binding>
 	<binding>
                     <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->

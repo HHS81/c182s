@@ -20,7 +20,7 @@ standard atmosphere adiabatic compressible flow at sea level uncorrected for air
 
 Calibrated airspeed (CAS) is indicated airspeed corrected for instrument errors, position error (due to incorrect pressure at the static port) and installation errors.
 
-According the POH C182S on Page 5-9 airspeed calibration shows a large difference between KIAS and KCAS at lower speeds than 90 and above. 
+According the POH c182s on Page 5-9 airspeed calibration shows a large difference between KIAS and KCAS at lower speeds than 90 and above. 
 It seems this is not reflected by JSBSim or FlightGear in a realistic way.
 So use this numbers and create a table which corrects the output shown on the ASI
 -->
@@ -73,7 +73,7 @@ So use this numbers and create a table which corrects the output shown on the AS
             <default value="1"/>
 
             <test logic="AND" value="0">
-                /sim/model/c182/securing/pitot-cover-visible EQ 1
+                /sim/model/c182s/securing/pitot-cover-visible EQ 1
             </test>
         </switch>	
 	

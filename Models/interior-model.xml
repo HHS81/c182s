@@ -192,7 +192,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-        <script>c182.DoorR.toggle();</script>
+        <script>c182s.DoorR.toggle();</script>
             </binding>
         </action>
         <hovered>
@@ -213,7 +213,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-        <script>c182.DoorL.toggle();</script>
+        <script>c182s.DoorL.toggle();</script>
             </binding>
         </action>
         <hovered>
@@ -265,7 +265,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-        <script>c182.WindowR.toggle();</script>
+        <script>c182s.WindowR.toggle();</script>
             </binding>
         </action>
         <hovered>
@@ -349,7 +349,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-        <script>c182.DoorL.toggle();</script>
+        <script>c182s.DoorL.toggle();</script>
             </binding>
         </action>
         <hovered>
@@ -400,7 +400,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-        <script>c182.WindowL.toggle();</script>
+        <script>c182s.WindowL.toggle();</script>
             </binding>
         </action>
         <hovered>
@@ -598,7 +598,7 @@
   <!--Controls-->
  <!-- Parking Brake -->
     <params>
-        <brake-lever>/sim/model/c182/cockpit/brake-lever</brake-lever>
+        <brake-lever>/sim/model/c182s/cockpit/brake-lever</brake-lever>
     </params>
     <animation>
         <type>translate</type>
@@ -1112,7 +1112,7 @@
     
 <animation>
  <type>translate</type>
-      <property>/sim/model/c182/cockpit/flaps-lever</property>
+      <property>/sim/model/c182s/cockpit/flaps-lever</property>
         <object-name>FlapSwitch</object-name>
        <axis>
          <x>0.0</x>
@@ -1141,7 +1141,7 @@
       
 <animation>
         <type>rotate</type>
-      <property>/sim/model/c182/cockpit/flaps-lever</property>
+      <property>/sim/model/c182s/cockpit/flaps-lever</property>
         <object-name>FlapSwitch</object-name>
         <axis>
          <x>0.0</x>
@@ -1179,7 +1179,7 @@
 
     <animation>
         <type>translate</type>
-      <property>/sim/model/c182/cockpit/flaps-lever</property>
+      <property>/sim/model/c182s/cockpit/flaps-lever</property>
         <object-name>FlapSwitch</object-name>
         <axis>
             <x>0.0</x>
@@ -1964,7 +1964,7 @@
 
  <model>
   <name>MagCompass</name>
-  <path>Aircraft/c182/Models/Instruments/Compass.xml</path>
+  <path>Aircraft/c182s/Models/Instruments/Compass.xml</path>
   <offsets>
    <x-m>0.442</x-m>
    <y-m>0.00</y-m>
@@ -1974,7 +1974,7 @@
 
 <!--avionics-->
     <model>
-        <path>Aircraft/c182/Models/Instruments/Avionics/gma340.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/Avionics/gma340.xml</path>
         <name>gma340</name>
         <offsets>
             <x-m>0.3515</x-m>
@@ -1985,7 +1985,7 @@
     
     
     <model>
-        <path>Aircraft/c182/Models/Instruments/Avionics/kn62a.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/Avionics/kn62a.xml</path>
         <name>kn62a</name>
         <offsets>
             <x-m>0.3515</x-m>
@@ -1997,7 +1997,7 @@
 
     
     <model>
-        <path>Aircraft/c182/Models/Instruments/Avionics/kx165-1.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/Avionics/kx165-1.xml</path>
         <name>kx165</name>
         <offsets>
             <x-m>0.3515</x-m>
@@ -2009,7 +2009,7 @@
 
     
     <model>
-        <path>Aircraft/c182/Models/Instruments/Avionics/kx165-2.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/Avionics/kx165-2.xml</path>
         <name>kx165</name>
         <offsets>
             <x-m>0.3515</x-m>
@@ -2021,7 +2021,7 @@
 
     
     <model>
-        <path>Aircraft/c182/Models/Instruments/Avionics/kr87.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/Avionics/kr87.xml</path>
         <name>kr87</name>
         <offsets>
             <x-m>0.3515</x-m>
@@ -2031,7 +2031,7 @@
     </model>
     
     <model>
-        <path>Aircraft/c182/Models/Instruments/Avionics/kap140/KAP140TwoAxisAlt.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/KAP140TwoAxisAlt.xml</path>
         <name>kap140</name>
         <offsets>
             <x-m>0.3515</x-m>
@@ -2041,7 +2041,7 @@
     </model>
     
    <model>
-        <path>Aircraft/c182/Models/Instruments/Avionics/kt76c.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/Avionics/kt76c.xml</path>
         <name>kt76c</name>
         <offsets>
             <x-m>0.3515</x-m>
@@ -2054,7 +2054,7 @@
     
 <!--gauges-->
    <model>
-        <path>Aircraft/c182/Models/Instruments/Airspeed.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/Airspeed.xml</path>
         <name>Airspeed</name>
         <offsets>
             <x-m>0.3455</x-m>
@@ -2064,7 +2064,7 @@
     </model>
 
    <model>
-        <path>Aircraft/c182/Models/Instruments/ai-gauge.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/ai-gauge.xml</path>
         <name>AI</name>
         <offsets>
             <x-m>0.3555</x-m>
@@ -2074,7 +2074,7 @@
     </model>
 
     <model>
-        <path>Aircraft/c182/Models/Instruments/altimeter.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/altimeter.xml</path>
         <name>Altimeter</name>
         <offsets>
             <x-m>0.3455</x-m>
@@ -2084,7 +2084,7 @@
     </model>
     
     <model>
-        <path>Aircraft/c182/Models/Instruments/vsi.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/vsi.xml</path>
         <name>VSI</name>
         <offsets>
             <x-m>0.3455</x-m>
@@ -2094,7 +2094,7 @@
     </model>
     
     <model>
-        <path>Aircraft/c182/Models/Instruments/hi.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/hi.xml</path>
         <name>HI</name>
         <offsets>
             <x-m>0.3485</x-m>
@@ -2105,7 +2105,7 @@
     
 <model>
    <name>vor</name>
-   <path>Aircraft/c182/Models/Instruments/vor/vor.xml</path>
+   <path>Aircraft/c182s/Models/Instruments/vor/vor.xml</path>
    <offsets>
      <x-m>0.3455</x-m>
      <y-m>-0.065</y-m>
@@ -2115,7 +2115,7 @@
 
  <model>
    <name>vor2</name>
-   <path>Aircraft/c182/Models/Instruments/vor/vor2.xml</path>
+   <path>Aircraft/c182s/Models/Instruments/vor/vor2.xml</path>
    <offsets>
      <x-m>0.3455</x-m>
      <y-m>-0.065</y-m>
@@ -2124,7 +2124,7 @@
  </model>
  
     <model>
-        <path>Aircraft/c182/Models/Instruments/ki227_228.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/ki227_228.xml</path>
         <name>KI227</name>
         <offsets>
             <x-m>0.3455</x-m>
@@ -2135,7 +2135,7 @@
  
  <model>
    <name>Turn</name>
-   <path>Aircraft/c182/Models/Instruments/turn.xml</path>
+   <path>Aircraft/c182s/Models/Instruments/turn.xml</path>
    <offsets>
      <x-m>0.3455</x-m>
      <y-m>-0.347</y-m>
@@ -2145,7 +2145,7 @@
  
 <model>
    <name>Tach</name>
-   <path>Aircraft/c182/Models/Instruments/Tach.xml</path>
+   <path>Aircraft/c182s/Models/Instruments/Tach.xml</path>
    <offsets>
      <x-m>0.3455</x-m>
      <y-m>-0.158</y-m>
@@ -2155,7 +2155,7 @@
  
  <model>
    <name>ManPressFuelFlow</name>
-   <path>Aircraft/c182/Models/Instruments/ManPressFuelFlow.xml</path>
+   <path>Aircraft/c182s/Models/Instruments/ManPressFuelFlow.xml</path>
    <offsets>
      <x-m>0.3455</x-m>
      <y-m>-0.347</y-m>
@@ -2165,7 +2165,7 @@
  
  <model>
    <name>VacAmp</name>
-   <path>Aircraft/c182/Models/Instruments/vacamp.xml</path>
+   <path>Aircraft/c182s/Models/Instruments/vacamp.xml</path>
    <offsets>
      <x-m>0.3477</x-m>
      <y-m>-0.432</y-m>
@@ -2176,7 +2176,7 @@
  
  <model>
    <name>Oil</name>
-   <path>Aircraft/c182/Models/Instruments/oil.xml</path>
+   <path>Aircraft/c182s/Models/Instruments/oil.xml</path>
    <offsets>
      <x-m>0.3472</x-m>
      <y-m>-0.497</y-m>
@@ -2186,7 +2186,7 @@
  
  <model>
    <name>EGT</name>
-   <path>Aircraft/c182/Models/Instruments/egt.xml</path>
+   <path>Aircraft/c182s/Models/Instruments/egt.xml</path>
    <offsets>
      <x-m>0.3475</x-m>
      <y-m>-0.432</y-m>
@@ -2196,7 +2196,7 @@
  
  <model>
    <name>FuelQty</name>
-   <path>Aircraft/c182/Models/Instruments/fuelqty.xml</path>
+   <path>Aircraft/c182s/Models/Instruments/fuelqty.xml</path>
    <offsets>
      <x-m>0.3485</x-m>
      <y-m>-0.497</y-m>
@@ -2205,7 +2205,7 @@
  </model>
  
 <model>
-        <path>Aircraft/c182/Models/Instruments/Davtron803/davtron803.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/Davtron803/davtron803.xml</path>
         <name>Davtron803</name>
         <offsets>
             <x-m>0.352</x-m>
@@ -2217,7 +2217,7 @@
 <!--ELT-->
  <model>
    <name>ELT</name>
-   <path>Aircraft/c182/Models/Instruments/ELT/ArtexELT.xml</path>
+   <path>Aircraft/c182s/Models/Instruments/ELT/ArtexELT.xml</path>
    <offsets>
      <x-m>0.3505</x-m>
      <y-m>0.435</y-m>
@@ -2228,7 +2228,7 @@
  <!--Hobbs-->
   <model>
    <name>Hobbs</name>
-   <path>Aircraft/c182/Models/Instruments/hobbs/hobbs.xml</path>
+   <path>Aircraft/c182s/Models/Instruments/hobbs/hobbs.xml</path>
    <offsets>
      <x-m>0.350</x-m>
      <y-m>0.444</y-m>

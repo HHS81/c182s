@@ -183,7 +183,7 @@
                         </enable>
                <binding>
                     <command>property-toggle</command>
-                        <property>/sim/model/c182/securing/pitot-cover-visible</property>
+                        <property>/sim/model/c182s/securing/pitot-cover-visible</property>
                 </binding>
 	<binding>
                     <command>dialog-update</command>
@@ -203,7 +203,7 @@
 			</enable>
 			<binding>
 			<command>property-toggle</command>
-                        <property>/sim/model/c182/securing/tiedownL-visible</property>
+                        <property>/sim/model/c182s/securing/tiedownL-visible</property>
 			</binding>
 			<binding>
 			<command>dialog-update</command>
@@ -223,7 +223,7 @@
 			</enable>
 			<binding>
 			<command>property-toggle</command>
-                        <property>/sim/model/c182/securing/tiedownR-visible</property>
+                        <property>/sim/model/c182s/securing/tiedownR-visible</property>
 			</binding>
 			<binding>
 			<command>dialog-update</command>
@@ -243,7 +243,7 @@
 			</enable>
 			<binding>
 			<command>property-toggle</command>
-                        <property>/sim/model/c182/securing/tiedownT-visible</property>
+                        <property>/sim/model/c182s/securing/tiedownT-visible</property>
 			</binding>
 			<binding>
 			<command>dialog-update</command>

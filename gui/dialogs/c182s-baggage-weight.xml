@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+    <name>c182s-baggage-weight-dialog</name>
+    <layout>vbox</layout>
+    <resizable>false</resizable>
+    <modal>false</modal>
+    <draggable>true</draggable>
+
+    <group>
+        <layout>hbox</layout>
+
+        <empty><stretch>true</stretch></empty>
+        <text>
+            <label>Baggage Weight</label>
+        </text>
+        <empty><stretch>true</stretch></empty>
+
+        <button>
+            <legend/>
+            <key>Esc</key>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+
+    <hrule/>
+    
+    <group>
+        <layout>vbox</layout>
+        <padding>6</padding>
+        <empty><stretch>true</stretch></empty>
+        <group>
+            <layout>hbox</layout>
+            <text>
+                <label>Baggage 1 Weight:</label>
+                <halign>left</halign>
+            </text>
+            <slider>
+                <name>c182s-baggage1-weight-slider</name>
+                <min>0</min>
+                <max>150.0</max>
+                <live>true</live>
+                <enable>
+                    <less-than>
+                        <property>velocities/groundspeed-kt</property>
+                        <value>1.0</value>
+                    </less-than>
+                </enable>
+                <property>/payload/weight[4]/weight-lb</property>
+                <binding>
+                    <command>dialog-apply</command>
+                    <name>c182s-baggage1-weight-slider</name>
+                </binding>
+            </slider>
+            <text>
+                <label>123</label>
+                <halign>left</halign>
+                <format>%.0f</format>
+                <live>true</live>
+                <property>/payload/weight[4]/weight-lb</property>
+            </text>
+            <text>
+                <label>pounds</label>
+                <halign>left</halign>
+            </text>
+        </group>
+        <group>
+            <layout>hbox</layout>
+            <text>
+                <label>Baggage 2 Weight:</label>
+                <halign>left</halign>
+            </text>
+            <slider>
+                <name>c182s-baggage2-weight-slider</name>
+                <min>0</min>
+                <max>120.0</max>
+                <live>true</live>
+                <enable>
+                    <less-than>
+                        <property>velocities/groundspeed-kt</property>
+                        <value>1.0</value>
+                    </less-than>
+                </enable>
+                <property>/payload/weight[5]/weight-lb</property>
+                <binding>
+                    <command>dialog-apply</command>
+                    <name>c182s-baggage2-weight-slider</name>
+                </binding>
+            </slider>
+            <text>
+                <label>123</label>
+                <halign>left</halign>
+                <format>%.0f</format>
+                <live>true</live>
+                <property>/payload/weight[5]/weight-lb</property>
+            </text>
+            <text>
+                <label>pounds</label>
+                <halign>left</halign>
+            </text>
+        </group>
+    </group>
+
+    <group>
+        <layout>hbox</layout>
+        <text>
+            <visible>
+                <greater-than-equals>
+                    <property>velocities/groundspeed-kt</property>
+                    <value>1.0</value>
+                </greater-than-equals>
+            </visible>
+            <color>
+                <red>0.9</red>
+                <green>0.1</green>
+                <blue>0.1</blue>
+            </color>
+            <label>Dialog disabled when in movement</label>
+        </text>
+    </group>
+        
+    <hrule/>
+    
+    <group>
+        <layout>hbox</layout>
+        <default-padding>6</default-padding>
+        <empty><stretch>true</stretch></empty>
+        <button>
+            <legend>Close</legend>
+            <equal>true</equal>
+            <key>Esc</key>
+            <default>true</default>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+
+</PropertyList>

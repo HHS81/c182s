@@ -875,9 +875,44 @@
      <button>0</button>
      <repeatable>false</repeatable>
      <binding>
+        <condition>
+            <or>
+                <equals>
+                    <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
+                    <value>1</value>
+                </equals>
+                <and>
+                    <equals>
+                        <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
+                        <value>0</value>
+                    </equals>
+                    <less-than>
+                        <property>velocities/groundspeed-kt</property>
+                        <value>1.0</value>
+                    </less-than>
+                </and>
+            </or>
+        </condition>
         <command>nasal</command>
         <script>c182s.BaggageDoor.toggle();</script>
      </binding>
+      <binding>
+          <condition>
+              <equals>
+                  <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
+                  <value>0</value>
+              </equals>
+          </condition>
+          <command>dialog-show</command>
+          <dialog-name>c182s-baggage-weight-dialog</dialog-name>
+      </binding>
+      <hovered>
+          <binding>
+              <command>set-tooltip</command>
+              <tooltip-id>door-handle-baggage</tooltip-id>
+              <label>Baggage Door Open/Close</label>
+          </binding>
+      </hovered>
    </action>
  </animation>
  
@@ -1989,17 +2024,46 @@
    </condition>
  </animation>
 
-
-
- 
-
- 
- 
- 
- 
- 
-
-
-
+    <!-- Baggage models -->
+    <model>
+        <name>suitcase1</name>
+        <path>Interior/Baggages/suitcase1.xml</path>
+        <offsets>
+            <x-m>2.43</x-m>
+            <y-m>-0.14</y-m>
+            <z-m>-0.1</z-m>
+            <pitch-deg>-7</pitch-deg>
+        </offsets>
+    </model>
+    <model>
+        <name>suitcase2</name>
+        <path>Interior/Baggages/suitcase2.xml</path>
+        <offsets>
+            <x-m>2.43</x-m>
+            <y-m>0.14</y-m>
+            <z-m>-0.1</z-m>
+            <pitch-deg>-7</pitch-deg>
+        </offsets>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>suitcase1</object-name>
+        <condition>
+            <greater-than>
+                <property>payload/weight[4]/weight-lb</property>
+                <value>20.0</value>
+            </greater-than>
+        </condition>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>suitcase2</object-name>
+        <condition>
+            <greater-than>
+                <property>payload/weight[5]/weight-lb</property>
+                <value>20.0</value>
+            </greater-than>
+        </condition>
+    </animation>
 
 </PropertyList>

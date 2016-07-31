@@ -47,7 +47,7 @@
 <group>
 	<layout>hbox</layout>
 	<padding>6</padding>
-	<radio>
+	<checkbox>
                 <halign>left</halign>
                 <label>Place nose wheel chock</label>
                         <live>true</live>
@@ -65,9 +65,9 @@
 	<binding>
                     <command>dialog-update</command><!--do not use dialog-apply - bad interactions with walker!-->
                 </binding>
-	</radio>
+	</checkbox>
 	
-<radio>
+<checkbox>
                 <halign>center</halign>
                 <label>Place left wheel chock</label>
                         <live>true</live>
@@ -85,9 +85,9 @@
 	<binding>
                     <command>dialog-update</command><!--do not use dialog-apply - bad interactions with walker!-->
                 </binding>
-	</radio>
+	</checkbox>
 	
-<radio>
+<checkbox>
                 <halign>right</halign>
                 <label>Place right wheel chock</label>
                         <live>true</live>
@@ -105,7 +105,7 @@
 	<binding>
                     <command>dialog-update</command><!--do not use dialog-apply - bad interactions with walker!-->
                 </binding>
-	</radio>
+	</checkbox>
 	
         </group>
 
@@ -113,7 +113,7 @@
 <group>
 	<layout>hbox</layout>
 	<padding>6</padding>
-	<radio>
+	<checkbox>
                 <halign>right</halign>
                 <label>Place right safety cone</label>
                         <live>true</live>
@@ -131,9 +131,9 @@
 	<binding>
                     <command>dialog-update</command>
                 </binding>
-	</radio>
+	</checkbox>
 	
-<radio>
+<checkbox>
                 <halign>left</halign>
                 <label>Place left safety cone</label>
                         <live>true</live>
@@ -151,7 +151,7 @@
 	<binding>
                     <command>dialog-update</command>
                 </binding>
-	</radio>	
+	</checkbox>	
 	
         </group>
         <hrule/>
@@ -190,7 +190,7 @@
                 </binding>
                     </checkbox>
 		                        
-                    <radio>
+                    <checkbox>
                         <halign>left</halign>
                         <label>Enable left tie-down </label>
                         <property>/sim/model/c182s/securing/tiedownL-visible</property>
@@ -208,9 +208,9 @@
 			<binding>
 			<command>dialog-update</command>
 			</binding>
-                    </radio>
+                    </checkbox>
                     
-                    <radio>
+                    <checkbox>
                         <halign>left</halign>
                         <label>Enable right tie-down </label>
                         <property>/sim/model/c182s/securing/tiedownR-visible</property>
@@ -228,9 +228,9 @@
 			<binding>
 			<command>dialog-update</command>
 			</binding>
-                    </radio>
+                    </checkbox>
 
-                    <radio>
+                    <checkbox>
                         <halign>left</halign>
                         <label>Enable tail tie-down </label>
                         <property>/sim/model/c182s/securing/tiedownT-visible</property>
@@ -248,7 +248,7 @@
 			<binding>
 			<command>dialog-update</command>
 			</binding>
-                    </radio>
+                    </checkbox>
 
 			</group>
 

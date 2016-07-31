@@ -568,13 +568,13 @@
    <max-lb type="double">300.0</max-lb>
   </weight>
   <weight>
-   <name type="string">Baggage A</name>
+   <name type="string">Baggage 1</name>
    <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
    <min-lb type="double">0.0</min-lb>
    <max-lb type="double">150.0</max-lb> <!-- WARNING: Max baggage A "by the book" is 120lbs or less! -->
   </weight>
   <weight>
-   <name type="string">Baggage B</name>
+   <name type="string">Baggage 2</name>
    <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[5]"/>
    <min-lb type="double">0.0</min-lb>
    <max-lb type="double">120.0</max-lb> <!-- WARNING: Max baggage B "by the book" is 80lbs or less! -->

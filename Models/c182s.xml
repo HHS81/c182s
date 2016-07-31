@@ -2068,7 +2068,7 @@
     <!-- Baggage models -->
     <model>
         <name>suitcase1</name>
-        <path>Interior/Baggages/suitcase1.xml</path>
+        <path>Baggages/suitcase1.xml</path>
         <offsets>
             <x-m>2.43</x-m>
             <y-m>-0.14</y-m>
@@ -2078,7 +2078,7 @@
     </model>
     <model>
         <name>suitcase2</name>
-        <path>Interior/Baggages/suitcase2.xml</path>
+        <path>Baggages/suitcase2.xml</path>
         <offsets>
             <x-m>2.43</x-m>
             <y-m>0.14</y-m>

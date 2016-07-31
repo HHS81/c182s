@@ -532,7 +532,7 @@
                          <time>1</time>
                      </setting>
                  </traverse>
-                 <output>/sim/model/c182ss/cockpit/flaps-lever</output>
+                 <output>/sim/model/c182s/cockpit/flaps-lever</output>
              </kinematic>
         </channel>
 <!--
@@ -582,7 +582,7 @@
                          <time>1</time>
                      </setting>
                  </traverse>
-                 <output>/sim/model/c182ss/cockpit/brake-lever</output>
+                 <output>/sim/model/c182s/cockpit/brake-lever</output>
              </kinematic>
 </channel>
 	

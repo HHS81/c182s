@@ -64,7 +64,7 @@
 <group>
 	<layout>hbox</layout>
 	<padding>6</padding>
-	<radio>
+	<checkbox>
                 <halign>left</halign>
                 <label>add/ remove nose wheel fairing</label>
                 <property>/sim/model/c182s/nw_fairing</property>
@@ -76,11 +76,11 @@
 	<binding>
                     <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
                 </binding>
-	</radio>
+	</checkbox>
 
 	
 
-	<radio>
+	<checkbox>
                 <halign>right</halign>
                 <label>add/ remove main wheels fairing</label>
                 <property>/sim/model/c182s/mw_fairing</property>
@@ -92,7 +92,7 @@
 	<binding>
                     <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
                 </binding>
-	</radio>
+	</checkbox>
         </group>
 	<hrule/>
 	

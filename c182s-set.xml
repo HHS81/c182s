@@ -509,6 +509,11 @@
             <splash-texture>Aircraft/c182s/splash9.png</splash-texture>
         </startup>
 
+        <!-- Fix scrolling direction of knobs -->
+        <mouse>
+            <invert-mouse-wheel type="bool">true</invert-mouse-wheel>
+        </mouse>
+
  </sim>
  
   <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>

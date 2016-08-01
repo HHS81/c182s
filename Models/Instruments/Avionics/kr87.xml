@@ -293,6 +293,10 @@
                 <command>property-toggle</command>
                 <property>/instrumentation/adf[0]/adf-btn</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kr87-adf")</script>
+            </binding>
                    </action>
     </animation>
 
@@ -318,7 +322,10 @@
                 <command>property-toggle</command>
                 <property>/instrumentation/adf[0]/bfo-btn</property>
             </binding>
-           
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kr87-adf")</script>
+            </binding>
         </action>
     </animation>
 
@@ -365,14 +372,20 @@
                 <property>/instrumentation/adf[0]/display-mode</property>
                 <value type="int">0</value>
             </binding>
-          
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kr87-adf")</script>
+            </binding>
             <mod-up>
                 <binding>
                     <command>property-assign</command>
                     <property>/instrumentation/adf[0]/frq-btn</property>
                     <value type="int">0</value>
                 </binding>
-               
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kr87-adf")</script>
+            </binding>
             </mod-up>
         </action>
     </animation>
@@ -408,14 +421,20 @@
                 <max>3</max>
                 <wrap>true</wrap>
             </binding>
-            
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kr87-adf")</script>
+            </binding>
             <mod-up>
                 <binding>
                     <command>property-assign</command>
                     <property>/instrumentation/adf[0]/flt-btn</property>
                     <value type="int">0</value>
                 </binding>
-               
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kr87-adf")</script>
+            </binding>
             </mod-up>
         </action>
     </animation>
@@ -443,14 +462,20 @@
                 <property>/instrumentation/adf[0]/set-btn</property>
                 <value type="int">1</value>
             </binding>
-          
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kr87-adf")</script>
+            </binding>
             <mod-up>
                 <binding>
                     <command>property-assign</command>
                     <property>/instrumentation/adf[0]/set-btn</property>
                     <value type="int">0</value>
                 </binding>
-             
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kr87-adf")</script>
+            </binding>
             </mod-up>
         </action>
     </animation>
@@ -507,8 +532,10 @@
                 <property>/instrumentation/adf[0]/power-btn</property>
                 <value type="bool">0</value>
             </binding>
-
-         
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kr87-adf-dial")</script>
+            </binding>         
         </action>
     </animation>
 
@@ -548,7 +575,10 @@
                 <max>360</max>
                 <wrap>true</wrap>
             </binding>
-           
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kr87-adf-dial")</script>
+            </binding>         
         </action>
     </animation>
 
@@ -587,7 +617,10 @@
                 <max>360</max>
                 <wrap>true</wrap>
             </binding>
-          
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kr87-adf-dial")</script>
+            </binding>         
         </action>
     </animation>
 

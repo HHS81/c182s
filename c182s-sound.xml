@@ -570,22 +570,6 @@
         </switch>
 
         <switch>
-            <name>click-kma20-switch</name>
-            <mode>once</mode>
-            <path>Sounds/click3.wav</path>
-            <condition>
-                <property>/sim/model/c182s/sound/click-kma20</property>
-            </condition>
-            <position>
-                <x>-0.3660</x>
-                <y>-0.1200</y>
-                <z>-0.0300</z>
-            </position>
-            <reference-dist>0.2</reference-dist>
-            <max-dist>5.0</max-dist>
-        </switch>
-
-        <switch>
             <name>click-kx165-1-switch</name>
             <mode>once</mode>
             <path>Sounds/double-click2.wav</path>

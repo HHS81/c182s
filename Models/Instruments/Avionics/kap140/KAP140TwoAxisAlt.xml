@@ -651,6 +651,10 @@ properties' values.
       kap140.apButton();
      </script>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("kap140")</script>
+      </binding>
     </action>
     <hovered>
       <binding>
@@ -672,6 +676,10 @@ properties' values.
       kap140.hdgButton();
      </script>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("kap140")</script>
+      </binding>
     </action>
   </animation>
   <animation>
@@ -685,6 +693,10 @@ properties' values.
         <script>
       kap140.navButton();
      </script>
+      </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("kap140")</script>
       </binding>
     </action>
   </animation>
@@ -700,6 +712,10 @@ properties' values.
       kap140.aprButton();
      </script>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("kap140")</script>
+      </binding>
     </action>
   </animation>
   <animation>
@@ -713,6 +729,10 @@ properties' values.
         <script>
       kap140.altButton();
      </script>
+      </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("kap140")</script>
       </binding>
     </action>
   </animation>
@@ -728,6 +748,10 @@ properties' values.
       kap140.revButton();
      </script>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("kap140")</script>
+      </binding>
     </action>
   </animation>
   <animation>
@@ -741,6 +765,10 @@ properties' values.
         <script>
       kap140.downButton();
      </script>
+      </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("kap140")</script>
       </binding>
     </action>
   </animation>
@@ -756,6 +784,10 @@ properties' values.
       kap140.upButton();
      </script>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("kap140")</script>
+      </binding>
     </action>
   </animation>
   <animation>
@@ -769,6 +801,10 @@ properties' values.
         <script>
       kap140.armButton();
      </script>
+      </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("kap140")</script>
       </binding>
     </action>
   </animation>
@@ -793,6 +829,10 @@ properties' values.
       </script>
         </binding>
       </mod-up>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("kap140")</script>
+      </binding>
     </action>
   </animation>
   
@@ -805,11 +845,19 @@ properties' values.
             <command>nasal</command>
             <script>kap140.knobSmallUp();</script>
           </binding>
+          <binding>
+              <command>nasal</command>
+              <script>c182s.click("kap140-dial")</script>
+          </binding>
       </increase>
       <decrease>
           <binding>
             <command>nasal</command>
             <script>kap140.knobSmallDown();</script>
+          </binding>
+          <binding>
+              <command>nasal</command>
+              <script>c182s.click("kap140-dial")</script>
           </binding>
       </decrease>
       
@@ -818,11 +866,19 @@ properties' values.
             <command>nasal</command>
             <script>kap140.knobLargeUp();</script>
           </binding>
+          <binding>
+              <command>nasal</command>
+              <script>c182s.click("kap140-dial")</script>
+          </binding>
       </shift-increase>
       <shift-decrease>
           <binding>
             <command>nasal</command>
             <script>kap140.knobLargeDown();</script>
+          </binding>
+          <binding>
+              <command>nasal</command>
+              <script>c182s.click("kap140-dial")</script>
           </binding>
       </shift-decrease>
  </animation>

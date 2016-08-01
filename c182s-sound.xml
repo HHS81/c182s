@@ -1031,6 +1031,72 @@
                 <offset>0.1</offset>
             </volume>
         </rain-windshield>
+        
+        <!-- in-transit sounds -->
+        <dial>
+            <name>dial-intl-lighting</name>
+            <mode>in-transit</mode>
+            <path>Sounds/scroll.wav</path>
+            <property>/controls/lighting/instrument-lights-norm</property>
+            <position>
+                <x>-0.3660</x>
+                <y>0.0350</y>
+                <z>-0.3500</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+            <volume>
+                <factor>0.2</factor>
+            </volume>
+        </dial>
+        <dial>
+            <name>dial-glare-lighting</name>
+            <mode>in-transit</mode>
+            <path>Sounds/scroll.wav</path>
+            <property>/controls/lighting/glareshield-lights-norm</property>
+            <position>
+                <x>-0.3660</x>
+                <y>0.0350</y>
+                <z>-0.3500</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+            <volume>
+                <factor>0.2</factor>
+            </volume>
+        </dial>
+        <dial>
+            <name>dial-radio-lighting</name>
+            <mode>in-transit</mode>
+            <path>Sounds/scroll.wav</path>
+            <property>/controls/lighting/radio-lights-norm</property>
+            <position>
+                <x>-0.3660</x>
+                <y>0.0350</y>
+                <z>-0.3500</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+            <volume>
+                <factor>0.2</factor>
+            </volume>
+        </dial>
+        <dial>
+            <name>dial-pedestal-lighting</name>
+            <mode>in-transit</mode>
+            <path>Sounds/scroll.wav</path>
+            <property>/controls/lighting/pedestal-lights-norm</property>
+            <position>
+                <x>-0.3660</x>
+                <y>0.0350</y>
+                <z>-0.3500</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+            <volume>
+                <factor>0.2</factor>
+            </volume>
+        </dial>
 
 </fx>
  

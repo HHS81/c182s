@@ -1107,7 +1107,7 @@
             <condition>
                 <greater-than>
                     <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
-                    <value>0.4</value>
+                    <value>0.1</value>
                 </greater-than>
             </condition>
             <position>

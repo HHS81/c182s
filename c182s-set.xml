@@ -41,9 +41,12 @@
     <property-rule n="101">
         <path>Aircraft/c182s/Systems/als-lights.xml</path>
     </property-rule>
-            <property-rule n="102">
-                <path>Aircraft/c182s/Systems/ground-effects.xml</path>
-            </property-rule>
+    <property-rule n="102">
+        <path>Aircraft/c182s/Systems/ground-effects.xml</path>
+    </property-rule>
+    <property-rule n="103">
+        <path>Aircraft/c182s/Systems/sounds.xml</path>
+    </property-rule>
     <electrical>        
       <!-- null electrical system path here so we can use a nasal based -->
       <!-- model defined later in the nasal section of this file. -->

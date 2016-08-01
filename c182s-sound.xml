@@ -40,7 +40,7 @@
   <engine>
    <name>engine</name>
    <mode>looped</mode>
-   <path>Sounds/Engine_Continental-O200A.wav</path>
+   <path>Sounds/wasp.wav</path>
    <property>/engines/engine/running</property>
    <volume>
     <property>/engines/engine/mp-osi</property>
@@ -54,7 +54,7 @@
    </volume>
    <pitch>
     <property>/engines/engine/rpm</property>
-    <factor>0.00042</factor>
+    <factor>0.00092</factor>
     <min>0.0</min>
     <max>2.0</max>
     <offset>0.15</offset>
@@ -191,7 +191,7 @@
             </volume>
             <volume>
                 <factor>0.7</factor> <!-- Arbitrary factor to attenuate wind -->
-                <property>/sim/model/c172p/sound/volume-boost-left-door</property>
+                <property>/sim/model/c182s/sound/volume-boost-left-door</property>
             </volume>
             <volume>
                 <offset>-0.03</offset>
@@ -233,7 +233,7 @@
             </volume>
             <volume>
                 <factor>0.7</factor> <!-- Arbitrary factor to attenuate wind -->
-                <property>/sim/model/c172p/sound/volume-boost-right-door</property>
+                <property>/sim/model/c182s/sound/volume-boost-right-door</property>
             </volume>
             <volume>
                 <offset>-0.03</offset>
@@ -300,7 +300,7 @@
             <mode>once</mode>
             <path>Sounds/click.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-light</property>
+                <property>/sim/model/c182s/sound/click-light</property>
             </condition>
             <position>
                 <!-- Beacon switch -->
@@ -317,7 +317,7 @@
             <mode>once</mode>
             <path>Sounds/click2.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-master</property>
+                <property>/sim/model/c182s/sound/click-master</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -333,7 +333,7 @@
             <mode>once</mode>
             <path>Sounds/click3.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-avionics</property>
+                <property>/sim/model/c182s/sound/click-avionics</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -349,7 +349,7 @@
             <mode>once</mode>
             <path>Sounds/double-click.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-cb</property>
+                <property>/sim/model/c182s/sound/click-cb</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -365,7 +365,7 @@
             <mode>once</mode>
             <path>Sounds/lever.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-parking</property>
+                <property>/sim/model/c182s/sound/click-parking</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -381,7 +381,7 @@
             <mode>once</mode>
             <path>Sounds/keys2.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-magneto-forward</property>
+                <property>/sim/model/c182s/sound/click-magneto-forward</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -397,7 +397,7 @@
             <mode>once</mode>
             <path>Sounds/keys.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-magneto-back</property>
+                <property>/sim/model/c182s/sound/click-magneto-back</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -413,7 +413,7 @@
             <mode>once</mode>
             <path>Sounds/keys2.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-flaps</property>
+                <property>/sim/model/c182s/sound/click-flaps</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -428,7 +428,7 @@
             <name>click-ai-caged</name>
             <mode>once</mode>
             <path>Sounds/double-click.wav</path>
-            <property>/sim/model/c172p/sound/click-ai-caged</property>
+            <property>/sim/model/c182s/sound/click-ai-caged</property>
             <position>
                 <x>-0.3660</x>
                 <y>0.2250</y>
@@ -443,7 +443,7 @@
             <mode>once</mode>
             <path>Sounds/click3.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-kma20</property>
+                <property>/sim/model/c182s/sound/click-kma20</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -459,7 +459,7 @@
             <mode>once</mode>
             <path>Sounds/double-click2.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-kx165-1</property>
+                <property>/sim/model/c182s/sound/click-kx165-1</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -475,7 +475,7 @@
             <mode>once</mode>
             <path>Sounds/double-click2.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-kx165-2</property>
+                <property>/sim/model/c182s/sound/click-kx165-2</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -491,7 +491,7 @@
             <mode>once</mode>
             <path>Sounds/double-click2.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-kr87-adf</property>
+                <property>/sim/model/c182s/sound/click-kr87-adf</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -507,7 +507,7 @@
             <mode>once</mode>
             <path>Sounds/double-click2.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-dme-mode</property>
+                <property>/sim/model/c182s/sound/click-dme-mode</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -523,7 +523,7 @@
             <mode>once</mode>
             <path>Sounds/click3.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-dme-power</property>
+                <property>/sim/model/c182s/sound/click-dme-power</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -539,7 +539,7 @@
             <mode>once</mode>
             <path>Sounds/double-click.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-dme-source</property>
+                <property>/sim/model/c182s/sound/click-dme-source</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -555,7 +555,7 @@
             <mode>once</mode>
             <path>Sounds/double-click2.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-kap140</property>
+                <property>/sim/model/c182s/sound/click-kap140</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -571,7 +571,7 @@
             <mode>once</mode>
             <path>Sounds/double-click.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-kt76a-mode</property>
+                <property>/sim/model/c182s/sound/click-kt76a-mode</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -587,7 +587,7 @@
             <mode>once</mode>
             <path>Sounds/double-click.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-kt76a-ident</property>
+                <property>/sim/model/c182s/sound/click-kt76a-ident</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -606,7 +606,7 @@
             <mode>once</mode>
             <path>Sounds/scroll.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-kt76a-dial</property>
+                <property>/sim/model/c182s/sound/click-kt76a-dial</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -625,7 +625,7 @@
             <mode>once</mode>
             <path>Sounds/scroll.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-kx165-1-dial</property>
+                <property>/sim/model/c182s/sound/click-kx165-1-dial</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -644,7 +644,7 @@
             <mode>once</mode>
             <path>Sounds/scroll.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-kx165-2-dial</property>
+                <property>/sim/model/c182s/sound/click-kx165-2-dial</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -663,7 +663,7 @@
             <mode>once</mode>
             <path>Sounds/scroll.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-kma20-dial</property>
+                <property>/sim/model/c182s/sound/click-kma20-dial</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -682,7 +682,7 @@
             <mode>once</mode>
             <path>Sounds/scroll.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-kr87-adf-dial</property>
+                <property>/sim/model/c182s/sound/click-kr87-adf-dial</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -701,7 +701,7 @@
             <mode>once</mode>
             <path>Sounds/scroll.wav</path>
             <condition>
-                <property>/sim/model/c172p/sound/click-kap140-dial</property>
+                <property>/sim/model/c182s/sound/click-kap140-dial</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -1014,27 +1014,27 @@
             <name>thunder1</name>
             <mode>once</mode>
             <path>Sounds/thunder1.wav</path>
-            <property>/sim/model/c172p/sound/click-thunder1</property>
+            <property>/sim/model/c182s/sound/click-thunder1</property>
             <volume>
-                <property>/sim/model/c172p/sound/volume-boost-doors-thunder1</property>
+                <property>/sim/model/c182s/sound/volume-boost-doors-thunder1</property>
             </volume>
         </thunder1>
         <thunder2>
             <name>thunder2</name>
             <mode>once</mode>
             <path>Sounds/thunder2.wav</path>
-            <property>/sim/model/c172p/sound/click-thunder2</property>
+            <property>/sim/model/c182s/sound/click-thunder2</property>
             <volume>
-                <property>/sim/model/c172p/sound/volume-boost-doors-thunder2</property>
+                <property>/sim/model/c182s/sound/volume-boost-doors-thunder2</property>
             </volume>
         </thunder2>
         <thunder3>
             <name>thunder3</name>
             <mode>once</mode>
             <path>Sounds/thunder3.wav</path>
-            <property>/sim/model/c172p/sound/click-thunder3</property>
+            <property>/sim/model/c182s/sound/click-thunder3</property>
             <volume>
-                <property>/sim/model/c172p/sound/volume-boost-doors-thunder3</property>
+                <property>/sim/model/c182s/sound/volume-boost-doors-thunder3</property>
             </volume>
         </thunder3>
 
@@ -1050,7 +1050,7 @@
             </condition>
             <volume>
                 <factor>0.7</factor>
-                <property>/sim/model/c172p/sound/volume-boost-doors</property>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
                 <offset>-0.6</offset>
             </volume>
         </rain>

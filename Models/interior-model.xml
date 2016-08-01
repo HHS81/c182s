@@ -1669,7 +1669,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>c182s.click("master")</script>
+                <script>c182s.click("avionics")</script>
             </binding>
         </action>
         <hovered>
@@ -1696,7 +1696,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>c182s.click("master")</script>
+                <script>c182s.click("avionics")</script>
             </binding>
         </action>
         <hovered>

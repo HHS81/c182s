@@ -236,7 +236,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
       <repeatable>false</repeatable>
  <binding>
           <command>nasal</command>
-          <script>c182.kt76c_button_code(0);</script>
+          <script>c182s.kt76c_button_code(0);</script>
         </binding>
     </action>
   </animation>
@@ -250,7 +250,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
       <repeatable>false</repeatable>
  <binding>
           <command>nasal</command>
-          <script>c182.kt76c_button_code(1);</script>
+          <script>c182s.kt76c_button_code(1);</script>
         </binding>
     </action>
   </animation>
@@ -264,7 +264,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
       <repeatable>false</repeatable>
  <binding>
           <command>nasal</command>
-          <script>c182.kt76c_button_code(2);</script>
+          <script>c182s.kt76c_button_code(2);</script>
         </binding>
     </action>
   </animation>
@@ -278,7 +278,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
       <repeatable>false</repeatable>
  <binding>
           <command>nasal</command>
-          <script>c182.kt76c_button_code(3);</script>
+          <script>c182s.kt76c_button_code(3);</script>
         </binding>
     </action>
   </animation>
@@ -292,7 +292,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
       <repeatable>false</repeatable>
  <binding>
           <command>nasal</command>
-          <script>c182.kt76c_button_code(4);</script>
+          <script>c182s.kt76c_button_code(4);</script>
         </binding>
     </action>
   </animation>
@@ -306,7 +306,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
       <repeatable>false</repeatable>
  <binding>
           <command>nasal</command>
-          <script>c182.kt76c_button_code(5);</script>
+          <script>c182s.kt76c_button_code(5);</script>
         </binding>
     </action>
   </animation>
@@ -320,7 +320,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
       <repeatable>false</repeatable>
  <binding>
           <command>nasal</command>
-          <script>c182.kt76c_button_code(6);</script>
+          <script>c182s.kt76c_button_code(6);</script>
         </binding>
     </action>
   </animation>
@@ -334,7 +334,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
       <repeatable>false</repeatable>
  <binding>
           <command>nasal</command>
-          <script>c182.kt76c_button_code(7);</script>
+          <script>c182s.kt76c_button_code(7);</script>
         </binding>
     </action>
   </animation>
@@ -348,7 +348,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
       <repeatable>false</repeatable>
  <binding>
         <command>nasal</command>
-          <script>c182.kt76c_button_clr();</script>
+          <script>c182s.kt76c_button_clr();</script>
         </binding>
     </action>
   </animation>
@@ -362,7 +362,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
       <repeatable>false</repeatable>
  <binding>
         <command>nasal</command>
-          <script>c182.kt76c_button_vfr();</script>
+          <script>c182s.kt76c_button_vfr();</script>
         </binding>
     </action>
   </animation>

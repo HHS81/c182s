@@ -636,7 +636,11 @@
             <button>0</button>
             <binding>
                 <command>property-toggle</command>
-        <property>/controls/gear/brake-parking</property>
+                <property>/controls/gear/brake-parking</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("parking", 1.6)</script>
             </binding>
         </action>
         <hovered>
@@ -1411,6 +1415,10 @@
                 <command>property-toggle</command>
                 <property>controls/engines/engine/master-alt</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("master")</script>
+            </binding>
         </action>
         <hovered>
             <binding>
@@ -1434,6 +1442,10 @@
             <binding>
                 <command>property-toggle</command>
                 <property>controls/engines/engine/master-bat</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("master")</script>
             </binding>
         </action>
         <hovered>
@@ -1459,6 +1471,10 @@
                 <command>property-toggle</command>
                 <property>controls/engines/engine/fuel-pump</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
+            </binding>
         </action>
         <hovered>
             <binding>
@@ -1482,6 +1498,10 @@
             <binding>
                 <command>property-toggle</command>
                 <property>controls/lighting/beacon</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
             </binding>
         </action>
         <hovered>
@@ -1507,6 +1527,10 @@
                 <command>property-toggle</command>
                 <property>controls/lighting/strobe</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
+            </binding>
         </action>
         <hovered>
             <binding>
@@ -1530,6 +1554,10 @@
             <binding>
                 <command>property-toggle</command>
                 <property>controls/lighting/landing-lights</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
             </binding>
         </action>
         <hovered>
@@ -1555,6 +1583,10 @@
                 <command>property-toggle</command>
                 <property>controls/lighting/taxi-light</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
+            </binding>
         </action>
         <hovered>
             <binding>
@@ -1578,6 +1610,10 @@
             <binding>
                 <command>property-toggle</command>
                 <property>controls/lighting/nav-lights</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
             </binding>
         </action>
         <hovered>
@@ -1603,6 +1639,10 @@
                 <command>property-toggle</command>
                 <property>/controls/anti-ice/pitot-heat</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
+            </binding>
         </action>
         <hovered>
             <binding>
@@ -1627,6 +1667,10 @@
                 <command>property-toggle</command>
                 <property>/controls/switches/AVMBus1</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("avionics")</script>
+            </binding>
         </action>
         <hovered>
             <binding>
@@ -1649,6 +1693,10 @@
             <binding>
                 <command>property-toggle</command>
                 <property>/controls/switches/AVMBus2</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("avionics")</script>
             </binding>
         </action>
         <hovered>

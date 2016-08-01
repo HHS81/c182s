@@ -537,6 +537,10 @@
           </less-than>
         </condition>
       </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
     </action>
   </animation>
 
@@ -566,6 +570,10 @@
           </greater-than>
         </condition>
       </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
     </action>
   </animation>
 
@@ -579,6 +587,10 @@
       <binding>
         <command>property-toggle</command>
         <property alias="../../../../params/comm-test"/>
+      </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
       </binding>
     </action>
     <action>
@@ -603,7 +615,11 @@
           </less-than>
         </condition>
       </binding>
-    </action>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
+    </action>    
     <action>
       <button>4</button>
       <repeatable>false</repeatable>
@@ -626,6 +642,10 @@
           </greater-than>
         </condition>
       </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
     </action>
   </animation>
 
@@ -646,6 +666,10 @@
         <wrap>true</wrap>
         <mask>decimal</mask>
       </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
     </action>
     <action>
       <button>1</button>
@@ -658,6 +682,10 @@
         <max>137.0</max>
         <wrap>true</wrap>
         <mask>integer</mask>
+      </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
       </binding>
     </action>
   </animation>
@@ -679,6 +707,10 @@
         <wrap>true</wrap>
         <mask>decimal</mask>
       </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
     </action>
     <action>
       <button>1</button>
@@ -691,6 +723,10 @@
         <max>137.0</max>
         <wrap>true</wrap>
         <mask>integer</mask>
+      </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
       </binding>
     </action>
   </animation>
@@ -729,6 +765,10 @@
         <wrap>true</wrap>
         <mask>integer</mask>
       </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
     </action>
     <action>
       <button>4</button>
@@ -760,6 +800,10 @@
         <wrap>true</wrap>
         <mask>integer</mask>
       </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
     </action>
   </animation>
 
@@ -777,6 +821,10 @@
         <min>0.0</min>
         <max>1.0</max>
         <wrap>false</wrap>
+      </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
       </binding>
     </action>
   </animation>
@@ -796,6 +844,10 @@
         <max>1.0</max>
         <wrap>false</wrap>
       </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
     </action>
   </animation>
 
@@ -810,6 +862,10 @@
         <command>property-toggle</command>
         <property alias="../../../../params/nav-audio"/>
       </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
     </action>
     <action>
       <button>3</button>
@@ -822,6 +878,10 @@
         <max>1.0</max>
         <wrap>false</wrap>
       </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
     </action>
     <action>
       <button>4</button>
@@ -833,6 +893,10 @@
         <min>0.0</min>
         <max>1.0</max>
         <wrap>false</wrap>
+      </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
       </binding>
     </action>
   </animation>
@@ -854,6 +918,10 @@
         <wrap>true</wrap>
         <mask>decimal</mask>
       </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
     </action>
     <action>
       <button>1</button>
@@ -866,6 +934,10 @@
         <max>118.0</max>
         <wrap>true</wrap>
         <mask>integer</mask>
+      </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
       </binding>
     </action>
   </animation>
@@ -887,6 +959,10 @@
         <wrap>true</wrap>
         <mask>decimal</mask>
       </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
     </action>
     <action>
       <button>1</button>
@@ -899,6 +975,10 @@
         <max>118.0</max>
         <wrap>true</wrap>
         <mask>integer</mask>
+      </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
       </binding>
     </action>
   </animation>
@@ -937,6 +1017,10 @@
         <wrap>true</wrap>
         <mask>integer</mask>
       </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
     </action>
     <action>
       <button>4</button>
@@ -968,6 +1052,10 @@
         <wrap>true</wrap>
         <mask>integer</mask>
       </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1-dial")</script>
+      </binding>
     </action>
   </animation>
 
@@ -995,6 +1083,10 @@
           <value type="int">0</value>
         </binding>
       </mod-up>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1")</script>
+      </binding>
     </action>
   </animation>
 
@@ -1022,6 +1114,10 @@
           <value type="int">0</value>
         </binding>
       </mod-up>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.click("kx165-1")</script>
+      </binding>
     </action>
   </animation>
 

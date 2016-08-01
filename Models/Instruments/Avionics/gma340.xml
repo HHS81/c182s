@@ -109,6 +109,10 @@
         <command>property-toggle</command>
         <property>instrumentation/adf[0]/ident-audible</property>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
+      </binding>
     </action>
   </animation>
   <animation>
@@ -138,6 +142,10 @@
       <binding>
         <command>property-toggle</command>
         <property>instrumentation/dme[0]/ident</property>
+      </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
       </binding>
     </action>
   </animation>
@@ -169,6 +177,10 @@
         <command>property-toggle</command>
         <property>instrumentation/nav[1]/ident</property>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
+      </binding>
     </action>
   </animation>
   <animation>
@@ -198,6 +210,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/nav[0]/ident</property>
+      </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
       </binding>
     </action>
   </animation>
@@ -229,6 +245,10 @@
         <command>property-toggle</command>
         <property>/instrumentation/marker-beacon/audio-btn</property>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
+      </binding>
     </action>
   </animation>
   <animation>
@@ -258,6 +278,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/com[0]</property>
+      </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
       </binding>
     </action>
   </animation>
@@ -289,6 +313,10 @@
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/com[1]</property>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
+      </binding>
     </action>
   </animation>
   <animation>
@@ -318,6 +346,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/com[2]</property>
+      </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
       </binding>
     </action>
   </animation>
@@ -375,6 +407,10 @@
         <property>/instrumentation/audio-panel/com[2]</property>
         <value>0</value>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
+      </binding>
     </action>
   </animation>
   <animation>
@@ -430,6 +466,10 @@
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[2]</property>
         <value>0</value>
+      </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
       </binding>
     </action>
   </animation>
@@ -487,6 +527,10 @@
         <property>/instrumentation/audio-panel/com[2]</property>
         <value>1</value>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
+      </binding>
     </action>
   </animation>
   <animation>
@@ -520,6 +564,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/lo</property>
+      </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
       </binding>
     </action>
   </animation>
@@ -568,6 +616,10 @@
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/com1-2</property>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
+      </binding>
     </action>
   </animation>
   <animation>
@@ -597,6 +649,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/spkr</property>
+      </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
       </binding>
     </action>
   </animation>
@@ -628,6 +684,10 @@
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/pa</property>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
+      </binding>
     </action>
   </animation>
   <animation>
@@ -658,6 +718,10 @@
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/crew</property>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
+      </binding>
     </action>
   </animation>
   <animation>
@@ -687,6 +751,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/pilot</property>
+      </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
       </binding>
     </action>
   </animation>
@@ -726,6 +794,10 @@
           <value>0</value>
         </binding>
       </mod-up>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("gma340")</script>
+      </binding>
     </action>
   </animation>
 </PropertyList>

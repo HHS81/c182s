@@ -618,48 +618,16 @@
         </switch>
 
         <switch>
-            <name>click-dme-mode-switch</name>
+            <name>click-kn62a-switch</name>
             <mode>once</mode>
-            <path>Sounds/double-click2.wav</path>
+            <path>Sounds/click.wav</path>
             <condition>
-                <property>/sim/model/c182s/sound/click-dme-mode</property>
+                <property>/sim/model/c182s/sound/click-kn62a</property>
             </condition>
             <position>
                 <x>-0.3660</x>
                 <y>-0.1200</y>
-                <z>-0.1700</z>
-            </position>
-            <reference-dist>0.2</reference-dist>
-            <max-dist>5.0</max-dist>
-        </switch>
-
-        <switch>
-            <name>click-dme-power-switch</name>
-            <mode>once</mode>
-            <path>Sounds/click3.wav</path>
-            <condition>
-                <property>/sim/model/c182s/sound/click-dme-power</property>
-            </condition>
-            <position>
-                <x>-0.3660</x>
-                <y>-0.1200</y>
-                <z>-0.1700</z>
-            </position>
-            <reference-dist>0.2</reference-dist>
-            <max-dist>5.0</max-dist>
-        </switch>
-
-        <switch>
-            <name>click-dme-source-switch</name>
-            <mode>once</mode>
-            <path>Sounds/double-click.wav</path>
-            <condition>
-                <property>/sim/model/c182s/sound/click-dme-source</property>
-            </condition>
-            <position>
-                <x>-0.3660</x>
-                <y>-0.1200</y>
-                <z>-0.1700</z>
+                <z>-0.1300</z>
             </position>
             <reference-dist>0.2</reference-dist>
             <max-dist>5.0</max-dist>
@@ -755,11 +723,11 @@
         </dial>
 
         <dial>
-            <name>dial-kma20</name>
+            <name>dial-kn62a</name>
             <mode>once</mode>
             <path>Sounds/scroll.wav</path>
             <condition>
-                <property>/sim/model/c182s/sound/click-kma20-dial</property>
+                <property>/sim/model/c182s/sound/click-kn62a-dial</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -811,13 +779,28 @@
             </volume>
         </dial>
 
-
-
         <dial>
             <name>dial-trim-wheel</name>
             <mode>in-transit</mode>
             <path>Sounds/trim.wav</path>
             <property>/controls/flight/elevator-trim</property>
+            <position>
+                <x>-0.3660</x>
+                <y>0.0500</y>
+                <z>-0.5000</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+            <volume>
+                <factor>1.0</factor>
+            </volume>
+        </dial>
+
+        <dial>
+            <name>dial-rudder-trim-wheel</name>
+            <mode>in-transit</mode>
+            <path>Sounds/trim.wav</path>
+            <property>/controls/flight/rudder-trim</property>
             <position>
                 <x>-0.3660</x>
                 <y>0.0500</y>

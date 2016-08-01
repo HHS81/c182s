@@ -462,6 +462,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <command>property-toggle</command>
           <property>/controls/switches/kn-62a</property>
         </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a")</script>
+        </binding>
     </action>
   </animation>
   
@@ -480,6 +484,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <max>2</max>
           <wrap>false</wrap>
         </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a")</script>
+        </binding>
     </action>
   </animation>
   
@@ -497,6 +505,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <min>0</min>
           <max>2</max>
           <wrap>false</wrap>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a")</script>
         </binding>
     </action>
   </animation>
@@ -524,6 +536,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <min>108</min>
           <max>117.95</max>
           <wrap>true</wrap>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a-dial")</script>
         </binding>
     </action>
   </animation>
@@ -552,6 +568,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <max>117.95</max>
           <wrap>true</wrap>
         </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a-dial")</script>
+        </binding>
     </action>
   </animation>
   
@@ -579,6 +599,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <max>117.95</max>
           <wrap>true</wrap>
         </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a-dial")</script>
+        </binding>
     </action>
   </animation>
   
@@ -605,6 +629,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <min>108</min>
           <max>117.95</max>
           <wrap>true</wrap>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a-dial")</script>
         </binding>
     </action>
   </animation>

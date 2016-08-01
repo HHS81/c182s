@@ -63,6 +63,10 @@
         <command>property-toggle</command>
         <property>sim/model/click</property>
       </binding>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("elt")</script>
+      </binding>
     </action>
     <hovered>
       <binding>
@@ -118,6 +122,10 @@
           <value type="bool">true</value>
         </binding>
       </mod-up>
+      <binding>
+          <command>nasal</command>
+          <script>c182s.click("elt")</script>
+      </binding>
     </action>
     <hovered>
       <binding>

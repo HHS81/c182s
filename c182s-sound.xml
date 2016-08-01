@@ -682,11 +682,11 @@
         </switch>
 
         <switch>
-            <name>click-kt76a-mode-switch</name>
+            <name>click-kt76c-mode-switch</name>
             <mode>once</mode>
             <path>Sounds/double-click.wav</path>
             <condition>
-                <property>/sim/model/c182s/sound/click-kt76a-mode</property>
+                <property>/sim/model/c182s/sound/click-kt76c-mode</property>
             </condition>
             <position>
                 <x>-0.3660</x>
@@ -695,33 +695,14 @@
             </position>
             <reference-dist>0.2</reference-dist>
             <max-dist>5.0</max-dist>
-        </switch>
-
-        <switch>
-            <name>click-kt76a-ident-switch</name>
-            <mode>once</mode>
-            <path>Sounds/double-click.wav</path>
-            <condition>
-                <property>/sim/model/c182s/sound/click-kt76a-ident</property>
-            </condition>
-            <position>
-                <x>-0.3660</x>
-                <y>-0.1200</y>
-                <z>-0.2500</z>
-            </position>
-            <reference-dist>0.2</reference-dist>
-            <max-dist>5.0</max-dist>
-            <volume>
-                <factor>0.5</factor>
-            </volume>
         </switch>
 
         <dial>
-            <name>dial-kt76a</name>
+            <name>dial-kt76c</name>
             <mode>once</mode>
-            <path>Sounds/scroll.wav</path>
+            <path>Sounds/click.wav</path>
             <condition>
-                <property>/sim/model/c182s/sound/click-kt76a-dial</property>
+                <property>/sim/model/c182s/sound/click-kt76c-dial</property>
             </condition>
             <position>
                 <x>-0.3660</x>

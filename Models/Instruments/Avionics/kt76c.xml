@@ -206,6 +206,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <max>4</max>
           <wrap>false</wrap>
         </binding>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.click("kt76c-dial")</script>
+        </binding>
      </action>
   </animation>
   
@@ -224,7 +228,25 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <max>4</max>
           <wrap>false</wrap>
         </binding>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.click("kt76c-dial")</script>
+        </binding>
      </action>
+  </animation>
+  
+<animation>
+    <type>pick</type>
+    <object-name>BtnIDT</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.click("kt76c-mode")</script>
+        </binding>
+    </action>
   </animation>
   
 <animation>
@@ -237,6 +259,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
  <binding>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(0);</script>
+        </binding>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.click("kt76c-mode")</script>
         </binding>
     </action>
   </animation>
@@ -252,6 +278,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <command>nasal</command>
           <script>c182s.kt76c_button_code(1);</script>
         </binding>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.click("kt76c-mode")</script>
+        </binding>
     </action>
   </animation>
   
@@ -265,6 +295,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
  <binding>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(2);</script>
+        </binding>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.click("kt76c-mode")</script>
         </binding>
     </action>
   </animation>
@@ -280,6 +314,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <command>nasal</command>
           <script>c182s.kt76c_button_code(3);</script>
         </binding>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.click("kt76c-mode")</script>
+        </binding>
     </action>
   </animation>
   
@@ -293,6 +331,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
  <binding>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(4);</script>
+        </binding>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.click("kt76c-mode")</script>
         </binding>
     </action>
   </animation>
@@ -308,6 +350,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <command>nasal</command>
           <script>c182s.kt76c_button_code(5);</script>
         </binding>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.click("kt76c-mode")</script>
+        </binding>
     </action>
   </animation>
   
@@ -321,6 +367,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
  <binding>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(6);</script>
+        </binding>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.click("kt76c-mode")</script>
         </binding>
     </action>
   </animation>
@@ -336,6 +386,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <command>nasal</command>
           <script>c182s.kt76c_button_code(7);</script>
         </binding>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.click("kt76c-mode")</script>
+        </binding>
     </action>
   </animation>
   
@@ -350,6 +404,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
         <command>nasal</command>
           <script>c182s.kt76c_button_clr();</script>
         </binding>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.click("kt76c-mode")</script>
+        </binding>
     </action>
   </animation>
   
@@ -363,6 +421,10 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
  <binding>
         <command>nasal</command>
           <script>c182s.kt76c_button_vfr();</script>
+        </binding>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.click("kt76c-mode")</script>
         </binding>
     </action>
   </animation>

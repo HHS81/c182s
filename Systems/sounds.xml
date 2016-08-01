@@ -20,6 +20,7 @@
 <PropertyList>
 
     <params>
+        <!--
         <doors>
             <left>/sim/multiplay/generic/float[1]</left>
             <right>/sim/multiplay/generic/float[0]</right>
@@ -28,6 +29,15 @@
             <left>/sim/multiplay/generic/float[3]</left>
             <right>/sim/multiplay/generic/float[4]</right>
         </windows>
+        -->
+        <doors>
+            <left>/sim/model/door-positions/DoorL/position-norm</left>
+            <right>/sim/model/door-positions/DoorR/position-norm</right>
+        </doors>
+        <windows>
+            <left>/sim/model/door-positions/WindowL/position-norm</left>
+            <right>/sim/model/door-positions/WindowR/position-norm</right>
+        </windows>        
     </params>
 
     <!-- Return a factor (>= 1.0) to boost the volume when one or both

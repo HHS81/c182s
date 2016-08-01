@@ -4,80 +4,202 @@
 
  <fx>
  
-  <crank>
-   <name>engstart</name>
-   <path>Sounds/engstart.wav</path>
-   <property>/engines/engine/cranking</property>
-   <volume>
-    <offset>0.4</offset>
-   </volume>
-  </crank>
+        <crank>
+            <name>engstart</name>
+            <path>Sounds/engstart.wav</path>
+            <property>/engines/engine/cranking</property>
+            <position>
+                <x>-1.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+            </position>
+            <volume>
+                <factor>0.7143</factor>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <volume>
+                <offset>0.4</offset>
+            </volume>
+            <reference-dist>5.0</reference-dist>
+            <max-dist>200.0</max-dist>
+        </crank>
 
-  <crank>
-   <name>crank</name>
-   <mode>looped</mode>
-   <path>Sounds/cranking.wav</path>
-   <condition>
-    <property>/engines/engine/cranking</property>
-    <not>
-     <property>/engines/engine/running</property>
-    </not>
-   </condition>
-   <volume>
-    <offset>0.5</offset>
-   </volume>
-  </crank>
+        <crank>
+            <name>crank</name>
+            <mode>looped</mode>
+            <path>Sounds/cranking.wav</path>
+            <condition>
+                <property>/engines/engine/cranking</property>
+                <not>
+                    <property>/engines/engine/running</property>
+                </not>
+            </condition>
+            <position>
+                <x>-1.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+            </position>
+            <volume>
+                <factor>0.7143</factor>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <volume>
+                <offset>0.5</offset>
+            </volume>
+            <reference-dist>5.0</reference-dist>
+            <max-dist>200.0</max-dist>
+        </crank>
+        
+       <crank>
+            <name>cough</name>
+            <path>Sounds/coughing.wav</path>
+            <property>/engines/engine/running</property>
+            <position>
+                <x>-1.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+            </position>
+            <volume>
+                <factor>0.7143</factor>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <volume>
+                <offset>0.3</offset>
+            </volume>
+            <reference-dist>5.0</reference-dist>
+            <max-dist>200.0</max-dist>
+        </crank>
+        
+        <crank>
+            <name>killed</name>
+            <path>Sounds/coughing.wav</path>
+            <property>/sim/model/c182s/sound/click-coughing-engine-sound</property>
+            <position>
+                <x>-1.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+            </position>
+            <volume>
+                <factor>0.7143</factor>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <volume>
+                <offset>0.3</offset>
+            </volume>
+            <reference-dist>5.0</reference-dist>
+            <max-dist>200.0</max-dist>
+        </crank>
 
-  <crank>
-   <name>cough</name>
-   <path>Sounds/coughing.wav</path>
-   <property>/engines/engine/running</property>
-   <volume>
-    <offset>0.3</offset>
-   </volume>
-  </crank>
+        <engine>
+            <name>engine</name>
+            <mode>looped</mode>
+            <path>Sounds/wasp.wav</path>
+            <property>/engines/engine/running</property>
+            <volume>
+                <property>/engines/engine/mp-osi</property>
+                <factor>0.025</factor>
+            </volume>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <pitch>
+                <property>/engines/engine/rpm</property>
+                <factor>0.0004</factor>
+                <min>0.0</min>
+                <max>2.0</max>
+                <offset>0.01</offset>
+            </pitch>
+            <reference-dist>5.0</reference-dist>
+            <max-dist>200.0</max-dist>
+        </engine>
+        
+       <propeller>
+            <name>propeller</name>
+            <mode>looped</mode>
+            <path>Sounds/Engine_Continental-O200A.wav</path>
+            <condition>
+                <greater-than>
+                    <property>/engines/engine/rpm</property>
+                    <value>10</value>
+                </greater-than>
+            </condition>
+            <volume>
+                <property>/engines/engine/rpm</property>
+                <factor>0.0001</factor>
+            </volume>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <pitch>
+                <property>/engines/engine/rpm</property>
+                <factor>0.0004</factor>
+                <min>0.0</min>
+                <max>2.0</max>
+                <offset>0.01</offset>
+            </pitch>
+            <reference-dist>5.0</reference-dist>
+            <max-dist>200.0</max-dist>
+        </propeller>
 
-  <engine>
-   <name>engine</name>
-   <mode>looped</mode>
-   <path>Sounds/wasp.wav</path>
-   <property>/engines/engine/running</property>
-   <volume>
-    <property>/engines/engine/mp-osi</property>
-    <factor>0.0285</factor>
-    <offset>0.20</offset>
-<!-- these values of min and max are unlikely to be relevant, 
-  because the MAP is unlikely to go below 5" or above 28" 
--->
-    <max>1.0</max>
-    <min>0.10</min>
-   </volume>
-   <pitch>
-    <property>/engines/engine/rpm</property>
-    <factor>0.00092</factor>
-    <min>0.0</min>
-    <max>2.0</max>
-    <offset>0.15</offset>
-   </pitch>
-  </engine>
+        <rumble>
+            <name>rumble</name>
+            <mode>looped</mode>
+            <path>Sounds/rumble.wav</path>
+            <condition>
+                <or>
+                    <property>gear/gear[0]/wow</property>
+                    <property>gear/gear[1]/wow</property>
+                    <property>gear/gear[2]/wow</property>
+                </or>
+            </condition>
+            <position>
+                <x>0.5</x>
+                <y>0.0</y>
+                <z>-1.15</z>
+            </position>
+            <volume>
+                <property>velocities/groundspeed-kt</property>
+                <type>log</type>
+                <factor>0.25</factor>
+            </volume>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <reference-dist>2.5</reference-dist>
+            <max-dist>200.0</max-dist>
+        </rumble>
 
-  <rumble>
-   <name>rumble</name>
-   <mode>looped</mode>
-   <path>Sounds/rumble.wav</path>
-   <condition>
-    <or>
-     <property>/gear/gear[0]/wow</property>
-     <property>/gear/gear[1]/wow</property>
-     <property>/gear/gear[2]/wow</property>
-    </or>
-   </condition>
-   <volume>
-    <property>/velocities/groundspeed-kt</property>
-    <type>log</type>
-    <factor>0.5</factor>
-   </volume>
-  </rumble>
+        <rumble-scratch>
+            <name>rumble-scratch</name>
+            <mode>looped</mode>
+            <path>Sounds/scratch.wav</path>
+            <condition>
+                <or>
+                    <!-- Broken gear touching the ground -->
+                    <property>/fdm/jsbsim/contact/unit[6]/WOW</property>
+                    <property>/fdm/jsbsim/contact/unit[7]/WOW</property>
+                    <property>/fdm/jsbsim/contact/unit[8]/WOW</property>
+
+                    <!-- Tail strike -->
+                    <property>/fdm/jsbsim/contact/unit[3]/WOW</property>
+                </or>
+            </condition>
+            <position>
+                <x>0.5</x>
+                <y>0.0</y>
+                <z>-1.15</z>
+            </position>
+            <volume>
+                <property>velocities/groundspeed-kt</property>
+                <type>log</type>
+                <factor>0.25</factor>
+            </volume>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <reference-dist>2.5</reference-dist>
+            <max-dist>200.0</max-dist>
+        </rumble-scratch>
 
 
 
@@ -97,6 +219,9 @@
         <factor>0.01</factor>
         <min>0.1</min>
         <max>1.0</max>
+      </volume>
+      <volume>
+          <property>/sim/model/c182s/sound/volume-boost-doors</property>
       </volume>
       <pitch>
         <property>velocities/airspeed-kt</property>
@@ -122,6 +247,9 @@
         <min>0.1</min>
         <max>1.0</max>
       </volume>
+      <volume>
+          <property>/sim/model/c182s/sound/volume-boost-doors</property>
+      </volume>
       <pitch>
         <property>velocities/airspeed-kt</property>
         <factor>0.01</factor>
@@ -145,6 +273,9 @@
         <factor>0.01</factor>
         <min>0.1</min>
         <max>1.0</max>
+      </volume>
+      <volume>
+          <property>/sim/model/c182s/sound/volume-boost-doors</property>
       </volume>
       <pitch>
         <property>velocities/airspeed-kt</property>
@@ -899,7 +1030,7 @@
             <path>Sounds/door-opening.wav</path>
             <condition>
                 <greater-than>
-                    <property>/sim/model/door-positions/leftDoor/position-norm</property>
+                    <property>sim/model/door-positions/DoorL/position-norm</property>
                     <value>0.4</value>
                 </greater-than>
             </condition>
@@ -918,7 +1049,7 @@
             <path>Sounds/door-closing.wav</path>
             <condition>
                 <less-than>
-                    <property>/sim/model/door-positions/leftDoor/position-norm</property>
+                    <property>sim/model/door-positions/DoorL/position-norm</property>
                     <value>0.5</value>
                 </less-than>
             </condition>
@@ -937,7 +1068,7 @@
             <path>Sounds/door-opening.wav</path>
             <condition>
                 <greater-than>
-                    <property>/sim/model/door-positions/rightDoor/position-norm</property>
+                    <property>sim/model/door-positions/DoorR/position-norm</property>
                     <value>0.4</value>
                 </greater-than>
             </condition>
@@ -956,7 +1087,7 @@
             <path>Sounds/door-closing.wav</path>
             <condition>
                 <less-than>
-                    <property>/sim/model/door-positions/rightDoor/position-norm</property>
+                    <property>sim/model/door-positions/DoorR/position-norm</property>
                     <value>0.5</value>
                 </less-than>
             </condition>
@@ -975,7 +1106,7 @@
             <path>Sounds/door-opening.wav</path>
             <condition>
                 <greater-than>
-                    <property>/sim/model/door-positions/baggageDoor/position-norm</property>
+                    <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
                     <value>0.4</value>
                 </greater-than>
             </condition>
@@ -994,7 +1125,7 @@
             <path>Sounds/door-closing.wav</path>
             <condition>
                 <less-than>
-                    <property>/sim/model/door-positions/baggageDoor/position-norm</property>
+                    <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
                     <value>0.06</value>
                 </less-than>
             </condition>

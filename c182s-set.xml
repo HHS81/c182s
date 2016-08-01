@@ -174,6 +174,47 @@
     <rendering>
         <refl_correction type="string">-0.6</refl_correction>
     </rendering>
+    
+        <!-- Event sounds -->
+        <sound>
+            <click-light type="bool">false</click-light>
+            <click-master type="bool">false</click-master>
+            <click-avionics type="bool">false</click-avionics>
+            <click-cb type="bool">false</click-cb>
+            <click-parking type="bool">false</click-parking>
+            <click-magneto-forward type="bool">false</click-magneto-forward>
+            <click-magneto-back type="bool">false</click-magneto-back>
+            <click-flaps type="bool">false</click-flaps>
+
+            <!-- Radio stack -->
+            <click-dme-mode type="bool">false</click-dme-mode>
+            <click-dme-power type="bool">false</click-dme-power>
+            <click-dme-source type="bool">false</click-dme-source>
+            <click-kap140 type="bool">false</click-kap140>
+            <click-kap140-dial type="bool">false</click-kap140-dial>
+            <click-kma20 type="bool">false</click-kma20>
+            <click-kma20-dial type="bool">false</click-kma20-dial>
+            <click-kr87-adf type="bool">false</click-kr87-adf>
+            <click-kr87-adf-dial type="bool">false</click-kr87-adf-dial>
+            <click-kt76a-mode type="bool">false</click-kt76a-mode>
+            <click-kt76a-ident type="bool">false</click-kt76a-ident>
+            <click-kt76a-dial type="bool">false</click-kt76a-dial>
+            <click-kx165-1 type="bool">false</click-kx165-1>
+            <click-kx165-2 type="bool">false</click-kx165-2>
+            <click-kx165-1-dial type="bool">false</click-kx165-1-dial>
+            <click-kx165-2-dial type="bool">false</click-kx165-2-dial>
+
+            <click-thunder1 type="bool">false</click-thunder1>
+            <click-thunder2 type="bool">false</click-thunder2>
+            <click-thunder3 type="bool">false</click-thunder3>
+
+            <!--Lightning distance from aircraft -->
+            <lightning>
+                <dist1 type="double">0.0</dist1>
+                <dist2 type="double">0.0</dist2>
+                <dist3 type="double">0.0</dist3>
+            </lightning>
+        </sound>
 
   </model>
 

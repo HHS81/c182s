@@ -735,7 +735,7 @@
         <dial>
             <name>dial-kt76a</name>
             <mode>once</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <condition>
                 <property>/sim/model/c182s/sound/click-kt76a-dial</property>
             </condition>
@@ -754,7 +754,7 @@
         <dial>
             <name>dial-kx165-1</name>
             <mode>once</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <condition>
                 <property>/sim/model/c182s/sound/click-kx165-1-dial</property>
             </condition>
@@ -773,7 +773,7 @@
         <dial>
             <name>dial-kx165-2</name>
             <mode>once</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <condition>
                 <property>/sim/model/c182s/sound/click-kx165-2-dial</property>
             </condition>
@@ -792,7 +792,7 @@
         <dial>
             <name>dial-kma20</name>
             <mode>once</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <condition>
                 <property>/sim/model/c182s/sound/click-kma20-dial</property>
             </condition>
@@ -811,7 +811,7 @@
         <dial>
             <name>dial-kr87-adf</name>
             <mode>once</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <condition>
                 <property>/sim/model/c182s/sound/click-kr87-adf-dial</property>
             </condition>
@@ -830,7 +830,7 @@
         <dial>
             <name>dial-kap140</name>
             <mode>once</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <condition>
                 <property>/sim/model/c182s/sound/click-kap140-dial</property>
             </condition>
@@ -850,7 +850,7 @@
         <dial>
             <name>dial-intl-lighting</name>
             <mode>in-transit</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <property>/controls/lighting/instruments-norm</property>
             <position>
                 <x>-0.3660</x>
@@ -866,7 +866,7 @@
         <dial>
             <name>dial-radio-lighting</name>
             <mode>in-transit</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <property>/controls/lighting/radio-norm</property>
             <position>
                 <x>-0.3660</x>
@@ -882,7 +882,7 @@
         <dial>
             <name>dial-horizon-offset</name>
             <mode>in-transit</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <property>/instrumentation/attitude-indicator/horizon-offset-deg</property>
             <position>
                 <x>-0.3660</x>
@@ -898,7 +898,7 @@
         <dial>
             <name>dial-heading-offset</name>
             <mode>in-transit</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <property>/instrumentation/heading-indicator/offset-deg</property>
             <position>
                 <x>-0.3660</x>
@@ -914,7 +914,7 @@
         <dial>
             <name>dial-heading-bug</name>
             <mode>in-transit</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <property>/autopilot/settings/heading-bug-deg</property>
             <position>
                 <x>-0.3660</x>
@@ -930,7 +930,7 @@
         <dial>
             <name>dial-altimeter</name>
             <mode>in-transit</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <property>/instrumentation/altimeter/setting-inhg</property>
             <position>
                 <x>-0.3660</x>
@@ -946,7 +946,7 @@
         <dial>
             <name>dial-nav0-radial</name>
             <mode>in-transit</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <property>/instrumentation/nav[0]/radials/selected-deg</property>
             <position>
                 <x>-0.3660</x>
@@ -962,7 +962,7 @@
         <dial>
             <name>dial-nav1-radial</name>
             <mode>in-transit</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <property>/instrumentation/nav[1]/radials/selected-deg</property>
             <position>
                 <x>-0.3660</x>
@@ -978,7 +978,7 @@
         <dial>
             <name>dial-adf-rotation</name>
             <mode>in-transit</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <property>/instrumentation/adf[0]/rotation-deg</property>
             <position>
                 <x>-0.3660</x>
@@ -994,7 +994,7 @@
         <dial>
             <name>dial-egt-rotation</name>
             <mode>in-transit</mode>
-            <path>Sounds/scroll.wav</path>
+            <!-- <path>Sounds/scroll.wav</path> -->
             <property>/engines/engine[0]/egt-bug-norm</property>
             <position>
                 <x>-0.3660</x>

@@ -1138,9 +1138,6 @@
             <max-dist>50.0</max-dist>
         </baggage-door-closing>
 
-
-
-
         <thunder1>
             <name>thunder1</name>
             <mode>once</mode>
@@ -1213,10 +1210,6 @@
                 <offset>0.1</offset>
             </volume>
         </rain-windshield>
-
-
-
-
 
 </fx>
  

@@ -632,6 +632,23 @@
             <reference-dist>0.2</reference-dist>
             <max-dist>5.0</max-dist>
         </switch>
+        
+        <switch>
+            <name>click-gma340-switch</name>
+            <mode>once</mode>
+            <path>Sounds/double-click2.wav</path>
+            <condition>
+                <property>/sim/model/c182s/sound/click-gma340</property>
+            </condition>
+            <position>
+                <x>-0.3660</x>
+                <y>-0.1200</y>
+                <z>-0.1300</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+        </switch>
+        
 
         <switch>
             <name>click-kap140-switch</name>

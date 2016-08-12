@@ -14,7 +14,7 @@
 <piston_engine name="IO540AB1A5"> 
 <air-intake-impedance-factor>0.18</air-intake-impedance-factor>
 <ram-air-factor>0.1</ram-air-factor>
-  <minmp unit="INHG">         10.0 </minmp>
+  <minmp unit="INHG">         15.0 </minmp>
   <maxmp unit="INHG">         28.5 </maxmp>	
   <displacement unit="IN3">  541.5 </displacement>
   <bore unit="IN">5.125</bore>

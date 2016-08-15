@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <sim>
+    <model>
+      
+      
+      
+      <livery>
+        <name type="string">Red</name>
+	 <index type="int">1</index>
+	 <texture>Liveries/Red.png</texture>
+      </livery>
+<c182s>
+<material>
+			<fuselage>
+						<diffuse>
+							<red>1.0</red>
+							<green>1.0</green>
+							<blue>1.0</blue>
+						</diffuse>
+ 					         <specular>
+							<red>1.0</red>
+							<green>1.0</green>
+							<blue>1.0</blue>
+						</specular>
+						<ambient>
+							<red>1.0</red>
+							<green>1.0</green>
+							<blue>1.0</blue>
+						</ambient>
+				</fuselage>
+                               </material>
+			       
+<nw_fairing type="bool">true</nw_fairing>
+<mw_fairing type="bool">true</mw_fairing>
+<chrome_spinner>true</chrome_spinner>
+</c182s>
+    </model>
+<rendering>
+    <refl_correction type="string">0</refl_correction>
+<ambient_correction type="string">0.0</ambient_correction>
+    </rendering>
+   
+  </sim>
+</PropertyList>

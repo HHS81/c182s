@@ -148,7 +148,7 @@ AlternatorClass = {};
 AlternatorClass.new = func {
     var obj = { parents : [AlternatorClass],
                 rpm_source : "/engines/engine[0]/rpm",
-                rpm_threshold : 800.0,
+                rpm_threshold : 600.0,
                 ideal_volts : 28.0,
                 ideal_amps : 60.0 };
     setprop( obj.rpm_source, 0.0 );
@@ -459,22 +459,22 @@ setprop("/systems/electrical/outputs/annunciators", bus_volts);
 setprop("/systems/electrical/outputs/ecrf", bus_volts);#needed to dim lights
 
     if ( getprop("/controls/lighting/dome-light-r")) {
-        setprop("/systems/electrical/outputs/dome-light-r", bus_volts/28);
-        load += bus_volts / 28;
+        setprop("/systems/electrical/outputs/dome-light-r", bus_volts/24);
+        load += bus_volts / 24;
     } else {
         setprop("/systems/electrical/outputs/dome-light-r", 0.0);
     }
     
  if ( getprop("/controls/lighting/dome-light-l")) {
-        setprop("/systems/electrical/outputs/dome-light-l", bus_volts/28);
-        load += bus_volts / 28;
+        setprop("/systems/electrical/outputs/dome-light-l", bus_volts/24);
+        load += bus_volts / 24;
     } else {
         setprop("/systems/electrical/outputs/dome-light-l", 0.0);
     }
     
  if ( getprop("/controls/lighting/dome-exterior-light")) {
-        setprop("/systems/electrical/outputs/dome-exterior-light", bus_volts/28);
-        load += bus_volts / 28;
+        setprop("/systems/electrical/outputs/dome-exterior-light", bus_volts/24);
+        load += bus_volts / 24;
     } else {
         setprop("/systems/electrical/outputs/dome-exterior-light", 0.0);
     }
@@ -520,7 +520,7 @@ var PL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("contro
 var RL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/radio-lights-norm"));
 	if (getprop ("/controls/lighting/radio-lights-norm") >0.05){
 	setprop("/systems/electrical/outputs/radio-lights",RL_DIMMER);
-	setprop("/systems/electrical/outputs/radio-lights-norm",RL_DIMMER/24);
+	setprop("/systems/electrical/outputs/radio-lights-norm",RL_DIMMER/28);
 	}else{
 	setprop("/systems/electrical/outputs/radio-lights",0);
 	setprop("/systems/electrical/outputs/radio-lights-norm",0);

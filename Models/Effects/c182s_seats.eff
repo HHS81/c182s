@@ -15,13 +15,13 @@
 <lightmap-enabled type="int">1</lightmap-enabled>
 <lightmap-multi type="int">1</lightmap-multi>
 <lightmap-factor type="float" n="0"><use>/systems/electrical/outputs/dome-light-r</use></lightmap-factor>
-<lightmap-color type="vec3d" n="0">0.0 0.0 0.0</lightmap-color><!--disable light until render noise issue has been fixed-->
+<lightmap-color type="vec3d" n="0">1.0 1.0 0.99</lightmap-color><!--disable light until render noise issue has been fixed-->
 <lightmap-factor type="float" n="1"><use>/systems/electrical/outputs/dome-light-l</use></lightmap-factor>
-<lightmap-color type="vec3d" n="1">0.0 0.0 0.0</lightmap-color><!--disable light until render noise issue has been fixed-->
+<lightmap-color type="vec3d" n="1">1.0 1.0 0.99</lightmap-color><!--disable light until render noise issue has been fixed-->
 <lightmap-factor type="float" n="2"><use>/systems/electrical/outputs/glareshield-lights-norm</use></lightmap-factor>
 <lightmap-color type="vec3d" n="2">0.99 0.99 1.0</lightmap-color>
 <lightmap-factor type="float" n="3"><use>/systems/electrical/outputs/dome-exterior-light</use></lightmap-factor>
-<lightmap-color type="vec3d" n="3">0.0 0.0 0.0</lightmap-color><!--disable light until render noise issue has been fixed-->
+<lightmap-color type="vec3d" n="3">1.0 1.0 0.99</lightmap-color><!--disable light until render noise issue has been fixed-->
   <texture n="4">
 	  <type>cubemap</type>
 	  <images>

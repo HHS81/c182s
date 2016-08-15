@@ -7,9 +7,9 @@
       
       
       <livery>
-        <name type="string">White</name>
+        <name type="string">50%Grey</name>
 	 <index type="int">1</index>
-	 <texture>Liveries/White.png</texture>
+	 <texture>Liveries/50Grey.png</texture>
       </livery>
 <c182s>
 <material>

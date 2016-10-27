@@ -40,6 +40,8 @@
 <rendering>
     <refl_correction type="string">0</refl_correction>
 <ambient_correction type="string">0.0</ambient_correction>
+<refl-type>1.0</refl-type>
+<fresnel-factor>1.0</fresnel-factor>
     </rendering>
    
   </sim>

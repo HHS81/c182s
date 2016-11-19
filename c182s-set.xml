@@ -172,7 +172,7 @@
     </c182s>
     
     <rendering>
-        <refl_correction type="string">-0.6</refl_correction>
+        <refl_correction type="string">-0.3</refl_correction>
     </rendering>
     
         <!-- Event sounds -->

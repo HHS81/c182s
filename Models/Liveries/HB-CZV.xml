@@ -34,8 +34,8 @@
 <rendering>
     <refl_correction type="string">-0.4</refl_correction>
 <ambient_correction type="string">0.1</ambient_correction>
-<refl-type>2.0</refl-type>
-<fresnel-factor>0.75</fresnel-factor>
+<refl-type>1.0</refl-type>
+<fresnel-factor>0.5</fresnel-factor>
     </rendering>
    
   </sim>

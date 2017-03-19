@@ -38,10 +38,10 @@
 </c182s>
     </model>
 <rendering>
-    <refl_correction type="string">-0.2</refl_correction>
+    <refl_correction type="string">-0.4</refl_correction>
 <ambient_correction type="string">0.1</ambient_correction>
 <refl-type>1.0</refl-type>
-<fresnel-factor>1.0</fresnel-factor>
+<fresnel-factor>0.5</fresnel-factor>
     </rendering>
    
   </sim>

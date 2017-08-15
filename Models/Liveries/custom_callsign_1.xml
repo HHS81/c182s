@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+    <sim>
+        <model>
+            <livery>
+                <name type="string">Custom callsign 1</name>
+                <index type="int">1</index>
+                <texture>Liveries/custom_callsign_1.png</texture>
+            </livery>
+            <c182s>
+                <material>
+                    <fuselage>
+                            <diffuse>
+                                <red>1.0</red>
+                                <green>1.0</green>
+                                <blue>1.0</blue>
+                            </diffuse>
+                                <specular>
+                                <red>1.0</red>
+                                <green>1.0</green>
+                                <blue>1.0</blue>
+                            </specular>
+                            <ambient>
+                                <red>1.0</red>
+                                <green>1.0</green>
+                                <blue>1.0</blue>
+                            </ambient>
+                    </fuselage>
+                </material>
+                
+                <chrome_spinner>true</chrome_spinner>
+            </c182s>
+        </model>
+        <rendering>
+            <refl_correction type="string">-1.0</refl_correction>
+            <ambient_correction type="string">0.1</ambient_correction>
+        </rendering>
+   
+    </sim>
+</PropertyList>

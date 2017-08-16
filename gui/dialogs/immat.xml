@@ -49,6 +49,24 @@
                 <width>100</width>
             </input>
         </group>
+        
+        <group>
+            <layout>hbox</layout>
+
+            <checkbox>
+                <halign>left</halign>
+                <label>Show on panel</label>
+                <property>/sim/model/c182s/immat-on-panel</property>
+                <live>true</live>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/sim/model/c182s/immat-on-panel</property>
+                </binding>
+                <binding>
+                    <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
+                </binding>
+            </checkbox>
+        </group>
     </group>
 
     <hrule/>

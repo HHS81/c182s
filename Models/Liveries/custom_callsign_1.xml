@@ -30,6 +30,13 @@
                 </material>
                 
                 <chrome_spinner>true</chrome_spinner>
+                
+                <!-- show registration models -->
+                <immat>true</immat>
+                <immat-on-panel>true</immat-on-panel>
+                <fairing1>true</fairing1>
+                <fairing2>true</fairing2>
+                <fairing3>true</fairing3>
             </c182s>
         </model>
         <rendering>

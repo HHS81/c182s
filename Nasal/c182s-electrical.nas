@@ -282,9 +282,9 @@ update_virtual_bus = func( dt ) {
     }
     
     controls.stepMagnetos = func {
-        var old_value = getprop("/controls/switches/magnetos");
+        var old_value = getprop("/controls/engines/engine/magnetos");
         var new_value = std.max(0, std.min(old_value + arg[0], 3));
-        setprop("/controls/switches/magnetos", new_value);
+        setprop("/controls/engines/engine/magnetos", new_value);
     };
 
     # key 's' calls to this function when it is pressed DOWN even if I overwrite the binding in the -set.xml file!
@@ -296,7 +296,7 @@ update_virtual_bus = func( dt ) {
             return;
         }
         else {
-            setprop("/controls/switches/magnetos", 3);
+            setprop("/controls/engines/engine/magnetos", 3);
             setprop("/controls/switches/starter", v);
         }
     };

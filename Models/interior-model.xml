@@ -2185,7 +2185,7 @@
         <name>mag_sw</name>
         <path>Interior/Panel/Instruments/magneto-switch/magneto-switch.xml</path>
         <offsets>
-            <x-m> 0.353</x-m>
+            <x-m> 0.344</x-m>
             <y-m>-0.476</y-m>
             <z-m> 0.093</z-m>
             <roll-deg>-10</roll-deg>

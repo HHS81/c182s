@@ -1,21 +1,21 @@
 AC3Db
-MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
-MATERIAL "RedLightOff" rgb 0.7896 0.0161 0.0161 amb 0.79 0.79 0.79 emis 0 0 0 spec 1 1 1 shi 128 trans 0.75
+MATERIAL "DefaultWhite" rgb 1 1 1  amb 0.5 0.5 0.5  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
+MATERIAL "RedLightOff" rgb 0.7896 0.0161 0.0161 amb 0.7896 0.0161 0.0161 emis 0 0 0 spec 1 1 1 shi 128 trans 0.75
 MATERIAL "FastProp" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 32 trans 0.925
-MATERIAL "Fuselage" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 64 trans 0
-MATERIAL "Blade" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0 0 0 shi 32 trans 0
+MATERIAL "Fuselage" rgb 1 1 1 amb 0.5 0.5 0.5 emis 0 0 0 spec 1 1 1 shi 64 trans 0
+MATERIAL "Blade" rgb 1 1 1 amb 0.5 0.5 0.5 emis 0 0 0 spec 0 0 0 shi 32 trans 0
 MATERIAL "Lights" rgb 1 1 1 amb 2 2 2 emis 1 1 1 spec 1 1 1 shi 32 trans 0
 MATERIAL "cs" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 32 trans 0
-MATERIAL "NavLightRed" rgb 0.5 0 0 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 32 trans 0.1
-MATERIAL "NavLightGreen" rgb 0 0.4 0.5 amb 2 2 2 emis 0 0 0 spec 1 1 1 shi 32 trans 0.1
-MATERIAL "Cristal" rgb 0.64 0.64 0.64 amb 1 1 1 emis 0 0 0 spec 0.207 0.207 0.207 shi 50 trans 0.3
+MATERIAL "NavLightRed" rgb 0.5 0 0 amb 0.5 0 0 emis 0 0 0 spec 1 1 1 shi 32 trans 0.1
+MATERIAL "NavLightGreen" rgb 0 0.4 0.5 amb 0 0.4 0.5 emis 0 0 0 spec 1 1 1 shi 32 trans 0.1
+MATERIAL "Cristal" rgb 0.64 0.64 0.64 amb 0.64 0.64 0.64 emis 0 0 0 spec 0.207 0.207 0.207 shi 50 trans 0.3
 MATERIAL "Plane.002Xmat" rgb 1 1 1 amb 0 0 0 emis 1 1 1 spec 0 0 0 shi 0 trans 0
 MATERIAL "Plane.003Xmat" rgb 1 1 1 amb 0 0 0 emis 1 1 1 spec 0 0 0 shi 0 trans 0
 MATERIAL "PlaneX" rgb 1 1 1 amb 0 0 0 emis 1 1 1 spec 0 0 0 shi 0 trans 0
 MATERIAL "prop.001" rgb 0.687279 0.687279 0.687279 amb 2.749116 2.749116 2.749116 emis 0 0 0 spec 1 1 1 shi 32 trans 0.835798
-MATERIAL "tdcs.001" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0 0 0 shi 32 trans 1
-MATERIAL "tdcs" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0 0 0 shi 32 trans 1
-MATERIAL "Windows" rgb 0.7 0.7 0.7 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 64 trans 0.5
+MATERIAL "tdcs.001" rgb 1 1 1 amb 0.5 0.5 0.5 emis 0 0 0 spec 0 0 0 shi 32 trans 1
+MATERIAL "tdcs" rgb 1 1 1 amb 0.5 0.5 0.5 emis 0 0 0 spec 0 0 0 shi 32 trans 1
+MATERIAL "Windows" rgb 0.7 0.7 0.7 amb 0.7 0.7 0.7 emis 0 0 0 spec 1 1 1 shi 64 trans 0.5
 MATERIAL "Windows.Int" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 1 1 1 shi 64 trans 0.95
 OBJECT world
 kids 46

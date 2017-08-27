@@ -44,7 +44,7 @@
 	    
 
 
-            <!--<item>
+            <item>
                 <label>Registration</label>
                 <binding>
                     <command>dialog-show</command>
@@ -52,6 +52,7 @@
                 </binding>
             </item>
 
+            <!--
             <item>
                 <label>Flashlight</label>
                 <binding>

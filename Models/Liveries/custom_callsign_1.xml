@@ -28,21 +28,22 @@
                             </ambient>
                     </fuselage>
                 </material>
-                
-                <chrome_spinner>true</chrome_spinner>
-                
-                <!-- show registration models -->
+		
+			       
+<nw_fairing type="bool">true</nw_fairing>
+<mw_fairing type="bool">true</mw_fairing>
+<chrome_spinner>true</chrome_spinner>
+		<!-- show registration models -->
                 <immat>true</immat>
                 <immat-on-panel>true</immat-on-panel>
-                <fairing1>true</fairing1>
-                <fairing2>true</fairing2>
-                <fairing3>true</fairing3>
             </c182s>
         </model>
         <rendering>
-            <refl_correction type="string">-1.0</refl_correction>
-            <ambient_correction type="string">0.1</ambient_correction>
-        </rendering>
+    <refl_correction type="string">-0.5</refl_correction>
+<ambient_correction type="string">0.1</ambient_correction>
+<refl-type>1.0</refl-type>
+<fresnel-factor>0.7</fresnel-factor>
+    </rendering>
    
     </sim>
 </PropertyList>

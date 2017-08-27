@@ -169,6 +169,8 @@
 			</ambient>
 		</fuselage>
 	</material>
+<nw_fairing type="bool">true</nw_fairing>
+<mw_fairing type="bool">true</mw_fairing>
     </c182s>
     
     <rendering>

@@ -14,9 +14,9 @@
 </texture>
 <lightmap-enabled type="int">1</lightmap-enabled>
 <lightmap-multi type="int">1</lightmap-multi>
-<lightmap-factor type="float" n="0"><use>/systems/electrical/outputs/dome-light-r</use></lightmap-factor>
+<lightmap-factor type="float" n="0"><use>/systems/electrical/outputs/dome-light-l</use></lightmap-factor>
 <lightmap-color type="vec3d" n="0">1.0 1.0 0.99</lightmap-color>
-<lightmap-factor type="float" n="1"><use>/systems/electrical/outputs/dome-light-l</use></lightmap-factor>
+<lightmap-factor type="float" n="1"><use>/systems/electrical/outputs/dome-light-r</use></lightmap-factor>
 <lightmap-color type="vec3d" n="1">1.0 1.0 0.99</lightmap-color>
 <lightmap-factor type="float" n="2"><use>/systems/electrical/outputs/glareshield-lights-norm</use></lightmap-factor>
 <lightmap-color type="vec3d" n="2">0.99 0.99 1.0</lightmap-color>

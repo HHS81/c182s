@@ -998,6 +998,16 @@
  
  
 <!--Exterior Lights-->
+ <animation>
+  <type>select</type>
+  <object-name>ExtLight</object-name>
+  <condition>
+   <greater-than>
+    <property>systems/electrical/outputs/dome-light-r</property>
+    <value>0</value>
+   </greater-than>
+  </condition>
+ </animation>
 <!--Beacon-->
 
 <animation>

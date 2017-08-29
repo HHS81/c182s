@@ -105,6 +105,19 @@
         <path>Effects/shadow.xml</path>
     </model>
     
+    <!-- Registration number -->
+    <model>
+        <path>Immat/immat.xml</path>
+        <offsets>
+            <x-m> 0.0 </x-m>
+            <y-m> 0.0 </y-m>
+            <z-m> 0.0 </z-m>
+            <roll-deg>    0.0 </roll-deg>
+            <pitch-deg>   0.0 </pitch-deg>
+            <heading-deg> 0.0 </heading-deg>
+        </offsets>
+    </model>
+    
  <animation>
    <type>material</type>
    <object-name>Fuselage</object-name><!-- grouped in Blender for faster loading of liveries-->
@@ -985,6 +998,16 @@
  
  
 <!--Exterior Lights-->
+ <animation>
+  <type>select</type>
+  <object-name>ExtLight</object-name>
+  <condition>
+   <greater-than>
+    <property>systems/electrical/outputs/dome-light-r</property>
+    <value>0</value>
+   </greater-than>
+  </condition>
+ </animation>
 <!--Beacon-->
 
 <animation>

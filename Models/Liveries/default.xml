@@ -30,16 +30,21 @@
 							<blue>1.0</blue>
 						</ambient>
 				</fuselage>
-                               </material>
+                               </material>     
 			       
 <nw_fairing type="bool">true</nw_fairing>
 <mw_fairing type="bool">true</mw_fairing>
 <chrome_spinner>true</chrome_spinner>
+		<!-- show registration models -->
+                <immat>false</immat>
+                <immat-on-panel>true</immat-on-panel>
 </c182s>
     </model>
 <rendering>
-    <refl_correction type="string">-0.6</refl_correction>
+    <refl_correction type="string">-0.4</refl_correction>
 <ambient_correction type="string">0.1</ambient_correction>
+<refl-type>1.0</refl-type>
+<fresnel-factor>0.7</fresnel-factor>
     </rendering>
    
   </sim>

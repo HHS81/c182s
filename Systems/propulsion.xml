@@ -5,7 +5,7 @@
 
     <channel name="engine power">
     
-
+<!--controlls power depending on density altitude-->
 -<fcs_function name="systems/engine/MP-alt-volumetric-efficiency-curve">
           <function>
                 <table>
@@ -28,6 +28,7 @@
           <output>propulsion/engine/volumetric-efficiency</output>   
         </fcs_function>
 
+<!--controlls fuel flow depending on density altitude -->
 <fcs_function name="systems/engine/MP-alt-bsfc-lbs_hphr-curve">
           <function>
                 <table>

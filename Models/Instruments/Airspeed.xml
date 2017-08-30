@@ -69,9 +69,9 @@
             <z>0</z>
         </axis>
         <center>
-          <x-m>0</x-m>
-          <y-m>0.0289782</y-m>
-          <z-m>-0.0293967</z-m>
+          <x-m>0.00367</x-m>
+          <y-m>-0.02715</y-m>
+          <z-m>-0.02945</z-m>
         </center>
     </animation>
     <animation>

@@ -2038,9 +2038,6 @@
         </axis>
 </animation>
 
-
-<!-- magneto switch -->
-
     <!-- Magneto switch -->
     <animation>
         <type>knob</type>
@@ -2081,6 +2078,52 @@
                     if (m == 1) return 'RIGHT';
                     if (m == 2) return 'LEFT';
                     if (m == 3) return 'BOTH';
+                    return 'OFF';
+                </script>
+            </binding>
+        </hovered>
+    </animation>
+                
+                
+<animation>
+        <type>knob</type>
+        <object-name>FuelTankSelector</object-name>
+        <property>/controls/switches/fuel_tank_selector</property>
+        <visible>true</visible>
+        <factor>90</factor>
+        <offset-deg>90</offset-deg>
+        <center>
+            <x-m>0.46232</x-m>
+            <y-m>0.02154</y-m>
+            <z-m>0</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>/controls/switches/fuel_tank_selector</property>
+                <wrap>true</wrap>
+                <step>1</step>
+                <min>0</min>
+                <max>4</max> <!-- 0=off, 1=right, 2=both, 3=left -->
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuel-tank-selector</tooltip-id>
+                <label>Fuel tank selector: %s</label>
+                <property>/controls/switches/fuel_tank_selector</property>
+                <mapping>nasal</mapping>
+                <script>
+                    var m = arg[0];
+                    if (m == 1) return 'RIGHT';
+                    if (m == 2) return 'BOTH';
+                    if (m == 3) return 'LEFT';
                     return 'OFF';
                 </script>
             </binding>

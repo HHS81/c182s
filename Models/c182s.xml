@@ -1003,7 +1003,7 @@
   <object-name>ExtLight</object-name>
   <condition>
    <greater-than>
-    <property>systems/electrical/outputs/dome-light-r</property>
+    <property>systems/electrical/outputs/dome-exterior-light</property>
     <value>0</value>
    </greater-than>
   </condition>

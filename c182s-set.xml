@@ -545,7 +545,7 @@
         <name type="string">Fuel pipe</name>
         <!--<hidden type="bool">true</hidden>-->
       </tank>
-      <tank n="4">
+      <tank n="5">
         <name type="string">Engine manifold</name>
         <!--<hidden type="bool">true</hidden>-->
       </tank>
@@ -583,6 +583,7 @@
    <starter type="bool">false</starter>
    <kt-76c type="double">0</kt-76c>
    <kn-62a type="double">0</kn-62a>
+   <fuel_tank_selector type="double">2</fuel_tank_selector> <!-- 0=off, 1=right, 2=both, 3=left -->
   </switches>
   </controls>
  

@@ -228,8 +228,16 @@ Implementation notice:
         <!-- Engine sucks here (max=0.035pps). The only inflow can come from an active pump. -->
         <!-- Special is also, that the mechanical pump can only fill this tank to 50%. -->
         <!-- The electrical pump can fill it to more than that; whereas a threshold signals "engine flooded" -->
+        <switch name="fuel/manifold-dissipate-rate-pps">
+            <!-- fuel evaporates slowly when engine not running -->
+            <default value="0"/>
+            <test logic="AND" value="0.0000225"> <!-- about 0.5p in 30 min -->
+                /fdm/jsbsim/propulsion/engine/set-running  EQ   0
+            </test>
+        </switch>
         <summer>
             <input>fuel/pump-flow-rate-pps</input>
+            <input>-fuel/manifold-dissipate-rate-pps</input>
             <input>-/fdm/jsbsim/propulsion/engine/fuel-flow-rate-pps</input>
             <output>/fdm/jsbsim/propulsion/tank[5]/external-flow-rate-pps</output>
         </summer>

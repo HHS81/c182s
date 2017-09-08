@@ -1,0 +1,109 @@
+<?xml version="1.0"?>  
+
+<!-- c182s fuel system according to POH 7-25
+The left and right wing are connected to the fuel selector valve. both tanks have a drain valve.
+The fuel selector has a small fuel sump which is fed from the selected tanks using gravity.
+From there the fuel flows to a strainer (also with small sump) and to the electrical aux pump
+and then to the mechanical (enginge driven) pump which pumps it to the fuel/air control unit.
+At the fuel/air unit sits the fuel flow meter. From there the fuel is delivered to the engines
+intake manifods.
+
+Implementation notice:
+- The idea is to treat every item that holds fuel as independent tank.
+- The tanks have drains: /consumables/fuel/tank[n]/drain-valve (1=open/0=shut)
+- Switches define possible valves and define the ammount and conditions of flow.
+- Summers define the outflow/inflow of the whole tank and depend on linked valves;
+  they are just there to let jsbsim handle the content ammount. This way a tank can
+  simultaneously be drained+refuelled+whatever.
+-->
+<system name="fuel"> 
+
+    <!-- todo: define propertys here -->
+    
+    <channel name="fuel-system">
+        <!-- property: /fdm/jsbsim/propulsion/tank[n]/external-flow-rate-pps -->
+        
+        <!-- ###### 0: LEFT TANK ##### -->
+        <switch name="fuel/left-tank-to-fuelswitch">
+            <default value="0"/>
+            <test logic="AND" value="5">
+                /fdm/jsbsim/propulsion/tank[0]/pct-full GT   0.0 <!-- this tank contains fuel -->
+                /fdm/jsbsim/propulsion/tank[2]/pct-full LE 100.0 <!-- fuel select sump not full yet -->
+                accelerations/Nz GT -0.5             <!-- no negative G force on z axis -->
+                <test logic="OR">
+                    <!-- fuel switch is selecting this tank -->
+                    /controls/switches/fuel_tank_selector EQ 2  <!-- 0=off, 1=right, 2=both, 3=left -->
+                    /controls/switches/fuel_tank_selector EQ 3
+                </test>
+            </test>
+            <output>fuel/left-tank-to-fuelswitch</output>
+        </switch>
+        <switch name="fuel/left-tank-drain">
+            <default value="0"/>
+            <test logic="AND" value="25">
+                /consumables/fuel/tank[0]/drain-valve EQ 1
+            </test>
+            <output>fuel/left-tank-drain</output>
+        </switch>
+        <summer name="fuel/left-tank-flow-rate">
+            <input>-fuel/left-tank-to-fuelswitch</input>
+            <input>-fuel/left-tank-drain</input>
+            <input>fuel/left-right-transfer</input>
+            <output>/fdm/jsbsim/propulsion/tank[0]/external-flow-rate-pps</output>
+        </summer>
+
+        <!-- ###### 1: RIGHT TANK ##### -->
+        <summer name="fuel/right-tank-flow-rate">
+            <!-- todo: add valves summers here -->
+            <input>fuel/left-right-transfer</input>
+            <output>/fdm/jsbsim/propulsion/tank[1]/external-flow-rate-pps</output>
+        </summer>
+        
+        <!-- TRANSFER BETWEEN TANKS -->
+        <!-- todo: when the fuel selection lever is BOTH, the tanks should slowly level out.
+                    When the plane stands uneven, one tank may become more filled than the other! -->
+        <switch name="fuel/left-right-transfer">
+            <default value="0"/>
+            <test logic="AND" value="2">
+                /fdm/jsbsim/propulsion/tank[0]/pct-full GT 0.0
+                /fdm/jsbsim/propulsion/tank[0]/pct-full GT /fdm/jsbsim/propulsion/tank[1]/pct-full
+                /fdm/jsbsim/propulsion/tank[1]/pct-full LT 100.0
+                /controls/switches/fuel_tank_selector EQ 2
+            </test>
+            <test logic="AND" value="-2">
+                /fdm/jsbsim/propulsion/tank[1]/pct-full GT 0.0
+                /fdm/jsbsim/propulsion/tank[1]/pct-full GT /fdm/jsbsim/propulsion/tank[0]/pct-full
+                /fdm/jsbsim/propulsion/tank[0]/pct-full LT 100.0
+                /controls/switches/fuel_tank_selector EQ 2
+            </test>
+            <output>fuel/left-right-transfer</output>
+        </switch>
+
+        
+        <!-- ##### 2: FUEL SELECTOR SUMP #####-->
+        <summer name="fuel/fuel-selector-flow-rate">
+            <!-- todo: add selected valves here -->
+            <input>fuel/left-tank-to-fuelswitch</input>
+            <!--<input>fuel/right-tank-to-fuelswitch</input> -->
+            <output>/fdm/jsbsim/propulsion/tank[2]/external-flow-rate-pps</output>
+        </summer>
+
+        
+        <!-- ##### 3: FUEL STRAINER SUMP #### -->
+        <summer name="fuel/fuel-strainer-flow-rate">
+            <input>-/fdm/jsbsim/propulsion/tank[2]/external-flow-rate-pps</input>
+            <input>-/fdm/jsbsim/propulsion/engine/fuel-flow-rate-pps</input>
+            <output>/fdm/jsbsim/propulsion/tank[3]/external-flow-rate-pps</output>
+        </summer>
+
+   
+        <!-- ##### 4: MANIFOLD #### -->
+        <!-- Engine sucks here. The only inflow can come from an active pump-->
+        <summer name="fuel/manifold-flow-rate">
+            <input>-/fdm/jsbsim/propulsion/engine/fuel-flow-rate-pps</input>
+            <output>/fdm/jsbsim/propulsion/tank[4]/external-flow-rate-pps</output>
+        </summer>
+    
+    </channel>
+
+</system>

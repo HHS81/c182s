@@ -268,8 +268,9 @@
                 <pitch> 0 </pitch>
                 <yaw> 0 </yaw>
             </orient>
-            <feed>0</feed>
-            <feed>1</feed>
+            <feed>1</feed>  <!-- FOR DEBUG ONLY: FEED DIRECTLY FROM WING TANK -->
+            <feed>2</feed>  <!-- FOR DEBUG ONLY: FEED DIRECTLY FROM WING TANK -->
+            <feed>4</feed>
             <thruster file="prop_79in3v">
                 <location unit="IN">
                     <x> -73.62 </x>
@@ -282,35 +283,102 @@
                     <yaw> 0.0 </yaw>
                 </orient>
                 <sense> -1 </sense>
-  <p_factor>5 </p_factor>
+                <p_factor>5 </p_factor>
             </thruster>
         </engine>
+        
+        <!-- 0: left wing -->
         <tank type="FUEL">    <!-- Tank number 0 with 44 gallons =290.5lbs ?? kerosin but should be AVGas!-->
             <location unit="IN">
-                <x>36.27 </x>
+                <x> 36.27 </x>
                 <y>-59.49 </y>
                 <z> 31.21</z>
             </location>
+            <drain_location unit="M">
+                <x> 1.057   </x>
+                <y>-1.11821 </y>
+                <z> 0.68779 </z>
+            </drain_location>
             <capacity unit="LBS"> 264.88 </capacity>
             <contents unit="LBS"> 264.88</contents>
-<density unit="LBS/GAL"> 6.02 </density>
-<type>  AVGAS</type>
+            <density unit="LBS/GAL"> 6.02 </density>
+            <!-- <temperature>degF</temperature> -->
+            <standpipe>2</standpipe>
+            <type>AVGAS</type>
         </tank>
-	
+
+        <!-- 1: right wing -->
         <tank type="FUEL">    <!-- Tank number 1 with 44 gallons =290.5lbs kerosin but should be AVGas!-->
             <location unit="IN">
                 <x> 36.27 </x>
-                <y>59.49 </y>
+                <y> 59.49 </y>
                 <z> 31.21 </z>
             </location>
+            <drain_location unit="M">
+                <x> 1.057   </x>
+                <y> 1.11821 </y>
+                <z> 0.68779 </z>
+            </drain_location>
             <capacity unit="LBS"> 264.88 </capacity>
             <contents unit="LBS"> 264.88 </contents>
-<density unit="LBS/GAL"> 6.02 </density>
-<type>  AVGAS</type>
+            <density unit="LBS/GAL"> 6.02 </density>
+            <standpipe>2</standpipe>
+            <type>AVGAS</type>
+        </tank>
+        
+        <!-- 2: Fuel selector sump -->
+        <tank type="FUEL">
+            <location unit="IN">
+                <x>0.45</x>
+                <y>0</y>
+                <z>-0.40</z>
+            </location>
+            <drain_location unit="M">
+                <x>0.45</x>
+                <y>0</y>
+                <z>-0.45</z>
+            </drain_location>
+            <capacity unit="LBS">0.5</capacity> <!-- todo: arbitrary numer as i dont know exact ones -->
+            <contents unit="LBS">0</contents>
+            <type>AVGAS</type>
+        </tank>
+        
+        <!-- 3: Strainer sump -->
+        <tank type="FUEL">
+            <location unit="IN">
+                <x>0.45</x>
+                <y>0</y>
+                <z>-0.40</z>
+            </location>
+            <drain_location unit="M">
+                <x>0.45</x>
+                <y>0</y>
+                <z>-0.45</z>
+            </drain_location>
+            <capacity unit="LBS">0.1</capacity>
+            <contents unit="LBS">0</contents>
+            <type>AVGAS</type>
+        </tank>
+        
+        <!-- 4: engine manifold (engine feeds from here) -->
+        <tank type="FUEL">
+            <location unit="IN">
+                <x>0.45</x>
+                <y>0</y>
+                <z>-0.40</z>
+            </location>
+            <drain_location unit="M">
+                <x>0.45</x>
+                <y>0</y>
+                <z>-0.45</z>
+            </drain_location>
+            <capacity unit="LBS">0.1</capacity>
+            <contents unit="LBS">0</contents>
+            <type>AVGAS</type>
         </tank>
     </propulsion>
     
-
+    <system file="fuel"/> <!-- integrate advanced fuel system -->
     
     <flight_control name="FCS: c182s">
 <!--Cessna 182S POH Page 7-12: nose gear steer deg=11deg, by applying left or right brake increasing steer deg up to 29deg-->

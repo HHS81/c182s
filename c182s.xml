@@ -268,9 +268,7 @@
                 <pitch> 0 </pitch>
                 <yaw> 0 </yaw>
             </orient>
-            <feed>1</feed>  <!-- FOR DEBUG ONLY: FEED DIRECTLY FROM WING TANK -->
-            <feed>2</feed>  <!-- FOR DEBUG ONLY: FEED DIRECTLY FROM WING TANK -->
-            <feed>4</feed>
+            <feed>5</feed>
             <thruster file="prop_79in3v">
                 <location unit="IN">
                     <x> -73.62 </x>
@@ -360,7 +358,24 @@
             <type>AVGAS</type>
         </tank>
         
-        <!-- 4: engine manifold (engine feeds from here) -->
+        <!-- 4: Fuel pipe -->
+        <tank type="FUEL">
+            <location unit="IN">
+                <x>0.45</x>
+                <y>0</y>
+                <z>-0.40</z>
+            </location>
+            <drain_location unit="M">
+                <x>0.45</x>
+                <y>0</y>
+                <z>-0.45</z>
+            </drain_location>
+            <capacity unit="LBS">0.1</capacity>
+            <contents unit="LBS">0</contents>
+            <type>AVGAS</type>
+        </tank>
+        
+        <!-- 5: engine manifold (engine feeds from here) -->
         <tank type="FUEL">
             <location unit="IN">
                 <x>0.45</x>

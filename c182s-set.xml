@@ -542,6 +542,10 @@
         <!--<hidden type="bool">true</hidden>-->
       </tank>
       <tank n="4">
+        <name type="string">Fuel pipe</name>
+        <!--<hidden type="bool">true</hidden>-->
+      </tank>
+      <tank n="4">
         <name type="string">Engine manifold</name>
         <!--<hidden type="bool">true</hidden>-->
       </tank>

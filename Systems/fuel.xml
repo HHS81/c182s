@@ -25,6 +25,7 @@ Implementation notice:
     
     <property type="bool" value="1">/systems/fuel/fuel-pump-aux-serviceable</property>
     <property type="bool" value="1">/systems/fuel/fuel-pump-engine-serviceable</property>
+    <property type="bool" value="1">/systems/fuel/fuel-pipe-serviceable</property>
 
     
     <channel name="fuel-system">
@@ -42,7 +43,7 @@ Implementation notice:
         </switch>
         <switch name="fuel/left-tank-tofuelselector-flow-rate-pps">
             <default value="0"/>
-            <test logic="AND" value="0.10">
+            <test logic="AND" value="5">
                 <test logic="AND">
                     /fdm/jsbsim/propulsion/tank[0]/pct-full  GT    0.0
                     /fdm/jsbsim/propulsion/tank[2]/pct-full  LT  100.0
@@ -76,7 +77,7 @@ Implementation notice:
         </switch>
         <switch name="fuel/right-tank-tofuelselector-flow-rate-pps">
             <default value="0"/>
-            <test logic="AND" value="0.10">
+            <test logic="AND" value="5">
                 <test logic="AND">
                     /fdm/jsbsim/propulsion/tank[1]/pct-full  GT    0.0
                     /fdm/jsbsim/propulsion/tank[2]/pct-full  LT  100.0
@@ -133,7 +134,7 @@ Implementation notice:
         </switch>
         <switch name="fuel/fuel-selector-tofuelstrainer-flow-rate-pps">
             <default value="0"/>
-            <test logic="AND" value="0.10">
+            <test logic="AND" value="5">
                 /fdm/jsbsim/propulsion/tank[2]/pct-full  GT    0.0
                 /fdm/jsbsim/propulsion/tank[3]/pct-full  LT  100.0
             </test>
@@ -162,7 +163,7 @@ Implementation notice:
         </switch>
         <switch name="fuel/fuel-strainer-tofuelpipe-flow-rate-pps">
             <default value="0"/>
-            <test logic="AND" value="0.10">
+            <test logic="AND" value="5">
                 /fdm/jsbsim/propulsion/tank[3]/pct-full  GT    0.0
                 /fdm/jsbsim/propulsion/tank[4]/pct-full  LT  100.0
                 accelerations/Nz GE -0.5
@@ -181,7 +182,15 @@ Implementation notice:
         <!-- ####################### -->
         <!-- ##### 4: FUEL PIPE #### -->
         <!-- ####################### -->
+        <!-- When not serviceable (i.e. broken), a leakage will occur and no fuel can be pumped -->
+        <switch name="fuel/fuel-pipe-leak-flow-rate-pps">
+            <default value="0"/>
+            <test logic="AND" value="5">   <!-- limited by the flow rates of preceeding tanks -->
+                /systems/fuel/fuel-pipe-serviceable EQ 0
+            </test>
+        </switch>
         <summer>
+            <input>-fuel/fuel-pipe-leak-flow-rate-pps</input>
             <input>fuel/fuel-strainer-tofuelpipe-flow-rate-pps</input>
             <input>-fuel/pump-flow-rate-pps</input>
             <output>/fdm/jsbsim/propulsion/tank[4]/external-flow-rate-pps</output>
@@ -195,6 +204,12 @@ Implementation notice:
         <!-- The fuel pumps fill the manifold. Fill rate >50% means engine flooded. -->
         <switch name="fuel/pump-flow-rate-pps">
             <default value="0"/>
+            
+            <!-- fuel pipe broken? no fuel to manifold! -->
+            <test logic="AND" value="0">
+                /systems/fuel/fuel-pipe-serviceable  EQ  0
+            </test>
+            
             <test logic="AND" value="0.10">
                 <!-- engine on: mechanical pump OR aux pump active -->
                 <test logic="OR">

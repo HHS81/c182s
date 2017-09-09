@@ -26,6 +26,13 @@ Implementation notice:
     <property type="bool" value="1">/systems/fuel/fuel-pump-aux-serviceable</property>
     <property type="bool" value="1">/systems/fuel/fuel-pump-engine-serviceable</property>
     <property type="bool" value="1">/systems/fuel/fuel-pipe-serviceable</property>
+    <property type="double" value="0">/systems/fuel/tank[0]/leak-flow-rate-pps</property>
+    <property type="double" value="0">/systems/fuel/tank[1]/leak-flow-rate-pps</property>
+    <property type="double" value="0">/systems/fuel/tank[2]/leak-flow-rate-pps</property>
+    <property type="double" value="0">/systems/fuel/tank[3]/leak-flow-rate-pps</property>
+    <property type="double" value="0">/systems/fuel/tank[4]/leak-flow-rate-pps</property> <!-- currently implicitely set via fuel-pipe-serviceable -->
+    <property type="double" value="0">/systems/fuel/tank[5]/leak-flow-rate-pps</property>
+    
     <property type="bool" value="0">/systems/fuel/engine-flooded</property>
 
     
@@ -59,6 +66,7 @@ Implementation notice:
  
         <summer>
             <input>-fuel/left-tank-drain-flow-rate-pps</input>
+            <input>-/systems/fuel/tank[0]/leak-flow-rate-pps</input>
             <input>-fuel/flow-left-right-transfer-pps</input>
             <input>-fuel/left-tank-tofuelselector-flow-rate-pps</input>
             <output>/fdm/jsbsim/propulsion/tank[0]/external-flow-rate-pps</output>
@@ -93,6 +101,7 @@ Implementation notice:
         
         <summer>
             <input>-fuel/right-tank-drain-flow-rate-pps</input>
+            <input>-/systems/fuel/tank[1]/leak-flow-rate-pps</input>
             <input>-fuel/right-tank-tofuelselector-flow-rate-pps</input>
             <input>fuel/flow-left-right-transfer-pps</input>
             <output>/fdm/jsbsim/propulsion/tank[1]/external-flow-rate-pps</output>
@@ -146,6 +155,7 @@ Implementation notice:
             <input>fuel/right-tank-tofuelselector-flow-rate-pps</input>
             <input>-fuel/fuel-selector-tofuelstrainer-flow-rate-pps</input>
             <input>-fuel/fuel-selector-sump-drain-flow-rate-pps</input>
+            <input>-/systems/fuel/tank[2]/leak-flow-rate-pps</input>
             <output>/fdm/jsbsim/propulsion/tank[2]/external-flow-rate-pps</output>
         </summer>
 
@@ -175,6 +185,7 @@ Implementation notice:
             <input>fuel/fuel-selector-tofuelstrainer-flow-rate-pps</input>
             <input>-fuel/fuel-strainer-tofuelpipe-flow-rate-pps</input>
             <input>-fuel/fuel-strainer-sump-drain-flow-rate-pps</input>
+            <input>-/systems/fuel/tank[3]/leak-flow-rate-pps</input>
             <output>/fdm/jsbsim/propulsion/tank[3]/external-flow-rate-pps</output>
         </summer>
 
@@ -184,14 +195,14 @@ Implementation notice:
         <!-- ##### 4: FUEL PIPE #### -->
         <!-- ####################### -->
         <!-- When not serviceable (i.e. broken), a leakage will occur and no fuel can be pumped -->
-        <switch name="fuel/fuel-pipe-leak-flow-rate-pps">
+        <switch name="/systems/fuel/tank[4]/leak-flow-rate-pps">
             <default value="0"/>
             <test logic="AND" value="5">   <!-- limited by the flow rates of preceeding tanks -->
                 /systems/fuel/fuel-pipe-serviceable EQ 0
             </test>
         </switch>
         <summer>
-            <input>-fuel/fuel-pipe-leak-flow-rate-pps</input>
+            <input>-/systems/fuel/tank[4]/leak-flow-rate-pps</input>
             <input>fuel/fuel-strainer-tofuelpipe-flow-rate-pps</input>
             <input>-fuel/pump-flow-rate-pps</input>
             <output>/fdm/jsbsim/propulsion/tank[4]/external-flow-rate-pps</output>
@@ -260,6 +271,7 @@ Implementation notice:
         </switch>
         <summer>
             <input>fuel/pump-flow-rate-pps</input>
+            <input>-/systems/fuel/tank[5]/leak-flow-rate-pps</input>
             <input>-fuel/manifold-dissipate-rate-pps</input>
             <input>-/fdm/jsbsim/propulsion/engine/fuel-flow-rate-pps</input>
             <output>/fdm/jsbsim/propulsion/tank[5]/external-flow-rate-pps</output>

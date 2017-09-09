@@ -301,6 +301,7 @@
             <capacity unit="LBS"> 264.88 </capacity>
             <contents unit="LBS"> 264.88</contents>
             <temperature>50</temperature>
+            <density unit="LBS/GAL"> 6.02 </density>
             <standpipe>2</standpipe>
             <type>AVGAS</type>
         </tank>
@@ -320,6 +321,7 @@
             <capacity unit="LBS"> 264.88 </capacity>
             <contents unit="LBS"> 264.88 </contents>
             <temperature>50</temperature>
+            <density unit="LBS/GAL"> 6.02 </density>
             <standpipe>2</standpipe>
             <type>AVGAS</type>
         </tank>
@@ -339,6 +341,7 @@
             <capacity unit="LBS">0.1</capacity> <!-- todo: arbitrary numer as i dont know exact ones -->
             <contents unit="LBS">0</contents>
             <temperature>50</temperature>
+            <density unit="LBS/GAL"> 6.02 </density>
             <type>AVGAS</type>
         </tank>
         
@@ -357,6 +360,7 @@
             <capacity unit="LBS">0.1</capacity>
             <contents unit="LBS">0</contents>
             <temperature>50</temperature>
+            <density unit="LBS/GAL"> 6.02 </density>
             <type>AVGAS</type>
         </tank>
         
@@ -375,6 +379,7 @@
             <capacity unit="LBS">0.05</capacity>
             <contents unit="LBS">0</contents>
             <temperature>50</temperature>
+            <density unit="LBS/GAL"> 6.02 </density>
             <type>AVGAS</type>
         </tank>
         
@@ -393,6 +398,7 @@
             <capacity unit="LBS">0.05</capacity>
             <contents unit="LBS">0</contents>
             <temperature>50</temperature>
+            <density unit="LBS/GAL"> 6.02 </density>
             <type>AVGAS</type>
         </tank>
     </propulsion>

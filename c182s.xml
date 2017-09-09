@@ -283,7 +283,6 @@
                 <sense> -1 </sense>
                 <p_factor>5 </p_factor>
             </thruster>
-            <flooded>0</flooded>
         </engine>
         
         <!-- 0: left wing -->

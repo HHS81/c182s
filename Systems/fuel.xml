@@ -26,6 +26,7 @@ Implementation notice:
     <property type="bool" value="1">/systems/fuel/fuel-pump-aux-serviceable</property>
     <property type="bool" value="1">/systems/fuel/fuel-pump-engine-serviceable</property>
     <property type="bool" value="1">/systems/fuel/fuel-pipe-serviceable</property>
+    <property type="bool" value="0">/systems/fuel/engine-flooded</property>
 
     
     <channel name="fuel-system">
@@ -201,7 +202,7 @@ Implementation notice:
         <!-- ####################### -->
         <!-- ##### FUEL PUMPING #### -->
         <!-- ####################### -->
-        <!-- The fuel pumps fill the manifold. Fill rate >50% means engine flooded. -->
+        <!-- The fuel pumps fill the manifold from the fuel pipe. Fill rate >75% means engine flooded. -->
         <switch name="fuel/pump-flow-rate-pps">
             <default value="0"/>
             
@@ -210,24 +211,29 @@ Implementation notice:
                 /systems/fuel/fuel-pipe-serviceable  EQ  0
             </test>
             
+            <!-- Engine on: mechanical pump OR aux pump active -->
             <test logic="AND" value="0.10">
-                <!-- engine on: mechanical pump OR aux pump active -->
+                <test logic="AND">
+                    <!-- engine running and fuel flow possible -->
+                    /fdm/jsbsim/propulsion/engine/set-running  EQ   1
+                    /fdm/jsbsim/propulsion/tank[4]/pct-full    GT   0.0
+                    /fdm/jsbsim/propulsion/tank[5]/pct-full    LT  25.0
+                </test>
                 <test logic="OR">
                     <test logic="AND">
-                        /fdm/jsbsim/propulsion/engine/set-running  EQ   1
+                        <!-- motor pump is serviceable -->
                         /systems/fuel/fuel-pump-engine-serviceable EQ   1
                     </test>
                     <test logic="AND">
+                        <!-- motor pump failed but aux pump is switched on and serviceable -->
                         /systems/electrical/outputs/fuel-pump      GT   0
                         /systems/fuel/fuel-pump-aux-serviceable    EQ   1
                     </test>
                 </test>
-                <test logic="AND">
-                    /fdm/jsbsim/propulsion/tank[4]/pct-full    GT   0.0
-                    /fdm/jsbsim/propulsion/tank[5]/pct-full    LT  50.0
-                </test>
             </test>
-            <test logic="AND" value="0.025">
+            
+            <!-- Engine off: Priming mode -->
+            <test logic="AND" value="/systems/fuel/priming-mixture-flow">
                 <!-- engine off: aux pump on and powered? -->
                 /fdm/jsbsim/propulsion/engine/set-running  EQ   0
                 /systems/electrical/outputs/fuel-pump      GT   0
@@ -238,13 +244,15 @@ Implementation notice:
         </switch>
 
          
+        
         <!-- ###################### -->
         <!-- ##### 5: MANIFOLD #### -->
         <!-- Engine sucks here (max=0.035pps). The only inflow can come from an active pump. -->
-        <!-- Special is also, that the mechanical pump can only fill this tank to 50%. -->
-        <!-- The electrical pump can fill it to more than that; whereas a threshold signals "engine flooded" -->
+        <!-- Special is also, that the mechanical pump can only fill this tank to the flood-threshold. -->
+        <!-- The electrical pump can fill it fully; whereas a threshold signals "engine flooded" -->
         <switch name="fuel/manifold-dissipate-rate-pps">
             <!-- fuel evaporates slowly when engine not running -->
+            <!-- TODO: crunch numbers: this should result in a "primed engeine" after 20-30 minutes after "normal" engine shutdown! -->
             <default value="0"/>
             <test logic="AND" value="0.0000225"> <!-- about 0.5p in 30 min -->
                 /fdm/jsbsim/propulsion/engine/set-running  EQ   0
@@ -257,6 +265,31 @@ Implementation notice:
             <output>/fdm/jsbsim/propulsion/tank[5]/external-flow-rate-pps</output>
         </summer>
     
+        
+        
+        <!-- ########################## -->
+        <!-- #  Priming stuff         # -->
+        <!-- ########################## -->
+        
+        <!-- Engine flooded indicator -->
+        <switch name="/systems/fuel/engine-flooded">
+            <default value="0"/>
+            <test logic="AND" value="1">
+                /fdm/jsbsim/propulsion/tank[5]/pct-full  GT  75.0
+            </test>
+        </switch>
+        
+        
+        <!-- Calculates the priming flow depending on selected mixture -->
+        <!-- TODO: should be some "bell courve": fuel flow is slow at first until pressure is OK. This should be somewhere at the sweet spot (3-5 seconds after mix=100% at throt=1/4 inch) and show 6 gal/Hr (36.12 lbs = 0.010pps) on the flow gauge (see: https://www.youtube.com/watch?v=-yVMskFQZsw&t=193s ) -->
+        <!-- Throttle also plays a role (should be open 1/4 inch - how much % is that?) -->
+        <pure_gain name="/systems/fuel/priming-mixture-flow">
+            <input> /controls/engines/engine/mixture </input>
+            <gain> 0.010 </gain>
+        </pure_gain>
+
+        
+        
     </channel>
 
 </system>

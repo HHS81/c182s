@@ -169,10 +169,12 @@
 			</ambient>
 		</fuselage>
 	</material>
+<nw_fairing type="bool">true</nw_fairing>
+<mw_fairing type="bool">true</mw_fairing>
     </c182s>
     
     <rendering>
-        <refl_correction type="string">-0.6</refl_correction>
+        <refl_correction type="string">-0.3</refl_correction>
     </rendering>
     
         <!-- Event sounds -->
@@ -702,6 +704,8 @@
 	<file>Aircraft/c182s/Nasal/kn62a.nas</file>
 	<file>Aircraft/c182s/Nasal/kr87.nas</file>
             <file>Nasal/tiedowns.nas</file>
+    <file>Aircraft/c182s/Nasal/immat.nas</file>
+
 </c182s>
 <electrical>
  <file>Aircraft/c182s/Nasal/c182s-electrical.nas</file>

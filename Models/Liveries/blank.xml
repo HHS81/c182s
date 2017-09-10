@@ -3,10 +3,13 @@
 <PropertyList>
   <sim>
     <model>
+      
+      
+      
       <livery>
-        <name type="string">N321HW</name>
+        <name type="string">Blank</name>
 	 <index type="int">1</index>
-	 <texture>Liveries/N321HW.png</texture>
+	 <texture>Liveries/Blank.png</texture>
       </livery>
 <c182s>
 <material>
@@ -33,12 +36,12 @@
 <mw_fairing type="bool">true</mw_fairing>
 <chrome_spinner>true</chrome_spinner>
 		<!-- show registration models -->
-                <immat>false</immat>
+                <immat>true</immat>
                 <immat-on-panel>true</immat-on-panel>
 </c182s>
     </model>
 <rendering>
-    <refl_correction type="string">-0.5</refl_correction>
+    <refl_correction type="string">-0.4</refl_correction>
 <ambient_correction type="string">0.1</ambient_correction>
 <refl-type>1.0</refl-type>
 <fresnel-factor>0.7</fresnel-factor>

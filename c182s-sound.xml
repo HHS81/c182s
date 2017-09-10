@@ -1229,6 +1229,149 @@
                 <factor>0.2</factor>
             </volume>
         </dial>
+	
+	<Gyro>
+            <type>Avionics</type>
+            <name>AttitudeGyro</name>
+            <mode>looped</mode>
+            <path>Sounds/gyro.wav</path>
+            <position>
+                <x>-0.3660</x>
+                <y>0.1400</y>
+                <z>0</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>2.5</max-dist>
+            <volume>
+              <property>/instrumentation/attitude-indicator/spin</property>
+              <max>0.1</max>
+            </volume>
+            <pitch>
+              <property>/instrumentation/attitude-indicator/spin</property>
+                <factor>1.5</factor>
+                <min>0.001</min>
+                <max>1.5</max>
+                <offset>0.0</offset>
+            </pitch>
+        </Gyro>
+	
+<Gyro>
+            <type>Avionics</type>
+            <name>HeadingGyro</name>
+            <mode>looped</mode>
+            <path>Sounds/gyro.wav</path>
+            <position>
+                <x>-0.3660</x>
+                <y>0.1400</y>
+                <z>0</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>2.5</max-dist>
+            <volume>
+              <property>/instrumentation/heading-indicator/spin</property>
+              <max>0.1</max>
+            </volume>
+            <pitch>
+              <property>/instrumentation/heading-indicator/spin</property>
+                <factor>1.5</factor>
+                <min>0.001</min>
+                <max>1.5</max>
+                <offset>0.0</offset>
+            </pitch>
+        </Gyro>
+	
+<Gyro>
+            <type>Avionics</type>
+            <name>TurnIndicatorGyro</name>
+            <mode>looped</mode>
+            <path>Sounds/gyro.wav</path>
+            <position>
+                <x>-0.3660</x>
+                <y>0.1400</y>
+                <z>0</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>2.5</max-dist>
+            <volume>
+              <property>/instrumentation/turn-indicator/spin</property>
+              <max>0.1</max>
+            </volume>
+            <pitch>
+              <property>/instrumentation/turn-indicator/spin</property>
+                <factor>1.5</factor>
+                <min>0.001</min>
+                <max>1.5</max>
+                <offset>0.0</offset>
+            </pitch>
+        </Gyro>
+	
+<FuelPump>
+            <type>Avionics</type>
+            <name>Aux Fuel Pump</name>
+            <mode>looped</mode>
+            <path>Sounds/pump-loop.wav</path>
+           <condition>
+                    <property>/systems/electrical/outputs/fuel-pump-norm</property>
+            </condition>
+            <position>
+                <x>-0.3660</x>
+                <y>0.1400</y>
+                <z>0</z>
+            </position>
+            <reference-dist>0.4</reference-dist>
+            <max-dist>5</max-dist>
+            <volume>
+              <property>/systems/electrical/outputs/fuel-pump-norm</property>
+              <max>1</max>
+            </volume>
+        </FuelPump>
+	
+<!--<FuelPump>
+            <type>Avionics</type>
+            <name>Aux Fuel Pump</name>
+            <mode>once</mode>
+            <path>Sounds/pump-end.wav</path>
+           <condition>
+                    <property>/systems/electrical/outputs/fuel-pump-norm-end</property>
+            </condition>
+            <position>
+                <x>-0.3660</x>
+                <y>0.1400</y>
+                <z>0</z>
+            </position>
+            <reference-dist>0.4</reference-dist>
+            <max-dist>5</max-dist>
+            <volume>
+<property>/systems/electrical/outputs/fuel-pump-norm-end</property>
+	<max>1</max>
+            </volume>
+            <pitch>
+<property>/systems/electrical/outputs/fuel-pump-norm-end</property>
+	<factor>1.0</factor>
+                <min>0.001</min>
+                <max>1.0</max>
+                <offset>0.0</offset>
+            </pitch>
+        </FuelPump>-->
+	
+<test>
+   <name>Pump End</name>
+            <path>Sounds/pump-end.wav</path>
+   <condition>
+<property>/systems/electrical/outputs/fuel-pump-norm-end</property>
+   </condition>
+            <position>
+                <x>-0.3660</x>
+                <y>0.1400</y>
+                <z>0</z>
+            </position>
+            <reference-dist>0.4</reference-dist>
+            <max-dist>5</max-dist>
+            <volume>
+              <property>/systems/electrical/outputs/fuel-pump-norm-end</property>
+              <max>1</max>
+            </volume>
+     </test>
 
 </fx>
  

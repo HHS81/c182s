@@ -353,13 +353,28 @@ electrical_bus_1 = func() {
     # Instrument Power
     setprop("/systems/electrical/outputs/instr-ignition-switch", bus_volts);
 
-    # Fuel Pump Power
+    # Aux Fuel Pump Power
     if ( getprop("/controls/engines/engine[0]/fuel-pump") ) {
         setprop("/systems/electrical/outputs/fuel-pump", bus_volts);
         load += bus_volts / 28;
     } else {
         setprop("/systems/electrical/outputs/fuel-pump", 0.0);
     }
+    
+    var AFP = (getprop("/systems/electrical/outputs/fuel-pump"));
+	if (getprop ("/controls/engines/engine[0]/fuel-pump") >0.05){
+	setprop("/systems/electrical/outputs/fuel-pump-norm", AFP/24);
+	}else{
+	setprop("/systems/electrical/outputs/fuel-pump",0);
+	setprop("/systems/electrical/outputs/fuel-pump-norm",0);
+	}
+	if (getprop("/systems/electrical/outputs/fuel-pump-norm") >1.0){
+	setprop("/systems/electrical/outputs/fuel-pump-norm", 1.0)};
+	
+	if (getprop("/systems/electrical/outputs/fuel-pump-norm") <1.0){
+	setprop("/systems/electrical/outputs/fuel-pump-norm-end", 1.0)
+	}else{
+	setprop("/systems/electrical/outputs/fuel-pump-norm-end", 0.0)};
 
     # Landing Light Power
     if ( getprop("/controls/lighting/landing-lights") ) {

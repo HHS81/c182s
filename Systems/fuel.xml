@@ -180,7 +180,7 @@ Implementation notice:
             <default value="0"/>
             <!-- TODO: insert leak/strainer valve open code here -->
             <test logic="AND" value="0.5">
-                /fdm/jsbsim/propulsion/tank[2]/pct-full  GT    0.0
+                /fdm/jsbsim/propulsion/tank[2]/pct-full  GT  10.0
                 /fdm/jsbsim/propulsion/tank[3]/pct-full  LT  90.0
             </test>
         </switch>
@@ -203,7 +203,6 @@ Implementation notice:
         <switch name="fuel/fuel-strainer-sump-drain-flow-rate-pps">
             <default value="0"/>
             <test logic="AND" value="25">
-                /fdm/jsbsim/propulsion/tank[3]/pct-full    GT  0.0
                 /controls/fuel/tank[3]/drain-valve EQ  1
             </test>
         </switch>
@@ -211,7 +210,7 @@ Implementation notice:
             <default value="0"/>
             <!-- TODO: insert leakage of fuel pipe code here -->
             <test logic="AND" value="0.5">
-                /fdm/jsbsim/propulsion/tank[3]/pct-full  GT    0.0
+                /fdm/jsbsim/propulsion/tank[3]/pct-full  GT  10.0
                 /fdm/jsbsim/propulsion/tank[4]/pct-full  LT  90.0
                 accelerations/Nz GE -0.5
             </test>
@@ -263,7 +262,7 @@ Implementation notice:
                 <test logic="AND">
                     <!-- engine running and fuel flow possible -->
                     /fdm/jsbsim/propulsion/engine/set-running  EQ   1
-                    /fdm/jsbsim/propulsion/tank[4]/pct-full    GT   0.0
+                    /fdm/jsbsim/propulsion/tank[4]/pct-full    GT  10.0
                     /fdm/jsbsim/propulsion/tank[5]/pct-full    LT  30.0
                 </test>
                 <test logic="OR">
@@ -285,7 +284,7 @@ Implementation notice:
                 /fdm/jsbsim/propulsion/engine/set-running  EQ   0
                 /systems/electrical/outputs/fuel-pump      GT   0
                 /systems/fuel/fuel-pump-aux-serviceable    EQ   1
-                /fdm/jsbsim/propulsion/tank[4]/pct-full    GT   0.0
+                /fdm/jsbsim/propulsion/tank[4]/pct-full    GT  10.0
                 /fdm/jsbsim/propulsion/tank[5]/pct-full    LT 100.0
             </test>
         </switch>

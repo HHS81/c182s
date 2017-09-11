@@ -585,9 +585,6 @@ avionics_bus_1 = func() {
     # Turn Coordinator Power
     setprop("/systems/electrical/outputs/turn-coordinator", bus_volts);
 
-    # Directional Gyro Power
-    setprop("/systems/electrical/outputs/DG", bus_volts);
-
     # Avionics Fan Power
     setprop("/systems/electrical/outputs/avionics-fan", bus_volts);
 

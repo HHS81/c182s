@@ -1231,30 +1231,7 @@
         </dial>
 	
 		
-<Gyro>
-            <type>Avionics</type>
-            <name>HeadingGyro</name>
-            <mode>looped</mode>
-            <path>Sounds/gyro.wav</path>
-            <position>
-                <x>-0.3660</x>
-                <y>0.1400</y>
-                <z>0</z>
-            </position>
-            <reference-dist>0.1</reference-dist>
-            <max-dist>2.5</max-dist>
-            <volume>
-              <property>/instrumentation/heading-indicator/spin</property>
-              <max>0.1</max>
-            </volume>
-            <pitch>
-              <property>/instrumentation/heading-indicator/spin</property>
-                <factor>1.0</factor>
-                <min>0.001</min>
-                <max>1.0</max>
-                <offset>0.0</offset>
-            </pitch>
-        </Gyro>
+
 	
 <Gyro>
             <type>Avionics</type>

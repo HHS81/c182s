@@ -53,11 +53,31 @@ Implementation notice:
         <switch name="fuel/left-tank-tofuelselector-flow-rate-pps">
             <default value="0"/>
   
-            <!-- TODO -->
-            <test logic="AND" value="fuel/fuel-selector-sump-drain-flow-rate-pps"> <!-- dump valve open in fuel selector -->
-                fuel/fuel-selector-sump-drain-flow-rate-pps GT 0
+            <!-- lower drain open? -->
+            <test logic="AND" value="fuel/fuel-selector-sump-drain-flow-rate-pps">
+                <switch logic="AND">
+                    /fdm/jsbsim/propulsion/tank[0]/pct-full     GT    0.0
+                    /fdm/jsbsim/propulsion/tank[2]/pct-full     LT   90.0
+                    fuel/fuel-selector-sump-drain-flow-rate-pps GT    0
+                </switch>
+                <switch logic="OR">
+                    /controls/switches/fuel_tank_selector EQ 3
+                    /controls/switches/fuel_tank_selector EQ 2
+                </switch>
+            </test>
+            <test logic="AND" value="fuel/fuel-strainer-sump-drain-flow-rate-pps">
+                <switch logic="AND">
+                    /fdm/jsbsim/propulsion/tank[0]/pct-full     GT    0.0
+                    /fdm/jsbsim/propulsion/tank[2]/pct-full     LT   90.0
+                    fuel/fuel-strainer-sump-drain-flow-rate-pps GT    0
+                </switch>
+                <switch logic="OR">
+                    /controls/switches/fuel_tank_selector EQ 3
+                    /controls/switches/fuel_tank_selector EQ 2
+                </switch>
             </test>
             
+            <!-- normal operation -->
             <test logic="AND" value="0.5"> <!-- left selected -->
                 /controls/switches/fuel_tank_selector EQ 3
                 /fdm/jsbsim/propulsion/tank[0]/pct-full  GT    0.0
@@ -92,7 +112,32 @@ Implementation notice:
         </switch>
         <switch name="fuel/right-tank-tofuelselector-flow-rate-pps">
             <default value="0"/>
-            <!-- TODO: insert leakage-flow at selector leak here -->
+            
+            <!-- lower drain open? -->
+            <test logic="AND" value="fuel/fuel-selector-sump-drain-flow-rate-pps">
+                <switch logic="AND">
+                    /fdm/jsbsim/propulsion/tank[1]/pct-full     GT   0.0
+                    /fdm/jsbsim/propulsion/tank[2]/pct-full     LT  90.0
+                    fuel/fuel-selector-sump-drain-flow-rate-pps GT   0
+                </switch>
+                <switch logic="OR">
+                    /controls/switches/fuel_tank_selector EQ 1
+                    /controls/switches/fuel_tank_selector EQ 2
+                </switch>
+            </test>
+            <test logic="AND" value="fuel/fuel-strainer-sump-drain-flow-rate-pps">
+                <switch logic="AND">
+                    /fdm/jsbsim/propulsion/tank[1]/pct-full     GT   0.0
+                    /fdm/jsbsim/propulsion/tank[2]/pct-full     LT  90.0
+                    fuel/fuel-strainer-sump-drain-flow-rate-pps GT   0
+                </switch>
+                <switch logic="OR">
+                    /controls/switches/fuel_tank_selector EQ 1
+                    /controls/switches/fuel_tank_selector EQ 2
+                </switch>
+            </test>
+            
+            <!-- normal operation -->
             <test logic="AND" value="0.5"> <!-- right selected -->
                 /controls/switches/fuel_tank_selector EQ 1
                 /fdm/jsbsim/propulsion/tank[1]/pct-full  GT    0.0
@@ -178,7 +223,15 @@ Implementation notice:
         </switch>
         <switch name="fuel/fuel-selector-tofuelstrainer-flow-rate-pps">
             <default value="0"/>
-            <!-- TODO: insert leak/strainer valve open code here -->
+            
+            <!-- lower drain open? -->
+            <test logic="AND" value="fuel/fuel-strainer-sump-drain-flow-rate-pps">
+                /fdm/jsbsim/propulsion/tank[2]/pct-full     GT   0.0
+                /fdm/jsbsim/propulsion/tank[3]/pct-full     LT  90.0
+                fuel/fuel-strainer-sump-drain-flow-rate-pps GT   0
+            </test>
+            
+            <!-- normal operation -->
             <test logic="AND" value="0.5">
                 /fdm/jsbsim/propulsion/tank[2]/pct-full  GT  10.0
                 /fdm/jsbsim/propulsion/tank[3]/pct-full  LT  90.0

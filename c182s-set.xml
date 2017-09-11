@@ -534,20 +534,20 @@
       <tank n="2">
         <name type="string">Fuel selector sump</name>
         <drain-valve>0</drain-valve>
-        <!--<hidden type="bool">true</hidden>-->
+        <hidden type="bool">true</hidden>
       </tank>
       <tank n="3">
         <name type="string">Fuel strainer sump</name>
         <drain-valve>0</drain-valve>
-        <!--<hidden type="bool">true</hidden>-->
+        <hidden type="bool">true</hidden>
       </tank>
       <tank n="4">
         <name type="string">Fuel pipe</name>
-        <!--<hidden type="bool">true</hidden>-->
+        <hidden type="bool">true</hidden>
       </tank>
       <tank n="5">
         <name type="string">Engine manifold</name>
-        <!--<hidden type="bool">true</hidden>-->
+        <hidden type="bool">true</hidden>
       </tank>
       
     </fuel>

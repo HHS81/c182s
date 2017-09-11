@@ -2107,7 +2107,6 @@
                 <command>property-adjust</command>
                 <property>/controls/switches/fuel_tank_selector</property>
                 <wrap>true</wrap>
-                <step>1</step>
                 <min>0</min>
                 <max>4</max> <!-- 0=off, 1=right, 2=both, 3=left -->
             </binding>

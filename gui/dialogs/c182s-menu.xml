@@ -52,6 +52,14 @@
                 </binding>
             </item>
 
+	    <item>
+                <label>Fuel management</label>
+                <binding>
+                    <command>dialog-show</command>
+                    <dialog-name>fuelmgmt-dialog</dialog-name>
+                </binding>
+            </item>
+
             <!--
             <item>
                 <label>Flashlight</label>

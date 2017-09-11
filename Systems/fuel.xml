@@ -122,21 +122,48 @@ Implementation notice:
         <!-- TODO: flow rate of 1pps is arbitary! -->
         <switch name="fuel/flow-left-right-transfer-pps">
             <default value="0"/>
-            <test logic="AND" value="0.5">
-                /fdm/jsbsim/propulsion/tank[0]/pct-full GT 0.0
+            <test logic="AND" value="fuel/flow-left-right-transfer-calculated-pps">
+                /fdm/jsbsim/propulsion/tank[0]/pct-full GT 1.0
                 /fdm/jsbsim/propulsion/tank[0]/pct-full GT /fdm/jsbsim/propulsion/tank[1]/pct-full
-                /fdm/jsbsim/propulsion/tank[1]/pct-full LT 100.0
+                /fdm/jsbsim/propulsion/tank[1]/pct-full LT 99.0
                 /controls/switches/fuel_tank_selector EQ 2
             </test>
-            <test logic="AND" value="-0.5">
-                /fdm/jsbsim/propulsion/tank[1]/pct-full GT 0.0
+            <test logic="AND" value="fuel/flow-left-right-transfer-calculated-pps">
+                /fdm/jsbsim/propulsion/tank[1]/pct-full GT 1.0
                 /fdm/jsbsim/propulsion/tank[1]/pct-full GT /fdm/jsbsim/propulsion/tank[0]/pct-full
-                /fdm/jsbsim/propulsion/tank[0]/pct-full LT 100.0
+                /fdm/jsbsim/propulsion/tank[0]/pct-full LT 99.0
                 /controls/switches/fuel_tank_selector EQ 2
             </test>
         </switch>
-
         
+        
+        <fcs_function name="fuel/flow-left-right-transfer-tanks-difference">
+            <function>
+                <difference>
+                    <property>/fdm/jsbsim/propulsion/tank[0]/pct-full</property>
+                    <property>/fdm/jsbsim/propulsion/tank[1]/pct-full</property>
+                </difference>
+            </function>
+            <output>fuel/flow-left-right-transfer-tanks-difference</output>   
+        </fcs_function>
+        
+        <fcs_function name="fuel/flow-left-right-transfer-calculated-pps">
+            <function>
+                <table>
+                    <independentVar lookup="row">fuel/flow-left-right-transfer-tanks-difference</independentVar>
+                    <tableData>
+                        -10.0   -0.5
+                         -3.0   -0.5
+                         -2.5    0.0
+                          0.0    0.0
+                          2.5    0.0
+                          3.0    0.5
+                         10.0    0.5
+                    </tableData>
+                </table>
+            </function>
+            <output>fuel/flow-left-right-transfer-calculated-pps</output>   
+        </fcs_function>
         
         
         <!-- ################################# -->

@@ -347,14 +347,14 @@
         <!-- 3: Strainer sump -->
         <tank type="FUEL">
             <location unit="IN">
-                <x>0.45</x>
+                <x>-0.28</x>
                 <y>0</y>
-                <z>-0.40</z>
+                <z>-0.30</z>
             </location>
             <drain_location unit="M">
-                <x>0.45</x>
+                <x>-0.28</x>
                 <y>0</y>
-                <z>-0.45</z>
+                <z>-0.50</z>
             </drain_location>
             <capacity unit="LBS">0.1</capacity>
             <contents unit="LBS">0</contents>
@@ -366,14 +366,14 @@
         <!-- 4: Fuel pipe -->
         <tank type="FUEL">
             <location unit="IN">
-                <x>0.45</x>
+                <x>-0.35</x>
                 <y>0</y>
-                <z>-0.40</z>
+                <z>-0.30</z>
             </location>
             <drain_location unit="M">
-                <x>0.45</x>
+                <x>-0.35</x>
                 <y>0</y>
-                <z>-0.45</z>
+                <z>-0.50</z>
             </drain_location>
             <capacity unit="LBS">0.05</capacity>
             <contents unit="LBS">0</contents>
@@ -385,14 +385,14 @@
         <!-- 5: engine manifold (engine feeds from here) -->
         <tank type="FUEL">
             <location unit="IN">
-                <x>0.45</x>
+                <x>-0.60</x>
                 <y>0</y>
-                <z>-0.40</z>
+                <z>-0.30</z>
             </location>
             <drain_location unit="M">
-                <x>0.45</x>
+                <x>-0.60</x>
                 <y>0</y>
-                <z>-0.45</z>
+                <z>-0.50</z>
             </drain_location>
             <capacity unit="LBS">0.05</capacity>
             <contents unit="LBS">0</contents>

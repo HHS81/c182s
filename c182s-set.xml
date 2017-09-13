@@ -525,10 +525,16 @@
       <tank n="0">
         <name type="string">Left Wing</name>
         <drain-valve>0</drain-valve>
+        <water-contamination type="double">0.0</water-contamination>
+        <sample-water-contamination type="double">0.0</sample-water-contamination>
+        <fuel-sample-taken type="bool">false</fuel-sample-taken>
       </tank>
       <tank n="1">
         <name type="string">Right Wing</name>
         <drain-valve>0</drain-valve>
+        <water-contamination type="double">0.0</water-contamination>
+        <sample-water-contamination type="double">0.0</sample-water-contamination>
+        <fuel-sample-taken type="bool">false</fuel-sample-taken>
       </tank>
       
       <tank n="2">

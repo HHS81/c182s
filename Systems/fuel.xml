@@ -39,8 +39,11 @@ Implementation notice:
     <property type="double" value="0">/systems/fuel/tank[4]/leak-flow-rate-pps</property> <!-- currently implicitely set via fuel-pipe-serviceable -->
     <property type="double" value="0">/systems/fuel/tank[5]/leak-flow-rate-pps</property>
     
-    <property type="double" value="0">/systems/fuel/priming-mixture-flow</property>
+    <property type="double" value="0">/systems/fuel/priming-mixture-flow-pps</property>
+    <property type="double" value="0">/systems/fuel/priming-mixture-flow-gph</property>
     <property type="bool" value="0">/systems/fuel/engine-flooded</property>
+    
+    <property type="double" value="0">/systems/fuel/indicated-manfold-fuel-flow-gph</property>
 
     
     <channel name="fuel-system">
@@ -322,7 +325,7 @@ Implementation notice:
                     <!-- engine running and fuel flow possible -->
                     /fdm/jsbsim/propulsion/engine/set-running  EQ   1
                     /fdm/jsbsim/propulsion/tank[4]/pct-full    GT  10.0
-                    /fdm/jsbsim/propulsion/tank[5]/pct-full    LT  30.0
+                    /fdm/jsbsim/propulsion/tank[5]/pct-full    LT  35.0
                 </test>
                 <test logic="OR">
                     <test logic="AND">
@@ -338,7 +341,7 @@ Implementation notice:
             </test>
             
             <!-- Engine off: Priming mode -->
-            <test logic="AND" value="/systems/fuel/priming-mixture-flow">
+            <test logic="AND" value="/systems/fuel/priming-mixture-flow-pps">
                 <!-- engine off: aux pump on and powered? -->
                 /fdm/jsbsim/propulsion/engine/set-running  EQ   0
                 /systems/electrical/outputs/fuel-pump      GT   0
@@ -389,13 +392,38 @@ Implementation notice:
         
         <!-- Calculates the priming flow depending on selected mixture -->
         <!-- TODO: should be some "bell courve": fuel flow is slow at first until pressure is OK. This should be somewhere at the sweet spot (3-5 seconds after mix=100% at throt=1/4 inch) and show 6 gal/Hr (36.12 lbs = 0.010pps) on the flow gauge (see: https://www.youtube.com/watch?v=-yVMskFQZsw&t=193s ) -->
-        <!-- Throttle also plays a role (should be open 1/4 inch - how much % is that?) -->
-        <pure_gain name="/systems/fuel/priming-mixture-flow">
-            <input> /controls/engines/engine/mixture </input>
-            <gain> 0.010 </gain>
-        </pure_gain>
+        <fcs_function name="/systems/fuel/priming-mixture-flow-pps">
+            <function>
+                <product>
+                    <property>/controls/engines/engine/mixture</property>
+                    <property>/controls/engines/engine/throttle</property>
+                    <value>0.125</value>
+                </product>
+            </function>
+            <output>/systems/fuel/priming-mixture-flow-pps</output>   
+        </fcs_function>
 
+        <!-- calculate priming flow in gph (lbh->gph=0.17: pps/60/60=lbh; ) -->
+        <pure_gain name="/systems/fuel/priming-mixture-flow-gph">
+            <input> /systems/fuel/priming-mixture-flow-pps </input>
+            <gain> 612 </gain>
+        </pure_gain>
         
+        <!-- show INDICATED FUEL FLOW -->
+        <!-- either from normal engine operation or priming -->
+        <switch name="/systems/fuel/indicated-manfold-fuel-flow-gph">
+            <default value="0"/>
+            <test logic="AND" value="/fdm/jsbsim/propulsion/engine/fuel-flow-rate-gph">
+                /fdm/jsbsim/propulsion/engine/fuel-flow-rate-gph  GT   0
+            </test>
+            <test logic="AND" value="/systems/fuel/priming-mixture-flow-gph">
+                /fdm/jsbsim/propulsion/engine/set-running  EQ   0
+                /systems/electrical/outputs/fuel-pump      GT   0
+                /systems/fuel/fuel-pump-aux-serviceable    EQ   1
+                /fdm/jsbsim/propulsion/tank[4]/pct-full    GT  10.0
+                /fdm/jsbsim/propulsion/tank[5]/pct-full    LT 100.0
+            </test>
+        </switch>
         
     </channel>
 

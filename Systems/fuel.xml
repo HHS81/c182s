@@ -372,6 +372,7 @@ Implementation notice:
             <input>fuel/pump-flow-rate-pps</input>
             <input>-/systems/fuel/tank[5]/leak-flow-rate-pps</input>
             <input>-fuel/manifold-dissipate-rate-pps</input>
+            <input>-fuel/manifold-flooded-empty-cranking-rate-pps</input>
             <!--    <input>-/fdm/jsbsim/propulsion/engine/fuel-flow-rate-pps</input>   NOT NECESSARY: engine sucks already (see feed command) -->
             <output>/fdm/jsbsim/propulsion/tank[5]/external-flow-rate-pps</output>
         </summer>
@@ -422,6 +423,18 @@ Implementation notice:
                 </test>
             </test>
             <output>/fdm/jsbsim/propulsion/tank[5]/priority</output>   
+        </switch>
+        
+        <!-- support POH handling of emptying the manifold when flooded -->
+        <!-- If engine floods, turn off auxiliary fuel pump, place mixture In idle cutoff, open throttle 1⁄2 to full, and crank engine. When engine fires, advance mixture to full rich and retard throttle promptly -->
+        <switch name="fuel/manifold-flooded-empty-cranking-rate-pps">
+            <default value="0"/>
+            <test logic="AND" value="0.01">
+                /engines/engine/cranking          EQ  1
+                /systems/fuel/engine-flooded      EQ  1
+                /controls/engines/engine/mixture  LT  0.10   <!-- TODO: make throttle/mixture influence draw rate smoother -->
+                /controls/engines/engine/throttle GE  0.5
+            </test>
         </switch>
         
         

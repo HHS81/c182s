@@ -326,7 +326,7 @@ Implementation notice:
                     <!-- engine running and fuel flow possible -->
                     /fdm/jsbsim/propulsion/engine/set-running  EQ   1
                     /fdm/jsbsim/propulsion/tank[4]/pct-full    GT  10.0
-                    /fdm/jsbsim/propulsion/tank[5]/pct-full    LT  35.0
+                    /fdm/jsbsim/propulsion/tank[5]/pct-full    LT  45.0
                 </test>
                 <test logic="OR">
                     <test logic="AND">
@@ -436,6 +436,9 @@ Implementation notice:
                 /controls/engines/engine/throttle GE  0.5
             </test>
         </switch>
+        
+        <!-- Support engine firing when cranking and priming is OK despite mixture lever is 0% -->
+        <!-- TODO: Engine wont fire at the moment because mixture=0%; whe should simulate a short "fire" even in this situation, but engine should die off when mixture is not advanced promptly -->
         
         
         <!-- Calculates the priming flow depending on selected mixture -->

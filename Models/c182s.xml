@@ -902,6 +902,27 @@
     
     <animation>
         <type>pick</type>
+        <object-name>LeftTankDrain.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-left-fuel-drain-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuel-drain-left-tt</tooltip-id>
+                <label>Fuel Drain</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
         <object-name>RightTank.cs</object-name>
         <visible>false</visible>
         <action>
@@ -917,6 +938,27 @@
                 <command>set-tooltip</command>
                 <tooltip-id>fuel-cap-starboard</tooltip-id>
                 <label>Fuel Cap</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>RightTankDrain.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-right-fuel-drain-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuel-drain-right-tt</tooltip-id>
+                <label>Fuel Drain</label>
             </binding>
         </hovered>
     </animation>

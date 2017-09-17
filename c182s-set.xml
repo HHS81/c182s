@@ -521,19 +521,41 @@
   <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
  
    <consumables>
-<fuel>
+    <fuel>
       <tank n="0">
         <name type="string">Left Wing</name>
-        <capacity-gal_us type="double">46</capacity-gal_us>
-        <unusable-gal_us type="double">2</unusable-gal_us>
-        <level-gal_us type="double">36.2857</level-gal_us>
+        <drain-valve>0</drain-valve>
+        <water-contamination type="double">0.0</water-contamination>
+        <sample-water-contamination type="double">0.0</sample-water-contamination>
+        <fuel-sample-taken type="bool">false</fuel-sample-taken>
       </tank>
       <tank n="1">
         <name type="string">Right Wing</name>
-        <capacity-gal_us type="double">46.0</capacity-gal_us>
-        <unusable-gal_us type="double">2</unusable-gal_us>
-        <level-gal_us type="double">36.2857</level-gal_us>
+        <drain-valve>0</drain-valve>
+        <water-contamination type="double">0.0</water-contamination>
+        <sample-water-contamination type="double">0.0</sample-water-contamination>
+        <fuel-sample-taken type="bool">false</fuel-sample-taken>
       </tank>
+      
+      <tank n="2">
+        <name type="string">Fuel selector sump</name>
+        <drain-valve>0</drain-valve>
+        <hidden type="bool">true</hidden>
+      </tank>
+      <tank n="3">
+        <name type="string">Fuel strainer sump</name>
+        <drain-valve>0</drain-valve>
+        <hidden type="bool">true</hidden>
+      </tank>
+      <tank n="4">
+        <name type="string">Fuel pipe</name>
+        <hidden type="bool">true</hidden>
+      </tank>
+      <tank n="5">
+        <name type="string">Engine manifold</name>
+        <hidden type="bool">true</hidden>
+      </tank>
+      
     </fuel>
   </consumables>
   
@@ -567,6 +589,7 @@
    <starter type="bool">false</starter>
    <kt-76c type="double">0</kt-76c>
    <kn-62a type="double">0</kn-62a>
+   <fuel_tank_selector type="double">2</fuel_tank_selector> <!-- 0=off, 1=right, 2=both, 3=left -->
   </switches>
   </controls>
  

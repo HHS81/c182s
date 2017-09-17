@@ -40,7 +40,7 @@
             </and>
         </input>
         <output>
-            <property>/sim/model/c182ss/lighting/landing</property>
+            <property>/sim/model/c182s/lighting/landing</property>
         </output>
     </logic>
 

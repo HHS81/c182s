@@ -394,7 +394,7 @@
                 <y>0</y>
                 <z>-0.50</z>
             </drain_location>
-            <capacity unit="LBS">0.2</capacity>
+            <capacity unit="LBS">0.1</capacity>
             <contents unit="LBS">0</contents>
             <temperature>50</temperature>
             <density unit="LBS/GAL"> 6.02 </density>

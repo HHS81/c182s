@@ -16,9 +16,12 @@ Implementation notice:
   they are just there to let jsbsim handle the content ammount. This way a tank can
   simultaneously be drained+refuelled+whatever.
 - internal system flow rate s synchronized to 0.5pps for now.
+
+Author: 09/2017  Benedikt Hallinger
 -->
 <system name="fuel">
     <property type="double" value="0">/controls/engines/engine[0]/mixture-lever</property>
+    <property type="double" value="0">/controls/engines/engine/mixture-manifold-flood-remaining-mix</property>
     <property type="bool" value="0">/controls/fuel/tank[0]/drain-valve</property>
     <property type="bool" value="0">/controls/fuel/tank[1]/drain-valve</property>
     <property type="bool" value="0">/controls/fuel/tank[2]/drain-valve</property>
@@ -326,7 +329,7 @@ Implementation notice:
                     <!-- engine running and fuel flow possible -->
                     /fdm/jsbsim/propulsion/engine/set-running  EQ   1
                     /fdm/jsbsim/propulsion/tank[4]/pct-full    GT  10.0
-                    /fdm/jsbsim/propulsion/tank[5]/pct-full    LT  45.0
+                    /fdm/jsbsim/propulsion/tank[5]/pct-full    LT  45.0 <!-- this threshold roughly defines how much fuel is left after engine shutdown -->
                 </test>
                 <test logic="OR">
                     <test logic="AND">
@@ -433,7 +436,7 @@ Implementation notice:
                 /engines/engine/cranking          EQ  1
                 /systems/fuel/engine-flooded      EQ  1
                 /controls/engines/engine/mixture-lever  LT  0.10   <!-- TODO: make throttle/mixture influence draw rate smoother -->
-                /controls/engines/engine/throttle GE  0.5
+                /controls/engines/engine/throttle GE  0.499
             </test>
         </switch>
         
@@ -445,13 +448,33 @@ Implementation notice:
              falls short of the special fuel area unless the user manages to push the mixture lever in. -->
         <switch name="mixture-calculated-value">
             <default value="/controls/engines/engine/mixture-lever"/>
-            <test logic="AND" value="1.0">
-                <!-- Dev note: values must be set directly below the "engine flooded" threshold! -->
-                /fdm/jsbsim/propulsion/tank[5]/pct-full  LE  75.0
-                /fdm/jsbsim/propulsion/tank[5]/pct-full  GT  70.0
+            <test logic="AND" value="/controls/engines/engine/mixture-manifold-flood-remaining-mix">
+                <!-- Dev note: values must be set directly below the "engine flooded" threshold!
+                     The spread between the two values defines the duration in which engine is running.
+                     Also be sure to match the values to the values function borders! -->
+                /fdm/jsbsim/propulsion/tank[5]/pct-full  LE  75.0 <!-- start engine at this fill level=flodded-engine lower level -->
+                /fdm/jsbsim/propulsion/tank[5]/pct-full  GT  60.0 <!-- must not be too near to normal pumping lower tank limit (otherwise normal operation is overridden)! -->
             </test>
             <output>/controls/engines/engine[0]/mixture</output>
         </switch>
+        
+        <!-- calculates the mixture setting when engine fires inside the crank-after-flood area -->
+        <fcs_function name="/controls/engines/engine/mixture-manifold-flood-remaining-mix">
+            <function>
+                <max>
+                    <property>/controls/engines/engine/mixture-lever</property>
+                    <table>
+                        <independentVar lookup="row">/fdm/jsbsim/propulsion/tank[5]/pct-full</independentVar>
+                        <tableData>
+                            59.99   0.00
+                            60.00   0.55
+                            75.00   0.70
+                        </tableData>
+                    </table>
+                </max>
+            </function>
+            <output>/controls/engines/engine/mixture-manifold-flood-remaining-mix</output>   
+        </fcs_function>
         
         
         <!-- Calculates the priming flow depending on selected mixture -->

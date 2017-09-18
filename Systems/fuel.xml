@@ -18,7 +18,7 @@ Implementation notice:
 - internal system flow rate s synchronized to 0.5pps for now.
 -->
 <system name="fuel">
-    
+    <property type="double" value="0">/controls/engines/engine[0]/mixture-lever</property>
     <property type="bool" value="0">/controls/fuel/tank[0]/drain-valve</property>
     <property type="bool" value="0">/controls/fuel/tank[1]/drain-valve</property>
     <property type="bool" value="0">/controls/fuel/tank[2]/drain-valve</property>
@@ -383,7 +383,7 @@ Implementation notice:
         <!-- ########################## -->
         <!-- #  Priming stuff         # -->
         <!-- ########################## -->
-        <!-- Priming is simulated using the manifold tank level and jsbsim priority -->
+        <!-- Priming is simulated using the manifold tank level, jsbsim priority and mixture-->
         
         <!-- Engine flooded indicator -->
         <switch name="/systems/fuel/engine-flooded">
@@ -405,8 +405,8 @@ Implementation notice:
             
             <!-- Engine is cold: priming required -->
             <test logic="AND" value="1">
-                /engines/engine/oil-temperature-degf LT 75
-                /fdm/jsbsim/propulsion/tank[5]/pct-full  GT  35
+                /engines/engine/oil-temperature-degf LT 75       <!-- when engine is colder than... -->
+                /fdm/jsbsim/propulsion/tank[5]/pct-full  GT  35  <!-- ... this much fuel is needed -->
             </test>
         </switch> 
         
@@ -432,13 +432,26 @@ Implementation notice:
             <test logic="AND" value="0.01">
                 /engines/engine/cranking          EQ  1
                 /systems/fuel/engine-flooded      EQ  1
-                /controls/engines/engine/mixture  LT  0.10   <!-- TODO: make throttle/mixture influence draw rate smoother -->
+                /controls/engines/engine/mixture-lever  LT  0.10   <!-- TODO: make throttle/mixture influence draw rate smoother -->
                 /controls/engines/engine/throttle GE  0.5
             </test>
         </switch>
         
-        <!-- Support engine firing when cranking and priming is OK despite mixture lever is 0% -->
-        <!-- TODO: Engine wont fire at the moment because mixture=0%; whe should simulate a short "fire" even in this situation, but engine should die off when mixture is not advanced promptly -->
+        <!-- MIXTURE CONTROL UMIT (mixture flow to engine) -->
+        <!-- Supports engine firing when cranking and priming is OK despite mixture lever is 0% -->
+        <!-- The mixture is normally the value from the lever. Directly at the border between "primed"
+             and non-primed state, we set the mixture to 100% for a short ammount of fuel. As the priority
+             goes to "enavled" there, the engine is able to fire but dies off when the fuel level
+             falls short of the special fuel area unless the user manages to push the mixture lever in. -->
+        <switch name="mixture-calculated-value">
+            <default value="/controls/engines/engine/mixture-lever"/>
+            <test logic="AND" value="1.0">
+                <!-- Dev note: values must be set directly below the "engine flooded" threshold! -->
+                /fdm/jsbsim/propulsion/tank[5]/pct-full  LE  75.0
+                /fdm/jsbsim/propulsion/tank[5]/pct-full  GT  70.0
+            </test>
+            <output>/controls/engines/engine[0]/mixture</output>
+        </switch>
         
         
         <!-- Calculates the priming flow depending on selected mixture -->
@@ -446,7 +459,7 @@ Implementation notice:
         <fcs_function name="/systems/fuel/priming-mixture-flow-pps">
             <function>
                 <product>
-                    <property>/controls/engines/engine/mixture</property>
+                    <property>/controls/engines/engine/mixture-lever</property>
                     <property>/controls/engines/engine/throttle</property>
                     <value>0.125</value>
                 </product>

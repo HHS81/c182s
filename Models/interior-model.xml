@@ -791,7 +791,7 @@
         <type>translate</type>
         <object-name>Mixture</object-name>
         <property>controls/engines/engine[0]/mixture</property>
-        <factor>-0.0813</factor>
+        <factor>-0.0875</factor>
         <axis>
             <x>1.0</x>
             <y>0.0</y>
@@ -830,7 +830,7 @@
         <type>translate</type>
         <object-name>PropControl</object-name>
         <property>controls/engines/engine[0]/propeller-pitch</property>
-        <factor>-0.0813</factor>
+        <factor>-0.0875</factor>
         <axis>
             <x>1.0</x>
             <y>0.0</y>

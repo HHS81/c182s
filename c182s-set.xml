@@ -764,6 +764,31 @@
           <property>sim/model/hide-yoke</property>
         </binding>
       </key>
+
+      <key n="77">
+        <name>M</name>
+        <desc>Mixture leaner</desc>
+        <repeatable type="bool">true</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/engines/engine/mixture-lever</property>
+          <step>-0.01</step>
+          <min>0</min>
+          <max>1</max>
+        </binding>
+      </key>
+      <key n="109">
+        <name>M</name>
+        <desc>Mixture richer</desc>
+        <repeatable type="bool">true</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/engines/engine/mixture-lever</property>
+          <step>0.01</step>
+          <min>0</min>
+          <max>1</max>
+        </binding>
+      </key>
       
 
 

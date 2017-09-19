@@ -29,7 +29,6 @@ Author: 09/2017  Benedikt Hallinger
     
     <property type="double" value="0">fuel/fuel-selector-sump-drain-flow-rate-pps</property>
     <property type="double" value="0">fuel/fuel-strainer-sump-drain-flow-rate-pps</property>
-    <property type="double" value="0">flow-left-right-transfer-calculated-pps</property>
     <property type="double" value="0">fuel/flow-left-right-transfer-calculated-pps</property>
     
     <property type="bool" value="1">/systems/fuel/fuel-pump-aux-serviceable</property>

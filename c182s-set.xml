@@ -555,6 +555,10 @@
         <name type="string">Engine manifold</name>
         <hidden type="bool">true</hidden>
       </tank>
+      <tank n="6"> <!-- virtual "eninge mix value" workaround tank -->
+        <name type="string">Virtual engine-mix setting</name>
+        <hidden type="bool">true</hidden>
+      </tank>
       
     </fuel>
   </consumables>

@@ -21,7 +21,6 @@ Author: 09/2017  Benedikt Hallinger
 -->
 <system name="fuel">
     <property type="double" value="0">/controls/engines/engine[0]/mixture-lever</property>
-    <property type="double" value="0">/controls/engines/engine/mixture-manifold-flood-remaining-mix</property>
     <property type="bool" value="0">/controls/fuel/tank[0]/drain-valve</property>
     <property type="bool" value="0">/controls/fuel/tank[1]/drain-valve</property>
     <property type="bool" value="0">/controls/fuel/tank[2]/drain-valve</property>
@@ -365,7 +364,7 @@ Author: 09/2017  Benedikt Hallinger
             <!-- fuel evaporates slowly when engine not running -->
             <!-- TODO: crunch numbers: this should result in a "primed engeine" after 20-30 minutes after "normal" engine shutdown! -->
             <default value="0"/>
-            <test logic="AND" value="0.0000225"> <!-- about 0.5p in 30 min -->
+            <test logic="AND" value="0.0000080"> <!-- about 0.014p in 30 min -->
                 /fdm/jsbsim/propulsion/engine/set-running  EQ   0
                 /systems/electrical/outputs/fuel-pump      EQ   0
             </test>
@@ -380,7 +379,7 @@ Author: 09/2017  Benedikt Hallinger
         </summer>
         
         
-        
+
         
         <!-- ########################## -->
         <!-- #  Priming stuff         # -->
@@ -398,28 +397,23 @@ Author: 09/2017  Benedikt Hallinger
         <!-- Engine can start / is adequately primed indicator -->
         <switch name="/systems/fuel/engine-primed">
             <default value="0"/>
-            
-            <!-- Engine is warm: No priming required -->
             <test logic="AND" value="1">
-                /engines/engine/oil-temperature-degf GE 75
-                <!-- checking for oil temp is enough? if all fuel in manifold has dissipated, engine won't start; oil temp lowers with ouside temperature -->
-            </test>
-            
-            <!-- Engine is cold: priming required -->
-            <test logic="AND" value="1">
-                /engines/engine/oil-temperature-degf LT 75       <!-- when engine is colder than... -->
-                /fdm/jsbsim/propulsion/tank[5]/pct-full  GT  35  <!-- ... this much fuel is needed -->
+                <!-- Engine is cold: priming required -->
+                /fdm/jsbsim/propulsion/tank[5]/pct-full  GT  35.0  <!-- TODO: make minimun needed priming level sensitive to outside temperature -->
             </test>
         </switch> 
         
         <!-- set manifold tank priority according to priming state -->
+        <!-- (engine will get no fuel unless properly primed) -->
         <switch name="/systems/fuel/engine-can-start">
             <default value="1"/>
             <test logic="AND" value="0">
                 <test logic="AND">
+                    <!-- engine running: manifold always open -->
                     /fdm/jsbsim/propulsion/engine/set-running  EQ   0
                 </test>
                 <test logic="OR">
+                    <!-- engine flooded or not primed correctly: manifold closed -->
                     /systems/fuel/engine-flooded  EQ  1
                     /systems/fuel/engine-primed  EQ  0
                 </test>
@@ -427,6 +421,7 @@ Author: 09/2017  Benedikt Hallinger
             <output>/fdm/jsbsim/propulsion/tank[5]/priority</output>   
         </switch>
         
+      
         <!-- support POH handling of emptying the manifold when flooded -->
         <!-- If engine floods, turn off auxiliary fuel pump, place mixture In idle cutoff, open throttle 1⁄2 to full, and crank engine. When engine fires, advance mixture to full rich and retard throttle promptly -->
         <switch name="fuel/manifold-flooded-empty-cranking-rate-pps">
@@ -439,45 +434,9 @@ Author: 09/2017  Benedikt Hallinger
             </test>
         </switch>
         
-        <!-- MIXTURE CONTROL UMIT (mixture flow to engine) -->
-        <!-- Supports engine firing when cranking and priming is OK despite mixture lever is 0% -->
-        <!-- The mixture is normally the value from the lever. Directly at the border between "primed"
-             and non-primed state, we set the mixture to 100% for a short ammount of fuel. As the priority
-             goes to "enavled" there, the engine is able to fire but dies off when the fuel level
-             falls short of the special fuel area unless the user manages to push the mixture lever in. -->
-        <switch name="mixture-calculated-value">
-            <default value="/controls/engines/engine/mixture-lever"/>
-            <test logic="AND" value="/controls/engines/engine/mixture-manifold-flood-remaining-mix">
-                <!-- Dev note: values must be set directly below the "engine flooded" threshold!
-                     The spread between the two values defines the duration in which engine is running.
-                     Also be sure to match the values to the values function borders! -->
-                /fdm/jsbsim/propulsion/tank[5]/pct-full  LE  75.0 <!-- start engine at this fill level=flodded-engine lower level -->
-                /fdm/jsbsim/propulsion/tank[5]/pct-full  GT  60.0 <!-- must not be too near to normal pumping lower tank limit (otherwise normal operation is overridden)! -->
-            </test>
-            <output>/controls/engines/engine[0]/mixture</output>
-        </switch>
-        
-        <!-- calculates the mixture setting when engine fires inside the crank-after-flood area -->
-        <fcs_function name="/controls/engines/engine/mixture-manifold-flood-remaining-mix">
-            <function>
-                <max>
-                    <property>/controls/engines/engine/mixture-lever</property>
-                    <table>
-                        <independentVar lookup="row">/fdm/jsbsim/propulsion/tank[5]/pct-full</independentVar>
-                        <tableData>
-                            59.99   0.00
-                            60.00   0.55
-                            75.00   0.70
-                        </tableData>
-                    </table>
-                </max>
-            </function>
-            <output>/controls/engines/engine/mixture-manifold-flood-remaining-mix</output>   
-        </fcs_function>
-        
         
         <!-- Calculates the priming flow depending on selected mixture -->
-        <!-- TODO: should be some "bell courve": fuel flow is slow at first until pressure is OK. This should be somewhere at the sweet spot (3-5 seconds after mix=100% at throt=1/4 inch) and show 6 gal/Hr (36.12 lbs = 0.010pps) on the flow gauge (see: https://www.youtube.com/watch?v=-yVMskFQZsw&t=193s ) -->
+        <!-- TODO: should probably be some "bell courve": fuel flow is slow at first until pressure is OK. This should be somewhere at the sweet spot (3-5 seconds after mix=100% at throt=1/4 inch) and show 6 gal/Hr (36.12 lbs = 0.010pps) on the flow gauge (see: https://www.youtube.com/watch?v=-yVMskFQZsw&t=193s ) -->
         <fcs_function name="/systems/fuel/priming-mixture-flow-pps">
             <function>
                 <product>
@@ -494,6 +453,58 @@ Author: 09/2017  Benedikt Hallinger
             <input> /systems/fuel/priming-mixture-flow-pps </input>
             <gain> 612 </gain>
         </pure_gain>
+        
+        
+        
+        <!-- #################################################### -->
+        <!-- #  MIXTURE CONTROL UNIT (mixture flow to engine)   # -->
+        <!-- #################################################### -->
+        <!-- Supports engine firing when cranking and priming is OK despite mixture lever is 0%. The mixture is normally
+             the value from the lever. However, before the engine fires, the mixture is calculated and higher. This allows
+             the engine to fire at mixture=0% like the POH tells us. This approach also automatically supports high altitude
+             airports, where the engine will die more quickly. -->
+        
+        <!-- TANK #6:  State of the virtual mixture setting tank used for initial mixture after engine start
+             this tank is used as a workaround until i figure out of to code that with functions.
+             the intend is to use the tank level value directly as "minimum mixture" setting after
+             the engine fires, so it can actually fire at 0% mixture lever settings (see POH).
+             After the engine started, the tank drains thus leaning mixture from the engine until
+             it hits its "lower end" which is the actual mixture lever setting. -->
+        <switch name="/controls/engines/engine/mixture-manifold-change-rate">
+            <default value="0"/>
+            <!-- tank gets filled instantly when cranking and engine is off -->
+            <!-- i.e. the mixture-shortly-after-start-setting will be reset so engine may fire again -->
+            <test logic="AND" value="10">
+                /fdm/jsbsim/propulsion/engine/set-running  EQ  0
+                /engines/engine/cranking                   EQ  1
+            </test>
+            
+            <!-- tank drains slowly (thus leaning mixture) when engine is on -->
+            <!-- contents is 0.001lbs; adjust this to define time span before engine dies after firing with mix=0% -->
+            <test logic="AND" value="-0.0004">
+                /fdm/jsbsim/propulsion/engine/set-running  EQ  1
+            </test>
+            
+            <output>/fdm/jsbsim/propulsion/tank[6]/external-flow-rate-pps</output>
+        </switch>
+        
+        <!-- Calculates the mixture setting fed to the engine -->
+        <!-- Either this is the value from the shortly-after-start-setting or the actual mixer,
+             whichever is higher. As the after-start-setting will drop after the engine fires,
+             it soon will floor at the actual mixture setting, handing over control to the pilot -->
+        <fcs_function name="/controls/engines/engine/mixture-shortly-after-start-setting">
+            <function>
+                <max>
+                    <property>/controls/engines/engine/mixture-lever</property>
+                    <product>
+                        <property>/fdm/jsbsim/propulsion/tank[6]/pct-full</property>
+                        <value>0.01</value>
+                    </product>
+                </max>
+            </function>
+            <output>/controls/engines/engine/mixture</output>   
+        </fcs_function>
+        
         
         <!-- show INDICATED FUEL FLOW -->
         <!-- either from normal engine operation or priming -->

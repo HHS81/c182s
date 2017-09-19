@@ -400,6 +400,23 @@
             <density unit="LBS/GAL"> 6.02 </density>
             <type>AVGAS</type>
         </tank>
+        
+        <!-- 6: "virtual" mix-to-engine tank (workaround for starter mixture) -->
+        <tank type="FUEL">
+            <location unit="IN">
+                <x>0</x>
+                <y>0</y>
+                <z>0</z>
+            </location>
+            <drain_location unit="M">
+                <x>0</x>
+                <y>0</y>
+                <z>0</z>
+            </drain_location>
+            <capacity unit="LBS">0.001</capacity>
+            <contents unit="LBS">0</contents>
+            <priority>0</priority>
+        </tank>
     </propulsion>
     
     <system file="fuel"/> <!-- integrate advanced fuel system -->

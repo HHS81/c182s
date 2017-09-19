@@ -399,7 +399,7 @@ Author: 09/2017  Benedikt Hallinger
             <default value="0"/>
             <test logic="AND" value="1">
                 <!-- Engine is cold: priming required -->
-                /fdm/jsbsim/propulsion/tank[5]/pct-full  GT  35.0  <!-- TODO: make minimun needed priming level sensitive to outside temperature -->
+                /fdm/jsbsim/propulsion/tank[5]/pct-full  GT  /systems/fuel/priming-temperature-threshold
             </test>
         </switch> 
         
@@ -420,6 +420,30 @@ Author: 09/2017  Benedikt Hallinger
             </test>
             <output>/fdm/jsbsim/propulsion/tank[5]/priority</output>   
         </switch>
+        
+        <!-- Temperature influences how much priming is needed -->
+        <!-- TODO: Table values are completely made up. -->
+        <!-- TODO: Oil/Engine Temp has influence too, i think! Maybe we should use /engine/engines/oil-temperature-degf instead,
+                   so  to catch the temperature of the engine? In this case, we should also implement "warm start/no priming
+                   needed here (threshold=0 at degF>75) -->
+        <fcs_function name="/systems/fuel/priming-temperature-threshold">
+            <function>
+                <table>
+                    <independentVar lookup="row">/environment/temperature-degc</independentVar>
+                    <tableData>
+                        <!-- info: accoring to POH (4-33) one should use a external heater below 20°F / -6°C) -->
+                         -7.0    74.9
+                         -5.0    68.0
+                          0.0    56.0
+                         10.0    42.5
+                         20.0    35.0
+                         30.0    30.0
+                    </tableData>
+                </table>
+            </function>
+            <output>/systems/fuel/priming-temperature-threshold</output>   
+        </fcs_function>
+        
         
       
         <!-- support POH handling of emptying the manifold when flooded -->
@@ -498,7 +522,7 @@ Author: 09/2017  Benedikt Hallinger
                     <property>/controls/engines/engine/mixture-lever</property>
                     <product>
                         <property>/fdm/jsbsim/propulsion/tank[6]/pct-full</property>
-                        <value>0.01</value>
+                        <value>0.01</value> <!-- percent to decimal -->
                     </product>
                 </max>
             </function>

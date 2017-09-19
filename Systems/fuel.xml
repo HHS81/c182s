@@ -362,7 +362,6 @@ Author: 09/2017  Benedikt Hallinger
         <!-- The electrical pump can fill it fully; whereas a threshold signals "engine flooded" -->
         <switch name="fuel/manifold-dissipate-rate-pps">
             <!-- fuel evaporates slowly when engine not running -->
-            <!-- TODO: crunch numbers: this should result in a "primed engeine" after 20-30 minutes after "normal" engine shutdown! -->
             <default value="0"/>
             <test logic="AND" value="0.0000080"> <!-- about 0.014p in 30 min -->
                 /fdm/jsbsim/propulsion/engine/set-running  EQ   0

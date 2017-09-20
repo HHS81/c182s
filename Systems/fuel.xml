@@ -394,7 +394,7 @@ Author: 09/2017  Benedikt Hallinger
         <switch name="fuel/manifold-dissipate-rate-pps">
             <!-- fuel evaporates slowly when engine not running -->
             <default value="0"/>
-            <test logic="AND" value="0.0000080"> <!-- about 0.014p in 30 min -->
+            <test logic="AND" value="0.0000110"> <!-- about 0.020p in 30 min -->
                 /fdm/jsbsim/propulsion/engine/set-running  EQ   0
                 <!--/systems/electrical/outputs/fuel-pump      EQ   0 -->
             </test>
@@ -453,21 +453,19 @@ Author: 09/2017  Benedikt Hallinger
         
         <!-- Temperature influences how much priming is needed -->
         <!-- TODO: Table values are completely made up. -->
-        <!-- TODO: Oil/Engine Temp has influence too, i think! Maybe we should use /engine/engines/oil-temperature-degf instead,
-                   so  to catch the temperature of the engine? In this case, we should also implement "warm start/no priming
-                   needed here (threshold=0 at degF>75) -->
         <fcs_function name="/systems/fuel/priming-temperature-threshold">
             <function>
                 <table>
-                    <independentVar lookup="row">/environment/temperature-degc</independentVar>
+                    <independentVar lookup="row">/engines/engine/oil-temperature-degf</independentVar>
                     <tableData>
                         <!-- info: accoring to POH (4-33) one should use a external heater below 20°F / -6°C) -->
-                         -7.0    74.9
-                         -5.0    68.0
-                          0.0    56.0
-                         10.0    42.5
-                         20.0    35.0
-                         30.0    30.0
+                         19.4    74.9   <!-- -7°C -->
+                         23.0    68.0   <!-- -5°C -->
+                         32.0    56.0   <!--  0°C -->
+                         50.0    42.5   <!-- 10°C -->
+                         68.0    35.0   <!-- 20°C -->
+                         75.0     0.0   <!-- 24°C --> <!-- engine is considered "hot" and dont need priming - if there is still fuel in the manifold -->
+                         86.0     0.0   <!-- 30°C -->
                     </tableData>
                 </table>
             </function>

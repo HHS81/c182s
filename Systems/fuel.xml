@@ -549,7 +549,7 @@ Author: 09/2017  Benedikt Hallinger
             
             <!-- tank drains slowly (thus leaning mixture) when engine is on -->
             <!-- contents is 0.001lbs; adjust this to define time span before engine dies after firing with mix=0% -->
-            <test logic="AND" value="-0.0004">
+            <test logic="AND" value="-0.00025">
                 /fdm/jsbsim/propulsion/engine/set-running  EQ  1
             </test>
             

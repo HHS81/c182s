@@ -29,6 +29,7 @@ Author: 09/2017  Benedikt Hallinger
     <property type="double" value="0">fuel/fuel-selector-sump-drain-flow-rate-pps</property>
     <property type="double" value="0">fuel/fuel-strainer-sump-drain-flow-rate-pps</property>
     <property type="double" value="0">fuel/flow-left-right-transfer-calculated-pps</property>
+    <property type="double" value="0">fuel/manifold-flooded-empty-cranking-rate-throttle-pps</property>
     
     <property type="bool" value="1">/systems/fuel/fuel-pump-aux-serviceable</property>
     <property type="bool" value="1">/systems/fuel/fuel-pump-engine-serviceable</property>
@@ -40,6 +41,7 @@ Author: 09/2017  Benedikt Hallinger
     <property type="double" value="0">/systems/fuel/tank[4]/leak-flow-rate-pps</property> <!-- currently implicitely set via fuel-pipe-serviceable -->
     <property type="double" value="0">/systems/fuel/tank[5]/leak-flow-rate-pps</property>
     
+    <property type="double" value="0">/systems/fuel/priming-temperature-threshold</property>
     <property type="double" value="0">/systems/fuel/priming-mixture-flow-pps</property>
     <property type="double" value="0">/systems/fuel/priming-mixture-flow-gph</property>
     <property type="bool" value="0">/systems/fuel/engine-primed</property>
@@ -449,13 +451,27 @@ Author: 09/2017  Benedikt Hallinger
         <!-- If engine floods, turn off auxiliary fuel pump, place mixture In idle cutoff, open throttle 1⁄2 to full, and crank engine. When engine fires, advance mixture to full rich and retard throttle promptly -->
         <switch name="fuel/manifold-flooded-empty-cranking-rate-pps">
             <default value="0"/>
-            <test logic="AND" value="0.01">
+            <test logic="AND" value="fuel/manifold-flooded-empty-cranking-rate-throttle-pps">
                 /engines/engine/cranking          EQ  1
                 /systems/fuel/engine-flooded      EQ  1
-                /controls/engines/engine/mixture-lever  LT  0.10   <!-- TODO: make throttle/mixture influence draw rate smoother -->
+                /controls/engines/engine/mixture-lever  LE  0.0
                 /controls/engines/engine/throttle GE  0.499
             </test>
+            <test logic="AND" value="-fuel/manifold-flooded-empty-cranking-rate-throttle-pps">
+                /engines/engine/cranking          EQ  1
+                /systems/fuel/engine-flooded      EQ  1
+                /controls/engines/engine/mixture-lever  GE  0.01
+            </test>
         </switch>
+        <fcs_function name="fuel/manifold-flooded-empty-cranking-rate-throttle-pps">
+            <function>
+                <product>
+                    <value>0.02</value> <!-- defines how fast the manifold is emptied when cranking -->
+                    <property>/controls/engines/engine/throttle</property>
+                </product>
+            </function>
+            <output>fuel/manifold-flooded-empty-cranking-rate-throttle-pps</output>   
+        </fcs_function>
         
         
         <!-- Calculates the priming flow depending on selected mixture -->

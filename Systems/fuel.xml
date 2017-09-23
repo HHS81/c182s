@@ -493,7 +493,7 @@ Author: 09/2017  Benedikt Hallinger
         <fcs_function name="fuel/manifold-flooded-empty-cranking-rate-throttle-pps">
             <function>
                 <product>
-                    <value>0.02</value> <!-- defines how fast the manifold is emptied when cranking -->
+                    <value>0.0075</value> <!-- defines how fast the manifold is emptied when cranking -->
                     <property>/controls/engines/engine/throttle</property>
                 </product>
             </function>

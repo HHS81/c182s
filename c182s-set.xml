@@ -520,6 +520,72 @@
         <!-- Save these properties between sessions -->
         <aircraft-data>
             <path>/engines/engine/complex-engine-procedures</path>
+            <path>/consumables/fuel/tank[0]/level-gal_us</path>
+            <path>/consumables/fuel/tank[1]/level-gal_us</path>
+            <path>/consumables/fuel/tank[2]/level-gal_us</path>
+            <path>/consumables/fuel/tank[3]/level-gal_us</path>
+            <path>/consumables/fuel/tank[4]/level-gal_us</path>
+            <!--<path>/consumables/fuel/tank[5]/level-gal_us</path>-->
+            <path>/controls/engines/engine[0]/mixture-lever</path>
+            <path>/controls/engines/engine[0]/throttle</path>
+            <path>/controls/engines/engine[0]/propeller-pitch</path>
+            <path>/controls/gear/brake-parking</path>
+            <path>/controls/engines/engine[0]/magnetos</path>
+            <path>/controls/engines/engine[0]/master-bat</path> <!-- todo did not work -->
+            <path>/controls/engines/engine[0]/master-alt</path><!-- todo did not work -->
+            <path>/controls/lighting/landing-lights</path>
+            <path>/controls/lighting/taxi-light</path>
+            <path>/controls/lighting/strobe</path>
+            <path>/controls/lighting/beacon</path>
+            <path>/controls/lighting/nav-lights</path>
+            <path>/controls/anti-ice/pitot-heat</path>
+            <path>/controls/engines/engine[0]/fuel-pump</path>
+            <path>/controls/switches/AVMBus1</path>  <!-- todo did not work -->
+            <path>/controls/switches/AVMBus2</path>  <!-- todo did not work -->
+            <path>/controls/switches/kt-76c</path>
+            <path>/controls/switches/kn-62a</path>
+            <path>/controls/switches/fuel_tank_selector</path>
+            <path>/controls/engines/engine/cowl-flaps-norm</path>
+            <path>/controls/flight/elevator-trim</path>
+            <path>/controls/flight/rudder-trim</path>
+            <path>/controls/flight/flaps</path>
+            <path>/surface-positions/flap-pos-norm</path>
+            <path>/instrumentation/nav[0]/radials/selected-deg</path>
+            <path>/instrumentation/nav[0]/frequencies/selected-mhz</path>
+            <path>/instrumentation/nav[0]/frequencies/standby-mhz</path>
+            <path>/instrumentation/nav[0]/power-btn</path>
+            <path>/instrumentation/nav[1]/radials/selected-deg</path>
+            <path>/instrumentation/nav[1]/frequencies/selected-mhz</path>
+            <path>/instrumentation/nav[1]/frequencies/standby-mhz</path>
+            <path>/instrumentation/nav[1]/power-btn</path>
+            <path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
+            <path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
+            <path>/instrumentation/comm[0]/power-btn</path>
+            <path>/instrumentation/comm[0]/volume</path>
+            <path>/instrumentation/comm[1]/frequencies/selected-mhz</path>
+            <path>/instrumentation/comm[1]/frequencies/standby-mhz</path>
+            <path>/instrumentation/comm[1]/power-btn</path>
+            <path>/instrumentation/comm[1]/volume</path>
+            <path>/instrumentation/dme[0]/frequencies/selected-mhz</path>
+            <path>/instrumentation/dme[0]/power-btn</path>
+            <path>/controls/switches/kn-62a-mode</path>
+            <path>/controls/switches/kn-62a</path>
+            <path>/instrumentation/adf[0]/frequencies/selected-khz</path>
+            <path>/instrumentation/adf[0]/frequencies/standby-khz</path>
+            <path>/instrumentation/adf[0]/rotation-deg</path>
+            <path>/instrumentation/adf[0]/power-btn</path>
+            <path>/instrumentation/adf[0]/volume-norm</path>
+            <path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
+            <path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
+            <path>/instrumentation/altimeter/setting-inhg</path>
+            <path>/instrumentation/attitude-indicator/caged-flag</path>
+            <path>/instrumentation/attitude-indicator/horizon-offset-deg</path>
+            <path>/instrumentation/airspeed-indicator/tas-face-rotation</path>
+            <path>/instrumentation/heading-indicator/offset-deg</path>
+            <path>/autopilot/settings/heading-bug-deg</path>
+            <path>/instrumentation/transponder/id-code</path>
+            <path>engines/engine[0]/egt-bug-norm</path>
+        
         </aircraft-data>
 
  </sim>

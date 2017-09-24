@@ -43,23 +43,23 @@ settimer(epu, 0.1);
 epu();
 
 init_electrical = func {
-    battery = BatteryClass.new();
+    battery = BatteryClass.new(getprop("/systems/electrical/battery-charge-percent"));
     alternator = AlternatorClass.new();
     
 
     # set initial switch positions
-    setprop("/controls/engines/engine[0]/master-bat", 1);
-    setprop("/controls/engines/engine[0]/master-alt", 1);
-    setprop("/controls/switches/AVMBus1", 1);
-    setprop("/controls/switches/AVMBus2", 1);
-    setprop("/systems/electrical/outputs/autopilot",0.0);
-    setprop("/controls/lighting/dome-light-r", 0);
-    setprop("/controls/lighting/dome-light-l", 0);
-    setprop("/controls/lighting/dome-exterior-light", 0);
-    setprop("/controls/lighting/instrument-lights-norm", 0);
-    setprop("/controls/lighting/glareshield-lights-norm", 0);
-    setprop("/controls/lighting/pedestal-lights-norm", 0);
-    setprop("/controls/lighting/radio-lights-norm", 0);
+#    setprop("/controls/engines/engine[0]/master-bat", 1);
+#    setprop("/controls/engines/engine[0]/master-alt", 1);
+#    setprop("/controls/switches/AVMBus1", 1);
+#    setprop("/controls/switches/AVMBus2", 1);
+#    setprop("/systems/electrical/outputs/autopilot",0.0);
+#    setprop("/controls/lighting/dome-light-r", 0);
+#    setprop("/controls/lighting/dome-light-l", 0);
+#    setprop("/controls/lighting/dome-exterior-light", 0);
+#    setprop("/controls/lighting/instrument-lights-norm", 0);
+#    setprop("/controls/lighting/glareshield-lights-norm", 0);
+#    setprop("/controls/lighting/pedestal-lights-norm", 0);
+#    setprop("/controls/lighting/radio-lights-norm", 0);
 #set beacon
  setprop("/systems/electrical/outputs/beacon-norm", 0);
  
@@ -75,13 +75,12 @@ init_electrical = func {
 #
 
 BatteryClass = {};
-
-BatteryClass.new = func {
+BatteryClass.new = func(initialBatteryLevel) {
     var obj = { parents : [BatteryClass],
                 ideal_volts : 24.0,
                 ideal_amps : 30.0,
                 amp_hours : 12.75,
-                charge_percent : 1.0,
+                charge_percent : initialBatteryLevel,
                 charge_amps : 7.0 };
     return obj;
 }

@@ -584,7 +584,28 @@
             <path>/instrumentation/heading-indicator/offset-deg</path>
             <path>/autopilot/settings/heading-bug-deg</path>
             <path>/instrumentation/transponder/id-code</path>
-            <path>engines/engine[0]/egt-bug-norm</path>
+            <path>/engines/engine[0]/egt-bug-norm</path>
+            
+            <path>/controls/engines/engine[0]/master-bat</path>
+            <path>/controls/engines/engine[0]/master-alt</path>
+            <path>/controls/switches/AVMBus1</path>
+            <path>/controls/switches/AVMBus2</path>
+            <!--<path>/systems/electrical/outputs/autopilot</path>-->   <!-- TODO not working -->
+            <path>/controls/lighting/dome-light-r</path>
+            <path>/controls/lighting/dome-light-l</path>
+            <path>/controls/lighting/dome-exterior-light</path>
+            <path>/controls/lighting/instrument-lights-norm</path>
+            <path>/controls/lighting/glareshield-lights-norm</path>
+            <path>/controls/lighting/pedestal-lights-norm</path>
+            <path>/controls/lighting/radio-lights-norm</path>
+            <path>/systems/electrical/battery-charge-percent</path>
+            
+            <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[0]</path>
+            <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[1]</path>
+            <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[2]</path>
+            <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[3]</path>
+            <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[4]</path>
+            <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[5]</path>
         
         </aircraft-data>
 
@@ -658,6 +679,13 @@
    <strobe type="bool">true</strobe>
    <beacon type="bool">true</beacon>
    <nav-lights type="bool">true</nav-lights>
+   <dome-light-r type="bool">true</dome-light-r>
+   <dome-light-l type="bool">true</dome-light-l>
+   <dome-exterior-light type="bool">true</dome-exterior-light>
+   <instrument-lights-norm type="double">0.0</instrument-lights-norm>
+   <glareshield-lights-norm type="double">0.0</glareshield-lights-norm>
+   <pedestal-lights-norm type="double">0.0</pedestal-lights-norm>
+   <radio-lights-norm type="double">0.0</radio-lights-norm>
   </lighting>
   <switches>
    <AVMBus1 type="bool">true</AVMBus1>
@@ -668,6 +696,7 @@
    <fuel_tank_selector type="double">2</fuel_tank_selector> <!-- 0=off, 1=right, 2=both, 3=left -->
   </switches>
   </controls>
+
  
  <autopilot>
   <KAP140>

@@ -606,6 +606,11 @@
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[3]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[4]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[5]</path>
+            
+            <path>/sim/model/c182s/securing/tiedownR-visible</path>
+            <path>/sim/model/c182s/securing/tiedownL-visible</path>
+            <path>/sim/model/c182s/securing/tiedownT-visible</path>
+            <path>/sim/model/c182s/securing/pitot-cover-visible</path>
         
         </aircraft-data>
 

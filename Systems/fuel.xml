@@ -347,6 +347,13 @@ Author: 09/2017  Benedikt Hallinger
         <switch name="fuel/pump-flow-rate-pps">
             <default value="0"/>
             
+            <test logic="AND" value="0.5">
+                <!-- always allow fuel flow when engine procedures are off -->
+                /engines/engine/complex-engine-procedures  EQ  0
+                /fdm/jsbsim/propulsion/tank[4]/pct-full    GT  10.0
+                /fdm/jsbsim/propulsion/tank[5]/pct-full    LT  45.0
+            </test>
+            
             <!-- fuel pipe broken? no fuel to manifold! -->
             <test logic="AND" value="0">
                 /systems/fuel/fuel-pipe-serviceable  EQ  0
@@ -437,6 +444,10 @@ Author: 09/2017  Benedikt Hallinger
         <!-- (engine will get no fuel unless properly primed) -->
         <switch name="/systems/fuel/engine-can-start">
             <default value="1"/>
+            <test logic="AND" value="1">
+                <!-- always allow engine start when engine procedures are off -->
+                /engines/engine/complex-engine-procedures EQ 0
+            </test>
             <test logic="AND" value="0">
                 <test logic="AND">
                     <!-- engine running: manifold always open -->

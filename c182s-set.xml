@@ -515,6 +515,12 @@
         <mouse>
             <invert-mouse-wheel type="bool">true</invert-mouse-wheel>
         </mouse>
+        
+        
+        <!-- Save these properties between sessions -->
+        <aircraft-data>
+            <path>/engines/engine/complex-engine-procedures</path>
+        </aircraft-data>
 
  </sim>
  
@@ -615,6 +621,7 @@
    <magnetos type="int">0</magnetos>
    <mixture type="double">0</mixture>
    <running type="bool">false</running>
+   <complex-engine-procedures type="bool">false</complex-engine-procedures>
   </engine>
  </engines>
  

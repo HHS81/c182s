@@ -180,15 +180,22 @@ Author: 09/2017  Benedikt Hallinger
             <default value="0"/>
             <test logic="AND" value="fuel/flow-left-right-transfer-calculated-pps">
                 /fdm/jsbsim/propulsion/tank[0]/pct-full GT 1.0
-                /fdm/jsbsim/propulsion/tank[0]/pct-full GT /fdm/jsbsim/propulsion/tank[1]/pct-full
                 /fdm/jsbsim/propulsion/tank[1]/pct-full LT 99.0
                 /controls/switches/fuel_tank_selector EQ 2
             </test>
             <test logic="AND" value="fuel/flow-left-right-transfer-calculated-pps">
                 /fdm/jsbsim/propulsion/tank[1]/pct-full GT 1.0
-                /fdm/jsbsim/propulsion/tank[1]/pct-full GT /fdm/jsbsim/propulsion/tank[0]/pct-full
                 /fdm/jsbsim/propulsion/tank[0]/pct-full LT 99.0
                 /controls/switches/fuel_tank_selector EQ 2
+            </test>
+        </switch>
+        
+        <switch name="fuel/flow-left-right-transfer-limited-accelerations-Ny">
+            <!-- limit accelerations/Ny so only significant values will be considered -->
+            <default value="0.0"/>
+            <test logic="OR" value="accelerations/Ny">
+                accelerations/Ny LE -0.02
+                accelerations/Ny GT  0.02
             </test>
         </switch>
         
@@ -210,7 +217,7 @@ Author: 09/2017  Benedikt Hallinger
                             </sum>
                             <value>2</value>
                         </quotient>
-                        <property>accelerations/Ny</property>
+                        <property>fuel/flow-left-right-transfer-limited-accelerations-Ny</property>
                         <!--<value>10</value>-->
                     </product>
                 </sum>
@@ -238,13 +245,11 @@ Author: 09/2017  Benedikt Hallinger
                 <table>
                     <independentVar lookup="row">fuel/flow-left-right-transfer-tanks-difference</independentVar>
                     <tableData>
-                        <!-- TODO: flow rate of 0.5/0.25 pps is arbitary! should be fixed with real world values some day -->
+                        <!-- TODO: flow rate is arbitary! should be fixed with real world values some day -->
                         -10.0   -0.5
-                         -3.0   -0.25
-                         -1.5    0.0
-                          0.0    0.0
-                          1.5    0.0
-                          3.0    0.25
+                        -0.4    0.0
+                         0.0    0.0
+                         0.4    0.0
                          10.0    0.5
                     </tableData>
                 </table>

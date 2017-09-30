@@ -531,8 +531,8 @@
             <path>/controls/engines/engine[0]/propeller-pitch</path>
             <path>/controls/gear/brake-parking</path>
             <path>/controls/engines/engine[0]/magnetos</path>
-            <path>/controls/engines/engine[0]/master-bat</path> <!-- todo did not work -->
-            <path>/controls/engines/engine[0]/master-alt</path><!-- todo did not work -->
+            <path>/controls/engines/engine[0]/master-bat</path> 
+            <path>/controls/engines/engine[0]/master-alt</path>
             <path>/controls/lighting/landing-lights</path>
             <path>/controls/lighting/taxi-light</path>
             <path>/controls/lighting/strobe</path>
@@ -540,8 +540,8 @@
             <path>/controls/lighting/nav-lights</path>
             <path>/controls/anti-ice/pitot-heat</path>
             <path>/controls/engines/engine[0]/fuel-pump</path>
-            <path>/controls/switches/AVMBus1</path>  <!-- todo did not work -->
-            <path>/controls/switches/AVMBus2</path>  <!-- todo did not work -->
+            <path>/controls/switches/AVMBus1</path>  
+            <path>/controls/switches/AVMBus2</path>  
             <path>/controls/switches/kt-76c</path>
             <path>/controls/switches/kn-62a</path>
             <path>/controls/switches/fuel_tank_selector</path>
@@ -610,19 +610,19 @@
             <path>/sim/model/c182s/securing/tiedownR-visible</path>
             <path>/sim/model/c182s/securing/tiedownL-visible</path>
             <path>/sim/model/c182s/securing/tiedownT-visible</path>
-            <path>/sim/chocks001/enable</path>
-            <path>/sim/chocks002/enable</path>
-            <path>/sim/chocks003/enable</path>
-            <path>/sim/coneR/enable</path>
-            <path>/sim/coneL/enable</path>
+            <!--<path>/sim/chocks001/enable</path> todo did not work -->
+            <!--<path>/sim/chocks002/enable</path>todo did not work -->
+            <!--<path>/sim/chocks003/enable</path> todo did not work -->
+            <!--<path>/sim/coneR/enable</path> todo did not work -->
+            <!--<path>/sim/coneL/enable</path> todo did not work -->
             <path>/sim/model/c182s/nw_fairing</path>
             <path>/sim/model/c182s/mw_fairing</path>
-            <path>/sim/ladder/enable</path>
-            <path>/sim/model/c182s/ladder_position_l</path>
-            <path>/sim/model/c182s/ladder_position_r</path>
-            <path>/sim/gpu/enable</path>
-            <path>/controls/electric/external-power</path>
-            <path>/sim/fueltanktrailer/enable</path>
+            <!--<path>/sim/ladder/enable</path><!-- todo did not work -->
+            <!--<path>/sim/model/c182s/ladder_position_l</path> todo did not work -->
+            <!--<path>/sim/model/c182s/ladder_position_r</path>todo did not work -->
+            <!--<path>/sim/gpu/enable</path>todo did not work -->
+            <!--<path>/controls/electric/external-power</path> todo did not work -->
+            <!--<path>/sim/fueltanktrailer/enable</path> todo did not work -->
             <path>/sim/model/c182s/securing/pitot-cover-visible</path>
         
         </aircraft-data>

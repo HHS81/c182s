@@ -432,7 +432,7 @@ var thunder = func (name) {
 ############################################
 
 setlistener("/engines/active-engine/killed", func (node) {
-    if (node.getValue() and getprop("/engines/active-engine/running")) {
+    if (node.getValue() and getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
         click("coughing-engine-sound", 0.7, 0);
     };
 });
@@ -443,3 +443,139 @@ setlistener("/sim/signals/fdm-initialized", func {
     # Listening for lightning strikes
     setlistener("/environment/lightning/lightning-pos-y", thunder);
 });
+
+
+##########################################
+# Autostart
+##########################################
+
+var autostart = func (msg=1) {
+    print("Autostart engine engaged.");
+    if (getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
+        if (msg)
+            gui.popupTip("Engine already running", 5);
+        print("Autostart engine complete (already running).");
+        return;
+    }
+
+    # Reset battery charge and circuit breakers
+    electrical.reset_battery_and_circuit_breakers();
+
+    # Filling fuel tanks
+    setprop("/consumables/fuel/tank[0]/selected", 1);
+    setprop("/consumables/fuel/tank[1]/selected", 1);
+
+    # Setting levers and switches for startup
+    setprop("/controls/switches/fuel_tank_selector", 2);
+    setprop("/controls/engines/engine[0]/magnetos", 3);
+    setprop("/controls/engines/engine[0]/throttle", 0.2);
+    setprop("/controls/engines/engine[0]/mixture-lever", 0.95);
+    setprop("/controls/engines/engine[0]/propeller-pitch", 1);
+    setprop("/controls/engines/engine/cowl-flaps-norm", 1);
+    setprop("/controls/engines/engine[0]/fuel-pump", 0);
+    setprop("/controls/flight/elevator-trim", 0.0);
+    setprop("/controls/flight/rudder-trim", 0.0);
+    setprop("/controls/engines/engine[0]/master-bat", 1);
+    setprop("/controls/engines/engine[0]/master-alt", 1);
+    setprop("/controls/switches/AVMBus1", 0);  # off for start
+    setprop("/controls/switches/AVMBus2", 0);  # off for start
+
+    # Setting lights
+    setprop("/controls/lighting/nav-lights", 1);
+    setprop("/controls/lighting/strobe", 1);
+    setprop("/controls/lighting/beacon", 1);
+
+    # Setting flaps to 0
+    setprop("/controls/flight/flaps", 0.0);
+
+    # Set the altimeter
+    var pressure_sea_level = getprop("/environment/pressure-sea-level-inhg");
+    setprop("/instrumentation/altimeter/setting-inhg", pressure_sea_level);
+
+    # Set heading offset
+    var magnetic_variation = getprop("/environment/magnetic-variation-deg");
+    setprop("/instrumentation/heading-indicator/offset-deg", -magnetic_variation);
+
+    # Pre-flight inspection
+    setprop("/sim/model/c182s/cockpit/control-lock-placed", 0);
+    setprop("/controls/gear/brake-parking", 1);
+    setprop("/sim/chocks001/enable", 0);
+    setprop("/sim/chocks002/enable", 0);
+    setprop("/sim/chocks003/enable", 0);
+    setprop("/sim/model/c182s/securing/pitot-cover-visible", 0);
+    setprop("/sim/model/c182s/securing/tiedownL-visible", 0);
+    setprop("/sim/model/c182s/securing/tiedownR-visible", 0);
+    setprop("/sim/model/c182s/securing/tiedownT-visible", 0);
+
+    # Removing any contamination from water
+#    setprop("/consumables/fuel/tank[0]/water-contamination", 0.0);
+#    setprop("/consumables/fuel/tank[1]/water-contamination", 0.0);
+#    setprop("/consumables/fuel/tank[0]/sample-water-contamination", 0.0);
+#    setprop("/consumables/fuel/tank[1]/sample-water-contamination", 0.0);
+    
+    # Setting max oil level
+#    var oil_enabled = getprop("/engines/active-engine/oil_consumption_allowed");
+#    var oil_level   = getprop("/engines/active-engine/oil-level");
+#    
+#    if (oil_enabled and oil_level < 5.0) {
+#        if (getprop("/controls/engines/active-engine") == 0) {
+#            setprop("/engines/active-engine/oil-level", 7.0);
+#        } 
+#        else {
+#            setprop("/engines/active-engine/oil-level", 8.0);
+#        };
+#    };
+
+    # removing any ice from the carburetor
+#    setprop("/engines/active-engine/carb_ice", 0.0);
+#    setprop("/engines/active-engine/carb_icing_rate", 0.0);
+#    setprop("/engines/active-engine/volumetric-efficiency-factor", 0.85);
+
+    # Checking for minimal fuel level
+    var fuel_level_left  = getprop("/consumables/fuel/tank[0]/level-norm");
+    var fuel_level_right = getprop("/consumables/fuel/tank[1]/level-norm");
+
+    if (fuel_level_left < 0.25)
+        setprop("/consumables/fuel/tank[0]/level-norm", 0.25);
+    if (fuel_level_right < 0.25)
+        setprop("/consumables/fuel/tank[1]/level-norm", 0.25);
+
+    
+    # Ensure disabled complex-engine-procedures
+    # (so engine always starts)
+    var complexEngineProcedures_state_old = getprop("/engines/engine/complex-engine-procedures");
+    setprop("/engines/engine/complex-engine-procedures", 0);
+
+    
+    
+    
+    # All set, starting engine
+    settimer(func {
+        setprop("/controls/switches/starter", 1);
+        setprop("/engines/active-engine/auto-start", 1);
+    }, 1);
+
+    var engine_running_check_delay = 6.0;
+    settimer(func {
+        if (!getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
+            gui.popupTip("The autostart failed to start the engine. You must lean the mixture and start the engine manually.", 5);
+            print("Autostart engine FAILED");
+        }
+        setprop("/controls/switches/starter", 0);
+        setprop("/engines/active-engine/auto-start", 0);
+        
+        # Reset complex-engine-procedures user setting
+        setprop("/engines/engine/complex-engine-procedures", complexEngineProcedures_state_old);
+        
+        
+        # Set switches to after-start state
+        setprop("/controls/switches/AVMBus1", 1);
+        setprop("/controls/switches/AVMBus2", 1);
+        
+        
+        print("Autostart engine complete.");
+        
+    }, engine_running_check_delay);
+    
+
+};

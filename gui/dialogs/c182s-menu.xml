@@ -68,7 +68,7 @@
                     <script>c182s.toggle_flashlight()</script>
                 </binding>
             </item>
-
+            -->
 
             <item>
                 <label>Autostart</label>
@@ -76,7 +76,7 @@
                     <command>nasal</command>
                     <script>c182s.autostart()</script>
                 </binding>
-            </item>-->
+            </item>
         </menu>
 
     </default>

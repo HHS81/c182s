@@ -617,7 +617,7 @@
             <!--<path>/sim/coneL/enable</path> todo did not work -->
             <path>/sim/model/c182s/nw_fairing</path>
             <path>/sim/model/c182s/mw_fairing</path>
-            <!--<path>/sim/ladder/enable</path><!-- todo did not work -->
+            <!--<path>/sim/ladder/enable</path>todo did not work -->
             <!--<path>/sim/model/c182s/ladder_position_l</path> todo did not work -->
             <!--<path>/sim/model/c182s/ladder_position_r</path>todo did not work -->
             <!--<path>/sim/gpu/enable</path>todo did not work -->

@@ -43,7 +43,7 @@ settimer(epu, 0.1);
 epu();
 
 init_electrical = func {
-    battery = BatteryClass.new(getprop("/systems/electrical/battery-charge-percent"));
+    battery = BatteryClass.new();
     alternator = AlternatorClass.new();
     
 
@@ -75,12 +75,12 @@ init_electrical = func {
 #
 
 BatteryClass = {};
-BatteryClass.new = func(initialBatteryLevel) {
+BatteryClass.new = func() {
     var obj = { parents : [BatteryClass],
                 ideal_volts : 24.0,
                 ideal_amps : 30.0,
                 amp_hours : 12.75,
-                charge_percent : initialBatteryLevel,
+                charge_percent : getprop("/systems/electrical/battery-charge-percent") or 1.0,
                 charge_amps : 7.0 };
     return obj;
 }
@@ -648,4 +648,6 @@ avionics_bus_2 = func() {
 
 # Setup a timer based call to initialized the electrical system as
 # soon as possible.
-settimer(init_electrical, 0);
+setlistener("/sim/signals/fdm-initialized", func {
+    init_electrical();
+});

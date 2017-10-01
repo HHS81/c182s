@@ -453,9 +453,39 @@ var autostart = func (msg=1) {
     print("Autostart engine engaged.");
     if (getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
         if (msg)
-            gui.popupTip("Engine already running", 5);
-        print("Autostart engine complete (already running).");
-        return;
+            gui.popupTip("Autoshutdown engine engaged.", 5);
+        print("Autoshutdown engine complete.");
+
+	
+     #After landing
+    setprop("/controls/flight/flaps", 0);
+    setprop("/controls/engines/engine/cowl-flaps-norm", 0);
+
+    #Securing Aircraft
+    setprop("/controls/gear/brake-parking", 0);
+    setprop("/controls/engines/engine[0]/throttle", 0.0);
+    setprop("/controls/lighting/nav-lights", 0);
+    setprop("/controls/lighting/strobe", 0);
+    setprop("/controls/lighting/beacon", 0);
+    setprop("/controls/switches/AVMBus1", 0);  # off for start
+    setprop("/controls/switches/AVMBus2", 0);  # off for start
+    setprop("/controls/engines/engine[0]/mixture-lever", 0.0);
+    setprop("/controls/switches/starter", 0);
+    setprop("/controls/engines/engine[0]/master-bat", 0);
+    setprop("/controls/engines/engine[0]/master-alt", 0);
+    setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
+    setprop("/controls/switches/fuel_tank_selector", 1);
+    setprop("/controls/engines/engine/cowl-flaps-norm", 1);
+    
+    #securing Aircraft on ground
+    setprop("/sim/chocks001/enable", 1);
+    setprop("/sim/chocks002/enable", 1);
+    setprop("/sim/chocks003/enable", 1);
+    setprop("/sim/model/c182s/securing/pitot-cover-visible", 1);
+    setprop("/sim/model/c182s/securing/tiedownL-visible", 1);
+    setprop("/sim/model/c182s/securing/tiedownR-visible", 1);
+    setprop("/sim/model/c182s/securing/tiedownT-visible", 1);
+	return;
     }
 
     # Reset battery charge and circuit breakers
@@ -469,7 +499,7 @@ var autostart = func (msg=1) {
     setprop("/controls/switches/fuel_tank_selector", 2);
     setprop("/controls/engines/engine[0]/magnetos", 3);
     setprop("/controls/engines/engine[0]/throttle", 0.2);
-    setprop("/controls/engines/engine[0]/mixture-lever", 0.95);
+    setprop("/controls/engines/engine[0]/mixture-lever", 1.0);
     setprop("/controls/engines/engine[0]/propeller-pitch", 1);
     setprop("/controls/engines/engine/cowl-flaps-norm", 1);
     setprop("/controls/engines/engine[0]/fuel-pump", 0);
@@ -567,6 +597,8 @@ var autostart = func (msg=1) {
         # Set switches to after-start state
         setprop("/controls/switches/AVMBus1", 1);
         setprop("/controls/switches/AVMBus2", 1);
+
+	
         
         
         print("Autostart engine complete.");

@@ -457,7 +457,9 @@ var autostart = func (msg=1) {
         print("Autoshutdown engine complete.");
 
 	
-     #After landing
+	# When engine already running, perform autoshutdown
+	
+    #After landing
     setprop("/controls/flight/flaps", 0);
     setprop("/controls/engines/engine/cowl-flaps-norm", 1);
 
@@ -471,6 +473,7 @@ var autostart = func (msg=1) {
     setprop("/controls/switches/AVMBus2", 0);  
     setprop("/controls/engines/engine[0]/mixture-lever", 0.0);
     setprop("/controls/switches/starter", 0);
+    setprop("/controls/engines/engine[0]/magnetos", 0);
     setprop("/controls/engines/engine[0]/master-bat", 0);
     setprop("/controls/engines/engine[0]/master-alt", 0);
     setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
@@ -480,7 +483,7 @@ var autostart = func (msg=1) {
     setprop("/sim/chocks001/enable", 1);
     setprop("/sim/chocks002/enable", 1);
     setprop("/sim/chocks003/enable", 1);
-   setprop("/sim/model/c182s/securing/pitot-cover-visible", 1);
+    setprop("/sim/model/c182s/securing/pitot-cover-visible", 1);
     setprop("/sim/model/c182s/securing/tiedownL-visible", 1);
     setprop("/sim/model/c182s/securing/tiedownR-visible", 1);
     setprop("/sim/model/c182s/securing/tiedownT-visible", 1);

@@ -74,11 +74,11 @@ file, these values will be used (they are hardcoded).
     <number>0</number>
   </marker-beacon>
 
-  <heading-indicator-dg>
+  <heading-indicator>
     <name>heading-indicator</name>
     <number>0</number>
     <suction>/systems/vacuum/suction-inhg</suction>
-  </heading-indicator-dg>
+  </heading-indicator>
 
   <KT-70>
     <name>kt-70</name>

@@ -97,7 +97,7 @@
             <property>/engines/engine/running</property>
             <volume>
                 <property>/engines/engine/mp-osi</property>
-                <factor>0.025</factor>
+                <factor>0.05</factor>
             </volume>
             <volume>
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
@@ -105,7 +105,7 @@
             <pitch>
                 <property>/engines/engine/rpm</property>
                 <factor>0.0004</factor>
-                <min>0.0</min>
+                <min>0.5</min>
                 <max>2.0</max>
                 <offset>0.01</offset>
             </pitch>
@@ -125,7 +125,7 @@
             </condition>
             <volume>
                 <property>/engines/engine/rpm</property>
-                <factor>0.0001</factor>
+                <factor>0.0002</factor>
             </volume>
             <volume>
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
@@ -133,7 +133,7 @@
             <pitch>
                 <property>/engines/engine/rpm</property>
                 <factor>0.0004</factor>
-                <min>0.0</min>
+                <min>0.5</min>
                 <max>2.0</max>
                 <offset>0.01</offset>
             </pitch>
@@ -1229,6 +1229,75 @@
                 <factor>0.2</factor>
             </volume>
         </dial>
+	
+		
+
+	
+<Gyro>
+            <type>Avionics</type>
+            <name>TurnIndicatorGyro</name>
+            <mode>looped</mode>
+            <path>Sounds/gyro.wav</path>
+            <position>
+                <x>-0.3660</x>
+                <y>0.1400</y>
+                <z>0</z>
+            </position>
+            <reference-dist>0.1</reference-dist>
+            <max-dist>2.5</max-dist>
+            <volume>
+              <property>/instrumentation/turn-indicator/spin</property>
+              <max>0.1</max>
+            </volume>
+            <pitch>
+              <property>/instrumentation/turn-indicator/spin</property>
+                <factor>1.0</factor>
+                <min>0.001</min>
+                <max>1.0</max>
+                <offset>0.0</offset>
+            </pitch>
+        </Gyro>
+	
+<FuelPump>
+            <type>Avionics</type>
+            <name>Aux Fuel Pump</name>
+            <mode>looped</mode>
+            <path>Sounds/pump-loop.wav</path>
+           <condition>
+                    <property>/systems/electrical/outputs/fuel-pump-norm</property>
+            </condition>
+            <position>
+                <x>-0.3660</x>
+                <y>0.1400</y>
+                <z>0</z>
+            </position>
+            <reference-dist>0.4</reference-dist>
+            <max-dist>5</max-dist>
+            <volume>
+              <property>/systems/electrical/outputs/fuel-pump-norm</property>
+              <max>1</max>
+            </volume>
+        </FuelPump>
+	
+	
+<test>
+   <name>Pump End</name>
+            <path>Sounds/pump-end.wav</path>
+   <condition>
+<property>/systems/electrical/outputs/fuel-pump-norm-end</property>
+   </condition>
+            <position>
+                <x>-0.3660</x>
+                <y>0.1400</y>
+                <z>0</z>
+            </position>
+            <reference-dist>0.4</reference-dist>
+            <max-dist>5</max-dist>
+            <volume>
+              <property>/systems/electrical/outputs/fuel-pump-norm-end</property>
+              <max>1</max>
+            </volume>
+     </test>
 
 </fx>
  

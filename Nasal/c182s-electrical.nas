@@ -48,18 +48,18 @@ init_electrical = func {
     
 
     # set initial switch positions
-    setprop("/controls/engines/engine[0]/master-bat", 1);
-    setprop("/controls/engines/engine[0]/master-alt", 1);
-    setprop("/controls/switches/AVMBus1", 1);
-    setprop("/controls/switches/AVMBus2", 1);
-    setprop("/systems/electrical/outputs/autopilot",0.0);
-    setprop("/controls/lighting/dome-light-r", 0);
-    setprop("/controls/lighting/dome-light-l", 0);
-    setprop("/controls/lighting/dome-exterior-light", 0);
-    setprop("/controls/lighting/instrument-lights-norm", 0);
-    setprop("/controls/lighting/glareshield-lights-norm", 0);
-    setprop("/controls/lighting/pedestal-lights-norm", 0);
-    setprop("/controls/lighting/radio-lights-norm", 0);
+#    setprop("/controls/engines/engine[0]/master-bat", 1);
+#    setprop("/controls/engines/engine[0]/master-alt", 1);
+#    setprop("/controls/switches/AVMBus1", 1);
+#    setprop("/controls/switches/AVMBus2", 1);
+#    setprop("/systems/electrical/outputs/autopilot",0.0);
+#    setprop("/controls/lighting/dome-light-r", 0);
+#    setprop("/controls/lighting/dome-light-l", 0);
+#    setprop("/controls/lighting/dome-exterior-light", 0);
+#    setprop("/controls/lighting/instrument-lights-norm", 0);
+#    setprop("/controls/lighting/glareshield-lights-norm", 0);
+#    setprop("/controls/lighting/pedestal-lights-norm", 0);
+#    setprop("/controls/lighting/radio-lights-norm", 0);
 #set beacon
  setprop("/systems/electrical/outputs/beacon-norm", 0);
  
@@ -75,13 +75,12 @@ init_electrical = func {
 #
 
 BatteryClass = {};
-
-BatteryClass.new = func {
+BatteryClass.new = func() {
     var obj = { parents : [BatteryClass],
                 ideal_volts : 24.0,
                 ideal_amps : 30.0,
                 amp_hours : 12.75,
-                charge_percent : 1.0,
+                charge_percent : getprop("/systems/electrical/battery-charge-percent") or 1.0,
                 charge_amps : 7.0 };
     return obj;
 }
@@ -222,6 +221,39 @@ update_electrical = func {
 
     # Request that the update function be called again next frame
     settimer(update_electrical, 0);
+}
+
+
+##
+# Set the current charge instantly to 100 %.
+#
+
+BatteryClass.reset_to_full_charge = func {
+    me.apply_load(-(1.0 - me.charge_percent) * me.amp_hours, 3600);
+}
+
+# Reset all breakers and battery state
+var reset_battery_and_circuit_breakers = func {
+    # Charge battery to 100 %
+    battery.reset_to_full_charge();
+
+    # Reset circuit breakers
+#    setprop("/controls/circuit-breakers/master", 1);
+#    setprop("/controls/circuit-breakers/flaps", 1);
+#    setprop("/controls/circuit-breakers/pitot-heat", 1);
+#    setprop("/controls/circuit-breakers/instr", 1);
+#    setprop("/controls/circuit-breakers/intlt", 1);
+#    setprop("/controls/circuit-breakers/navlt", 1);
+#    setprop("/controls/circuit-breakers/landing", 1);
+#    setprop("/controls/circuit-breakers/bcnlt", 1);
+#    setprop("/controls/circuit-breakers/strobe", 1);
+#    setprop("/controls/circuit-breakers/turn-coordinator", 1);
+#    setprop("/controls/circuit-breakers/radio1", 1);
+#    setprop("/controls/circuit-breakers/radio2", 1);
+#    setprop("/controls/circuit-breakers/radio3", 1);
+#    setprop("/controls/circuit-breakers/radio4", 1);
+#    setprop("/controls/circuit-breakers/radio5", 1);
+#    setprop("/controls/circuit-breakers/autopilot", 1);
 }
 
 
@@ -661,4 +693,6 @@ avionics_bus_2 = func() {
 
 # Setup a timer based call to initialized the electrical system as
 # soon as possible.
-settimer(init_electrical, 0);
+setlistener("/sim/signals/fdm-initialized", func {
+    init_electrical();
+});

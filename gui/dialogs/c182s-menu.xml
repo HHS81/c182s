@@ -52,6 +52,14 @@
                 </binding>
             </item>
 
+	    <item>
+                <label>Fuel management</label>
+                <binding>
+                    <command>dialog-show</command>
+                    <dialog-name>fuelmgmt-dialog</dialog-name>
+                </binding>
+            </item>
+
             <!--
             <item>
                 <label>Flashlight</label>
@@ -60,15 +68,15 @@
                     <script>c182s.toggle_flashlight()</script>
                 </binding>
             </item>
-
+            -->
 
             <item>
-                <label>Autostart</label>
+                <label>Auto Startup/Shutdown</label>
                 <binding>
                     <command>nasal</command>
                     <script>c182s.autostart()</script>
                 </binding>
-            </item>-->
+            </item>
         </menu>
 
     </default>

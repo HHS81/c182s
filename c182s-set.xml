@@ -515,25 +515,162 @@
         <mouse>
             <invert-mouse-wheel type="bool">true</invert-mouse-wheel>
         </mouse>
+        
+        
+        <!-- Save these properties between sessions -->
+        <aircraft-data>
+            <path>/engines/engine/complex-engine-procedures</path>
+            <path>/consumables/fuel/tank[0]/level-gal_us</path>
+            <path>/consumables/fuel/tank[1]/level-gal_us</path>
+            <path>/consumables/fuel/tank[2]/level-gal_us</path>
+            <path>/consumables/fuel/tank[3]/level-gal_us</path>
+            <path>/consumables/fuel/tank[4]/level-gal_us</path>
+            <!--<path>/consumables/fuel/tank[5]/level-gal_us</path>-->
+            <path>/controls/engines/engine[0]/mixture-lever</path>
+            <path>/controls/engines/engine[0]/throttle</path>
+            <path>/controls/engines/engine[0]/propeller-pitch</path>
+            <path>/controls/gear/brake-parking</path>
+            <path>/controls/engines/engine[0]/magnetos</path>
+            <path>/controls/engines/engine[0]/master-bat</path> 
+            <path>/controls/engines/engine[0]/master-alt</path>
+            <path>/controls/lighting/landing-lights</path>
+            <path>/controls/lighting/taxi-light</path>
+            <path>/controls/lighting/strobe</path>
+            <path>/controls/lighting/beacon</path>
+            <path>/controls/lighting/nav-lights</path>
+            <path>/controls/anti-ice/pitot-heat</path>
+            <path>/controls/engines/engine[0]/fuel-pump</path>
+            <path>/controls/switches/AVMBus1</path>  
+            <path>/controls/switches/AVMBus2</path>  
+            <path>/controls/switches/kt-76c</path>
+            <path>/controls/switches/kn-62a</path>
+            <path>/controls/switches/fuel_tank_selector</path>
+            <path>/controls/engines/engine/cowl-flaps-norm</path>
+            <path>/controls/flight/elevator-trim</path>
+            <path>/controls/flight/rudder-trim</path>
+            <path>/controls/flight/flaps</path>
+            <path>/surface-positions/flap-pos-norm</path>
+            <path>/instrumentation/nav[0]/radials/selected-deg</path>
+            <path>/instrumentation/nav[0]/frequencies/selected-mhz</path>
+            <path>/instrumentation/nav[0]/frequencies/standby-mhz</path>
+            <path>/instrumentation/nav[0]/power-btn</path>
+            <path>/instrumentation/nav[1]/radials/selected-deg</path>
+            <path>/instrumentation/nav[1]/frequencies/selected-mhz</path>
+            <path>/instrumentation/nav[1]/frequencies/standby-mhz</path>
+            <path>/instrumentation/nav[1]/power-btn</path>
+            <path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
+            <path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
+            <path>/instrumentation/comm[0]/power-btn</path>
+            <path>/instrumentation/comm[0]/volume</path>
+            <path>/instrumentation/comm[1]/frequencies/selected-mhz</path>
+            <path>/instrumentation/comm[1]/frequencies/standby-mhz</path>
+            <path>/instrumentation/comm[1]/power-btn</path>
+            <path>/instrumentation/comm[1]/volume</path>
+            <path>/instrumentation/dme[0]/frequencies/selected-mhz</path>
+            <path>/instrumentation/dme[0]/power-btn</path>
+            <path>/controls/switches/kn-62a-mode</path>
+            <path>/controls/switches/kn-62a</path>
+            <path>/instrumentation/adf[0]/frequencies/selected-khz</path>
+            <path>/instrumentation/adf[0]/frequencies/standby-khz</path>
+            <path>/instrumentation/adf[0]/rotation-deg</path>
+            <path>/instrumentation/adf[0]/power-btn</path>
+            <path>/instrumentation/adf[0]/volume-norm</path>
+            <path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
+            <path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
+            <path>/instrumentation/altimeter/setting-inhg</path>
+            <path>/instrumentation/attitude-indicator/caged-flag</path>
+            <path>/instrumentation/attitude-indicator/horizon-offset-deg</path>
+            <path>/instrumentation/airspeed-indicator/tas-face-rotation</path>
+            <path>/instrumentation/heading-indicator/offset-deg</path>
+            <path>/autopilot/settings/heading-bug-deg</path>
+            <path>/instrumentation/transponder/id-code</path>
+            <path>/engines/engine[0]/egt-bug-norm</path>
+            
+            <path>/controls/engines/engine[0]/master-bat</path>
+            <path>/controls/engines/engine[0]/master-alt</path>
+            <path>/controls/switches/AVMBus1</path>
+            <path>/controls/switches/AVMBus2</path>
+            <!--<path>/systems/electrical/outputs/autopilot</path>-->   <!-- TODO not working -->
+            <path>/controls/lighting/dome-light-r</path>
+            <path>/controls/lighting/dome-light-l</path>
+            <path>/controls/lighting/dome-exterior-light</path>
+            <path>/controls/lighting/instrument-lights-norm</path>
+            <path>/controls/lighting/glareshield-lights-norm</path>
+            <path>/controls/lighting/pedestal-lights-norm</path>
+            <path>/controls/lighting/radio-lights-norm</path>
+            <path>/systems/electrical/battery-charge-percent</path>
+            
+            <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[0]</path>
+            <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[1]</path>
+            <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[2]</path>
+            <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[3]</path>
+            <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[4]</path>
+            <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[5]</path>
+            
+            <path>/sim/model/c182s/securing/tiedownR-visible</path>
+            <path>/sim/model/c182s/securing/tiedownL-visible</path>
+            <path>/sim/model/c182s/securing/tiedownT-visible</path>
+            <!--<path>/sim/chocks001/enable</path> todo did not work -->
+            <!--<path>/sim/chocks002/enable</path>todo did not work -->
+            <!--<path>/sim/chocks003/enable</path> todo did not work -->
+            <!--<path>/sim/coneR/enable</path> todo did not work -->
+            <!--<path>/sim/coneL/enable</path> todo did not work -->
+            <path>/sim/model/c182s/nw_fairing</path>
+            <path>/sim/model/c182s/mw_fairing</path>
+            <!--<path>/sim/ladder/enable</path>todo did not work -->
+            <!--<path>/sim/model/c182s/ladder_position_l</path> todo did not work -->
+            <!--<path>/sim/model/c182s/ladder_position_r</path>todo did not work -->
+            <!--<path>/sim/gpu/enable</path>todo did not work -->
+            <!--<path>/controls/electric/external-power</path> todo did not work -->
+            <!--<path>/sim/fueltanktrailer/enable</path> todo did not work -->
+            <path>/sim/model/c182s/securing/pitot-cover-visible</path>
+        
+        </aircraft-data>
 
  </sim>
  
   <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
  
    <consumables>
-<fuel>
+    <fuel>
       <tank n="0">
         <name type="string">Left Wing</name>
-        <capacity-gal_us type="double">46</capacity-gal_us>
-        <unusable-gal_us type="double">2</unusable-gal_us>
-        <level-gal_us type="double">36.2857</level-gal_us>
+        <drain-valve>0</drain-valve>
+        <water-contamination type="double">0.0</water-contamination>
+        <sample-water-contamination type="double">0.0</sample-water-contamination>
+        <fuel-sample-taken type="bool">false</fuel-sample-taken>
       </tank>
       <tank n="1">
         <name type="string">Right Wing</name>
-        <capacity-gal_us type="double">46.0</capacity-gal_us>
-        <unusable-gal_us type="double">2</unusable-gal_us>
-        <level-gal_us type="double">36.2857</level-gal_us>
+        <drain-valve>0</drain-valve>
+        <water-contamination type="double">0.0</water-contamination>
+        <sample-water-contamination type="double">0.0</sample-water-contamination>
+        <fuel-sample-taken type="bool">false</fuel-sample-taken>
       </tank>
+      
+      <tank n="2">
+        <name type="string">Fuel selector sump</name>
+        <drain-valve>0</drain-valve>
+        <hidden type="bool">true</hidden>
+      </tank>
+      <tank n="3">
+        <name type="string">Fuel strainer sump</name>
+        <drain-valve>0</drain-valve>
+        <hidden type="bool">true</hidden>
+      </tank>
+      <tank n="4">
+        <name type="string">Fuel pipe</name>
+        <hidden type="bool">true</hidden>
+      </tank>
+      <tank n="5">
+        <name type="string">Engine manifold</name>
+        <hidden type="bool">true</hidden>
+      </tank>
+      <tank n="6"> <!-- virtual "eninge mix value" workaround tank -->
+        <name type="string">Virtual engine-mix setting</name>
+        <hidden type="bool">true</hidden>
+      </tank>
+      
     </fuel>
   </consumables>
   
@@ -560,6 +697,13 @@
    <strobe type="bool">true</strobe>
    <beacon type="bool">true</beacon>
    <nav-lights type="bool">true</nav-lights>
+   <dome-light-r type="bool">true</dome-light-r>
+   <dome-light-l type="bool">true</dome-light-l>
+   <dome-exterior-light type="bool">true</dome-exterior-light>
+   <instrument-lights-norm type="double">0.0</instrument-lights-norm>
+   <glareshield-lights-norm type="double">0.0</glareshield-lights-norm>
+   <pedestal-lights-norm type="double">0.0</pedestal-lights-norm>
+   <radio-lights-norm type="double">0.0</radio-lights-norm>
   </lighting>
   <switches>
    <AVMBus1 type="bool">true</AVMBus1>
@@ -567,8 +711,10 @@
    <starter type="bool">false</starter>
    <kt-76c type="double">0</kt-76c>
    <kn-62a type="double">0</kn-62a>
+   <fuel_tank_selector type="double">2</fuel_tank_selector> <!-- 0=off, 1=right, 2=both, 3=left -->
   </switches>
   </controls>
+
  
  <autopilot>
   <KAP140>
@@ -588,6 +734,7 @@
    <magnetos type="int">0</magnetos>
    <mixture type="double">0</mixture>
    <running type="bool">false</running>
+   <complex-engine-procedures type="bool">false</complex-engine-procedures>
   </engine>
  </engines>
  
@@ -739,6 +886,31 @@
         <binding>
           <command>property-toggle</command>
           <property>sim/model/hide-yoke</property>
+        </binding>
+      </key>
+
+      <key n="77">
+        <name>M</name>
+        <desc>Mixture leaner</desc>
+        <repeatable type="bool">true</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/engines/engine/mixture-lever</property>
+          <step>-0.01</step>
+          <min>0</min>
+          <max>1</max>
+        </binding>
+      </key>
+      <key n="109">
+        <name>M</name>
+        <desc>Mixture richer</desc>
+        <repeatable type="bool">true</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/engines/engine/mixture-lever</property>
+          <step>0.01</step>
+          <min>0</min>
+          <max>1</max>
         </binding>
       </key>
       

@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+    <name>fuelmgmt-dialog</name>
+    <layout>vbox</layout>
+    <resizable>false</resizable>
+    <modal>false</modal>
+    <draggable>true</draggable>
+
+    <group>
+        <layout>hbox</layout>
+
+        <empty><stretch>true</stretch></empty>
+        <text>
+            <label>Fuel management</label>
+        </text>
+        <empty><stretch>true</stretch></empty>
+
+        <button>
+            <legend/>
+            <key>Esc</key>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+
+    <hrule/>
+
+    <group>
+        <layout>vbox</layout>
+        <padding>6</padding>
+
+        <group>
+            <layout>hbox</layout>
+            <checkbox>
+                <halign>left</halign>
+                <label>Open left wing drain</label>
+                <property>/controls/fuel/tank[0]/drain-valve</property>
+                <live>true</live>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/controls/fuel/tank[0]/drain-valve</property>
+                </binding>
+                <binding>
+                    <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
+                </binding>
+            </checkbox>
+        </group>
+        
+        <group>
+            <layout>hbox</layout>
+            <checkbox>
+                <halign>left</halign>
+                <label>Open right wing drain</label>
+                <property>/controls/fuel/tank[1]/drain-valve</property>
+                <live>true</live>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/controls/fuel/tank[1]/drain-valve</property>
+                </binding>
+                <binding>
+                    <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
+                </binding>
+            </checkbox>
+        </group>
+        
+        <group>
+            <layout>hbox</layout>
+            <checkbox>
+                <halign>left</halign>
+                <label>Open fuel selector sump drain</label>
+                <property>/controls/fuel/tank[2]/drain-valve</property>
+                <live>true</live>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/controls/fuel/tank[2]/drain-valve</property>
+                </binding>
+                <binding>
+                    <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
+                </binding>
+            </checkbox>
+        </group>
+        
+        <group>
+            <layout>hbox</layout>
+            <checkbox>
+                <halign>left</halign>
+                <label>Open fuel strainer sump drain</label>
+                <property>/controls/fuel/tank[3]/drain-valve</property>
+                <live>true</live>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/controls/fuel/tank[3]/drain-valve</property>
+                </binding>
+                <binding>
+                    <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
+                </binding>
+            </checkbox>
+        </group>
+        
+    </group>
+
+
+</PropertyList>

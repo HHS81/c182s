@@ -459,7 +459,7 @@ var autostart = func (msg=1) {
 	
      #After landing
     setprop("/controls/flight/flaps", 0);
-    setprop("/controls/engines/engine/cowl-flaps-norm", 0);
+    setprop("/controls/engines/engine/cowl-flaps-norm", 1);
 
     #Securing Aircraft
     setprop("/controls/gear/brake-parking", 0);
@@ -467,24 +467,23 @@ var autostart = func (msg=1) {
     setprop("/controls/lighting/nav-lights", 0);
     setprop("/controls/lighting/strobe", 0);
     setprop("/controls/lighting/beacon", 0);
-    setprop("/controls/switches/AVMBus1", 0);  # off for start
-    setprop("/controls/switches/AVMBus2", 0);  # off for start
+    setprop("/controls/switches/AVMBus1", 0);  
+    setprop("/controls/switches/AVMBus2", 0);  
     setprop("/controls/engines/engine[0]/mixture-lever", 0.0);
     setprop("/controls/switches/starter", 0);
     setprop("/controls/engines/engine[0]/master-bat", 0);
     setprop("/controls/engines/engine[0]/master-alt", 0);
     setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
     setprop("/controls/switches/fuel_tank_selector", 1);
-    setprop("/controls/engines/engine/cowl-flaps-norm", 1);
     
     #securing Aircraft on ground
-    setprop("/sim/chocks001/enable", 1);
-    setprop("/sim/chocks002/enable", 1);
-    setprop("/sim/chocks003/enable", 1);
-    setprop("/sim/model/c182s/securing/pitot-cover-visible", 1);
-    setprop("/sim/model/c182s/securing/tiedownL-visible", 1);
-    setprop("/sim/model/c182s/securing/tiedownR-visible", 1);
-    setprop("/sim/model/c182s/securing/tiedownT-visible", 1);
+    #setprop("/sim/chocks001/enable", 1);
+    #setprop("/sim/chocks002/enable", 1);
+    #setprop("/sim/chocks003/enable", 1);
+   # setprop("/sim/model/c182s/securing/pitot-cover-visible", 1);
+    #setprop("/sim/model/c182s/securing/tiedownL-visible", 1);
+    #setprop("/sim/model/c182s/securing/tiedownR-visible", 1);
+    #setprop("/sim/model/c182s/securing/tiedownT-visible", 1);
 	return;
     }
 

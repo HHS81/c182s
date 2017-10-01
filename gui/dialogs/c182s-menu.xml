@@ -71,7 +71,7 @@
             -->
 
             <item>
-                <label>Autostart</label>
+                <label>Auto Startup/Shutdown</label>
                 <binding>
                     <command>nasal</command>
                     <script>c182s.autostart()</script>

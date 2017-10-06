@@ -244,18 +244,22 @@ item("Brakes") {
 
 item("Circuit Brakers") {
     state("CHECK IN");
+    marker(0.2942, -0.3383, 0.1150, 9);
 }
 
 item("Avionics Circuit Brakers") {
     state("CHECK IN");
+    marker(0.2942, 0.3808, 0.1692, 9);
 }
 
 item("Electrical Equipment") {
     state("OFF");
+    marker(0.2942, 0.0808, 0.2592, 13);
 }
 
 item("Autopilot") {
     state("OFF");
+    marker(0.3567, 0.0133, 0.1658, 1.6000);
 }
 
 

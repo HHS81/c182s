@@ -191,6 +191,7 @@ item("Propeller Area") {
 
 item("Oil Pressure") {
     state("CHECK");
+    marker(0.3517, -0.4900, 0.2550, 2.6);
 }
 
 item("Ignition Switch") {
@@ -210,14 +211,23 @@ item("Radios") {
     r1v = "/instrumentation/comm[0]/volume";
     r2p = "/instrumentation/comm[1]/power-btn";
     r2v = "/instrumentation/comm[1]/volume";
-    state("ON", (r1p==1 && r2p==1)) {
-        r1p=1;
+    state("ON", (r1p==true && r2p==true)) {
+        r1p=true;
         r1v=0.8;
-        r2p=1;
+        r2p=true;
         r2v=0.8;
     }
     marker(0.3667, 0.0142, 0.2766, 3.0);
 }
+
+
+item("External Power") {
+    unit  = "/sim/gpu/enable";
+    cable = "/controls/electric/external-power";
+    state("CONNECT", (unit && cable) ) { unit=1; cable=1; }
+    state("DISCONNECT", (!unit && !cable) ) { unit=0; cable=0; }
+}
+
 
 
 #------------------------------------------------------------------------------
@@ -259,3 +269,39 @@ checklist("STARTING ENGINE (With Battery)") {
     }
 }
 
+checklist("STARTING ENGINE (With External Power)") {
+    page {
+        check("Throttle",       "OPEN 1/4 INCH");
+        check("Propeller",      "HIGH RPM");
+        check("Mixture",        "IDLE CUT-OFF");
+        check("Propeller Area", "CLEAR");
+        check("External Power", "CONNECT", "to airplane receptacle");
+        check("Master",         "ON");
+        
+        text("Priming the engine:");
+        check("Auxiliary Fuel Pump", "ON");
+        check("Mixture", "ADVANCE smoothly to FULL RICH", "achieve 3-5 secs fuel flow");
+        check("Mixture", "return to IDLE CUT-OFF");
+        check("Auxiliary Fuel Pump", "OFF");
+        text("NOTE:");
+        text("If engine is warm, omit priming procedure above.");
+        text("");
+        
+        check("Ignition Switch", "START", "(release when engine starts");
+        check("Mixture", "ADVANCE smoothly to FULL RICH", "when engine fires");
+        text("NOTE:");
+        text("If engine floods, place mixture in idle cut off, open throttle");
+        text("1/2 to full, and crank the engine. When engine fires, advance");
+        text("mixture to full rich and retard throttle promptly.");
+        text("");
+    }
+    page {
+        check("Oil Pressure", "CHECK");
+        check("External Power", "DISCONNECT", "from airplane receptacle");
+        check("Beacon", "ON", "as required");
+        check("Navigation Lights", "ON", "as required");
+        check("Avionics Master", "ON");
+        check("Radios", "ON");
+        check("Flaps", "RETRACT");
+    }
+}

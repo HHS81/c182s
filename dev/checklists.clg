@@ -1,0 +1,261 @@
+#------------------------------------------------------------------------------
+# CLGen checklist definition for Cessna 182
+# for clgen see: https://github.com/sanhozay/CLGen
+#
+# Author: Benedikt Hallinger
+# based on the POH FEB-1997
+#------------------------------------------------------------------------------
+
+# The project definition provides a title for XML, DOT and PDF outputs.
+# Defining an author adds a GPL2 copyright notice at the top of each file.
+#
+project("Cessna 182S Checklists") {
+    author("Benedikt Hallinger");
+}
+
+
+
+#------------------------------------------------------------------------------
+# Items
+#------------------------------------------------------------------------------
+
+item("Parking Brake") {
+    p = "controls/gear/brake-parking";
+    state("OFF", p == 0.0) p = 0.0;
+    state("SET", p == 1.0) p = 1.0;
+    marker(0.3717, -0.2325, 0.0275, 5.5);
+}
+
+item("Auxiliary Fuel Pump") {
+    p = "systems/electrical/outputs/fuel-pump";
+    s = "controls/engines/engine[0]/fuel-pump";
+    state("OFF", p < 1.0) s = false;
+    state("ON", p >= 1.0) s = true;
+    marker(0.3433, -0.4000, 0.0700, 1.35);
+}
+
+item("Pitot Heat") {
+    p = "systems/electrical/outputs/pitot-heat";
+    s = "controls/anti-ice/pitot-heat";
+    state("OFF", p < 1.0) s = false;
+    state("ON", p >= 1.0) s = true;
+    marker(0.3433, -0.2725, 0.0700, 1.35);
+}
+
+# Master is "Alternator+Battery"
+item("Master") {
+    m = "controls/engines/engine[0]/master-bat";
+    a = "controls/engines/engine[0]/master-alt";
+    v = "systems/electrical/volts";
+    state("OFF", (!m && !a) ) { m = false; a = false;}
+    state("ON",  (m && a) )   { m = true; a = true;}
+    marker(0.3467, -0.4233, 0.0908, 2);
+}
+
+item("Battery") {
+    m = "controls/engines/engine[0]/master-bat";
+    v = "systems/electrical/volts";
+    state("OFF", (!m) ) m = false;
+    state("ON",  m ) m = true;
+    marker(0.3467, -0.4200, 0.0908, 2);
+}
+
+item("Alternator") {
+    a = "controls/engines/engine[0]/master-alt";
+    v = "systems/electrical/volts";
+    state("OFF", (!a) ) a = false;
+    state("ON",  a ) a = true;
+    marker(0.3467, -0.4283, 0.0908, 2);
+}
+
+# Avionics master switch is both switches
+item("Avionics Master") {
+    avm1_sw = "controls/switches/AVMBus1";
+    avm2_sw = "controls/switches/AVMBus2";
+#   avm1_v  = "??? no power property available right now ???";
+#   avm2_v  = "??? no power property available right now ???";
+    state("OFF", (!avm1_sw && !avm2_sw) ) { avm1_sw = false; avm2_sw = false;}
+    state("ON",  (avm1_sw && avm2_sw) ) { avm1_sw = true;  avm2_sw = true;}
+    marker(0.3467, -0.2500, 0.0908, 2);
+}
+
+item("Beacon") {
+    p = "systems/electrical/outputs/beacon";
+    s = "controls/lighting/beacon";
+    state("OFF", p < 1.0) s = false;
+    state("ON", p >= 1.0) s = true;
+    marker(0.3433, -0.3792, 0.0700, 1.35);
+}
+
+item("Landing Lights") {
+    p = "systems/electrical/outputs/landing-lights";
+    s = "controls/lighting/landing-lights";
+    state("OFF", p < 1.0) s = false;
+    state("ON", p >= 1.0) s = true;
+    marker(0.3433, -0.3567, 0.0700, 1.35);
+}
+
+item("Taxi Lights") {
+    p = "systems/electrical/outputs/taxi-light";
+    s = "controls/lighting/taxi-light";
+    state("OFF", p < 1.0) s = false;
+    state("ON", p >= 1.0) s = true;
+    marker(0.3433, -0.3358, 0.0700, 1.35);
+}
+
+item("Navigation Lights") {
+    p = "systems/electrical/outputs/nav-lights";
+    s = "controls/lighting/nav-lights";
+    state("OFF", p < 1.0) s = false;
+    state("ON", p >= 1.0) s = true;
+    marker(0.3433, -0.3142, 0.0700, 1.35);
+}
+
+item("Strobe") {
+    p = "systems/electrical/outputs/strobe";
+    s = "controls/lighting/strobe-state/state";
+    state("OFF", p < 1.0) s = false;
+    state("ON", p >= 1.0) s = true;
+    marker(0.3433, -0.2925, 0.0700, 1.35);
+}
+
+item("Fuel Selector Valve") {
+    s = "controls/switches/fuel_tank_selector";
+    state("OFF",   s == 0) s = 0;
+    state("LEFT",  s == 1) s = 1;
+    state("RIGHT", s == 3) s = 3;
+    state("BOTH",  s == 2) s = 2;
+    state("LEFT or RIGHT", (s==1 || s==3) ) s = 3;
+    marker(0.4617, 0.0217, -0.3183, 7.65);
+}
+
+item("Cowl Flaps") {
+    s = "controls/engines/engine/cowl-flaps-norm";     
+    state("OPEN", s > 0.9) {
+        fgcommand("property-interpolate", property=s, value=1.0, rate=0.5);
+    }
+    state("CLOSED", s < 0.1) {
+        fgcommand("property-interpolate", property=s, value=0.0, rate=0.5);
+    }
+    marker(0.3525, 0.0942, -0.1800, 7.65);
+}
+
+
+item("Mixture") {
+    s = "controls/engines/engine[0]/mixture-lever";    
+    state("IDLE CUT-OFF", s <= 0.0) {
+        fgcommand("property-interpolate", property=s, value=0.0, rate=0.5);
+    }
+    state("LEAN");
+    state("ADVANCE smoothly to FULL RICH", s >= 1.0) {  # when priming
+        fgcommand("property-interpolate", property=s, value=1.0, rate=0.75);
+    }
+    state("return to IDLE CUT-OFF", s <= 0.0) {  # when priming
+        fgcommand("property-interpolate", property=s, value=0.0, rate=2.0);
+    }
+    state("ENRICHEN");
+    state("RICH");
+    state("FULL RICH", s >= 1.0) {
+        fgcommand("property-interpolate", property=s, value=100.0, rate=0.5);
+    }
+    state("15 GPH or FULL RICH");    # would be cool to have this set dynamically
+    marker(0.3525, 0.1108, 0.0600, 3.0);
+}
+
+item("Throttle") {
+    s = "controls/engines/engine[0]/throttle";    
+    state("IDLE", s <= 0.0) {
+        fgcommand("property-interpolate", property=s, value=0.0, rate=0.5);
+    }
+    state("OPEN 1/4 INCH", (s >= 0.07 && s <= 0.08)) {
+        fgcommand("property-interpolate", property=s, value=0.08, rate=0.5);
+    }
+    state("FULL OPEN", s >= 1.0 ) {
+        fgcommand("property-interpolate", property=s, value=1.0, rate=0.5);
+    }
+    state("1800 RPM");
+    marker(0.3525, -0.0208, 0.0600, 3.0);
+}
+
+item("Propeller") {
+    s = "controls/engines/engine[0]/propeller-pitch";    
+    state("HIGH RPM", s >= 1.0) {
+        fgcommand("property-interpolate", property=s, value=1.0, rate=0.5);
+    }
+    marker(0.3525, 0.0492, 0.0600, 3.0);
+}
+
+item("Propeller Area") {
+    state("CLEAR");
+}
+
+item("Oil Pressure") {
+    state("CHECK");
+}
+
+item("Ignition Switch") {
+    s = "controls/switches/starter";
+    state("START", s == 1) s = 0;
+    marker(0.3525, -0.4742, 0.0933, 2.5);
+}
+
+item("Flaps") {
+    s = "/controls/flight/flaps";
+    state("RETRACT", s==0) s=0;
+    marker(0.3542, 0.2017, 0.1258, 3.0);
+}
+
+item("Radios") {
+    r1p = "/instrumentation/comm[0]/power-btn";
+    r1v = "/instrumentation/comm[0]/volume";
+    r2p = "/instrumentation/comm[1]/power-btn";
+    r2v = "/instrumentation/comm[1]/volume";
+    state("ON", (r1p==1 && r2p==1)) {
+        r1p=1;
+        r1v=0.8;
+        r2p=1;
+        r2v=0.8;
+    }
+    marker(0.3667, 0.0142, 0.2766, 3.0);
+}
+
+
+#------------------------------------------------------------------------------
+# Checklists
+#------------------------------------------------------------------------------
+
+checklist("STARTING ENGINE (With Battery)") {
+    page {
+        check("Throttle",       "OPEN 1/4 INCH");
+        check("Propeller",      "HIGH RPM");
+        check("Mixture",        "IDLE CUT-OFF");
+        check("Propeller Area", "CLEAR");
+        check("Master",         "ON");
+        
+        text("Priming the engine:");
+        check("Auxiliary Fuel Pump", "ON");
+        check("Mixture", "ADVANCE smoothly to FULL RICH", "achieve 3-5 secs fuel flow");
+        check("Mixture", "return to IDLE CUT-OFF");
+        check("Auxiliary Fuel Pump", "OFF");
+        text("NOTE:");
+        text("If engine is warm, omit priming procedure above.");
+        text("");
+        
+        check("Ignition Switch", "START", "(release when engine starts");
+        check("Mixture", "ADVANCE smoothly to FULL RICH", "when engine fires");
+        text("NOTE:");
+        text("If engine floods, place mixture in idle cut off, open throttle");
+        text("1/2 to full, and crank the engine. When engine fires, advance");
+        text("mixture to full rich and retard throttle promptly.");
+        text("");
+    }
+    page {
+        check("Oil Pressure", "CHECK");
+        check("Beacon", "ON", "as required");
+        check("Navigation Lights", "ON", "as required");
+        check("Avionics Master", "ON");
+        check("Radios", "ON");
+        check("Flaps", "RETRACT");
+    }
+}
+

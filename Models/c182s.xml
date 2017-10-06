@@ -8,6 +8,11 @@
    <z-m> -0.0 </z-m>
  </offsets>
  
+   <!-- for checklist/tutorial markers -->
+   <model>
+    <path>Aircraft/Generic/marker.xml</path>
+   </model>
+ 
    <model>
     <path>Models/interior-model.xml</path>
     <usage>interior</usage>

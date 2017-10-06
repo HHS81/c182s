@@ -19,13 +19,6 @@ project("Cessna 182S Checklists") {
 # Items
 #------------------------------------------------------------------------------
 
-item("Parking Brake") {
-    p = "controls/gear/brake-parking";
-    state("OFF", p == 0.0) p = 0.0;
-    state("SET", p == 1.0) p = 1.0;
-    marker(0.3717, -0.2325, 0.0275, 5.5);
-}
-
 item("Auxiliary Fuel Pump") {
     p = "systems/electrical/outputs/fuel-pump";
     s = "controls/engines/engine[0]/fuel-pump";
@@ -224,8 +217,45 @@ item("Radios") {
 item("External Power") {
     unit  = "/sim/gpu/enable";
     cable = "/controls/electric/external-power";
-    state("CONNECT", (unit && cable) ) { unit=1; cable=1; }
-    state("DISCONNECT", (!unit && !cable) ) { unit=0; cable=0; }
+    state("CONNECT", (unit && cable) ) { unit=true; cable=true; }
+    state("DISCONNECT", (!unit && !cable) ) { unit=false; cable=false; }
+}
+
+
+item("Preflight Inspection") {
+    state("COMPLETE");
+}
+
+item("Passenger Briefing") {
+    state("COMPLETE");
+}
+
+item("Seats, Seat Belts, Shoulder Hanrsesses") {
+    state("ADJUST and LOCK");
+}
+
+item("Brakes") {
+    p = "controls/gear/brake-parking";
+    state("OFF", p == 0.0) p = 0.0;
+    state("SET", p == 1.0) p = 1.0;
+    state("TEST and SET",p == 1.0) p = 1.0;
+    marker(0.3717, -0.2325, 0.0275, 5.5);
+}
+
+item("Circuit Brakers") {
+    state("CHECK IN");
+}
+
+item("Avionics Circuit Brakers") {
+    state("CHECK IN");
+}
+
+item("Electrical Equipment") {
+    state("OFF");
+}
+
+item("Autopilot") {
+    state("OFF");
 }
 
 
@@ -233,6 +263,24 @@ item("External Power") {
 #------------------------------------------------------------------------------
 # Checklists
 #------------------------------------------------------------------------------
+
+checklist("BEFORE STARTING ENGINE") {
+    check("Preflight Inspection", "COMPLETE");
+    check("Passenger Briefing", "COMPLETE");
+    check("Seats, Seat Belts, Shoulder Hanrsesses", "ADJUST and LOCK");
+    check("Brakes", "TEST and SET");
+    check("Circuit Brakers", "CHECK IN");
+    check("Electrical Equipment", "OFF");
+    text("WARNING");
+    text("The Avionics Master Switch must be OFF during Engine");
+    text("start to prevent possible damage to avionics");
+    check("Avionics Master", "OFF");
+    check("Autopilot", "OFF");
+    check("Cowl Flaps", "OPEN");
+    check("Fuel Selector Valve", "BOTH");
+    check("Avionics Circuit Brakers", "CHECK IN");
+}
+
 
 checklist("STARTING ENGINE (With Battery)") {
     page {

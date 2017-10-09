@@ -107,8 +107,8 @@ item("Navigation Lights") {
 item("Strobe Lights") {
     p = "controls/lighting/strobe-state/state";
     s = "controls/lighting/strobe";
-    state("OFF", s < 1.0) s = false;
-    state("ON",  s >= 1.0) s = true;
+    state("OFF", s < 1.0) s = 0;
+    state("ON",  s >= 1.0) s = 1;
     marker(0.3433, -0.2925, 0.0700, 1.35);
 }
 
@@ -147,7 +147,7 @@ item("Mixture") {
         fgcommand("property-interpolate", property=s, value=0.0, rate=2.0);
     }
     state("ENRICHEN");
-    state("RICH", s >= 0.9) {
+    state("RICH", s >= 0.5) {
         fgcommand("property-interpolate", property=s, value=0.9, rate=0.5);
     }
     state("FULL RICH", s >= 1.0) {
@@ -223,10 +223,12 @@ item("Magnetos") {
     marker(0.3525, -0.4742, 0.0933, 2.5);
 }
 
-item("Flaps") {
+item("Wing Flaps") {
     s = "/controls/flight/flaps";
     p = "/fdm/jsbsim/fcs/flaps-control";
     state("RETRACT", p==0) s=0;
+    state("0 to 20", (p>=0 && p<=0.55)) s=0.26315;
+    state("20", (p>=0.5 && p<=0.55)) s=0.26315;
     state("SET for takeoff", (p>=0 && p<=0.55)) s=0.26315;
     marker(0.3542, 0.2017, 0.1258, 3.0);
 }
@@ -281,7 +283,7 @@ item("Seats, Seat Belts, Shoulder Hanrsesses") {
 item("Brakes") {
     p = "controls/gear/brake-parking";
     state("RELEASE", p == 0.0) p = 0.0;
-    state("SET", p == 1.0) p = 1.0;
+    state("APPLY", p == 1.0) p = 1.0;
     state("TEST and SET",p == 1.0) p = 1.0;
     marker(0.3717, -0.2325, 0.0275, 5.5);
 }
@@ -333,6 +335,11 @@ item("Flight Controls") {
     state("FREE and CORRECT");
     marker(0.5408, -0.2475, 0.2292, 13.7);
 }
+item("Elevator Control") {
+    state("LIFT NOSE WHEEL");
+    state("MAINTAIN SLIGHTLY");
+    marker(0.5408, -0.2475, 0.2292, 13.7);
+}
 
 item("Flight Instruments") {
     state("CHECK and SET");
@@ -370,6 +377,11 @@ item("Rudder Trim") {
     marker(0.3558, 0.0500, -0.0708, 7.5);
 }
 
+item("Climb Speed") {
+    state("58 KIAS");
+    state("70 KIAS (Flaps 20)");
+    state("80 KIAS (Flaps 0)");
+}
 
 
 
@@ -428,7 +440,7 @@ checklist("STARTING ENGINE (With Battery)") {
         check("Navigation Lights", "ON", "as required");
         check("Avionics Master", "ON");
         check("Radios", "ON");
-        check("Flaps", "RETRACT");
+        check("Wing Flaps", "RETRACT");
     }
 }
 
@@ -465,7 +477,7 @@ checklist("STARTING ENGINE (With External Power)") {
         check("Navigation Lights", "ON", "as required");
         check("Avionics Master", "ON");
         check("Radios", "ON");
-        check("Flaps", "RETRACT");
+        check("Wing Flaps", "RETRACT");
     }
 }
 
@@ -499,8 +511,32 @@ checklist("BEFORE TAKEOFF") {
         check("Autopilot", "OFF");
         check("Elevator Trim", "SET for takeoff");
         check("Rudder Trim", "SET for takeoff");
-        check("Flaps", "SET for takeoff", "(0 TO 20)");
+        check("Wing Flaps", "SET for takeoff", "(0 TO 20)");
         check("Cowl Flaps", "OPEN");
         check("Brakes", "RELEASE");
+    }
+}
+
+checklist("TAKEOFF") {
+    page {
+        text("NORMAL TAKEOFF");
+        check("Wing Flaps", "0 to 20");
+        check("Throttle", "FULL OPEN", "and 2400 RPM");
+        check("Mixture", "RICH", "(may be leaned to max power fuel flow placard value)");
+        check("Elevator Control", "LIFT NOSE WHEEL", "(at 50-60 KIAS)");
+        check("Climb Speed", "70 KIAS (Flaps 20)");
+        check("Climb Speed", "80 KIAS (Flaps 0)");
+        check("Wing Flaps", "RETRACT");
+    }
+    page {
+        text("SHORT FIELD TAKEOFF");
+        check("Wing Flaps", "20");
+        check("Brakes", "APPLY");
+        check("Throttle", "FULL OPEN", "and 2400 RPM");
+        check("Mixture", "LEAN", "to obtain max power fuel flow placard value");
+        check("Brakes", "RELEASE");
+        check("Elevator Control", "MAINTAIN SLIGHTLY", "TAIL LOW ATTITUDE");
+        check("Climb Speed", "58 KIAS", "(until obstacles are cleared)");
+        check("Wing Flaps", "RETRACT", "slowly after reaching 70 KIAS");
     }
 }

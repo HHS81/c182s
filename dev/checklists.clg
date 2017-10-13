@@ -153,31 +153,29 @@ item("Mixture") {
     state("FULL RICH", s >= 1.0) {
         fgcommand("property-interpolate", property=s, value=1.0, rate=0.5);
     }
-    state("15 GPH or FULL RICH") {
-        fgcommand("property-interpolate", property=s, value=1.0, rate=0.5);
-    }
+    state("15 GPH or FULL RICH");
     marker(0.3525, 0.1108, 0.0600, 3.0);
 }
 
 item("Throttle") {
-    s    = "controls/engines/engine[0]/throttle";  
+    thrt = "controls/engines/engine[0]/throttle";  
     mix  = "controls/engines/engine[0]/mixture-lever";
     prop = "controls/engines/engine[0]/propeller-pitch";
     rpm  = "/fdm/jsbsim/propulsion/engine/engine-rpm";
-    state("IDLE", s <= 0.0) {
-        fgcommand("property-interpolate", property=s, value=0.0, rate=0.5);
+    state("IDLE", thrt <= 0.0) {
+        fgcommand("property-interpolate", property=thrt, value=0.0, rate=0.5);
     }
-    state("CHECK IDLE", s <= 0.0) {
-        fgcommand("property-interpolate", property=s, value=0.0, rate=0.5);
+    state("CHECK IDLE", thrt <= 0.0) {
+        fgcommand("property-interpolate", property=thrt, value=0.0, rate=0.5);
     }
-    state("OPEN 1/4 INCH", (s >= 0.07 && s <= 0.08)) {
-        fgcommand("property-interpolate", property=s, value=0.08, rate=0.5);
+    state("OPEN 1/4 INCH", (thrt >= 0.07 && thrt <= 0.08)) {
+        fgcommand("property-interpolate", property=thrt, value=0.08, rate=0.5);
     }
-    state("FULL OPEN", s >= 1.0 ) {
-        fgcommand("property-interpolate", property=s, value=1.0, rate=0.5);
+    state("FULL OPEN", thrt >= 1.0 ) {
+        fgcommand("property-interpolate", property=thrt, value=1.0, rate=0.5);
     }
     state("1800 RPM", (rpm >= 1730 && rpm <= 1870)) {
-        fgcommand("property-interpolate", property=s, value=0.60, rate=0.5);
+        fgcommand("property-interpolate", property=thrt, value=0.60, rate=0.5);
         fgcommand("property-interpolate", property=mix, value=1, rate=0.5);
         fgcommand("property-interpolate", property=prop, value=1, rate=0.5);
     }
@@ -200,6 +198,19 @@ item("Propeller") {
 
 item("Propeller Area") {
     state("CLEAR");
+}
+
+item("Power") {
+    thrt = "controls/engines/engine[0]/throttle";  
+    mix  = "controls/engines/engine[0]/mixture-lever";
+    prop = "controls/engines/engine[0]/propeller-pitch";
+    rpm  = "/fdm/jsbsim/propulsion/engine/engine-rpm";
+    state("23 in.Hg or FULL THROTTLE");
+    state("FULL THROTTLE and 2400 RPM", thrt>=0.99 && rpm>=1800)  {
+        fgcommand("property-interpolate", property=thrt, value=1.0, rate=0.5);
+        fgcommand("property-interpolate", property=prop, value=1.0, rate=0.5);
+    }
+    marker(0.3525, 0.0492, 0.0600, 9.0);
 }
 
 item("Oil Pressure") {
@@ -378,9 +389,19 @@ item("Rudder Trim") {
 }
 
 item("Climb Speed") {
+    vs = "fdm/jsbsim/velocities/vias-kts";
     state("58 KIAS");
     state("70 KIAS (Flaps 20)");
     state("80 KIAS (Flaps 0)");
+    marker(0.3542, -0.3458, 0.3967, 5);
+}
+
+item("Airspeed") {
+    vs = "fdm/jsbsim/velocities/vias-kts";
+    state("85-95 KIAS", vs >=85 && vs<=95);
+    state("80 KIAS at sea level to 72 KIAS at 10.000 ft", vs >=80 && vs<=72);    # 80 at sea level, 72 at 10.000ft
+    state("70-80 KIAS", vs >=70 && vs<=80);
+    marker(0.3542, -0.3458, 0.3967, 5);
 }
 
 
@@ -521,7 +542,7 @@ checklist("TAKEOFF") {
     page {
         text("NORMAL TAKEOFF");
         check("Wing Flaps", "0 to 20");
-        check("Throttle", "FULL OPEN", "and 2400 RPM");
+        check("Power", "FULL THROTTLE and 2400 RPM");
         check("Mixture", "RICH", "(may be leaned to max power fuel flow placard value)");
         check("Elevator Control", "LIFT NOSE WHEEL", "(at 50-60 KIAS)");
         check("Climb Speed", "70 KIAS (Flaps 20)");
@@ -532,11 +553,30 @@ checklist("TAKEOFF") {
         text("SHORT FIELD TAKEOFF");
         check("Wing Flaps", "20");
         check("Brakes", "APPLY");
-        check("Throttle", "FULL OPEN", "and 2400 RPM");
+        check("Power", "FULL THROTTLE and 2400 RPM");
         check("Mixture", "LEAN", "to obtain max power fuel flow placard value");
         check("Brakes", "RELEASE");
         check("Elevator Control", "MAINTAIN SLIGHTLY", "TAIL LOW ATTITUDE");
         check("Climb Speed", "58 KIAS", "(until obstacles are cleared)");
         check("Wing Flaps", "RETRACT", "slowly after reaching 70 KIAS");
+    }
+}
+
+checklist("ENROUTE CLIMB") {
+    page {
+        text("NORMAL CLIMB");
+        check("Airspeed", "85-95 KIAS");
+        check("Power", "23 in.Hg or FULL THROTTLE", "(whichever is less) and 2400 RPM");
+        check("Mixture", "15 GPH or FULL RICH", "(whichever is less)");
+        check("Cowl Flaps", "OPEN", "as required");
+        check("Fuel Selector Valve", "BOTH");
+    }
+    page {
+        text("MAXIMUM PERFORMANCE CLIMB");
+        check("Airspeed", "80 KIAS at sea level to 72 KIAS at 10.000 ft");
+        check("Power", "FULL THROTTLE and 2400 RPM");
+        check("Mixture", "LEAN", "according to max Power Fuel Flow placard value");
+        check("Cowl Flaps", "OPEN");
+        check("Fuel Selector Valve", "BOTH");
     }
 }

@@ -36,7 +36,7 @@ item("Pitot Heat") {
 }
 
 # Master is "Alternator+Battery"
-item("Master") {
+item("Master Switch") {
     m = "controls/engines/engine[0]/master-bat";
     a = "controls/engines/engine[0]/master-alt";
     v = "systems/electrical/volts";
@@ -62,7 +62,7 @@ item("Alternator") {
 }
 
 # Avionics master switch is both switches
-item("Avionics Master") {
+item("Avionics Master Switch") {
     avm1_sw = "controls/switches/AVMBus1";
     avm2_sw = "controls/switches/AVMBus2";
 #   avm1_v  = "??? no power property available right now ???";
@@ -135,7 +135,8 @@ item("Cowl Flaps") {
 }
 
 item("Mixture") {
-    s = "controls/engines/engine[0]/mixture-lever";    
+    s   = "controls/engines/engine[0]/mixture-lever";
+    gph = "/systems/fuel/indicated-manfold-fuel-flow-gph";
     state("IDLE CUT-OFF", s <= 0.0) {
         fgcommand("property-interpolate", property=s, value=0.0, rate=0.5);
     }
@@ -146,14 +147,14 @@ item("Mixture") {
     state("return to IDLE CUT-OFF", s <= 0.0) {  # when priming
         fgcommand("property-interpolate", property=s, value=0.0, rate=2.0);
     }
-    state("ENRICHEN");
-    state("RICH", s >= 0.5) {
+    state("ENRICHEN as required");
+    state("RICH", s >= 0.85) {
         fgcommand("property-interpolate", property=s, value=0.9, rate=0.5);
     }
     state("FULL RICH", s >= 1.0) {
         fgcommand("property-interpolate", property=s, value=1.0, rate=0.5);
     }
-    state("15 GPH or FULL RICH");
+    state("15 GPH or FULL RICH", gph>=14.5&&gph<=15.1);
     marker(0.3525, 0.1108, 0.0600, 3.0);
 }
 
@@ -205,10 +206,16 @@ item("Power") {
     mix  = "controls/engines/engine[0]/mixture-lever";
     prop = "controls/engines/engine[0]/propeller-pitch";
     rpm  = "/fdm/jsbsim/propulsion/engine/engine-rpm";
-    state("23 in.Hg or FULL THROTTLE");
-    state("FULL THROTTLE and 2400 RPM", thrt>=0.99 && rpm>=1800)  {
+    mfp  = "/engines/engine/mp-inhg";
+    state("23 in.Hg or FULL THROTTLE", (mfp>=22.5 && mfp<=23) );
+    state("FULL THROTTLE and 2400 RPM", thrt>=0.99 && rpm>=2390)  {
         fgcommand("property-interpolate", property=thrt, value=1.0, rate=0.5);
         fgcommand("property-interpolate", property=prop, value=1.0, rate=0.5);
+    }
+    state("15-23 in.Hg, 2000-2400 RPM", (mfp>=15 && mfp<=23 && rpm>=2000 && rpm<=2400));
+    state("AS DESIRED");
+    state("REDUCE to idle", thrt<=0.03){
+        fgcommand("property-interpolate", property=thrt, value=0, rate=0.5);
     }
     marker(0.3525, 0.0492, 0.0600, 9.0);
 }
@@ -225,7 +232,15 @@ item("Vacuum Gauge") {
 
 item("Ignition Switch") {
     s = "controls/switches/starter";
-    state("START", s == 1) s = 0;
+    m = "/controls/engines/engine[0]/magnetos";
+    state("START", s == 1) {
+        s = 1;
+        m = 3;
+    }
+    state("OFF", s==0&&m==0) {
+        s = 0;
+        m = 0;
+    }
     marker(0.3525, -0.4742, 0.0933, 2.5);
 }
 
@@ -237,10 +252,15 @@ item("Magnetos") {
 item("Wing Flaps") {
     s = "/controls/flight/flaps";
     p = "/fdm/jsbsim/fcs/flaps-control";
+    state("UP", p==0) s=0;
     state("RETRACT", p==0) s=0;
     state("0 to 20", (p>=0 && p<=0.55)) s=0.26315;
-    state("20", (p>=0.5 && p<=0.55)) s=0.26315;
+    state("20", (p>=0.25 && p<=0.27)) s=0.26315;
+    state("RETRACT TO 20", (p>=0.25 && p<=0.27)) s=0.26315;
+    state("RETRACT slowly", p==0) s=0;
+    state("FULL (below 100 KIAS)", (p==1)) s=1;
     state("SET for takeoff", (p>=0 && p<=0.55)) s=0.26315;
+    state("AS DESIRED");
     marker(0.3542, 0.2017, 0.1258, 3.0);
 }
 
@@ -295,8 +315,13 @@ item("Brakes") {
     p = "controls/gear/brake-parking";
     state("RELEASE", p == 0.0) p = 0.0;
     state("APPLY", p == 1.0) p = 1.0;
+    state("APPLY HEAVILY");
     state("TEST and SET",p == 1.0) p = 1.0;
     marker(0.3717, -0.2325, 0.0275, 5.5);
+}
+
+item("Braking") {
+    state("MINIMUM REQUIRED");
 }
 
 item("Parking Brake") {
@@ -331,8 +356,13 @@ item("Passenger Seat Backs") {
     state("MOST UPRIGHT POSITION");
 }
 
-item("Seats and Seatbelts") {
+item("Pilot and Passenger Seat Backs") {
+    state("MOST UPRIGHT POSITION");
+}
+
+item("Seats and Seat Belts") {
     state("CHECK SECURE");
+    state("SECURED and LOCKED");
 }
 
 item("Cabin Doors") {
@@ -377,32 +407,61 @@ item("Elevator Trim") {
     state("SET for takeoff", trim >= -0.025 && trim <= 0.025) {
         fgcommand("property-interpolate", property=trim, value=0.0, rate=0.5);
     }
+    state("ADJUST");
     marker(0.3558, -0.0417, -0.1033, 7.5);
 }
 
 item("Rudder Trim") {
     trim = "/controls/flight/rudder-trim";
-    state("SET for takeoff", trim >= -0.01 && trim <= 0.1) {
+    state("SET for takeoff", trim >= -0.01 && trim <= 0.01) {
         fgcommand("property-interpolate", property=trim, value=0.0, rate=0.5);
     }
+    state("ADJUST");
     marker(0.3558, 0.0500, -0.0708, 7.5);
+}
+
+item("Trim") {
+    trim_r = "/controls/flight/rudder-trim";
+    trim_e = "/controls/flight/elevator-trim";
+    state("ADJUST as desired");
+    state("SET for takeoff", trim_e >= -0.1 && trim_e <= 0.1 && trim_r >= -0.01 && trim_r <= 0.01) {
+        fgcommand("property-interpolate", property=trim_r, value=0.0, rate=0.5);
+        fgcommand("property-interpolate", property=trim_e, value=0.0, rate=0.5);
+    }
+    marker(0.4000, -0.0158, -0.0517, 10);
 }
 
 item("Climb Speed") {
     vs = "fdm/jsbsim/velocities/vias-kts";
-    state("58 KIAS");
-    state("70 KIAS (Flaps 20)");
-    state("80 KIAS (Flaps 0)");
+    state("55 KIAS",            vs >=52 && vs<=58);
+    state("58 KIAS",            vs >=53 && vs<=63);
+    state("70 KIAS (Flaps 20)", vs >=65 && vs<=75);
+    state("80 KIAS (Flaps 0)",  vs >=75 && vs<=85);
     marker(0.3542, -0.3458, 0.3967, 5);
 }
 
 item("Airspeed") {
     vs = "fdm/jsbsim/velocities/vias-kts";
-    state("85-95 KIAS", vs >=85 && vs<=95);
-    state("80 KIAS at sea level to 72 KIAS at 10.000 ft", vs >=80 && vs<=72);    # 80 at sea level, 72 at 10.000ft
-    state("70-80 KIAS", vs >=70 && vs<=80);
+    state("85-95 KIAS", vs >=80 && vs<=100);
+    state("80 KIAS at sea level to 72 KIAS at 10.000 ft", vs>=75 && vs<=85);    # 80 at sea level, 72 at 10.000ft
+    state("70-80 KIAS (Flaps UP)", vs>=65 && vs<=85);
+    state("60-70 KIAS (Flaps FULL)", vs>=58 && vs<=75);
+    state("60 KIAS (until Flare)", vs>=58 && vs<=62);
     marker(0.3542, -0.3458, 0.3967, 5);
 }
+
+item("Touchdown") {
+    state("MAIN WHEELS FIRST");
+}
+
+item("Landing Roll") {
+    state("LOWER NOSE WHEEL GENTLY");
+}
+
+item("Control Lock") {
+    state("INSTALL");
+}
+
 
 
 
@@ -420,9 +479,9 @@ checklist("BEFORE STARTING ENGINE") {
     check("Circuit Brakers", "CHECK IN");
     check("Electrical Equipment", "OFF");
     text("WARNING");
-    text("The Avionics Master Switch must be OFF during Engine");
+    text("The Avionics Master Switch Switch must be OFF during Engine");
     text("start to prevent possible damage to avionics");
-    check("Avionics Master", "OFF");
+    check("Avionics Master Switch", "OFF");
     check("Autopilot", "OFF");
     check("Cowl Flaps", "OPEN");
     check("Fuel Selector Valve", "BOTH");
@@ -436,7 +495,7 @@ checklist("STARTING ENGINE (With Battery)") {
         check("Propeller",      "HIGH RPM");
         check("Mixture",        "IDLE CUT-OFF");
         check("Propeller Area", "CLEAR");
-        check("Master",         "ON");
+        check("Master Switch",         "ON");
         
         text("Priming the engine:");
         check("Auxiliary Fuel Pump", "ON");
@@ -459,7 +518,7 @@ checklist("STARTING ENGINE (With Battery)") {
         check("Oil Pressure", "CHECK");
         check("Beacon", "ON", "as required");
         check("Navigation Lights", "ON", "as required");
-        check("Avionics Master", "ON");
+        check("Avionics Master Switch", "ON");
         check("Radios", "ON");
         check("Wing Flaps", "RETRACT");
     }
@@ -472,7 +531,7 @@ checklist("STARTING ENGINE (With External Power)") {
         check("Mixture",        "IDLE CUT-OFF");
         check("Propeller Area", "CLEAR");
         check("External Power", "CONNECT", "to airplane receptacle");
-        check("Master",         "ON");
+        check("Master Switch",         "ON");
         
         text("Priming the engine:");
         check("Auxiliary Fuel Pump", "ON");
@@ -496,7 +555,7 @@ checklist("STARTING ENGINE (With External Power)") {
         check("External Power", "DISCONNECT", "from airplane receptacle");
         check("Beacon", "ON", "as required");
         check("Navigation Lights", "ON", "as required");
-        check("Avionics Master", "ON");
+        check("Avionics Master Switch", "ON");
         check("Radios", "ON");
         check("Wing Flaps", "RETRACT");
     }
@@ -530,53 +589,117 @@ checklist("BEFORE TAKEOFF") {
         check("Radios", "SET");
         check("Avionics", "SET");
         check("Autopilot", "OFF");
-        check("Elevator Trim", "SET for takeoff");
-        check("Rudder Trim", "SET for takeoff");
+        check("Trim", "SET for takeoff");
         check("Wing Flaps", "SET for takeoff", "(0 TO 20)");
         check("Cowl Flaps", "OPEN");
         check("Brakes", "RELEASE");
     }
 }
 
-checklist("TAKEOFF") {
-    page {
-        text("NORMAL TAKEOFF");
-        check("Wing Flaps", "0 to 20");
-        check("Power", "FULL THROTTLE and 2400 RPM");
-        check("Mixture", "RICH", "(may be leaned to max power fuel flow placard value)");
-        check("Elevator Control", "LIFT NOSE WHEEL", "(at 50-60 KIAS)");
-        check("Climb Speed", "70 KIAS (Flaps 20)");
-        check("Climb Speed", "80 KIAS (Flaps 0)");
-        check("Wing Flaps", "RETRACT");
-    }
-    page {
-        text("SHORT FIELD TAKEOFF");
-        check("Wing Flaps", "20");
-        check("Brakes", "APPLY");
-        check("Power", "FULL THROTTLE and 2400 RPM");
-        check("Mixture", "LEAN", "to obtain max power fuel flow placard value");
-        check("Brakes", "RELEASE");
-        check("Elevator Control", "MAINTAIN SLIGHTLY", "TAIL LOW ATTITUDE");
-        check("Climb Speed", "58 KIAS", "(until obstacles are cleared)");
-        check("Wing Flaps", "RETRACT", "slowly after reaching 70 KIAS");
-    }
+checklist("TAKEOFF (Normal)") {
+    check("Wing Flaps", "0 to 20");
+    check("Power", "FULL THROTTLE and 2400 RPM");
+    check("Mixture", "RICH", "(may be leaned to max power fuel flow placard value)");
+    check("Elevator Control", "LIFT NOSE WHEEL", "(at 50-60 KIAS)");
+    check("Climb Speed", "70 KIAS (Flaps 20)", "80 KIAS (Flaps 0)");
+    check("Wing Flaps", "RETRACT");
 }
 
-checklist("ENROUTE CLIMB") {
-    page {
-        text("NORMAL CLIMB");
-        check("Airspeed", "85-95 KIAS");
-        check("Power", "23 in.Hg or FULL THROTTLE", "(whichever is less) and 2400 RPM");
-        check("Mixture", "15 GPH or FULL RICH", "(whichever is less)");
-        check("Cowl Flaps", "OPEN", "as required");
-        check("Fuel Selector Valve", "BOTH");
-    }
-    page {
-        text("MAXIMUM PERFORMANCE CLIMB");
-        check("Airspeed", "80 KIAS at sea level to 72 KIAS at 10.000 ft");
-        check("Power", "FULL THROTTLE and 2400 RPM");
-        check("Mixture", "LEAN", "according to max Power Fuel Flow placard value");
-        check("Cowl Flaps", "OPEN");
-        check("Fuel Selector Valve", "BOTH");
-    }
+checklist("TAKEOFF (Short Field)") {
+    check("Wing Flaps", "20");
+    check("Brakes", "APPLY");
+    check("Power", "FULL THROTTLE and 2400 RPM");
+    check("Mixture", "LEAN", "to obtain max power fuel flow placard value");
+    check("Brakes", "RELEASE");
+    check("Elevator Control", "MAINTAIN SLIGHTLY", "TAIL LOW ATTITUDE");
+    check("Climb Speed", "58 KIAS", "(until obstacles are cleared)");
+    check("Wing Flaps", "RETRACT", "slowly after reaching 70 KIAS");
+}
+
+checklist("ENROUTE CLIMB (Normal)") {
+    check("Airspeed", "85-95 KIAS");
+    check("Power", "23 in.Hg or FULL THROTTLE", "(whichever is less) and 2400 RPM");
+    check("Mixture", "15 GPH or FULL RICH", "(whichever is less)");
+    check("Cowl Flaps", "OPEN", "as required");
+    check("Fuel Selector Valve", "BOTH");
+}
+
+checklist("ENROUTE CLIMB (Max. Performance)") {
+    check("Airspeed", "80 KIAS at sea level to 72 KIAS at 10.000 ft");
+    check("Power", "FULL THROTTLE and 2400 RPM");
+    check("Mixture", "LEAN", "according to max Power Fuel Flow placard value");
+    check("Cowl Flaps", "OPEN");
+    check("Fuel Selector Valve", "BOTH");
+}
+
+checklist("CRUISE") {
+    check("Power", "15-23 in.Hg, 2000-2400 RPM", "(no more than 80%)");
+    check("Elevator Trim", "ADJUST");
+    check("Rudder Trim", "ADJUST");
+    check("Mixture", "LEAN");
+    check("Cowl Flaps", "CLOSED");
+}
+
+checklist("DESCENT") {
+    check("Power", "AS DESIRED");
+    check("Mixture", "ENRICHEN as required");
+    check("Cowl Flaps", "CLOSED");
+    check("Fuel Selector Valve", "BOTH");
+    check("Wing Flaps", "AS DESIRED", "0-10 below 140 KIAS", "10-20 below 120 KIAS", "20-FULL below 100 KIAS)");
+}
+
+checklist("BEFORE LANDING") {
+    check("Pilot and Passenger Seat Backs", "MOST UPRIGHT POSITION");
+    check("Seats and Seat Belts", "SECURED and LOCKED");
+    check("Fuel Selector Valve", "BOTH");
+    check("Mixture", "RICH");
+    check("Propeller", "HIGH RPM");
+    check("Landing Lights", "ON");
+    check("Autopilot", "OFF");
+}
+
+checklist("LANDING (Normal)") {
+    check("Airspeed", "70-80 KIAS (Flaps UP)");
+    check("Wing Flaps", "AS DESIRED", "0-10 below 140 KIAS", "10-20 below 120 KIAS", "20-FULL below 100 KIAS");
+    check("Airspeed", "60-70 KIAS (Flaps FULL)");
+    check("Power", "REDUCE to idle", "as obstacle is cleared");
+    check("Trim", "ADJUST as desired");
+    check("Touchdown", "MAIN WHEELS FIRST");
+    check("Landing Roll", "LOWER NOSE WHEEL GENTLY");
+    check("Braking", "MINIMUM REQUIRED");
+}
+
+checklist("LANDING (Short Field)") {
+    check("Airspeed", "70-80 KIAS (Flaps UP)");
+    check("Wing Flaps", "FULL (below 100 KIAS)");
+    check("Airspeed", "60 KIAS (until Flare)");
+    check("Trim", "ADJUST as desired");
+    check("Touchdown", "MAIN WHEELS FIRST");
+    check("Brakes", "APPLY HEAVILY");
+}
+
+checklist("ABORTED LANDING") {
+    check("Power", "FULL THROTTLE and 2400 RPM");
+    check("Wing Flaps", "RETRACT TO 20");
+    check("Climb Speed", "55 KIAS");
+    check("Wing Flaps", "RETRACT slowly", "after reaching a safe altitude and 70 KIAS");
+    check("Cowl Flaps", "OPEN");
+}
+
+checklist("AFTER LANDING") {
+    check("Wing Flaps", "UP");
+    check("Cowl Flaps", "OPEN");
+}
+
+checklist("SECURING AIRPLANE") {
+    check("Parking Brake", "SET");
+    check("Throttle", "IDLE");
+    check("Electrical Equipment", "OFF");
+    check("Avionics Master Switch", "OFF");
+    check("Autopilot", "OFF");
+    check("Mixture", "IDLE CUT-OFF");
+    check("Ignition Switch", "OFF");
+    check("Master Switch", "OFF");
+    check("Control Lock", "INSTALL");
+    check("Fuel Selector Valve", "LEFT or RIGHT", "to prevent cross feeding");
 }

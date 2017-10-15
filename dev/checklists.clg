@@ -114,7 +114,7 @@ item("Strobe Lights") {
 
 item("Fuel Selector Valve") {
     s = "controls/switches/fuel_tank_selector";
-    state("OFF",   s == 0) s = 0;
+    state("PUSH DOWN and ROTATE TO OFF", s == 0) s = 0;
     state("LEFT",  s == 1) s = 1;
     state("RIGHT", s == 3) s = 3;
     state("BOTH",  s == 2) s = 2;
@@ -217,6 +217,7 @@ item("Power") {
     state("REDUCE to idle", thrt<=0.03){
         fgcommand("property-interpolate", property=thrt, value=0, rate=0.5);
     }
+    state("ESTABLISH 300 FT/MIN DESCEND AT 65 KIAS");
     marker(0.3525, 0.0492, 0.0600, 9.0);
 }
 
@@ -237,6 +238,7 @@ item("Ignition Switch") {
         s = 1;
         m = 3;
     }
+    state("BOTH", m==3) m = 3;
     state("OFF", s==0&&m==0) {
         s = 0;
         m = 0;
@@ -256,11 +258,14 @@ item("Wing Flaps") {
     state("RETRACT", p==0) s=0;
     state("0 to 20", (p>=0 && p<=0.55)) s=0.26315;
     state("20", (p>=0.25 && p<=0.27)) s=0.26315;
+    state("20 to FULL", (p>=0.25 && p<=1)) s=1;
     state("RETRACT TO 20", (p>=0.25 && p<=0.27)) s=0.26315;
     state("RETRACT slowly", p==0) s=0;
+    state("FULL", (p==1)) s=1;
     state("FULL (below 100 KIAS)", (p==1)) s=1;
     state("SET for takeoff", (p>=0 && p<=0.55)) s=0.26315;
     state("AS DESIRED");
+    state("AS REQUIRED");
     marker(0.3542, 0.2017, 0.1258, 3.0);
 }
 
@@ -276,6 +281,21 @@ item("Radios") {
         r2v=0.8;
     }
     state("SET");
+    marker(0.3600, 0.0400, 0.2867, 5.5);
+}
+item("Radio") {
+    r1p  = "/instrumentation/comm[0]/power-btn";
+    r1v  = "/instrumentation/comm[0]/volume";
+    r1fs = "/instrumentation/comm[0]/frequencies/selected-mhz";
+    ts   = "/controls/switches/kt-76c";
+    tf   = "/instrumentation/transponder/id-code";
+    state("TRANSMIT MAYDAY on 121.5 MHz") {
+        r1p  = true;
+        r1v  = 1;
+        r1fs = "121.50";
+        ts   = "4";
+        tf   = "7700";
+    }
     marker(0.3600, 0.0400, 0.2867, 5.5);
 }
 
@@ -363,12 +383,15 @@ item("Pilot and Passenger Seat Backs") {
 item("Seats and Seat Belts") {
     state("CHECK SECURE");
     state("SECURED and LOCKED");
+    state("SECURE");
 }
 
 item("Cabin Doors") {
     lDoor = "sim/model/door-positions/DoorL/position-norm";
     rDoor = "sim/model/door-positions/DoorR/position-norm";
     state("CLOSED and LOCKED", lDoor==0&&rDoor==0 );
+    state("UNLATCH");
+    state("UNLATCH PRIOR TO TOUCHDOWN");
     marker(0.8608, -0.5475, 0.1683, 9.7);
 }
 
@@ -445,6 +468,10 @@ item("Airspeed") {
     state("85-95 KIAS", vs >=80 && vs<=100);
     state("80 KIAS at sea level to 72 KIAS at 10.000 ft", vs>=75 && vs<=85);    # 80 at sea level, 72 at 10.000ft
     state("70-80 KIAS (Flaps UP)", vs>=65 && vs<=85);
+    state("75 KIAS (Flaps UP)", vs>=70 && vs<=80);
+    state("75 KIAS", vs>=70 && vs<=80);
+    state("70 KIAS (Flaps DOWN)", vs>=65 && vs<=75);
+    state("70 KIAS", vs>=65 && vs<=75);
     state("60-70 KIAS (Flaps FULL)", vs>=58 && vs<=75);
     state("60 KIAS (until Flare)", vs>=58 && vs<=62);
     marker(0.3542, -0.3458, 0.3967, 5);
@@ -452,6 +479,8 @@ item("Airspeed") {
 
 item("Touchdown") {
     state("MAIN WHEELS FIRST");
+    state("SLIGHTLY TAIL LOW");
+    state("LEVEL ATTITUDE AT ESTABLISHED RATE OF DESCENT");
 }
 
 item("Landing Roll") {
@@ -462,9 +491,40 @@ item("Control Lock") {
     state("INSTALL");
 }
 
+item("Land") {
+    state("STRAIGHT AHEAD");
+}
 
+item("Selected Field") {
+    state("FLY OVER, noting terrain and obstructions");
+}
 
+item("Heavy Objects (in baggage area)") {
+    state("SECURE OR JETTISON (if possible)");
+}
 
+item("Approach") {
+    state("High Winds, Heavy Seas -- INTO THE WIND");
+    state("Light Winds, Heavy Swells -- PARALLEL TO SWELLS");
+}
+
+item("Face") {
+    state("CUSHION at touchdown with folded coat");
+}
+
+item("ELT") {
+    s = "/instrumentation/elt/on";
+    state("Activate", s) s=true;
+    marker(0.3550, 0.4217, 0.4100, 3.2);
+}
+
+item("Airplane") {
+    state("EVACUATE through cabin doors.");
+}
+
+item("Life Vets and Raft") {
+    state("INFLATE WHEN CLEAR OF AIRPLANE");
+}
 
 
 #------------------------------------------------------------------------------
@@ -706,4 +766,89 @@ checklist("Securing Airplane") {
     check("Master Switch", "OFF");
     check("Control Lock", "INSTALL");
     check("Fuel Selector Valve", "LEFT or RIGHT", "to prevent cross feeding");
+}
+
+
+
+
+#------------------------------------------------------------------------------
+# Checklists (Emergency)
+#------------------------------------------------------------------------------
+
+checklist("EMERGENCY: Eng. Fail (Takeoff Roll)") {
+    check("Throttle", "IDLE");
+    check("Brakes", "APPLY");
+    check("Wing Flaps", "RETRACT");
+    check("Mixture", "IDLE CUT-OFF");
+    check("Ignition Switch", "OFF");
+    check("Master Switch", "OFF");
+}
+
+checklist("EMERGENCY: Eng. Fail (Takeoff)") {
+    check("Airspeed", "75 KIAS (Flaps UP)", "70 KIAS (Flaps DOWN)");
+    check("Mixture", "IDLE CUT-OFF");
+    check("Fuel Selector Valve", "PUSH DOWN and ROTATE TO OFF");
+    check("Ignition Switch", "OFF");
+    check("Wing Flaps", "AS REQUIRED", "(FULL recommended)");
+    check("Master Switch", "OFF");
+    check("Cabin Doors", "UNLATCH");
+    check("Land", "STRAIGHT AHEAD");
+}
+
+checklist("EMERGENCY: Eng. Fail (Flight/Restart)") {
+    check("Airspeed", "75 KIAS", "(best glide speed)");
+    check("Fuel Selector Valve", "BOTH");
+    check("Auxiliary Fuel Pump", "ON");
+    check("Mixture", "RICH", "(if restart has not occured)");
+    check("Ignition Switch", "BOTH", "(or START if propeller is stopped)");
+}
+
+checklist("EMERGENCY: Forced Landing w/o Power") {
+    check("Passenger Seat Backs", "MOST UPRIGHT POSITION");
+    check("Seats and Seat Belts", "SECURE");
+    check("Airspeed", "75 KIAS (Flaps UP)", "70 KIAS (Flaps DOWN)");
+    check("Mixture", "IDLE CUT-OFF");
+    check("Fuel Selector Valve", "PUSH DOWN and ROTATE TO OFF");
+    check("Ignition Switch", "OFF");
+    check("Wing Flaps", "AS REQUIRED", "(FULL recommended)");
+    check("Master Switch", "OFF", "(when landing is assured)");
+    check("Cabin Doors", "UNLATCH PRIOR TO TOUCHDOWN");
+    check("Touchdown", "SLIGHTLY TAIL LOW");
+    check("Brakes", "APPLY HEAVILY");
+}
+
+checklist("EMERGENCY: Precautionary Landing with Power") {
+    check("Passenger Seat Backs", "MOST UPRIGHT POSITION");
+    check("Seats and Seat Belts", "SECURE");
+    check("Airspeed", "75 KIAS");
+    check("Wing Flaps", "20");
+    check("Selected Field", "FLY OVER, noting terrain and obstructions", "then retract flaps upon reaching", "a safe altitude and airspeed");
+    check("Avionics Master Switch", "OFF");
+    check("Electrical Equipment", "OFF");
+    check("Wing Flaps", "FULL", "(on final approach)");
+    check("Airspeed", "70 KIAS");
+    check("Master Switch", "OFF");
+    check("Cabin Doors", "UNLATCH PRIOR TO TOUCHDOWN");
+    check("Touchdown", "SLIGHTLY TAIL LOW");
+    check("Ignition Switch", "OFF");
+    check("Brakes", "APPLY HEAVILY");
+}
+
+checklist("EMERGENCY: Ditching") {
+    check("Radio", "TRANSMIT MAYDAY on 121.5 MHz", "giving location and intentions and SQUAWK 7700");
+    check("Heavy Objects (in baggage area)", "SECURE OR JETTISON (if possible)");
+    check("Passenger Seat Backs", "MOST UPRIGHT POSITION");
+    check("Seats and Seat Belts", "SECURE");
+    check("Wing Flaps", "20 to FULL");
+    check("Power", "ESTABLISH 300 FT/MIN DESCEND AT 65 KIAS");
+    text("NOTE:");
+    text("If no power is available, approach at 70 KIAS");
+    text("with flaps up or at 65 KIAS with 10 flaps.");
+    check("Approach", "High Winds, Heavy Seas -- INTO THE WIND", "Light Winds, Heavy Swells -- PARALLEL TO SWELLS");
+    check("Cabin Doors", "UNLATCH");
+    check("Touchdown", "LEVEL ATTITUDE AT ESTABLISHED RATE OF DESCENT");
+    check("Face", "CUSHION at touchdown with folded coat");
+    check("ELT", "Activate");
+    check("Airplane", "EVACUATE through cabin doors.", "If necessary, open window and flood cabin", "to equalize pressure so doors can be opened.");
+    check("Life Vets and Raft", "INFLATE WHEN CLEAR OF AIRPLANE");
 }

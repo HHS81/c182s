@@ -35,6 +35,12 @@ item("Pitot Heat") {
     marker(0.3433, -0.2725, 0.0700, 1.35);
 }
 
+item("Pitot Tube Cover") {
+    pc = "/sim/model/c182s/securing/pitot-cover-visible";
+    state("REMOVE", pc==0) pc=0;
+    marker(0.6025, -1.3800, 0.6442, 7);
+}
+
 # Master is "Alternator+Battery"
 item("Master Switch") {
     m = "controls/engines/engine[0]/master-bat";
@@ -110,6 +116,10 @@ item("Strobe Lights") {
     state("OFF", s < 1.0) s = 0;
     state("ON",  s >= 1.0) s = 1;
     marker(0.3433, -0.2925, 0.0700, 1.35);
+}
+
+item("Annunciator Panel Switch") {
+    state("PLACE AND HOLD IN TST POSITION");
 }
 
 item("Fuel Selector Valve") {
@@ -263,6 +273,7 @@ item("Wing Flaps") {
     state("RETRACT slowly", p==0) s=0;
     state("FULL", (p==1)) s=1;
     state("FULL (below 100 KIAS)", (p==1)) s=1;
+    state("EXTEND", (p==1)) s=1;
     state("SET for takeoff", (p>=0 && p<=0.55)) s=0.26315;
     state("AS DESIRED");
     state("AS REQUIRED");
@@ -370,6 +381,10 @@ item("Electrical Equipment") {
 item("Autopilot") {
     state("OFF");
     marker(0.3567, 0.0133, 0.1658, 1.6000);
+}
+
+item("Avionics Cooling Fan") {
+    state("CHECK AUDIBLY FOR OPERATION");
 }
 
 item("Passenger Seat Backs") {
@@ -489,6 +504,7 @@ item("Landing Roll") {
 
 item("Control Lock") {
     state("INSTALL");
+    state("REMOVE");
 }
 
 item("Land") {
@@ -526,14 +542,60 @@ item("Life Vets and Raft") {
     state("INFLATE WHEN CLEAR OF AIRPLANE");
 }
 
+item("Pilot's Operating Handbook") {
+    state("AVAILABLE IN THE AIRPLANE");
+}
+
+item("Airplane Weight and Balance") {
+    state("CHECKED");
+}
+
+item("Static Pressure Alternate Source Valve") {
+    state("OFF");
+    marker(0.3592, -0.0433, 0.1300, 2.5);
+}
+
+item("Baggage Door") {
+    s = "/sim/model/door-positions/BaggageDoor/position-norm";
+    state("CHECK, lock with key", s==0) {
+        fgcommand("property-interpolate", property=s, value=00, rate=0.65);
+    }
+    marker(2.4000, -0.5750, 0.0000, 33.0000);
+}
+
+
+
 
 #------------------------------------------------------------------------------
 # Checklists  (normal operations)
 #------------------------------------------------------------------------------
 
-#checklist("Preflight Inspection") {
-#    text("TODO");
-#}
+checklist("Preflight Inspection") {
+    page {
+        text("1. Cabin");
+        text("---------------------------");
+        check("Pitot Tube Cover", "REMOVE", "Check for pitot stoppage.");
+        check("Pilot's Operating Handbook", "AVAILABLE IN THE AIRPLANE");
+        check("Airplane Weight and Balance", "CHECKED");
+        check("Parking Brake", "SET");
+        check("Control Lock", "REMOVE");
+        check("Ignition Switch", "OFF");
+        check("Avionics Master Switch", "OFF");
+        check("Master Switch", "ON");
+        check("Fuel Quantity", "CHECK", "AND ENSURE LOW FUEL ANNUNCIATORS", "(L LOW FUEL R) are EXTINGUISHED");
+        check("Avionics Master Switch", "ON");
+        check("Avionics Cooling Fan", "CHECK AUDIBLY FOR OPERATION");
+        check("Avionics Master Switch", "OFF");
+        check("Static Pressure Alternate Source Valve", "OFF");
+        check("Annunciator Panel Switch", "PLACE AND HOLD IN TST POSITION", "and ensure all annunciators illuminate");
+        check("Fuel Selector Valve", "BOTH");
+        check("Wing Flaps", "EXTEND");
+        check("Pitot Heat", "ON", "(Carefully check that pitot tube is", "warm to the touch within 30 seconds)");
+        check("Pitot Heat", "OFF");
+        check("Master Switch", "OFF");
+        check("Baggage Door", "CHECK, lock with key");
+    }
+}
 
 checklist("Before Starting Engine") {
     check("Preflight Inspection", "COMPLETE");

@@ -803,7 +803,7 @@ checklist("Starting Engine (With Battery)") {
         
         text("Priming the engine:");
         check("Auxiliary Fuel Pump", "ON");
-        check("Mixture", "ADVANCE smoothly to FULL RICH", "achieve 3-5 secs fuel flow");
+        check("Mixture", "ADVANCE smoothly to FULL RICH", "achieve stable fuel flow, then");
         check("Mixture", "return to IDLE CUT-OFF");
         check("Auxiliary Fuel Pump", "OFF");
         text("NOTE:");
@@ -839,7 +839,7 @@ checklist("Starting Engine (With External Power)") {
         
         text("Priming the engine:");
         check("Auxiliary Fuel Pump", "ON");
-        check("Mixture", "ADVANCE smoothly to FULL RICH", "achieve 3-5 secs fuel flow");
+        check("Mixture", "ADVANCE smoothly to FULL RICH", "achieve stable fuel flow, then");
         check("Mixture", "return to IDLE CUT-OFF");
         check("Auxiliary Fuel Pump", "OFF");
         text("NOTE:");

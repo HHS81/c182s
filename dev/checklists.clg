@@ -37,7 +37,8 @@ item("Pitot Heat") {
 
 item("Pitot Tube Cover") {
     pc = "/sim/model/c182s/securing/pitot-cover-visible";
-    state("REMOVE", pc==0) pc=0;
+    state("REMOVE. Check for pitot stoppage", pc==0) pc=0;
+    state("REMOVE and check opening for stoppage", pc==0) pc=0;
     marker(0.6025, -1.3800, 0.6442, 7);
 }
 
@@ -432,6 +433,7 @@ item("Engine Instruments and Ammeter") {
 
 item("Fuel Quantity") {
     state("CHECK");
+    state("CHECK VISUALLY for desired Level");
     marker(0.3425, -0.4950, 0.3217, 3.5);
 }
 
@@ -563,6 +565,112 @@ item("Baggage Door") {
     marker(2.4000, -0.5750, 0.0000, 33.0000);
 }
 
+item("Tail Tie-Down") {
+    p = "/sim/model/c182s/securing/tiedownT-visible";
+    state("DISCONNECT", p==0) p=0;
+    marker(5.6000, 0.0000, 0.1208, 15);
+}
+
+# RIGHT tie-down
+item("Wing Tie-Down") {
+    p = "/sim/model/c182s/securing/tiedownR-visible";
+    state("DISCONNECT", p==0) p=0;
+    marker(0.7867, 2.5175, 0.7000, 15);
+}
+
+# LEFT tie-down
+item("Wing Tie-Down ") {  # ATTENTION: the space is intentionally to distinguish from right wing tie-down!
+    p = "/sim/model/c182s/securing/tiedownL-visible";
+    state("DISCONNECT", p==0) p=0;
+    marker(0.7867, -2.4825, 0.7000, 15);
+}
+
+item("Control Surfaces") {
+    state("CHECK");
+}
+
+item("Trim Tab") {
+    state("CHECK security");
+}
+
+item("Antennas") {
+    state("CHECK");
+}
+
+item("Aileron") {
+    state("CHECK freedom of movement and security");
+}
+
+item("Flap") {
+    state("CHECK for security and condition");
+}
+
+item("Fuel Tank Vent Opening") {
+    state("CHECK for stoppage");
+}
+
+item("Main Wheel Tire") {
+    state("CHECK for proper inflation and general condition");  # more text in second line item
+}
+
+item("Fuel Tank Sump Quick Drain Valves") {
+    state("DRAIN SAMPLE");
+    marker(1.5242, 1.5000, 0.7000, 15);
+}
+
+item("Fuel Tank Sump Quick Drain Valves ") { # Attention, space intentional to distinguish from right item
+    state("DRAIN SAMPLE");
+    marker(1.5242, -1.4825, 0.7000, 15);
+}
+
+item("Fuel Filler Cap") {
+    state("SECURE and VENT UNOBSTRUCTED");
+}
+
+item("Static Source Opening") {
+    state("CHECK for blockage");
+}
+
+item("Fuel Strainer Quick Drain Valve") {
+    state("DRAIN SAMPLE");
+}
+
+item("Engine Oil Dipstick/Filler Cap") {
+    state("CHECK oil level");
+}
+
+item("Engine Cooling Air Inlets") {
+    state("CLEAR of obstructions");
+}
+
+item("Propeller and Spinner") {
+    state("CHECK for nicks and security");
+}
+
+item("Air Filter") {
+    state("CHECK for restrictions by dust or other foreign matter");
+}
+
+item("Nose Wheel Strut and Tire") {
+    state("CHECK for proper inflation and general condition");
+}
+
+item("Static Source opening") {
+    state("CHECK for blockage");
+}
+
+item("Stall Warning Vane") {
+    state("CHECK for freedom of movement");
+}
+
+item("Landing/Taxi Light(s)") {
+    state("CHECK for condition and cleanliness of cover");
+}
+
+
+
+
+
 
 
 
@@ -574,7 +682,7 @@ checklist("Preflight Inspection") {
     page {
         text("1. Cabin");
         text("---------------------------");
-        check("Pitot Tube Cover", "REMOVE", "Check for pitot stoppage.");
+        check("Pitot Tube Cover", "REMOVE. Check for pitot stoppage");
         check("Pilot's Operating Handbook", "AVAILABLE IN THE AIRPLANE");
         check("Airplane Weight and Balance", "CHECKED");
         check("Parking Brake", "SET");
@@ -594,6 +702,73 @@ checklist("Preflight Inspection") {
         check("Pitot Heat", "OFF");
         check("Master Switch", "OFF");
         check("Baggage Door", "CHECK, lock with key");
+    }
+    
+    page {
+        text("2. Empennage");
+        text("---------------------------");
+        #currently not installed?  check("Rudder Gust Lock", "REMOVE");
+        check("Tail Tie-Down", "DISCONNECT");
+        check("Control Surfaces", "CHECK", "freedom of movement and security");
+        check("Trim Tab", "CHECK security");
+        check("Antennas", "CHECK", "for security of attachment and general condition");
+    }
+    
+    page {
+        text("3. Right Wing Trailing Edge");
+        text("---------------------------");
+        check("Aileron", "CHECK freedom of movement and security");
+        check("Flap", "CHECK for security and condition");
+    }
+    
+    page {
+        text("4. Right Wing");
+        text("---------------------------");
+        check("Wing Tie-Down", "DISCONNECT");
+        check("Fuel Tank Vent Opening", "CHECK for stoppage");
+        check("Main Wheel Tire", "CHECK for proper inflation and general condition");
+        check("Fuel Tank Sump Quick Drain Valves", "DRAIN SAMPLE");
+        check("Fuel Quantity", "CHECK VISUALLY for desired Level");
+        check("Fuel Filler Cap", "SECURE and VENT UNOBSTRUCTED");
+    }
+    
+    page {
+        text("5. Nose");
+        text("---------------------------");
+        check("Static Source Opening", "CHECK for blockage");
+        check("Fuel Strainer Quick Drain Valve", "DRAIN SAMPLE");
+        check("Engine Oil Dipstick/Filler Cap", "CHECK oil level", "then check dipstick/filler cap SECURE", "Do not operate with less than four quarts.", "Fill to nine quarts for extended flight.");
+        check("Engine Cooling Air Inlets", "CLEAR of obstructions");
+        check("Propeller and Spinner", "CHECK for nicks and security");
+        check("Air Filter", "CHECK for restrictions by dust or other foreign matter");
+        check("Nose Wheel Strut and Tire", "CHECK for proper inflation and general condition");
+        check("Static Source opening", "CHECK for blockage");
+    }
+    
+    page {
+        text("6. Left Wing");
+        text("---------------------------");
+        check("Fuel Quantity", "CHECK VISUALLY for desired Level");
+        check("Fuel Filler Cap", "SECURE and VENT UNOBSTRUCTED");
+        check("Fuel Tank Sump Quick Drain Valves ", "DRAIN SAMPLE"); # space itentional
+        check("Main Wheel Tire", "CHECK for proper inflation and general condition");
+    }
+    
+    page {
+        text("7. Left Wing Leading Edge");
+        text("---------------------------");
+        check("Pitot Tube Cover", "REMOVE and check opening for stoppage");
+        check("Fuel Tank Vent Opening", "CHECK for stoppage");
+        check("Stall Warning Vane", "CHECK for freedom of movement", "With Master Switch on: a sound of the", "warning horn confirms system operation");
+        check("Wing Tie-Down ", "DISCONNECT");  # Attention: Space intentional
+        check("Landing/Taxi Light(s)", "CHECK for condition and cleanliness of cover");
+    }
+    
+    page {
+        text("8. Left Wing Trailing Edge");
+        text("---------------------------");
+        check("Aileron", "CHECK freedom of movement and security");
+        check("Flap", "CHECK for security and condition");
     }
 }
 

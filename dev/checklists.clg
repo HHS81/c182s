@@ -433,8 +433,11 @@ item("Engine Instruments and Ammeter") {
 
 item("Fuel Quantity") {
     state("CHECK");
-    state("CHECK VISUALLY for desired Level");
     marker(0.3425, -0.4950, 0.3217, 3.5);
+}
+
+item("Fuel Quantity ") {  # for both wing checklist items
+    state("CHECK VISUALLY for desired Level");
 }
 
 item("Annunciator Panel") {
@@ -728,7 +731,7 @@ checklist("Preflight Inspection") {
         check("Fuel Tank Vent Opening", "CHECK for stoppage");
         check("Main Wheel Tire", "CHECK for proper inflation and general condition");
         check("Fuel Tank Sump Quick Drain Valves", "DRAIN SAMPLE");
-        check("Fuel Quantity", "CHECK VISUALLY for desired Level");
+        check("Fuel Quantity ", "CHECK VISUALLY for desired Level");
         check("Fuel Filler Cap", "SECURE and VENT UNOBSTRUCTED");
     }
     
@@ -748,7 +751,7 @@ checklist("Preflight Inspection") {
     page {
         text("6. Left Wing");
         text("---------------------------");
-        check("Fuel Quantity", "CHECK VISUALLY for desired Level");
+        check("Fuel Quantity ", "CHECK VISUALLY for desired Level");
         check("Fuel Filler Cap", "SECURE and VENT UNOBSTRUCTED");
         check("Fuel Tank Sump Quick Drain Valves ", "DRAIN SAMPLE"); # space itentional
         check("Main Wheel Tire", "CHECK for proper inflation and general condition");

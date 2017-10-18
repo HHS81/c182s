@@ -153,10 +153,10 @@ item("Mixture") {
     }
     state("LEAN");
     state("ADVANCE smoothly to FULL RICH", s >= 1.0) {  # when priming
-        fgcommand("property-interpolate", property=s, value=1.0, rate=0.75);
+        fgcommand("property-interpolate", property=s, value=1.0, rate=2);
     }
     state("return to IDLE CUT-OFF", s <= 0.0) {  # when priming
-        fgcommand("property-interpolate", property=s, value=0.0, rate=2.0);
+        fgcommand("property-interpolate", property=s, value=0.0, rate=3.0);
     }
     state("ENRICHEN as required");
     state("RICH", s >= 0.85) {

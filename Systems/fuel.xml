@@ -386,6 +386,7 @@ Author: 09/2017  Benedikt Hallinger
             </test>
             
             <!-- Engine off: Priming mode -->
+            <!-- The pps-property is used to fill the manifold tank -->
             <test logic="AND" value="/systems/fuel/priming-mixture-flow-pps">
                 <!-- engine off: aux pump on and powered? -->
                 /fdm/jsbsim/propulsion/engine/set-running  EQ   0
@@ -516,9 +517,8 @@ Author: 09/2017  Benedikt Hallinger
             <output>fuel/manifold-flooded-empty-cranking-rate-throttle-pps</output>   
         </fcs_function>
         
-        
         <!-- Calculates the priming flow depending on selected mixture -->
-        <!-- TODO: should probably be some "bell courve": fuel flow is slow at first until pressure is OK. This should be somewhere at the sweet spot (3-5 seconds after mix=100% at throt=1/4 inch) and show 6 gal/Hr (36.12 lbs = 0.010pps) on the flow gauge (see: https://www.youtube.com/watch?v=-yVMskFQZsw&t=193s ) -->
+        <!-- The priming-mixture-flow-pps property is used to actually fill the manifold -->
         <fcs_function name="/systems/fuel/priming-mixture-flow-pps">
             <function>
                 <product>
@@ -530,11 +530,6 @@ Author: 09/2017  Benedikt Hallinger
             <output>/systems/fuel/priming-mixture-flow-pps</output>   
         </fcs_function>
 
-        <!-- calculate priming flow in gph (lbh->gph=0.17: pps/60/60=lbh; ) -->
-        <pure_gain name="/systems/fuel/priming-mixture-flow-gph">
-            <input> /systems/fuel/priming-mixture-flow-pps </input>
-            <gain> 612 </gain>
-        </pure_gain>
         
         
         
@@ -587,20 +582,133 @@ Author: 09/2017  Benedikt Hallinger
             <output>/controls/engines/engine/mixture</output>   
         </fcs_function>
         
+       
         
-        <!-- show INDICATED FUEL FLOW -->
-        <!-- either from normal engine operation or priming -->
+        <!-- CALCULATE INDICATED FUEL FLOW -->
+        <!-- either from normal engine operation or priming:
+              - the current fuel flow should follow some bell courve, topping out when the
+                manifold is adequately pimed (in real life, i don't know if this is correct. I assume this for now, because the fuel pump needs to build up pressure and then pumps until the manifold is full).
+              - the current courve value is calculated by a function depending on the current priming grade
+              - the resulting value is then transfered into a GPH setting showed on the gauge
+              - the kinematic is used to "dampen" the needle movement in priming mode. Its just cosmetics.
+             Please note, that all those components should probably be consolidated into an easier implementation.
+        -->
+        
+        <!-- get current priming state (how much of the needed priming is applied already?) -->
+        <fcs_function name="/systems/fuel/priming-state-pct-raw">
+            <function>
+                <quotient>
+                    <property>/fdm/jsbsim/propulsion/tank[5]/pct-full</property>
+                    <property>/systems/fuel/priming-temperature-threshold</property>
+                </quotient>
+            </function>
+            <clipto>
+                <min>0</min>
+                <max>1</max>
+            </clipto>
+            <output>/systems/fuel/priming-state-pct-raw</output>   
+        </fcs_function>
+        
+        <!-- calculate priming-state-position in bell courve (y=-x² + 2x); where: x=tank_full/priming_threshold -->
+        <fcs_function name="/systems/fuel/priming-state-pct">
+            <function>
+                <sum>
+                    <product>
+                        <value>-1</value>
+                        <pow>
+                            <property>/systems/fuel/priming-state-pct-raw</property>
+                            <value>2</value>
+                        </pow>
+                    </product>
+                    <product>
+                        <value>2</value>
+                        <property>/systems/fuel/priming-state-pct-raw</property>
+                    </product>
+                </sum>
+            </function>
+            <clipto>
+                <min>0</min>
+                <max>1</max>
+            </clipto>
+            <output>/systems/fuel/priming-state-pct</output>   
+        </fcs_function>
+        
+        <!-- calculate the GPH-setting for the position on the bell courve;
+             this is the current fraction (->positioin-pct) of the pps-flow.
+             Essentially this combines the pps flow with the indicated value on the fuel flow courve! -->
+        <fcs_function name="/systems/fuel/priming-mixture-flow-gph">
+            <function>
+                <product>
+                    <property>/systems/fuel/priming-state-pct</property>
+                    <product>
+                        <!-- pps to gph: (lbh->gph=0.17: pps/60/60=lbh; ) -->
+                        <property>/systems/fuel/priming-mixture-flow-pps</property>
+                        <value>612</value>
+                    </product>
+                </product>
+            </function>
+            <output>/systems/fuel/priming-mixture-flow-gph</output>   
+        </fcs_function>
+
+        <!-- kinematic to visually dampen off the needle movement for a nicer picture -->
+        <!--   the switch switches the input  to the kinematic -->
+        <!-- Note: this all looks more complicated that i think it should be. the problem seems that the kinematic needs a value betweeen 0.0 and 1.0 to traverse, and thus the GPH value needs to be converted twice... -->
+        <switch name="/systems/fuel/priming-mixture-flow-gph-kinematic-input">
+            <default value="/fdm/jsbsim/propulsion/engine/fuel-flow-rate-gph"/> <!-- normal engine operation -->
+            <test logic="AND" value="0">                          <!-- switch to 0 GPH when manifold is full -->
+                /fdm/jsbsim/propulsion/tank[5]/pct-full    GT  99.0
+            </test>
+            <test logic="AND" value="/systems/fuel/priming-mixture-flow-gph">   <!-- when normal priming -->
+                /fdm/jsbsim/propulsion/engine/set-running  EQ   0
+                /systems/electrical/outputs/fuel-pump      GT   0
+                /systems/fuel/fuel-pump-aux-serviceable    EQ   1
+            </test>
+        </switch>
+        <!-- convert the calculated value to a pct-input for the kinematic -->
+        <fcs_function name="/systems/fuel/priming-mixture-flow-gph-kinematic-input-pct">
+            <function>
+                <quotient>
+                    <property>/systems/fuel/priming-mixture-flow-gph-kinematic-input</property>
+                    <value>21</value> <!-- equals max gauge value -->
+                </quotient>
+            </function>
+            <output>/systems/fuel/priming-mixture-flow-gph-kinematic-input-pct</output>   
+        </fcs_function>
+        <kinematic name="/systems/fuel/priming-mixture-flow-gph-kinematic-output">
+            <input>/systems/fuel/priming-mixture-flow-gph-kinematic-input-pct</input>
+            <traverse>
+                <setting>
+                    <position>0</position>
+                    <time>0</time>
+                </setting>
+                <setting>
+                    <position>1</position>
+                    <time>0.95</time>
+                </setting>
+            </traverse>
+            <output>/systems/fuel/priming-mixture-flow-gph-kinematic-output</output>
+        </kinematic>
+        <!-- convert the kinematic output value a valid GPH value -->
+        <fcs_function name="/systems/fuel/priming-mixture-flow-gph-kinematic">
+            <function>
+                <product>
+                    <property>/systems/fuel/priming-mixture-flow-gph-kinematic-output</property>
+                    <value>21</value> <!-- equals max gauge value -->
+                </product>
+            </function>
+            <output>/systems/fuel/priming-mixture-flow-gph-kinematic</output>   
+        </fcs_function>
+        
+        <!-- Finally select which value to display to the gauge -->
         <switch name="/systems/fuel/indicated-manfold-fuel-flow-gph">
             <default value="0"/>
             <test logic="AND" value="/fdm/jsbsim/propulsion/engine/fuel-flow-rate-gph">
                 /fdm/jsbsim/propulsion/engine/fuel-flow-rate-gph  GT   0
             </test>
-            <test logic="AND" value="/systems/fuel/priming-mixture-flow-gph">
+            <test logic="AND" value="/systems/fuel/priming-mixture-flow-gph-kinematic">
                 /fdm/jsbsim/propulsion/engine/set-running  EQ   0
                 /systems/electrical/outputs/fuel-pump      GT   0
                 /systems/fuel/fuel-pump-aux-serviceable    EQ   1
-                /fdm/jsbsim/propulsion/tank[4]/pct-full    GT   1.0
-                /fdm/jsbsim/propulsion/tank[5]/pct-full    LT  99.0
             </test>
         </switch>
         

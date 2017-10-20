@@ -31,11 +31,32 @@
 
   
   <animation>
+    <!-- buttons and overall instrument -->
     <object-name>face</object-name>
     <object-name>lcd</object-name>
     <object-name>oat.swt</object-name>
     <object-name>select.button</object-name> <!--reset btn-->
     <object-name>control.button</object-name><!--start, pause, stop-btn-->
+    
+    <!-- top LCD elements -->
+    <object-name>lcd.top.minus</object-name>
+    <object-name>lcd.top.1</object-name>
+    <object-name>lcd.top.2</object-name>
+    <object-name>lcd.top.dot</object-name>
+    <object-name>lcd.top.3</object-name>
+    <object-name>lcd.top.mode</object-name> -->
+    
+    <!-- LCD divider -->
+    <object-name>lcd.line</object-name>
+    
+    <!-- bottom LCD elements -->
+    <object-name>lcd.bot.mode</object-name>
+    <object-name>lcd.bot.1</object-name>
+    <object-name>lcd.bot.2</object-name>
+    <object-name>lcd.bot.dots</object-name>
+    <object-name>lcd.bot.3</object-name>
+    <object-name>lcd.bot.4</object-name>
+
   </animation>
 
 

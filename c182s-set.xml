@@ -26,7 +26,7 @@
   <flight-model>jsb</flight-model>
   <aero>c182s</aero>
   
-  <checklists include="Aircraft/c182s/c182s-checklists.xml"/>
+  <checklists include="c182s-checklists.xml"/>
   
   <systems>
     <autopilot>

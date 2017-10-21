@@ -28,7 +28,6 @@
 <PropertyList>
 
   <path>Davtron803.ac</path>
-
   
   <animation>
     <!-- buttons and overall instrument -->
@@ -37,29 +36,7 @@
     <object-name>oat.swt</object-name>
     <object-name>select.button</object-name> <!--reset btn-->
     <object-name>control.button</object-name><!--start, pause, stop-btn-->
-    
-    <!-- top LCD elements -->
-    <object-name>lcd.top.minus</object-name>
-    <object-name>lcd.top.1</object-name>
-    <object-name>lcd.top.2</object-name>
-    <object-name>lcd.top.dot</object-name>
-    <object-name>lcd.top.3</object-name>
-    <object-name>lcd.top.mode</object-name> -->
-    
-    <!-- LCD divider -->
-    <object-name>lcd.line</object-name>
-    
-    <!-- bottom LCD elements -->
-    <object-name>lcd.bot.mode</object-name>
-    <object-name>lcd.bot.1</object-name>
-    <object-name>lcd.bot.2</object-name>
-    <object-name>lcd.bot.dots</object-name>
-    <object-name>lcd.bot.3</object-name>
-    <object-name>lcd.bot.4</object-name>
-
   </animation>
-
-
 
   <animation>
     <type>material</type>
@@ -204,19 +181,88 @@
   </animation>-->
 
   
+  <!-- TOP LCD Line -->
+  <text>
+    <name>davtron.top.lcd</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+        <x-m>0</x-m>
+        <y-m>-0.019</y-m>
+        <z-m>0.0095</z-m>
+    </offsets>    
+  
+    <type type="string">number-value</type>
+    <property type="string">/environment/temperature-degc</property>
+    <format type="string">%5.1fC</format> <!-- the sprintf() format to display the value -->
+ 
+    <layout>left-to-right</layout>
+    <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+    <draw-alignment type="bool">false</draw-alignment> <!-- draw crosshair at object center -->
+    <draw-boundingbox type="bool">false</draw-boundingbox> <!-- draw a bounding box -->
+ 
+    <font>led.txf</font> <!-- The font file name, relative to data/Fonts -->
+    <character-size type="double">0.0105</character-size> <!-- size (height) im meters -->
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <max-height>0.006</max-height> <!-- the maximum height of the text -->
+    <max-width>0.040</max-width> <!-- the maximum width of the text -->
+    <font-resolution>
+        <width type="int">32</width>
+        <height type="int">32</height>
+    </font-resolution>
+ 
+    <kerning>default</kerning> 
+    <alignment>left-center</alignment>
+ 
+  </text>
 
-  <!-- TEXT OSG 
+  <!-- bottom LCD line -->
+  <text>
+    <name>davtron.bot.lcd</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+        <x-m>0</x-m>
+        <y-m>-0.009</y-m>
+        <z-m>-0.0030</z-m>
+    </offsets>    
+  
+    <type type="string">text-value</type>
+    <property type="string">/instrumentation/clock/indicated-short-string</property>
+    
+ 
+    <layout>left-to-right</layout>
+    <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+    <draw-alignment type="bool">false</draw-alignment> <!-- draw crosshair at object center -->
+    <draw-boundingbox type="bool">false</draw-boundingbox> <!-- draw a bounding box -->
+ 
+    <font>led.txf</font> <!-- The font file name, relative to data/Fonts -->
+    <character-size type="double">0.0105</character-size> <!-- size (height) im meters -->
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <max-height>0.006</max-height> <!-- the maximum height of the text -->
+    <max-width>0.040</max-width> <!-- the maximum width of the text -->
+    <font-resolution>
+        <width type="int">32</width>
+        <height type="int">32</height>
+    </font-resolution>
+ 
+    <kerning>default</kerning> 
+    <alignment>left-center</alignment>
+ 
+  </text>
+
+
+
+  <!-- Display help -->
   <text>
     <name>textosg</name>
     <type type="string">literal</type>
-    <text type="string">Chronometer</text>
+    <text type="string">Volts/Temperature &amp; Clock</text>
     <draw-text type="bool">true</draw-text>
     <font>Helvetica.txf</font>
     <character-size type="double">0.014</character-size>
     <character-aspect-ratio type="double">1.0</character-aspect-ratio>
     <axis-alignment>yz-plane</axis-alignment>
-    <max-height>0.06</max-height>
-    <max-width>0.07</max-width>
+    <max-height>0.08</max-height>
+    <max-width>0.10</max-width>
     <font-resolution>
       <width type="int">64</width>
       <height type="int">64</height>
@@ -245,7 +291,7 @@
     <condition>
       <property>sim/panel-hotspots</property>
     </condition>
-  </animation>-->
+  </animation>
   
 </PropertyList>
 

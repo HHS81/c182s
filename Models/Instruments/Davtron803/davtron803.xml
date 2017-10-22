@@ -99,22 +99,17 @@
   </animation>
   
   <!-- Control button -->
-  <!--
   <animation>
     <type>pick</type>
     <object-name>Control.btn</object-name>
     <action>
         <button>0</button>
         <binding>
-            <command>property-cycle</command>
-            <property>/instrumentation/davtron803/top-mode</property>
-            <value type="string">E</value>
-            <value type="string">F</value>
-            <value type="string">C/value>
+            <command>nasal</command>
+            <script>davtron803.controlButtonPressed()</script>
         </binding>
     </action>
   </animation>
-  -->
   
   
 

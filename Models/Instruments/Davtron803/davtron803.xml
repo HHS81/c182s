@@ -33,9 +33,9 @@
     <!-- buttons and overall instrument -->
     <object-name>face</object-name>
     <object-name>lcd</object-name>
-    <object-name>OAT.swt</object-name>
-    <object-name>select.button</object-name> <!--reset btn-->
-    <object-name>control.button</object-name><!--start, pause, stop-btn-->
+    <object-name>OAT.swt</object-name>    <!-- switch OAT mode -->
+    <object-name>Select.btn</object-name> <!-- switch clock modes -->
+    <object-name>Control.btn</object-name><!-- control current mode -->
   </animation>
 
   <animation>
@@ -57,6 +57,12 @@
   <animation>
     <type>pick</type>
     <object-name>OAT.swt</object-name>
+    <condition>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
+    </condition>
     <action>
         <button>0</button>
         <binding>
@@ -70,28 +76,33 @@
   </animation>
   
   <!-- Select button -->
-  <!--
   <animation>
     <type>pick</type>
-    <object-name>select.button</object-name>
+    <object-name>Select.btn</object-name>
+    <condition>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
+    </condition>
     <action>
         <button>0</button>
         <binding>
             <command>property-cycle</command>
-            <property>/instrumentation/davtron803/top-mode</property>
-            <value type="string">E</value>
-            <value type="string">F</value>
-            <value type="string">C/value>
+            <property>/instrumentation/davtron803/bot-mode</property>
+            <value type="string">UT</value>
+            <value type="string">LT</value>
+            <value type="string">FT</value>
+            <value type="string">ET</value>
         </binding>
     </action>
   </animation>
-  -->
   
   <!-- Control button -->
   <!--
   <animation>
     <type>pick</type>
-    <object-name>control.button</object-name>
+    <object-name>Control.btn</object-name>
     <action>
         <button>0</button>
         <binding>
@@ -296,7 +307,7 @@
   
     <type type="string">number-value</type>
     <property type="string">/environment/temperature-degf</property>
-    <format type="string">%5.0fF</format> <!-- the sprintf() format to display the value -->
+    <format type="string">%5.1fF</format> <!-- the sprintf() format to display the value -->
  
     <layout>left-to-right</layout>
     <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
@@ -372,14 +383,13 @@
   
   
   
-  
-  
-
   <!-- ######################## -->
   <!-- LCD DISPLAY: BOTTOM Line -->
   <!-- ######################## -->
+  
+  <!-- Bottom mode UT: Show UTC time -->
   <text>
-    <name>davtron.bot.lcd</name>
+    <name>davtron.bot.lcd.utc</name>
     <axis-alignment>yz-plane</axis-alignment>
     <offsets>
         <x-m>0</x-m>
@@ -390,7 +400,6 @@
     <type type="string">text-value</type>
     <property type="string">/instrumentation/clock/indicated-short-string</property>
     
- 
     <layout>left-to-right</layout>
     <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
     <draw-alignment type="bool">false</draw-alignment> <!-- draw crosshair at object center -->
@@ -408,12 +417,149 @@
  
     <kerning>default</kerning> 
     <alignment>left-center</alignment>
- 
   </text>
+  <animation>
+    <type>select</type>
+    <object-name>davtron.bot.lcd.utc</object-name>
+    <condition>
+        <equals>
+            <property>/instrumentation/davtron803/bot-mode</property>
+            <value>UT</value>
+        </equals>
+    </condition>
+  </animation>
+  
+  <!-- Bottom mode LT: Show local time -->
+  <text>
+    <name>davtron.bot.lcd.lt</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+        <x-m>0</x-m>
+        <y-m>-0.009</y-m>
+        <z-m>-0.0030</z-m>
+    </offsets>    
+  
+    <type type="string">text-value</type>
+    <property type="string">/instrumentation/clock/local-short-string</property>
+    
+    <layout>left-to-right</layout>
+    <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+    <draw-alignment type="bool">false</draw-alignment> <!-- draw crosshair at object center -->
+    <draw-boundingbox type="bool">false</draw-boundingbox> <!-- draw a bounding box -->
+ 
+    <font>led.txf</font> <!-- The font file name, relative to data/Fonts -->
+    <character-size type="double">0.0105</character-size> <!-- size (height) im meters -->
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <max-height>0.006</max-height> <!-- the maximum height of the text -->
+    <max-width>0.040</max-width> <!-- the maximum width of the text -->
+    <font-resolution>
+        <width type="int">32</width>
+        <height type="int">32</height>
+    </font-resolution>
+ 
+    <kerning>default</kerning> 
+    <alignment>left-center</alignment>
+  </text>
+  <animation>
+    <type>select</type>
+    <object-name>davtron.bot.lcd.lt</object-name>
+    <condition>
+        <equals>
+            <property>/instrumentation/davtron803/bot-mode</property>
+            <value>LT</value>
+        </equals>
+    </condition>
+  </animation>
 
+  <!-- Bottom mode FT: Show Flight timer -->
+  <text>
+    <name>davtron.bot.lcd.ft</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+        <x-m>0</x-m>
+        <y-m>-0.009</y-m>
+        <z-m>-0.0030</z-m>
+    </offsets>    
+  
+    <type type="string">text-value</type>
+    <property type="string">/instrumentation/davtron803/flight-time</property>
+    
+    <layout>left-to-right</layout>
+    <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+    <draw-alignment type="bool">false</draw-alignment> <!-- draw crosshair at object center -->
+    <draw-boundingbox type="bool">false</draw-boundingbox> <!-- draw a bounding box -->
+ 
+    <font>led.txf</font> <!-- The font file name, relative to data/Fonts -->
+    <character-size type="double">0.0105</character-size> <!-- size (height) im meters -->
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <max-height>0.006</max-height> <!-- the maximum height of the text -->
+    <max-width>0.040</max-width> <!-- the maximum width of the text -->
+    <font-resolution>
+        <width type="int">32</width>
+        <height type="int">32</height>
+    </font-resolution>
+ 
+    <kerning>default</kerning> 
+    <alignment>left-center</alignment>
+  </text>
+  <animation>
+    <type>select</type>
+    <object-name>davtron.bot.lcd.ft</object-name>
+    <condition>
+        <equals>
+            <property>/instrumentation/davtron803/bot-mode</property>
+            <value>FT</value>
+        </equals>
+    </condition>
+  </animation>
+  
+  <!-- Bottom mode ET: Show Elasped timer -->
+  <text>
+    <name>davtron.bot.lcd.et</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+        <x-m>0</x-m>
+        <y-m>-0.009</y-m>
+        <z-m>-0.0030</z-m>
+    </offsets>    
+  
+    <type type="string">text-value</type>
+    <property type="string">/instrumentation/davtron803/elapsed-time</property>
+    
+    <layout>left-to-right</layout>
+    <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+    <draw-alignment type="bool">false</draw-alignment> <!-- draw crosshair at object center -->
+    <draw-boundingbox type="bool">false</draw-boundingbox> <!-- draw a bounding box -->
+ 
+    <font>led.txf</font> <!-- The font file name, relative to data/Fonts -->
+    <character-size type="double">0.0105</character-size> <!-- size (height) im meters -->
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <max-height>0.006</max-height> <!-- the maximum height of the text -->
+    <max-width>0.040</max-width> <!-- the maximum width of the text -->
+    <font-resolution>
+        <width type="int">32</width>
+        <height type="int">32</height>
+    </font-resolution>
+ 
+    <kerning>default</kerning> 
+    <alignment>left-center</alignment>
+  </text>
+  <animation>
+    <type>select</type>
+    <object-name>davtron.bot.lcd.et</object-name>
+    <condition>
+        <equals>
+            <property>/instrumentation/davtron803/bot-mode</property>
+            <value>ET</value>
+        </equals>
+    </condition>
+  </animation>
+  
+  
 
-
-  <!-- Display help -->
+  <!-- ##################### -->
+  <!--     OSG Help text     -->
+  <!-- ##################### -->
   <text>
     <name>textosg</name>
     <type type="string">literal</type>

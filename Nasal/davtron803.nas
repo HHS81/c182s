@@ -29,8 +29,12 @@ var timeFormat = func(timeProp){
   min = floor(elapsedTime/60);
   sec = elapsedTime;
 
-  #formattedTime = sprintf("%02d:%02d:%02d", hrs, min-(60*hrs), sec-(60*min));
-  formattedTime = sprintf("%02d:%02d", min-(60*hrs), sec-(60*min));
+  if (elapsedTime > 3599) {
+    # Display HH:MM after 59:59 minute/ timer
+    formattedTime = sprintf("%02d:%02d", hrs, min-(60*hrs));
+  } else {
+    formattedTime = sprintf("%02d:%02d", min, sec-(60*min));
+  }
   
   return formattedTime;
 }

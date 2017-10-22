@@ -108,6 +108,12 @@
             <command>nasal</command>
             <script>davtron803.controlButtonPressed()</script>
         </binding>
+        <mod-up>
+            <binding>
+                <command>nasal</command>
+                <script>davtron803.controlButtonReleased()</script>
+            </binding>
+        </mod-up>
     </action>
   </animation>
   

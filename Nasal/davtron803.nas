@@ -42,23 +42,43 @@ var controlButtonPressed = func {
     clock_mode = getprop("/instrumentation/davtron803/bot-mode");
     
     if (clock_mode == "FT") {
-        # reset flight timer
-        davtron_flight_time.reset();
+        # schedule reset flight timer in 3 secs, when control-button still pressed
+        controlBtnPressed = 1;
+        var timer = maketimer(3, davtron_flight_time, func(){
+            if(controlBtnPressed == 1) {
+                me.reset();
+            }
+        });
+        timer.singleShot = 1; # timer will only be run once
+        timer.start(); 
     }
+    
     if (clock_mode == "ET") {
-        # reset elapsed timer
-        davtron_elapsed_time.reset();
+        # schedule reset flight timer in 3 secs, when control-button still pressed
+        controlBtnPressed = 1;
+        var timer = maketimer(3, davtron_elapsed_time, func(){
+            if(controlBtnPressed == 1) {
+                me.reset();
+            }
+        });
+        timer.singleShot = 1; # timer will only be run once
+        timer.start();
     }
 
 }
 
-
-
+# Called from Action binding when Control button is released
+var controlButtonReleased = func {
+    controlBtnPressed = 0;  # reset button pressed state
+}
 
 
 ###########
 # INIT
 ###########
+
+# init state
+controlBtnPressed = 0;
 
 # init timers (API details: http://api-docs.freeflightsim.org/fgdata/aircraft_8nas_source.html )
 props.globals.initNode("/instrumentation/davtron803/flight-time-secs",  0, "INT");
@@ -70,12 +90,11 @@ var davtron_elapsed_time = aircraft.timer.new("/instrumentation/davtron803/elaps
 davtron_flight_time.start();
 davtron_elapsed_time.start();
 
-# Add listeners to update formatted output on each change
-setlistener("/instrumentation/davtron803/flight-time-secs", func() {
-    setprop("/instrumentation/davtron803/flight-time", timeFormat("/instrumentation/davtron803/flight-time-secs"));
-}, 1);
-setlistener("/instrumentation/davtron803/flight-time-secs", func() {
-    setprop("/instrumentation/davtron803/elapsed-time", timeFormat("/instrumentation/davtron803/elapsed-time-secs"));
-}, 1);
+# Generate formatted output in separate properties
+timeFormatUpdateLoop = maketimer(1, func(){
+            setprop("/instrumentation/davtron803/flight-time", timeFormat("/instrumentation/davtron803/flight-time-secs"));
+            setprop("/instrumentation/davtron803/elapsed-time", timeFormat("/instrumentation/davtron803/elapsed-time-secs"));
+        });
+timeFormatUpdateLoop.start();
 
 print("Davtron 803 initialized");

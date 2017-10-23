@@ -519,6 +519,7 @@
         
         <!-- Save these properties between sessions -->
         <aircraft-data>
+            <path>/sim/time/hobbs/engine</path>
             <path>/engines/engine/complex-engine-procedures</path>
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
@@ -849,6 +850,7 @@
 </updateloop>
  <c182s>
     <file>Aircraft/c182s/Nasal/c182s.nas</file>
+    <file>Aircraft/c182s/Nasal/engine.nas</file>
     <file>Aircraft/c182s/Nasal/kt76c.nas</file>
     <file>Aircraft/c182s/Nasal/kn62a.nas</file>
     <file>Aircraft/c182s/Nasal/kr87.nas</file>

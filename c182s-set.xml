@@ -582,6 +582,8 @@
             <path>/instrumentation/attitude-indicator/horizon-offset-deg</path>
             <path>/instrumentation/airspeed-indicator/tas-face-rotation</path>
             <path>/instrumentation/heading-indicator/offset-deg</path>
+            <path>/instrumentation/davtron803/top-mode</path>
+            <path>/instrumentation/davtron803/bot-mode</path>
             <path>/autopilot/settings/heading-bug-deg</path>
             <path>/instrumentation/transponder/id-code</path>
             <path>/engines/engine[0]/egt-bug-norm</path>

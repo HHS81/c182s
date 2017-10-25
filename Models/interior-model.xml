@@ -1313,6 +1313,15 @@
         <wrap>false</wrap>
       </binding>
     </action>
+    <hovered>
+        <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>radio-Light-tip</tooltip-id>
+            <mapping>percent</mapping>
+            <label>Radio Lights: %2d%%</label>
+            <property>/controls/lighting/radio-lights-norm</property>
+        </binding>
+    </hovered>
   </animation>
   
 <animation>
@@ -1342,6 +1351,15 @@
         <wrap>false</wrap>
       </binding>
     </action>
+    <hovered>
+        <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>instruments-Light-tip</tooltip-id>
+            <mapping>percent</mapping>
+            <label>Instrument Lights: %2d%%</label>
+            <property>/controls/lighting/instrument-lights-norm</property>
+        </binding>
+    </hovered>
   </animation>
   
 <animation>
@@ -1371,6 +1389,15 @@
         <wrap>false</wrap>
       </binding>
     </action>
+    <hovered>
+        <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>glaresh-Light-tip</tooltip-id>
+            <mapping>percent</mapping>
+            <label>Glareshield Lights: %2d%%</label>
+            <property>/controls/lighting/glareshield-lights-norm</property>
+        </binding>
+    </hovered>
   </animation>
   
 <animation>
@@ -1400,6 +1427,15 @@
         <wrap>false</wrap>
       </binding>
     </action>
+    <hovered>
+        <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>pedestal-Light-tip</tooltip-id>
+            <mapping>percent</mapping>
+            <label>Pedestal Lights: %2d%%</label>
+            <property>/controls/lighting/pedestal-lights-norm</property>
+        </binding>
+    </hovered>
   </animation>
  
 <!--switches-->

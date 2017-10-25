@@ -70,73 +70,82 @@
             <z>0</z>
         </axis>
     </animation>
-
+    
     <animation>
-        <type>pick</type>
+        <type>knob</type>
         <object-name>InhgKnob</object-name>
+        <property>/instrumentation/altimeter/setting-inhg</property>
+        <factor>-800</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+       <center>
+            <x-m>0.01462</x-m>
+            <y-m>-0.0349</y-m>
+            <z-m>-0.03561</z-m>
+        </center>
         <action>
-            <button>0</button>
-            <repeatable>true</repeatable>
-	    <interval-sec>0.1</interval-sec>
             <binding>
-            <command>property-adjust</command>
-            <property>instrumentation/altimeter/setting-inhg</property>
-            <step>0.01</step>
-            <min>27.50</min>
-            <max>31.0</max>
-            <wrap>0</wrap>
-        </binding>
+                <command>property-adjust</command>
+                <property>/instrumentation/altimeter/setting-inhg</property>
+                <factor>0.01</factor>
+                <min>26.0</min>
+                <max>33.0</max>
+                <wrap>false</wrap>
+            </binding>
         </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>alt-setting</tooltip-id>
+                <label>Altimeter In Hg: %5.2f</label>
+                <property>instrumentation/altimeter/setting-inhg</property>
+            </binding>
+        </hovered>
     </animation>
+    
+      <!-- TEXT OSG -->
+  <text>
+    <name>textosg</name>
+    <type type="string">literal</type>
+    <text type="string">Altitude</text>
+    <draw-text type="bool">true</draw-text>
+    <font>Helvetica.txf</font>
+    <character-size type="double">0.014</character-size>
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <axis-alignment>yz-plane</axis-alignment>
+    <max-height>0.06</max-height>
+    <max-width>0.08</max-width>
+    <font-resolution>
+      <width type="int">64</width>
+      <height type="int">64</height>
+    </font-resolution>
+    <alignment>center-center</alignment>
+    <offsets>
+      <x-m>  0.005 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m>  0.000 </z-m>
+    </offsets>
+  </text>
 
-    <animation>
-        <type>pick</type>
-        <object-name>InhgKnob</object-name>
-        <action>
-            <button>1</button>
-            <repeatable>true</repeatable>
-	    <interval-sec>0.1</interval-sec>
-            <binding>
-            <command>property-adjust</command>
-            <property>instrumentation/altimeter/setting-inhg</property>
-            <step>-0.01</step>
-            <min>27.50</min>
-            <max>31.0</max>
-            <wrap>0</wrap>
-        </binding>
-        </action>
-    </animation>
+  <animation>
+    <type>material</type>
+    <object-name>textosg</object-name>
+    <emission>
+      <red>   0.8 </red>
+      <green> 0.8 </green>
+      <blue>  0.0 </blue>
+    </emission>
+  </animation>
 
-    <animation>
-        <type>pick</type>
-        <object-name>InhgKnob</object-name>
-        <action>
-            <button>3</button>
-            <binding>
-            <command>property-adjust</command>
-            <property>instrumentation/altimeter/setting-inhg</property>
-            <step>0.01</step>
-            <min>27.50</min>
-            <max>31.0</max>
-            <wrap>0</wrap>
-        </binding>
-        </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>InhgKnob</object-name>
-        <action>
-            <button>4</button>
-            <binding>
-            <command>property-adjust</command>
-            <property>instrumentation/altimeter/setting-inhg</property>
-            <step>-0.01</step>
-            <min>27.50</min>
-            <max>31.0</max>
-            <wrap>0</wrap>
-        </binding>
-        </action>
-    </animation>
+  <animation>
+    <type>select</type>
+    <object-name>textosg</object-name>
+    <condition>
+      <property>sim/panel-hotspots</property>
+    </condition>
+  </animation>
 
 </PropertyList>

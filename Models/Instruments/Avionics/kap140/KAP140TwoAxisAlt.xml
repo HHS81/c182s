@@ -837,6 +837,39 @@ properties' values.
   </animation>
   
   <animation>
+    <object-name>knob-inner</object-name>
+    <type>rotate</type>
+    <property>/autopilot/knob-inner-pos</property>
+    <factor>1</factor>
+    <center>
+        <x-m>0.01132</x-m>
+        <y-m>0.06516</y-m>
+        <z-m>-0.00597</z-m>
+    </center>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+  </animation>
+  <animation>
+    <object-name>knob-outer</object-name>
+    <type>rotate</type>
+    <property>/autopilot/knob-outer-pos</property>
+    <factor>1</factor>
+    <center>
+        <x-m>0.01132</x-m>
+        <y-m>0.06516</y-m>
+        <z-m>-0.00597</z-m>
+    </center>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+  </animation>
+  
+  <animation>
       <object-name>knob-inner</object-name>
       <object-name>knob-outer</object-name>
       <type>knob</type>
@@ -849,6 +882,14 @@ properties' values.
               <command>nasal</command>
               <script>c182s.click("kap140-dial")</script>
           </binding>
+          <binding>
+            <command>property-adjust</command>
+            <property>/autopilot/knob-inner-pos</property>
+            <step>10</step>
+            <min>0</min>
+            <max>360</max>
+            <wrap>true</wrap>
+        </binding>
       </increase>
       <decrease>
           <binding>
@@ -859,6 +900,14 @@ properties' values.
               <command>nasal</command>
               <script>c182s.click("kap140-dial")</script>
           </binding>
+          <binding>
+            <command>property-adjust</command>
+            <property>/autopilot/knob-inner-pos</property>
+            <step>10</step>
+            <min>0</min>
+            <max>360</max>
+            <wrap>true</wrap>
+        </binding>
       </decrease>
       
       <shift-increase>
@@ -870,6 +919,14 @@ properties' values.
               <command>nasal</command>
               <script>c182s.click("kap140-dial")</script>
           </binding>
+          <binding>
+            <command>property-adjust</command>
+            <property>/autopilot/knob-outer-pos</property>
+            <step>10</step>
+            <min>0</min>
+            <max>360</max>
+            <wrap>true</wrap>
+        </binding>
       </shift-increase>
       <shift-decrease>
           <binding>
@@ -880,10 +937,58 @@ properties' values.
               <command>nasal</command>
               <script>c182s.click("kap140-dial")</script>
           </binding>
+          <binding>
+            <command>property-adjust</command>
+            <property>/autopilot/knob-outer-pos</property>
+            <step>10</step>
+            <min>0</min>
+            <max>360</max>
+            <wrap>true</wrap>
+        </binding>
       </shift-decrease>
  </animation>
   
 
+    <!-- TEXT OSG -->
+    <text>
+        <name>textosg</name>
+        <type type="string">literal</type>
+        <text type="string">Autopilot</text>
+        <draw-text type="bool">true</draw-text>
+        <font>Helvetica.txf</font>
+        <character-size type="double">0.014</character-size>
+        <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+        <axis-alignment>yz-plane</axis-alignment>
+        <max-height>0.06</max-height>
+        <max-width>0.15</max-width>
+        <font-resolution>
+            <width type="int">64</width>
+            <height type="int">64</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+        <offsets>
+            <x-m>  0.015 </x-m>
+            <y-m>  0.000 </y-m>
+            <z-m>  0.000 </z-m>
+        </offsets>
+    </text>
+    <animation>
+        <type>material</type>
+        <object-name>textosg</object-name>
+        <emission>
+            <red>   0.8 </red>
+            <green> 0.8 </green>
+            <blue>  0.0 </blue>
+        </emission>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>textosg</object-name>
+        <condition>
+            <property>sim/panel-hotspots</property>
+        </condition>
+    </animation>
 
  
 </PropertyList>

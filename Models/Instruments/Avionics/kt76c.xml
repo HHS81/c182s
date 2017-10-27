@@ -166,75 +166,58 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   </axis>
 </animation>
 
+  <animation>
+        <type>knob</type>
+        <object-name>Knob</object-name>
+        <property>/controls/switches/kt-76c</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>  0</dep></entry>
+            <entry><ind>1</ind><dep> -40</dep></entry>
+            <entry><ind>2</ind><dep> -80</dep></entry>
+            <entry><ind>3</ind><dep>-140</dep></entry>
+            <entry><ind>4</ind><dep>-180</dep></entry>
+        </interpolation>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>0</x-m>
+            <y-m>0.063</y-m>
+            <z-m>0</z-m>
+        </center>
+        
+        <increase>
+            <binding>
+                <command>property-adjust</command>
+                <property>/controls/switches/kt-76c</property>
+                <step>1</step>
+                <min>0</min>
+                <max>4</max>
+                <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kt76c-dial")</script>
+            </binding>
+        </increase>
+        <decrease>
+            <binding>
+                <command>property-adjust</command>
+                <property>/controls/switches/kt-76c</property>
+                <step>-1</step>
+                <min>0</min>
+                <max>4</max>
+                <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kt76c-dial")</script>
+            </binding>
+        </decrease>
+    </animation>
 
-<animation>
-  <type>rotate</type>
-  <object-name>Knob</object-name>
-  <property>/controls/switches/kt-76c</property>
-  <interpolation>
-    <entry><ind>0</ind><dep>  0</dep></entry>
-    <entry><ind>1</ind><dep> 40</dep></entry>
-    <entry><ind>2</ind><dep> 80</dep></entry>
-    <entry><ind>3</ind><dep>140</dep></entry>
-    <entry><ind>4</ind><dep>180</dep></entry>
-  </interpolation>
-  <center>
-    <x-m>0</x-m>
-    <y-m>0.063</y-m>
-    <z-m>0</z-m>
-  </center>
-  <axis>
-    <x>-1</x>
-    <y>0</y>
-    <z>0</z>
-  </axis>
-</animation>
-
-
-<animation>
-    <type>pick</type>
-    <object-name>Knob</object-name>
-    <visible>true</visible>
-    <action>
-      <button>0</button>
-      <repeatable>false</repeatable>
-        <binding>
-          <command>property-adjust</command>
-          <property>/controls/switches/kt-76c</property>
-          <step>1</step>
-          <min>0</min>
-          <max>4</max>
-          <wrap>false</wrap>
-        </binding>
-        <binding>
-          <command>nasal</command>
-          <script>c182s.click("kt76c-dial")</script>
-        </binding>
-     </action>
-  </animation>
-  
-<animation>
-    <type>pick</type>
-    <object-name>Knob</object-name>
-    <visible>true</visible>
-    <action>
-      <button>1</button>
-      <repeatable>false</repeatable>
-        <binding>
-          <command>property-adjust</command>
-          <property>/controls/switches/kt-76c</property>
-          <step>-1</step>
-          <min>0</min>
-          <max>4</max>
-          <wrap>false</wrap>
-        </binding>
-        <binding>
-          <command>nasal</command>
-          <script>c182s.click("kt76c-dial")</script>
-        </binding>
-     </action>
-  </animation>
-  
 <animation>
     <type>pick</type>
     <object-name>BtnIDT</object-name>

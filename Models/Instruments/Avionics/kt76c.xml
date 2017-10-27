@@ -26,9 +26,9 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>Btn6</object-name>
   <object-name>Btn7</object-name>
     <emission>
-      <red>1.0</red>
-      <green>1.0</green>
-      <blue>1.0</blue>
+      <red>0.25</red>
+      <green>0.25</green>
+      <blue>0.25</blue>
       <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
     </emission>
 </animation>

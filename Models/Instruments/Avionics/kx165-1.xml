@@ -161,7 +161,13 @@
         <object-name>NavUse</object-name>
         <object-name>NavStby</object-name>
         <condition>
-            <property>instrumentation/nav[0]/power-btn</property>
+            <property alias="../../../params/power-nav"/>
+            <property alias="../../../params/comm-serviceable"/>
+            <property alias="../../../params/nav-serviceable"/>
+            <greater-than>
+                <property>systems/electrical/outputs/comm[0]</property>
+                <value>1</value>
+            </greater-than>
         </condition>
     </animation>
 

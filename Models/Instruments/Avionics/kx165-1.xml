@@ -26,6 +26,23 @@
         "instrumentation/nav[0]/frequencies/dial-mhz",
         );
     -->
+    
+    <animation>
+        <type>material</type>
+        <object-name>Chassis</object-name>
+        <object-name>CommKHz</object-name>
+        <object-name>CommMHz</object-name>
+        <object-name>CommVolume</object-name>
+        <object-name>NavKHz</object-name>
+        <object-name>NavMHz</object-name>
+        <object-name>NavVolume</object-name>
+        <emission>
+            <red>0.65</red>
+            <green>0.65</green>
+            <blue>0.65</blue>
+            <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
+        </emission>
+    </animation>
 
     <params>
         <comm-serviceable>instrumentation/comm[0]/serviceable</comm-serviceable>
@@ -156,12 +173,33 @@
             <not>
                 <property>sim/rendering/rembrandt/enabled</property>
             </not>
+            <greater-than>
+                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <value>0</value>
+            </greater-than>
         </condition>
         <emission>
             <red>0.5</red>
             <green>0.1</green>
             <blue>0.00005</blue>
             <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
+        </emission>
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name>CommToggle</object-name>
+        <object-name>NavToggle</object-name>
+        <condition>
+            <equals>
+                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <value>0</value>
+            </equals>
+        </condition>
+        <emission>
+            <red>0.65</red>
+            <green>0.65</green>
+            <blue>0.65</blue>
+            <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
         </emission>
     </animation>
 

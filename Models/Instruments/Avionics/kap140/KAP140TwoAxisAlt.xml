@@ -903,7 +903,7 @@ properties' values.
           <binding>
             <command>property-adjust</command>
             <property>/autopilot/knob-inner-pos</property>
-            <step>10</step>
+            <step>-10</step>
             <min>0</min>
             <max>360</max>
             <wrap>true</wrap>
@@ -940,7 +940,7 @@ properties' values.
           <binding>
             <command>property-adjust</command>
             <property>/autopilot/knob-outer-pos</property>
-            <step>10</step>
+            <step>-10</step>
             <min>0</min>
             <max>360</max>
             <wrap>true</wrap>

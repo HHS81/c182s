@@ -47,8 +47,9 @@
     <object-name>NavLightSwitch</object-name>
     <object-name>StrobeLightSwitch</object-name>
     <object-name>PitotHeatSwitch</object-name>
+    <!-- FLAPS GLARESHIELD BUG-WORKAROUND: SEE ISSUE #176: https://github.com/HHS81/c182s/issues/176#issuecomment-340090229
     <object-name>Panel.001</object-name>
-    <object-name>FlapSwitch</object-name>
+    <object-name>FlapSwitch</object-name>  -->
    </effect>
    
 <effect>

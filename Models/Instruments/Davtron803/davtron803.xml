@@ -260,7 +260,7 @@
     <offsets>
         <x-m>0</x-m>
         <y-m>-0.019</y-m>
-        <z-m>0.0095</z-m>
+        <z-m>0.0105</z-m>
     </offsets>    
   
     <type type="string">number-value</type>
@@ -273,7 +273,7 @@
     <draw-boundingbox type="bool">false</draw-boundingbox> <!-- draw a bounding box -->
  
     <font>led.txf</font> <!-- The font file name, relative to data/Fonts -->
-    <character-size type="double">0.0105</character-size> <!-- size (height) im meters -->
+    <character-size type="double">0.0100</character-size> <!-- size (height) im meters -->
     <character-aspect-ratio type="double">1.0</character-aspect-ratio>
     <max-height>0.006</max-height> <!-- the maximum height of the text -->
     <max-width>0.040</max-width> <!-- the maximum width of the text -->
@@ -303,7 +303,7 @@
     <offsets>
         <x-m>0</x-m>
         <y-m>-0.019</y-m>
-        <z-m>0.0095</z-m>
+        <z-m>0.0105</z-m>
     </offsets>    
   
     <type type="string">number-value</type>
@@ -316,7 +316,7 @@
     <draw-boundingbox type="bool">false</draw-boundingbox> <!-- draw a bounding box -->
  
     <font>led.txf</font> <!-- The font file name, relative to data/Fonts -->
-    <character-size type="double">0.0105</character-size> <!-- size (height) im meters -->
+    <character-size type="double">0.0100</character-size> <!-- size (height) im meters -->
     <character-aspect-ratio type="double">1.0</character-aspect-ratio>
     <max-height>0.006</max-height> <!-- the maximum height of the text -->
     <max-width>0.040</max-width> <!-- the maximum width of the text -->
@@ -346,8 +346,8 @@
     <offsets>
         <x-m>0</x-m>
         <y-m>-0.019</y-m>
-        <z-m>0.0095</z-m>
-    </offsets>    
+        <z-m>0.0105</z-m>
+    </offsets>
   
     <type type="string">number-value</type>
     <property type="string">/environment/temperature-degc</property>
@@ -359,7 +359,7 @@
     <draw-boundingbox type="bool">false</draw-boundingbox> <!-- draw a bounding box -->
  
     <font>led.txf</font> <!-- The font file name, relative to data/Fonts -->
-    <character-size type="double">0.0105</character-size> <!-- size (height) im meters -->
+    <character-size type="double">0.0100</character-size> <!-- size (height) im meters -->
     <character-aspect-ratio type="double">1.0</character-aspect-ratio>
     <max-height>0.006</max-height> <!-- the maximum height of the text -->
     <max-width>0.040</max-width> <!-- the maximum width of the text -->
@@ -383,6 +383,40 @@
   </animation>
   
   
+  <!-- ######################### -->
+  <!-- LCD DISPLAY: Line divider -->
+  <!-- ######################### -->
+  <text>
+    <name>davtron.lcd.line</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+        <x-m>-0.001</x-m>
+        <y-m>-0.000</y-m>
+        <z-m> 0.0065</z-m>
+    </offsets>    
+  
+    <type type="string">literal</type>
+    <text type="string">_______________</text>
+    
+    <layout>left-to-right</layout>
+    <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+    <draw-alignment type="bool">false</draw-alignment> <!-- draw crosshair at object center -->
+    <draw-boundingbox type="bool">false</draw-boundingbox> <!-- draw a bounding box -->
+ 
+    <font>helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+    <character-size type="double">0.005</character-size> <!-- size (height) im meters -->
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <max-height>0.05</max-height> <!-- the maximum height of the text -->
+    <max-width>0.10</max-width> <!-- the maximum width of the text -->
+    <font-resolution>
+        <width type="int">32</width>
+        <height type="int">32</height>
+    </font-resolution>
+ 
+    <kerning>default</kerning> 
+    <alignment>center-center</alignment>
+  </text>
+  
   
   <!-- ######################## -->
   <!-- LCD DISPLAY: BOTTOM Line -->
@@ -394,7 +428,7 @@
     <axis-alignment>yz-plane</axis-alignment>
     <offsets>
         <x-m>0</x-m>
-        <y-m>-0.009</y-m>
+        <y-m>-0.008</y-m>
         <z-m>-0.0030</z-m>
     </offsets>    
   
@@ -436,7 +470,7 @@
     <axis-alignment>yz-plane</axis-alignment>
     <offsets>
         <x-m>0</x-m>
-        <y-m>-0.009</y-m>
+        <y-m>-0.008</y-m>
         <z-m>-0.0030</z-m>
     </offsets>    
   
@@ -478,7 +512,7 @@
     <axis-alignment>yz-plane</axis-alignment>
     <offsets>
         <x-m>0</x-m>
-        <y-m>-0.009</y-m>
+        <y-m>-0.008</y-m>
         <z-m>-0.0030</z-m>
     </offsets>    
   
@@ -520,7 +554,7 @@
     <axis-alignment>yz-plane</axis-alignment>
     <offsets>
         <x-m>0</x-m>
-        <y-m>-0.009</y-m>
+        <y-m>-0.008</y-m>
         <z-m>-0.0030</z-m>
     </offsets>    
   
@@ -555,6 +589,105 @@
         </equals>
     </condition>
   </animation>
+  
+  
+  
+  <!-- ######################## -->
+  <!--  Mode selection display  -->
+  <!-- ######################## -->
+  <text>
+    <name>davtron.lcd.mode1</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+        <x-m> 0.000</x-m>
+        <y-m>-0.0220</y-m>
+        <z-m> 0.0014</z-m>
+    </offsets>    
+  
+    <type type="string">literal</type>
+    <text type="string">UT LT</text>
+    
+    <layout>left-to-right</layout>
+    <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+    <draw-alignment type="bool">false</draw-alignment> <!-- draw crosshair at object center -->
+    <draw-boundingbox type="bool">false</draw-boundingbox> <!-- draw a bounding box -->
+ 
+    <font>helvetica_bold.txf</font> <!-- The font file name, relative to data/Fonts -->
+    <character-size type="double">0.00400</character-size> <!-- size (height) im meters -->
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <max-height>0.05</max-height> <!-- the maximum height of the text -->
+    <max-width>0.020</max-width> <!-- the maximum width of the text -->
+    <font-resolution>
+        <width type="int">32</width>
+        <height type="int">32</height>
+    </font-resolution>
+ 
+    <kerning>default</kerning> 
+    <alignment>left-center</alignment>
+  </text>
+  <text>
+    <name>davtron.lcd.mode2</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+        <x-m> 0.000</x-m>
+        <y-m>-0.0217</y-m>
+        <z-m>-0.0049</z-m>
+    </offsets>    
+  
+    <type type="string">literal</type>
+    <text type="string">FT ET</text>
+    
+    <layout>left-to-right</layout>
+    <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+    <draw-alignment type="bool">false</draw-alignment> <!-- draw crosshair at object center -->
+    <draw-boundingbox type="bool">false</draw-boundingbox> <!-- draw a bounding box -->
+ 
+    <font>helvetica_bold.txf</font> <!-- The font file name, relative to data/Fonts -->
+    <character-size type="double">0.00400</character-size> <!-- size (height) im meters -->
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <max-height>0.05</max-height> <!-- the maximum height of the text -->
+    <max-width>0.020</max-width> <!-- the maximum width of the text -->
+    <font-resolution>
+        <width type="int">32</width>
+        <height type="int">32</height>
+    </font-resolution>
+ 
+    <kerning>default</kerning> 
+    <alignment>left-center</alignment>
+  </text>
+  
+  <text>
+    <name>davtron.lcd.mode.FTsel</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+        <x-m> 0.000</x-m>
+        <y-m>-0.0217</y-m>
+        <z-m>-0.0070</z-m>
+    </offsets>
+  
+    <type type="string">literal</type>
+    <text type="string">&#9650;</text>
+    
+    <layout>left-to-right</layout>
+    <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+    <draw-alignment type="bool">false</draw-alignment> <!-- draw crosshair at object center -->
+    <draw-boundingbox type="bool">false</draw-boundingbox> <!-- draw a bounding box -->
+ 
+    <font>symbol.txf</font> <!-- The font file name, relative to data/Fonts -->
+    <character-size type="double">0.00200</character-size> <!-- size (height) im meters -->
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <max-height>0.05</max-height> <!-- the maximum height of the text -->
+    <max-width>1.020</max-width> <!-- the maximum width of the text -->
+    <font-resolution>
+        <width type="int">16</width>
+        <height type="int">16</height>
+    </font-resolution>
+ 
+    <kerning>default</kerning> 
+    <alignment>left-center</alignment>
+  </text>
+ 
+  
   
   
 

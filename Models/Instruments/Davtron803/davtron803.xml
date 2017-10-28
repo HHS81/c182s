@@ -655,26 +655,23 @@
     <kerning>default</kerning> 
     <alignment>left-center</alignment>
   </text>
+ 
   
+  <!-- Selection highlighters -->
   <text>
-    <name>davtron.lcd.mode.FTsel</name>
+    <name>davtron.lcd.mode.UTsel</name>
     <axis-alignment>yz-plane</axis-alignment>
     <offsets>
         <x-m> 0.000</x-m>
-        <y-m>-0.0217</y-m>
-        <z-m>-0.0070</z-m>
+        <y-m>-0.0223</y-m>
+        <z-m> 0.0018</z-m>
     </offsets>
-  
     <type type="string">literal</type>
-    <text type="string">&#9650;</text>
-    
+    <text type="string">_</text>
     <layout>left-to-right</layout>
     <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
-    <draw-alignment type="bool">false</draw-alignment> <!-- draw crosshair at object center -->
-    <draw-boundingbox type="bool">false</draw-boundingbox> <!-- draw a bounding box -->
- 
-    <font>symbol.txf</font> <!-- The font file name, relative to data/Fonts -->
-    <character-size type="double">0.00200</character-size> <!-- size (height) im meters -->
+    <font>helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+    <character-size type="double">0.007</character-size> <!-- size (height) im meters -->
     <character-aspect-ratio type="double">1.0</character-aspect-ratio>
     <max-height>0.05</max-height> <!-- the maximum height of the text -->
     <max-width>1.020</max-width> <!-- the maximum width of the text -->
@@ -682,11 +679,125 @@
         <width type="int">16</width>
         <height type="int">16</height>
     </font-resolution>
- 
     <kerning>default</kerning> 
     <alignment>left-center</alignment>
   </text>
+  <animation>
+    <type>select</type>
+    <object-name>davtron.lcd.mode.UTsel</object-name>
+    <condition>
+        <equals>
+            <property>/instrumentation/davtron803/bot-mode</property>
+            <value>UT</value>
+        </equals>
+    </condition>
+  </animation>
+  
+  <text>
+    <name>davtron.lcd.mode.LTsel</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+        <x-m> 0.000</x-m>
+        <y-m>-0.01542</y-m>
+        <z-m> 0.0018</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text type="string">_</text>
+    <layout>left-to-right</layout>
+    <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+    <font>helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+    <character-size type="double">0.007</character-size> <!-- size (height) im meters -->
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <max-height>0.05</max-height> <!-- the maximum height of the text -->
+    <max-width>1.020</max-width> <!-- the maximum width of the text -->
+    <font-resolution>
+        <width type="int">16</width>
+        <height type="int">16</height>
+    </font-resolution>
+    <kerning>default</kerning> 
+    <alignment>left-center</alignment>
+  </text>
+  <animation>
+    <type>select</type>
+    <object-name>davtron.lcd.mode.LTsel</object-name>
+    <condition>
+        <equals>
+            <property>/instrumentation/davtron803/bot-mode</property>
+            <value>LT</value>
+        </equals>
+    </condition>
+  </animation>
  
+  
+  <text>
+    <name>davtron.lcd.mode.FTsel</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+        <x-m> 0.000</x-m>
+        <y-m>-0.0223</y-m>
+        <z-m>-0.0043</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text type="string">_</text>
+    <layout>left-to-right</layout>
+    <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+    <font>helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+    <character-size type="double">0.007</character-size> <!-- size (height) im meters -->
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <max-height>0.05</max-height> <!-- the maximum height of the text -->
+    <max-width>1.020</max-width> <!-- the maximum width of the text -->
+    <font-resolution>
+        <width type="int">16</width>
+        <height type="int">16</height>
+    </font-resolution>
+    <kerning>default</kerning> 
+    <alignment>left-center</alignment>
+  </text>
+  <animation>
+    <type>select</type>
+    <object-name>davtron.lcd.mode.FTsel</object-name>
+    <condition>
+        <equals>
+            <property>/instrumentation/davtron803/bot-mode</property>
+            <value>FT</value>
+        </equals>
+    </condition>
+  </animation>
+  
+  <text>
+    <name>davtron.lcd.mode.ETsel</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+        <x-m> 0.000</x-m>
+        <y-m>-0.01542</y-m>
+        <z-m>-0.0043</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text type="string">_</text>
+    <layout>left-to-right</layout>
+    <draw-text type="bool">true</draw-text> <!-- draw the text itself -->
+    <font>helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+    <character-size type="double">0.007</character-size> <!-- size (height) im meters -->
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <max-height>0.05</max-height> <!-- the maximum height of the text -->
+    <max-width>1.020</max-width> <!-- the maximum width of the text -->
+    <font-resolution>
+        <width type="int">16</width>
+        <height type="int">16</height>
+    </font-resolution>
+    <kerning>default</kerning> 
+    <alignment>left-center</alignment>
+  </text>
+  <animation>
+    <type>select</type>
+    <object-name>davtron.lcd.mode.ETsel</object-name>
+    <condition>
+        <equals>
+            <property>/instrumentation/davtron803/bot-mode</property>
+            <value>ET</value>
+        </equals>
+    </condition>
+  </animation>
   
   
   

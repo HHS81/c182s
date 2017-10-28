@@ -41,9 +41,9 @@
         <object-name>knobs.FLT</object-name>
         <object-name>knobs.SET</object-name>
         <emission>
-          <red>0.55</red>
-          <green>0.55</green>
-          <blue>0.55</blue>
+          <red>0.45</red>
+          <green>0.45</green>
+          <blue>0.45</blue>
           <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
         </emission>
     </animation>

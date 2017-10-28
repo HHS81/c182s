@@ -37,9 +37,9 @@
         <object-name>NavMHz</object-name>
         <object-name>NavVolume</object-name>
         <emission>
-            <red>0.60</red>
-            <green>0.60</green>
-            <blue>0.60</blue>
+            <red>0.475</red>
+            <green>0.475</green>
+            <blue>0.475</blue>
             <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
         </emission>
     </animation>
@@ -202,9 +202,9 @@
             </equals>
         </condition>
         <emission>
-            <red>0.60</red>
-            <green>0.60</green>
-            <blue>0.60</blue>
+            <red>0.50</red>
+            <green>0.50</green>
+            <blue>0.50</blue>
             <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
         </emission>
     </animation>

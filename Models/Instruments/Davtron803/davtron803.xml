@@ -672,6 +672,40 @@
   </animation>
   
   
+  <!-- Adjust LCD text material properties (reflections etc) -->
+  <animation>
+    <type>material</type> 
+    <object-name>davtron.top.lcd.oat-volts</object-name>
+    <object-name>davtron.top.lcd.oat-degf</object-name>
+    <object-name>davtron.top.lcd.oat-degc</object-name>
+    <object-name>davtron.bot.lcd.utc</object-name>
+    <object-name>davtron.bot.lcd.lt</object-name>
+    <object-name>davtron.bot.lcd.ft</object-name>
+    <object-name>davtron.bot.lcd.et</object-name>
+    <object-name>davtron.lcd.line</object-name>
+    <object-name>davtron.lcd.mode1</object-name>
+    <object-name>davtron.lcd.mode2</object-name>
+    <object-name>davtron.lcd.mode.UTsel</object-name>
+    <object-name>davtron.lcd.mode.LTsel</object-name>
+    <object-name>davtron.lcd.mode.FTsel</object-name>
+    <object-name>davtron.lcd.mode.ETsel</object-name>
+    <shininess>0</shininess>
+    <specular>
+        <red>0.0</red>
+        <green>0.0</green>
+        <blue>0.0</blue>
+    </specular>
+    <ambient>
+        <red>0.0</red>
+        <green>0.0</green>
+        <blue>0.0</blue>
+    </ambient>
+    <diffuse>
+        <red>0.2</red>
+        <green>0.2</green>
+        <blue>0.2</blue>
+    </diffuse>
+  </animation>
   
 
   <!-- ##################### -->

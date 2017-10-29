@@ -584,7 +584,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <animation>
     <type>knob</type>
     <object-name>Knob1</object-name>
-    <value>0.0</value>
+    <property>/instrumentation/dme/knob1-pos</property>
     <axis>
         <x>1</x>
         <y>0</y>
@@ -607,7 +607,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
                 </and>
             </condition>
             <command>property-adjust</command>
-            <property>/instrumentation/dme/frequencies/selected-mhz</property>
+            <property>/instrumentation/dme/frequencies/selected-mhz-prev</property>
             <factor>1.0</factor>
             <mask>integer</mask>
             <min>108.00</min>
@@ -632,7 +632,86 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <animation>
     <type>knob</type>
     <object-name>Knob2</object-name>
-    <property>/instrumentation/dme/frequencies/selected-mhz</property>
+    <property>/instrumentation/dme/knob2-pos</property>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+    <center>
+        <x-m>0.0207</x-m>
+        <y-m>0.063</y-m>
+        <z-m>0.001</z-m>
+    </center>
+    <action>
+        <binding>
+            <condition>
+                <and>
+                    <property>/systems/electrical/outputs/dme</property>
+                    <equals>
+                        <property>/controls/switches/kn-62a-mode</property>
+                        <value>1</value>
+                    </equals>
+                </and>
+            </condition>
+            <command>property-adjust</command>
+            <property>/instrumentation/dme/frequencies/selected-mhz-prev</property>
+            <factor>0.01</factor>
+            <min>108.00</min>
+            <max>117.95</max>
+            <wrap>true</wrap>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a-dial")</script>
+        </binding>
+        <binding>
+            <command>property-adjust</command>
+            <property>/instrumentation/dme/knob2-pos</property>
+            <factor>-4</factor>
+            <min>0</min>
+            <max>360</max>
+            <wrap>true</wrap>
+        </binding>
+    </action>
+    <shift-action>
+        <binding>
+            <condition>
+                <and>
+                    <property>/systems/electrical/outputs/dme</property>
+                    <equals>
+                        <property>/controls/switches/kn-62a-mode</property>
+                        <value>1</value>
+                    </equals>
+                </and>
+            </condition>
+            <command>property-adjust</command>
+            <property>/instrumentation/dme/frequencies/selected-mhz-prev</property>
+            <factor>0.05</factor>
+            <min>108.00</min>
+            <max>117.95</max>
+            <wrap>true</wrap>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a-dial")</script>
+        </binding>
+        <binding>
+            <command>property-adjust</command>
+            <property>/instrumentation/dme/knob2-pos</property>
+            <factor>4</factor>
+            <min>0</min>
+            <max>360</max>
+            <wrap>true</wrap>
+        </binding>
+    </shift-action>
+  </animation>
+  
+  <!--
+  <animation>
+    <type>knob</type>
+    <object-name>Knob2</object-name>
+    <property>/instrumentation/dme/frequencies/selected-mhz-prev</property>
     <factor>-0.25</factor>
     <axis>
         <x>1</x>
@@ -656,7 +735,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
             </and>
           </condition>
           <command>property-adjust</command>
-          <property>/instrumentation/dme/frequencies/selected-mhz</property>
+          <property>/instrumentation/dme/frequencies/selected-mhz-prev</property>
           <step>0.01</step>
           <min>108</min>
           <max>117.95</max>
@@ -687,7 +766,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
             </and>
           </condition>
           <command>property-adjust</command>
-          <property>/instrumentation/dme/frequencies/selected-mhz</property>
+          <property>/instrumentation/dme/frequencies/selected-mhz-prev</property>
           <step>-0.02</step>
           <min>108</min>
           <max>117.95</max>
@@ -699,7 +778,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
         </binding>
         </decrease>
   </animation>
-  
+  -->
   
   <!-- TEXT OSG -->
   <text>

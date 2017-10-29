@@ -94,8 +94,8 @@ elapsedTimeResetMarker = 0;
 # init timers (API details: http://api-docs.freeflightsim.org/fgdata/aircraft_8nas_source.html )
 props.globals.initNode("/instrumentation/davtron803/flight-time-secs",  0, "INT");
 props.globals.initNode("/instrumentation/davtron803/elapsed-time-secs", 0, "INT");
-var davtron_flight_time  = aircraft.timer.new("/instrumentation/davtron803/flight-time-secs", 1);
-var davtron_elapsed_time = aircraft.timer.new("/instrumentation/davtron803/elapsed-time-secs", 1);
+var davtron_flight_time  = aircraft.timer.new("/instrumentation/davtron803/flight-time-secs", 1, 0);
+var davtron_elapsed_time = aircraft.timer.new("/instrumentation/davtron803/elapsed-time-secs", 1, 0);
 
 # Activate the FT timer at startup
 davtron_flight_time.start();

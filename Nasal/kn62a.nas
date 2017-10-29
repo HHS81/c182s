@@ -1,3 +1,4 @@
+
 # KN-62a DME Support
 #
 # Gary Neely aka 'Buckaroo'
@@ -16,7 +17,7 @@ var dme_selmhz	= props.globals.getNode("/instrumentation/dme/frequencies/display
 var dme_selkhz	= props.globals.getNode("/instrumentation/dme/frequencies/display-sel-khz");
 
 
-							# Update MHz and KHz sub-strings on freq changes
+# Update MHz and KHz sub-strings on freq changes
 setlistener(dme_sel, func {
   var dmestr = sprintf("%.2f",dme_sel.getValue());	# String conversion
   var dmetemp = split(".",dmestr);			# Get sub-strings
@@ -29,10 +30,10 @@ setlistener(dme_sel, func {
 var dme_mode	= props.globals.getNode("/controls/switches/kn-62a-mode");
 var dme_src	= props.globals.getNode("/instrumentation/dme/frequencies/source");
 
-							# On mode changes, change frequency source:
-							#   mode 0 (RMT):  NAV1
-							#   mode 1 (Freq): DME internal
-							#   mode 2 (GS/T): DME internal
+# On mode changes, change frequency source:
+#   mode 0 (RMT):  NAV1
+#   mode 1 (Freq): DME internal
+#   mode 2 (GS/T): DME internal
 setlistener(dme_mode, func {
   var mode = dme_mode.getValue();
   var source = "dme";

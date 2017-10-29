@@ -501,6 +501,56 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
             <script>c182s.click("kn62a")</script>
         </binding>
     </action>
+    <action>
+      <button>1</button>
+      <repeatable>false</repeatable>
+        <binding>
+          <command>property-toggle</command>
+          <property>/controls/switches/kn-62a</property>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a")</script>
+        </binding>
+    </action>
+    <action>
+      <button>2</button>
+      <repeatable>false</repeatable>
+        <binding>
+          <command>property-toggle</command>
+          <property>/controls/switches/kn-62a</property>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a")</script>
+        </binding>
+    </action>
+    <action>
+      <button>3</button>
+      <repeatable>false</repeatable>
+        <binding>
+            <command>property-assign</command>
+            <property>/controls/switches/kn-62a</property>
+            <value>1</value>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a")</script>
+        </binding>
+    </action>
+    <action>
+      <button>4</button>
+      <repeatable>false</repeatable>
+        <binding>
+            <command>property-assign</command>
+            <property>/controls/switches/kn-62a</property>
+            <value>0</value>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a")</script>
+        </binding>
+    </action>
   </animation>
     
   
@@ -534,17 +584,16 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <animation>
     <type>knob</type>
     <object-name>Knob1</object-name>
-    <property alias="/instrumentation/dme/frequencies/selected-mhz"/>
-    <factor>-0.25</factor>
+    <value>0.0</value>
     <axis>
         <x>1</x>
         <y>0</y>
         <z>0</z>
     </axis>
     <center>
-        <x-m>0.0320882</x-m>
-        <y-m>-0.022</y-m>
-        <z-m>-0.012</z-m>
+        <x-m>0.0207</x-m>
+        <y-m>0.063</y-m>
+        <z-m>0.001</z-m>
     </center>
     <action>
         <binding>
@@ -559,8 +608,9 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
             </condition>
             <command>property-adjust</command>
             <property>/instrumentation/dme/frequencies/selected-mhz</property>
-            <step>1</step>
-            <min>108</min>
+            <factor>1.0</factor>
+            <mask>integer</mask>
+            <min>108.00</min>
             <max>117.95</max>
             <wrap>true</wrap>
         </binding>
@@ -571,42 +621,18 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
         <binding>
             <command>property-adjust</command>
             <property>/instrumentation/dme/knob1-pos</property>
-            <factor>4</factor>
+            <factor>-4</factor>
             <min>0</min>
             <max>360</max>
             <wrap>true</wrap>
         </binding>
     </action>
-    
-    <decrease>
-        <binding>
-            <condition>
-                <and>
-                    <property>/systems/electrical/outputs/dme</property>
-                    <equals>
-                        <property>/controls/switches/kn-62a-mode</property>
-                        <value>1</value>
-                    </equals>
-                </and>
-            </condition>
-            <command>property-adjust</command>
-            <property>/instrumentation/dme/frequencies/selected-mhz</property>
-            <step>-2</step>
-            <min>108</min>
-            <max>117.95</max>
-            <wrap>true</wrap>
-        </binding>
-        <binding>
-            <command>nasal</command>
-            <script>c182s.click("kn62a-dial")</script>
-        </binding>
-        </decrease>
   </animation>
   
   <animation>
     <type>knob</type>
     <object-name>Knob2</object-name>
-    <property alias="/instrumentation/dme/frequencies/selected-mhz"/>
+    <property>/instrumentation/dme/frequencies/selected-mhz</property>
     <factor>-0.25</factor>
     <axis>
         <x>1</x>
@@ -614,9 +640,9 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
         <z>0</z>
     </axis>
     <center>
-        <x-m>0.0320882</x-m>
-        <y-m>-0.022</y-m>
-        <z-m>-0.012</z-m>
+        <x-m>0.0207</x-m>
+        <y-m>0.063</y-m>
+        <z-m>0.001</z-m>
     </center>
     <action>
         <binding>

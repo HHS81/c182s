@@ -38,6 +38,8 @@
   <animation>
     <type>material</type>
     <object-name>gma340.Chassis</object-name>
+    <object-name>gma340.Knob.Left</object-name>
+    <object-name>gma340.Knob.Right</object-name>
 
      <emission>
       <red>1.0</red>
@@ -238,6 +240,7 @@
     <type>pick</type>
     <object-name>gma340.pick.mkr</object-name>
     <visible>true</visible>
+    <!-- todo: according to manual: when marker is active, it can be muted but remains selected -->
     <action>
       <button>0</button>
       <repeatable>false</repeatable>

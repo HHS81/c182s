@@ -16,6 +16,7 @@
  General Public License for more details.
 -->
 <PropertyList>
+  <serviceable   archive="n" type="bool">true</serviceable>
   <dme           archive="y" type="bool">true</dme>
   <hi            archive="y" type="bool">true</hi>
   <lo            archive="y" type="bool">false</lo>

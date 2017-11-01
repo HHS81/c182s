@@ -42,6 +42,7 @@
     <display-sby-mhz type="int">0</display-sby-mhz>
     <standby-mhz-fmt type="string">122.75</standby-mhz-fmt>
   </frequencies>
+  <volume-selected type="double">0</volume-selected>
 </comm>
 <comm n="1">
   <frequencies>
@@ -52,6 +53,7 @@
     <display-sby-mhz type="int">0</display-sby-mhz>
     <standby-mhz-fmt type="string">122.75</standby-mhz-fmt>
   </frequencies>
+  <volume-selected type="double">0</volume-selected>
 </comm>
 
 <transponder>

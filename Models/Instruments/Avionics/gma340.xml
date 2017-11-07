@@ -54,6 +54,7 @@
     <object-name>gma340.Marker.O</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/marker-beacon/outer</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -71,6 +72,7 @@
     <object-name>gma340.Marker.M</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/marker-beacon/middle</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -88,6 +90,7 @@
     <object-name>gma340.Marker.I</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/marker-beacon/inner</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -110,6 +113,10 @@
       <binding>
         <command>property-toggle</command>
         <property>instrumentation/adf[0]/ident-audible</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -122,6 +129,7 @@
     <object-name>gma340.led.adf</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/adf[0]/ident-audible</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -144,6 +152,10 @@
       <binding>
         <command>property-toggle</command>
         <property>instrumentation/dme[0]/ident</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -156,6 +168,7 @@
     <object-name>gma340.led.dme</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/dme[0]/ident</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -178,6 +191,10 @@
       <binding>
         <command>property-toggle</command>
         <property>instrumentation/nav[1]/ident</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -190,6 +207,7 @@
     <object-name>gma340.led.nav2</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/nav[1]/ident</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -212,6 +230,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/nav[0]/ident</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -224,6 +246,7 @@
     <object-name>gma340.led.nav1</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/nav[0]/ident</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -247,6 +270,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/marker-beacon/audio-btn</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -259,6 +286,7 @@
     <object-name>gma340.led.mkr</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/marker-beacon/audio-btn</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -281,6 +309,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/com[0]</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -293,6 +325,7 @@
     <object-name>gma340.led.com1</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/audio-panel/com[0]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -315,6 +348,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/com[1]</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -327,6 +364,7 @@
     <object-name>gma340.led.com2</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/audio-panel/com[1]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -349,6 +387,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/com[2]</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -361,6 +403,7 @@
     <object-name>gma340.led.com3</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/audio-panel/com[2]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -384,31 +427,55 @@
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[0]</property>
         <value>1</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[1]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[2]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[0]</property>
         <value>1</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[1]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[2]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -421,6 +488,7 @@
     <object-name>gma340.led.com1mic</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/audio-panel/com-mic[0]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -444,31 +512,55 @@
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[0]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[1]</property>
         <value>1</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[2]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[0]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[1]</property>
         <value>1</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[2]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -481,6 +573,7 @@
     <object-name>gma340.led.com2mic</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/audio-panel/com-mic[1]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -504,31 +597,55 @@
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[0]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[1]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[2]</property>
         <value>1</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[0]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[1]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[2]</property>
         <value>1</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -541,6 +658,7 @@
     <object-name>gma340.led.com3mic</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/audio-panel/com-mic[2]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -563,10 +681,18 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/hi</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/lo</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -579,6 +705,7 @@
     <object-name>gma340.led.hi</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/audio-panel/hi</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -596,6 +723,7 @@
     <object-name>gma340.led.lo</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/audio-panel/lo</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -618,6 +746,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/com1-2</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -630,6 +762,7 @@
     <object-name>gma340.led.com1_2</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/audio-panel/com1-2</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -652,6 +785,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/spkr</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -664,6 +801,7 @@
     <object-name>gma340.led.spkr</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/audio-panel/spkr</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -686,6 +824,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/pa</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -698,6 +840,7 @@
     <object-name>gma340.led.pa</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/audio-panel/pa</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -720,6 +863,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/crew</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -732,6 +879,7 @@
     <object-name>gma340.led.crew</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/audio-panel/crew</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -754,6 +902,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/pilot</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -766,6 +918,7 @@
     <object-name>gma340.led.pilot</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
       <or>
         <property>/instrumentation/audio-panel/pilot</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -789,12 +942,20 @@
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/test</property>
         <value>1</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <mod-up>
         <binding>
           <command>property-assign</command>
           <property>/instrumentation/audio-panel/test</property>
           <value>0</value>
+          <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
         </binding>
       </mod-up>
       <binding>
@@ -803,4 +964,66 @@
       </binding>
     </action>
   </animation>
+  
+  <animation>
+        <type>knob</type>
+        <object-name>gma340.Knob.Left.Inner</object-name>
+        <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+        <factor>-250</factor>
+        <center>
+            <x-m>0.017</x-m>
+            <y-m>-0.06907</y-m>
+            <z-m>-0.00356</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        
+        <action>
+            <!-- handling of ICS value -->
+            <binding>
+                <command>property-adjust</command>
+                <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+                <factor>0.1</factor>
+                <min>0</min>
+                <max>1</max>                
+                <wrap>false</wrap>
+            </binding>
+            
+            <!-- handling power -->
+            <binding>
+                <command>property-assign</command>
+                <property>/instrumentation/audio-panel/power-btn</property>
+                <value>1</value>
+                <condition>
+                    <greater-than>
+                        <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+                        <value>0.01</value>
+                    </greater-than>
+                </condition>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/instrumentation/audio-panel/power-btn</property>
+                <value>0</value>
+                <condition>
+                    <less-than>
+                        <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+                        <value>0.01</value>
+                    </less-than>
+                </condition>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>ICS-pilot-volume</tooltip-id>
+                <label>ICS Volume (Pilot): %3d%%</label>
+                <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+                <mapping>percent</mapping>
+            </binding>
+        </hovered>
+    </animation>
 </PropertyList>

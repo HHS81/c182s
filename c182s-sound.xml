@@ -97,7 +97,7 @@
             <property>/engines/engine/running</property>
             <volume>
                 <property>/engines/engine/mp-osi</property>
-                <factor>0.05</factor>
+                <factor>0.025</factor>
             </volume>
             <volume>
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
@@ -125,7 +125,7 @@
             </condition>
             <volume>
                 <property>/engines/engine/rpm</property>
-                <factor>0.0002</factor>
+                <factor>0.0001</factor>
             </volume>
             <volume>
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
@@ -1247,7 +1247,7 @@
             <max-dist>2.5</max-dist>
             <volume>
               <property>/instrumentation/turn-indicator/spin</property>
-              <max>0.1</max>
+              <max>0.075</max>
             </volume>
             <pitch>
               <property>/instrumentation/turn-indicator/spin</property>
@@ -1275,7 +1275,7 @@
             <max-dist>5</max-dist>
             <volume>
               <property>/systems/electrical/outputs/fuel-pump-norm</property>
-              <max>1</max>
+              <max>0.5</max>
             </volume>
         </FuelPump>
 	
@@ -1295,7 +1295,7 @@
             <max-dist>5</max-dist>
             <volume>
               <property>/systems/electrical/outputs/fuel-pump-norm-end</property>
-              <max>1</max>
+              <max>0.5</max>
             </volume>
      </test>
 

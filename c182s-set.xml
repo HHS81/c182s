@@ -563,12 +563,12 @@
             <path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
             <path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
             <path>/instrumentation/comm[0]/power-btn</path>
-            <path>/instrumentation/comm[0]/volume</path>
+            <!-- set by GMA340.nas: <path>/instrumentation/comm[0]/volume</path> -->
             <path>/instrumentation/comm[0]/volume-selected</path>
             <path>/instrumentation/comm[1]/frequencies/selected-mhz</path>
             <path>/instrumentation/comm[1]/frequencies/standby-mhz</path>
             <path>/instrumentation/comm[1]/power-btn</path>
-            <path>/instrumentation/comm[1]/volume</path>
+            <!-- set by GMA340.nas: <path>/instrumentation/comm[1]/volume</path> -->
             <path>/instrumentation/comm[1]/volume-selected</path>
             <path>/instrumentation/dme[0]/frequencies/selected-mhz</path>
             <path>/instrumentation/dme[0]/frequencies/selected-mhz-prev</path>

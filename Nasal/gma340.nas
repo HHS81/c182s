@@ -28,6 +28,7 @@ var comm1 = props.globals.getNode("instrumentation/comm[1]");
 var comm0_pwrSwitch   = comm0.getNode("power-btn");
 var comm0_serviceable = comm0.getNode("serviceable");
 var comm1_pwrSwitch   = comm1.getNode("power-btn");
+var comm1_serviceable = comm1.getNode("serviceable");
 
 # get COM real volume used by the simulator to play audio
 var comm0_volume = comm0.getNode("volume");
@@ -40,11 +41,12 @@ var refresh_com0_volume = func {
     var pwrSw  = gma340_powerbtn.getValue();
     var svcabl = gma340_serviceable.getValue();
     var volts  = getprop("/systems/electrical/outputs/audio-panel");
+    var com0_volts  = getprop("/systems/electrical/outputs/comm[0]");
 
     #print("com0 change: pwrSw='", pwrSw, "'; svcabl='", svcabl, "';  volts='", volts, "'");
     if (pwrSw and svcabl and volts) {
         # Normal operation
-        if (gma340_com0.getValue() and comm0_pwrSwitch.getValue()) {
+        if (gma340_com0.getValue() and comm0_pwrSwitch.getValue() and comm0_pwrSwitch.getValue() and comm0_serviceable.getValue() and com0_volts) {
             #print("unmute com0:", comm0_volume_selected.getValue());
             comm0_volume.setDoubleValue(comm0_volume_selected.getValue());
         } else {
@@ -54,7 +56,6 @@ var refresh_com0_volume = func {
         
     } else {
         # Fail-State-Mode: when failure/power-off: connect pilot headset/mic directly to COM1
-        var com0_volts  = getprop("/systems/electrical/outputs/comm");
         if (comm0_pwrSwitch.getValue() and comm0_serviceable.getValue() and com0_volts) {
             # wire directly to com0; for that com0 must be operable
             #print("unmute com0 (fail-safe):", comm0_volume_selected.getValue());
@@ -69,10 +70,11 @@ var refresh_com1_volume = func {
     var pwrSw  = gma340_powerbtn.getValue();
     var svcabl = gma340_serviceable.getValue();
     var volts  = getprop("/systems/electrical/outputs/audio-panel");
+    var com1_volts  = getprop("/systems/electrical/outputs/comm[1]");
 
     if (pwrSw and svcabl and volts) {
         # Normal operation
-        if (gma340_com1.getValue() and comm1_pwrSwitch.getValue()) {
+        if (gma340_com1.getValue() and comm1_pwrSwitch.getValue() and comm1_pwrSwitch.getValue() and comm1_serviceable.getValue() and com1_volts) {
             #print("unmute com1:", comm1_volume_selected.getValue());
             comm1_volume.setDoubleValue(comm1_volume_selected.getValue());
         } else {
@@ -106,6 +108,8 @@ setlistener("/sim/signals/fdm-initialized", func {
         
         # Monitor changes to voltage
         setlistener("/systems/electrical/outputs/audio-panel", refresh_com_volumes, 1, 0);
+        setlistener("/systems/electrical/outputs/comm[0]", refresh_com_volumes, 1, 0);
+        setlistener("/systems/electrical/outputs/comm[1]", refresh_com_volumes, 1, 0);
 
         # Monitor changes to volume selection knob of comms
         setlistener("/instrumentation/comm[0]/volume-selected", refresh_com_volumes, 1, 0);

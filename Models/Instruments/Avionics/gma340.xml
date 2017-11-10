@@ -1026,4 +1026,632 @@
             </binding>
         </hovered>
     </animation>
+    
+    
+    
+    <!-- Panel texts lighting (nomenclature) -->
+    <text>
+        <name>gma340.mkr</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.0503</y-m>
+            <z-m> 0.0088</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">MKR</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0034</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.mkrmuteline</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.0503</y-m>
+            <z-m> 0.0076</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">_____</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0026</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.mkrmute</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.0503</y-m>
+            <z-m> 0.0062</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">MUTE</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0024</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.sens</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.0503</y-m>
+            <z-m>-0.0105</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">SENS</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.senshilo</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.0467</y-m>
+            <z-m>-0.0030</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">HI LO</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0032</character-size> <!-- size (height) im meters -->
+        <max-width>0.005</max-width> <!-- the maximum width of the text -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.com1</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.036</y-m>
+            <z-m> 0.0075</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COM1</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.com2</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.0230</y-m>
+            <z-m> 0.0075</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COM2</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.com3</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.00985</y-m>
+            <z-m> 0.0075</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COM3</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.com1Mic</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.036</y-m>
+            <z-m>-0.0058</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COM1 MIC</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <max-width>0.01</max-width> <!-- the maximum width of the text -->
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.com2Mic</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.0230</y-m>
+            <z-m>-0.0058</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COM2 MIC</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <max-width>0.01</max-width> <!-- the maximum width of the text -->
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.com3Mic</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.00985</y-m>
+            <z-m>-0.0058</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COM3 MIC</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <max-width>0.01</max-width> <!-- the maximum width of the text -->
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.nav1</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.00935</y-m>
+            <z-m> 0.0075</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">NAV1</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.nav2</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.02245</y-m>
+            <z-m> 0.0075</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">NAV2</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.dme</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.03558</y-m>
+            <z-m> 0.0075</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">DME</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.adf</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.04858</y-m>
+            <z-m> 0.0075</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">ADF</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.test</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.06935</y-m>
+            <z-m> 0.00868</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">TEST</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.com1_2</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.009</y-m>
+            <z-m>-0.0058</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COM 1/2</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <max-width>0.01</max-width> <!-- the maximum width of the text -->
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.spkr</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.02839</y-m>
+            <z-m>-0.0011</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">SPKR</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0034</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.pilot</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.04945</y-m>
+            <z-m>-0.001</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">PILOT</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0034</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.crew</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.04955</y-m>
+            <z-m>-0.0105</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">CREW</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0034</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.pa</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.02835</y-m>
+            <z-m>-0.0105</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">PA</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0034</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.knobPilot</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.069</y-m>
+            <z-m>-0.0128</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">PILOT</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0032</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.knobCoPilot</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.0692</y-m>
+            <z-m>-0.0128</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COPILOT</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0032</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.cabin_audio</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.025</y-m>
+            <z-m>-0.0058</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">CABIN AUDIO</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0028</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.ics_isolation</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.0463</y-m>
+            <z-m>-0.0058</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">ICS ISOLATION</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0028</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.knobCoPilotRing</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.0143</x-m>
+            <y-m> 0.069</y-m>
+            <z-m>-0.0037</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">O</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.017</character-size> <!-- size (height) im meters -->
+        <character-aspect-ratio type="double">0.9</character-aspect-ratio>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.knobPilotRing</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.0143</x-m>
+            <y-m>-0.069</y-m>
+            <z-m>-0.0037</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">O</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.017</character-size> <!-- size (height) im meters -->
+        <character-aspect-ratio type="double">0.9</character-aspect-ratio>
+        <alignment>center-center</alignment>
+    </text>
+  
+  <animation>
+    <type>select</type>
+    <object-name>gma340.mkr</object-name>
+    <object-name>gma340.mkrmuteline</object-name>
+    <object-name>gma340.mkrmute</object-name>
+    <object-name>gma340.sens</object-name>
+    <object-name>gma340.senshilo</object-name>
+    <object-name>gma340.com1</object-name>
+    <object-name>gma340.com2</object-name>
+    <object-name>gma340.com3</object-name>
+    <object-name>gma340.com1Mic</object-name>
+    <object-name>gma340.com2Mic</object-name>
+    <object-name>gma340.com3Mic</object-name>
+    <object-name>gma340.nav1</object-name>
+    <object-name>gma340.nav2</object-name>
+    <object-name>gma340.dme</object-name>
+    <object-name>gma340.adf</object-name>
+    <object-name>gma340.test</object-name>
+    <object-name>gma340.com1_2</object-name>
+    <object-name>gma340.spkr</object-name>
+    <object-name>gma340.pilot</object-name>
+    <object-name>gma340.pa</object-name>
+    <object-name>gma340.cabin_audio</object-name>
+    <object-name>gma340.ics_isolation</object-name>
+    <object-name>gma340.crew</object-name>
+    <object-name>gma340.knobPilot</object-name>
+    <object-name>gma340.knobPilotRing</object-name>
+    <object-name>gma340.knobCoPilot</object-name>
+    <object-name>gma340.knobCoPilotRing</object-name>
+    <condition>
+        <and>
+            <and>
+                <property>/instrumentation/audio-panel/serviceable</property>
+                <property>/instrumentation/audio-panel/power-btn</property>
+            </and>
+            <not>
+                <property>sim/rendering/rembrandt/enabled</property>
+            </not>
+            <greater-than>
+                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <value>0.0</value>
+            </greater-than>
+        </and>
+    </condition>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>gma340.mkr</object-name>
+    <object-name>gma340.mkrmuteline</object-name>
+    <object-name>gma340.mkrmute</object-name>
+    <object-name>gma340.sens</object-name>
+    <object-name>gma340.senshilo</object-name>
+    <object-name>gma340.com1</object-name>
+    <object-name>gma340.com2</object-name>
+    <object-name>gma340.com3</object-name>
+    <object-name>gma340.com1Mic</object-name>
+    <object-name>gma340.com2Mic</object-name>
+    <object-name>gma340.com3Mic</object-name>
+    <object-name>gma340.nav1</object-name>
+    <object-name>gma340.nav2</object-name>
+    <object-name>gma340.dme</object-name>
+    <object-name>gma340.adf</object-name>
+    <object-name>gma340.test</object-name>
+    <object-name>gma340.com1_2</object-name>
+    <object-name>gma340.spkr</object-name>
+    <object-name>gma340.pilot</object-name>
+    <object-name>gma340.pa</object-name>
+    <object-name>gma340.cabin_audio</object-name>
+    <object-name>gma340.ics_isolation</object-name>
+    <object-name>gma340.crew</object-name>
+    <object-name>gma340.knobPilot</object-name>
+    <object-name>gma340.knobPilotRing</object-name>
+    <object-name>gma340.knobCoPilot</object-name>
+    <object-name>gma340.knobCoPilotRing</object-name>
+    <condition>
+        <and>
+            <not>
+                <property>sim/rendering/rembrandt/enabled</property>
+            </not>
+            <greater-than>
+                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <value>0.0</value>
+            </greater-than>
+        </and>
+    </condition>
+    <emission>
+        <red>0.67</red>
+        <green>0.92</green>
+        <blue>0.75</blue>
+        <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
+    </emission>
+</animation>
+    
+    
+    
+  <!-- ##################### -->
+  <!--     OSG Help text     -->
+  <!-- ##################### -->
+  <text>
+    <name>textosg</name>
+    <type type="string">literal</type>
+    <text type="string">Audio Panel</text>
+    <draw-text type="bool">true</draw-text>
+    <font>Helvetica.txf</font>
+    <character-size type="double">0.014</character-size>
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <axis-alignment>yz-plane</axis-alignment>
+    <max-height>0.08</max-height>
+    <max-width>0.10</max-width>
+    <font-resolution>
+      <width type="int">64</width>
+      <height type="int">64</height>
+    </font-resolution>
+    <alignment>center-center</alignment>
+    <offsets>
+      <x-m>  0.005 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m>  0.000 </z-m>
+    </offsets>
+  </text>
+
+  <animation>
+    <type>material</type>
+    <object-name>textosg</object-name>
+    <emission>
+      <red>   0.8 </red>
+      <green> 0.8 </green>
+      <blue>  0.0 </blue>
+    </emission>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>textosg</object-name>
+    <condition>
+      <property>sim/panel-hotspots</property>
+    </condition>
+  </animation>
 </PropertyList>

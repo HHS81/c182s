@@ -55,6 +55,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/marker-beacon/outer</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -73,6 +74,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/marker-beacon/middle</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -91,6 +93,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/marker-beacon/inner</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -130,6 +133,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/adf[0]/ident-audible</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -169,6 +173,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/dme[0]/ident</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -208,6 +213,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/nav[1]/ident</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -247,6 +253,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/nav[0]/ident</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -287,6 +294,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/marker-beacon/audio-btn</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -326,6 +334,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/com[0]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -365,6 +374,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/com[1]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -404,6 +414,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/com[2]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -489,6 +500,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/com-mic[0]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -574,6 +586,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/com-mic[1]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -659,6 +672,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/com-mic[2]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -706,6 +720,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/hi</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -724,6 +739,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/lo</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -763,6 +779,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/com1-2</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -802,6 +819,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/spkr</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -841,6 +859,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/pa</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -880,6 +899,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/crew</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -919,6 +939,7 @@
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
       <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/pilot</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -1015,6 +1036,10 @@
                     </less-than>
                 </condition>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("gma340-dial")</script>
+            </binding>
         </action>
         <hovered>
             <binding>
@@ -1031,7 +1056,7 @@
     
     <!-- Panel texts lighting (nomenclature) -->
     <text>
-        <name>gma340.mkr</name>
+        <name>gma340.txt.mkr</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1049,7 +1074,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.mkrmuteline</name>
+        <name>gma340.txt.mkrmuteline</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1067,7 +1092,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.mkrmute</name>
+        <name>gma340.txt.mkrmute</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1085,7 +1110,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.sens</name>
+        <name>gma340.txt.sens</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1103,7 +1128,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.senshilo</name>
+        <name>gma340.txt.senshilo</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1122,7 +1147,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.com1</name>
+        <name>gma340.txt.com1</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1140,7 +1165,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.com2</name>
+        <name>gma340.txt.com2</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1158,7 +1183,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.com3</name>
+        <name>gma340.txt.com3</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1176,7 +1201,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.com1Mic</name>
+        <name>gma340.txt.com1Mic</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1195,7 +1220,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.com2Mic</name>
+        <name>gma340.txt.com2Mic</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1214,7 +1239,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.com3Mic</name>
+        <name>gma340.txt.com3Mic</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1233,7 +1258,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.nav1</name>
+        <name>gma340.txt.nav1</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1251,7 +1276,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.nav2</name>
+        <name>gma340.txt.nav2</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1269,7 +1294,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.dme</name>
+        <name>gma340.txt.dme</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1287,7 +1312,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.adf</name>
+        <name>gma340.txt.adf</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1305,7 +1330,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.test</name>
+        <name>gma340.txt.test</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1323,7 +1348,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.com1_2</name>
+        <name>gma340.txt.com1_2</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1342,7 +1367,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.spkr</name>
+        <name>gma340.txt.spkr</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1360,7 +1385,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.pilot</name>
+        <name>gma340.txt.pilot</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1378,7 +1403,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.crew</name>
+        <name>gma340.txt.crew</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1396,7 +1421,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.pa</name>
+        <name>gma340.txt.pa</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1414,7 +1439,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.knobPilot</name>
+        <name>gma340.txt.knobPilot</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1432,7 +1457,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.knobCoPilot</name>
+        <name>gma340.txt.knobCoPilot</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1450,7 +1475,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.cabin_audio</name>
+        <name>gma340.txt.cabin_audio</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1468,7 +1493,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.ics_isolation</name>
+        <name>gma340.txt.ics_isolation</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.00501</x-m>
@@ -1486,7 +1511,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.knobCoPilotRing</name>
+        <name>gma340.txt.knobCoPilotRing</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.0143</x-m>
@@ -1501,7 +1526,7 @@
         <alignment>center-center</alignment>
     </text>
     <text>
-        <name>gma340.knobPilotRing</name>
+        <name>gma340.txt.knobPilotRing</name>
         <axis-alignment>yz-plane</axis-alignment>
         <offsets>
             <x-m> 0.0143</x-m>
@@ -1518,38 +1543,39 @@
   
   <animation>
     <type>select</type>
-    <object-name>gma340.mkr</object-name>
-    <object-name>gma340.mkrmuteline</object-name>
-    <object-name>gma340.mkrmute</object-name>
-    <object-name>gma340.sens</object-name>
-    <object-name>gma340.senshilo</object-name>
-    <object-name>gma340.com1</object-name>
-    <object-name>gma340.com2</object-name>
-    <object-name>gma340.com3</object-name>
-    <object-name>gma340.com1Mic</object-name>
-    <object-name>gma340.com2Mic</object-name>
-    <object-name>gma340.com3Mic</object-name>
-    <object-name>gma340.nav1</object-name>
-    <object-name>gma340.nav2</object-name>
-    <object-name>gma340.dme</object-name>
-    <object-name>gma340.adf</object-name>
-    <object-name>gma340.test</object-name>
-    <object-name>gma340.com1_2</object-name>
-    <object-name>gma340.spkr</object-name>
-    <object-name>gma340.pilot</object-name>
-    <object-name>gma340.pa</object-name>
-    <object-name>gma340.cabin_audio</object-name>
-    <object-name>gma340.ics_isolation</object-name>
-    <object-name>gma340.crew</object-name>
-    <object-name>gma340.knobPilot</object-name>
-    <object-name>gma340.knobPilotRing</object-name>
-    <object-name>gma340.knobCoPilot</object-name>
-    <object-name>gma340.knobCoPilotRing</object-name>
+    <object-name>gma340.txt.mkr</object-name>
+    <object-name>gma340.txt.mkrmuteline</object-name>
+    <object-name>gma340.txt.mkrmute</object-name>
+    <object-name>gma340.txt.sens</object-name>
+    <object-name>gma340.txt.senshilo</object-name>
+    <object-name>gma340.txt.com1</object-name>
+    <object-name>gma340.txt.com2</object-name>
+    <object-name>gma340.txt.com3</object-name>
+    <object-name>gma340.txt.com1Mic</object-name>
+    <object-name>gma340.txt.com2Mic</object-name>
+    <object-name>gma340.txt.com3Mic</object-name>
+    <object-name>gma340.txt.nav1</object-name>
+    <object-name>gma340.txt.nav2</object-name>
+    <object-name>gma340.txt.dme</object-name>
+    <object-name>gma340.txt.adf</object-name>
+    <object-name>gma340.txt.test</object-name>
+    <object-name>gma340.txt.com1_2</object-name>
+    <object-name>gma340.txt.spkr</object-name>
+    <object-name>gma340.txt.pilot</object-name>
+    <object-name>gma340.txt.pa</object-name>
+    <object-name>gma340.txt.cabin_audio</object-name>
+    <object-name>gma340.txt.ics_isolation</object-name>
+    <object-name>gma340.txt.crew</object-name>
+    <object-name>gma340.txt.knobPilot</object-name>
+    <object-name>gma340.txt.knobPilotRing</object-name>
+    <object-name>gma340.txt.knobCoPilot</object-name>
+    <object-name>gma340.txt.knobCoPilotRing</object-name>
     <condition>
         <and>
             <and>
                 <property>/instrumentation/audio-panel/serviceable</property>
                 <property>/instrumentation/audio-panel/power-btn</property>
+                <property>/systems/electrical/outputs/audio-panel</property>
             </and>
             <not>
                 <property>sim/rendering/rembrandt/enabled</property>
@@ -1563,33 +1589,33 @@
   </animation>
   <animation>
     <type>material</type>
-    <object-name>gma340.mkr</object-name>
-    <object-name>gma340.mkrmuteline</object-name>
-    <object-name>gma340.mkrmute</object-name>
-    <object-name>gma340.sens</object-name>
-    <object-name>gma340.senshilo</object-name>
-    <object-name>gma340.com1</object-name>
-    <object-name>gma340.com2</object-name>
-    <object-name>gma340.com3</object-name>
-    <object-name>gma340.com1Mic</object-name>
-    <object-name>gma340.com2Mic</object-name>
-    <object-name>gma340.com3Mic</object-name>
-    <object-name>gma340.nav1</object-name>
-    <object-name>gma340.nav2</object-name>
-    <object-name>gma340.dme</object-name>
-    <object-name>gma340.adf</object-name>
-    <object-name>gma340.test</object-name>
-    <object-name>gma340.com1_2</object-name>
-    <object-name>gma340.spkr</object-name>
-    <object-name>gma340.pilot</object-name>
-    <object-name>gma340.pa</object-name>
-    <object-name>gma340.cabin_audio</object-name>
-    <object-name>gma340.ics_isolation</object-name>
-    <object-name>gma340.crew</object-name>
-    <object-name>gma340.knobPilot</object-name>
-    <object-name>gma340.knobPilotRing</object-name>
-    <object-name>gma340.knobCoPilot</object-name>
-    <object-name>gma340.knobCoPilotRing</object-name>
+    <object-name>gma340.txt.mkr</object-name>
+    <object-name>gma340.txt.mkrmuteline</object-name>
+    <object-name>gma340.txt.mkrmute</object-name>
+    <object-name>gma340.txt.sens</object-name>
+    <object-name>gma340.txt.senshilo</object-name>
+    <object-name>gma340.txt.com1</object-name>
+    <object-name>gma340.txt.com2</object-name>
+    <object-name>gma340.txt.com3</object-name>
+    <object-name>gma340.txt.com1Mic</object-name>
+    <object-name>gma340.txt.com2Mic</object-name>
+    <object-name>gma340.txt.com3Mic</object-name>
+    <object-name>gma340.txt.nav1</object-name>
+    <object-name>gma340.txt.nav2</object-name>
+    <object-name>gma340.txt.dme</object-name>
+    <object-name>gma340.txt.adf</object-name>
+    <object-name>gma340.txt.test</object-name>
+    <object-name>gma340.txt.com1_2</object-name>
+    <object-name>gma340.txt.spkr</object-name>
+    <object-name>gma340.txt.pilot</object-name>
+    <object-name>gma340.txt.pa</object-name>
+    <object-name>gma340.txt.cabin_audio</object-name>
+    <object-name>gma340.txt.ics_isolation</object-name>
+    <object-name>gma340.txt.crew</object-name>
+    <object-name>gma340.txt.knobPilot</object-name>
+    <object-name>gma340.txt.knobPilotRing</object-name>
+    <object-name>gma340.txt.knobCoPilot</object-name>
+    <object-name>gma340.txt.knobCoPilotRing</object-name>
     <condition>
         <and>
             <not>

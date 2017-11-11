@@ -18,9 +18,9 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>SwFunction</object-name>
   <object-name>SwPower</object-name>
     <emission>
-      <red>1.0</red>
-      <green>1.0</green>
-      <blue>1.0</blue>
+      <red>0.75</red>
+      <green>0.75</green>
+      <blue>0.75</blue>
       <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
     </emission>
 </animation>
@@ -55,6 +55,40 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
     <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
   </emission>
 </animation>
+
+<animation>
+  <object-name>Knob1</object-name>
+  <type>rotate</type>
+  <property>/instrumentation/dme/knob1-pos</property>
+  <factor>1</factor>
+  <center>
+   <x-m>0.00893</x-m>
+   <y-m>0.063</y-m>
+   <z-m>0.001</z-m>
+  </center>
+  <axis>
+   <x>1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <object-name>Knob2</object-name>
+  <type>rotate</type>
+  <property>/instrumentation/dme/knob2-pos</property>
+  <factor>1</factor>
+  <center>
+   <x-m>0.00893</x-m>
+   <y-m>0.063</y-m>
+   <z-m>0.001</z-m>
+  </center>
+  <axis>
+   <x>1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+</animation>
+
 
 <animation>
   <type>select</type>
@@ -450,8 +484,8 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
     <z>0</z>
   </axis>
 </animation>
-
-<animation>
+    
+  <animation>
     <type>pick</type>
   <object-name>SwPower</object-name>
     <visible>true</visible>
@@ -467,22 +501,50 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
             <script>c182s.click("kn62a")</script>
         </binding>
     </action>
-  </animation>
-  
-<animation>
-    <type>pick</type>
- <object-name>SwFunction</object-name>   
- <visible>true</visible>
     <action>
-      <button>0</button>
+      <button>1</button>
       <repeatable>false</repeatable>
         <binding>
-          <command>property-adjust</command>
-          <property>/controls/switches/kn-62a-mode</property>
-          <step>1</step>
-          <min>0</min>
-          <max>2</max>
-          <wrap>false</wrap>
+          <command>property-toggle</command>
+          <property>/controls/switches/kn-62a</property>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a")</script>
+        </binding>
+    </action>
+    <action>
+      <button>2</button>
+      <repeatable>false</repeatable>
+        <binding>
+          <command>property-toggle</command>
+          <property>/controls/switches/kn-62a</property>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a")</script>
+        </binding>
+    </action>
+    <action>
+      <button>3</button>
+      <repeatable>false</repeatable>
+        <binding>
+            <command>property-assign</command>
+            <property>/controls/switches/kn-62a</property>
+            <value>1</value>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a")</script>
+        </binding>
+    </action>
+    <action>
+      <button>4</button>
+      <repeatable>false</repeatable>
+        <binding>
+            <command>property-assign</command>
+            <property>/controls/switches/kn-62a</property>
+            <value>0</value>
         </binding>
         <binding>
             <command>nasal</command>
@@ -490,99 +552,179 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
         </binding>
     </action>
   </animation>
+    
   
-<animation>
-    <type>pick</type>
- <object-name>SwFunction</object-name>   
- <visible>true</visible>
-    <action>
-      <button>1</button>
-      <repeatable>false</repeatable>
-        <binding>
-          <command>property-adjust</command>
-          <property>/controls/switches/kn-62a-mode</property>
-          <step>-1</step>
-          <min>0</min>
-          <max>2</max>
-          <wrap>false</wrap>
-        </binding>
-        <binding>
-            <command>nasal</command>
-            <script>c182s.click("kn62a")</script>
-        </binding>
-    </action>
-  </animation>
+  <animation>
+        <type>slider</type>
+        <object-name>SwFunction</object-name>
+        <property>/controls/switches/kn-62a-mode</property>
+        <factor>0.001</factor>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+        <action>
+            <binding>
+                <command>property-cycle</command>
+                <property>/controls/switches/kn-62a-mode</property>
+                <value type="int">0</value>
+                <value type="int">1</value>
+                <value type="int">2</value>
+                <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kn62a")</script>
+            </binding>
+        </action>
+    </animation>
   
-<animation>
-    <type>pick</type>
- <object-name>Knob1</object-name>   
- <visible>true</visible>
-    <action>
-      <button>0</button>
-      <repeatable>false</repeatable>
-        <binding>
-          <condition>
-            <and>
-            <property>/systems/electrical/outputs/dme</property>
-            <equals>
-              <property>/controls/switches/kn-62a-mode</property>
-              <value>1</value>
-            </equals>
-            </and>
-          </condition>
-          <command>property-adjust</command>
-          <property>/instrumentation/dme/frequencies/selected-mhz</property>
-          <step>1</step>
-          <min>108</min>
-          <max>117.95</max>
-          <wrap>true</wrap>
-        </binding>
-        <binding>
-            <command>nasal</command>
-            <script>c182s.click("kn62a-dial")</script>
-        </binding>
-    </action>
-  </animation>
   
-<animation>
-    <type>pick</type>
- <object-name>Knob1</object-name>   
- <visible>true</visible>
+  <animation>
+    <type>knob</type>
+    <object-name>Knob1</object-name>
+    <property>/instrumentation/dme/knob1-pos</property>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+    <center>
+        <x-m>0.0207</x-m>
+        <y-m>0.063</y-m>
+        <z-m>0.001</z-m>
+    </center>
     <action>
-      <button>1</button>
-      <repeatable>false</repeatable>
-      <binding>
-          <condition>
-            <and>
-            <property>/systems/electrical/outputs/dme</property>
-            <equals>
-              <property>/controls/switches/kn-62a-mode</property>
-              <value>1</value>
-            </equals>
-            </and>
-          </condition>
-          <command>property-adjust</command>
-          <property>/instrumentation/dme/frequencies/selected-mhz</property>
-          <step>-1</step>
-          <min>108</min>
-          <max>117.95</max>
-          <wrap>true</wrap>
+        <binding>
+            <condition>
+                <and>
+                    <property>/systems/electrical/outputs/dme</property>
+                    <equals>
+                        <property>/controls/switches/kn-62a-mode</property>
+                        <value>1</value>
+                    </equals>
+                </and>
+            </condition>
+            <command>property-adjust</command>
+            <property>/instrumentation/dme/frequencies/selected-mhz-prev</property>
+            <factor>1.0</factor>
+            <mask>integer</mask>
+            <min>108.00</min>
+            <max>117.95</max>
+            <wrap>true</wrap>
         </binding>
         <binding>
             <command>nasal</command>
             <script>c182s.click("kn62a-dial")</script>
         </binding>
+        <binding>
+            <command>property-adjust</command>
+            <property>/instrumentation/dme/knob1-pos</property>
+            <factor>-4</factor>
+            <min>0</min>
+            <max>360</max>
+            <wrap>true</wrap>
+        </binding>
     </action>
   </animation>
   
-<animation>
-    <type>pick</type>
- <object-name>Knob2</object-name>   
- <visible>true</visible>
+  <animation>
+    <type>knob</type>
+    <object-name>Knob2</object-name>
+    <property>/instrumentation/dme/knob2-pos</property>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+    <center>
+        <x-m>0.0207</x-m>
+        <y-m>0.063</y-m>
+        <z-m>0.001</z-m>
+    </center>
     <action>
-      <button>0</button>
-      <repeatable>false</repeatable>
-  <binding>
+        <binding>
+            <condition>
+                <and>
+                    <property>/systems/electrical/outputs/dme</property>
+                    <equals>
+                        <property>/controls/switches/kn-62a-mode</property>
+                        <value>1</value>
+                    </equals>
+                </and>
+            </condition>
+            <command>property-adjust</command>
+            <property>/instrumentation/dme/frequencies/selected-mhz-prev</property>
+            <factor>0.01</factor>
+            <min>108.00</min>
+            <max>117.95</max>
+            <wrap>true</wrap>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a-dial")</script>
+        </binding>
+        <binding>
+            <command>property-adjust</command>
+            <property>/instrumentation/dme/knob2-pos</property>
+            <factor>-4</factor>
+            <min>0</min>
+            <max>360</max>
+            <wrap>true</wrap>
+        </binding>
+    </action>
+    <shift-action>
+        <binding>
+            <condition>
+                <and>
+                    <property>/systems/electrical/outputs/dme</property>
+                    <equals>
+                        <property>/controls/switches/kn-62a-mode</property>
+                        <value>1</value>
+                    </equals>
+                </and>
+            </condition>
+            <command>property-adjust</command>
+            <property>/instrumentation/dme/frequencies/selected-mhz-prev</property>
+            <factor>0.05</factor>
+            <min>108.00</min>
+            <max>117.95</max>
+            <wrap>true</wrap>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.click("kn62a-dial")</script>
+        </binding>
+        <binding>
+            <command>property-adjust</command>
+            <property>/instrumentation/dme/knob2-pos</property>
+            <factor>4</factor>
+            <min>0</min>
+            <max>360</max>
+            <wrap>true</wrap>
+        </binding>
+    </shift-action>
+  </animation>
+  
+  <!--
+  <animation>
+    <type>knob</type>
+    <object-name>Knob2</object-name>
+    <property>/instrumentation/dme/frequencies/selected-mhz-prev</property>
+    <factor>-0.25</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+    <center>
+        <x-m>0.0207</x-m>
+        <y-m>0.063</y-m>
+        <z-m>0.001</z-m>
+    </center>
+    <action>
+        <binding>
           <condition>
             <and>
             <property>/systems/electrical/outputs/dme</property>
@@ -593,7 +735,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
             </and>
           </condition>
           <command>property-adjust</command>
-          <property>/instrumentation/dme/frequencies/selected-mhz</property>
+          <property>/instrumentation/dme/frequencies/selected-mhz-prev</property>
           <step>0.01</step>
           <min>108</min>
           <max>117.95</max>
@@ -603,17 +745,17 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
             <command>nasal</command>
             <script>c182s.click("kn62a-dial")</script>
         </binding>
-    </action>
-  </animation>
-  
-<animation>
-    <type>pick</type>
- <object-name>Knob2</object-name>   
- <visible>true</visible>
-    <action>
-      <button>1</button>
-      <repeatable>false</repeatable>
         <binding>
+            <command>property-adjust</command>
+            <property>/instrumentation/dme/knob2-pos</property>
+            <factor>4</factor>
+            <min>0</min>
+            <max>360</max>
+            <wrap>true</wrap>
+        </binding>
+    </action>
+    <decrease>
+            <binding>
           <condition>
             <and>
             <property>/systems/electrical/outputs/dme</property>
@@ -624,8 +766,8 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
             </and>
           </condition>
           <command>property-adjust</command>
-          <property>/instrumentation/dme/frequencies/selected-mhz</property>
-          <step>-0.01</step>
+          <property>/instrumentation/dme/frequencies/selected-mhz-prev</property>
+          <step>-0.02</step>
           <min>108</min>
           <max>117.95</max>
           <wrap>true</wrap>
@@ -634,7 +776,50 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
             <command>nasal</command>
             <script>c182s.click("kn62a-dial")</script>
         </binding>
-    </action>
+        </decrease>
+  </animation>
+  -->
+  
+  <!-- TEXT OSG -->
+  <text>
+    <name>textosg</name>
+    <type type="string">literal</type>
+    <text type="string">DME Radio</text>
+    <draw-text type="bool">true</draw-text>
+    <font>Helvetica.txf</font>
+    <character-size type="double">0.014</character-size>
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <axis-alignment>yz-plane</axis-alignment>
+    <max-height>0.06</max-height>
+    <max-width>0.08</max-width>
+    <font-resolution>
+      <width type="int">64</width>
+      <height type="int">64</height>
+    </font-resolution>
+    <alignment>center-center</alignment>
+    <offsets>
+      <x-m>  0.008 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m>  0.000 </z-m>
+    </offsets>
+  </text>
+
+  <animation>
+    <type>material</type>
+    <object-name>textosg</object-name>
+    <emission>
+      <red>   0.8 </red>
+      <green> 0.8 </green>
+      <blue>  0.0 </blue>
+    </emission>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>textosg</object-name>
+    <condition>
+      <property>sim/panel-hotspots</property>
+    </condition>
   </animation>
 
 </PropertyList>

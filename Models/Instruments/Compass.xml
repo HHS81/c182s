@@ -49,7 +49,7 @@
 	<offsets>
 		<x-m> 0.04</x-m>
 		<y-m> 0.0 </y-m>
-		<z-m> 0.0 </z-m>
+		<z-m> 0.01 </z-m>
 	</offsets>
 </text>
 
@@ -70,5 +70,21 @@
 		<property>/sim/panel-hotspots</property>
 	</condition>
 </animation>
+
+<animation>
+  <!-- <type>material</type> set this if you do NOT want a tooltip -->
+  <type>pick</type>
+  <object-name>Compass</object-name>
+  <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>heading-bug</tooltip-id>
+      <mapping>heading</mapping>
+      <label>Compass: %3d</label>
+      <property>instrumentation/magnetic-compass/indicated-heading-deg</property>
+    </binding>
+  </hovered>
+</animation>
+
 
 </PropertyList>

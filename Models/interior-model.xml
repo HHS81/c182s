@@ -47,8 +47,9 @@
     <object-name>NavLightSwitch</object-name>
     <object-name>StrobeLightSwitch</object-name>
     <object-name>PitotHeatSwitch</object-name>
+    <!-- FLAPS GLARESHIELD BUG-WORKAROUND: SEE ISSUE #176: https://github.com/HHS81/c182s/issues/176#issuecomment-340090229
     <object-name>Panel.001</object-name>
-    <object-name>FlapSwitch</object-name>
+    <object-name>FlapSwitch</object-name>  -->
    </effect>
    
 <effect>
@@ -1313,6 +1314,15 @@
         <wrap>false</wrap>
       </binding>
     </action>
+    <hovered>
+        <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>radio-Light-tip</tooltip-id>
+            <mapping>percent</mapping>
+            <label>Radio Lights: %2d%%</label>
+            <property>/controls/lighting/radio-lights-norm</property>
+        </binding>
+    </hovered>
   </animation>
   
 <animation>
@@ -1342,6 +1352,15 @@
         <wrap>false</wrap>
       </binding>
     </action>
+    <hovered>
+        <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>instruments-Light-tip</tooltip-id>
+            <mapping>percent</mapping>
+            <label>Instrument Lights: %2d%%</label>
+            <property>/controls/lighting/instrument-lights-norm</property>
+        </binding>
+    </hovered>
   </animation>
   
 <animation>
@@ -1371,6 +1390,15 @@
         <wrap>false</wrap>
       </binding>
     </action>
+    <hovered>
+        <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>glaresh-Light-tip</tooltip-id>
+            <mapping>percent</mapping>
+            <label>Glareshield Lights: %2d%%</label>
+            <property>/controls/lighting/glareshield-lights-norm</property>
+        </binding>
+    </hovered>
   </animation>
   
 <animation>
@@ -1400,6 +1428,15 @@
         <wrap>false</wrap>
       </binding>
     </action>
+    <hovered>
+        <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>pedestal-Light-tip</tooltip-id>
+            <mapping>percent</mapping>
+            <label>Pedestal Lights: %2d%%</label>
+            <property>/controls/lighting/pedestal-lights-norm</property>
+        </binding>
+    </hovered>
   </animation>
  
 <!--switches-->
@@ -2232,7 +2269,7 @@
         <offsets>
             <x-m>0.3515</x-m>
             <y-m>0.083</y-m>
-            <z-m>0.355</z-m>
+            <z-m>0.358</z-m>
         </offsets>
     </model>
 
@@ -2242,7 +2279,7 @@
         <path>Aircraft/c182s/Models/Instruments/Avionics/kx165-1.xml</path>
         <name>kx165</name>
         <offsets>
-            <x-m>0.3515</x-m>
+            <x-m>0.3450</x-m>
             <y-m>0.083</y-m>
             <z-m>0.314</z-m>
         </offsets>
@@ -2254,7 +2291,7 @@
         <path>Aircraft/c182s/Models/Instruments/Avionics/kx165-2.xml</path>
         <name>kx165</name>
         <offsets>
-            <x-m>0.3515</x-m>
+            <x-m>0.3450</x-m>
             <y-m>0.083</y-m>
             <z-m>0.261</z-m>
         </offsets>
@@ -2266,7 +2303,7 @@
         <path>Aircraft/c182s/Models/Instruments/Avionics/kr87.xml</path>
         <name>kr87</name>
         <offsets>
-            <x-m>0.3515</x-m>
+            <x-m>0.3415</x-m>
             <y-m>0.083</y-m>
             <z-m>0.216</z-m>
         </offsets>

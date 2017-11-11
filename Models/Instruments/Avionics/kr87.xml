@@ -35,20 +35,15 @@
         <object-name>Volume</object-name>
         <object-name>FRQOuter</object-name>
         <object-name>FRQInner</object-name>
-        <object-name>knobs.ADF</object-name>
-        <object-name>knobs.BFO</object-name>
-        <object-name>knobs.FRQ</object-name>
-        <object-name>knobs.FLT</object-name>
-        <object-name>knobs.SET</object-name>
         <emission>
-          <red>1.0</red>
-          <green>1.0</green>
-          <blue>1.0</blue>
-<factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
+          <red>0.45</red>
+          <green>0.45</green>
+          <blue>0.45</blue>
+          <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
         </emission>
     </animation>
     
-    <animation>
+   <!-- <animation>
         <type>material</type>
         <object-name>indicator</object-name>
         <emission>
@@ -57,6 +52,72 @@
             <blue>-1.0</blue>
             <factor-prop alias="../../../params/dimming"/>
             <offset>1</offset>
+        </emission>
+    </animation>-->
+    
+     <animation>
+        <type>material</type>
+        <object-name>indicator</object-name>
+        <condition>
+            <and>
+                <not>
+                    <property>sim/rendering/rembrandt/enabled</property>
+                </not>
+                <greater-than>
+                    <property>/systems/electrical/outputs/radio-lights-norm</property>
+                    <value>0.0</value>
+                </greater-than>
+            </and>
+        </condition>
+        <emission>
+            <red>1</red>
+            <green>1</green>
+            <blue>1</blue>
+            <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
+        </emission>
+    </animation>
+    
+    <animation>
+        <type>material</type>
+        <object-name>knobs.ADF</object-name>
+        <object-name>knobs.BFO</object-name>
+        <object-name>knobs.FRQ</object-name>
+        <object-name>knobs.FLT</object-name>
+        <object-name>knobs.SET</object-name>
+        <condition>
+            <not>
+                <property>sim/rendering/rembrandt/enabled</property>
+            </not>
+            <greater-than>
+                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <value>0</value>
+            </greater-than>
+        </condition>
+        <emission>
+            <red>0.5</red>
+            <green>0.1</green>
+            <blue>0.00005</blue>
+            <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
+        </emission>
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name>knobs.ADF</object-name>
+        <object-name>knobs.BFO</object-name>
+        <object-name>knobs.FRQ</object-name>
+        <object-name>knobs.FLT</object-name>
+        <object-name>knobs.SET</object-name>
+        <condition>
+            <equals>
+                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <value>0</value>
+            </equals>
+        </condition>
+        <emission>
+            <red>0.45</red>
+            <green>0.45</green>
+            <blue>0.45</blue>
+            <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
         </emission>
     </animation>
 
@@ -624,4 +685,46 @@
         </action>
     </animation>
 
+    
+    <!-- TEXT OSG -->
+    <text>
+        <name>textosg</name>
+        <type type="string">literal</type>
+        <text type="string">ADF Radio</text>
+        <draw-text type="bool">true</draw-text>
+        <font>Helvetica.txf</font>
+        <character-size type="double">0.014</character-size>
+        <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+        <axis-alignment>yz-plane</axis-alignment>
+        <max-height>0.06</max-height>
+        <max-width>0.15</max-width>
+        <font-resolution>
+            <width type="int">64</width>
+            <height type="int">64</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+        <offsets>
+            <x-m>  0.015 </x-m>
+            <y-m>  0.000 </y-m>
+            <z-m>  0.007 </z-m>
+        </offsets>
+    </text>
+    <animation>
+        <type>material</type>
+        <object-name>textosg</object-name>
+        <emission>
+            <red>   0.8 </red>
+            <green> 0.8 </green>
+            <blue>  0.0 </blue>
+        </emission>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>textosg</object-name>
+        <condition>
+            <property>sim/panel-hotspots</property>
+        </condition>
+    </animation>
+    
 </PropertyList>

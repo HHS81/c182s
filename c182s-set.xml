@@ -569,6 +569,7 @@
             <path>/instrumentation/comm[1]/power-btn</path>
             <path>/instrumentation/comm[1]/volume</path>
             <path>/instrumentation/dme[0]/frequencies/selected-mhz</path>
+            <path>/instrumentation/dme[0]/frequencies/selected-mhz-prev</path>
             <path>/instrumentation/dme[0]/power-btn</path>
             <path>/controls/switches/kn-62a-mode</path>
             <path>/controls/switches/kn-62a</path>

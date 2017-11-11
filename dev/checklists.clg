@@ -282,14 +282,19 @@ item("Wing Flaps") {
 }
 
 item("Radios") {
-    r1p = "/instrumentation/comm[0]/power-btn";
-    r1v = "/instrumentation/comm[0]/volume";
-    r2p = "/instrumentation/comm[1]/power-btn";
-    r2v = "/instrumentation/comm[1]/volume";
+    r1p  = "/instrumentation/comm[0]/power-btn";
+    r1pn = "/instrumentation/nav[0]/power-btn";
+    r1v  = "/instrumentation/comm[0]/volume";
+    r2p  = "/instrumentation/comm[1]/power-btn";
+    r2pn = "/instrumentation/nav[1]/power-btn";
+    r2v  = "/instrumentation/comm[1]/volume";
+    
     state("ON", (r1p==true && r2p==true)) {
         r1p=true;
+        r1pn=true;
         r1v=0.8;
         r2p=true;
+        r2pn=true;
         r2v=0.8;
     }
     state("SET");
@@ -297,12 +302,14 @@ item("Radios") {
 }
 item("Radio") {
     r1p  = "/instrumentation/comm[0]/power-btn";
+    r1pn = "/instrumentation/nav[0]/power-btn";
     r1v  = "/instrumentation/comm[0]/volume";
     r1fs = "/instrumentation/comm[0]/frequencies/selected-mhz";
     ts   = "/controls/switches/kt-76c";
     tf   = "/instrumentation/transponder/id-code";
     state("TRANSMIT MAYDAY on 121.5 MHz") {
         r1p  = true;
+        r1pn = true;
         r1v  = 1;
         r1fs = "121.50";
         ts   = "4";
@@ -312,9 +319,13 @@ item("Radio") {
 }
 
 item("Avionics") {
+    r1c = "/instrumentation/comm[0]/power-btn";
     r1p = "/instrumentation/nav[0]/power-btn";
+    r2c = "/instrumentation/comm[0]/power-btn";
     r2p = "/instrumentation/nav[1]/power-btn";
     state("ON", (r1p==true && r2p==true)) {
+        r1c=true;
+        r2c=true;
         r1p=true;
         r2p=true;
     }

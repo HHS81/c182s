@@ -1517,7 +1517,33 @@
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>Fuelpump-Switch</tooltip-id>
-                <label>Fuel-Pump: %s</label>
+                <label>Fuel Pump: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/engines/engine/fuel-pump</property>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>CS.FuelPumpSwitch</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/engines/engine/fuel-pump</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>Fuelpump-Switch</tooltip-id>
+                <label>Fuel Pump: %s</label>
                 <mapping>on-off</mapping>
                 <property>controls/engines/engine/fuel-pump</property>
             </binding>
@@ -1551,8 +1577,34 @@
             </binding>
         </hovered>
     </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>CS.BeaconSwitch</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/beacon</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>Beacon-Switch</tooltip-id>
+                <label>Beacon: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/lighting/beacon</property>
+            </binding>
+        </hovered>
+    </animation>
     
-        <!-- strobe swt-->
+    <!-- strobe swt-->
     <animation>
         <type>pick</type>
         <object-name>StrobeLightSwitch</object-name>
@@ -1579,8 +1631,34 @@
             </binding>
         </hovered>
     </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>CS.StrobeLightSwitch</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/strobe</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>Strobe-Switch</tooltip-id>
+                <label>Strobe: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/lighting/strobe</property>
+            </binding>
+        </hovered>
+    </animation>
     
-        <!-- LL swt-->
+    <!-- LL swt-->
     <animation>
         <type>pick</type>
         <object-name>LandingLightSwitch</object-name>
@@ -1601,14 +1679,40 @@
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>LandingLights-Switch</tooltip-id>
-                <label>LandingLights: %s</label>
+                <label>Landing Lights: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/lighting/landing-lights</property>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>CS.LandingLightSwitch</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/landing-lights</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>LandingLights-Switch</tooltip-id>
+                <label>Landing Lights: %s</label>
                 <mapping>on-off</mapping>
                 <property>controls/lighting/landing-lights</property>
             </binding>
         </hovered>
     </animation>
     
-        <!-- TL swt-->
+    <!-- TL swt-->
     <animation>
         <type>pick</type>
         <object-name>TaxiLightSwitch</object-name>
@@ -1629,14 +1733,40 @@
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>TaxiLights-Switch</tooltip-id>
-                <label>TaxiLights: %s</label>
+                <label>Taxi Lights: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/lighting/taxi-light</property>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>CS.TaxiLightSwitch</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/taxi-light</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>TaxiLights-Switch</tooltip-id>
+                <label>Taxi Lights: %s</label>
                 <mapping>on-off</mapping>
                 <property>controls/lighting/taxi-light</property>
             </binding>
         </hovered>
     </animation>
     
-        <!-- NL swt-->
+    <!-- NL swt-->
     <animation>
         <type>pick</type>
         <object-name>NavLightSwitch</object-name>
@@ -1657,14 +1787,40 @@
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>NavLights-Switch</tooltip-id>
-                <label>NavLights: %s</label>
+                <label>Nav Lights: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/lighting/nav-lights</property>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>CS.NavLightSwitch</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/nav-lights</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>NavLights-Switch</tooltip-id>
+                <label>Nav Lights: %s</label>
                 <mapping>on-off</mapping>
                 <property>controls/lighting/nav-lights</property>
             </binding>
         </hovered>
     </animation>
     
-        <!-- PH swt-->
+    <!-- PH swt-->
     <animation>
         <type>pick</type>
         <object-name>PitotHeatSwitch</object-name>
@@ -1685,7 +1841,33 @@
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>pitotheat-Switch</tooltip-id>
-                <label>pitotheat: %s</label>
+                <label>Pitot Heat: %s</label>
+                <mapping>on-off</mapping>
+                <property>/controls/anti-ice/pitot-heat</property>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>CS.PitotHeatSwitch</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/controls/anti-ice/pitot-heat</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>pitotheat-Switch</tooltip-id>
+                <label>Pitot Heat: %s</label>
                 <mapping>on-off</mapping>
                 <property>/controls/anti-ice/pitot-heat</property>
             </binding>

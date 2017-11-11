@@ -73,7 +73,12 @@
   </frequencies>
 </dme>
 
-
+<davtron803>
+    <top-mode type="string">F</top-mode>
+    <bot-mode type="string">LT</bot-mode>
+    <flight-time type="string">00:00</flight-time>
+    <elapsed-time type="string">00:00</elapsed-time>
+</davtron803>
 
 
 </PropertyList>

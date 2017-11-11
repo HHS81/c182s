@@ -286,14 +286,17 @@ update_virtual_bus = func( dt ) {
     var power_source = nil;
     if ( master_bat ) {
         bus_volts = battery_volts;
+        bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
         power_source = "battery";
     }
     if ( master_alt and (alternator_volts > bus_volts) ) {
         bus_volts = alternator_volts;
+        bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
         power_source = "alternator";
     }
     if ( external_volts > bus_volts ) {
         bus_volts = external_volts;
+        bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
         power_source = "external";
     }
     # print( "virtual bus volts = ", bus_volts );
@@ -366,7 +369,7 @@ update_virtual_bus = func( dt ) {
 
     # outputs
     setprop("/systems/electrical/amps", ammeter_ave);
-    setprop("/systems/electrical/volts", bus_volts);
+    setprop("/systems/electrical/volts", sprintf("%.2f", bus_volts));
     if (bus_volts > 12)
         vbus_volts = bus_volts;
     else
@@ -379,6 +382,7 @@ update_virtual_bus = func( dt ) {
 electrical_bus_1 = func() {
     # we are fed from the "virtual" bus
     var bus_volts = vbus_volts;
+    bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
     var load = 0.0;
 
 
@@ -453,6 +457,7 @@ electrical_bus_1 = func() {
 electrical_bus_2 = func() {
     # we are fed from the "virtual" bus
     var bus_volts = vbus_volts;
+    bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
     var load = 0.0;
 
     # Nav Lights Power
@@ -518,6 +523,7 @@ cross_feed_bus = func() {
     var bus_volts = ebus2_volts;
     if ( ebus1_volts > ebus2_volts ) {
         bus_volts = ebus1_volts;
+        bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
     }
 
     var load = 0.0;
@@ -610,6 +616,7 @@ avionics_bus_1 = func() {
     var master_av = getprop("/controls/switches/AVMBus1");
     if ( master_av ) {
         bus_volts = ebus1_volts;
+        bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
     }
 
     load += bus_volts / 20.0;
@@ -656,8 +663,9 @@ avionics_bus_2 = func() {
     var bus_volts = 0.0;
     if ( master_av ) {
         bus_volts = ebus2_volts;
+        bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
     }
-
+    
     var load = bus_volts / 20.0;
 
     # NavCom 2 Power

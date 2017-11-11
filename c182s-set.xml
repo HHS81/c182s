@@ -564,11 +564,13 @@
             <path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
             <path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
             <path>/instrumentation/comm[0]/power-btn</path>
-            <path>/instrumentation/comm[0]/volume</path>
+            <!-- set by GMA340.nas: <path>/instrumentation/comm[0]/volume</path> -->
+            <path>/instrumentation/comm[0]/volume-selected</path>
             <path>/instrumentation/comm[1]/frequencies/selected-mhz</path>
             <path>/instrumentation/comm[1]/frequencies/standby-mhz</path>
             <path>/instrumentation/comm[1]/power-btn</path>
-            <path>/instrumentation/comm[1]/volume</path>
+            <!-- set by GMA340.nas: <path>/instrumentation/comm[1]/volume</path> -->
+            <path>/instrumentation/comm[1]/volume-selected</path>
             <path>/instrumentation/dme[0]/frequencies/selected-mhz</path>
             <path>/instrumentation/dme[0]/frequencies/selected-mhz-prev</path>
             <path>/instrumentation/dme[0]/power-btn</path>
@@ -857,8 +859,9 @@
     <file>Aircraft/c182s/Nasal/kt76c.nas</file>
     <file>Aircraft/c182s/Nasal/kn62a.nas</file>
     <file>Aircraft/c182s/Nasal/kr87.nas</file>
-            <file>Nasal/tiedowns.nas</file>
+    <file>Nasal/tiedowns.nas</file>
     <file>Aircraft/c182s/Nasal/immat.nas</file>
+    <file>Aircraft/c182s/Nasal/gma340.nas</file>
 </c182s>
 
 <davtron803>

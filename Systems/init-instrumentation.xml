@@ -6,9 +6,7 @@
   <indicated-speed-kt type="double">0</indicated-speed-kt>
 </airspeed-indicator>
 
-<audio-panel>
-  <test type="int">0</test>
-</audio-panel>
+<audio-panel include="../Models/Instruments/Avionics/gma340properties.xml"/>
 
 <marker-beacon>
   <test type="int">0</test>
@@ -44,6 +42,7 @@
     <display-sby-mhz type="int">0</display-sby-mhz>
     <standby-mhz-fmt type="string">122.75</standby-mhz-fmt>
   </frequencies>
+  <volume-selected type="double">0</volume-selected>
 </comm>
 <comm n="1">
   <frequencies>
@@ -54,6 +53,7 @@
     <display-sby-mhz type="int">0</display-sby-mhz>
     <standby-mhz-fmt type="string">122.75</standby-mhz-fmt>
   </frequencies>
+  <volume-selected type="double">0</volume-selected>
 </comm>
 
 <transponder>

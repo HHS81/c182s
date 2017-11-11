@@ -38,6 +38,8 @@
   <animation>
     <type>material</type>
     <object-name>gma340.Chassis</object-name>
+    <object-name>gma340.Knob.Left</object-name>
+    <object-name>gma340.Knob.Right</object-name>
 
      <emission>
       <red>1.0</red>
@@ -52,6 +54,8 @@
     <object-name>gma340.Marker.O</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/marker-beacon/outer</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -69,6 +73,8 @@
     <object-name>gma340.Marker.M</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/marker-beacon/middle</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -86,6 +92,8 @@
     <object-name>gma340.Marker.I</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/marker-beacon/inner</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -108,6 +116,10 @@
       <binding>
         <command>property-toggle</command>
         <property>instrumentation/adf[0]/ident-audible</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -120,6 +132,8 @@
     <object-name>gma340.led.adf</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/adf[0]/ident-audible</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -142,6 +156,10 @@
       <binding>
         <command>property-toggle</command>
         <property>instrumentation/dme[0]/ident</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -154,6 +172,8 @@
     <object-name>gma340.led.dme</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/dme[0]/ident</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -176,6 +196,10 @@
       <binding>
         <command>property-toggle</command>
         <property>instrumentation/nav[1]/ident</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -188,6 +212,8 @@
     <object-name>gma340.led.nav2</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/nav[1]/ident</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -210,6 +236,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/nav[0]/ident</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -222,6 +252,8 @@
     <object-name>gma340.led.nav1</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/nav[0]/ident</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -238,12 +270,17 @@
     <type>pick</type>
     <object-name>gma340.pick.mkr</object-name>
     <visible>true</visible>
+    <!-- todo: according to manual: when marker is active, it can be muted but remains selected -->
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/marker-beacon/audio-btn</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -256,6 +293,8 @@
     <object-name>gma340.led.mkr</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/marker-beacon/audio-btn</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -278,6 +317,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/com[0]</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -290,6 +333,8 @@
     <object-name>gma340.led.com1</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/com[0]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -312,6 +357,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/com[1]</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -324,6 +373,8 @@
     <object-name>gma340.led.com2</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/com[1]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -346,6 +397,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/com[2]</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -358,6 +413,8 @@
     <object-name>gma340.led.com3</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/com[2]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -381,31 +438,55 @@
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[0]</property>
         <value>1</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[1]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[2]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[0]</property>
         <value>1</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[1]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[2]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -418,6 +499,8 @@
     <object-name>gma340.led.com1mic</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/com-mic[0]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -441,31 +524,55 @@
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[0]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[1]</property>
         <value>1</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[2]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[0]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[1]</property>
         <value>1</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[2]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -478,6 +585,8 @@
     <object-name>gma340.led.com2mic</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/com-mic[1]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -501,31 +610,55 @@
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[0]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[1]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com-mic[2]</property>
         <value>1</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[0]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[1]</property>
         <value>0</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/com[2]</property>
         <value>1</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -538,6 +671,8 @@
     <object-name>gma340.led.com3mic</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/com-mic[2]</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -560,10 +695,18 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/hi</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/lo</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -576,6 +719,8 @@
     <object-name>gma340.led.hi</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/hi</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -593,6 +738,8 @@
     <object-name>gma340.led.lo</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/lo</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -615,6 +762,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/com1-2</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -627,6 +778,8 @@
     <object-name>gma340.led.com1_2</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/com1-2</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -649,6 +802,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/spkr</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -661,6 +818,8 @@
     <object-name>gma340.led.spkr</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/spkr</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -683,6 +842,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/pa</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -695,6 +858,8 @@
     <object-name>gma340.led.pa</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/pa</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -717,6 +882,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/crew</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -729,6 +898,8 @@
     <object-name>gma340.led.crew</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/crew</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -751,6 +922,10 @@
       <binding>
         <command>property-toggle</command>
         <property>/instrumentation/audio-panel/pilot</property>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <binding>
           <command>nasal</command>
@@ -763,6 +938,8 @@
     <object-name>gma340.led.pilot</object-name>
     <condition>
       <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
       <or>
         <property>/instrumentation/audio-panel/pilot</property>
         <property>/instrumentation/audio-panel/test</property>
@@ -786,12 +963,20 @@
         <command>property-assign</command>
         <property>/instrumentation/audio-panel/test</property>
         <value>1</value>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
       </binding>
       <mod-up>
         <binding>
           <command>property-assign</command>
           <property>/instrumentation/audio-panel/test</property>
           <value>0</value>
+          <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+        </condition>
         </binding>
       </mod-up>
       <binding>
@@ -799,5 +984,700 @@
           <script>c182s.click("gma340")</script>
       </binding>
     </action>
+  </animation>
+  
+  <animation>
+        <type>knob</type>
+        <object-name>gma340.Knob.Left.Inner</object-name>
+        <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+        <factor>-250</factor>
+        <center>
+            <x-m>0.017</x-m>
+            <y-m>-0.06907</y-m>
+            <z-m>-0.00356</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        
+        <action>
+            <!-- handling of ICS value -->
+            <binding>
+                <command>property-adjust</command>
+                <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+                <factor>0.1</factor>
+                <min>0</min>
+                <max>1</max>                
+                <wrap>false</wrap>
+            </binding>
+            
+            <!-- handling power -->
+            <binding>
+                <command>property-assign</command>
+                <property>/instrumentation/audio-panel/power-btn</property>
+                <value>1</value>
+                <condition>
+                    <greater-than>
+                        <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+                        <value>0.01</value>
+                    </greater-than>
+                </condition>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/instrumentation/audio-panel/power-btn</property>
+                <value>0</value>
+                <condition>
+                    <less-than>
+                        <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+                        <value>0.01</value>
+                    </less-than>
+                </condition>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("gma340-dial")</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>ICS-pilot-volume</tooltip-id>
+                <label>ICS Volume (Pilot): %3d%%</label>
+                <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+                <mapping>percent</mapping>
+            </binding>
+        </hovered>
+    </animation>
+    
+    
+    
+    <!-- Panel texts lighting (nomenclature) -->
+    <text>
+        <name>gma340.txt.mkr</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.0503</y-m>
+            <z-m> 0.0088</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">MKR</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0034</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.mkrmuteline</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.0503</y-m>
+            <z-m> 0.0076</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">_____</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0026</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.mkrmute</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.0503</y-m>
+            <z-m> 0.0062</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">MUTE</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0024</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.sens</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.0503</y-m>
+            <z-m>-0.0105</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">SENS</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.senshilo</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.0467</y-m>
+            <z-m>-0.0030</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">HI LO</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0032</character-size> <!-- size (height) im meters -->
+        <max-width>0.005</max-width> <!-- the maximum width of the text -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.com1</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.036</y-m>
+            <z-m> 0.0075</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COM1</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.com2</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.0230</y-m>
+            <z-m> 0.0075</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COM2</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.com3</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.00985</y-m>
+            <z-m> 0.0075</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COM3</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.com1Mic</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.036</y-m>
+            <z-m>-0.0058</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COM1 MIC</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <max-width>0.01</max-width> <!-- the maximum width of the text -->
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.com2Mic</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.0230</y-m>
+            <z-m>-0.0058</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COM2 MIC</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <max-width>0.01</max-width> <!-- the maximum width of the text -->
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.com3Mic</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.00985</y-m>
+            <z-m>-0.0058</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COM3 MIC</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <max-width>0.01</max-width> <!-- the maximum width of the text -->
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.nav1</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.00935</y-m>
+            <z-m> 0.0075</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">NAV1</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.nav2</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.02245</y-m>
+            <z-m> 0.0075</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">NAV2</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.dme</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.03558</y-m>
+            <z-m> 0.0075</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">DME</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.adf</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.04858</y-m>
+            <z-m> 0.0075</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">ADF</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.test</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.06935</y-m>
+            <z-m> 0.00868</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">TEST</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.com1_2</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.009</y-m>
+            <z-m>-0.0058</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COM 1/2</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0038</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <max-width>0.01</max-width> <!-- the maximum width of the text -->
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.spkr</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.02839</y-m>
+            <z-m>-0.0011</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">SPKR</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0034</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.pilot</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.04945</y-m>
+            <z-m>-0.001</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">PILOT</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0034</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.crew</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.04955</y-m>
+            <z-m>-0.0105</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">CREW</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0034</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.pa</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.02835</y-m>
+            <z-m>-0.0105</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">PA</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0034</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.knobPilot</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m>-0.069</y-m>
+            <z-m>-0.0128</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">PILOT</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0032</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.knobCoPilot</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.0692</y-m>
+            <z-m>-0.0128</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">COPILOT</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0032</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.cabin_audio</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.025</y-m>
+            <z-m>-0.0058</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">CABIN AUDIO</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0028</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.ics_isolation</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.00501</x-m>
+            <y-m> 0.0463</y-m>
+            <z-m>-0.0058</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">ICS ISOLATION</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.0028</character-size> <!-- size (height) im meters -->
+        <font-resolution>
+            <width type="int">16</width>
+            <height type="int">16</height>
+        </font-resolution>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.knobCoPilotRing</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.0143</x-m>
+            <y-m> 0.069</y-m>
+            <z-m>-0.0037</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">O</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.017</character-size> <!-- size (height) im meters -->
+        <character-aspect-ratio type="double">0.9</character-aspect-ratio>
+        <alignment>center-center</alignment>
+    </text>
+    <text>
+        <name>gma340.txt.knobPilotRing</name>
+        <axis-alignment>yz-plane</axis-alignment>
+        <offsets>
+            <x-m> 0.0143</x-m>
+            <y-m>-0.069</y-m>
+            <z-m>-0.0037</z-m>
+        </offsets>
+        <type type="string">literal</type>
+        <text type="string">O</text>
+        <font>Helvetica.txf</font> <!-- The font file name, relative to data/Fonts -->
+        <character-size type="double">0.017</character-size> <!-- size (height) im meters -->
+        <character-aspect-ratio type="double">0.9</character-aspect-ratio>
+        <alignment>center-center</alignment>
+    </text>
+  
+  <animation>
+    <type>select</type>
+    <object-name>gma340.txt.mkr</object-name>
+    <object-name>gma340.txt.mkrmuteline</object-name>
+    <object-name>gma340.txt.mkrmute</object-name>
+    <object-name>gma340.txt.sens</object-name>
+    <object-name>gma340.txt.senshilo</object-name>
+    <object-name>gma340.txt.com1</object-name>
+    <object-name>gma340.txt.com2</object-name>
+    <object-name>gma340.txt.com3</object-name>
+    <object-name>gma340.txt.com1Mic</object-name>
+    <object-name>gma340.txt.com2Mic</object-name>
+    <object-name>gma340.txt.com3Mic</object-name>
+    <object-name>gma340.txt.nav1</object-name>
+    <object-name>gma340.txt.nav2</object-name>
+    <object-name>gma340.txt.dme</object-name>
+    <object-name>gma340.txt.adf</object-name>
+    <object-name>gma340.txt.test</object-name>
+    <object-name>gma340.txt.com1_2</object-name>
+    <object-name>gma340.txt.spkr</object-name>
+    <object-name>gma340.txt.pilot</object-name>
+    <object-name>gma340.txt.pa</object-name>
+    <object-name>gma340.txt.cabin_audio</object-name>
+    <object-name>gma340.txt.ics_isolation</object-name>
+    <object-name>gma340.txt.crew</object-name>
+    <object-name>gma340.txt.knobPilot</object-name>
+    <object-name>gma340.txt.knobPilotRing</object-name>
+    <object-name>gma340.txt.knobCoPilot</object-name>
+    <object-name>gma340.txt.knobCoPilotRing</object-name>
+    <condition>
+        <and>
+            <and>
+                <property>/instrumentation/audio-panel/serviceable</property>
+                <property>/instrumentation/audio-panel/power-btn</property>
+                <property>/systems/electrical/outputs/audio-panel</property>
+            </and>
+            <not>
+                <property>sim/rendering/rembrandt/enabled</property>
+            </not>
+            <greater-than>
+                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <value>0.0</value>
+            </greater-than>
+        </and>
+    </condition>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>gma340.txt.mkr</object-name>
+    <object-name>gma340.txt.mkrmuteline</object-name>
+    <object-name>gma340.txt.mkrmute</object-name>
+    <object-name>gma340.txt.sens</object-name>
+    <object-name>gma340.txt.senshilo</object-name>
+    <object-name>gma340.txt.com1</object-name>
+    <object-name>gma340.txt.com2</object-name>
+    <object-name>gma340.txt.com3</object-name>
+    <object-name>gma340.txt.com1Mic</object-name>
+    <object-name>gma340.txt.com2Mic</object-name>
+    <object-name>gma340.txt.com3Mic</object-name>
+    <object-name>gma340.txt.nav1</object-name>
+    <object-name>gma340.txt.nav2</object-name>
+    <object-name>gma340.txt.dme</object-name>
+    <object-name>gma340.txt.adf</object-name>
+    <object-name>gma340.txt.test</object-name>
+    <object-name>gma340.txt.com1_2</object-name>
+    <object-name>gma340.txt.spkr</object-name>
+    <object-name>gma340.txt.pilot</object-name>
+    <object-name>gma340.txt.pa</object-name>
+    <object-name>gma340.txt.cabin_audio</object-name>
+    <object-name>gma340.txt.ics_isolation</object-name>
+    <object-name>gma340.txt.crew</object-name>
+    <object-name>gma340.txt.knobPilot</object-name>
+    <object-name>gma340.txt.knobPilotRing</object-name>
+    <object-name>gma340.txt.knobCoPilot</object-name>
+    <object-name>gma340.txt.knobCoPilotRing</object-name>
+    <condition>
+        <and>
+            <not>
+                <property>sim/rendering/rembrandt/enabled</property>
+            </not>
+            <greater-than>
+                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <value>0.0</value>
+            </greater-than>
+        </and>
+    </condition>
+    <emission>
+        <red>0.67</red>
+        <green>0.92</green>
+        <blue>0.75</blue>
+        <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
+    </emission>
+</animation>
+    
+    
+    
+  <!-- ##################### -->
+  <!--     OSG Help text     -->
+  <!-- ##################### -->
+  <text>
+    <name>textosg</name>
+    <type type="string">literal</type>
+    <text type="string">Audio Panel</text>
+    <draw-text type="bool">true</draw-text>
+    <font>Helvetica.txf</font>
+    <character-size type="double">0.014</character-size>
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <axis-alignment>yz-plane</axis-alignment>
+    <max-height>0.08</max-height>
+    <max-width>0.10</max-width>
+    <font-resolution>
+      <width type="int">64</width>
+      <height type="int">64</height>
+    </font-resolution>
+    <alignment>center-center</alignment>
+    <offsets>
+      <x-m>  0.005 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m>  0.000 </z-m>
+    </offsets>
+  </text>
+
+  <animation>
+    <type>material</type>
+    <object-name>textosg</object-name>
+    <emission>
+      <red>   0.8 </red>
+      <green> 0.8 </green>
+      <blue>  0.0 </blue>
+    </emission>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>textosg</object-name>
+    <condition>
+      <property>sim/panel-hotspots</property>
+    </condition>
   </animation>
 </PropertyList>

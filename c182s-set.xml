@@ -521,6 +521,7 @@
         
         <!-- Save these properties between sessions -->
         <aircraft-data>
+            <path>/sim/time/hobbs/engine</path>
             <path>/engines/engine/complex-engine-procedures</path>
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
@@ -585,6 +586,8 @@
             <path>/instrumentation/attitude-indicator/horizon-offset-deg</path>
             <path>/instrumentation/airspeed-indicator/tas-face-rotation</path>
             <path>/instrumentation/heading-indicator/offset-deg</path>
+            <path>/instrumentation/davtron803/top-mode</path>
+            <path>/instrumentation/davtron803/bot-mode</path>
             <path>/autopilot/settings/heading-bug-deg</path>
             <path>/instrumentation/transponder/id-code</path>
             <path>/engines/engine[0]/egt-bug-norm</path>
@@ -849,17 +852,23 @@
             <file>Aircraft/Generic/updateloop.nas</file>
 </updateloop>
  <c182s>
-	<file>Aircraft/c182s/Nasal/c182s.nas</file>
-	<file>Aircraft/c182s/Nasal/kt76c.nas</file>
-	<file>Aircraft/c182s/Nasal/kn62a.nas</file>
-	<file>Aircraft/c182s/Nasal/kr87.nas</file>
+    <file>Aircraft/c182s/Nasal/c182s.nas</file>
+    <file>Aircraft/c182s/Nasal/engine.nas</file>
+    <file>Aircraft/c182s/Nasal/kt76c.nas</file>
+    <file>Aircraft/c182s/Nasal/kn62a.nas</file>
+    <file>Aircraft/c182s/Nasal/kr87.nas</file>
             <file>Nasal/tiedowns.nas</file>
     <file>Aircraft/c182s/Nasal/immat.nas</file>
-
 </c182s>
+
+<davtron803>
+    <file>Aircraft/c182s/Nasal/davtron803.nas</file>
+</davtron803>
+
 <electrical>
  <file>Aircraft/c182s/Nasal/c182s-electrical.nas</file>
 </electrical>
+
 <kap140>
    <file>Aircraft/Generic/kap140.nas</file>
    <!-- We can set some variables that might be

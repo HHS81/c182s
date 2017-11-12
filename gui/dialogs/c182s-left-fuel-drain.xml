@@ -79,7 +79,7 @@
                     </not>
                 </condition>
                 <command>nasal</command>
-                <script>c172p.take_fuel_sample(0);</script>
+                <script>c182s.take_fuel_sample(0);</script>
             </binding>
             <binding>
                 <command>property-assign</command>
@@ -129,7 +129,7 @@
                     <property>/consumables/fuel/tank[0]/fuel-sample-taken</property>
                 </condition>
                 <command>nasal</command>
-                <script>c172p.return_fuel_sample(0);</script>
+                <script>c182s.return_fuel_sample(0);</script>
             </binding>
             <binding>
                 <command>property-assign</command>

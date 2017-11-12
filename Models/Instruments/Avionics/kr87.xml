@@ -598,6 +598,15 @@
                 <script>c182s.click("kr87-adf-dial")</script>
             </binding>         
         </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>adfVolume</tooltip-id>
+                <label>Volume: %3d%%</label>
+                <property>/instrumentation/adf[0]/volume-norm</property>
+                <mapping>percent</mapping>
+            </binding>
+        </hovered>
     </animation>
 
     <!-- inner frequency (1 KHz) knob -->

@@ -552,15 +552,32 @@
             <path>/controls/flight/elevator-trim</path>
             <path>/controls/flight/rudder-trim</path>
             <path>/controls/flight/flaps</path>
+            <path>/instrumentation/audio-panel/power-btn</path>
+            <path>/instrumentation/audio-panel/com[0]</path>
+            <path>/instrumentation/audio-panel/com[1]</path>
+            <path>/instrumentation/audio-panel/com[2]</path>
+            <path>/instrumentation/audio-panel/com-mic[0]</path>
+            <path>/instrumentation/audio-panel/com-mic[1]</path>
+            <path>/instrumentation/audio-panel/com-mic[2]</path>
+            <path>/instrumentation/audio-panel/spkr</path>
+            <path>/instrumentation/audio-panel/pa</path>
+            <path>/instrumentation/audio-panel/crew</path>
+            <path>/instrumentation/audio-panel/pilot</path>
+            <path>/instrumentation/audio-panel/hi</path>
+            <path>/instrumentation/audio-panel/lo</path>
+            <path>/instrumentation/audio-panel/volume-ics-pilot</path>
+            <path>/instrumentation/marker-beacon/audio-btn</path>
             <path>/surface-positions/flap-pos-norm</path>
             <path>/instrumentation/nav[0]/radials/selected-deg</path>
             <path>/instrumentation/nav[0]/frequencies/selected-mhz</path>
             <path>/instrumentation/nav[0]/frequencies/standby-mhz</path>
             <path>/instrumentation/nav[0]/power-btn</path>
+            <path>/instrumentation/nav[0]/ident</path>
             <path>/instrumentation/nav[1]/radials/selected-deg</path>
             <path>/instrumentation/nav[1]/frequencies/selected-mhz</path>
             <path>/instrumentation/nav[1]/frequencies/standby-mhz</path>
             <path>/instrumentation/nav[1]/power-btn</path>
+            <path>/instrumentation/nav[1]/ident</path>
             <path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
             <path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
             <path>/instrumentation/comm[0]/power-btn</path>
@@ -574,6 +591,7 @@
             <path>/instrumentation/dme[0]/frequencies/selected-mhz</path>
             <path>/instrumentation/dme[0]/frequencies/selected-mhz-prev</path>
             <path>/instrumentation/dme[0]/power-btn</path>
+            <path>/instrumentation/dme[0]/ident</path>
             <path>/controls/switches/kn-62a-mode</path>
             <path>/controls/switches/kn-62a</path>
             <path>/instrumentation/adf[0]/frequencies/selected-khz</path>
@@ -581,6 +599,7 @@
             <path>/instrumentation/adf[0]/rotation-deg</path>
             <path>/instrumentation/adf[0]/power-btn</path>
             <path>/instrumentation/adf[0]/volume-norm</path>
+            <path>/instrumentation/adf[0]/ident-audible</path>
             <path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
             <path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
             <path>/instrumentation/altimeter/setting-inhg</path>

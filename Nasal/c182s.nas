@@ -442,27 +442,51 @@ setlistener("/engines/active-engine/killed", func (node) {
 ##########################################
 # Fuel Contamination
 ##########################################
-var fuel_contamination = func {
-    var chance = rand();
+var init_fuel_contamination = func {
+    if (getprop("/engines/engine/complex-engine-procedures")) {
+        # TODO: It would be cool if contamination chance would be influenced by environment properties and by tank filling levels
+        var chance = rand();
+    chance = 0.001;
+        # Chance of contamination is 1 %
+        if (chance < 0.01) {
+            # Quantity of water is much more likely to be small than large, since
+            # it's given by x^6 (76 % of the time it will be lower than 0.2)
+            var water = math.pow(rand(), 6);
 
-    # Chance of contamination is 1 %
-    if (getprop("/consumables/fuel/contamination_allowed") and chance < 0.01) {
-        # Quantity of water is much more likely to be small than large, since
-        # it's given by x^6 (76 % of the time it will be lower than 0.2)
-        var water = math.pow(rand(), 6);
+            setprop("/consumables/fuel/tank[0]/water-contamination", water);
 
-        setprop("/consumables/fuel/tank[0]/water-contamination", water);
-
-        # level of water in the right tank will be the same as in the left tank +- 0.1
-        water = water + 0.2 * (rand() - 0.5);
-        water = std.max(0.0, std.min(water, 1.0));
-        setprop("/consumables/fuel/tank[1]/water-contamination", water);
-    }
-    else {
-        setprop("/consumables/fuel/tank[0]/water-contamination", 0.0);
-        setprop("/consumables/fuel/tank[1]/water-contamination", 0.0);
+            # level of water in the right tank will be the same as in the left tank +- 0.1
+            water = water + 0.2 * (rand() - 0.5);
+            water = std.max(0.0, std.min(water, 1.0));
+            setprop("/consumables/fuel/tank[1]/water-contamination", water);
+        }
+        else {
+            setprop("/consumables/fuel/tank[0]/water-contamination", 0.0);
+            setprop("/consumables/fuel/tank[1]/water-contamination", 0.0);
+        };
+        
+        
+        # Water in fuel stainer and selector valve can differ but should be somewhat lower
+        var selectorValveChance = rand();
+    selectorValveChance = 0.001;
+        if (selectorValveChance < 0.008) {
+            var selV_water = math.pow(rand(), 6);
+            setprop("/consumables/fuel/tank[2]/water-contamination", selV_water);
+        };
+        var strainerChance = rand();
+    strainerChance = 0.001;
+        if (strainerChance < 0.008) {
+            var strainerwater = math.pow(rand(), 6);
+            setprop("/consumables/fuel/tank[3]/water-contamination", strainerwater);
+        };
+        
+        
+        print("fuel contamination initialized");
+        
     };
 };
+
+
 
 ##########################################
 # Take Fuel Sample
@@ -607,10 +631,14 @@ var autostart = func (msg=1) {
     setprop("/sim/model/c182s/securing/tiedownT-visible", 0);
 
     # Removing any contamination from water
-#    setprop("/consumables/fuel/tank[0]/water-contamination", 0.0);
-#    setprop("/consumables/fuel/tank[1]/water-contamination", 0.0);
-#    setprop("/consumables/fuel/tank[0]/sample-water-contamination", 0.0);
-#    setprop("/consumables/fuel/tank[1]/sample-water-contamination", 0.0);
+    setprop("/consumables/fuel/tank[0]/water-contamination", 0.0);
+    setprop("/consumables/fuel/tank[1]/water-contamination", 0.0);
+    setprop("/consumables/fuel/tank[2]/water-contamination", 0.0);
+    setprop("/consumables/fuel/tank[3]/water-contamination", 0.0);
+    setprop("/consumables/fuel/tank[0]/sample-water-contamination", 0.0);
+    setprop("/consumables/fuel/tank[1]/sample-water-contamination", 0.0);
+    setprop("/consumables/fuel/tank[2]/sample-water-contamination", 0.0);
+    setprop("/consumables/fuel/tank[3]/sample-water-contamination", 0.0);
     
     # Setting max oil level
 #    var oil_enabled = getprop("/engines/active-engine/oil_consumption_allowed");
@@ -676,3 +704,17 @@ var autostart = func (msg=1) {
     
 
 };
+
+
+
+
+
+###########
+# INIT
+###########
+
+# TODO: Support different user states
+setlistener("/sim/signals/fdm-initialized", func {
+    # Fuel contamination
+    init_fuel_contamination();
+});

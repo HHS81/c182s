@@ -967,6 +967,69 @@
             </binding>
         </hovered>
     </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>FuelSelectorDrain.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-fuelselector-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuelselector-dialog-tt</tooltip-id>
+                <label>Fuel Selector Drain</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>FuelStrainerDrain.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-fuelstrainer-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuelstrainer-dialog-tt</tooltip-id>
+                <label>Fuel Strainer Drain</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>Oil.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-oilmanagement-dialo</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>oilmanagement-dialog-tt</tooltip-id>
+                <label>Oil</label>
+            </binding>
+        </hovered>
+    </animation>
  
 <animation>
    <type>pick</type>

@@ -431,6 +431,7 @@ var thunder = func (name) {
 # Engine coughing sound
 ############################################
 
+# Play coughing sound when engine was killed
 setlistener("/engines/active-engine/killed", func (node) {
     if (node.getValue() and getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
         click("coughing-engine-sound", 0.7, 0);
@@ -439,6 +440,9 @@ setlistener("/engines/active-engine/killed", func (node) {
 
 
 
+##########################################
+# Thunder sound
+##########################################
 setlistener("/sim/signals/fdm-initialized", func {   
     # Listening for lightning strikes
     setlistener("/environment/lightning/lightning-pos-y", thunder);

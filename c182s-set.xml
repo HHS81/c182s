@@ -49,6 +49,9 @@
     <property-rule n="103">
         <path>Aircraft/c182s/Systems/sounds.xml</path>
     </property-rule>
+    <property-rule n="104">
+        <path>Aircraft/c182s/Systems/engine.xml</path>
+    </property-rule>
     <electrical>        
       <!-- null electrical system path here so we can use a nasal based -->
       <!-- model defined later in the nasal section of this file. -->
@@ -678,11 +681,15 @@
       <tank n="2">
         <name type="string">Fuel selector sump</name>
         <drain-valve>0</drain-valve>
+        <water-contamination type="double">0.0</water-contamination>
+        <sample-water-contamination type="double">0.0</sample-water-contamination>
         <hidden type="bool">true</hidden>
       </tank>
       <tank n="3">
         <name type="string">Fuel strainer sump</name>
         <drain-valve>0</drain-valve>
+        <water-contamination type="double">0.0</water-contamination>
+        <sample-water-contamination type="double">0.0</sample-water-contamination>
         <hidden type="bool">true</hidden>
       </tank>
       <tank n="4">

@@ -455,6 +455,10 @@ Author: 09/2017  Benedikt Hallinger
                 /engines/engine/complex-engine-procedures EQ 0
             </test>
             <test logic="AND" value="0">
+                <!-- Engine killed? then never feed fuel! -->
+                /engines/active-engine/killed EQ 1
+            </test>
+            <test logic="AND" value="0">
                 <test logic="AND">
                     <!-- engine running: manifold always open -->
                     /fdm/jsbsim/propulsion/engine/set-running  EQ   0

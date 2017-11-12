@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    c182s engine system - copied and adapted from c172p
+    Copyright (c) 2015 onox
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<PropertyList>
+
+    <!-- ============================================================== -->
+    <!-- Fuel contamination and low oil level                           -->
+    <!-- ============================================================== -->
+
+    <logic>
+        <name>Engine Killed</name>
+        <input>
+            <or>
+                <property>/engines/active-engine/crashed</property>
+                <property>/engines/active-engine/kill-engine</property>
+
+                <!-- Engine is killed if fuel contamination is higher than 0.2 on a selected tank -->
+                <!-- (but only if complex engine model is requested!) -->
+                <and>
+                    <property>/engines/engine/complex-engine-procedures</property>  
+                    
+                    <or>
+                        <!-- left wing tank contaminated -->
+                        <and>
+                            <or>
+                                <!-- fuel selector: 0=off, 1=right, 2=both, 3=left -->
+                                <equals>
+                                    <property>/controls/switches/fuel_tank_selector</property>
+                                    <value>3</value>
+                                </equals>
+                                <equals>
+                                    <property>/controls/switches/fuel_tank_selector</property>
+                                    <value>2</value>
+                                </equals>
+                            </or>
+                            <greater-than>
+                                <property>/consumables/fuel/tank[0]/water-contamination</property>
+                                <value>0.2</value>
+                            </greater-than>
+                        </and>
+                        
+                        <!-- right wing tank contaminated -->
+                        <and>
+                            <or>
+                                <!-- fuel selector: 0=off, 1=right, 2=both, 3=left -->
+                                <equals>
+                                    <property>/controls/switches/fuel_tank_selector</property>
+                                    <value>1</value>
+                                </equals>
+                                <equals>
+                                    <property>/controls/switches/fuel_tank_selector</property>
+                                    <value>2</value>
+                                </equals>
+                            </or>
+                            <greater-than>
+                                <property>/consumables/fuel/tank[1]/water-contamination</property>
+                                <value>0.2</value>
+                            </greater-than>
+                        </and>
+                        
+                        <!-- TODO: fuel reservoir not simulated yet -->
+                        
+                        <!-- fuel strainer sump contaminated -->
+                        <greater-than>
+                            <property>/consumables/fuel/tank[2]/water-contamination</property>
+                            <value>0.2</value>
+                        </greater-than>
+                        
+                        <!-- fuel strainer sump contaminated -->
+                        <greater-than>
+                            <property>/consumables/fuel/tank[2]/water-contamination</property>
+                            <value>0.2</value>
+                        </greater-than>
+                        
+                        
+                                        
+                        <!-- engine is also killed if oil level is critical. Minimum oil level in the sump for safe operation (according 
+                        to Lycommings manual, page 3-10) is 2 quarts, which explains the value of 1.97 below-->
+            <!--           <less-than>
+                            <property>/engines/active-engine/oil-level</property>
+                            <value>1.97</value>
+                        </less-than>
+                -->
+                        
+                    </or>
+                </and>
+
+            </or>
+        </input>
+        <output>
+            <property>/engines/active-engine/killed</property>
+        </output>
+    </logic>
+
+    
+    <!-- Low level of fuel contamination or just above oil minimal level makes engine cough-->
+    <logic>
+        <name>Engine Coughing</name>
+        <input>
+            <!-- Engine is killed if fuel contamination is higher than 0.2 on a selected tank -->
+                <!-- (but only if complex engine model is requested!) -->
+                <and>
+                    <property>/engines/engine/complex-engine-procedures</property>  
+                    
+                    <or>
+                        <!-- left wing tank contaminated -->
+                        <and>
+                            <or>
+                                <!-- fuel selector: 0=off, 1=right, 2=both, 3=left -->
+                                <equals>
+                                    <property>/controls/switches/fuel_tank_selector</property>
+                                    <value>3</value>
+                                </equals>
+                                <equals>
+                                    <property>/controls/switches/fuel_tank_selector</property>
+                                    <value>2</value>
+                                </equals>
+                            </or>
+                            <greater-than>
+                                <property>/consumables/fuel/tank[0]/water-contamination</property>
+                                <value>0.0</value>
+                            </greater-than>
+                        </and>
+                        
+                        <!-- right wing tank contaminated -->
+                        <and>
+                            <or>
+                                <!-- fuel selector: 0=off, 1=right, 2=both, 3=left -->
+                                <equals>
+                                    <property>/controls/switches/fuel_tank_selector</property>
+                                    <value>1</value>
+                                </equals>
+                                <equals>
+                                    <property>/controls/switches/fuel_tank_selector</property>
+                                    <value>2</value>
+                                </equals>
+                            </or>
+                            <greater-than>
+                                <property>/consumables/fuel/tank[1]/water-contamination</property>
+                                <value>0.0</value>
+                            </greater-than>
+                        </and>
+                        
+                        <!-- TODO: fuel reservoir not simulated yet -->
+                        
+                        <!-- fuel strainer sump contaminated -->
+                        <greater-than>
+                            <property>/consumables/fuel/tank[2]/water-contamination</property>
+                            <value>0.0</value>
+                        </greater-than>
+                        
+                        <!-- fuel strainer sump contaminated -->
+                        <greater-than>
+                            <property>/consumables/fuel/tank[3]/water-contamination</property>
+                            <value>0.0</value>
+                        </greater-than>
+                        
+                    </or>
+                    
+                    <!-- engine also coughs if oil level is below critical level but still above killing the engine -->
+     <!--           <less-than>
+                    <property>/engines/active-engine/oil-level</property>
+                    <value>2.0</value>
+                </less-than>
+        -->
+                </and>
+                
+        </input>
+        <output>
+            <property>/engines/active-engine/coughing</property>
+        </output>
+    </logic>
+
+   
+
+</PropertyList>

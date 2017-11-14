@@ -628,13 +628,27 @@ item("Main Wheel Tire") {
 }
 
 item("Fuel Tank Sump Quick Drain Valves") {
-    state("DRAIN SAMPLE");
-    marker(1.5242, 1.5000, 0.7000, 15);
+    water = "/consumables/fuel/tank[1]/water-contamination";
+    state("DRAIN SAMPLE", water < 0.01) fgcommand("dialog-show", dialog-name="c182s-right-fuel-drain-dialog");
+    marker(1.0, 1.5000, 0.7000, 25);
 }
 
 item("Fuel Tank Sump Quick Drain Valves ") { # Attention, space intentional to distinguish from right item
-    state("DRAIN SAMPLE");
-    marker(1.5242, -1.4825, 0.7000, 15);
+    water = "/consumables/fuel/tank[0]/water-contamination";
+    state("DRAIN SAMPLE", water < 0.01) fgcommand("dialog-show", dialog-name="c182s-left-fuel-drain-dialog");
+    marker(1.0, -1.4825, 0.7000, 25);
+}
+
+item("Fuel Selector Quick Drain Valve") {
+    water = "/consumables/fuel/tank[2]/water-contamination";
+    state("DRAIN SAMPLE", water < 0.01) fgcommand("dialog-show", dialog-name="c182s-fuelselector-dialog");
+    marker(0.4975, 0.2092, -0.5750, 15);
+}
+
+item("Fuel Strainer Quick Drain Valve") {
+    water = "/consumables/fuel/tank[3]/water-contamination";
+    state("DRAIN SAMPLE", water < 0.01) fgcommand("dialog-show", dialog-name="c182s-fuelstrainer-dialog");
+    marker(-0.1142, 0.5733, -0.4442, 12);
 }
 
 item("Fuel Filler Cap") {
@@ -643,10 +657,6 @@ item("Fuel Filler Cap") {
 
 item("Static Source Opening") {
     state("CHECK for blockage");
-}
-
-item("Fuel Strainer Quick Drain Valve") {
-    state("DRAIN SAMPLE");
 }
 
 item("Engine Oil Dipstick/Filler Cap") {
@@ -751,6 +761,7 @@ checklist("Preflight Inspection") {
         text("---------------------------");
         check("Static Source Opening", "CHECK for blockage");
         check("Fuel Strainer Quick Drain Valve", "DRAIN SAMPLE");
+        check("Fuel Selector Quick Drain Valve", "DRAIN SAMPLE");
         check("Engine Oil Dipstick/Filler Cap", "CHECK oil level", "then check dipstick/filler cap SECURE", "Do not operate with less than four quarts.", "Fill to nine quarts for extended flight.");
         check("Engine Cooling Air Inlets", "CLEAR of obstructions");
         check("Propeller and Spinner", "CHECK for nicks and security");

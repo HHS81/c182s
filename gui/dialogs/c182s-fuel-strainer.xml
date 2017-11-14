@@ -43,6 +43,11 @@
                 <property>/controls/fuel/tank[3]/drain-valve</property>
             </binding>
             <binding>
+                <command>property-assign</command>
+                <property>/consumables/fuel/tank[3]/water-contamination</property>
+                <value>0</value>
+            </binding>
+            <binding>
                 <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
             </binding>
             <enable>

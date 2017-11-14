@@ -2260,5 +2260,119 @@
             </greater-than>
         </condition>
     </animation>
+    
+    
+    <!-- Preflight surface checks -->
+    <!-- elevator surface check -->
+    <animation>
+        <type>pick</type>
+        <object-name>Elevator</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <and>
+                        <not>            
+                            <property>/engines/active-engine/running</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/sim/current-view/internal</property>
+                        </not>
+                    </and>
+                </condition>
+                <command>nasal</command>
+                <script>c182s.control_surface_check_elevator();</script>
+            </binding>
+        </action>
+    </animation>
+    
+    <!-- left aileron surface check -->
+    <animation>
+        <type>pick</type>
+        <object-name>Aileron.L</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <and>
+                        <not>            
+                            <property>/engines/active-engine/running</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/sim/current-view/internal</property>
+                        </not>
+                    </and>
+                </condition>
+                <command>nasal</command>
+                <script>c182s.control_surface_check_left_aileron();</script>
+            </binding>
+        </action>
+    </animation>
+    
+    <!-- right aileron surface check -->
+    <animation>
+        <type>pick</type>
+        <object-name>Aileron.R</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <and>
+                        <not>            
+                            <property>/engines/active-engine/running</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/sim/current-view/internal</property>
+                        </not>
+                    </and>
+                </condition>
+                <command>nasal</command>
+                <script>c182s.control_surface_check_right_aileron();</script>
+            </binding>
+        </action>
+    </animation>
+    
+    <!-- rudder surface check -->
+    <animation>
+        <type>pick</type>
+        <object-name>Rudder</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <and>
+                        <not>            
+                            <property>/engines/active-engine/running</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/sim/current-view/internal</property>
+                        </not>
+                    </and>
+                </condition>
+                <command>nasal</command>
+                <script>c182s.control_surface_check_rudder();</script>
+            </binding>
+        </action>
+    </animation>
 
 </PropertyList>

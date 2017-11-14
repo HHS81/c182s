@@ -1890,8 +1890,29 @@
  </animation>
     
 
+    <!-- Hide these clickspots when inside the cockpit -->
+    <animation>
+        <type>select</type>
+        <object-name>chokes.cs.001</object-name>
+        <object-name>chokes.cs.002</object-name>
+        <object-name>chokes.cs.003</object-name>
+        <object-name>FuelSelectorDrain.cs</object-name>
+        <object-name>FuelStrainerDrain.cs</object-name>
+        <object-name>LeftTank.cs</object-name>
+        <object-name>LeftTankDrain.cs</object-name>
+        <object-name>Oil.cs</object-name>
+        <object-name>pitotcover.cs</object-name>
+        <object-name>RightTank.cs</object-name>
+        <object-name>RightTankDrain.cs</object-name>
+        <object-name>safety-cone.cs.L</object-name>
+        <object-name>safety-cone.cs.R</object-name>
+        <condition>
+        <not>
+            <property>sim/current-view/internal</property>
+        </not>
+        </condition>
+    </animation>
     
-
     
 <!--tiedown-->
 

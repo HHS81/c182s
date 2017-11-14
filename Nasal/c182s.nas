@@ -441,12 +441,11 @@ setlistener("/engines/active-engine/killed", func (node) {
 
 ##########################################
 # Fuel Contamination
+# TODO: It would be cool if contamination chance would be influenced by environment properties and by tank filling levels
 ##########################################
 var init_fuel_contamination = func {
     if (getprop("/engines/engine/complex-engine-procedures")) {
-        # TODO: It would be cool if contamination chance would be influenced by environment properties and by tank filling levels
         var chance = rand();
-    chance = 0.001;
         # Chance of contamination is 1 %
         if (chance < 0.01) {
             # Quantity of water is much more likely to be small than large, since
@@ -459,22 +458,20 @@ var init_fuel_contamination = func {
             water = water + 0.2 * (rand() - 0.5);
             water = std.max(0.0, std.min(water, 1.0));
             setprop("/consumables/fuel/tank[1]/water-contamination", water);
-        }
-        else {
+            
+        } else {
             setprop("/consumables/fuel/tank[0]/water-contamination", 0.0);
             setprop("/consumables/fuel/tank[1]/water-contamination", 0.0);
         };
         
         
-        # Water in fuel stainer and selector valve can differ but should be somewhat lower
+        # Water in fuel stainer and selector valve can differ but chance should be somewhat lower
         var selectorValveChance = rand();
-    selectorValveChance = 0.001;
         if (selectorValveChance < 0.008) {
             var selV_water = math.pow(rand(), 6);
             setprop("/consumables/fuel/tank[2]/water-contamination", selV_water);
         };
         var strainerChance = rand();
-    strainerChance = 0.001;
         if (strainerChance < 0.008) {
             var strainerwater = math.pow(rand(), 6);
             setprop("/consumables/fuel/tank[3]/water-contamination", strainerwater);
@@ -511,6 +508,24 @@ var take_fuel_sample = func(index) {
 # Return Fuel Sample
 ##########################################
 var return_fuel_sample = func(index) {
+    
+    # Stainer/Seelctor: Water and fuel needs to be added back to right tank instead of strainer/selector valve
+    if (index >=2 ) {
+        # lets fake "sampled" water in right wing tank :)
+        var tankIndex = 1;
+        var tankSamplewater = getprop("/consumables/fuel/tank", tankIndex, "sample-water-contamination");
+        var sample_water = getprop("/consumables/fuel/tank", index, "sample-water-contamination");
+        tankSamplewater = tankSamplewater + sample_water;
+        
+        setprop("/consumables/fuel/tank", tankIndex, "sample-water-contamination", tankSamplewater);
+        setprop("/consumables/fuel/tank", index, "sample-water-contamination", 0.0);
+        return_fuel_sample(1);
+        
+        return;
+    };
+
+    
+    # Wing tanks:
     var fuel = getprop("/consumables/fuel/tank", index, "level-gal_us");
     var water = getprop("/consumables/fuel/tank", index, "water-contamination");
     var sample_water = getprop("/consumables/fuel/tank", index, "sample-water-contamination");

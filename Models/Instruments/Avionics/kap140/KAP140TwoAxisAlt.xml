@@ -24,7 +24,6 @@ properties' values.
     <object-name>knob-outer</object-name>
     <object-name>knob-inner</object-name>
     <object-name>base</object-name>
-    <object-name>buttons</object-name>
     <emission>
       <red>0.3</red>
       <green>0.3</green>
@@ -32,6 +31,42 @@ properties' values.
       <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
     </emission>
   </animation>
+  
+  <animation>
+    <type>material</type>
+    <object-name>buttons</object-name>>
+    <condition>
+        <not>
+            <property>sim/rendering/rembrandt/enabled</property>
+        </not>
+        <greater-than>
+            <property>/systems/electrical/outputs/radio-lights-norm</property>
+            <value>0</value>
+        </greater-than>
+    </condition>
+    <emission>
+        <red>0.5</red>
+        <green>0.1</green>
+        <blue>0.00005</blue>
+        <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
+    </emission>
+</animation>
+<animation>
+    <type>material</type>
+    <object-name>buttons</object-name>
+    <condition>
+        <equals>
+            <property>/systems/electrical/outputs/radio-lights-norm</property>
+            <value>0</value>
+        </equals>
+    </condition>
+    <emission>
+        <red>0.3</red>
+        <green>0.3</green>
+        <blue>0.3</blue>
+        <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
+    </emission>
+</animation>
 
 <!-- Annunciators -->
   <animation>

@@ -53,6 +53,7 @@ var engine_coughing = func(){
     var coughing = getprop("/engines/active-engine/coughing");
     #var running = getprop("/engines/active-engine/running");
     var running = getprop("/fdm/jsbsim/propulsion/engine/set-running");
+    var allow_contamination = getprop("/engines/engine/allow-fuel-contamination");
     
     if (coughing and running) {
         # the code below kills the engine and then brings it back to life after 0.25 seconds, simulating a cough
@@ -71,7 +72,7 @@ var engine_coughing = func(){
     var water_contamination2 = getprop("/consumables/fuel/tank[2]/water-contamination");
     var water_contamination3 = getprop("/consumables/fuel/tank[3]/water-contamination");
     var total_water_contamination = std.min((water_contamination0 + water_contamination1 + water_contamination2 + water_contamination3), 0.4);
-    if (total_water_contamination > 0) {
+    if (allow_contamination and total_water_contamination > 0) {
         # if contamination is near 0, then interval is between 17 and 20 seconds, but if contamination is near the 
         # engine stopping value of 0.4, then interval falls to around 0.5 and 3.5 seconds
         delay = 3.0 * rand() + 17 - 41.25 * total_water_contamination;

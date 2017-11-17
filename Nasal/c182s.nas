@@ -489,6 +489,19 @@ var control_surface_check_rudder = func {
 
 
 ##########################################
+# REPAIR DAMAGE
+##########################################
+var repair_damage = func {
+    print("Repairing damage...");
+    reset_fuel_contamination();
+    setprop("/engine/active-engine/kill-engine", 0.0);
+    setprop("/engines/active-engine/crashed", 0.0);
+    electrical.reset_battery_and_circuit_breakers();
+};
+
+
+
+##########################################
 # Autostart
 ##########################################
 
@@ -583,14 +596,7 @@ var autostart = func (msg=1) {
     setprop("/sim/model/c182s/securing/tiedownT-visible", 0);
 
     # Removing any contamination from water
-    setprop("/consumables/fuel/tank[0]/water-contamination", 0.0);
-    setprop("/consumables/fuel/tank[1]/water-contamination", 0.0);
-    setprop("/consumables/fuel/tank[2]/water-contamination", 0.0);
-    setprop("/consumables/fuel/tank[3]/water-contamination", 0.0);
-    setprop("/consumables/fuel/tank[0]/sample-water-contamination", 0.0);
-    setprop("/consumables/fuel/tank[1]/sample-water-contamination", 0.0);
-    setprop("/consumables/fuel/tank[2]/sample-water-contamination", 0.0);
-    setprop("/consumables/fuel/tank[3]/sample-water-contamination", 0.0);
+    reset_fuel_contamination();
     
     # Setting max oil level
 #    var oil_enabled = getprop("/engines/active-engine/oil_consumption_allowed");

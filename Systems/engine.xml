@@ -34,7 +34,8 @@
                 <!-- Engine is killed if fuel contamination is higher than 0.2 on a selected tank -->
                 <!-- (but only if complex engine model is requested!) -->
                 <and>
-                    <property>/engines/engine/complex-engine-procedures</property>  
+                    <property>/engines/engine/complex-engine-procedures</property>
+                    <property>/engines/engine/allow-fuel-contamination</property>
                     
                     <or>
                         <!-- left wing tank contaminated -->
@@ -117,7 +118,8 @@
             <!-- Engine is killed if fuel contamination is higher than 0.2 on a selected tank -->
                 <!-- (but only if complex engine model is requested!) -->
                 <and>
-                    <property>/engines/engine/complex-engine-procedures</property>  
+                    <property>/engines/engine/complex-engine-procedures</property>
+                    <property>/engines/engine/allow-fuel-contamination</property>
                     
                     <or>
                         <!-- left wing tank contaminated -->

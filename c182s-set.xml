@@ -526,6 +526,7 @@
         <aircraft-data>
             <path>/sim/time/hobbs/engine</path>
             <path>/engines/engine/complex-engine-procedures</path>
+            <path>/engines/engine/allow-fuel-contamination</path>
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
             <path>/consumables/fuel/tank[2]/level-gal_us</path>
@@ -769,6 +770,7 @@
    <mixture type="double">0</mixture>
    <running type="bool">false</running>
    <complex-engine-procedures type="bool">false</complex-engine-procedures>
+   <allow-fuel-contamination type="bool">false</allow-fuel-contamination>
   </engine>
  </engines>
  

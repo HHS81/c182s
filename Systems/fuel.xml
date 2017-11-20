@@ -312,7 +312,7 @@ Author: 09/2017  Benedikt Hallinger
             <test logic="AND" value="0.5">
                 /fdm/jsbsim/propulsion/tank[3]/pct-full  GT  10.0
                 /fdm/jsbsim/propulsion/tank[4]/pct-full  LT  90.0
-                accelerations/Nz GE -0.5
+                accelerations/Nz GE -0.05
             </test>
         </switch>
         

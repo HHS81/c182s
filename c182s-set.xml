@@ -775,6 +775,7 @@
    <complex-engine-procedures type="bool">false</complex-engine-procedures>
    <allow-fuel-contamination type="bool">false</allow-fuel-contamination>
    <allow-oil-management type="bool">false</allow-oil-management>
+   <powergain-factor type="double">1</powergain-factor>
   </engine>
  </engines>
  

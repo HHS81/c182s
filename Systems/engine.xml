@@ -181,13 +181,13 @@
                     
                 </and>
                     
-                <!-- Engine is coughing if oil level is too low -->
+                <!-- Engine is coughing if oil level is too low and engine about to die -->
                 <and>
                     <property>/engines/engine/complex-engine-procedures</property>
                     <property>/engines/engine/allow-oil-management</property>
                     <less-than>
                         <property>/engines/active-engine/oil-level</property>
-                        <value>3</value>
+                        <value>2</value>
                     </less-than>
                 </and>
                 

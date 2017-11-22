@@ -527,6 +527,7 @@
             <path>/sim/time/hobbs/engine</path>
             <path>/engines/engine/complex-engine-procedures</path>
             <path>/engines/engine/allow-fuel-contamination</path>
+            <path>/engines/engine/allow-oil-management</path>
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
             <path>/consumables/fuel/tank[2]/level-gal_us</path>
@@ -536,6 +537,8 @@
             <path>/controls/engines/engine[0]/mixture-lever</path>
             <path>/controls/engines/engine[0]/throttle</path>
             <path>/controls/engines/engine[0]/propeller-pitch</path>
+            <path>/engines/active-engine/oil-level</path>
+            <path>/engines/active-engine/oil-service-hours</path>
             <path>/controls/gear/brake-parking</path>
             <path>/controls/engines/engine[0]/magnetos</path>
             <path>/controls/engines/engine[0]/master-bat</path> 
@@ -771,6 +774,7 @@
    <running type="bool">false</running>
    <complex-engine-procedures type="bool">false</complex-engine-procedures>
    <allow-fuel-contamination type="bool">false</allow-fuel-contamination>
+   <allow-oil-management type="bool">false</allow-oil-management>
   </engine>
  </engines>
  

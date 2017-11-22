@@ -84,3 +84,117 @@ var engine_coughing = func(){
 
 var coughing_timer = maketimer(1, engine_coughing);
 coughing_timer.start();
+
+
+
+# ========== oil consumption ======================
+var oil_consumption = maketimer(1.0, func {
+    var allow_consumption = getprop("/engines/engine/allow-oil-management");
+
+    var oil_level = getprop("/engines/active-engine/oil-level");
+    var service_hours = getprop("/engines/active-engine/oil-service-hours");
+    var oil_full = 9;
+    var oil_lacking = oil_full - oil_level;
+    setprop("/engines/active-engine/oil-lacking", oil_lacking);
+    
+    
+    # consume oil if engine is running
+    # oil consumption is depending on the time the oil is in service and also on RPM.
+    # Consumption also depends on level; above 8 quarts the engine spills some oil
+    if (allow_consumption) {
+    
+        var rpm = getprop("/engines/engine/rpm");
+    
+        # Quadratic formula which outputs 1.0 for input 2300 RPM (cruise value),
+        # 0.6 for 700 RPM (idle) and 1.2 for 2700 RPM (max)
+        var rpm_factor = 0.00000012 * math.pow(rpm, 2) - 0.0001 * rpm + 0.62;
+    
+        # Consumption rate defined as 1.5 quarter per 10 hours (36000 seconds)
+        # at cruise RPM
+        var consumption_rate = 1.5 / 36000;
+        if (oil_level > 8) {
+            consumption_rate = consumption_rate * 1.3;
+        }
+        
+        # Consumption raises with oil in service time; 1 at start; about 3 at 50hrs
+        var service_hours_factor = 0.0009 * math.pow(service_hours, 2) + 1;
+        if (service_hours_factor > 5) service_hours_factor = 5;  # cap at that rate
+    
+    
+        # Calculate consumption and update properties
+        if (getprop("/engines/engine/running")) {
+            var consume_oil_qps = consumption_rate * rpm_factor * service_hours_factor;
+            oil_level = oil_level - consume_oil_qps;
+            setprop("/engines/active-engine/oil-level", oil_level);
+            setprop("/engines/active-engine/oil-consume-qps", consume_oil_qps);
+            setprop("/engines/active-engine/oil-consume-qph", consume_oil_qps*3600);
+            
+            var service_hours_new = service_hours + 1/3600; # add one second service time
+            setprop("/engines/active-engine/oil-service-hours", service_hours_new);
+            
+            #print("consume oil: ", consumption_rate, "*" , rpm_factor);
+            #print("new servcie hours: ", service_hours_new);
+        
+        } else {
+            # engine off
+            setprop("/engines/active-engine/oil-consume-qps", 0);
+            setprop("/engines/active-engine/oil-consume-qph", 0);
+        }
+
+        
+        # Calculate pressure and temperature adjustment factors
+        var low_oil_pressure_factor = 1.0;
+        var low_oil_temperature_factor = 1.0;
+
+        # If oil gets low (< 3.0), pressure should drop and temperature should rise
+        var oil_level_limited = std.min(oil_level, 3.0);
+    
+        # Should give 1.0 for oil_level = 3 and 0.1 for oil_level 1.97,
+        # which is the min before the engine stops
+        low_oil_pressure_factor = 0.873786408 * oil_level_limited - 1.621359224;
+        
+        # Should give 1.0 for oil_level = 3 and 1.5 for oil_level 1.97
+        low_oil_temperature_factor = -0.485436893 * oil_level_limited + 2.456310679;
+    
+        setprop("/engines/active-engine/low-oil-pressure-factor", low_oil_pressure_factor);
+        setprop("/engines/active-engine/low-oil-temperature-factor", low_oil_temperature_factor);
+        
+        
+    } else {
+        # consumtion disabled
+        setprop("/engines/active-engine/low-oil-pressure-factor", 1);
+        setprop("/engines/active-engine/low-oil-temperature-factor", 1);
+        setprop("/engines/active-engine/oil-consume-qps", 0);
+        setprop("/engines/active-engine/oil-consume-qph", 0);
+    }
+
+});
+
+# ======== Oil refilling =======
+var oil_refill = func(){
+    var service_hours = getprop("/engines/active-engine/oil-service-hours");
+    var oil_level     = getprop("/engines/active-engine/oil-level");
+    var refilled      = oil_level - previous_oil_level;
+    #print("OIL Refill init: svcHrs=", service_hours, "; oil_level=",oil_level, "; previous_oil_level=",previous_oil_level, "; refilled=",refilled);
+    
+    if (refilled >= 0) {
+        # when refill occured, the new oil "makes the old oil younger"
+        var pct = previous_oil_level / oil_level;
+        var newService_hours = service_hours * pct;
+        setprop("/engines/active-engine/oil-service-hours", newService_hours);
+        #print("OIL Refill: pct=", pct, "; service_hours=",service_hours, "; newService_hours=", newService_hours, "; previous_oil_level=", previous_oil_level, "; oil_level=",oil_level);
+    }
+    
+    previous_oil_level = oil_level;
+}
+
+
+# ======= OIL SYSTEM INIT =======
+if (!getprop("/engines/active-engine/oil-level")) {
+     setprop("/engines/active-engine/oil-level", 8);
+}
+var previous_oil_level = getprop("/engines/active-engine/oil-level");
+if (!getprop("/engines/active-engine/oil-service-hours")) {
+     setprop("/engines/active-engine/oil-service-hours", 0);
+}
+oil_consumption.start();

@@ -1019,7 +1019,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>dialog-show</command>
-                <dialog-name>c182s-oilmanagement-dialo</dialog-name>
+                <dialog-name>c182s-oilmanagement-dialog</dialog-name>
             </binding>
         </action>
         <hovered>

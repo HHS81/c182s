@@ -497,6 +497,7 @@ var repair_damage = func {
     setprop("/engine/active-engine/kill-engine", 0.0);
     setprop("/engines/active-engine/crashed", 0.0);
     electrical.reset_battery_and_circuit_breakers();
+    setprop("/engines/active-engine/oil-level", 8.0);
 };
 
 

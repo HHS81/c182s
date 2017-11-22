@@ -90,17 +90,19 @@
                             <value>0.2</value>
                         </greater-than>
                         
-                        
-                                        
-                        <!-- engine is also killed if oil level is critical. Minimum oil level in the sump for safe operation (according 
-                        to Lycommings manual, page 3-10) is 2 quarts, which explains the value of 1.97 below-->
-            <!--           <less-than>
-                            <property>/engines/active-engine/oil-level</property>
-                            <value>1.97</value>
-                        </less-than>
-                -->
-                        
                     </or>
+                </and>
+                
+                
+                <!-- Engine is killed if oil level is too low -->
+                <!-- critical value is 4 according to POH 8-14 -->
+                <and>
+                    <property>/engines/engine/complex-engine-procedures</property>
+                    <property>/engines/engine/allow-oil-management</property>
+                    <less-than>
+                        <property>/engines/active-engine/oil-level</property>
+                        <value>3.8</value>
+                    </less-than>
                 </and>
 
             </or>
@@ -115,7 +117,8 @@
     <logic>
         <name>Engine Coughing</name>
         <input>
-            <!-- Engine is killed if fuel contamination is higher than 0.2 on a selected tank -->
+            <or>
+                <!-- Engine is killed if fuel contamination is higher than 0.2 on a selected tank -->
                 <!-- (but only if complex engine model is requested!) -->
                 <and>
                     <property>/engines/engine/complex-engine-procedures</property>
@@ -176,13 +179,20 @@
                         
                     </or>
                     
-                    <!-- engine also coughs if oil level is below critical level but still above killing the engine -->
-     <!--           <less-than>
-                    <property>/engines/active-engine/oil-level</property>
-                    <value>2.0</value>
-                </less-than>
-        -->
                 </and>
+                    
+                <!-- Engine is coughing if oil level is too low -->
+                <and>
+                    <property>/engines/engine/complex-engine-procedures</property>
+                    <property>/engines/engine/allow-oil-management</property>
+                    <less-than>
+                        <property>/engines/active-engine/oil-level</property>
+                        <value>4</value>
+                    </less-than>
+                </and>
+                
+                
+            </or>
                 
         </input>
         <output>

@@ -523,12 +523,14 @@ Author: 09/2017  Benedikt Hallinger
         
         <!-- Calculates the priming flow depending on selected mixture -->
         <!-- The priming-mixture-flow-pps property is used to actually fill the manifold -->
+        <!-- Lycoming manual says: Prime with 1/4 throttle travel; this gives ~6GPH=0.01pps -->
+        <!-- Note, this differs from the POH which says 1/4 INCH! -->
         <fcs_function name="/systems/fuel/priming-mixture-flow-pps">
             <function>
                 <product>
                     <property>/controls/engines/engine/mixture-lever</property>
                     <property>/controls/engines/engine/throttle</property>
-                    <value>0.125</value>
+                    <value>0.04</value>
                 </product>
             </function>
             <output>/systems/fuel/priming-mixture-flow-pps</output>   

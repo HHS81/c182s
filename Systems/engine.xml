@@ -190,6 +190,19 @@
                     </less-than>
                 </and>
                 
+                <!-- Engine is coughing if still cold and throttle is wide open -->
+                <and>
+                    <property>/engines/engine/complex-engine-procedures</property>
+                    <property>/engines/engine/allow-oil-management</property>
+                    <greater-than>
+                        <property>/controls/engines/engine[0]/throttle</property>
+                        <value>0.65</value>
+                    </greater-than>
+                    <greater-than>
+                        <property>/engines/engine/oil-powergain-factor</property>
+                        <value>1.15</value>
+                    </greater-than>
+                </and>
                 
             </or>
                 

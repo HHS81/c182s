@@ -85,7 +85,15 @@
         <!-- OIL Power gain factor -->
         <!-- (cold oil makes the engine output less power due to reduced viscosity/increased friction) -->
         <!-- This also simulates "running the engine warm" -->
-        <fcs_function name="engines/engine/oil-powergain-factor">
+        <switch name="engines/engine/oil-powergain-factor">
+            <default value="1"/>
+            <test logic="AND" value="oil-powergain-factor-calc">
+                /engines/engine/complex-engine-procedures EQ 1
+                /engines/engine/allow-oil-management EQ 1
+            </test>
+            <output>/engines/engine/oil-powergain-factor</output>
+        </switch>
+        <fcs_function name="oil-powergain-factor-calc">
             <function>
                 <table>
                     <independentVar lookup="row">/engines/active-engine/oil-temperature-degf</independentVar>
@@ -99,7 +107,7 @@
                 <min> 1.0 </min>  <!-- 1=no more better; <1 is boost! -->
                 <max> 1.5 </max>  <!-- bigger=less power -->
             </clipto>
-            <output>/engines/engine/oil-powergain-factor</output>
+            <output>oil-powergain-factor-calc</output>
         </fcs_function>
 
     </channel>

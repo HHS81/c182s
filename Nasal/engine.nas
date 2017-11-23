@@ -154,15 +154,15 @@ var oil_consumption = maketimer(1.0, func {
         var low_oil_pressure_factor = 1.0;
         var low_oil_temperature_factor = 1.0;
 
-        # If oil gets low (< 3.0), pressure should drop and temperature should rise
+        # If oil gets low (< 4.0), pressure should drop and temperature should rise
         var oil_level_limited = std.min(oil_level, 4.0);
     
-        # Should give 1.0 for oil_level = 3 and 0.1 for oil_level 1.97,
-        # engine.xml defines engine-killing level as 1.97 (POH says, never fly below 4 but contains safety buffer; half that margin is 2)
-        low_oil_pressure_factor = 0.873786408 * oil_level_limited - 1.621359224;
+        # Should give 1.0 for oil_level = 4 and 0.1 for oil_level 3.97,
+        # engine.xml defines engine-killing level as 3.97
+        low_oil_pressure_factor = 30 * oil_level_limited - 119;
         
-        # Should give 1.0 for oil_level = 3 and 1.5 for oil_level 1.97
-        low_oil_temperature_factor = -0.485436893 * oil_level_limited + 2.456310679;
+        # Should give 1.0 for oil_level = 4 and 1.5 for oil_level 3.97
+        low_oil_temperature_factor = -50/3 * oil_level_limited + 203/3;
     
         setprop("/engines/active-engine/low-oil-pressure-factor", low_oil_pressure_factor);
         setprop("/engines/active-engine/low-oil-temperature-factor", low_oil_temperature_factor);

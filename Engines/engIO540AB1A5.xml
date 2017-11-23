@@ -31,8 +31,8 @@
     <minthrottle>    0.0 </minthrottle>
     <sparkfaildrop>  0.15 </sparkfaildrop>
     
-    <oil-pressure-relief-valve-psi>   75    </oil-pressure-relief-valve-psi> <!-- min=55; max=95; idle=25; start&warm-up=115 -->
-    <oil-pressure-rpm-max>          1940    </oil-pressure-rpm-max> <!-- 75% of 2575 -->
-    <design-oil-temp-degK>           166    </design-oil-temp-degK> <!-- level cruise: between 165degF and 200 degF -->
+    <!--<oil-pressure-relief-valve-psi>   75    </oil-pressure-relief-valve-psi> --><!-- min=55; max=95; idle=25; start&warm-up=115 -->
+    <!--<oil-pressure-rpm-max>          1940    </oil-pressure-rpm-max>--> <!-- 75% of 2575 -->
+    <!--<design-oil-temp-degK>           182    </design-oil-temp-degK>--> <!-- level cruise: between 165degF and 200 degF -->
     <!--<oil-viscosity-index>              0.25 </oil-viscosity-index> --> <!-- TODO: .25 default jsbsim value -->
 </piston_engine>

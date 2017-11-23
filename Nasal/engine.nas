@@ -105,29 +105,37 @@ var oil_consumption = maketimer(1.0, func {
     
         var rpm = getprop("/engines/engine/rpm");
     
-        # Quadratic formula which outputs 1.0 for input 2300 RPM (cruise value),
-        # 0.6 for 700 RPM (idle) and 1.2 for 2700 RPM (max)
-        var rpm_factor = 0.00000012 * math.pow(rpm, 2) - 0.0001 * rpm + 0.62;
-    
-        # Consumption rate defined as 1.5 quarter per 10 hours (36000 seconds)
-        # at cruise RPM
-        var consumption_rate = 1.5 / 36000;
+        # Consumption according Lycoming manual 3-13:
+        # see: https://www.lycoming.com/sites/default/files/O%20%26%20IO-540%20Oper%20Manual%2060297-10.pdf
+        #  Standard rated:                  2400 RPM = 0.78 qph
+        #  Performance Cruise (75% Rated):  2200 RPM = 0.58 qph
+        #  Economy Cruise (60% Rated):      2000 RPM = 0.47 qph
+        
+        # Formula which outputs basic quarts-per-hour consumption:
+        # RPM:   2700 |  2400 |  2200 | 2000  | 800
+        # qph:  1.084 | 0.782 | 0.618 | 0.482 | 0.096
+        var consumption_qph = 0.0000000000515 * math.pow(rpm, 3) + 0.07;
+
+        # Raise consumption when oil level is > 8 quarts (blowout)
         if (oil_level > 8) {
-            consumption_rate = consumption_rate * 1.3;
+            consumption_qph = consumption_qph * 1.3;
         }
         
-        # Consumption raises with oil in service time; 1 at start; about 3 at 50hrs
-        var service_hours_factor = 0.0009 * math.pow(service_hours, 2) + 1;
-        if (service_hours_factor > 5) service_hours_factor = 5;  # cap at that rate
+        # Consumption also raises with oil in service time:
+        # 0qph at start; about 1qph at 25 and about 3.5qph at 50hrs
+        # See: http://www.t-craft.org/Reference/Aircraft.Oil.Usage.pdf
+        var service_hours_increase = 0.0013 * math.pow(service_hours, 2);
+        if (service_hours_increase > 5) service_hours_increase = 5;  # cap at that rate
+        consumption_qph = consumption_qph + service_hours_increase;
     
     
         # Calculate consumption and update properties
         if (getprop("/engines/engine/running")) {
-            var consume_oil_qps = consumption_rate * rpm_factor * service_hours_factor;
+            var consume_oil_qps = consumption_qph / 3600;
             oil_level = oil_level - consume_oil_qps;
             setprop("/engines/active-engine/oil-level", oil_level);
             setprop("/engines/active-engine/oil-consume-qps", consume_oil_qps);
-            setprop("/engines/active-engine/oil-consume-qph", consume_oil_qps*3600);
+            setprop("/engines/active-engine/oil-consume-qph", consumption_qph);
             
             var service_hours_new = service_hours + 1/3600; # add one second service time
             setprop("/engines/active-engine/oil-service-hours", service_hours_new);
@@ -147,7 +155,7 @@ var oil_consumption = maketimer(1.0, func {
         var low_oil_temperature_factor = 1.0;
 
         # If oil gets low (< 3.0), pressure should drop and temperature should rise
-        var oil_level_limited = std.min(oil_level, 3.0);
+        var oil_level_limited = std.min(oil_level, 4.0);
     
         # Should give 1.0 for oil_level = 3 and 0.1 for oil_level 1.97,
         # engine.xml defines engine-killing level as 1.97 (POH says, never fly below 4 but contains safety buffer; half that margin is 2)

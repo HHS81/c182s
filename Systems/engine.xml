@@ -95,13 +95,12 @@
                 
                 
                 <!-- Engine is killed if oil level is too low -->
-                <!-- never-fly-below level is 4 according to POH 8-14, half sump capacity of minimum-ok-value(4) is 2 -->
                 <and>
                     <property>/engines/engine/complex-engine-procedures</property>
                     <property>/engines/engine/allow-oil-management</property>
                     <less-than>
                         <property>/engines/active-engine/oil-level</property>
-                        <value>1.97</value>
+                        <value>3.97</value>
                     </less-than>
                 </and>
 
@@ -187,7 +186,7 @@
                     <property>/engines/engine/allow-oil-management</property>
                     <less-than>
                         <property>/engines/active-engine/oil-level</property>
-                        <value>2</value>
+                        <value>4</value>
                     </less-than>
                 </and>
                 

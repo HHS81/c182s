@@ -179,7 +179,12 @@ var oil_refill = func(){
     
     if (refilled >= 0) {
         # when refill occured, the new oil "makes the old oil younger"
-        var pct = previous_oil_level / oil_level;
+        var pct;
+        if (oil_level > 0) {
+            pct = previous_oil_level / oil_level;
+        } else {
+            pct = 0;
+        }
         var newService_hours = service_hours * pct;
         setprop("/engines/active-engine/oil-service-hours", newService_hours);
         #print("OIL Refill: pct=", pct, "; service_hours=",service_hours, "; newService_hours=", newService_hours, "; previous_oil_level=", previous_oil_level, "; oil_level=",oil_level);

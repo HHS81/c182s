@@ -186,7 +186,7 @@
                     <property>/engines/engine/allow-oil-management</property>
                     <less-than>
                         <property>/engines/active-engine/oil-level</property>
-                        <value>4</value>
+                        <value>3.98</value>
                     </less-than>
                 </and>
                 

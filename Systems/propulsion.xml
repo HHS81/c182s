@@ -47,7 +47,7 @@
             14000	0.303	0.305	0.305	0.305	0.305	0.305	0.305	0.305	0.305	0.305	0.305	0.305	0.305	0.305	0.305
                         </tableData>
                     </table>
-                <property>/engines/engine/powergain-factor</property>
+                <property>/engines/engine/oil-powergain-factor</property>
                 </product>
           </function>
           <clipto>
@@ -85,21 +85,21 @@
         <!-- OIL Power gain factor -->
         <!-- (cold oil makes the engine output less power due to reduced viscosity/increased friction) -->
         <!-- This also simulates "running the engine warm" -->
-        <fcs_function name="engines/engine/powergain-factor">
+        <fcs_function name="engines/engine/oil-powergain-factor">
             <function>
                 <table>
                     <independentVar lookup="row">/engines/active-engine/oil-temperature-degf</independentVar>
                     <tableData breakPoint="0">
-                        19.4   3.00   <!-- -7°C -->
+                        19.4   2.00   <!-- -7°C -->
                         90.0   1.00   <!-- 32°C --> <!-- engine is considered "hot" -->
                     </tableData>
                 </table>  
             </function>
             <clipto>
                 <min> 1.0 </min>  <!-- 1=no more better; <1 is boost! -->
-                <max> 3.00 </max> <!-- bigger=less power -->
+                <max> 1.5 </max>  <!-- bigger=less power -->
             </clipto>
-            <output>/engines/engine/powergain-factor</output>
+            <output>/engines/engine/oil-powergain-factor</output>
         </fcs_function>
 
     </channel>

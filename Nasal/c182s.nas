@@ -509,46 +509,47 @@ var repair_damage = func {
 var autostart = func (msg=1) {
     print("Autostart engine engaged.");
     if (getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
+        # When engine already running, perform autoshutdown
         if (msg)
             gui.popupTip("Autoshutdown engine engaged.", 5);
+                
+        #After landing
+        setprop("/controls/flight/flaps", 0);
+        setprop("/controls/engines/engine/cowl-flaps-norm", 1);
+
+        #Securing Aircraft
+        setprop("/controls/gear/brake-parking", 1);
+        setprop("/controls/engines/engine[0]/throttle", 0.0);
+        setprop("/controls/lighting/nav-lights", 0);
+        setprop("/controls/lighting/strobe", 0);
+        setprop("/controls/lighting/beacon", 0);
+        setprop("/controls/switches/AVMBus1", 0);  
+        setprop("/controls/switches/AVMBus2", 0);  
+        setprop("/controls/engines/engine[0]/mixture-lever", 0.0);
+        setprop("/controls/switches/starter", 0);
+        setprop("/controls/engines/engine[0]/magnetos", 0);
+        setprop("/controls/engines/engine[0]/master-bat", 0);
+        setprop("/controls/engines/engine[0]/master-alt", 0);
+        setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
+        setprop("/controls/switches/fuel_tank_selector", 1);
+        
+        #securing Aircraft on ground
+        setprop("/sim/chocks001/enable", 1);
+        setprop("/sim/chocks002/enable", 1);
+        setprop("/sim/chocks003/enable", 1);
+        setprop("/sim/model/c182s/securing/pitot-cover-visible", 1);
+        setprop("/sim/model/c182s/securing/tiedownL-visible", 1);
+        setprop("/sim/model/c182s/securing/tiedownR-visible", 1);
+        setprop("/sim/model/c182s/securing/tiedownT-visible", 1);
+        
         print("Autoshutdown engine complete.");
-
-	
-	# When engine already running, perform autoshutdown
-	
-    #After landing
-    setprop("/controls/flight/flaps", 0);
-    setprop("/controls/engines/engine/cowl-flaps-norm", 1);
-
-    #Securing Aircraft
-    setprop("/controls/gear/brake-parking", 1);
-    setprop("/controls/engines/engine[0]/throttle", 0.0);
-    setprop("/controls/lighting/nav-lights", 0);
-    setprop("/controls/lighting/strobe", 0);
-    setprop("/controls/lighting/beacon", 0);
-    setprop("/controls/switches/AVMBus1", 0);  
-    setprop("/controls/switches/AVMBus2", 0);  
-    setprop("/controls/engines/engine[0]/mixture-lever", 0.0);
-    setprop("/controls/switches/starter", 0);
-    setprop("/controls/engines/engine[0]/magnetos", 0);
-    setprop("/controls/engines/engine[0]/master-bat", 0);
-    setprop("/controls/engines/engine[0]/master-alt", 0);
-    setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
-    setprop("/controls/switches/fuel_tank_selector", 1);
-    
-    #securing Aircraft on ground
-    setprop("/sim/chocks001/enable", 1);
-    setprop("/sim/chocks002/enable", 1);
-    setprop("/sim/chocks003/enable", 1);
-    setprop("/sim/model/c182s/securing/pitot-cover-visible", 1);
-    setprop("/sim/model/c182s/securing/tiedownL-visible", 1);
-    setprop("/sim/model/c182s/securing/tiedownR-visible", 1);
-    setprop("/sim/model/c182s/securing/tiedownT-visible", 1);
-	return;
+        return;
     }
-
-    # Reset battery charge and circuit breakers
-    electrical.reset_battery_and_circuit_breakers();
+    
+    # Repair Aircraft
+    # This repairs any damage, reloads battery, removes water contamination, resets oil, etc
+    repair_damage();
+    
 
     # Filling fuel tanks
     setprop("/consumables/fuel/tank[0]/selected", 1);
@@ -595,22 +596,6 @@ var autostart = func (msg=1) {
     setprop("/sim/model/c182s/securing/tiedownL-visible", 0);
     setprop("/sim/model/c182s/securing/tiedownR-visible", 0);
     setprop("/sim/model/c182s/securing/tiedownT-visible", 0);
-
-    # Removing any contamination from water
-    reset_fuel_contamination();
-    
-    # Setting max oil level
-#    var oil_enabled = getprop("/engines/active-engine/oil_consumption_allowed");
-#    var oil_level   = getprop("/engines/active-engine/oil-level");
-#    
-#    if (oil_enabled and oil_level < 5.0) {
-#        if (getprop("/controls/engines/active-engine") == 0) {
-#            setprop("/engines/active-engine/oil-level", 7.0);
-#        } 
-#        else {
-#            setprop("/engines/active-engine/oil-level", 8.0);
-#        };
-#    };
 
 
     # Checking for minimal fuel level

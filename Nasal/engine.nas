@@ -122,10 +122,10 @@ var oil_consumption = maketimer(1.0, func {
         }
         
         # Consumption also raises with oil in service time:
-        # 0qph at start; about 1qph at 25 and about 3.5qph at 50hrs
+        # 0qph at start; about 0.6 qph at 25 and about 2.3qph at 50hrs
         # See: http://www.t-craft.org/Reference/Aircraft.Oil.Usage.pdf
-        var service_hours_increase = 0.0013 * math.pow(service_hours, 2);
-        if (service_hours_increase > 5) service_hours_increase = 5;  # cap at that rate
+        var service_hours_increase = 0.00095 * math.pow(service_hours, 2);
+        if (service_hours_increase > 3) service_hours_increase = 3;  # cap at that rate
         consumption_qph = consumption_qph + service_hours_increase;
     
     

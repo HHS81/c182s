@@ -2274,7 +2274,7 @@
                 <condition>
                     <and>
                         <not>            
-                            <property>/engines/active-engine/running</property>
+                            <property>/engines/engine[0]/running</property>
                         </not>
                         <less-than>
                             <property>velocities/groundspeed-kt</property>
@@ -2302,7 +2302,7 @@
                 <condition>
                     <and>
                         <not>            
-                            <property>/engines/active-engine/running</property>
+                            <property>/engines/engine[0]/running</property>
                         </not>
                         <less-than>
                             <property>velocities/groundspeed-kt</property>
@@ -2330,7 +2330,7 @@
                 <condition>
                     <and>
                         <not>            
-                            <property>/engines/active-engine/running</property>
+                            <property>/engines/engine[0]/running</property>
                         </not>
                         <less-than>
                             <property>velocities/groundspeed-kt</property>
@@ -2358,7 +2358,7 @@
                 <condition>
                     <and>
                         <not>            
-                            <property>/engines/active-engine/running</property>
+                            <property>/engines/engine[0]/running</property>
                         </not>
                         <less-than>
                             <property>velocities/groundspeed-kt</property>

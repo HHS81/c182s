@@ -456,7 +456,7 @@ Author: 09/2017  Benedikt Hallinger
             </test>
             <test logic="AND" value="0">
                 <!-- Engine killed? then never feed fuel! -->
-                /engines/active-engine/killed EQ 1
+                /engines/engine[0]/killed EQ 1
             </test>
             <test logic="AND" value="0">
                 <test logic="AND">

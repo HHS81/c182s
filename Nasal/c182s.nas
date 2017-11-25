@@ -432,7 +432,7 @@ var thunder = func (name) {
 ############################################
 
 # Play coughing sound when engine was killed
-setlistener("/engines/active-engine/killed", func (node) {
+setlistener("/engines/engine[0]/killed", func (node) {
     if (node.getValue() and getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
         click("coughing-engine-sound", 0.7, 0);
     };
@@ -494,10 +494,10 @@ var control_surface_check_rudder = func {
 var repair_damage = func {
     print("Repairing damage...");
     reset_fuel_contamination();
-    setprop("/engine/active-engine/kill-engine", 0.0);
-    setprop("/engines/active-engine/crashed", 0.0);
+    setprop("/engines/engine[0]/kill-engine", 0.0);
+    setprop("/engines/engine[0]/crashed", 0.0);
     electrical.reset_battery_and_circuit_breakers();
-    setprop("/engines/active-engine/oil-level", 8.0);
+    setprop("/engines/engine[0]/oil-level", 8.0);
 };
 
 
@@ -619,7 +619,7 @@ var autostart = func (msg=1) {
     # All set, starting engine
     settimer(func {
         setprop("/controls/switches/starter", 1);
-        setprop("/engines/active-engine/auto-start", 1);
+        setprop("/engines/engine[0]/auto-start", 1);
     }, 1);
 
     var engine_running_check_delay = 6.0;
@@ -629,7 +629,7 @@ var autostart = func (msg=1) {
             print("Autostart engine FAILED");
         }
         setprop("/controls/switches/starter", 0);
-        setprop("/engines/active-engine/auto-start", 0);
+        setprop("/engines/engine[0]/auto-start", 0);
         
         # Reset complex-engine-procedures user setting
         setprop("/engines/engine/complex-engine-procedures", complexEngineProcedures_state_old);

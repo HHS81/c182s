@@ -50,16 +50,16 @@ setlistener("/sim/time/hobbs/engine", update_hobbs_meter, 1, 0);
 # ========== engine coughing ======================
 
 var engine_coughing = func(){
-    var coughing = getprop("/engines/active-engine/coughing");
-    #var running = getprop("/engines/active-engine/running");
+    var coughing = getprop("/engines/engine[0]/coughing");
+    #var running = getprop("/engines/engine[0]/running");
     var running = getprop("/fdm/jsbsim/propulsion/engine/set-running");
     var allow_contamination = getprop("/engines/engine/allow-fuel-contamination");
     
     if (coughing and running) {
         # the code below kills the engine and then brings it back to life after 0.25 seconds, simulating a cough
-        setprop("/engines/active-engine/kill-engine", 1);
+        setprop("/engines/engine[0]/kill-engine", 1);
         settimer(func {
-            setprop("/engines/active-engine/kill-engine", 0);
+            setprop("/engines/engine[0]/kill-engine", 0);
         }, 0.25);
     };
     
@@ -91,11 +91,11 @@ coughing_timer.start();
 var oil_consumption = maketimer(1.0, func {
     var allow_consumption = getprop("/engines/engine/allow-oil-management");
 
-    var oil_level = getprop("/engines/active-engine/oil-level");
-    var service_hours = getprop("/engines/active-engine/oil-service-hours");
+    var oil_level = getprop("/engines/engine[0]/oil-level");
+    var service_hours = getprop("/engines/engine[0]/oil-service-hours");
     var oil_full = 9;
     var oil_lacking = oil_full - oil_level;
-    setprop("/engines/active-engine/oil-lacking", oil_lacking);
+    setprop("/engines/engine[0]/oil-lacking", oil_lacking);
     
     
     # consume oil if engine is running
@@ -133,20 +133,20 @@ var oil_consumption = maketimer(1.0, func {
         if (getprop("/engines/engine/running")) {
             var consume_oil_qps = consumption_qph / 3600;
             oil_level = oil_level - consume_oil_qps;
-            setprop("/engines/active-engine/oil-level", oil_level);
-            setprop("/engines/active-engine/oil-consume-qps", consume_oil_qps);
-            setprop("/engines/active-engine/oil-consume-qph", consumption_qph);
+            setprop("/engines/engine[0]/oil-level", oil_level);
+            setprop("/engines/engine[0]/oil-consume-qps", consume_oil_qps);
+            setprop("/engines/engine[0]/oil-consume-qph", consumption_qph);
             
             var service_hours_new = service_hours + 1/3600; # add one second service time
-            setprop("/engines/active-engine/oil-service-hours", service_hours_new);
+            setprop("/engines/engine[0]/oil-service-hours", service_hours_new);
             
             #print("consume oil: ", consumption_rate, "*" , rpm_factor);
             #print("new servcie hours: ", service_hours_new);
         
         } else {
             # engine off
-            setprop("/engines/active-engine/oil-consume-qps", 0);
-            setprop("/engines/active-engine/oil-consume-qph", 0);
+            setprop("/engines/engine[0]/oil-consume-qps", 0);
+            setprop("/engines/engine[0]/oil-consume-qph", 0);
         }
 
         
@@ -164,24 +164,24 @@ var oil_consumption = maketimer(1.0, func {
         # Should give 1.0 for oil_level = 4 and 1.5 for oil_level 3.97
         low_oil_temperature_factor = -50/3 * oil_level_limited + 203/3;
     
-        setprop("/engines/active-engine/low-oil-pressure-factor", low_oil_pressure_factor);
-        setprop("/engines/active-engine/low-oil-temperature-factor", low_oil_temperature_factor);
+        setprop("/engines/engine[0]/low-oil-pressure-factor", low_oil_pressure_factor);
+        setprop("/engines/engine[0]/low-oil-temperature-factor", low_oil_temperature_factor);
         
         
     } else {
         # consumption disabled
-        setprop("/engines/active-engine/low-oil-pressure-factor", 1);
-        setprop("/engines/active-engine/low-oil-temperature-factor", 1);
-        setprop("/engines/active-engine/oil-consume-qps", 0);
-        setprop("/engines/active-engine/oil-consume-qph", 0);
+        setprop("/engines/engine[0]/low-oil-pressure-factor", 1);
+        setprop("/engines/engine[0]/low-oil-temperature-factor", 1);
+        setprop("/engines/engine[0]/oil-consume-qps", 0);
+        setprop("/engines/engine[0]/oil-consume-qph", 0);
     }
 
 });
 
 # ======== Oil refilling =======
 var oil_refill = func(){
-    var service_hours = getprop("/engines/active-engine/oil-service-hours");
-    var oil_level     = getprop("/engines/active-engine/oil-level");
+    var service_hours = getprop("/engines/engine[0]/oil-service-hours");
+    var oil_level     = getprop("/engines/engine[0]/oil-level");
     var refilled      = oil_level - previous_oil_level;
     #print("OIL Refill init: svcHrs=", service_hours, "; oil_level=",oil_level, "; previous_oil_level=",previous_oil_level, "; refilled=",refilled);
     
@@ -190,7 +190,7 @@ var oil_refill = func(){
         var pct = 0;
         if (oil_level > 0) pct = previous_oil_level / oil_level;
         var newService_hours = service_hours * pct;
-        setprop("/engines/active-engine/oil-service-hours", newService_hours);
+        setprop("/engines/engine[0]/oil-service-hours", newService_hours);
         #print("OIL Refill: pct=", pct, "; service_hours=",service_hours, "; newService_hours=", newService_hours, "; previous_oil_level=", previous_oil_level, "; oil_level=",oil_level);
     }
     
@@ -199,11 +199,11 @@ var oil_refill = func(){
 
 
 # ======= OIL SYSTEM INIT =======
-if (!getprop("/engines/active-engine/oil-level")) {
-     setprop("/engines/active-engine/oil-level", 8);
+if (!getprop("/engines/engine[0]/oil-level")) {
+     setprop("/engines/engine[0]/oil-level", 8);
 }
-var previous_oil_level = getprop("/engines/active-engine/oil-level");
-if (!getprop("/engines/active-engine/oil-service-hours")) {
-     setprop("/engines/active-engine/oil-service-hours", 0);
+var previous_oil_level = getprop("/engines/engine[0]/oil-level");
+if (!getprop("/engines/engine[0]/oil-service-hours")) {
+     setprop("/engines/engine[0]/oil-service-hours", 0);
 }
 oil_consumption.start();

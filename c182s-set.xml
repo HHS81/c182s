@@ -537,8 +537,8 @@
             <path>/controls/engines/engine[0]/mixture-lever</path>
             <path>/controls/engines/engine[0]/throttle</path>
             <path>/controls/engines/engine[0]/propeller-pitch</path>
-            <path>/engines/active-engine/oil-level</path>
-            <path>/engines/active-engine/oil-service-hours</path>
+            <path>/engines/engine[0]/oil-level</path>
+            <path>/engines/engine[0]/oil-service-hours</path>
             <path>/controls/gear/brake-parking</path>
             <path>/controls/engines/engine[0]/magnetos</path>
             <path>/controls/engines/engine[0]/master-bat</path> 
@@ -772,6 +772,8 @@
    <magnetos type="int">0</magnetos>
    <mixture type="double">0</mixture>
    <running type="bool">false</running>
+   <killed type="bool">false</killed>
+   <crashed type="bool">false</crashed>
    <complex-engine-procedures type="bool">false</complex-engine-procedures>
    <allow-fuel-contamination type="bool">false</allow-fuel-contamination>
    <allow-oil-management type="bool">false</allow-oil-management>

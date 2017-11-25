@@ -28,8 +28,8 @@
         <name>Engine Killed</name>
         <input>
             <or>
-                <property>/engines/active-engine/crashed</property>
-                <property>/engines/active-engine/kill-engine</property>
+                <property>/engines/engine[0]/crashed</property>
+                <property>/engines/engine[0]/kill-engine</property>
 
                 <!-- Engine is killed if fuel contamination is higher than 0.2 on a selected tank -->
                 <!-- (but only if complex engine model is requested!) -->
@@ -99,7 +99,7 @@
                     <property>/engines/engine/complex-engine-procedures</property>
                     <property>/engines/engine/allow-oil-management</property>
                     <less-than>
-                        <property>/engines/active-engine/oil-level</property>
+                        <property>/engines/engine[0]/oil-level</property>
                         <value>3.97</value>
                     </less-than>
                 </and>
@@ -107,7 +107,7 @@
             </or>
         </input>
         <output>
-            <property>/engines/active-engine/killed</property>
+            <property>/engines/engine[0]/killed</property>
         </output>
     </logic>
 
@@ -185,7 +185,7 @@
                     <property>/engines/engine/complex-engine-procedures</property>
                     <property>/engines/engine/allow-oil-management</property>
                     <less-than>
-                        <property>/engines/active-engine/oil-level</property>
+                        <property>/engines/engine[0]/oil-level</property>
                         <value>3.98</value>
                     </less-than>
                 </and>
@@ -208,7 +208,7 @@
                 
         </input>
         <output>
-            <property>/engines/active-engine/coughing</property>
+            <property>/engines/engine[0]/coughing</property>
         </output>
     </logic>
 
@@ -218,13 +218,13 @@
         <name>Engine Oil Temperature</name>
         <type>gain</type>
         <gain>
-            <property>/engines/active-engine/low-oil-temperature-factor</property>
+            <property>/engines/engine[0]/low-oil-temperature-factor</property>
         </gain>
         <input>
             <property>/engines/engine/oil-temperature-degf</property>
         </input>
         <output>
-            <property>/engines/active-engine/oil-temperature-degf</property>
+            <property>/engines/engine[0]/oil-temperature-degf</property>
         </output>
     </filter>
 
@@ -232,13 +232,13 @@
         <name>Engine Oil Pressure</name>
         <type>gain</type>
         <gain>
-            <property>/engines/active-engine/low-oil-pressure-factor</property>
+            <property>/engines/engine[0]/low-oil-pressure-factor</property>
         </gain>
         <input>
             <property>/engines/engine/oil-pressure-psi</property>
         </input>
         <output>
-            <property>/engines/active-engine/oil-pressure-psi</property>
+            <property>/engines/engine[0]/oil-pressure-psi</property>
         </output>
     </filter>
     

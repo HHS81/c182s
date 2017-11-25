@@ -60,7 +60,7 @@
                         </not>
                     </and>
                 </enable>
-                <property>/engines/active-engine/oil-level</property>
+                <property>/engines/engine[0]/oil-level</property>
                 <binding>
                     <command>dialog-apply</command>
                     <name>c182s-oil-slider</name>
@@ -78,7 +78,7 @@
                     <halign>left</halign>
                     <format>%.2f</format>
                     <live>true</live>
-                    <property>/engines/active-engine/oil-level</property>
+                    <property>/engines/engine[0]/oil-level</property>
                 </text>
                 <text>
                     <label>quarts</label>
@@ -103,7 +103,7 @@
             <halign>left</halign>
             <format>%d</format>
             <live>true</live>
-            <property>/engines/active-engine/oil-service-hours</property>
+            <property>/engines/engine[0]/oil-service-hours</property>
         </text>
     </group>
             
@@ -161,7 +161,7 @@
             <col>0</col>
             <visible>
                 <greater-than>
-                    <property>/engines/active-engine/oil-level</property>
+                    <property>/engines/engine[0]/oil-level</property>
                     <value>6.0</value>
                 </greater-than>
             </visible>
@@ -173,11 +173,11 @@
             <visible>
                 <and>
                     <less-than-equals>
-                        <property>/engines/active-engine/oil-level</property>
+                        <property>/engines/engine[0]/oil-level</property>
                         <value>6.0</value>
                     </less-than-equals>
                     <greater-than>
-                        <property>/engines/active-engine/oil-level</property>
+                        <property>/engines/engine[0]/oil-level</property>
                         <value>4.0</value>
                     </greater-than>
                 </and>
@@ -194,7 +194,7 @@
             <col>0</col>
             <visible>
                 <less-than-equals>
-                    <property>/engines/active-engine/oil-level</property>
+                    <property>/engines/engine[0]/oil-level</property>
                     <value>4.0</value>
                 </less-than-equals>
             </visible>

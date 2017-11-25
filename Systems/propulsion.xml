@@ -2,6 +2,8 @@
 <!-- from HAL V. Engel's p51d-->
 
 <system name="Propulsion">
+    
+    <property type="double" value="0">oil-powergain-factor-calc</property>
 
     <channel name="engine power">
     

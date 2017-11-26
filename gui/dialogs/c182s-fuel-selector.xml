@@ -2,18 +2,18 @@
 
 <PropertyList>
 
-    <name>c182s-right-fuel-drain-dialog</name>
+    <name>c182s-fuelselector-dialog</name>
     <layout>vbox</layout>
     <resizable>false</resizable>
     <modal>false</modal>
     <draggable>true</draggable>
-
+    
     <group>
         <layout>hbox</layout>
 
         <empty><stretch>true</stretch></empty>
         <text>
-            <label>Right Fuel Tank Options</label>
+            <label>Fuel Selector Drain Options</label>
         </text>
         <empty><stretch>true</stretch></empty>
 
@@ -26,25 +26,25 @@
                 <command>dialog-close</command>
             </binding>
         </button>
-    </group>
+    </group> 
 
     <hrule/>
-
+    
     <group>
         <layout>vbox</layout>
         <default-padding>6</default-padding>
         <empty><stretch>true</stretch></empty>
         <checkbox>
-            <label>Open right wing drain</label>
-            <property>/controls/fuel/tank[1]/drain-valve</property>
+            <label>Open fuel selector drain</label>
+            <property>/controls/fuel/tank[2]/drain-valve</property>
             <live>true</live>
             <binding>
                 <command>property-toggle</command>
-                <property>/controls/fuel/tank[1]/drain-valve</property>
+                <property>/controls/fuel/tank[2]/drain-valve</property>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/consumables/fuel/tank[1]/water-contamination</property>
+                <property>/consumables/fuel/tank[2]/water-contamination</property>
                 <value>0</value>
             </binding>
             <binding>
@@ -64,11 +64,11 @@
             <enable>
                 <and>
                     <not>
-                        <property>/consumables/fuel/tank[1]/fuel-sample-taken</property>
+                        <property>/consumables/fuel/tank[2]/fuel-sample-taken</property>
                     </not>
                     <!-- checking if there is at least 50ml of fuel in the tanks -->
                     <greater-than>
-                        <property>/consumables/fuel/tank[1]/level-gal_us</property>
+                        <property>/consumables/fuel/tank[2]/level-gal_us</property>
                         <value>0.0132086</value>
                     </greater-than>
                     <less-than>
@@ -80,15 +80,15 @@
             <binding>
                 <condition>
                     <not>
-                        <property>/consumables/fuel/tank[1]/fuel-sample-taken</property>
+                        <property>/consumables/fuel/tank[2]/fuel-sample-taken</property>
                     </not>
                 </condition>
                 <command>nasal</command>
-                <script>c182s.take_fuel_sample(1);</script>
+                <script>c182s.take_fuel_sample(2);</script>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/consumables/fuel/tank[1]/fuel-sample-taken</property>
+                <property>/consumables/fuel/tank[2]/fuel-sample-taken</property>
                 <value>true</value>
             </binding>
         </button>
@@ -98,7 +98,7 @@
             <default>false</default>
             <enable>
                 <and>
-                    <property>/consumables/fuel/tank[1]/fuel-sample-taken</property>
+                    <property>/consumables/fuel/tank[2]/fuel-sample-taken</property>
                     <less-than>
                         <property>velocities/groundspeed-kt</property>
                         <value>1.0</value>
@@ -107,12 +107,12 @@
             </enable>
             <binding>
                 <command>property-assign</command>
-                <property>/consumables/fuel/tank[1]/sample-water-contamination</property>
+                <property>/consumables/fuel/tank[2]/sample-water-contamination</property>
                 <value>0.0</value>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/consumables/fuel/tank[1]/fuel-sample-taken</property>
+                <property>/consumables/fuel/tank[2]/fuel-sample-taken</property>
                 <value>false</value>
             </binding>
         </button>
@@ -122,7 +122,7 @@
             <default>false</default>
             <enable>
                 <and>
-                    <property>/consumables/fuel/tank[1]/fuel-sample-taken</property>
+                    <property>/consumables/fuel/tank[2]/fuel-sample-taken</property>
                     <less-than>
                         <property>velocities/groundspeed-kt</property>
                         <value>1.0</value>
@@ -131,14 +131,14 @@
             </enable>
             <binding>
                 <condition>
-                    <property>/consumables/fuel/tank[1]/fuel-sample-taken</property>
+                    <property>/consumables/fuel/tank[2]/fuel-sample-taken</property>
                 </condition>
                 <command>nasal</command>
-                <script>c182s.return_fuel_sample(1);</script>
+                <script>c182s.return_fuel_sample(2);</script>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/consumables/fuel/tank[1]/fuel-sample-taken</property>
+                <property>/consumables/fuel/tank[2]/fuel-sample-taken</property>
                 <value>false</value>
             </binding>
         </button>
@@ -181,9 +181,9 @@
                 <col>0</col>
                 <visible>
                     <and>
-                        <property>/consumables/fuel/tank[1]/fuel-sample-taken</property>
+                        <property>/consumables/fuel/tank[2]/fuel-sample-taken</property>
                         <equals>
-                            <property>/consumables/fuel/tank[1]/sample-water-contamination</property>
+                            <property>/consumables/fuel/tank[2]/sample-water-contamination</property>
                             <value>0.0</value>
                         </equals>
                     </and>
@@ -200,13 +200,13 @@
                 <col>0</col>
                 <visible>
                     <and>
-                        <property>/consumables/fuel/tank[1]/fuel-sample-taken</property>
+                        <property>/consumables/fuel/tank[2]/fuel-sample-taken</property>
                         <greater-than>
-                            <property>/consumables/fuel/tank[1]/sample-water-contamination</property>
+                            <property>/consumables/fuel/tank[2]/sample-water-contamination</property>
                             <value>0.0</value>
                         </greater-than>
                         <less-than>
-                            <property>/consumables/fuel/tank[1]/sample-water-contamination</property>
+                            <property>/consumables/fuel/tank[2]/sample-water-contamination</property>
                             <value>0.2</value>
                         </less-than>
                     </and>
@@ -223,13 +223,13 @@
                 <col>2</col>
                 <visible>
                     <and>
-                        <property>/consumables/fuel/tank[1]/fuel-sample-taken</property>
+                        <property>/consumables/fuel/tank[2]/fuel-sample-taken</property>
                         <greater-than>
-                            <property>/consumables/fuel/tank[1]/sample-water-contamination</property>
+                            <property>/consumables/fuel/tank[2]/sample-water-contamination</property>
                             <value>0.0</value>
                         </greater-than>
                         <less-than>
-                            <property>/consumables/fuel/tank[1]/sample-water-contamination</property>
+                            <property>/consumables/fuel/tank[2]/sample-water-contamination</property>
                             <value>0.2</value>
                         </less-than>
                     </and>
@@ -246,9 +246,9 @@
                 <col>0</col>
                 <visible>
                     <and>
-                        <property>/consumables/fuel/tank[1]/fuel-sample-taken</property>
+                        <property>/consumables/fuel/tank[2]/fuel-sample-taken</property>
                         <equals>
-                            <property>/consumables/fuel/tank[1]/sample-water-contamination</property>
+                            <property>/consumables/fuel/tank[2]/sample-water-contamination</property>
                             <value>0.2</value>
                         </equals>
                     </and>

@@ -35,71 +35,51 @@
         <padding>6</padding>
 
         <group>
-            <layout>hbox</layout>
-            <checkbox>
-                <halign>left</halign>
-                <label>Open left wing drain</label>
-                <property>/controls/fuel/tank[0]/drain-valve</property>
-                <live>true</live>
+            <layout>vbox</layout>
+            <empty><stretch>true</stretch></empty>
+            <button>
+                <legend>Left Wing</legend>
                 <binding>
-                    <command>property-toggle</command>
-                    <property>/controls/fuel/tank[0]/drain-valve</property>
+                    <command>dialog-show</command>
+                    <dialog-name type="string">c182s-left-fuel-drain-dialog</dialog-name>
                 </binding>
-                <binding>
-                    <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
-                </binding>
-            </checkbox>
+            </button>
         </group>
         
         <group>
-            <layout>hbox</layout>
-            <checkbox>
-                <halign>left</halign>
-                <label>Open right wing drain</label>
-                <property>/controls/fuel/tank[1]/drain-valve</property>
-                <live>true</live>
+            <layout>vbox</layout>
+            <empty><stretch>true</stretch></empty>
+            <button>
+                <legend>Right Wing</legend>
                 <binding>
-                    <command>property-toggle</command>
-                    <property>/controls/fuel/tank[1]/drain-valve</property>
+                    <command>dialog-show</command>
+                    <dialog-name type="string">c182s-right-fuel-drain-dialog</dialog-name>
                 </binding>
-                <binding>
-                    <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
-                </binding>
-            </checkbox>
+            </button>
         </group>
         
         <group>
-            <layout>hbox</layout>
-            <checkbox>
-                <halign>left</halign>
-                <label>Open fuel selector sump drain</label>
-                <property>/controls/fuel/tank[2]/drain-valve</property>
-                <live>true</live>
+            <layout>vbox</layout>
+            <empty><stretch>true</stretch></empty>
+            <button>
+                <legend>Fuel Selector</legend>
                 <binding>
-                    <command>property-toggle</command>
-                    <property>/controls/fuel/tank[2]/drain-valve</property>
+                    <command>dialog-show</command>
+                    <dialog-name type="string">c182s-fuelselector-dialog</dialog-name>
                 </binding>
-                <binding>
-                    <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
-                </binding>
-            </checkbox>
+            </button>
         </group>
         
         <group>
-            <layout>hbox</layout>
-            <checkbox>
-                <halign>left</halign>
-                <label>Open fuel strainer sump drain</label>
-                <property>/controls/fuel/tank[3]/drain-valve</property>
-                <live>true</live>
+            <layout>vbox</layout>
+            <empty><stretch>true</stretch></empty>
+            <button>
+                <legend>Fuel Strainer</legend>
                 <binding>
-                    <command>property-toggle</command>
-                    <property>/controls/fuel/tank[3]/drain-valve</property>
+                    <command>dialog-show</command>
+                    <dialog-name type="string">c182s-fuelstrainer-dialog</dialog-name>
                 </binding>
-                <binding>
-                    <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
-                </binding>
-            </checkbox>
+            </button>
         </group>
         
     </group>

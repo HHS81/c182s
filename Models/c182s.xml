@@ -967,6 +967,69 @@
             </binding>
         </hovered>
     </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>FuelSelectorDrain.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-fuelselector-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuelselector-dialog-tt</tooltip-id>
+                <label>Fuel Selector Drain</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>FuelStrainerDrain.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-fuelstrainer-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuelstrainer-dialog-tt</tooltip-id>
+                <label>Fuel Strainer Drain</label>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>Oil.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-oilmanagement-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>oilmanagement-dialog-tt</tooltip-id>
+                <label>Oil</label>
+            </binding>
+        </hovered>
+    </animation>
  
 <animation>
    <type>pick</type>
@@ -1827,8 +1890,29 @@
  </animation>
     
 
+    <!-- Hide these clickspots when inside the cockpit -->
+    <animation>
+        <type>select</type>
+        <object-name>chokes.cs.001</object-name>
+        <object-name>chokes.cs.002</object-name>
+        <object-name>chokes.cs.003</object-name>
+        <object-name>FuelSelectorDrain.cs</object-name>
+        <object-name>FuelStrainerDrain.cs</object-name>
+        <object-name>LeftTank.cs</object-name>
+        <object-name>LeftTankDrain.cs</object-name>
+        <object-name>Oil.cs</object-name>
+        <object-name>pitotcover.cs</object-name>
+        <object-name>RightTank.cs</object-name>
+        <object-name>RightTankDrain.cs</object-name>
+        <object-name>safety-cone.cs.L</object-name>
+        <object-name>safety-cone.cs.R</object-name>
+        <condition>
+        <not>
+            <property>sim/current-view/internal</property>
+        </not>
+        </condition>
+    </animation>
     
-
     
 <!--tiedown-->
 
@@ -2175,6 +2259,120 @@
                 <value>20.0</value>
             </greater-than>
         </condition>
+    </animation>
+    
+    
+    <!-- Preflight surface checks -->
+    <!-- elevator surface check -->
+    <animation>
+        <type>pick</type>
+        <object-name>Elevator</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <and>
+                        <not>            
+                            <property>/engines/engine[0]/running</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/sim/current-view/internal</property>
+                        </not>
+                    </and>
+                </condition>
+                <command>nasal</command>
+                <script>c182s.control_surface_check_elevator();</script>
+            </binding>
+        </action>
+    </animation>
+    
+    <!-- left aileron surface check -->
+    <animation>
+        <type>pick</type>
+        <object-name>Aileron.L</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <and>
+                        <not>            
+                            <property>/engines/engine[0]/running</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/sim/current-view/internal</property>
+                        </not>
+                    </and>
+                </condition>
+                <command>nasal</command>
+                <script>c182s.control_surface_check_left_aileron();</script>
+            </binding>
+        </action>
+    </animation>
+    
+    <!-- right aileron surface check -->
+    <animation>
+        <type>pick</type>
+        <object-name>Aileron.R</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <and>
+                        <not>            
+                            <property>/engines/engine[0]/running</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/sim/current-view/internal</property>
+                        </not>
+                    </and>
+                </condition>
+                <command>nasal</command>
+                <script>c182s.control_surface_check_right_aileron();</script>
+            </binding>
+        </action>
+    </animation>
+    
+    <!-- rudder surface check -->
+    <animation>
+        <type>pick</type>
+        <object-name>Rudder</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <and>
+                        <not>            
+                            <property>/engines/engine[0]/running</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/sim/current-view/internal</property>
+                        </not>
+                    </and>
+                </condition>
+                <command>nasal</command>
+                <script>c182s.control_surface_check_rudder();</script>
+            </binding>
+        </action>
     </animation>
 
 </PropertyList>

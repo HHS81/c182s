@@ -68,8 +68,114 @@
                     <command>dialog-apply</command>
                 </binding>
             </checkbox>
+            
+            <group>
+                <layout>hbox</layout>
+                <!-- Small left padding -->
+                <group>
+                    <layout>vbox</layout>
+                    <padding>6</padding>
+                </group>
+
+                <group>
+                    <layout>hbox</layout>
+                    <checkbox>
+                        <halign>left</halign>
+                        <label>  Allow Fuel Contamination</label>
+                        <property>/engines/engine/allow-fuel-contamination</property>
+                        <live>true</live>
+                        <enable>
+                            <and>
+                                <property>/engines/engine/complex-engine-procedures</property>
+                            </and>
+                        </enable>
+                        <binding>
+                            <command>dialog-apply</command>
+                        </binding>
+                    </checkbox>
+                </group>
+                
+                <empty><stretch>true</stretch></empty> <!-- force group to the left -->
+            </group>
+            
+             <group>
+                <layout>hbox</layout>
+                <!-- Small left padding -->
+                <group>
+                    <layout>vbox</layout>
+                    <padding>6</padding>
+                </group>
+                
+                <group>
+                    <layout>hbox</layout>
+                    <checkbox>
+                        <halign>left</halign>
+                        <label>  Allow Oil Management</label>
+                        <property>/engines/engine/allow-oil-management</property>
+                        <live>true</live>
+                        <enable>
+                            <and>
+                                <property>/engines/engine/complex-engine-procedures</property>
+                            </and>
+                        </enable>
+                        <binding>
+                            <command>dialog-apply</command>
+                        </binding>
+                    </checkbox>
+                </group>
+                
+                <empty><stretch>true</stretch></empty> <!-- force group to the left -->
+            </group>
+            
+                
         </group>
+        
 <hrule/>
+
+        <group>
+            <layout>hbox</layout>
+
+            <checkbox>
+                <halign>left</halign>
+                <label>Damage</label>
+                <property>/fdm/jsbsim/settings/damage</property>
+                <live>true</live>
+                <binding>
+                    <command>dialog-apply</command>
+                </binding>
+            </checkbox>
+
+            <button>
+                <halign>right</halign>
+                <legend>Repair</legend>
+                <pref-width>60</pref-width>
+                <pref-height>28</pref-height>
+                <enable>
+                    <and>
+                        <not>
+                            <property>/sim/freeze/replay-state</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/engines/engine[0]/running</property>
+                        </not>
+                    </and>
+                </enable>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        c182s.repair_damage();
+                        c182s.click("engine-repair", 6.0);
+                    </script>
+                </binding>
+            </button>
+        </group>
+
+        <hrule/>
+
 
 <group>
 	<layout>hbox</layout>

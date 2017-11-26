@@ -19,7 +19,7 @@ MATERIAL "tdcs.001" rgb 1.000 1.000 1.000  amb 1.000 1.000 1.000  emis 0.000 0.0
 MATERIAL "Windows.Int" rgb 1.000 1.000 1.000  amb 1.000 1.000 1.000  emis 0.000 0.000 0.000  spec 1.000 1.000 1.000  shi 64 trans 0.950
 OBJECT world
 name "Blender_exporter_v2.19__c182s.ac"
-kids 49
+kids 52
 OBJECT poly
 name "BeaconOff"
 data 8
@@ -2573,6 +2573,122 @@ refs 4
 245 0.294067 0.954772
 250 0.248837 0.963682
 255 0.248837 0.962551
+kids 0
+OBJECT poly
+name "FuelSelectorDrain.cs"
+data 9
+Plane.001
+crease 30.0
+numvert 8
+0.41536 -0.51279 -0.4136
+0.41536 -0.51279 0.38105
+0.41536 -0.66761 0.38105
+0.41536 -0.66761 -0.4136
+0.58475 -0.66761 -0.4089
+0.58475 -0.66761 0.38159
+0.58475 -0.51279 0.38159
+0.58475 -0.51279 -0.4089
+numsurf 6
+SURF 0X0
+mat 1
+refs 4
+0 0 0
+3 0 0
+2 0 0
+1 0 0
+SURF 0X0
+mat 1
+refs 4
+2 0 0
+3 0 0
+4 0 0
+5 0 0
+SURF 0X0
+mat 1
+refs 4
+3 0 0
+0 0 0
+7 0 0
+4 0 0
+SURF 0X0
+mat 1
+refs 4
+0 0 0
+1 0 0
+6 0 0
+7 0 0
+SURF 0X0
+mat 1
+refs 4
+1 0 0
+2 0 0
+5 0 0
+6 0 0
+SURF 0X0
+mat 1
+refs 4
+5 0 0
+4 0 0
+7 0 0
+6 0 0
+kids 0
+OBJECT poly
+name "FuelStrainerDrain.cs"
+data 9
+Plane.017
+crease 30.0
+numvert 8
+-0.19487 -0.36077 -0.61305
+-0.19487 -0.36077 -0.49673
+-0.19487 -0.5156 -0.49673
+-0.19487 -0.5156 -0.61305
+-0.02548 -0.5156 -0.59451
+-0.02548 -0.5156 -0.50852
+-0.02548 -0.36077 -0.50852
+-0.02548 -0.36077 -0.59451
+numsurf 6
+SURF 0X0
+mat 1
+refs 4
+0 0 0
+3 0 0
+2 0 0
+1 0 0
+SURF 0X0
+mat 1
+refs 4
+2 0 0
+3 0 0
+4 0 0
+5 0 0
+SURF 0X0
+mat 1
+refs 4
+3 0 0
+0 0 0
+7 0 0
+4 0 0
+SURF 0X0
+mat 1
+refs 4
+0 0 0
+1 0 0
+6 0 0
+7 0 0
+SURF 0X0
+mat 1
+refs 4
+1 0 0
+2 0 0
+5 0 0
+6 0 0
+SURF 0X0
+mat 1
+refs 4
+5 0 0
+4 0 0
+7 0 0
+6 0 0
 kids 0
 OBJECT group
 name "Fuselage"
@@ -109574,14 +109690,18 @@ kids 0
 OBJECT poly
 name "LeftTankDrain.cs"
 data 9
-Plane.001
+Plane.015
 crease 30.0
-numvert 4
-1.46163 0.71093 1.41146
-1.46167 0.70621 1.56204
-1.61231 0.70743 1.56204
-1.61228 0.71215 1.41146
-numsurf 1
+numvert 8
+0.77099 0.67415 0.64266
+0.77099 0.7288 2.26175
+0.77099 0.69161 2.26175
+0.77099 0.63696 0.64266
+1.38746 0.63696 0.64266
+1.38746 0.69161 2.26175
+1.38746 0.7288 2.26175
+1.38746 0.67415 0.64266
+numsurf 6
 SURF 0X0
 mat 1
 refs 4
@@ -109589,6 +109709,41 @@ refs 4
 3 0 0
 2 0 0
 1 0 0
+SURF 0X0
+mat 1
+refs 4
+2 0 0
+3 0 0
+4 0 0
+5 0 0
+SURF 0X0
+mat 1
+refs 4
+3 0 0
+0 0 0
+7 0 0
+4 0 0
+SURF 0X0
+mat 1
+refs 4
+0 0 0
+1 0 0
+6 0 0
+7 0 0
+SURF 0X0
+mat 1
+refs 4
+1 0 0
+2 0 0
+5 0 0
+6 0 0
+SURF 0X0
+mat 1
+refs 4
+5 0 0
+4 0 0
+7 0 0
+6 0 0
 kids 0
 OBJECT poly
 name "llglas"
@@ -112705,6 +112860,64 @@ refs 4
 122 0 0
 kids 0
 OBJECT poly
+name "Oil.cs"
+data 9
+Plane.018
+crease 30.0
+numvert 8
+-0.62049 0.41032 0.16827
+-0.62049 0.41032 0.35015
+-0.62049 0.19499 0.35015
+-0.62049 0.19499 0.16827
+-0.43085 0.19499 0.16827
+-0.43085 0.19499 0.35015
+-0.43085 0.41032 0.35015
+-0.43085 0.41032 0.16827
+numsurf 6
+SURF 0X0
+mat 1
+refs 4
+0 0 0
+3 0 0
+2 0 0
+1 0 0
+SURF 0X0
+mat 1
+refs 4
+2 0 0
+3 0 0
+4 0 0
+5 0 0
+SURF 0X0
+mat 1
+refs 4
+3 0 0
+0 0 0
+7 0 0
+4 0 0
+SURF 0X0
+mat 1
+refs 4
+0 0 0
+1 0 0
+6 0 0
+7 0 0
+SURF 0X0
+mat 1
+refs 4
+1 0 0
+2 0 0
+5 0 0
+6 0 0
+SURF 0X0
+mat 1
+refs 4
+5 0 0
+4 0 0
+7 0 0
+6 0 0
+kids 0
+OBJECT poly
 name "pitotcover.cs"
 data 9
 Plane.023
@@ -112909,14 +113122,18 @@ kids 0
 OBJECT poly
 name "RightTankDrain.cs"
 data 9
-Plane.002
+Plane.016
 crease 30.0
-numvert 4
-1.4691 0.71164 -1.57636
-1.46913 0.70692 -1.42578
-1.61978 0.70814 -1.42578
-1.61974 0.71286 -1.57636
-numsurf 1
+numvert 8
+0.74183 0.75586 -2.24746
+0.74183 0.69763 -0.66989
+0.74183 0.66044 -0.66989
+0.74183 0.69568 -2.24746
+1.39512 0.69568 -2.24746
+1.39512 0.66044 -0.66989
+1.39512 0.69763 -0.66989
+1.39512 0.75586 -2.24746
+numsurf 6
 SURF 0X0
 mat 1
 refs 4
@@ -112924,6 +113141,41 @@ refs 4
 3 0 0
 2 0 0
 1 0 0
+SURF 0X0
+mat 1
+refs 4
+2 0 0
+3 0 0
+4 0 0
+5 0 0
+SURF 0X0
+mat 1
+refs 4
+3 0 0
+0 0 0
+7 0 0
+4 0 0
+SURF 0X0
+mat 1
+refs 4
+0 0 0
+1 0 0
+6 0 0
+7 0 0
+SURF 0X0
+mat 1
+refs 4
+1 0 0
+2 0 0
+5 0 0
+6 0 0
+SURF 0X0
+mat 1
+refs 4
+5 0 0
+4 0 0
+7 0 0
+6 0 0
 kids 0
 OBJECT poly
 name "safety-cone.cs.L"

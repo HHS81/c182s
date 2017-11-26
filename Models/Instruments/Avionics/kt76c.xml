@@ -14,17 +14,6 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <type>material</type>
   <object-name>Bezel</object-name>
   <object-name>Knob</object-name>
-  <object-name>BtnIDT</object-name>
-  <object-name>BtnCLR</object-name>
-  <object-name>BtnVFR</object-name>
-  <object-name>Btn0</object-name>
-  <object-name>Btn1</object-name>
-  <object-name>Btn2</object-name>
-  <object-name>Btn3</object-name>
-  <object-name>Btn4</object-name>
-  <object-name>Btn5</object-name>
-  <object-name>Btn6</object-name>
-  <object-name>Btn7</object-name>
     <emission>
       <red>0.25</red>
       <green>0.25</green>
@@ -32,6 +21,63 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
       <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
     </emission>
 </animation>
+
+<animation>
+        <type>material</type>
+        <object-name>BtnIDT</object-name>
+        <object-name>BtnCLR</object-name>
+        <object-name>BtnVFR</object-name>
+        <object-name>Btn0</object-name>
+        <object-name>Btn1</object-name>
+        <object-name>Btn2</object-name>
+        <object-name>Btn3</object-name>
+        <object-name>Btn4</object-name>
+        <object-name>Btn5</object-name>
+        <object-name>Btn6</object-name>
+        <object-name>Btn7</object-name>
+        <condition>
+            <not>
+                <property>sim/rendering/rembrandt/enabled</property>
+            </not>
+            <greater-than>
+                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <value>0</value>
+            </greater-than>
+        </condition>
+        <emission>
+            <red>0.5</red>
+            <green>0.1</green>
+            <blue>0.00005</blue>
+            <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
+        </emission>
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name>BtnIDT</object-name>
+        <object-name>BtnCLR</object-name>
+        <object-name>BtnVFR</object-name>
+        <object-name>Btn0</object-name>
+        <object-name>Btn1</object-name>
+        <object-name>Btn2</object-name>
+        <object-name>Btn3</object-name>
+        <object-name>Btn4</object-name>
+        <object-name>Btn5</object-name>
+        <object-name>Btn6</object-name>
+        <object-name>Btn7</object-name>
+        <condition>
+            <equals>
+                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <value>0</value>
+            </equals>
+        </condition>
+        <emission>
+            <red>0.25</red>
+            <green>0.25</green>
+            <blue>0.25</blue>
+            <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
+        </emission>
+        </animation>
+
 <animation>
   <type>material</type>
   <object-name>LabelsAlt</object-name>

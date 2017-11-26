@@ -49,6 +49,9 @@
     <property-rule n="103">
         <path>Aircraft/c182s/Systems/sounds.xml</path>
     </property-rule>
+    <property-rule n="104">
+        <path>Aircraft/c182s/Systems/engine.xml</path>
+    </property-rule>
     <electrical>        
       <!-- null electrical system path here so we can use a nasal based -->
       <!-- model defined later in the nasal section of this file. -->
@@ -523,6 +526,8 @@
         <aircraft-data>
             <path>/sim/time/hobbs/engine</path>
             <path>/engines/engine/complex-engine-procedures</path>
+            <path>/engines/engine/allow-fuel-contamination</path>
+            <path>/engines/engine/allow-oil-management</path>
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
             <path>/consumables/fuel/tank[2]/level-gal_us</path>
@@ -532,6 +537,8 @@
             <path>/controls/engines/engine[0]/mixture-lever</path>
             <path>/controls/engines/engine[0]/throttle</path>
             <path>/controls/engines/engine[0]/propeller-pitch</path>
+            <path>/engines/engine[0]/oil-level</path>
+            <path>/engines/engine[0]/oil-service-hours</path>
             <path>/controls/gear/brake-parking</path>
             <path>/controls/engines/engine[0]/magnetos</path>
             <path>/controls/engines/engine[0]/master-bat</path> 
@@ -678,11 +685,15 @@
       <tank n="2">
         <name type="string">Fuel selector sump</name>
         <drain-valve>0</drain-valve>
+        <water-contamination type="double">0.0</water-contamination>
+        <sample-water-contamination type="double">0.0</sample-water-contamination>
         <hidden type="bool">true</hidden>
       </tank>
       <tank n="3">
         <name type="string">Fuel strainer sump</name>
         <drain-valve>0</drain-valve>
+        <water-contamination type="double">0.0</water-contamination>
+        <sample-water-contamination type="double">0.0</sample-water-contamination>
         <hidden type="bool">true</hidden>
       </tank>
       <tank n="4">
@@ -761,7 +772,12 @@
    <magnetos type="int">0</magnetos>
    <mixture type="double">0</mixture>
    <running type="bool">false</running>
+   <killed type="bool">false</killed>
+   <crashed type="bool">false</crashed>
    <complex-engine-procedures type="bool">false</complex-engine-procedures>
+   <allow-fuel-contamination type="bool">false</allow-fuel-contamination>
+   <allow-oil-management type="bool">false</allow-oil-management>
+   <oil-powergain-factor type="double">1</oil-powergain-factor>
   </engine>
  </engines>
  
@@ -875,6 +891,7 @@
  <c182s>
     <file>Aircraft/c182s/Nasal/c182s.nas</file>
     <file>Aircraft/c182s/Nasal/engine.nas</file>
+    <file>Aircraft/c182s/Nasal/fuelcontamination.nas</file>
     <file>Aircraft/c182s/Nasal/kt76c.nas</file>
     <file>Aircraft/c182s/Nasal/kn62a.nas</file>
     <file>Aircraft/c182s/Nasal/kr87.nas</file>

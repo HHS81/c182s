@@ -431,7 +431,8 @@ var thunder = func (name) {
 # Engine coughing sound
 ############################################
 
-setlistener("/engines/active-engine/killed", func (node) {
+# Play coughing sound when engine was killed
+setlistener("/engines/engine[0]/killed", func (node) {
     if (node.getValue() and getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
         click("coughing-engine-sound", 0.7, 0);
     };
@@ -439,10 +440,66 @@ setlistener("/engines/active-engine/killed", func (node) {
 
 
 
+##########################################
+# Thunder sound
+##########################################
 setlistener("/sim/signals/fdm-initialized", func {   
     # Listening for lightning strikes
     setlistener("/environment/lightning/lightning-pos-y", thunder);
 });
+
+
+##########################################
+# Preflight control surface check: left aileron
+##########################################
+var control_surface_check_left_aileron = func {
+    var auto_coordination = getprop("/controls/flight/auto-coordination");
+    setprop("/controls/flight/auto-coordination", 0);
+    interpolate("/controls/flight/aileron", 1.0, 0.5, -1.0, 1.0, 0.0, 0.5);
+    settimer(func(){
+        setprop("/controls/flight/auto-coordination", auto_coordination);
+    }, 2.0);
+};
+
+##########################################
+# Preflight control surface check: right aileron
+##########################################
+var control_surface_check_right_aileron = func {
+    var auto_coordination = getprop("/controls/flight/auto-coordination");
+    setprop("/controls/flight/auto-coordination", 0);
+    interpolate("/controls/flight/aileron", -1.0, 0.5, 1.0, 1.0, 0.0, 0.5);
+    settimer(func(){
+        setprop("/controls/flight/auto-coordination", auto_coordination);
+    }, 2.0);
+};
+
+##########################################
+# Preflight control surface check: elevator
+##########################################
+var control_surface_check_elevator = func {
+    interpolate("/controls/flight/elevator", 1.0, 0.8, -1.0, 1.6, 0.0, 0.8);
+};
+
+##########################################
+# Preflight control surface check: rudder
+##########################################
+var control_surface_check_rudder = func {
+    interpolate("/controls/flight/rudder", -1.0, 0.8, 1.0, 1.6, 0.0, 0.8);
+};
+
+
+##########################################
+# REPAIR DAMAGE
+##########################################
+var repair_damage = func {
+    print("Repairing damage...");
+    reset_fuel_contamination();
+    setprop("/engines/engine[0]/kill-engine", 0.0);
+    setprop("/engines/engine[0]/crashed", 0.0);
+    electrical.reset_battery_and_circuit_breakers();
+    setprop("/engines/engine[0]/oil-level", 8.0);
+};
+
 
 
 ##########################################
@@ -452,46 +509,47 @@ setlistener("/sim/signals/fdm-initialized", func {
 var autostart = func (msg=1) {
     print("Autostart engine engaged.");
     if (getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
+        # When engine already running, perform autoshutdown
         if (msg)
             gui.popupTip("Autoshutdown engine engaged.", 5);
+                
+        #After landing
+        setprop("/controls/flight/flaps", 0);
+        setprop("/controls/engines/engine/cowl-flaps-norm", 1);
+
+        #Securing Aircraft
+        setprop("/controls/gear/brake-parking", 1);
+        setprop("/controls/engines/engine[0]/throttle", 0.0);
+        setprop("/controls/lighting/nav-lights", 0);
+        setprop("/controls/lighting/strobe", 0);
+        setprop("/controls/lighting/beacon", 0);
+        setprop("/controls/switches/AVMBus1", 0);  
+        setprop("/controls/switches/AVMBus2", 0);  
+        setprop("/controls/engines/engine[0]/mixture-lever", 0.0);
+        setprop("/controls/switches/starter", 0);
+        setprop("/controls/engines/engine[0]/magnetos", 0);
+        setprop("/controls/engines/engine[0]/master-bat", 0);
+        setprop("/controls/engines/engine[0]/master-alt", 0);
+        setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
+        setprop("/controls/switches/fuel_tank_selector", 1);
+        
+        #securing Aircraft on ground
+        setprop("/sim/chocks001/enable", 1);
+        setprop("/sim/chocks002/enable", 1);
+        setprop("/sim/chocks003/enable", 1);
+        setprop("/sim/model/c182s/securing/pitot-cover-visible", 1);
+        setprop("/sim/model/c182s/securing/tiedownL-visible", 1);
+        setprop("/sim/model/c182s/securing/tiedownR-visible", 1);
+        setprop("/sim/model/c182s/securing/tiedownT-visible", 1);
+        
         print("Autoshutdown engine complete.");
-
-	
-	# When engine already running, perform autoshutdown
-	
-    #After landing
-    setprop("/controls/flight/flaps", 0);
-    setprop("/controls/engines/engine/cowl-flaps-norm", 1);
-
-    #Securing Aircraft
-    setprop("/controls/gear/brake-parking", 1);
-    setprop("/controls/engines/engine[0]/throttle", 0.0);
-    setprop("/controls/lighting/nav-lights", 0);
-    setprop("/controls/lighting/strobe", 0);
-    setprop("/controls/lighting/beacon", 0);
-    setprop("/controls/switches/AVMBus1", 0);  
-    setprop("/controls/switches/AVMBus2", 0);  
-    setprop("/controls/engines/engine[0]/mixture-lever", 0.0);
-    setprop("/controls/switches/starter", 0);
-    setprop("/controls/engines/engine[0]/magnetos", 0);
-    setprop("/controls/engines/engine[0]/master-bat", 0);
-    setprop("/controls/engines/engine[0]/master-alt", 0);
-    setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
-    setprop("/controls/switches/fuel_tank_selector", 1);
-    
-    #securing Aircraft on ground
-    setprop("/sim/chocks001/enable", 1);
-    setprop("/sim/chocks002/enable", 1);
-    setprop("/sim/chocks003/enable", 1);
-    setprop("/sim/model/c182s/securing/pitot-cover-visible", 1);
-    setprop("/sim/model/c182s/securing/tiedownL-visible", 1);
-    setprop("/sim/model/c182s/securing/tiedownR-visible", 1);
-    setprop("/sim/model/c182s/securing/tiedownT-visible", 1);
-	return;
+        return;
     }
-
-    # Reset battery charge and circuit breakers
-    electrical.reset_battery_and_circuit_breakers();
+    
+    # Repair Aircraft
+    # This repairs any damage, reloads battery, removes water contamination, resets oil, etc
+    repair_damage();
+    
 
     # Filling fuel tanks
     setprop("/consumables/fuel/tank[0]/selected", 1);
@@ -539,25 +597,6 @@ var autostart = func (msg=1) {
     setprop("/sim/model/c182s/securing/tiedownR-visible", 0);
     setprop("/sim/model/c182s/securing/tiedownT-visible", 0);
 
-    # Removing any contamination from water
-#    setprop("/consumables/fuel/tank[0]/water-contamination", 0.0);
-#    setprop("/consumables/fuel/tank[1]/water-contamination", 0.0);
-#    setprop("/consumables/fuel/tank[0]/sample-water-contamination", 0.0);
-#    setprop("/consumables/fuel/tank[1]/sample-water-contamination", 0.0);
-    
-    # Setting max oil level
-#    var oil_enabled = getprop("/engines/active-engine/oil_consumption_allowed");
-#    var oil_level   = getprop("/engines/active-engine/oil-level");
-#    
-#    if (oil_enabled and oil_level < 5.0) {
-#        if (getprop("/controls/engines/active-engine") == 0) {
-#            setprop("/engines/active-engine/oil-level", 7.0);
-#        } 
-#        else {
-#            setprop("/engines/active-engine/oil-level", 8.0);
-#        };
-#    };
-
 
     # Checking for minimal fuel level
     var fuel_level_left  = getprop("/consumables/fuel/tank[0]/level-norm");
@@ -580,7 +619,7 @@ var autostart = func (msg=1) {
     # All set, starting engine
     settimer(func {
         setprop("/controls/switches/starter", 1);
-        setprop("/engines/active-engine/auto-start", 1);
+        setprop("/engines/engine[0]/auto-start", 1);
     }, 1);
 
     var engine_running_check_delay = 6.0;
@@ -590,7 +629,7 @@ var autostart = func (msg=1) {
             print("Autostart engine FAILED");
         }
         setprop("/controls/switches/starter", 0);
-        setprop("/engines/active-engine/auto-start", 0);
+        setprop("/engines/engine[0]/auto-start", 0);
         
         # Reset complex-engine-procedures user setting
         setprop("/engines/engine/complex-engine-procedures", complexEngineProcedures_state_old);
@@ -609,3 +648,17 @@ var autostart = func (msg=1) {
     
 
 };
+
+
+
+
+
+###########
+# INIT
+###########
+
+# TODO: Support different user states
+setlistener("/sim/signals/fdm-initialized", func {
+    # Fuel contamination
+    init_fuel_contamination();
+});

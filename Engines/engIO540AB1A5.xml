@@ -14,8 +14,8 @@
 <piston_engine name="IO540AB1A5"> 
     <air-intake-impedance-factor>0.18</air-intake-impedance-factor>
     <ram-air-factor>0.1</ram-air-factor>
-    <minmp unit="INHG">         10.0 </minmp>
-    <maxmp unit="INHG">         28.5 </maxmp>	
+    <minmp unit="INHG">         15.0 </minmp>
+    <maxmp unit="INHG">         23 </maxmp>	
     <displacement unit="IN3">  541.5 </displacement>
     <bore unit="IN">5.125</bore>
     <stroke unit="IN">4.375</stroke>
@@ -26,7 +26,7 @@
     <maxhp>        230.0 </maxhp>
     <cycles>         4.0 </cycles>
     <idlerpm>      650.0 </idlerpm> <!--POH Cessna 182S Page: 4-23-->
-    <maxrpm>      2575.0 </maxrpm>
+    <maxrpm>      2400 </maxrpm>
     <maxthrottle>    1.0 </maxthrottle>
     <minthrottle>    0.0 </minthrottle>
     <sparkfaildrop>  0.15 </sparkfaildrop>

@@ -224,7 +224,7 @@
             <property>/engines/engine/oil-temperature-degf</property>
         </input>
         <output>
-            <property>/engines/engine[0]/oil-temperature-degf</property>
+            <property>/engines/engine[0]/oil-temperature-degf-indicated</property>
         </output>
     </filter>
 
@@ -238,9 +238,8 @@
             <property>/engines/engine/oil-pressure-psi</property>
         </input>
         <output>
-            <property>/engines/engine[0]/oil-pressure-psi</property>
+            <property>/engines/engine[0]/oil-pressure-psi-indicated</property>
         </output>
     </filter>
-    
 
 </PropertyList>

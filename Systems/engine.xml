@@ -204,6 +204,15 @@
                     </greater-than>
                 </and>
                 
+                <!-- Engine is coughing shortly before it starves of fuel -->
+                <and>
+                    <property>/engines/engine/running</property>
+                    <less-than>
+                        <property>/consumables/fuel/tank[5]/level-lbs</property>
+                        <property>/engines/engine/engine-cough-low-fuel-limit</property>
+                    </less-than>
+                </and>
+                
             </or>
                 
         </input>

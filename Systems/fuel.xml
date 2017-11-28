@@ -588,6 +588,21 @@ Author: 09/2017  Benedikt Hallinger
             <output>/controls/engines/engine/mixture</output>   
         </fcs_function>
         
+        
+        <!-- Engine starts coughing shortly before it runs dry -->
+        <!-- The fuctins intend is to adjust the cough time with RPM so it gives just a brief cough short before death -->
+        <fcs_function name="/engines/engine/engine-cough-low-fuel-limit">
+            <function>
+                <table>
+                    <independentVar lookup="row">/engines/engine/rpm</independentVar>
+                    <tableData>
+                        1000    0.005
+                        2500    0.035
+                    </tableData>
+                </table>
+            </function>
+            <output>/engines/engine/engine-cough-low-fuel-limit</output>   
+        </fcs_function>
        
         
         <!-- CALCULATE INDICATED FUEL FLOW -->

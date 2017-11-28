@@ -15,7 +15,7 @@
             <tag>single-engine</tag>
             <tag>fixed-gear</tag>
         </tags>
- 
+    <minimum-fg-version>2017.3.1</minimum-fg-version>
     <rating>
       <FDM type="int">4</FDM>
       <systems type="int">3</systems>
@@ -773,6 +773,7 @@
    <mixture type="double">0</mixture>
    <running type="bool">false</running>
    <killed type="bool">false</killed>
+   <kill-engine type="bool">false</kill-engine> <!-- set in runtime to true to kill the engine -->
    <crashed type="bool">false</crashed>
    <complex-engine-procedures type="bool">false</complex-engine-procedures>
    <allow-fuel-contamination type="bool">false</allow-fuel-contamination>

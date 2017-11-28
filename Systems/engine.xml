@@ -204,6 +204,15 @@
                     </greater-than>
                 </and>
                 
+                <!-- Engine is coughing shortly before it starves of fuel -->
+                <and>
+                    <property>/engines/engine/running</property>
+                    <less-than>
+                        <property>/consumables/fuel/tank[5]/level-lbs</property>
+                        <property>/engines/engine/engine-cough-low-fuel-limit</property>
+                    </less-than>
+                </and>
+                
             </or>
                 
         </input>
@@ -224,7 +233,7 @@
             <property>/engines/engine/oil-temperature-degf</property>
         </input>
         <output>
-            <property>/engines/engine[0]/oil-temperature-degf</property>
+            <property>/engines/engine[0]/oil-temperature-degf-indicated</property>
         </output>
     </filter>
 
@@ -238,9 +247,8 @@
             <property>/engines/engine/oil-pressure-psi</property>
         </input>
         <output>
-            <property>/engines/engine[0]/oil-pressure-psi</property>
+            <property>/engines/engine[0]/oil-pressure-psi-indicated</property>
         </output>
     </filter>
-    
 
 </PropertyList>

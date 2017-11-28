@@ -112,24 +112,30 @@ var oil_consumption = maketimer(1.0, func {
         #  Economy Cruise (60% Rated):      2000 RPM = 0.47 qph
         
         # Formula which outputs basic quarts-per-hour consumption:
-        # RPM:   2700 |  2400 |  2200 | 2000  | 800
-        # qph:  1.084 | 0.782 | 0.618 | 0.482 | 0.096
-        var consumption_qph = 0.0000000000515 * math.pow(rpm, 3) + 0.07;
+        # RPM:   2700 |  2400 |  2200 | 2000  |   800
+        # qph:  0.207 | 0.173 | 0.155 | 0.14  | 0.098
+        var cons_factor     = 0.11;
+        var consumption_qph = 0.0000000000515 * math.pow(rpm, 3) * cons_factor + 0.095;
 
         # Raise consumption when oil level is > 8 quarts (blowout)
         if (oil_level > 8) {
             consumption_qph = consumption_qph * 1.3;
         }
         
-        # Consumption also raises with oil in service time:
-        # 0qph at start; about 0.6 qph at 25 and about 2.3qph at 50hrs
+        # Consumption also raises with oil in service time (lower viscosity => more friction)
+        # (Oil should be changed at 50 hrs!)
         # See: http://www.t-craft.org/Reference/Aircraft.Oil.Usage.pdf
-        var service_hours_increase = 0.00095 * math.pow(service_hours, 2);
-        if (service_hours_increase > 3) service_hours_increase = 3;  # cap at that rate
+        # Hours:        0 |    10 |    25 |  50   |    75
+        # Add.Qts/hr:   0 |  0.02 | 0.125 | 0.5   | 1.125
+        var service_hours_increase = 0.00020 * math.pow(service_hours, 2);
+        if (service_hours_increase > 1.5) service_hours_increase = 1.5;  # cap at that rate
         consumption_qph = consumption_qph + service_hours_increase;
     
     
         # Calculate consumption and update properties
+        # Example:  2200 RPM with pristine oil has 0.155+0.0=0.155qts/hr    (sump 8->4 = ~25:50 hrs flight time)
+        #           2200 RPM with 25hrs old oil has 0.155+0.125=0.28qts/hr  (sump 8->4 = ~14:15 hrs flight time)
+        #           2200 RPM with 50hr oil 0.155+0.5=0.655qts/hr            (sump 8->4 = ~06:10 hrs flight time)
         if (getprop("/engines/engine/running")) {
             var consume_oil_qps = consumption_qph / 3600;
             oil_level = oil_level - consume_oil_qps;

@@ -58,6 +58,11 @@
       <path></path>
     </electrical>
   </systems>
+  
+  <start-state_saved type="bool">false</start-state_saved>
+  <start-state_CnD type="bool">false</start-state_CnD>
+  <start-state_RfT type="bool">true</start-state_RfT>
+  <start-state_Crs type="bool">false</start-state_Crs>
 
   <chocks>
   <enable type="bool">false</enable>
@@ -524,6 +529,10 @@
         
         <!-- Save these properties between sessions -->
         <aircraft-data>
+            <path>/sim/start-state_saved</path>
+            <path>/sim/start-state_CnD</path>
+            <path>/sim/start-state_RfT</path>
+            <path>/sim/start-state_Crs</path>
             <path>/sim/time/hobbs/engine</path>
             <path>/engines/engine/complex-engine-procedures</path>
             <path>/engines/engine/allow-fuel-contamination</path>
@@ -900,6 +909,7 @@
     <file>Nasal/tiedowns.nas</file>
     <file>Aircraft/c182s/Nasal/immat.nas</file>
     <file>Aircraft/c182s/Nasal/gma340.nas</file>
+    <file>Aircraft/c182s/Nasal/c182s-states.nas</file>
 </c182s>
 
 <davtron803>

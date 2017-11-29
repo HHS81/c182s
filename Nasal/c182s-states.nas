@@ -50,6 +50,8 @@ var coldAndDark = func() {
     setprop("/instrumentation/comm[1]/volume-selected", 0);
     setprop("/controls/switches/kn-62a-mode", 0);
     setprop("/instrumentation/adf[0]/power-btn", 0);
+    
+    setprop("/sim/start-state-internal/oil-temp-override", 0);
 };
 
 var engineRunning = func(rpm, throttle, mix, prop) {
@@ -70,6 +72,8 @@ var engineRunning = func(rpm, throttle, mix, prop) {
     setprop("/controls/switches/fuel_tank_selector", 2);
     
     #let engine run
+    setprop("/sim/start-state-internal/oil-temp-override", 1); # override disables coughing due to low oil temp
+    settimer(func{ setprop("/sim/start-state-internal/oil-temp-override", 0); }, 240); # disable override after this time
     autostart(0, 0, 1);
     setprop("/controls/engines/engine[0]/throttle", throttle);
     setprop("/controls/engines/engine[0]/mixture-lever", mix);

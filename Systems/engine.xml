@@ -194,6 +194,7 @@
                 <and>
                     <property>/engines/engine/complex-engine-procedures</property>
                     <property>/engines/engine/allow-oil-management</property>
+                    <not><property>/sim/start-state-internal/oil-temp-override</property></not>
                     <greater-than>
                         <property>/controls/engines/engine[0]/throttle</property>
                         <value>0.65</value>

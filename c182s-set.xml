@@ -63,6 +63,9 @@
   <start-state_CnD type="bool">false</start-state_CnD>
   <start-state_RfT type="bool">true</start-state_RfT>
   <start-state_Crs type="bool">false</start-state_Crs>
+  <start-state-internal>
+      <oil-temp-override type="bool">false</oil-temp-override>
+  </start-state-internal>
 
   <chocks>
   <enable type="bool">false</enable>

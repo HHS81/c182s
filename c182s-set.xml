@@ -560,6 +560,7 @@
             <path>/controls/flight/rudder-trim</path>
             <path>/controls/flight/flaps</path>
             <path>/instrumentation/audio-panel/power-btn</path>
+            <path>/instrumentation/audio-panel/volume-ics-pilot</path>
             <path>/instrumentation/audio-panel/com[0]</path>
             <path>/instrumentation/audio-panel/com[1]</path>
             <path>/instrumentation/audio-panel/com[2]</path>

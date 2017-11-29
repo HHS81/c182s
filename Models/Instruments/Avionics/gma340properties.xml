@@ -22,7 +22,7 @@
   <hi            archive="y" type="bool">true</hi>
   <lo            archive="y" type="bool">false</lo>
   <com     n="0" archive="y" type="bool">true</com>
-  <com     n="1" archive="y" type="bool">false</com>
+  <com     n="1" archive="y" type="bool">true</com>
   <com     n="2" archive="y" type="bool">false</com>
   <com-mic n="0" archive="y" type="bool">true</com-mic>
   <com-mic n="1" archive="y" type="bool">false</com-mic>

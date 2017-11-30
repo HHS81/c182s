@@ -50,6 +50,40 @@
         <empty><stretch>true</stretch></empty>
         <radio>
             <halign>left</halign>
+            <label>Automatic</label>
+            <property>/sim/start-state_auto</property>
+            <live>true</live>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_saved</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_CnD</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_RfT</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_Crs</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_auto</property>
+                <value>1</value>
+            </binding>
+        </radio>
+        <radio>
+            <halign>left</halign>
             <label>Saved state</label>
             <property>/sim/start-state_saved</property>
             <live>true</live>
@@ -74,6 +108,11 @@
             <binding>
                 <command>property-assign</command>
                 <property>/sim/start-state_Crs</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_auto</property>
                 <value>0</value>
             </binding>
         </radio>
@@ -105,6 +144,11 @@
                 <property>/sim/start-state_Crs</property>
                 <value>0</value>
             </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_auto</property>
+                <value>0</value>
+            </binding>
         </radio>
         <radio>
             <halign>left</halign>
@@ -132,6 +176,11 @@
             <binding>
                 <command>property-assign</command>
                 <property>/sim/start-state_Crs</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_auto</property>
                 <value>0</value>
             </binding>
         </radio>
@@ -162,6 +211,11 @@
                 <command>property-assign</command>
                 <property>/sim/start-state_Crs</property>
                 <value>1</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_auto</property>
+                <value>0</value>
             </binding>
         </radio>
         

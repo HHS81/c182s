@@ -114,11 +114,34 @@ var engineRunning = func(rpm, throttle, mix, prop) {
 # Apply selected state
 ##########################################
 var applyAircraftState = func() {
+    var stateAuto   = getprop("/sim/start-state_auto") or 0;
     var stateSaved  = getprop("/sim/start-state_saved") or 0;
     var stateCnD    = getprop("/sim/start-state_CnD") or 0;
     var stateRfT    = getprop("/sim/start-state_RfT") or 0;
     var stateCruise = getprop("/sim/start-state_Crs") or 0;
     
+    if (stateAuto == 1) {
+        # get from presets
+        var prs_onground = getprop("/sim/presets/onground") or 0;
+        var prs_parkpos  = getprop("/sim/presets/parkpos") or 0;
+        var prs_rwy      = getprop("/sim/presets/runway") or 0;
+        
+        if (prs_onground) {
+            # either parking or runway/taxi/elsewhere
+            if (prs_parkpos) {
+                print("Apply state: Automatic (parking->ColdAndDark)");
+                coldAndDark();
+                # todo: also secure aircraft? probably only on user request!
+            } else {
+                print("Apply state: Automatic (not-parking->ReadyForTakeoff)");
+                engineRunning(1000, 0.1, 1, 1);
+            }
+        } else {
+            # somewhere in the air
+            print("Apply state: Automatic (in-air->cruise)");
+            engineRunning(2000, 1, 0.9, 0.80);  # TODO: Mix should be calculated by altitude
+        }
+    }
     if (stateSaved == 1) {
         # do nothing, flightgear already has initialized
         print("Apply state: saved");

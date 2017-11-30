@@ -511,4 +511,34 @@ var repair_damage = func {
 setlistener("/sim/signals/fdm-initialized", func {
     # Fuel contamination
     init_fuel_contamination();
+    
+    
+    # Reapply tiedowns/chocks to current position in case they
+    # were engaged at startup (this avoids the weird aircraft dance)
+    # note: this is a little hacky and probably should be solved cleanly!
+    if (getprop("/sim/model/c182s/securing/tiedownL-visible")) {
+        setprop("/sim/model/c182s/securing/tiedownL-visible", 0);
+        settimer(func(){ setprop("/sim/model/c182s/securing/tiedownL-visible", 1);}, 0.25);
+    }
+    if (getprop("/sim/model/c182s/securing/tiedownR-visible")) {
+        setprop("/sim/model/c182s/securing/tiedownR-visible", 0);
+        settimer(func(){ setprop("/sim/model/c182s/securing/tiedownR-visible", 1);}, 0.25);
+    }
+    if (getprop("/sim/model/c182s/securing/tiedownT-visible")) {
+        setprop("/sim/model/c182s/securing/tiedownT-visible", 0);
+        settimer(func(){ setprop("/sim/model/c182s/securing/tiedownT-visible", 1);}, 0.25);
+    }
+    if (getprop("/sim/chocks001/enable")) {
+        setprop("/sim/chocks001/enable", 0);
+        settimer(func(){ setprop("/sim/chocks001/enable", 1);}, 0.25);
+    }
+    if (getprop("/sim/chocks002/enable")) {
+        setprop("/sim/chocks002/enable", 0);
+        settimer(func(){ setprop("/sim/chocks002/enable", 1);}, 0.25);
+    }
+    if (getprop("/sim/chocks003/enable")) {
+        setprop("/sim/chocks003/enable", 0);
+        settimer(func(){ setprop("/sim/chocks003/enable", 1);}, 0.25);
+    }
+    
 });

@@ -138,5 +138,14 @@ setlistener("/sim/signals/fdm-initialized", func {
         tiedown_tail_updater.enable_or_disable(node.getValue());
     }, 1, 0);
 
+    setlistener("/fdm/jsbsim/damage/repairing", func (node) {
+        # When the aircraft has been repaired (value is switched back
+        # to 0), compute the new initial length of the tiedowns
+        if (!node.getValue()) {
+            tiedown_left_updater.init_ref_length();
+            tiedown_right_updater.init_ref_length();
+            tiedown_tail_updater.init_ref_length();
+        }
+    }, 0, 0);
     
 });

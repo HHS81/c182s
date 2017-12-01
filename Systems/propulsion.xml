@@ -8,8 +8,8 @@
     <channel name="engine power">
     
 
- <!--controls fuel flow depending on density altitude-->
--<fcs_function name="systems/engine/MP-alt-volumetric-efficiency-curve">
+        <!--controls fuel flow depending on density altitude-->
+        -<fcs_function name="systems/engine/MP-alt-volumetric-efficiency-curve">
           <function>
                 <table>
                     <independentVar lookup="row">atmosphere/density-altitude</independentVar>
@@ -30,9 +30,10 @@
           <output>propulsion/engine/volumetric-efficiency</output>   
         </fcs_function>
 
- <!--controls power depending on density altitude-->
-<fcs_function name="systems/engine/MP-alt-bsfc-lbs_hphr-curve">
+        <!--controls power depending on density altitude-->
+        <fcs_function name="systems/engine/MP-alt-bsfc-lbs_hphr-curve">
           <function>
+             <product>
                 <table>
                     <independentVar lookup="row">atmosphere/density-altitude</independentVar>
                     <independentVar lookup="column">propulsion/engine/map-inhg</independentVar>
@@ -47,13 +48,16 @@
 		12000	0.413	0.413	0.413	0.413	0.413	0.413	0.413	0.413	0.413	0.413	0.413	0.413	0.413	0.413	0.413	
 		14000	0.403	0.405	0.405	0.405	0.405	0.405	0.405	0.405	0.405	0.405	0.405	0.405	0.405	0.405	0.405
                    </tableData>
-                </table>  
+                </table>
+                
+                <property>/engines/engine/oil-powergain-factor</property> <!-- cold oil = less power -->
+            </product>
           </function>
           <clipto>
              <min> 0.0 </min>
              <max> 1.00 </max>
            </clipto>
-          <output>propulsion/engine/bsfc-lbs_hphr</output>   
+          <output>propulsion/engine/bsfc-lbs_hphr</output>
         </fcs_function>
 	
  <fcs_function name="systems/engine/RAM-Air-Factor">

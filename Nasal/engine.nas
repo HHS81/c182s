@@ -212,4 +212,5 @@ var previous_oil_level = getprop("/engines/engine[0]/oil-level");
 if (!getprop("/engines/engine[0]/oil-service-hours")) {
      setprop("/engines/engine[0]/oil-service-hours", 0);
 }
+oil_consumption.simulatedTime = 1;
 oil_consumption.start();

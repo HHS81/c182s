@@ -671,6 +671,7 @@
                   <max>1</max>
                 </domain>
                 <range>
+                    <!-- defined cooling efficiency: min=cowlflaps fully closed, max=fully open -->
                     <min>0.48</min>
                     <max>0.85</max>
                 </range>

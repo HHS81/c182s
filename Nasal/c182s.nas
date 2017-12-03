@@ -502,163 +502,43 @@ var repair_damage = func {
 
 
 
-##########################################
-# Autostart
-##########################################
-
-var autostart = func (msg=1) {
-    print("Autostart engine engaged.");
-    if (getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
-        # When engine already running, perform autoshutdown
-        if (msg)
-            gui.popupTip("Autoshutdown engine engaged.", 5);
-                
-        #After landing
-        setprop("/controls/flight/flaps", 0);
-        setprop("/controls/engines/engine/cowl-flaps-norm", 1);
-
-        #Securing Aircraft
-        setprop("/controls/gear/brake-parking", 1);
-        setprop("/controls/engines/engine[0]/throttle", 0.0);
-        setprop("/controls/lighting/nav-lights", 0);
-        setprop("/controls/lighting/strobe", 0);
-        setprop("/controls/lighting/beacon", 0);
-        setprop("/controls/switches/AVMBus1", 0);  
-        setprop("/controls/switches/AVMBus2", 0);  
-        setprop("/controls/engines/engine[0]/mixture-lever", 0.0);
-        setprop("/controls/switches/starter", 0);
-        setprop("/controls/engines/engine[0]/magnetos", 0);
-        setprop("/controls/engines/engine[0]/master-bat", 0);
-        setprop("/controls/engines/engine[0]/master-alt", 0);
-        setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
-        setprop("/controls/switches/fuel_tank_selector", 1);
-        
-        #securing Aircraft on ground
-        setprop("/sim/chocks001/enable", 1);
-        setprop("/sim/chocks002/enable", 1);
-        setprop("/sim/chocks003/enable", 1);
-        setprop("/sim/model/c182s/securing/pitot-cover-visible", 1);
-        setprop("/sim/model/c182s/securing/tiedownL-visible", 1);
-        setprop("/sim/model/c182s/securing/tiedownR-visible", 1);
-        setprop("/sim/model/c182s/securing/tiedownT-visible", 1);
-        
-        print("Autoshutdown engine complete.");
-        return;
-    }
-    
-    # Repair Aircraft
-    # This repairs any damage, reloads battery, removes water contamination, resets oil, etc
-    repair_damage();
-    
-
-    # Filling fuel tanks
-    setprop("/consumables/fuel/tank[0]/selected", 1);
-    setprop("/consumables/fuel/tank[1]/selected", 1);
-
-    # Setting levers and switches for startup
-    setprop("/controls/switches/fuel_tank_selector", 2);
-    setprop("/controls/engines/engine[0]/magnetos", 3);
-    setprop("/controls/engines/engine[0]/throttle", 0.2);
-    setprop("/controls/engines/engine[0]/mixture-lever", 1.0);
-    setprop("/controls/engines/engine[0]/propeller-pitch", 1);
-    setprop("/controls/engines/engine/cowl-flaps-norm", 1);
-    setprop("/controls/engines/engine[0]/fuel-pump", 0);
-    setprop("/controls/flight/elevator-trim", 0.0);
-    setprop("/controls/flight/rudder-trim", 0.0);
-    setprop("/controls/engines/engine[0]/master-bat", 1);
-    setprop("/controls/engines/engine[0]/master-alt", 1);
-    setprop("/controls/switches/AVMBus1", 0);  # off for start
-    setprop("/controls/switches/AVMBus2", 0);  # off for start
-
-    # Setting lights
-    setprop("/controls/lighting/nav-lights", 1);
-    setprop("/controls/lighting/strobe", 1);
-    setprop("/controls/lighting/beacon", 1);
-
-    # Setting flaps to 0
-    setprop("/controls/flight/flaps", 0.0);
-
-    # Set the altimeter
-    var pressure_sea_level = getprop("/environment/pressure-sea-level-inhg");
-    setprop("/instrumentation/altimeter/setting-inhg", pressure_sea_level);
-
-    # Set heading offset
-    var magnetic_variation = getprop("/environment/magnetic-variation-deg");
-    setprop("/instrumentation/heading-indicator/offset-deg", -magnetic_variation);
-
-    # Pre-flight inspection
-    setprop("/sim/model/c182s/cockpit/control-lock-placed", 0);
-    setprop("/controls/gear/brake-parking", 1);
-    setprop("/sim/chocks001/enable", 0);
-    setprop("/sim/chocks002/enable", 0);
-    setprop("/sim/chocks003/enable", 0);
-    setprop("/sim/model/c182s/securing/pitot-cover-visible", 0);
-    setprop("/sim/model/c182s/securing/tiedownL-visible", 0);
-    setprop("/sim/model/c182s/securing/tiedownR-visible", 0);
-    setprop("/sim/model/c182s/securing/tiedownT-visible", 0);
-
-
-    # Checking for minimal fuel level
-    var fuel_level_left  = getprop("/consumables/fuel/tank[0]/level-norm");
-    var fuel_level_right = getprop("/consumables/fuel/tank[1]/level-norm");
-
-    if (fuel_level_left < 0.25)
-        setprop("/consumables/fuel/tank[0]/level-norm", 0.25);
-    if (fuel_level_right < 0.25)
-        setprop("/consumables/fuel/tank[1]/level-norm", 0.25);
-
-    
-    # Ensure disabled complex-engine-procedures
-    # (so engine always starts)
-    var complexEngineProcedures_state_old = getprop("/engines/engine/complex-engine-procedures");
-    setprop("/engines/engine/complex-engine-procedures", 0);
-
-    
-    
-    
-    # All set, starting engine
-    settimer(func {
-        setprop("/controls/switches/starter", 1);
-        setprop("/engines/engine[0]/auto-start", 1);
-    }, 1);
-
-    var engine_running_check_delay = 6.0;
-    settimer(func {
-        if (!getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
-            gui.popupTip("The autostart failed to start the engine. You must lean the mixture and start the engine manually.", 5);
-            print("Autostart engine FAILED");
-        }
-        setprop("/controls/switches/starter", 0);
-        setprop("/engines/engine[0]/auto-start", 0);
-        
-        # Reset complex-engine-procedures user setting
-        setprop("/engines/engine/complex-engine-procedures", complexEngineProcedures_state_old);
-        
-        
-        # Set switches to after-start state
-        setprop("/controls/switches/AVMBus1", 1);
-        setprop("/controls/switches/AVMBus2", 1);
-
-	
-        
-        
-        print("Autostart engine complete.");
-        
-    }, engine_running_check_delay);
-    
-
-};
-
-
-
-
 
 ###########
-# INIT
+# INIT of Aircraft
+# (states are initialized in separate nasal script!)
 ###########
 
-# TODO: Support different user states
 setlistener("/sim/signals/fdm-initialized", func {
     # Fuel contamination
     init_fuel_contamination();
+    
+    
+    # Reapply tiedowns/chocks to current position in case they
+    # were engaged at startup (this avoids the weird aircraft dance)
+    # note: this is a little hacky and probably should be solved cleanly!
+    if (getprop("/sim/model/c182s/securing/tiedownL-visible")) {
+        setprop("/sim/model/c182s/securing/tiedownL-visible", 0);
+        settimer(func(){ setprop("/sim/model/c182s/securing/tiedownL-visible", 1);}, 0.25);
+    }
+    if (getprop("/sim/model/c182s/securing/tiedownR-visible")) {
+        setprop("/sim/model/c182s/securing/tiedownR-visible", 0);
+        settimer(func(){ setprop("/sim/model/c182s/securing/tiedownR-visible", 1);}, 0.25);
+    }
+    if (getprop("/sim/model/c182s/securing/tiedownT-visible")) {
+        setprop("/sim/model/c182s/securing/tiedownT-visible", 0);
+        settimer(func(){ setprop("/sim/model/c182s/securing/tiedownT-visible", 1);}, 0.25);
+    }
+    if (getprop("/sim/chocks001/enable")) {
+        setprop("/sim/chocks001/enable", 0);
+        settimer(func(){ setprop("/sim/chocks001/enable", 1);}, 0.25);
+    }
+    if (getprop("/sim/chocks002/enable")) {
+        setprop("/sim/chocks002/enable", 0);
+        settimer(func(){ setprop("/sim/chocks002/enable", 1);}, 0.25);
+    }
+    if (getprop("/sim/chocks003/enable")) {
+        setprop("/sim/chocks003/enable", 0);
+        settimer(func(){ setprop("/sim/chocks003/enable", 1);}, 0.25);
+    }
+    
 });

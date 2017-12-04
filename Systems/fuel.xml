@@ -605,9 +605,8 @@ Author: 09/2017  Benedikt Hallinger
         
         <!-- CALCULATE INDICATED FUEL FLOW -->
         <!-- either from normal engine operation or priming:
-              - the current fuel flow should follow some bell courve, topping out when the
-                manifold is adequately pimed (in real life, i don't know if this is correct. I assume this for now, because the fuel pump needs to build up pressure and then pumps until the manifold is full).
-              - the current courve value is calculated by a function depending on the current priming grade
+              - the current fuel flow should follow some bell courve, topping out at a characteristic moment (3-5secs at correct setings)
+              - the current courve value is calculated by a function depending on the current manifold fill level (simulates priming grade)
               - the resulting value is then transfered into a GPH setting showed on the gauge
               - the kinematic is used to "dampen" the needle movement in priming mode. Its just cosmetics.
              Please note, that all those components should probably be consolidated into an easier implementation.
@@ -618,7 +617,8 @@ Author: 09/2017  Benedikt Hallinger
             <function>
                 <quotient>
                     <property>/fdm/jsbsim/propulsion/tank[5]/pct-full</property>
-                    <property>/systems/fuel/priming-temperature-threshold</property>
+                    <!--<property>/systems/fuel/priming-temperature-threshold</property>  alternatively use current-primed-grade, if the stabilization is always a sign of "primed" state? -->
+                    <value>40</value> <!-- at 60°F (=~15°C) we currently need ~38% manifold fill, colder->more -->
                 </quotient>
             </function>
             <clipto>

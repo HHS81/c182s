@@ -644,7 +644,7 @@
                  <output>/sim/model/c182s/cockpit/flaps-lever</output>
              </kinematic>
         </channel>
-<!--
+        <!--
             Cowl Flaps 
         -->
         <channel name="Cowl Flaps">
@@ -675,8 +675,29 @@
                     <min>0.48</min>
                     <max>0.85</max>
                 </range>
-                <output>propulsion/engine[0]/cooling-factor</output>
+                <output>propulsion/engine[0]/cooling-factor-cowlflaps</output>
             </aerosurface_scale>
+            <switch name="cooling-factor-winterkit">
+                <!-- winter kit reduces cooling airflow -->
+                <default value="1"/>
+                <test logic="AND" value="0.72">
+                    /engines/engine/winter-kit-installed  EQ  1
+                </test>
+                <output>propulsion/engine[0]/cooling-factor-winterkit</output>
+            </switch>
+            <fcs_function name="engine-cooling-factor">
+                <function>
+                    <product>
+                        <property>propulsion/engine[0]/cooling-factor-winterkit</property>
+                        <property>propulsion/engine[0]/cooling-factor-cowlflaps</property>
+                    </product>
+                </function>
+                <clipto>
+                    <min>0</min>
+                    <max>1</max>
+                </clipto>
+                <output>propulsion/engine[0]/cooling-factor</output> <!-- final cooling factor to engine -->
+            </fcs_function>
 	</channel>
 	
 <channel name= "brake-lever">

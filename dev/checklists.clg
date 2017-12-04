@@ -180,8 +180,8 @@ item("Throttle") {
     state("CHECK IDLE", thrt <= 0.0) {
         fgcommand("property-interpolate", property=thrt, value=0.0, rate=0.5);
     }
-    state("OPEN 1/4 INCH", (thrt >= 0.24 && thrt <= 0.26)) {
-        fgcommand("property-interpolate", property=thrt, value=0.25, rate=0.5);
+    state("OPEN 1/4 INCH", (thrt >= 0.07 && thrt <= 0.08)) {
+        fgcommand("property-interpolate", property=thrt, value=0.08, rate=0.5);
     }
     state("FULL OPEN", thrt >= 1.0 ) {
         fgcommand("property-interpolate", property=thrt, value=1.0, rate=0.5);

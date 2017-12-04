@@ -338,6 +338,7 @@
         <group>
             <layout>hbox</layout>
 
+            <!-- to be implemented
             <checkbox>
                 <halign>left</halign>
                 <label>Damage</label>
@@ -346,7 +347,7 @@
                 <binding>
                     <command>dialog-apply</command>
                 </binding>
-            </checkbox>
+            </checkbox>-->
 
             <button>
                 <halign>right</halign>

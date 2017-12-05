@@ -6,5 +6,28 @@
     <property type="double" value="0">/systems/electrical/outputs/flaps</property>
 
     <!-- the electrical system is implemented in electrical.nas! -->
-    
+
+<!-- http://www.pacificpowerbatteries.com/aboutbatts/car%20battery%20faq/carfaq7.html-->
+
+    <channel name="battery">
+
+<fcs_function name="capacity factor">
+          <function>
+                 <table>
+                    <independentVar>/environment/temperature-degc</independentVar>
+                    <tableData>
+		-40	0.3
+		-30	0.425
+		-20	0.55
+		-10	0.675
+		0	0.8
+		10	0.88
+		20	0.97
+		25	1.0
+                      </tableData>
+                </table>
+          </function>
+          <output>/systems/electrical/battery-capacity-factor</output>   
+        </fcs_function>
+    </channel>
 </system>

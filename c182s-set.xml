@@ -543,6 +543,7 @@
             <path>/engines/engine/complex-engine-procedures</path>
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>
+            <path>/engines/engine/winter-kit-installed</path>
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
             <path>/consumables/fuel/tank[2]/level-gal_us</path>
@@ -796,6 +797,7 @@
    <allow-fuel-contamination type="bool">false</allow-fuel-contamination>
    <allow-oil-management type="bool">false</allow-oil-management>
    <oil-powergain-factor type="double">1</oil-powergain-factor>
+   <winter-kit-installed type="bool">false</winter-kit-installed>
   </engine>
  </engines>
  

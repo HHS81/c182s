@@ -444,7 +444,12 @@ electrical_bus_1 = func() {
 
 
     # Flaps Power
-    setprop("/systems/electrical/outputs/flaps", bus_volts);
+#    if ( getprop("/controls/circuit-breakers/flaps") ) {
+        setprop("/systems/electrical/outputs/flaps", bus_volts);
+        load += bus_volts / 57;
+#    } else {
+#        setprop("/systems/electrical/outputs/flaps", 0.0);
+#    }
 
     # register bus voltage
     ebus1_volts = bus_volts;

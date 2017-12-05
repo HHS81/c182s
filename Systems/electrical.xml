@@ -1,0 +1,10 @@
+<?xml version="1.0"?>  
+
+<system name="electrical">
+
+    <!-- initialize some properties -->
+    <property type="double" value="0">/systems/electrical/outputs/flaps</property>
+
+    <!-- the electrical system is implemented in electrical.nas! -->
+    
+</system>

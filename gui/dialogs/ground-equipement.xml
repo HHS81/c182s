@@ -205,7 +205,29 @@
         </group>-->
         <hrule/>
 	
-
+        <group>
+            <layout>vbox</layout>
+            <padding>6</padding>
+            <checkbox>
+                <halign>left</halign>
+                <label>External heater applied</label>
+                <live>true</live>
+                <property>/engines/engine/external-heat/enabled</property>
+                <enable>
+                    <less-than>
+                        <property>velocities/groundspeed-kt</property>
+                        <value>0.1</value>
+                    </less-than>
+                </enable>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/engines/engine/external-heat/enabled</property>
+                </binding>
+                <binding>
+                    <command>dialog-update</command>
+                </binding>
+            </checkbox>
+        </group>
 	
 
   

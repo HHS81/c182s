@@ -798,6 +798,13 @@
    <allow-oil-management type="bool">false</allow-oil-management>
    <oil-powergain-factor type="double">1</oil-powergain-factor>
    <winter-kit-installed type="bool">false</winter-kit-installed>
+   <external-heat>
+       <enabled type="bool">false</enabled>
+       <applied-norm type="double">0.0</applied-norm>
+       <applied-degF type="double">0.0</applied-degF>
+       <applied-degF-OAT type="double">0.0</applied-degF-OAT>
+       <applied-degF-OilTemp type="double">0.0</applied-degF-OilTemp>
+   </external-heat>
   </engine>
  </engines>
  

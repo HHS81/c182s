@@ -99,7 +99,7 @@
         <fcs_function name="oil-powergain-factor-calc">
             <function>
                 <table>
-                    <independentVar lookup="row">/engines/engine[0]/oil-temperature-degf</independentVar>
+                    <independentVar lookup="row">/engines/engine/oil-final-temperature-degf</independentVar>
                     <tableData breakPoint="0">
                         19.4   2.00   <!-- -7°C -->
                         90.0   1.00   <!-- 32°C --> <!-- engine is considered "hot" -->

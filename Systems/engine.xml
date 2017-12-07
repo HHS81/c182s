@@ -223,23 +223,25 @@
     </logic>
     
     
-
-   
-    <!-- OIL Gauges -->
+    <!-- Oil temperature -->
+    <!-- chain is: jsbsim modified value, low oil effect, heater, real value -->
+    
+    <!-- OIL level low effect (temperature raises) -->
     <filter>
-        <name>Engine Oil Temperature</name>
+        <name>Engine Oil Temperature gauge</name>
         <type>gain</type>
         <gain>
             <property>/engines/engine[0]/low-oil-temperature-factor</property>
         </gain>
         <input>
-            <property>/engines/engine/oil-temperature-degf</property>
+            <property>/engines/engine/oil-compensated-temperature-degf</property>
         </input>
         <output>
             <property>/engines/engine[0]/oil-temperature-degf-indicated</property>
         </output>
     </filter>
 
+    <!-- OIL level low effect (pressure falls) -->
     <filter>
         <name>Engine Oil Pressure</name>
         <type>gain</type>

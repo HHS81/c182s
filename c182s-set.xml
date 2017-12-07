@@ -806,6 +806,7 @@
        <applied-degF type="double">0.0</applied-degF>
    </external-heat>
    <oil-final-temperature-degf type="double">60</oil-final-temperature-degf> <!-- this is the final oil temperature after all effects -->
+   <cowling-air-temperature-degf>40</cowling-air-temperature-degf> <!-- OAT in the cowling -->
   </engine>
  </engines>
  

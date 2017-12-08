@@ -34,7 +34,7 @@ This aircraft was modified and updated in a joint effort by the following people
 
 * David Megginson 
 
-* Benedikt Hallinger (fuel system, custom registration livery, checklists and some small additions)
+* Benedikt Hallinger (fuel/oil system, custom registration livery, checklists, save-state and some more small additions)
 
 ---
 

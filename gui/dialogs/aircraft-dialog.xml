@@ -42,6 +42,209 @@
 	</group>
 	<hrule/>
     
+    <group>
+        <layout>vbox</layout>
+        <text><halign>left</halign>
+            <label>Start options:</label>
+        </text>
+        <empty><stretch>true</stretch></empty>
+        <radio>
+            <halign>left</halign>
+            <label>Automatic</label>
+            <property>/sim/start-state_auto</property>
+            <live>true</live>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_saved</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_CnD</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_RfT</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_Crs</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_auto</property>
+                <value>1</value>
+            </binding>
+        </radio>
+        <radio>
+            <halign>left</halign>
+            <label>Saved state</label>
+            <property>/sim/start-state_saved</property>
+            <live>true</live>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_saved</property>
+                <value>1</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_CnD</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_RfT</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_Crs</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_auto</property>
+                <value>0</value>
+            </binding>
+        </radio>
+        <radio>
+            <halign>left</halign>
+            <label>Cold and Dark</label>
+            <property>/sim/start-state_CnD</property>
+            <live>true</live>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_saved</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_CnD</property>
+                <value>1</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_RfT</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_Crs</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_auto</property>
+                <value>0</value>
+            </binding>
+        </radio>
+        <radio>
+            <halign>left</halign>
+            <label>Ready for Takeoff</label>
+            <property>/sim/start-state_RfT</property>
+            <live>true</live>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_saved</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_CnD</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_RfT</property>
+                <value>1</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_Crs</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_auto</property>
+                <value>0</value>
+            </binding>
+        </radio>
+        <radio>
+            <halign>left</halign>
+            <label>Cruising</label>
+            <property>/sim/start-state_Crs</property>
+            <live>true</live>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_saved</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_CnD</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_RfT</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_Crs</property>
+                <value>1</value>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state_auto</property>
+                <value>0</value>
+            </binding>
+        </radio>
+        
+        <button>
+            <halign>center</halign>
+            <legend>Apply now</legend>
+            <pref-width>85</pref-width>
+            <pref-height>28</pref-height>
+            <enable>
+                <and>
+                    <not>
+                        <property>/sim/freeze/replay-state</property>
+                    </not>
+                    <not>
+                        <property>/sim/start-state_saved</property>
+                    </not>
+                </and>
+            </enable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    c182s.applyAircraftState();
+                </script>
+            </binding>
+        </button>
+    </group>
+    
+    <hrule/>
+    
 	<group>
 	<layout>vbox</layout>
 	<padding>6</padding>
@@ -130,11 +333,28 @@
                 
         </group>
         
+        <checkbox>
+            <halign>left</halign>
+            <label>Winter kit installed</label>
+            <property>/engines/engine/winter-kit-installed</property>
+            <live>true</live>
+            <enable>
+                <less-than>
+                    <property>velocities/groundspeed-kt</property>
+                    <value>1.0</value>
+                </less-than>
+            </enable>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+        </checkbox>
+        
 <hrule/>
 
         <group>
             <layout>hbox</layout>
 
+            <!-- to be implemented
             <checkbox>
                 <halign>left</halign>
                 <label>Damage</label>
@@ -143,7 +363,7 @@
                 <binding>
                     <command>dialog-apply</command>
                 </binding>
-            </checkbox>
+            </checkbox>-->
 
             <button>
                 <halign>right</halign>

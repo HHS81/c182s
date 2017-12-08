@@ -15,7 +15,7 @@
             <tag>single-engine</tag>
             <tag>fixed-gear</tag>
         </tags>
- 
+    <minimum-fg-version>2017.3.1</minimum-fg-version>
     <rating>
       <FDM type="int">4</FDM>
       <systems type="int">3</systems>
@@ -58,6 +58,15 @@
       <path></path>
     </electrical>
   </systems>
+  
+  <start-state_saved type="bool">false</start-state_saved>
+  <start-state_auto type="bool">true</start-state_auto>
+  <start-state_CnD type="bool">false</start-state_CnD>
+  <start-state_RfT type="bool">false</start-state_RfT>
+  <start-state_Crs type="bool">false</start-state_Crs>
+  <start-state-internal>
+      <oil-temp-override type="bool">false</oil-temp-override>
+  </start-state-internal>
 
   <chocks>
   <enable type="bool">false</enable>
@@ -524,30 +533,36 @@
         
         <!-- Save these properties between sessions -->
         <aircraft-data>
+            <path>/sim/start-state_auto</path>
+            <path>/sim/start-state_saved</path>
+            <path>/sim/start-state_CnD</path>
+            <path>/sim/start-state_RfT</path>
+            <path>/sim/start-state_Crs</path>
+            
             <path>/sim/time/hobbs/engine</path>
             <path>/engines/engine/complex-engine-procedures</path>
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>
+            <path>/engines/engine/winter-kit-installed</path>
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
             <path>/consumables/fuel/tank[2]/level-gal_us</path>
             <path>/consumables/fuel/tank[3]/level-gal_us</path>
             <path>/consumables/fuel/tank[4]/level-gal_us</path>
-            <!--<path>/consumables/fuel/tank[5]/level-gal_us</path>-->
+            <!--<path>/consumables/fuel/tank[5]/level-gal_us</path> manifold should not be saved! -->
             <path>/controls/engines/engine[0]/mixture-lever</path>
             <path>/controls/engines/engine[0]/throttle</path>
             <path>/controls/engines/engine[0]/propeller-pitch</path>
             <path>/engines/engine[0]/oil-level</path>
             <path>/engines/engine[0]/oil-service-hours</path>
             <path>/controls/gear/brake-parking</path>
-            <path>/controls/engines/engine[0]/magnetos</path>
-            <path>/controls/engines/engine[0]/master-bat</path> 
-            <path>/controls/engines/engine[0]/master-alt</path>
+            
             <path>/controls/lighting/landing-lights</path>
             <path>/controls/lighting/taxi-light</path>
             <path>/controls/lighting/strobe</path>
             <path>/controls/lighting/beacon</path>
             <path>/controls/lighting/nav-lights</path>
+            
             <path>/controls/anti-ice/pitot-heat</path>
             <path>/controls/engines/engine[0]/fuel-pump</path>
             <path>/controls/switches/AVMBus1</path>  
@@ -559,7 +574,9 @@
             <path>/controls/flight/elevator-trim</path>
             <path>/controls/flight/rudder-trim</path>
             <path>/controls/flight/flaps</path>
+            
             <path>/instrumentation/audio-panel/power-btn</path>
+            <path>/instrumentation/audio-panel/volume-ics-pilot</path>
             <path>/instrumentation/audio-panel/com[0]</path>
             <path>/instrumentation/audio-panel/com[1]</path>
             <path>/instrumentation/audio-panel/com[2]</path>
@@ -620,6 +637,7 @@
             <path>/instrumentation/transponder/id-code</path>
             <path>/engines/engine[0]/egt-bug-norm</path>
             
+            <path>/controls/engines/engine[0]/magnetos</path>
             <path>/controls/engines/engine[0]/master-bat</path>
             <path>/controls/engines/engine[0]/master-alt</path>
             <path>/controls/switches/AVMBus1</path>
@@ -644,9 +662,9 @@
             <path>/sim/model/c182s/securing/tiedownR-visible</path>
             <path>/sim/model/c182s/securing/tiedownL-visible</path>
             <path>/sim/model/c182s/securing/tiedownT-visible</path>
-            <!--<path>/sim/chocks001/enable</path> todo did not work -->
-            <!--<path>/sim/chocks002/enable</path>todo did not work -->
-            <!--<path>/sim/chocks003/enable</path> todo did not work -->
+            <path>/sim/chocks001/enable</path>
+            <path>/sim/chocks002/enable</path>
+            <path>/sim/chocks003/enable</path>
             <!--<path>/sim/coneR/enable</path> todo did not work -->
             <!--<path>/sim/coneL/enable</path> todo did not work -->
             <path>/sim/model/c182s/nw_fairing</path>
@@ -773,11 +791,13 @@
    <mixture type="double">0</mixture>
    <running type="bool">false</running>
    <killed type="bool">false</killed>
+   <kill-engine type="bool">false</kill-engine> <!-- set in runtime to true to kill the engine -->
    <crashed type="bool">false</crashed>
    <complex-engine-procedures type="bool">false</complex-engine-procedures>
    <allow-fuel-contamination type="bool">false</allow-fuel-contamination>
    <allow-oil-management type="bool">false</allow-oil-management>
    <oil-powergain-factor type="double">1</oil-powergain-factor>
+   <winter-kit-installed type="bool">false</winter-kit-installed>
   </engine>
  </engines>
  
@@ -898,6 +918,7 @@
     <file>Nasal/tiedowns.nas</file>
     <file>Aircraft/c182s/Nasal/immat.nas</file>
     <file>Aircraft/c182s/Nasal/gma340.nas</file>
+    <file>Aircraft/c182s/Nasal/c182s-states.nas</file>
 </c182s>
 
 <davtron803>

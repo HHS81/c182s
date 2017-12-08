@@ -194,6 +194,7 @@
                 <and>
                     <property>/engines/engine/complex-engine-procedures</property>
                     <property>/engines/engine/allow-oil-management</property>
+                    <not><property>/sim/start-state-internal/oil-temp-override</property></not>
                     <greater-than>
                         <property>/controls/engines/engine[0]/throttle</property>
                         <value>0.65</value>
@@ -202,6 +203,15 @@
                         <property>/engines/engine/oil-powergain-factor</property>
                         <value>1.15</value>
                     </greater-than>
+                </and>
+                
+                <!-- Engine is coughing shortly before it starves of fuel -->
+                <and>
+                    <property>/engines/engine/running</property>
+                    <less-than>
+                        <property>/consumables/fuel/tank[5]/level-lbs</property>
+                        <property>/engines/engine/engine-cough-low-fuel-limit</property>
+                    </less-than>
                 </and>
                 
             </or>
@@ -224,7 +234,7 @@
             <property>/engines/engine/oil-temperature-degf</property>
         </input>
         <output>
-            <property>/engines/engine[0]/oil-temperature-degf</property>
+            <property>/engines/engine[0]/oil-temperature-degf-indicated</property>
         </output>
     </filter>
 
@@ -238,9 +248,8 @@
             <property>/engines/engine/oil-pressure-psi</property>
         </input>
         <output>
-            <property>/engines/engine[0]/oil-pressure-psi</property>
+            <property>/engines/engine[0]/oil-pressure-psi-indicated</property>
         </output>
     </filter>
-    
 
 </PropertyList>

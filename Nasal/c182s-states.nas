@@ -140,6 +140,8 @@ var applyAircraftState = func() {
             # somewhere in the air
             print("Apply state: Automatic (in-air->cruise)");
             engineRunning(2000, 1, 0.9, 0.80);  # TODO: Mix should be calculated by altitude
+            setprop("/controls/gear/brake-parking", 0);
+            setprop("/controls/engines/engine/cowl-flaps-norm", 0);
         }
     }
     if (stateSaved == 1) {
@@ -158,6 +160,7 @@ var applyAircraftState = func() {
         print("Apply state: cruise");
         engineRunning(2000, 1, 0.9, 0.80);  # TODO: Mix should be calculated by altitude
         setprop("/controls/gear/brake-parking", 0);
+        setprop("/controls/engines/engine/cowl-flaps-norm", 0);
     }
 };
 

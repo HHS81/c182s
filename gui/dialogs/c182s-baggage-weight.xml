@@ -34,6 +34,26 @@
         <layout>vbox</layout>
         <padding>6</padding>
         <empty><stretch>true</stretch></empty>
+        <text>
+            <label>120 POUNDS MAXIMUM BAGGAGE FORWARD OF BAGGAGE DOOR LATCH AND</label>
+        </text>
+        <text>
+            <label>80 POINDS MAXIMUM BAGGAGE AFT OF BAGGAGE DOOR LATCH</label>
+        </text>
+        <text>
+            <label>MAXIMUM 200 POUNDS COMBINED</label>
+        </text>
+        <text>
+            <label>FOR ADDITIONAL LOADING INSTRUCTIONS SEE WEIGHT AND BALANCE DATA</label>
+        </text>
+    </group>
+
+    <hrule/>
+    
+    <group>
+        <layout>vbox</layout>
+        <padding>6</padding>
+        <empty><stretch>true</stretch></empty>
         <group>
             <layout>hbox</layout>
             <text>

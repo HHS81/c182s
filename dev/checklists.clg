@@ -812,6 +812,11 @@ checklist("Before Starting Engine") {
     check("Cowl Flaps", "OPEN");
     check("Fuel Selector Valve", "BOTH");
     check("Avionics Circuit Brakers", "CHECK IN");
+    
+    # The following note is not present in the POH checklist, but helpful for the user
+    text("NOTE:");
+    text("When air temperatures are below 20F (-6C), the use of an");
+    text("external preheater and an external power source are recommend.");
 }
 
 

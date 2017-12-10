@@ -201,7 +201,7 @@ var icing = func {
 
   # check if we should create some ice
   var spread = temperature - dewpointN.getValue();
-  if( spread < maxSpreadN.getValue() and visibility < 1000 ) {
+  if( spread < maxSpreadN.getValue() and visibility < 2000 ) {
     for( var i = 0; i < size(ICING_TEMPERATURE); i = i + 1 ) {
       if( ICING_TEMPERATURE[i][0] > temperature and 
           ICING_TEMPERATURE[i][1] <= temperature ) {

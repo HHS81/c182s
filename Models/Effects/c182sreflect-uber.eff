@@ -62,9 +62,10 @@
 			<reflection-rainbow type="float">0.0</reflection-rainbow>
 			<reflection-noise type="float">0.0</reflection-noise>
 			<ambient-correction type="float">0.1</ambient-correction>
-                		<dirt-enabled type="int">0</dirt-enabled>
-			<dirt-color type="vec3d">1.0 1.0 1.0</dirt-color>
-			<dirt-factor type="float">0.5</dirt-factor>
+                		<dirt-enabled type="int">1</dirt-enabled>
+                		<dirt-multi type="int">0</dirt-multi>
+			<dirt-color type="vec3d">0.98 0.98 1.0</dirt-color>
+			<dirt-factor type="float"><use>/fdm/jsbsim/ice/wing</use></dirt-factor>
 		</parameters>
 <!-- ####################
 ### NORMALMAP INCLUDE ###

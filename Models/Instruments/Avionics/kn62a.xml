@@ -96,6 +96,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <condition>
     <and>
     <property>/systems/electrical/outputs/dme</property>
+    <property>/controls/switches/kn-62a</property>
     <property>/instrumentation/dme/in-range</property>
     <greater-than-equals>
       <property>/instrumentation/dme/indicated-distance-nm</property>
@@ -110,6 +111,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <condition>
     <and>
     <property>/systems/electrical/outputs/dme</property>
+    <property>/controls/switches/kn-62a</property>
     <property>/instrumentation/dme/in-range</property>
     <greater-than-equals>
       <property>/instrumentation/dme/indicated-distance-nm</property>
@@ -126,6 +128,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <condition>
     <and>
     <property>/systems/electrical/outputs/dme</property>
+    <property>/controls/switches/kn-62a</property>
     <property>/instrumentation/dme/in-range</property>
     </and>
   </condition>
@@ -136,6 +139,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <condition>
     <and>
     <property>/systems/electrical/outputs/dme</property>
+    <property>/controls/switches/kn-62a</property>
     <not><property>/instrumentation/dme/in-range</property></not>
     </and>
   </condition>
@@ -153,6 +157,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <condition>
     <and>
       <property>/systems/electrical/outputs/dme</property>
+      <property>/controls/switches/kn-62a</property>
       <equals><property>/controls/switches/kn-62a-mode</property><value>1</value></equals>
     </and>
   </condition>
@@ -163,6 +168,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>LabelsNM</object-name>
   <condition>
     <property>/systems/electrical/outputs/dme</property>
+    <property>/controls/switches/kn-62a</property>
   </condition>
 </animation>
 
@@ -172,6 +178,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <condition>
     <and>
       <property>/systems/electrical/outputs/dme</property>
+      <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
     </and>
   </condition>
@@ -183,6 +190,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <condition>
     <and>
       <property>/systems/electrical/outputs/dme</property>
+      <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
       <property>/instrumentation/dme/in-range</property>
       <greater-than-equals>
@@ -198,6 +206,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <condition>
     <and>
       <property>/systems/electrical/outputs/dme</property>
+      <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
       <property>/instrumentation/dme/in-range</property>
       <greater-than-equals>
@@ -213,6 +222,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <condition>
     <and>
       <property>/systems/electrical/outputs/dme</property>
+      <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
       <property>/instrumentation/dme/in-range</property>
     </and>
@@ -225,6 +235,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <condition>
     <and>
       <property>/systems/electrical/outputs/dme</property>
+      <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
       <property>/instrumentation/dme/in-range</property>
       <less-than><property>/instrumentation/dme/indicated-time-min</property><value>99</value></less-than>
@@ -241,6 +252,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <condition>
     <and>
       <property>/systems/electrical/outputs/dme</property>
+      <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
       <property>/instrumentation/dme/in-range</property>
       <less-than><property>/instrumentation/dme/indicated-time-min</property><value>99</value></less-than>
@@ -253,6 +265,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <condition>
     <and>
       <property>/systems/electrical/outputs/dme</property>
+      <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
       <property>/instrumentation/dme/in-range</property>
       <greater-than-equals><property>/instrumentation/dme/indicated-time-min</property><value>99</value></greater-than-equals>
@@ -266,6 +279,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <condition>
     <and>
       <property>/systems/electrical/outputs/dme</property>
+      <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
       <not><property>/instrumentation/dme/in-range</property></not>
     </and>
@@ -457,7 +471,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
 <animation>
   <type>translate</type>
   <object-name>SwPower</object-name>
-  <property>controls/switches/kn-62a</property>
+  <property>/controls/switches/kn-62a</property>
   <interpolation>
     <entry><ind>0</ind><dep>0</dep></entry>
     <entry><ind>1</ind><dep>0.004</dep></entry>
@@ -624,6 +638,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
             <condition>
                 <and>
                     <property>/systems/electrical/outputs/dme</property>
+                    <property>/controls/switches/kn-62a</property>
                     <equals>
                         <property>/controls/switches/kn-62a-mode</property>
                         <value>1</value>
@@ -672,6 +687,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
             <condition>
                 <and>
                     <property>/systems/electrical/outputs/dme</property>
+                    <property>/controls/switches/kn-62a</property>
                     <equals>
                         <property>/controls/switches/kn-62a-mode</property>
                         <value>1</value>
@@ -703,6 +719,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
             <condition>
                 <and>
                     <property>/systems/electrical/outputs/dme</property>
+                    <property>/controls/switches/kn-62a</property>
                     <equals>
                         <property>/controls/switches/kn-62a-mode</property>
                         <value>1</value>
@@ -752,6 +769,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <condition>
             <and>
             <property>/systems/electrical/outputs/dme</property>
+            <property>/controls/switches/kn-62a</property>
             <equals>
               <property>/controls/switches/kn-62a-mode</property>
               <value>1</value>
@@ -783,6 +801,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
           <condition>
             <and>
             <property>/systems/electrical/outputs/dme</property>
+            <property>/controls/switches/kn-62a</property>
             <equals>
               <property>/controls/switches/kn-62a-mode</property>
               <value>1</value>

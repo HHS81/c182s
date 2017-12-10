@@ -1683,16 +1683,36 @@
             <button>0</button>
             <binding>
                 <command>property-toggle</command>
-        <property>/sim/model/c182s/securing/pitot-cover-visible</property>
+                <property>/sim/model/c182s/securing/pitot-cover-visible</property>
             </binding>
         </action>
         <hovered>
-            <binding>
+           <!-- <binding>
                 <command>set-tooltip</command>
                 <label>Pitot Cover: %s</label>
-        <property>/sim/model/c182s/securing/pitot-cover-visible</property>
+                <property>/sim/model/c182s/securing/pitot-cover-visible</property>
                 <tooltip-id>pitot-cover</tooltip-id>
                 <mapping>on-off</mapping>
+            </binding>-->
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>pitot</tooltip-id>
+                <label>%s</label>
+                <property>/sim/model/c182s/securing/pitot-cover-visible</property>
+                <mapping>nasal</mapping>
+                <script>
+                    var cover = "On";
+                    if (!arg[0]) {
+                        cover = "Off";
+                    }
+                    
+                    var heat = "cold";
+                    if (getprop("/systems/pitot/heat-applied-norm") > 0.75) {
+                        heat = "warm";
+                    }
+                    var returnString = "Pitot-Cover: " ~ cover ~ "\nTouch: " ~ heat;
+                    return returnString;
+                </script>
             </binding>
         </hovered>
     </animation>

@@ -4,6 +4,7 @@
 
     <!-- initialize some properties -->
     <property type="double" value="0">/systems/electrical/outputs/flaps</property>
+    <property type="double" value="0">/systems/electrical/outputs/pitot-heat</property>
 
     <!-- the electrical system is implemented in electrical.nas! -->
 

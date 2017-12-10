@@ -28,6 +28,8 @@
 # /environment/effective-visibility-m
 # /velocities/airspeed-kt
 # /environment/icing/max-spread-degc       default: 0.1
+# /environment/rain-norm
+# /environment/snow-norm
 #
 # outputs
 # /environment/icing/icing-severity        numeric value of icing severity
@@ -83,6 +85,8 @@ var temperatureN  = props.globals.getNode( "/environment/temperature-degc" );
 var speedN        = props.globals.getNode( "/velocities/airspeed-kt" );
 var icingRootN    = props.globals.getNode( "/environment/icing", 1 );
 var visibilityN   = props.globals.getNode( "/environment/effective-visibility-m" );
+var rain =  props.globals.getNode( "/environment/rain-norm" );
+var snow = props.globals.getNode( "/environment/snow-norm" );
 
 var severityN     = icingRootN.initNode( "icing-severity", ICING_NONE, "INT" );
 var severityNameN = icingRootN.initNode( "icing-severity-name", ICING_CATEGORY[severityN.getValue()] );
@@ -191,6 +195,8 @@ var lastUpdate = 0.0;
 var icing = func {
 
   var temperature = temperatureN.getValue();
+ # var rain = rainN.getValue();
+  #var snow = snowN.getValue();
   var severity = ICING_NONE;
   icingFactorN.setDoubleValue( ICING_FACTOR[severity] );
 

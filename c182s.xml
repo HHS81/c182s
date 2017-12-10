@@ -730,7 +730,9 @@
                  <output>/sim/model/c182s/cockpit/brake-lever</output>
              </kinematic>
 </channel>
-	
+
+
+
     </flight_control>	
 
 <aerodynamics>

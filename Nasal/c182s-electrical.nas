@@ -91,6 +91,7 @@ BatteryClass.new = func() {
 #
 
 BatteryClass.apply_load = func( amps, dt ) {
+    var capacity_factor = getprop("/systems/electrical/battery-capacity-factor") or 1.0;
     var amphrs_used = amps * dt / 3600.0;
     var percent_used = amphrs_used / me.amp_hours;
     var charge_percent = me.charge_percent;
@@ -100,12 +101,12 @@ BatteryClass.apply_load = func( amps, dt ) {
     } elsif ( charge_percent > 1.0 ) {
         charge_percent = 1.0;
     }
-    if ((charge_percent < 0.1)and(me.charge_percent >= 0.1))
+    if ((charge_percent < 0.3)and(me.charge_percent >= 0.3))
     {
         print("Warning: Low battery! Enable alternator or apply external power to recharge battery.");
     }
     me.charge_percent = charge_percent;
-    setprop("/systems/electrical/battery-charge-percent", charge_percent);
+    setprop("/systems/electrical/battery-charge-percent", charge_percent * capacity_factor);
     # print( "battery percent = ", charge_percent);
     return me.amp_hours * charge_percent;
 }
@@ -306,10 +307,10 @@ update_virtual_bus = func( dt ) {
     var starter_volts = 0.0;
     if ( starter_switch ) {
         starter_volts = bus_volts;
-        load += 12;
+        load += 22;
     }
     setprop("systems/electrical/outputs/starter[0]", starter_volts);
-    if (starter_volts > 12) {
+    if (starter_volts > 22) {
         setprop("controls/engines/engine[0]/starter",1);
         setprop("controls/engines/engine[0]/magnetos",3);
     } else {
@@ -390,12 +391,14 @@ electrical_bus_1 = func() {
     setprop("/systems/electrical/outputs/instr-ignition-switch", bus_volts);
 
     # Aux Fuel Pump Power
+if ( bus_volts > 22 ) {
     if ( getprop("/controls/engines/engine[0]/fuel-pump") ) {
         setprop("/systems/electrical/outputs/fuel-pump", bus_volts);
-        load += bus_volts / 28;
+        load += bus_volts / 2;
     } else {
         setprop("/systems/electrical/outputs/fuel-pump", 0.0);
     }
+}
     
     var AFP = (getprop("/systems/electrical/outputs/fuel-pump"));
 	if (getprop ("/controls/engines/engine[0]/fuel-pump") >0.05){
@@ -413,22 +416,26 @@ electrical_bus_1 = func() {
 	setprop("/systems/electrical/outputs/fuel-pump-norm-end", 0.0)};
 
     # Landing Light Power
-    if ( getprop("/controls/lighting/landing-lights") ) {
+
+    if ( getprop("/controls/lighting/landing-lights")and (bus_volts > 22) ) {
         setprop("/systems/electrical/outputs/landing-lights", bus_volts);
-        load += bus_volts / 28;
-    } else {
+        load += bus_volts / 0.11;
+    }
+   else {
         setprop("/systems/electrical/outputs/landing-lights", 0.0 );
     }
 
+
     # Beacon Power
     
-    
-    if ( getprop("controls/lighting/beacon-state/state" ) ) {
+
+    if ( getprop("controls/lighting/beacon-state/state" ) and (bus_volts > 22) ) {
      interpolate ("/systems/electrical/outputs/beacon", bus_volts, 0.5);
 	interpolate ("/systems/electrical/outputs/beacon-norm", (bus_volts/24), 0.5);
        
-        load += bus_volts / 28;
-    } else {
+        load += bus_volts / 20;
+    } 
+else {
        
 	 interpolate ("/systems/electrical/outputs/beacon", 0.0, 0.5);
 	 interpolate ("/systems/electrical/outputs/beacon-norm", 0.0, 0.5);
@@ -446,7 +453,7 @@ electrical_bus_1 = func() {
     # Flaps Power
 #    if ( getprop("/controls/circuit-breakers/flaps") ) {
         setprop("/systems/electrical/outputs/flaps", bus_volts);
-        load += bus_volts / 57;
+        load += bus_volts / 2;
 #    } else {
 #        setprop("/systems/electrical/outputs/flaps", 0.0);
 #    }
@@ -466,54 +473,68 @@ electrical_bus_2 = func() {
     var load = 0.0;
 
     # Nav Lights Power
-    if ( getprop("/controls/lighting/nav-lights" ) ) {
+
+    if ( getprop("/controls/lighting/nav-lights" )and (bus_volts > 22) ) {
         setprop("/systems/electrical/outputs/nav-lights", bus_volts);
 	  setprop("/systems/electrical/outputs/nav-lights-norm", (bus_volts/24));
-        load += bus_volts / 28;
-    } else {
+        load += bus_volts / 20;
+    }
+    else {
         setprop("/systems/electrical/outputs/nav-lights", 0.0);
 	 setprop("/systems/electrical/outputs/nav-lights-norm", 0.0);
     }
+  
     if (getprop("/systems/electrical/outputs/nav-lights-norm") >1.0){
 	setprop("/systems/electrical/outputs/nav-lights-norm", 1.0)};
-  
+ 
      
     # Strobe Lights Power
-    if ( getprop("controls/lighting/strobe-state/state" ) ) {
+    if ( getprop("controls/lighting/strobe-state/state" ) and (bus_volts > 22) ) {
             setprop("/systems/electrical/outputs/strobe", bus_volts);
 	 setprop("/systems/electrical/outputs/strobe-norm", (bus_volts/24));
-        load += bus_volts / 28;
-    } else {
+        load += bus_volts / 20;
+    }
+    else {
         setprop("/systems/electrical/outputs/strobe", 0.0);
 	setprop("/systems/electrical/outputs/strobe-norm", 0.0);
     }
+
     
   
     # Taxi Lights Power
-    if ( getprop("/controls/lighting/taxi-light" ) ) {
+
+    if ( getprop("/controls/lighting/taxi-light" ) and (bus_volts > 22)) {
         setprop("/systems/electrical/outputs/taxi-light", bus_volts);
-        load += bus_volts / 28;
-    } else {
+        load += bus_volts / 0.22;
+    } 
+else {
         setprop("/systems/electrical/outputs/taxi-light", 0.0);
     }
+
+
   
     # Pitot Heat Power
-    if ( getprop("/controls/anti-ice/pitot-heat" ) ) {
+
+    if ( getprop("/controls/anti-ice/pitot-heat" )and (bus_volts > 22) ) {
         setprop("/systems/electrical/outputs/pitot-heat", bus_volts);
-        load += bus_volts / 28;
-    } else {
+        load += bus_volts / 2.8;
+    } 
+else {
         setprop("/systems/electrical/outputs/pitot-heat", 0.0);
     }
+
+
     
 # engine starter
-        if ( bus_volts > 12 ) {
-    if ( getprop("/controls/engines/engine/starter" )) {
+
+    if ( getprop("/controls/engines/engine/starter" )and (bus_volts > 22)) {
         setprop("systems/electrical/outputs/starter", bus_volts);
-            load += bus_volts / 1.4;
-    } else {
+            load += bus_volts / 0.7;
+    }
+    else {
         setprop("systems/electrical/outputs/starter", 0.0);
     }
- } 
+  
   
     # register bus voltage
     ebus2_volts = bus_volts;
@@ -537,75 +558,94 @@ cross_feed_bus = func() {
 setprop("/systems/electrical/outputs/annunciators", bus_volts);
 setprop("/systems/electrical/outputs/ecrf", bus_volts);#needed to dim lights
 
-    if ( getprop("/controls/lighting/dome-light-r")) {
+
+    if ( getprop("/controls/lighting/dome-light-r")and (bus_volts > 22)) {
         setprop("/systems/electrical/outputs/dome-light-r", bus_volts/28);
         load += bus_volts / 28;
-    } else {
+    }
+    else {
         setprop("/systems/electrical/outputs/dome-light-r", 0.0);
     }
-    
- if ( getprop("/controls/lighting/dome-light-l")) {
+
+
+ if ( getprop("/controls/lighting/dome-light-l")and (bus_volts > 22)) {
         setprop("/systems/electrical/outputs/dome-light-l", bus_volts/28);
         load += bus_volts / 28;
-    } else {
+    } 
+    else {
         setprop("/systems/electrical/outputs/dome-light-l", 0.0);
     }
-    
- if ( getprop("/controls/lighting/dome-exterior-light")) {
+
+
+ if ( getprop("/controls/lighting/dome-exterior-light")and (bus_volts > 22)) {
         setprop("/systems/electrical/outputs/dome-exterior-light", bus_volts/28);
         load += bus_volts / 28;
-    } else {
+    }
+    else {
         setprop("/systems/electrical/outputs/dome-exterior-light", 0.0);
     }
 
 
 
 
+
 var IL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/instrument-lights-norm"));
+if ( bus_volts > 22 ) {
 	if (getprop ("/controls/lighting/instrument-lights-norm") >0.05){
 	setprop("/systems/electrical/outputs/instrument-lights",IL_DIMMER);
 	setprop("/systems/electrical/outputs/instrument-lights-norm",IL_DIMMER/24);
+	}
 	}else{
 	setprop("/systems/electrical/outputs/instrument-lights",0);
 	setprop("/systems/electrical/outputs/instrument-lights-norm",0);
 	}
 	if (getprop("/systems/electrical/outputs/instrument-lights-norm") >1.0){
 	setprop("/systems/electrical/outputs/instrument-lights-norm", 1.0)};
-	
+
 
 var GL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/glareshield-lights-norm"));
+if ( bus_volts > 22 ) {
 	if (getprop ("/controls/lighting/glareshield-lights-norm") >0.05){
 	setprop("/systems/electrical/outputs/glareshield-lights",GL_DIMMER);
 	setprop("/systems/electrical/outputs/glareshield-lights-norm",GL_DIMMER/28);
+	}
 	}else{
 	setprop("/systems/electrical/outputs/glareshield-lights",0);
 	setprop("/systems/electrical/outputs/glareshield-lights-norm",0);
 	}
 	if (getprop("/systems/electrical/outputs/glareshield-lights-norm") >1.0){
 	setprop("/systems/electrical/outputs/glareshield-lights-norm", 1.0)};
+
 	
 var PL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/pedestal-lights-norm"));
+if ( bus_volts > 22 ) {
 	if (getprop ("/controls/lighting/pedestal-lights-norm") >0.05){
 	setprop("/systems/electrical/outputs/pedestal-lights",PL_DIMMER);
 	setprop("/systems/electrical/outputs/pedestal-lights-norm",PL_DIMMER/28);
+	}
 	}else{
 	setprop("/systems/electrical/outputs/pedestal-lights",0);
 	setprop("/systems/electrical/outputs/pedestal-lights-norm",0);
 	}
+
 	if (getprop("/systems/electrical/outputs/glareshield-lights-norm") >1.0){
 	setprop("/systems/electrical/outputs/glareshield-lights-norm", 1.0)};
+
 	
 
 var RL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/radio-lights-norm"));
+if ( bus_volts > 22 ) {
 	if (getprop ("/controls/lighting/radio-lights-norm") >0.05){
 	setprop("/systems/electrical/outputs/radio-lights",RL_DIMMER);
 	setprop("/systems/electrical/outputs/radio-lights-norm",RL_DIMMER/24);
+	}
 	}else{
 	setprop("/systems/electrical/outputs/radio-lights",0);
 	setprop("/systems/electrical/outputs/radio-lights-norm",0);
 	}
 	if (getprop("/systems/electrical/outputs/radio-lights-norm") >1.0){
 	setprop("/systems/electrical/outputs/radio-lights-norm", 1.0)};
+
     
 
     # return cumulative load
@@ -627,36 +667,68 @@ avionics_bus_1 = func() {
     load += bus_volts / 20.0;
 
     # Turn Coordinator Power
+    if ( bus_volts > 22 ) {
     setprop("/systems/electrical/outputs/turn-coordinator", bus_volts);
+    }else{
+    setprop("/systems/electrical/outputs/turn-coordinator",0);    
+    }
 
     # Avionics Fan Power
+    if ( bus_volts > 22 ) {
     setprop("/systems/electrical/outputs/avionics-fan", bus_volts);
-
+    }else{
+    setprop("/systems/electrical/outputs/avionics-fan", 0);
+    }
+    
     # GPS Power
+    if ( bus_volts > 22 ) {
     setprop("/systems/electrical/outputs/gps", bus_volts);
-  
+     }else{ 
+    setprop("/systems/electrical/outputs/gps", 0);
+     }
+     
     # HSI Power
+    if ( bus_volts > 22 ) {
     setprop("/systems/electrical/outputs/hsi", bus_volts);
+     }else{ 
+    setprop("/systems/electrical/outputs/hsi", 0);
+     }
   
     # NavCom 1 Power
+    if ( bus_volts > 22 ) {
     setprop("/systems/electrical/outputs/nav[0]", bus_volts);
-  
+     }else{   
+    setprop("/systems/electrical/outputs/nav[0]", 0);
+     } 
+ 
      # DME Power
+    if ( bus_volts > 22 ) {
      if (getprop("/controls/switches/kn-62a") > 0) {
          setprop("/systems/electrical/outputs/dme", bus_volts);
         load += bus_volts / 28;
-    } else {
+    } 
+    }else {
         setprop("/systems/electrical/outputs/dme", 0.0);
     }
   
     # Audio Panel 1 Power
+    if ( bus_volts > 22 ) {
     setprop("/systems/electrical/outputs/audio-panel[0]", bus_volts);
  #setprop("/instrumentation/audio-panel[0]/serviceable", true);
     #setprop("/instrumentation/marker-beacon[0]/serviceable", true);
+     }else{   
+    setprop("/systems/electrical/outputs/audio-panel[0]", 0);
+ #setprop("/instrumentation/audio-panel[0]/serviceable",0);
+   # setprop("/instrumentation/marker-beacon[0]/serviceable", 0);
+    }
 
     # Com 1 Power
+    if ( bus_volts > 22 ) {
     setprop("systems/electrical/outputs/comm[0]", bus_volts);
-
+     }else{  
+    setprop("systems/electrical/outputs/comm[0]", 0);
+}
+     
     # return cumulative load
     return load;
 }
@@ -674,30 +746,54 @@ avionics_bus_2 = func() {
     var load = bus_volts / 20.0;
 
     # NavCom 2 Power
+    if ( bus_volts > 22 ) {
     setprop("/systems/electrical/outputs/nav[1]", bus_volts);
+     }else{  
+    setprop("/systems/electrical/outputs/nav[1]", 0);
+     }
 
     # Audio Panel 2 Power
+if ( bus_volts > 22 ) {
     setprop("/systems/electrical/outputs/audio-panel[0]", bus_volts);
- #setprop("/instrumentation/audio-panel[0]/serviceable, 1");
-    #setprop("/instrumentation/marker-beacon[0]/serviceable, 1");
-
+# setprop("/instrumentation/audio-panel[0]/serviceable, true");
+   # setprop("/instrumentation/marker-beacon[0]/serviceable, true");
+     }else{ 
+    setprop("/systems/electrical/outputs/audio-panel[0]", 0);
+ #setprop("/instrumentation/audio-panel[0]/serviceable, 0");
+   # setprop("/instrumentation/marker-beacon[0]/serviceable, 0");
+}
+     
+     
     # Com 2 Power
+    if ( bus_volts > 22 ) {
     setprop("systems/electrical/outputs/comm[1]", bus_volts);
-
+     }else{ 
+    setprop("systems/electrical/outputs/comm[1]", 0);
+     }
 
      # Transponder
+    if ( bus_volts > 22 ) {
      if (getprop("/controls/switches/kt-76c") > 0) {
          setprop("/systems/electrical/outputs/kt-76c", bus_volts);
         load += bus_volts / 28;
-    } else {
+    } 
+    }else {
         setprop("/systems/electrical/outputs/kt-76c", 0.0);
     }
 
     # Autopilot Power
+    if ( bus_volts > 22 ) {
     setprop("/systems/electrical/outputs/autopilot", bus_volts);
+     }else{ 
+    setprop("/systems/electrical/outputs/autopilot", 0);
+     }
 
     # ADF Power
+    if ( bus_volts > 22 ) {
     setprop("/systems/electrical/outputs/adf", bus_volts);
+     }else{ 
+    setprop("/systems/electrical/outputs/adf", 0);
+     }
 
     # return cumulative load
     return load;

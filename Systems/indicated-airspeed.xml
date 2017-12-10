@@ -65,9 +65,36 @@ So use this numbers and create a table which corrects the output shown on the AS
         </fcs_function>
 	
 <!--
+    Pitot implementation
     taken from from c172p, thanks dany93.
+    enhanced by B. Hallinger for c182s
 -->
-	
+        
+        <switch name="/systems/pitot/heating">
+            <output>/systems/pitot/heating</output>
+            <default value="0"/>
+
+            <test logic="AND" value="1">
+                /controls/anti-ice/pitot-heat EQ 1
+                /systems/electrical/outputs/pitot-heat GT 20
+            </test>
+        </switch>
+        
+        <kinematic name="/systems/pitot/heat-applied-norm">
+            <input>/systems/pitot/heating</input>
+            <traverse>
+                <setting>
+                    <position>0</position>
+                    <time>0</time>
+                </setting>
+                <setting>
+                    <position>1</position>
+                    <time>30</time>
+                </setting>
+            </traverse>
+            <output>/systems/pitot/heat-applied-norm</output>
+        </kinematic>
+        
         <switch name="/systems/asi/pitot-serviceable">
             <output>/systems/pitot/serviceable</output>
             <default value="1"/>
@@ -77,5 +104,7 @@ So use this numbers and create a table which corrects the output shown on the AS
             </test>
         </switch>	
 	
+        <!-- TODO: icing to be implemented -->
+        
     </channel>
 </system>

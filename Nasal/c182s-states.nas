@@ -70,6 +70,7 @@ var engineRunning = func(rpm, throttle, mix, prop) {
     setprop("/controls/engines/engine[0]/master-alt", 1);
     setprop("/sim/model/c182s/cockpit/control-lock-placed", 0);
     setprop("/controls/switches/fuel_tank_selector", 2);
+    setprop("/engines/engine/external-heat/enabled", 0);
     
     #let engine run
     setprop("/sim/start-state-internal/oil-temp-override", 1); # override disables coughing due to low oil temp
@@ -263,6 +264,7 @@ var autostart = func (msg=1, delay=1, setStates=0) {
     setprop("/sim/model/c182s/securing/tiedownL-visible", 0);
     setprop("/sim/model/c182s/securing/tiedownR-visible", 0);
     setprop("/sim/model/c182s/securing/tiedownT-visible", 0);
+    setprop("/engines/engine/external-heat/enabled", 0);
 
 
     # Checking for minimal fuel level

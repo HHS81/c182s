@@ -1141,12 +1141,13 @@
                 <factor>0.2</factor>
             </volume>
         </dial>
-        <!--
         <dial>
-            <name>dial-heading-offset</name>
-            <mode>in-transit</mode>
+            <name>click-heading-offset-dial</name>
+            <mode>once</mode>
             <path>Sounds/scroll.wav</path>
-            <property>/instrumentation/heading-indicator/offset-deg</property>
+            <condition>
+                <property>/sim/model/c182s/sound/click-heading-offset-dial</property>
+            </condition>
             <position>
                 <x>-0.3660</x>
                 <y>0.2500</y>
@@ -1157,8 +1158,7 @@
             <volume>
                 <factor>0.2</factor>
             </volume>
-        </dial>        
-        -->
+        </dial>
         <dial>
             <name>dial-heading-bug</name>
             <mode>in-transit</mode>

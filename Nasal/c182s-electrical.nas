@@ -326,6 +326,10 @@ update_virtual_bus = func( dt ) {
     # key 's' calls to this function when it is pressed DOWN even if I overwrite the binding in the -set.xml file!
     # fun fact: the key UP event can be overwriten!
     controls.startEngine = func(v = 1) {
+        # only operate in non-walker mode ('s' is also bound to walk-backward)
+        if (getprop("/sim/current-view/name") == getprop("/sim/view[110]/name") or
+            getprop("/sim/current-view/name") == getprop("/sim/view[111]/name") )  return;
+        
         if (getprop("/engines/engine/external-heat/enabled") and v == 1)
         {
             setprop("/sim/messages/pilot", "Disconnect external heat before starting engine!");

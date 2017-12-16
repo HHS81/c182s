@@ -15,7 +15,7 @@
 <fcs_function name="capacity factor">
           <function>
                  <table>
-                    <independentVar>/environment/temperature-degc</independentVar>
+                    <independentVar>/engines/engine/cowling-air-temperature-degf</independentVar>
                     <tableData>
 		-40	0.3
 		-30	0.425

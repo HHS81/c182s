@@ -23,7 +23,7 @@
     <animation>
   <type>rotate</type>
   <object-name>OilTempNeedle</object-name>
-  <property>engines/engine[0]/oil-temperature-degf-indicated</property>
+  <property>/engines/engine/oil-final-temperature-degf</property>
   <interpolation>
    <entry><ind>  0.0</ind><dep>0 </dep></entry>     
    <entry><ind>75</ind><dep> -7.07 </dep></entry>     

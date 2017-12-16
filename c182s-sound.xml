@@ -1326,6 +1326,27 @@
             </volume>
      </test>
 
+     <ExternalHeater>
+        <type>fx</type>
+        <name>External Preheater</name>
+        <mode>looped</mode>
+        <path>Sounds/preheater.wav</path>
+        <condition>
+            <property>/engines/engine/external-heat/enabled</property>
+        </condition>
+        <delay-sec>3</delay-sec>
+        <position>
+            <x>-3.20</x>
+            <y>0.20</y>
+            <z>0</z>
+        </position>
+        <reference-dist>1.5</reference-dist>
+        <max-dist>10</max-dist>
+        <volume>
+            <offset>-0.3</offset>
+        </volume>
+    </ExternalHeater>
+     
 </fx>
  
 </PropertyList>

@@ -326,6 +326,10 @@ update_virtual_bus = func( dt ) {
     # key 's' calls to this function when it is pressed DOWN even if I overwrite the binding in the -set.xml file!
     # fun fact: the key UP event can be overwriten!
     controls.startEngine = func(v = 1) {
+        # only operate in non-walker mode ('s' is also bound to walk-backward)
+        if (getprop("/sim/current-view/name") == getprop("/sim/view[110]/name") or
+            getprop("/sim/current-view/name") == getprop("/sim/view[111]/name") )  return;
+        
         if (getprop("/engines/engine/external-heat/enabled") and v == 1)
         {
             setprop("/sim/messages/pilot", "Disconnect external heat before starting engine!");
@@ -396,17 +400,16 @@ electrical_bus_1 = func() {
     setprop("/systems/electrical/outputs/instr-ignition-switch", bus_volts);
 
     # Aux Fuel Pump Power
-if ( bus_volts > 22 ) {
-    if ( getprop("/controls/engines/engine[0]/fuel-pump") ) {
+    if ( getprop("/controls/engines/engine[0]/fuel-pump")) {
         setprop("/systems/electrical/outputs/fuel-pump", bus_volts);
         load += bus_volts / 2;
     } else {
         setprop("/systems/electrical/outputs/fuel-pump", 0.0);
     }
-}
+
     
     var AFP = (getprop("/systems/electrical/outputs/fuel-pump"));
-	if (getprop ("/controls/engines/engine[0]/fuel-pump") >0.05){
+	if (getprop ("/controls/engines/engine[0]/fuel-pump") >0.05 and (bus_volts > 22)){
 	setprop("/systems/electrical/outputs/fuel-pump-norm", AFP/24);
 	}else{
 	setprop("/systems/electrical/outputs/fuel-pump",0);
@@ -595,11 +598,10 @@ setprop("/systems/electrical/outputs/ecrf", bus_volts);#needed to dim lights
 
 
 var IL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/instrument-lights-norm"));
-if ( bus_volts > 22 ) {
-	if (getprop ("/controls/lighting/instrument-lights-norm") >0.05){
+
+	if (getprop ("/controls/lighting/instrument-lights-norm") >0.05 and (bus_volts > 22)){
 	setprop("/systems/electrical/outputs/instrument-lights",IL_DIMMER);
 	setprop("/systems/electrical/outputs/instrument-lights-norm",IL_DIMMER/24);
-	}
 	}else{
 	setprop("/systems/electrical/outputs/instrument-lights",0);
 	setprop("/systems/electrical/outputs/instrument-lights-norm",0);
@@ -609,11 +611,9 @@ if ( bus_volts > 22 ) {
 
 
 var GL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/glareshield-lights-norm"));
-if ( bus_volts > 22 ) {
-	if (getprop ("/controls/lighting/glareshield-lights-norm") >0.05){
+	if (getprop ("/controls/lighting/glareshield-lights-norm") >0.05 and (bus_volts > 22)){
 	setprop("/systems/electrical/outputs/glareshield-lights",GL_DIMMER);
 	setprop("/systems/electrical/outputs/glareshield-lights-norm",GL_DIMMER/28);
-	}
 	}else{
 	setprop("/systems/electrical/outputs/glareshield-lights",0);
 	setprop("/systems/electrical/outputs/glareshield-lights-norm",0);
@@ -623,11 +623,9 @@ if ( bus_volts > 22 ) {
 
 	
 var PL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/pedestal-lights-norm"));
-if ( bus_volts > 22 ) {
-	if (getprop ("/controls/lighting/pedestal-lights-norm") >0.05){
+	if (getprop ("/controls/lighting/pedestal-lights-norm") >0.05 and (bus_volts > 22)){
 	setprop("/systems/electrical/outputs/pedestal-lights",PL_DIMMER);
 	setprop("/systems/electrical/outputs/pedestal-lights-norm",PL_DIMMER/28);
-	}
 	}else{
 	setprop("/systems/electrical/outputs/pedestal-lights",0);
 	setprop("/systems/electrical/outputs/pedestal-lights-norm",0);
@@ -639,11 +637,9 @@ if ( bus_volts > 22 ) {
 	
 
 var RL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/radio-lights-norm"));
-if ( bus_volts > 22 ) {
-	if (getprop ("/controls/lighting/radio-lights-norm") >0.05){
+	if (getprop ("/controls/lighting/radio-lights-norm") >0.05 and (bus_volts > 22)){
 	setprop("/systems/electrical/outputs/radio-lights",RL_DIMMER);
 	setprop("/systems/electrical/outputs/radio-lights-norm",RL_DIMMER/24);
-	}
 	}else{
 	setprop("/systems/electrical/outputs/radio-lights",0);
 	setprop("/systems/electrical/outputs/radio-lights-norm",0);

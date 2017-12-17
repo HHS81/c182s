@@ -29,6 +29,7 @@
 <effect>
     <inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
    <object-name>Fuselage</object-name><!-- model obejcts parented in Blender - gives faster livery loading-->
+<object-name>WinterKit</object-name>
    <!--<object-name>Spinner</object-name>
    <object-name>WheelFairingNose</object-name>
    <object-name>WheelFairing.R</object-name>
@@ -1671,6 +1672,8 @@
 	<property>/sim/model/c182s/securing/pitot-cover-visible</property>
 	</condition>
 	</model>
+	
+
 
 
 <animation>
@@ -1728,6 +1731,37 @@
 		</less-than>
    </condition>
  </animation> 
+ 
+<animation>
+	<type>select</type>
+        <object-name>WinterKit</object-name>
+	<condition>
+	<property>/engines/engine/winter-kit-installed</property>
+	</condition>	
+</animation>
+<animation>
+ <nopreview/>
+        <type>pick</type>
+        <object-name>winterkit.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+	<property>/engines/engine/winter-kit-installed</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>WinterKit installed: %s</label>
+	<property>/engines/engine/winter-kit-installed</property>
+                <tooltip-id>WinterKit</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
     
 <animation>
  <nopreview/>

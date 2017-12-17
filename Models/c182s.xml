@@ -1762,6 +1762,17 @@
             </binding>
         </hovered>
     </animation>
+ <animation>
+  <nopreview/>
+   <type>select</type>
+        <object-name>winterkit.cs</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation> 
     
 <animation>
  <nopreview/>

@@ -81,3 +81,13 @@ setlistener(nav1_state, func {
         }
     }
 });
+
+# Switch off ident volume when power button is off
+# (failing DME and loss-of-voltage is handled otherwise)
+var dme_pwrBtn = props.globals.getNode("/controls/switches/kn-62a");
+var updateIdentVolume = func {
+    setprop("/instrumentation/dme/volume", dme_pwrBtn.getValue());
+    setprop("/instrumentation/dme/power-btn", dme_pwrBtn.getValue()); #also adjust standard-property
+};
+
+setlistener(dme_pwrBtn, updateIdentVolume);

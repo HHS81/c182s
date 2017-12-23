@@ -23,7 +23,7 @@
     <animation>
   <type>rotate</type>
         <object-name>FuelLeftNeedle</object-name>
-  <property>consumables/fuel/tank[0]/level-gal_us</property>
+  <property>consumables/fuel/tank[0]/indicated-level-gal_us</property>
   <interpolation>
    <entry><ind>  0.0</ind><dep>0 </dep></entry>     
    <entry><ind>5</ind><dep> -21.40 </dep></entry>     
@@ -47,7 +47,7 @@
    <animation>
         <type>rotate</type>
         <object-name>FuelRightNeedle</object-name>
-  <property>consumables/fuel/tank[1]/level-gal_us</property>
+  <property>consumables/fuel/tank[1]/indicated-level-gal_us</property>
   <interpolation>
    <entry><ind>  0.0</ind><dep>0 </dep></entry>     
    <entry><ind>5</ind><dep> 21.40 </dep></entry>     

@@ -376,12 +376,46 @@ item("Parking Brake") {
 }
 
 item("Circuit Brakers") {
-    state("CHECK IN");
+    cb1 = "controls/circuit-breakers/Flap";
+    cb2 = "controls/circuit-breakers/Inst";
+    cb3 = "controls/circuit-breakers/AVNBus1";
+    cb4 = "controls/circuit-breakers/AVNBus2";
+    cb5 = "controls/circuit-breakers/TurnCoord";
+    cb6 = "controls/circuit-breakers/InstLts";
+    cb7 = "controls/circuit-breakers/AltFLD";
+    cb8 = "controls/circuit-breakers/Warn";
+    
+    state("CHECK IN", cb1 && cb2 && cb3 && cb4 && cb5 && cb6 && cb7 && cb8) {
+        cb1=true;
+        cb2=true;
+        cb3=true;
+        cb4=true; 
+        cb5=true; 
+        cb6=true; 
+        cb7=true; 
+        cb8=true;
+    }
     marker(0.2942, -0.3383, 0.1150, 9);
 }
 
 item("Avionics Circuit Brakers") {
-    state("CHECK IN");
+    ab1 = "controls/circuit-breakers/AvionicsFan";
+    ab2 = "controls/circuit-breakers/GPS";
+    ab3 = "controls/circuit-breakers/NavCom1";
+    ab4 = "controls/circuit-breakers/NavCom2";
+    ab5 = "controls/circuit-breakers/Transponder";
+    ab6 = "controls/circuit-breakers/ADF";
+    ab7 = "controls/circuit-breakers/AutoPilot";
+
+    state("CHECK IN", ab1 && ab2 && ab3 && ab4 && ab5 && ab6 && ab7) {
+        ab1=true;
+        ab2=true;
+        ab3=true;
+        ab4=true; 
+        ab5=true; 
+        ab6=true; 
+        ab7=true; 
+    }
     marker(0.2942, 0.3808, 0.1692, 9);
 }
 

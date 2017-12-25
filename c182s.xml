@@ -425,6 +425,8 @@
     
     <system file="electrical"/> <!-- load electrical system -->
     
+    <system file="cabin-heat_and_air"/> <!-- cabin heat and air -->
+    
     <flight_control name="FCS: c182s">
 <!--Cessna 182S POH Page 7-12: nose gear steer deg=11deg, by applying left or right brake increasing steer deg up to 29deg-->
  <channel name = "groundcontrol">

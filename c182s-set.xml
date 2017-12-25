@@ -52,6 +52,9 @@
     <property-rule n="104">
         <path>Aircraft/c182s/Systems/engine.xml</path>
     </property-rule>
+    <property-rule n="105">
+        <path>Aircraft/c182s/Systems/pax.xml</path>
+    </property-rule>
     <electrical>        
       <!-- null electrical system path here so we can use a nasal based -->
       <!-- model defined later in the nasal section of this file. -->
@@ -157,13 +160,11 @@
 </securing>
 
 <procedural-lights type="bool">true</procedural-lights>
+<enable-fog-frost type="bool">true</enable-fog-frost>
 <nw_fairing type="bool">true</nw_fairing>
 <mw_fairing type="bool">true</mw_fairing>
+<chrome_spinner type="bool">true</chrome_spinner>
 
-
-  <procedural-lights type="bool">true</procedural-lights>
-
-      <chrome_spinner type="bool">true</chrome_spinner>
 	<material>
 		<fuselage>
 			<diffuse>
@@ -540,10 +541,12 @@
             <path>/sim/start-state_Crs</path>
             
             <path>/sim/time/hobbs/engine</path>
+            <path>/sim/model/c182s/enable-fog-frost</path>
             <path>/engines/engine/complex-engine-procedures</path>
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>
             <path>/engines/engine/winter-kit-installed</path>
+            
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
             <path>/consumables/fuel/tank[2]/level-gal_us</path>
@@ -556,6 +559,9 @@
             <path>/engines/engine[0]/oil-level</path>
             <path>/engines/engine[0]/oil-service-hours</path>
             <path>/controls/gear/brake-parking</path>
+            <path>/environment/aircraft-effects/cabin-heat-set</path>
+            <path>/environment/aircraft-effects/cabin-air-set</path>
+            <path>/environment/aircraft-effects/defrost-set</path>
             
             <path>/controls/lighting/landing-lights</path>
             <path>/controls/lighting/taxi-light</path>

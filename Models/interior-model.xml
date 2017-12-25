@@ -1438,6 +1438,119 @@
         </binding>
     </hovered>
   </animation>
+  
+  <!-- Cabin heat and Air / defrost-->
+    <animation>
+        <type>slider</type>
+        <object-name>CabinHeat</object-name>
+        <visible>true</visible>
+        <drag-direction>vertical</drag-direction>
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>/environment/aircraft-effects/cabin-heat-set</property>
+                <factor>-0.05</factor>
+                <min>0</min>
+                <max>1</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Cabin Heat: %3d%%</label>
+                <measure-text>Cabin Heat: 100%</measure-text>
+                <tooltip-id>cabinheat</tooltip-id>
+                <mapping>percent</mapping>
+                <property>/environment/aircraft-effects/cabin-heat-set</property>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>CabinHeat</object-name>
+        <property>/environment/aircraft-effects/cabin-heat-set</property>
+        <factor>0.03</factor>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>slider</type>
+        <object-name>CabinAir</object-name>
+        <visible>true</visible>
+        <drag-direction>vertical</drag-direction>
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>/environment/aircraft-effects/cabin-air-set</property>
+                <factor>-0.05</factor>
+                <min>0</min>
+                <max>1</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Cabin Air: %3d%%</label>
+                <measure-text>Cabin Air: 100%</measure-text>
+                <tooltip-id>cabinair</tooltip-id>
+                <mapping>percent</mapping>
+                <property>/environment/aircraft-effects/cabin-air-set</property>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>CabinAir</object-name>
+        <property>/environment/aircraft-effects/cabin-air-set</property>
+        <factor>0.03</factor>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>slider</type>
+        <object-name>DeFrost</object-name>
+        <visible>true</visible>
+        <drag-direction>vertical</drag-direction>
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>/environment/aircraft-effects/defrost-set</property>
+                <factor>-0.05</factor>
+                <min>0</min>
+                <max>1</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Defrost: %3d%%</label>
+                <measure-text>Defrost: 100%</measure-text>
+                <tooltip-id>defrost</tooltip-id>
+                <mapping>percent</mapping>
+                <property>/environment/aircraft-effects/defrost-set</property>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>DeFrost</object-name>
+        <property>/environment/aircraft-effects/defrost-set</property>
+        <factor>0.03</factor>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
  
 <!--switches-->
     <!-- MasterSwitch -->

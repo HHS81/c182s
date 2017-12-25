@@ -239,22 +239,21 @@ var reset_battery_and_circuit_breakers = func {
     battery.reset_to_full_charge();
 
     # Reset circuit breakers
-#    setprop("/controls/circuit-breakers/master", 1);
-#    setprop("/controls/circuit-breakers/flaps", 1);
-#    setprop("/controls/circuit-breakers/pitot-heat", 1);
-#    setprop("/controls/circuit-breakers/instr", 1);
-#    setprop("/controls/circuit-breakers/intlt", 1);
-#    setprop("/controls/circuit-breakers/navlt", 1);
-#    setprop("/controls/circuit-breakers/landing", 1);
-#    setprop("/controls/circuit-breakers/bcnlt", 1);
-#    setprop("/controls/circuit-breakers/strobe", 1);
-#    setprop("/controls/circuit-breakers/turn-coordinator", 1);
-#    setprop("/controls/circuit-breakers/radio1", 1);
-#    setprop("/controls/circuit-breakers/radio2", 1);
-#    setprop("/controls/circuit-breakers/radio3", 1);
-#    setprop("/controls/circuit-breakers/radio4", 1);
-#    setprop("/controls/circuit-breakers/radio5", 1);
-#    setprop("/controls/circuit-breakers/autopilot", 1);
+    setprop("/controls/circuit-breakers/Flap", 1);
+    setprop("/controls/circuit-breakers/Inst", 1);
+    setprop("/controls/circuit-breakers/AVNBus1", 1);
+    setprop("/controls/circuit-breakers/AVNBus2", 1);
+    setprop("/controls/circuit-breakers/TurnCoord", 1);
+    setprop("/controls/circuit-breakers/InstLts", 1);
+    setprop("/controls/circuit-breakers/AltFLD", 1);
+    setprop("/controls/circuit-breakers/Warn", 1);
+    setprop("/controls/circuit-breakers/AvionicsFan", 1);
+    setprop("/controls/circuit-breakers/GPS", 1);
+    setprop("/controls/circuit-breakers/NavCom1", 1);
+    setprop("/controls/circuit-breakers/NavCom2", 1);
+    setprop("/controls/circuit-breakers/Transponder", 1);
+    setprop("/controls/circuit-breakers/ADF", 1);
+    setprop("/controls/circuit-breakers/AutoPilot", 1);
 }
 
 

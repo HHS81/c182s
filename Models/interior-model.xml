@@ -2717,6 +2717,7 @@
  <!-- Circuit breakers -->
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.Flap</object-name>
 		<property>/controls/circuit-breakers/Flap</property>
 		<factor>-0.0045</factor>
@@ -2747,6 +2748,7 @@
 	</animation>
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.Inst</object-name>
 		<property>/controls/circuit-breakers/Inst</property>
 		<factor>-0.0045</factor>
@@ -2777,6 +2779,7 @@
 	</animation>
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.AVNBus1</object-name>
 		<property>/controls/circuit-breakers/AVNBus1</property>
 		<factor>-0.0045</factor>
@@ -2807,6 +2810,7 @@
 	</animation>
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.AVNBus2</object-name>
 		<property>/controls/circuit-breakers/AVNBus2</property>
 		<factor>-0.0045</factor>
@@ -2837,6 +2841,7 @@
 	</animation>
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.TurnCoord</object-name>
 		<property>/controls/circuit-breakers/TurnCoord</property>
 		<factor>-0.0045</factor>
@@ -2867,6 +2872,7 @@
 	</animation>
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.InstLts</object-name>
 		<property>/controls/circuit-breakers/InstLts</property>
 		<factor>-0.0045</factor>
@@ -2897,6 +2903,7 @@
 	</animation>
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.AltFLD</object-name>
 		<property>/controls/circuit-breakers/AltFLD</property>
 		<factor>-0.0045</factor>
@@ -2927,6 +2934,7 @@
 	</animation>
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.Warn</object-name>
 		<property>/controls/circuit-breakers/Warn</property>
 		<factor>-0.0045</factor>
@@ -2957,6 +2965,7 @@
 	</animation>
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.AvionicsFan</object-name>
 		<property>/controls/circuit-breakers/AvionicsFan</property>
 		<factor>-0.0045</factor>
@@ -2987,6 +2996,7 @@
 	</animation>
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.GPS</object-name>
 		<property>/controls/circuit-breakers/GPS</property>
 		<factor>-0.0045</factor>
@@ -3017,6 +3027,7 @@
 	</animation>
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.NavCom1</object-name>
 		<property>/controls/circuit-breakers/NavCom1</property>
 		<factor>-0.0045</factor>
@@ -3047,6 +3058,7 @@
 	</animation>
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.NavCom2</object-name>
 		<property>/controls/circuit-breakers/NavCom2</property>
 		<factor>-0.0045</factor>
@@ -3077,6 +3089,7 @@
 	</animation>
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.Transponder</object-name>
 		<property>/controls/circuit-breakers/Transponder</property>
 		<factor>-0.0045</factor>
@@ -3107,6 +3120,7 @@
 	</animation>
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.ADF</object-name>
 		<property>/controls/circuit-breakers/ADF</property>
 		<factor>-0.0045</factor>
@@ -3137,6 +3151,7 @@
 	</animation>
 	<animation>
 		<type>slider</type>
+		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.AutoPilot</object-name>
 		<property>/controls/circuit-breakers/AutoPilot</property>
 		<factor>-0.0045</factor>
@@ -3165,6 +3180,5 @@
 			</binding>
 		</hovered>
 	</animation>
-
 
 </PropertyList>

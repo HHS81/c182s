@@ -50,6 +50,22 @@
     <!-- FLAPS GLARESHIELD BUG-WORKAROUND: SEE ISSUE #176: https://github.com/HHS81/c182s/issues/176#issuecomment-340090229
     <object-name>Panel.001</object-name>
     <object-name>FlapSwitch</object-name>  -->
+    
+    <object-name>Breaker.Flap</object-name>
+    <object-name>Breaker.Inst</object-name>
+    <object-name>Breaker.AVNBus1</object-name>
+    <object-name>Breaker.AVNBus2</object-name>
+    <object-name>Breaker.TurnCoord</object-name>
+    <object-name>Breaker.InstLts</object-name>
+    <object-name>Breaker.AltFLD</object-name>
+    <object-name>Breaker.Warn</object-name>
+    <object-name>Breaker.AvionicsFan</object-name>
+    <object-name>Breaker.GPS</object-name>
+    <object-name>Breaker.NavCom1</object-name>
+    <object-name>Breaker.NavCom2</object-name>
+    <object-name>Breaker.Transponder</object-name>
+    <object-name>Breaker.ADF</object-name>
+    <object-name>Breaker.AutoPilot</object-name>
    </effect>
    
 <effect>

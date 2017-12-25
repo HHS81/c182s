@@ -542,6 +542,48 @@ var repair_damage = func {
 
 
 
+###########################################
+# FOG AND FROST stuff
+###########################################
+var log_cabin_temp = func {
+    if (getprop("/sim/model/c182s/enable-fog-frost")) {
+        var temp_degc = getprop("/fdm/jsbsim/heat/cabin-air-temp-degc");
+        if (temp_degc >= 32)
+            logger.screen.red("Cabin temperature exceeding 90F/32C!");
+        elsif (temp_degc <= 0)
+            logger.screen.red("Cabin temperature falling below 32F/0C!");
+    }
+};
+var cabin_temp_timer = maketimer(30.0, log_cabin_temp);
+
+var log_fog_frost = func {
+    if (getprop("/sim/model/c182s/enable-fog-frost")) {
+        logger.screen.white("Wait until fog/frost clears up or decrease cabin air temperature or engage defroster");
+    }
+};
+
+var fog_frost_timer = maketimer(30.0, log_fog_frost);
+setlistener("/sim/model/c182s/cabin-air-temp-in-range", func (node) {
+    if (node.getValue()) {
+        cabin_temp_timer.stop();
+        logger.screen.green("Cabin temperature between 32F/0C and 90F/32C");
+    }
+    else {
+        log_cabin_temp();
+        cabin_temp_timer.start();
+    }
+}, 1, 0);
+
+setlistener("/sim/model/c182s/fog-or-frost-increasing", func (node) {
+    if (node.getValue()) {
+        log_fog_frost();
+        fog_frost_timer.start();
+    }
+    else {
+        fog_frost_timer.stop();
+    }
+}, 1, 0);
+
 
 ###########
 # INIT of Aircraft

@@ -601,11 +601,13 @@
             <path>/instrumentation/nav[0]/frequencies/standby-mhz</path>
             <path>/instrumentation/nav[0]/power-btn</path>
             <path>/instrumentation/nav[0]/ident</path>
+            <path>/instrumentation/nav[0]/volume</path>
             <path>/instrumentation/nav[1]/radials/selected-deg</path>
             <path>/instrumentation/nav[1]/frequencies/selected-mhz</path>
             <path>/instrumentation/nav[1]/frequencies/standby-mhz</path>
             <path>/instrumentation/nav[1]/power-btn</path>
             <path>/instrumentation/nav[1]/ident</path>
+            <path>/instrumentation/nav[1]/volume</path>
             <path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
             <path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
             <path>/instrumentation/comm[0]/power-btn</path>

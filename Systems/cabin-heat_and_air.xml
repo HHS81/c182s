@@ -353,7 +353,7 @@
             <gain>0.1</gain>
         </pure_gain>
 
-        <fcs_function name="heat/future-cabin-rel-humidity">
+        <fcs_function name="heat/future-cabin-rel-humidity-calc">
             <function>
                 <sum>
                     <quotient>
@@ -365,7 +365,8 @@
                             <product>
                                 <property>heat/humans-airflow</property>
                                 <!-- Human breath: 35 C with 95 % RH -->
-                                <value>95.0</value>
+                                <!--<value>95.0</value>-->
+                                <value>100.0</value> <!-- future value trends to 100% because humans not only breathe but also sweat -->
                             </product>
                         </sum>
                         <sum>
@@ -376,6 +377,25 @@
                 </sum>
             </function>
         </fcs_function>
+        
+        <!-- Two switches for faster init of cabin humidity to environment value -->
+        <!--   in the first few moments of the simulation the cabin humidity should adjust very quick to the environment value -->
+        <switch name="heat/future-cabin-rel-humidity">
+            <default value="heat/future-cabin-rel-humidity-calc"/>
+            
+            <test logic="AND" value="/environment/relative-humidity">
+                /sim/time/elapsed-sec LE 10
+            </test>
+
+        </switch>
+        <switch name="heat/cabin-humidity-change-factor">
+            <default value="0.015"/>
+            
+            <test logic="AND" value="1">
+                /sim/time/elapsed-sec LE 10
+            </test>
+
+        </switch>
 
         <summer name="heat/cabin-rel-humidity-diff">
             <input>heat/future-cabin-rel-humidity</input>
@@ -386,14 +406,16 @@
                 <max> 10.0</max>
             </clipto>
         </summer>
-
+        
         <integrator name="heat/cabin-relative-humidity">
             <input>heat/cabin-rel-humidity-diff</input>
 
             <!-- This is the constant that actually controls how fast
                  (or slow) the cabin relative humidity changes.
             -->
-            <c1>0.015</c1>
+            <!-- Now controlled by switched value <c1>0.015</c1>-->
+            <c1>heat/cabin-humidity-change-factor</c1>
+            
 
             <!-- Keep relative humidity above zero to prevent
                  math domain error (which happens in ln(x) for x = 0).
@@ -497,35 +519,41 @@
     <channel name="fog-and-frost">
         
         <!-- Defroster simulation -->
-        <!-- TODO: currently very simple implementation: we just put down the dewpoint of the windshield if defrost is enabled -->
-        <fcs_function name="heat/windshield-dewpoint-degc">
+        <!-- TODO: currently very simple implementation: we just put down the dewpoint of the windshield if defrost is enabled and engine is on -->
+        <fcs_function name="heat/windshield-dewpoint-defrost-offset-degc">
             <function>
-                    <product>
-                        <property>heat/cabin-dewpoint-degc</property>
-                        <table>
-                            <independentVar>/environment/aircraft-effects/defrost-set</independentVar>
-                            <tableData>
-                                0.0  1.0
-                                1.0  0.5
-                            </tableData>
-                        </table>
-                    </product>
+                <table>
+                    <independentVar lookup="row">/environment/aircraft-effects/defrost-set</independentVar>
+                    <independentVar lookup="column">/fdm/jsbsim/propulsion/engine/set-running</independentVar>
+                    <tableData>
+                             0    1
+                        0.0  0    0
+                        1.0  0    -15
+                    </tableData>
+                </table>
             </function>
         </fcs_function>
+        <summer name="heat/windshield-dewpoint-degc">
+            <input>heat/cabin-dewpoint-degc</input>
+            <input>heat/windshield-dewpoint-defrost-offset-degc</input>
+        </summer>
         <fcs_function name="heat/windshield-defrost-boost">
             <function>
                     <product>
                         <value>0.010</value> <!-- fixed value from below integrator code -->
                         <table>
-                            <independentVar>/environment/aircraft-effects/defrost-set</independentVar>
+                            <independentVar lookup="row">/environment/aircraft-effects/defrost-set</independentVar>
+                            <independentVar lookup="column">/fdm/jsbsim/propulsion/engine/set-running</independentVar>
                             <tableData>
-                                0.0  1.0
-                                1.0  10.0
+                                     0      1
+                                0.0  1.0    1.0
+                                1.0  1.0    2.5
                             </tableData>
                         </table>
                     </product>
             </function>
         </fcs_function>
+        
 
         <summer name="heat/surface-dewpoint-diff">
             <!--<input>heat/cabin-dewpoint-degc</input>    switched to windshield because of defrost adjust -->

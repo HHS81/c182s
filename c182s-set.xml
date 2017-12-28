@@ -52,6 +52,10 @@
     <property-rule n="104">
         <path>Aircraft/c182s/Systems/engine.xml</path>
     </property-rule>
+    <property-rule n="105">
+            <name>FiltersOnly</name>
+            <path>Systems/instruments.xml</path>
+    </property-rule>
     <electrical>        
       <!-- null electrical system path here so we can use a nasal based -->
       <!-- model defined later in the nasal section of this file. -->

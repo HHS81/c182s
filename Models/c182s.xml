@@ -1767,10 +1767,16 @@
    <type>select</type>
         <object-name>winterkit.cs</object-name>
    <condition>
-		<less-than>
-			<property>velocities/groundspeed-kt</property>
-			<value>0.1</value>
-		</less-than>
+       <and>
+            <less-than>
+                <property>velocities/groundspeed-kt</property>
+                <value>0.1</value>
+            </less-than>
+            <less-than>
+                <property>/engines/engine/thruster/rpm</property>
+                <value>0.0001</value>
+            </less-than>
+        </and>
    </condition>
  </animation> 
     
@@ -1971,6 +1977,7 @@
         <object-name>RightTankDrain.cs</object-name>
         <object-name>safety-cone.cs.L</object-name>
         <object-name>safety-cone.cs.R</object-name>
+        <object-name>winterkit.cs</object-name>
         <condition>
         <not>
             <property>sim/current-view/internal</property>

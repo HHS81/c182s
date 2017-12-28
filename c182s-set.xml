@@ -683,6 +683,21 @@
             <path>/controls/SunVisor[0]/position-deg</path>
             <path>/controls/SunVisor[1]/position-deg</path>
         
+            <path>/controls/circuit-breakers/Flap</path>
+            <path>/controls/circuit-breakers/Inst</path>
+            <path>/controls/circuit-breakers/AVNBus1</path>
+            <path>/controls/circuit-breakers/AVNBus2</path>
+            <path>/controls/circuit-breakers/TurnCoord</path>
+            <path>/controls/circuit-breakers/InstLts</path>
+            <path>/controls/circuit-breakers/AltFLD</path>
+            <path>/controls/circuit-breakers/Warn</path>
+            <path>/controls/circuit-breakers/AvionicsFan</path>
+            <path>/controls/circuit-breakers/GPS</path>
+            <path>/controls/circuit-breakers/NavCom1</path>
+            <path>/controls/circuit-breakers/NavCom2</path>
+            <path>/controls/circuit-breakers/Transponder</path>
+            <path>/controls/circuit-breakers/ADF</path>
+            <path>/controls/circuit-breakers/AutoPilot</path>
         </aircraft-data>
 
  </sim>
@@ -775,6 +790,23 @@
    <kn-62a type="double">0</kn-62a>
    <fuel_tank_selector type="double">2</fuel_tank_selector> <!-- 0=off, 1=right, 2=both, 3=left -->
   </switches>
+  <circuit-breakers>
+    <Flap type="bool">1</Flap>
+    <Inst type="bool">1</Inst>
+    <AVNBus1 type="bool">1</AVNBus1>
+    <AVNBus2 type="bool">1</AVNBus2>
+    <TurnCoord type="bool">1</TurnCoord>
+    <InstLts type="bool">1</InstLts>
+    <AltFLD type="bool">1</AltFLD>
+    <Warn type="bool">1</Warn>
+    <AvionicsFan type="bool">1</AvionicsFan>
+    <GPS type="bool">1</GPS>
+    <NavCom1 type="bool">1</NavCom1>
+    <NavCom2 type="bool">1</NavCom2>
+    <Transponder type="bool">1</Transponder>
+    <ADF type="bool">1</ADF>
+    <AutoPilot type="bool">1</AutoPilot>
+  </circuit-breakers>
   </controls>
 
  

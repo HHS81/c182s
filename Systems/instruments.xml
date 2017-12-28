@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+    
+    <filter>
+        <name>Tank 0 Indicated Level</name>
+        <type>exponential</type>
+        <filter-time>2.0</filter-time>
+        <input>
+            <condition>
+                <greater-than>
+                    <property>/systems/electrical/outputs/instr-ignition-switch</property>
+                    <value>12.0</value>
+                </greater-than>
+            </condition>
+            <property>/consumables/fuel/tank[0]/level-gal_us</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/consumables/fuel/tank[0]/indicated-level-gal_us</property>
+        </output>
+    </filter>
+
+    <filter>
+        <name>Tank 1 Indicated Level</name>
+        <type>exponential</type>
+        <filter-time>2.0</filter-time>
+        <input>
+            <condition>
+                <greater-than>
+                    <property>/systems/electrical/outputs/instr-ignition-switch</property>
+                    <value>12.0</value>
+                </greater-than>
+            </condition>
+            <property>/consumables/fuel/tank[1]/level-gal_us</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/consumables/fuel/tank[1]/indicated-level-gal_us</property>
+        </output>
+    </filter>
+
+    <filter>
+        <name>Engine Indicated Oil Temperature</name>
+        <type>exponential</type>
+        <filter-time>1.0</filter-time>
+        <input>
+            <condition>
+                <greater-than>
+                    <property>/systems/electrical/outputs/instr-ignition-switch</property>
+                    <value>12.0</value>
+                </greater-than>
+            </condition>
+            <property>/engines/engine/oil-final-temperature-degf</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/engines/engine/indicated-oil-final-temperature-degf</property>
+        </output>
+    </filter>
+
+    <filter>
+        <name>Engine Indicated Oil Pressure</name>
+        <type>exponential</type>
+        <filter-time>1.0</filter-time>
+        <input>
+            <condition>
+                <greater-than>
+                    <property>/systems/electrical/outputs/instr-ignition-switch</property>
+                    <value>12.0</value>
+                </greater-than>
+            </condition>
+            <property>/engines/engine/oil-pressure-psi-final</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/engines/engine/indicated-oil-pressure-psi</property>
+        </output>
+    </filter>
+    
+    <filter>
+        <name>Engine Indicated EGT</name>
+        <type>exponential</type>
+        <filter-time>1.0</filter-time>
+        <input>
+            <condition>
+                <greater-than>
+                    <property>/systems/electrical/outputs/instr-ignition-switch</property>
+                    <value>12.0</value>
+                </greater-than>
+            </condition>
+            <property>/engines/engine/egt-degf</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/engines/engine/indicated-egt-degf</property>
+        </output>
+    </filter>
+    
+    <filter>
+        <name>Engine Indicated CHT</name>
+        <type>exponential</type>
+        <filter-time>1.0</filter-time>
+        <input>
+            <condition>
+                <greater-than>
+                    <property>/systems/electrical/outputs/instr-ignition-switch</property>
+                    <value>12.0</value>
+                </greater-than>
+            </condition>
+            <property>/engines/engine/cht-degf</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/engines/engine/indicated-cht-degf</property>
+        </output>
+    </filter>
+    
+    <filter>
+        <name>Engine Indicated Fuel Flow</name>
+        <type>exponential</type>
+        <filter-time>0.5</filter-time> <!-- be really responsive for priming readings -->
+        <input>
+            <condition>
+                <greater-than>
+                    <property>/systems/electrical/outputs/instr-ignition-switch</property>
+                    <value>12.0</value>
+                </greater-than>
+            </condition>
+            <property>/systems/fuel/indicated-manfold-fuel-flow-gph</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/engines/engine/indicated-manfold-fuel-flow-gph</property>
+        </output>
+    </filter>
+    
+</PropertyList>

@@ -187,7 +187,11 @@ AlternatorClass.get_output_volts = func {
         factor = 1.0;
     }
     # print( "alternator volts = ", me.ideal_volts * factor );
-    return me.ideal_volts * factor;
+    if ( getprop("/controls/circuit-breakers/AltFLD") ) {
+        return me.ideal_volts * factor;
+    } else {
+        return 0.0;
+    }
 }
 
 
@@ -205,7 +209,11 @@ AlternatorClass.get_output_amps = func {
         factor = 1.0;
     }
     # print( "alternator amps = ", ideal_amps * factor );
-    return me.ideal_amps * factor;
+    if ( getprop("/controls/circuit-breakers/AltFLD") ) {
+        return me.ideal_amps * factor;
+    } else {
+        return 0.0;
+    }
 }
 
 
@@ -239,22 +247,21 @@ var reset_battery_and_circuit_breakers = func {
     battery.reset_to_full_charge();
 
     # Reset circuit breakers
-#    setprop("/controls/circuit-breakers/master", 1);
-#    setprop("/controls/circuit-breakers/flaps", 1);
-#    setprop("/controls/circuit-breakers/pitot-heat", 1);
-#    setprop("/controls/circuit-breakers/instr", 1);
-#    setprop("/controls/circuit-breakers/intlt", 1);
-#    setprop("/controls/circuit-breakers/navlt", 1);
-#    setprop("/controls/circuit-breakers/landing", 1);
-#    setprop("/controls/circuit-breakers/bcnlt", 1);
-#    setprop("/controls/circuit-breakers/strobe", 1);
-#    setprop("/controls/circuit-breakers/turn-coordinator", 1);
-#    setprop("/controls/circuit-breakers/radio1", 1);
-#    setprop("/controls/circuit-breakers/radio2", 1);
-#    setprop("/controls/circuit-breakers/radio3", 1);
-#    setprop("/controls/circuit-breakers/radio4", 1);
-#    setprop("/controls/circuit-breakers/radio5", 1);
-#    setprop("/controls/circuit-breakers/autopilot", 1);
+    setprop("/controls/circuit-breakers/Flap", 1);
+    setprop("/controls/circuit-breakers/Inst", 1);
+    setprop("/controls/circuit-breakers/AVNBus1", 1);
+    setprop("/controls/circuit-breakers/AVNBus2", 1);
+    setprop("/controls/circuit-breakers/TurnCoord", 1);
+    setprop("/controls/circuit-breakers/InstLts", 1);
+    setprop("/controls/circuit-breakers/AltFLD", 1);
+    setprop("/controls/circuit-breakers/Warn", 1);
+    setprop("/controls/circuit-breakers/AvionicsFan", 1);
+    setprop("/controls/circuit-breakers/GPS", 1);
+    setprop("/controls/circuit-breakers/NavCom1", 1);
+    setprop("/controls/circuit-breakers/NavCom2", 1);
+    setprop("/controls/circuit-breakers/Transponder", 1);
+    setprop("/controls/circuit-breakers/ADF", 1);
+    setprop("/controls/circuit-breakers/AutoPilot", 1);
 }
 
 
@@ -397,10 +404,14 @@ electrical_bus_1 = func() {
 
 
     # Instrument Power
-    setprop("/systems/electrical/outputs/instr-ignition-switch", bus_volts);
+    if ( getprop("/controls/circuit-breakers/Inst") ) {
+        setprop("/systems/electrical/outputs/instr-ignition-switch", bus_volts);
+    } else {
+        setprop("/systems/electrical/outputs/instr-ignition-switch", 0);
+    }
 
     # Aux Fuel Pump Power
-    if ( getprop("/controls/engines/engine[0]/fuel-pump")) {
+    if ( getprop("/controls/engines/engine[0]/fuel-pump") and getprop("/controls/circuit-breakers/Inst")) {
         setprop("/systems/electrical/outputs/fuel-pump", bus_volts);
         load += bus_volts / 2;
     } else {
@@ -459,12 +470,12 @@ else {
 
 
     # Flaps Power
-#    if ( getprop("/controls/circuit-breakers/flaps") ) {
+    if ( getprop("/controls/circuit-breakers/Flap") ) {
         setprop("/systems/electrical/outputs/flaps", bus_volts);
         load += bus_volts / 2;
-#    } else {
-#        setprop("/systems/electrical/outputs/flaps", 0.0);
-#    }
+    } else {
+        setprop("/systems/electrical/outputs/flaps", 0.0);
+    }
 
     # register bus voltage
     ebus1_volts = bus_volts;
@@ -562,9 +573,17 @@ cross_feed_bus = func() {
 
     var load = 0.0;
 
+    if ( getprop("/controls/circuit-breakers/Warn") ) {
+        setprop("/systems/electrical/outputs/annunciators", bus_volts);
+    } else {
+        setprop("/systems/electrical/outputs/annunciators", 0.0);
+    }
 
-setprop("/systems/electrical/outputs/annunciators", bus_volts);
-setprop("/systems/electrical/outputs/ecrf", bus_volts);#needed to dim lights
+    if ( getprop("/controls/circuit-breakers/InstLts") ) {
+        setprop("/systems/electrical/outputs/ecrf", bus_volts);#needed to dim lights
+    } else {
+        setprop("/systems/electrical/outputs/ecrf", 0.0);
+    }
 
 
     if ( getprop("/controls/lighting/dome-light-r")and (bus_volts > 22)) {
@@ -660,7 +679,8 @@ avionics_bus_1 = func() {
 
     # we are fed from the electrical bus 1
     var master_av = getprop("/controls/switches/AVMBus1");
-    if ( master_av ) {
+    var avb_brk   = getprop("/controls/circuit-breakers/AVNBus1");
+    if ( master_av and avb_brk) {
         bus_volts = ebus1_volts;
         bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
     }
@@ -668,21 +688,21 @@ avionics_bus_1 = func() {
     load += bus_volts / 20.0;
 
     # Turn Coordinator Power
-    if ( bus_volts > 22 ) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/TurnCoord")) {
     setprop("/systems/electrical/outputs/turn-coordinator", bus_volts);
     }else{
     setprop("/systems/electrical/outputs/turn-coordinator",0);    
     }
 
     # Avionics Fan Power
-    if ( bus_volts > 22 ) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/AvionicsFan")) {
     setprop("/systems/electrical/outputs/avionics-fan", bus_volts);
     }else{
     setprop("/systems/electrical/outputs/avionics-fan", 0);
     }
     
     # GPS Power
-    if ( bus_volts > 22 ) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/GPS")) {
     setprop("/systems/electrical/outputs/gps", bus_volts);
      }else{ 
     setprop("/systems/electrical/outputs/gps", 0);
@@ -696,7 +716,7 @@ avionics_bus_1 = func() {
      }
   
     # NavCom 1 Power
-    if ( bus_volts > 22 ) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom1")) {
     setprop("/systems/electrical/outputs/nav[0]", bus_volts);
      }else{   
     setprop("/systems/electrical/outputs/nav[0]", 0);
@@ -724,7 +744,7 @@ avionics_bus_1 = func() {
     }
 
     # Com 1 Power
-    if ( bus_volts > 22 ) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom1")) {
     setprop("systems/electrical/outputs/comm[0]", bus_volts);
      }else{  
     setprop("systems/electrical/outputs/comm[0]", 0);
@@ -736,10 +756,11 @@ avionics_bus_1 = func() {
 
 
 avionics_bus_2 = func() {
-    var master_av = getprop("/controls/switches/AVMBus2");
     # we are fed from the electrical bus 2
+    var master_av = getprop("/controls/switches/AVMBus2");
+    var avb_brk   = getprop("/controls/circuit-breakers/AVNBus2");
     var bus_volts = 0.0;
-    if ( master_av ) {
+    if ( master_av and avb_brk) {
         bus_volts = ebus2_volts;
         bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
     }
@@ -747,7 +768,7 @@ avionics_bus_2 = func() {
     var load = bus_volts / 20.0;
 
     # NavCom 2 Power
-    if ( bus_volts > 22 ) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom2")) {
     setprop("/systems/electrical/outputs/nav[1]", bus_volts);
      }else{  
     setprop("/systems/electrical/outputs/nav[1]", 0);
@@ -766,14 +787,14 @@ if ( bus_volts > 22 ) {
      
      
     # Com 2 Power
-    if ( bus_volts > 22 ) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom2")) {
     setprop("systems/electrical/outputs/comm[1]", bus_volts);
      }else{ 
     setprop("systems/electrical/outputs/comm[1]", 0);
      }
 
      # Transponder
-    if ( bus_volts > 22 ) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/Transponder")) {
      if (getprop("/controls/switches/kt-76c") > 0) {
          setprop("/systems/electrical/outputs/kt-76c", bus_volts);
         load += bus_volts / 28;
@@ -783,14 +804,14 @@ if ( bus_volts > 22 ) {
     }
 
     # Autopilot Power
-    if ( bus_volts > 22 ) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/AutoPilot")) {
     setprop("/systems/electrical/outputs/autopilot", bus_volts);
      }else{ 
     setprop("/systems/electrical/outputs/autopilot", 0);
      }
 
     # ADF Power
-    if ( bus_volts > 22 ) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/ADF")) {
     setprop("/systems/electrical/outputs/adf", bus_volts);
      }else{ 
     setprop("/systems/electrical/outputs/adf", 0);

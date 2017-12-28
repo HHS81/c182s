@@ -486,16 +486,31 @@
         </switch>
 
         <switch>
-            <name>click-circuit-breaker</name>
+            <name>click-circuit-breaker-leftPanel</name>
             <mode>once</mode>
-            <path>Sounds/double-click.wav</path>
+            <path>Sounds/double-click2.wav</path>
             <condition>
-                <property>/sim/model/c182s/sound/click-cb</property>
+                <property>/sim/model/c182s/sound/click-circuit-breaker_lp</property>
             </condition>
             <position>
                 <x>-0.3660</x>
                 <y>0.2500</y>
                 <z>-0.3000</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+        </switch>
+        <switch>
+            <name>click-circuit-breaker-rightPanel</name>
+            <mode>once</mode>
+            <path>Sounds/double-click2.wav</path>
+            <condition>
+                <property>/sim/model/c182s/sound/click-circuit-breaker_rp</property>
+            </condition>
+            <position>
+                <x-m>0.3583</x-m>
+                <y-m>0.3675</y-m>
+                <z-m>0.1950</z-m>
             </position>
             <reference-dist>0.2</reference-dist>
             <max-dist>5.0</max-dist>

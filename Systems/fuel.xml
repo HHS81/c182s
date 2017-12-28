@@ -47,7 +47,7 @@ Author: 09/2017  Benedikt Hallinger
     <property type="bool" value="0">/systems/fuel/engine-primed</property>
     <property type="bool" value="0">/systems/fuel/engine-flooded</property>
     
-    <property type="double" value="0">/systems/fuel/indicated-manfold-fuel-flow-gph</property>
+    <!-- now defined in instruments.xml filter: <property type="double" value="0">/systems/fuel/indicated-manfold-fuel-flow-gph</property>-->
 
     
     <channel name="fuel-system">

@@ -524,9 +524,9 @@
             <function>
                 <table>
                     <independentVar lookup="row">/environment/aircraft-effects/defrost-set</independentVar>
-                    <independentVar lookup="column">/fdm/jsbsim/propulsion/engine/set-running</independentVar>
+                    <independentVar lookup="column">/engines/engine/egt-norm</independentVar>
                     <tableData>
-                             0    1
+                             0    0.6
                         0.0  0    0
                         1.0  0    -15
                     </tableData>
@@ -543,9 +543,9 @@
                         <value>0.010</value> <!-- fixed value from below integrator code -->
                         <table>
                             <independentVar lookup="row">/environment/aircraft-effects/defrost-set</independentVar>
-                            <independentVar lookup="column">/fdm/jsbsim/propulsion/engine/set-running</independentVar>
+                            <independentVar lookup="column">/engines/engine/egt-norm</independentVar>
                             <tableData>
-                                     0      1
+                                     0      0.6
                                 0.0  1.0    1.0
                                 1.0  1.0    2.5
                             </tableData>

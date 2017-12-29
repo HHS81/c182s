@@ -275,13 +275,23 @@
             <input>heat/cabin-air-transfer-humans</input>
         </summer>
 
+        <!-- Switches for faster init of cabin temperature to environment value -->
+        <!--   in the first few moments of the simulation the cabin temperature should adjust very quick to the environment value -->
+        <switch name="heat/cabin-temperature-change-factor">
+            <default value="0.030"/>
+            <test logic="AND" value="1">
+                /sim/time/elapsed-sec LE 20
+            </test>
+        </switch>
+        
         <integrator name="heat/cabin-air-temp-degc">
             <input>heat/cabin-air-transfer-total</input>
 
             <!-- This is the constant that actually controls how fast
                  (or slow) the cabin temperature changes.
             -->
-            <c1>0.030</c1>
+            <!--<c1>0.030</c1> controlled by switch-block now-->
+            <c1>heat/cabin-temperature-change-factor</c1>
         </integrator>
 
     </channel>

@@ -335,14 +335,20 @@
         
         <checkbox>
             <halign>left</halign>
-            <label>Winter kit installed</label>
+            <label>Winter Kit installed</label>
             <property>/engines/engine/winter-kit-installed</property>
             <live>true</live>
             <enable>
-                <less-than>
-                    <property>velocities/groundspeed-kt</property>
-                    <value>1.0</value>
-                </less-than>
+                <and>
+                    <less-than>
+                        <property>velocities/groundspeed-kt</property>
+                        <value>0.1</value>
+                    </less-than>
+                    <less-than>
+                        <property>/engines/engine/thruster/rpm</property>
+                        <value>0.0001</value>
+                    </less-than>
+                </and>
             </enable>
             <binding>
                 <command>dialog-apply</command>

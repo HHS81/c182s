@@ -313,7 +313,44 @@ var init_common = func {
 }
 settimer(init_common,0);
 
+#Engine PreHeater======================================================
+#to-do:
+#credits
+var EngPreHeat_model = {
+       index:   0,
+       add:   func {
+                          #print("EngPreHeat_model.add");
+  var manager = props.globals.getNode("/models", 1);
+                var i = 0;
+                for (; 1; i += 1)
+                   if (manager.getChild("model", i, 0) == nil)
+                      break;
+		var fueltanktrailer = geo.aircraft_position().set_alt(
+				props.globals.getNode("/position/ground-elev-m").getValue());
+				
+		geo.put_model("Aircraft/c182s/Models/Exterior/RedDragonEnginePreHeater.ac", fueltanktrailer,
+				props.globals.getNode("/orientation/heading-deg").getValue());
+				
+		 me.index = i;
+				
+          },
+	  
+       remove:   func {
+                #print("EngPreHeat_model.remove");
+             props.globals.getNode("/models", 1).removeChild("model", me.index);
+          },
+};
 
+var init_common = func {
+	setlistener("/engines/engine/external-heat/enabled", func(n) {
+		if (n.getValue()) {
+				EngPreHeat_model.add();
+		} else  {
+			EngPreHeat_model.remove();
+		}
+	});
+}
+settimer(init_common,0);
 
 	
 
@@ -325,15 +362,26 @@ WindowR = aircraft.door.new( "/sim/model/door-positions/WindowR", 2, 0 );
 WindowL = aircraft.door.new( "/sim/model/door-positions/WindowL", 2, 0 );
 
 #####################
-# external electrical disconnect when groundspeed higher than 0.1ktn (replace later with distance less than 0.01...)
+# Adjust properties when in motion
+# - external electrical disconnect when groundspeed higher than 0.1ktn (replace later with distance less than 0.01...)
+# - remove external heat
+# - tear tiedowns when significantly off ground
 ad = func {
-GROUNDSPEED = getprop("/velocities/groundspeed-kt") or 0; 
+    GROUNDSPEED = getprop("/velocities/groundspeed-kt") or 0; 
+    AGL         = getprop("/position/altitude-agl-ft")  or 0;
 
- if (GROUNDSPEED > 0.1) {
- setprop("/controls/electric/external-power", "false");
-  setprop("/controls/electric/TEST", "true");
- }
-   settimer(ad, 0.1);   
+    if (GROUNDSPEED > 0.1) {
+        setprop("/controls/electric/external-power", "false");
+        setprop("/engines/engine/external-heat/enabled", "false");
+    }
+    
+    if (AGL > 10) {
+        setprop("/sim/model/c182s/securing/tiedownT-visible", 0);
+        setprop("/sim/model/c182s/securing/tiedownL-visible", 0);
+        setprop("/sim/model/c182s/securing/tiedownR-visible", 0);
+    }
+    
+    settimer(ad, 0.1);   
 }
 init = func {
    settimer(ad, 0.0);

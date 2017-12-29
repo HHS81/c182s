@@ -25,7 +25,7 @@
     <animation>
   <type>rotate</type>
   <object-name>EGTNeedle</object-name>
-  <property>engines/engine/egt-degf</property>
+  <property>engines/engine/indicated-egt-degf</property>
   <interpolation>
    <entry><ind>  0.0</ind><dep>0 </dep></entry>     
    <entry><ind>1250</ind><dep> -11.0 </dep></entry>     
@@ -50,7 +50,7 @@
    <animation>
         <type>rotate</type>
         <object-name>CHTNeedle</object-name>
-  <property>engines/engine/cht-degf</property>
+  <property>engines/engine/indicated-cht-degf</property>
  <interpolation>
       <entry><ind>0</ind><dep> 0</dep></entry>
       <entry><ind>200</ind><dep>9.83</dep></entry>

@@ -553,36 +553,71 @@ var repair_damage = func {
 ###########################################
 # FOG AND FROST stuff
 ###########################################
-var log_cabin_temp = func {
-    if (getprop("/sim/model/c182s/enable-fog-frost")) {
-        var temp_degc = getprop("/fdm/jsbsim/heat/cabin-air-temp-degc");
-        if (temp_degc >= 32)
-            logger.screen.red("Cabin temperature exceeding 90F/32C!");
-        elsif (temp_degc <= 0)
-            logger.screen.red("Cabin temperature falling below 32F/0C!");
+
+var update_cabintemp_text = func {
+    # Sets a verbally text based on temperature.
+    # TODO: should be enhanced to perceived temperature some time because humidity plays a role in the perception of temperatue
+    var txtp = "/fdm/jsbsim/heat/cabin-temperature-text";
+    var temp = getprop("/fdm/jsbsim/heat/cabin-air-temp-degc") or 0;
+
+    if (temp < 0) {           setprop(txtp, "My fingers are freezing");
+    } else if (temp <= 10) {  setprop(txtp, "A little bit fresh here");
+    } else if (temp <= 18) {  setprop(txtp, "A little too cold here for my taste");
+    } else if (temp <= 25) {  setprop(txtp, "I feel comfortably warm now");
+    } else if (temp <= 30) {  setprop(txtp, "It is getting hot in here");
+    } else {                  setprop(txtp, "Uh, are we taking a sauna in here?");
     }
 };
-var cabin_temp_timer = maketimer(30.0, log_cabin_temp);
+var cabin_temp_updateloop = maketimer(15.0, update_cabintemp_text); # update text all 15secs at most
+cabin_temp_updateloop.start();
+
+var lastTemperaturePrinted = -100; # to prevent spam with outside-spec loop; but always print the first time
+var print_cabintemp_text = func {
+    # Log changed temperature feelings
+    if (getprop("/sim/model/c182s/enable-fog-frost")) {
+        var temp = getprop("/fdm/jsbsim/heat/cabin-air-temp-degc") or 0;
+        var temp_txt  = getprop("/fdm/jsbsim/heat/cabin-temperature-text");
+        if (temp_txt) {
+            var txt       = "Cabin temperature: " ~ temp_txt;
+            if (temp < 0) {           logger.screen.red(txt);
+            } else if (temp <= 10) {  logger.screen.red(txt);
+            } else if (temp <= 18) {  logger.screen.white(txt);
+            } else if (temp <= 25) {  logger.screen.green(txt);
+            } else if (temp <= 30) {  logger.screen.white(txt);
+            } else {                  logger.screen.red(txt);
+            }
+            
+            lastTemperaturePrinted = getprop("/sim/time/elapsed-sec");
+        }
+    }
+};
+setlistener("/fdm/jsbsim/heat/cabin-temperature-text", print_cabintemp_text, 1, 0);
+
+
+var cabin_temp_outsideSpecComplainLoop = maketimer(30.0, func () {
+    # Log repeatedly when temperature is way outside the comfort zone and needs attention
+    if (getprop("/sim/model/c182s/enable-fog-frost")) {
+        var temp = getprop("/fdm/jsbsim/heat/cabin-air-temp-degc") or 0;
+        if (temp <= 18 or temp > 30) {
+            if (getprop("/sim/time/elapsed-sec") >= lastTemperaturePrinted + 5) {  #to avoid spam conflict with normal loop
+                print_cabintemp_text();
+            }
+        }
+    }
+});
+cabin_temp_outsideSpecComplainLoop.start();
 
 var log_fog_frost = func {
+    # log that frost/fog appeared and what to do against it
     if (getprop("/sim/model/c182s/enable-fog-frost")) {
-        logger.screen.white("Wait until fog/frost clears up or decrease cabin air temperature or engage defroster");
+        logger.screen.white("Wait until fog/frost clears up or engage defroster or decrease cabin air temperature");
     }
 };
 
-var fog_frost_timer = maketimer(30.0, log_fog_frost);
-setlistener("/sim/model/c182s/cabin-air-temp-in-range", func (node) {
-    if (node.getValue()) {
-        cabin_temp_timer.stop();
-        logger.screen.green("Cabin temperature between 32F/0C and 90F/32C");
-    }
-    else {
-        log_cabin_temp();
-        cabin_temp_timer.start();
-    }
-}, 1, 0);
+var fog_frost_timer = maketimer(30.0, log_fog_frost); # check fog/frost every 30s
 
 setlistener("/sim/model/c182s/fog-or-frost-increasing", func (node) {
+    #log when frost/fog is here
     if (node.getValue()) {
         log_fog_frost();
         fog_frost_timer.start();
@@ -591,6 +626,8 @@ setlistener("/sim/model/c182s/fog-or-frost-increasing", func (node) {
         fog_frost_timer.stop();
     }
 }, 1, 0);
+
+
 
 
 ###########

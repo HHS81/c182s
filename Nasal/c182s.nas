@@ -607,6 +607,15 @@ var cabin_temp_outsideSpecComplainLoop = maketimer(30.0, func () {
 });
 cabin_temp_outsideSpecComplainLoop.start();
 
+setlistener("sim/current-view/internal", func (node) {
+    #log when view switches to "internal"
+    if (node.getValue()) {
+        if (getprop("/sim/time/elapsed-sec") >= lastTemperaturePrinted + 5) {  #to avoid spam conflict with normal loop
+            print_cabintemp_text();
+        }
+    }
+}, 1, 0);
+
 var log_fog_frost = func {
     # log that frost/fog appeared and what to do against it
     if (getprop("/sim/model/c182s/enable-fog-frost")) {

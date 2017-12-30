@@ -569,7 +569,6 @@ var update_cabintemp_text = func {
     }
 };
 var cabin_temp_updateloop = maketimer(15.0, update_cabintemp_text); # update text all 15secs at most
-cabin_temp_updateloop.start();
 
 var lastTemperaturePrinted = -100; # to prevent spam with outside-spec loop; but always print the first time
 var print_cabintemp_text = func {
@@ -593,7 +592,6 @@ var print_cabintemp_text = func {
 };
 setlistener("/fdm/jsbsim/heat/cabin-temperature-text", print_cabintemp_text, 1, 0);
 
-
 var cabin_temp_outsideSpecComplainLoop = maketimer(30.0, func () {
     # Log repeatedly when temperature is way outside the comfort zone and needs attention
     if (getprop("/sim/model/c182s/enable-fog-frost")) {
@@ -605,7 +603,12 @@ var cabin_temp_outsideSpecComplainLoop = maketimer(30.0, func () {
         }
     }
 });
-cabin_temp_outsideSpecComplainLoop.start();
+
+# Init cabin_temp core loops 10s after sim start
+settimer(func(){
+    cabin_temp_updateloop.start();
+    cabin_temp_outsideSpecComplainLoop.start();
+}, 2.0);
 
 setlistener("sim/current-view/internal", func (node) {
     #log when view switches to "internal"

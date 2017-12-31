@@ -554,7 +554,7 @@ var repair_damage = func {
 # FOG AND FROST stuff
 ###########################################
 
-var update_cabintemp_text = func {
+var update_cabintemp_humidity_text = func {
     # Sets a verbally text based on temperature.
     # TODO: should be enhanced to perceived temperature some time because humidity plays a role in the perception of temperatue
     var txtp = "/fdm/jsbsim/heat/cabin-temperature-text";
@@ -567,14 +567,23 @@ var update_cabintemp_text = func {
     } else if (temp <= 30) {  setprop(txtp, "It is getting hot in here");
     } else {                  setprop(txtp, "Uh, are we taking a sauna in here?");
     }
+    
+    # Sets a verbally text based on humidity.
+    var txth = "/fdm/jsbsim/heat/cabin-humidity-text";
+    var hum  = getprop("/fdm/jsbsim/heat/cabin-relative-humidity") or 0;
+
+    if (hum < 40) {           setprop(txth, "The Air feels very dry.");
+    } else if (hum <= 70) {   setprop(txth, "The Air feels comfortable.");
+    } else {                  setprop(txth, "The Air feels very dampy.");
+    }
 };
-var cabin_temp_updateloop = maketimer(15.0, update_cabintemp_text); # update text all 15secs at most
+var cabin_temp_updateloop = maketimer(15.0, update_cabintemp_humidity_text); # update text all 15secs at most
 
 var lastTemperaturePrinted = -100; # to prevent spam with outside-spec loop; but always print the first time
 var print_cabintemp_text = func {
     # Log changed temperature feelings
     if (getprop("/sim/model/c182s/enable-fog-frost")) {
-        var temp = getprop("/fdm/jsbsim/heat/cabin-air-temp-degc") or 0;
+        var temp      = getprop("/fdm/jsbsim/heat/cabin-air-temp-degc") or 0;
         var temp_txt  = getprop("/fdm/jsbsim/heat/cabin-temperature-text");
         if (temp_txt) {
             var txt       = "Cabin temperature: " ~ temp_txt;
@@ -604,10 +613,42 @@ var cabin_temp_outsideSpecComplainLoop = maketimer(30.0, func () {
     }
 });
 
+var lastHumidityPrinted = -100; # to prevent spam with outside-spec loop; but always print the first time
+var print_cabinhumidity_text = func {
+    # Log changed temperature feelings
+    if (getprop("/sim/model/c182s/enable-fog-frost")) {
+        var hum     = getprop("/fdm/jsbsim/heat/cabin-relative-humidity") or 0;
+        var hum_txt = getprop("/fdm/jsbsim/heat/cabin-humidity-text") or 0;
+        var txt     = "Cabin humidity: " ~ hum_txt;
+        if (hum_txt) {
+            if (hum < 40) {          logger.screen.red(txt);
+            } else if (hum <= 70) {  logger.screen.white(txt);
+            } else {                 logger.screen.red(txt);
+            }
+            
+            lastHumidityPrinted = getprop("/sim/time/elapsed-sec");
+        }
+    }
+};
+setlistener("/fdm/jsbsim/heat/cabin-humidity-text", print_cabinhumidity_text, 1, 0);
+
+var cabin_hum_outsideSpecComplainLoop = maketimer(30.0, func () {
+    # Log repeatedly when temperature is way outside the comfort zone and needs attention
+    if (getprop("/sim/model/c182s/enable-fog-frost")) {
+        var hum = getprop("/fdm/jsbsim/heat/cabin-relative-humidity") or 0;
+        if (hum >70) {
+            if (getprop("/sim/time/elapsed-sec") >= lastHumidityPrinted + 5) {  #to avoid spam conflict with normal loop
+                print_cabinhumidity_text();
+            }
+        }
+    }
+});
+
 # Init cabin_temp core loops 10s after sim start
 settimer(func(){
     cabin_temp_updateloop.start();
     cabin_temp_outsideSpecComplainLoop.start();
+    cabin_hum_outsideSpecComplainLoop.start();
 }, 2.0);
 
 setlistener("sim/current-view/internal", func (node) {
@@ -615,6 +656,9 @@ setlistener("sim/current-view/internal", func (node) {
     if (node.getValue()) {
         if (getprop("/sim/time/elapsed-sec") >= lastTemperaturePrinted + 5) {  #to avoid spam conflict with normal loop
             print_cabintemp_text();
+        }
+        if (getprop("/sim/time/elapsed-sec") >= lastHumidityPrinted + 5) {  #to avoid spam conflict with normal loop
+            print_cabinhumidity_text();
         }
     }
 }, 1, 0);

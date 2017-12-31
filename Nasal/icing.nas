@@ -31,11 +31,23 @@
 # /environment/rain-norm
 # /environment/snow-norm
 #
+##Clouds detection
+#inputs
+#/environment/metar/station-elevation-ft
+#/environment/metar/clouds/layer/elevation-ft
+#/environment/metar/clouds/layer/coverage
+#/environment/metar/clouds/layer[1]/elevation-ft
+#/environment/metar/clouds/layer[1]/coverage
+#/environment/metar/clouds/layer[2]/elevation-ft
+#/environment/metar/clouds/layer[2]/coverage
+#
 # outputs
 # /environment/icing/icing-severity        numeric value of icing severity
 # /environment/icing/icing-severity-name   textual representation of icing severity one of
 #                                          none,trace,light,moderate,severe
 # /environment/icing/icing-factor          ammound of ice accumulation per NAM
+
+
 
 #########################################################################
 # implementation of the global icemachine
@@ -207,7 +219,7 @@ var icing = func {
 
   # check if we should create some ice
   var spread = temperature - dewpointN.getValue();
-  if( spread < maxSpreadN.getValue() and visibility < 2000 ) {
+  if( spread < maxSpreadN.getValue() and visibility < 5000 ) {
     for( var i = 0; i < size(ICING_TEMPERATURE); i = i + 1 ) {
       if( ICING_TEMPERATURE[i][0] > temperature and 
           ICING_TEMPERATURE[i][1] <= temperature ) {

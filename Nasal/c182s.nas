@@ -502,11 +502,53 @@ setlistener("/sim/signals/fdm-initialized", func {
 ##########################################
 var icinggraphic = func {
     var ice= getprop("/fdm/jsbsim/ice/wing") or 0;
-    setprop("/fdm/jsbsim/ice/graphic", (ice *10));
+    setprop("/fdm/jsbsim/ice/graphic", (ice *2.55));
 
 settimer(icinggraphic, 0.1);
 }
 icinggraphic();
+
+#########################################################################
+# implementation of the clouds detection
+#########################################################################
+
+var Cloudaltitude = func {
+
+var mdewpointN     = props.globals.getValue( "/environment/metar/dewpoint-degc" ) or 0;
+var mtemperatureN  = getprop( "/environment/metar/temperature-degc");
+var statE = props.globals.getValue( "/environment/metar/station-elevation-ft" ) or 0;
+var cle0 = props.globals.getValue( "/environment/metar/clouds/layer/elevation-ft" )or 0 ;
+var cle1 = props.globals.getValue( "/environment/metar/clouds/layer[1]/elevation-ft" )or 0 ;
+var cle2 = props.globals.getValue( "/environment/metar/clouds/layer[2]/elevation-ft" )or 0 ;
+var init = getprop( "/sim/signals/fdm-initialized") or 0;
+
+cloud0 = props.globals.getNode("/environment/icing/clouds/cloud0", 1);
+cloud1 = props.globals.getNode("/environment/icing/clouds/cloud1", 1);
+cloud2 = props.globals.getNode("/environment/icing/clouds/cloud2", 1);
+
+
+
+  #if (mtemperatureN >0){
+  # setprop("/environment/icing/clouds/cloud3", mtemperatureN);
+   
+  #}else{
+   #setprop("/environment/icing/clouds/cloud3", 0);
+ # }
+
+setprop("/environment/icing/clouds/cloud0", (((mtemperatureN - mdewpointN)*30) + statE + cle0));
+setprop("/environment/icing/clouds/cloud1", (((mtemperatureN - mdewpointN)*30) + statE + cle1));
+setprop("/environment/icing/clouds/cloud2", (((mtemperatureN - mdewpointN)*30) + statE + cle2));
+
+ #cloud0.setValue(mtemperatureN);
+
+ #cloud1.setValue((((mtemperatureN - mdewpointN)*3) + statE + cle1));
+
+ #cloud2.setValue(((mtemperatureN - mdewpointN) + statE + cle2));
+
+settimer(Cloudaltitude, 0.1);
+}
+Cloudaltitude();
+
 
 
 ##########################################

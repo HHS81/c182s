@@ -539,13 +539,11 @@ var control_surface_check_rudder = func {
 ##########################################
 # REPAIR DAMAGE
 ##########################################
-var repair_damage = func {
+var repair_damage = func() {
     print("Repairing damage...");
-    reset_fuel_contamination();
     setprop("/engines/engine[0]/kill-engine", 0.0);
     setprop("/engines/engine[0]/crashed", 0.0);
     electrical.reset_battery_and_circuit_breakers();
-    setprop("/engines/engine[0]/oil-level", 8.0);
 };
 
 

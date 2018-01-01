@@ -2,68 +2,61 @@
 #
 # Aircraft states
 #
-# This script provides functions to get the aircraft in a defined state.
+# This script provides functions to get the aircraft into a defined state.
+# The idea is that the checklist-states define states of the plane after conducting the checklist.
+# Common functions are centralized in specific functions.
+# The autostart- and state-functions then provide "bundles" of those checklists and override items if needed.
 ##########################################
 
 
-
-var coldAndDark = func() {
-    setprop("/controls/flight/flaps", 0);
-    setprop("/controls/engines/engine/cowl-flaps-norm", 1);
-    setprop("/controls/gear/brake-parking", 1);
-    setprop("/controls/engines/engine[0]/throttle", 0.0);
-    setprop("/controls/lighting/nav-lights", 0);
-    setprop("/controls/lighting/strobe", 0);
-    setprop("/controls/lighting/beacon", 0);
+####################
+# Common helpers   #
+####################
+var setAvionics = func(state) {
     setprop("/controls/switches/AVMBus1", 0);  
-    setprop("/controls/switches/AVMBus2", 0);  
-    setprop("/controls/engines/engine[0]/mixture-lever", 0.0);
-    setprop("/controls/switches/starter", 0);
-    setprop("/controls/engines/engine[0]/magnetos", 0);
-    setprop("/controls/engines/engine[0]/master-bat", 0);
-    setprop("/controls/engines/engine[0]/master-alt", 0);
-    setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
-    setprop("/controls/switches/fuel_tank_selector", 1);
-    
-    setprop("/controls/flight/elevator-trim", 0);
-    setprop("/controls/flight/rudder-trim", 0);
-    
-    # lights
-    setprop("/controls/lighting/dome-light-r", 0);
-    setprop("/controls/lighting/dome-light-l", 0);
-    setprop("/controls/lighting/dome-exterior-light", 0);
-    setprop("/controls/lighting/instrument-lights-norm", 0);
-    setprop("/controls/lighting/glareshield-lights-norm", 0);
-    setprop("/controls/lighting/pedestal-lights-norm", 0);
-    setprop("/controls/lighting/radio-lights-norm", 0);
-    
-    # avionics
-    setprop("/instrumentation/audio-panel/power-btn", 0);
-    setprop("/instrumentation/audio-panel/volume-ics-pilot", 0);
-    setprop("/controls/switches/kt-76c", 0);
-    setprop("/controls/switches/kn-62a", 0);
-    setprop("/instrumentation/nav[0]/power-btn", 0);
-    setprop("/instrumentation/nav[1]/power-btn", 0);
-    setprop("/instrumentation/comm[0]/power-btn", 0);
-    setprop("/instrumentation/comm[1]/power-btn", 0);
-    setprop("/instrumentation/comm[0]/volume-selected", 0);
-    setprop("/instrumentation/comm[1]/volume-selected", 0);
-    setprop("/controls/switches/kn-62a-mode", 0);
-    setprop("/instrumentation/adf[0]/power-btn", 0);
-    
-    setprop("/sim/start-state-internal/oil-temp-override", 0);
-};
+    setprop("/controls/switches/AVMBus2", 0);
+    setprop("/instrumentation/audio-panel/power-btn", state);
+    setprop("/instrumentation/audio-panel/volume-ics-pilot", state);
+    setprop("/controls/switches/kt-76c", state);
+    setprop("/controls/switches/kn-62a", state);
+    setprop("/instrumentation/nav[0]/power-btn", state);
+    setprop("/instrumentation/nav[1]/power-btn", state);
+    setprop("/instrumentation/comm[0]/power-btn", state);
+    setprop("/instrumentation/comm[1]/power-btn", state);
+    setprop("/instrumentation/comm[0]/volume-selected", state);
+    setprop("/instrumentation/comm[1]/volume-selected", state);
+    setprop("/controls/switches/kn-62a-mode", state);
+    setprop("/instrumentation/adf[0]/power-btn", state);
+}
 
-var engineRunning = func(rpm, throttle, mix, prop) {
+var secureAircraftOnGround = func(state) {
+    # Secure on ground, but wait for after init time to avoid "the weird aircraft dance"
+    var t = getprop("/sim/time/elapsed-sec") or 0;
+    if (t <= 0.30) {
+        # recall sometime later in case sim just started
+        settimer(func(){ secureAircraftOnGround(state);}, 0.30);
+        return;
+    }
+    
+    setprop("/sim/chocks001/enable", state);
+    setprop("/sim/chocks002/enable", state);
+    setprop("/sim/chocks003/enable", state);
+    setprop("/sim/model/c182s/securing/pitot-cover-visible", state);
+    setprop("/sim/model/c182s/securing/tiedownL-visible", state);
+    setprop("/sim/model/c182s/securing/tiedownR-visible", state);
+    setprop("/sim/model/c182s/securing/tiedownT-visible", state);
+}
+
+var setEngineRunning = func(rpm, throttle, mix, prop) {
     repair_damage();
+    reset_fuel_contamination();
+    
     setprop("/controls/flight/flaps", 0);
     setprop("/controls/engines/engine/cowl-flaps-norm", 1);
     setprop("/controls/gear/brake-parking", 1);
     setprop("/controls/lighting/nav-lights", 1);
     setprop("/controls/lighting/strobe", 1);
     setprop("/controls/lighting/beacon", 1);
-    setprop("/controls/switches/AVMBus1", 1);  
-    setprop("/controls/switches/AVMBus2", 1);
     setprop("/controls/switches/starter", 0);
     setprop("/controls/engines/engine[0]/magnetos", 3);
     setprop("/controls/engines/engine[0]/master-bat", 1);
@@ -71,6 +64,7 @@ var engineRunning = func(rpm, throttle, mix, prop) {
     setprop("/sim/model/c182s/cockpit/control-lock-placed", 0);
     setprop("/controls/switches/fuel_tank_selector", 2);
     setprop("/engines/engine/external-heat/enabled", 0);
+    setAvionics(0); # OFF for start
     
     #let engine run
     setprop("/sim/start-state-internal/oil-temp-override", 1); # override disables coughing due to low oil temp
@@ -95,20 +89,104 @@ var engineRunning = func(rpm, throttle, mix, prop) {
     setprop("/controls/flight/rudder-trim", 0);
     
     # Avionics ON
-    setprop("/instrumentation/audio-panel/power-btn", 1);
-    setprop("/instrumentation/audio-panel/volume-ics-pilot", 1);
-    setprop("/controls/switches/kt-76c", 1);
-    setprop("/controls/switches/kn-62a", 1);
+    setAvionics(1);
 
-    setprop("/instrumentation/nav[0]/power-btn", 1);
-    setprop("/instrumentation/nav[1]/power-btn", 1);
-    setprop("/instrumentation/comm[0]/power-btn", 1);
-    setprop("/instrumentation/comm[1]/power-btn", 1);
-    setprop("/instrumentation/comm[0]/volume-selected", 1);
-    setprop("/instrumentation/comm[1]/volume-selected", 1);
-    setprop("/controls/switches/kn-62a-mode", 1);
-    setprop("/instrumentation/adf[0]/power-btn", 1);
 };
+
+
+
+####################
+# Checklist states #
+####################
+var checklist_afterLanding = func() {
+    setprop("/controls/flight/flaps", 0);
+    setprop("/controls/engines/engine/cowl-flaps-norm", 1);
+}
+
+var checklist_secureAircraft = func() {
+    setprop("/controls/gear/brake-parking", 1);
+    setprop("/controls/engines/engine[0]/throttle", 0.0);
+    setprop("/controls/lighting/nav-lights", 0);
+    setprop("/controls/lighting/strobe", 0);
+    setprop("/controls/lighting/beacon", 0);
+    setAvionics(0);
+    setprop("/controls/engines/engine[0]/mixture-lever", 0.0);
+    setprop("/controls/switches/starter", 0);
+    setprop("/controls/engines/engine[0]/magnetos", 0);
+    setprop("/controls/engines/engine[0]/master-bat", 0);
+    setprop("/controls/engines/engine[0]/master-alt", 0);
+    setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
+    setprop("/controls/switches/fuel_tank_selector", 1);
+}
+        
+var checklist_preflight = func() {
+    reset_fuel_contamination();
+    
+    # Checking for minimal oil level
+    var oil_level = getprop("/engines/engine/oil-level");
+    if (oil_level < 6) {
+        setprop("/engines/engine/oil-level", 8.0);
+    }
+
+    # Checking for minimal fuel level
+    var fuel_level_left  = getprop("/consumables/fuel/tank[0]/level-norm");
+    var fuel_level_right = getprop("/consumables/fuel/tank[1]/level-norm");
+    if (fuel_level_left < 0.25)
+        setprop("/consumables/fuel/tank[0]/level-norm", 0.25);
+    if (fuel_level_right < 0.25)
+        setprop("/consumables/fuel/tank[1]/level-norm", 0.25);
+    
+    setprop("/sim/model/c182s/cockpit/control-lock-placed", 0);
+    setprop("/controls/gear/brake-parking", 1);
+    secureAircraftOnGround(0);
+}
+
+
+
+
+####################
+# State settings   #
+####################
+
+var state_coldAndDark = func() {
+    repair_damage();
+    checklist_afterLanding();
+    checklist_secureAircraft();
+    secureAircraftOnGround(1);
+    
+    setprop("/controls/flight/elevator-trim", 0);
+    setprop("/controls/flight/rudder-trim", 0);
+    
+    # lights off
+    setprop("/controls/lighting/dome-light-r", 0);
+    setprop("/controls/lighting/dome-light-l", 0);
+    setprop("/controls/lighting/dome-exterior-light", 0);
+    setprop("/controls/lighting/instrument-lights-norm", 0);
+    setprop("/controls/lighting/glareshield-lights-norm", 0);
+    setprop("/controls/lighting/pedestal-lights-norm", 0);
+    setprop("/controls/lighting/radio-lights-norm", 0);
+    
+    setprop("/sim/start-state-internal/oil-temp-override", 0);
+};
+
+var state_readyForTakeoff = func() {
+    repair_damage();
+    reset_fuel_contamination();
+    secureAircraftOnGround(0);
+    setEngineRunning(1000, 0.1, 1, 1);
+};
+
+var state_cruising = func() {
+    repair_damage();
+    reset_fuel_contamination();
+    secureAircraftOnGround(0);
+    setEngineRunning(2000, 1, 0.9, 0.80);  # TODO: Mix should be calculated by altitude
+    setprop("/controls/gear/brake-parking", 0);
+    setprop("/controls/engines/engine/cowl-flaps-norm", 0);
+}
+
+
+
 
 
 ##########################################
@@ -123,26 +201,24 @@ var applyAircraftState = func() {
     
     if (stateAuto == 1) {
         # get from presets
-        var prs_onground = getprop("/sim/presets/onground") or 0;
-        var prs_parkpos  = getprop("/sim/presets/parkpos") or 0;
-        var prs_rwy      = getprop("/sim/presets/runway") or 0;
+        var prs_onground = getprop("/sim/presets/onground") or "";
+        var prs_parkpos  = getprop("/sim/presets/parkpos") or "";
+        var prs_rwy      = getprop("/sim/presets/runway") or "";
         
         if (prs_onground) {
             # either parking or runway/taxi/elsewhere
-            if (prs_parkpos) {
+            if (prs_parkpos != "") {
+                # currently has a bug with parkpos name "0" because this gets initialized to "" by fgfs
                 print("Apply state: Automatic (parking->ColdAndDark)");
-                coldAndDark();
-                # todo: also secure aircraft? probably only on user request!
+                state_coldAndDark();
             } else {
                 print("Apply state: Automatic (not-parking->ReadyForTakeoff)");
-                engineRunning(1000, 0.1, 1, 1);
+                state_readyForTakeoff();
             }
         } else {
             # somewhere in the air
             print("Apply state: Automatic (in-air->cruise)");
-            engineRunning(2000, 1, 0.9, 0.80);  # TODO: Mix should be calculated by altitude
-            setprop("/controls/gear/brake-parking", 0);
-            setprop("/controls/engines/engine/cowl-flaps-norm", 0);
+            state_cruising();
         }
     }
     if (stateSaved == 1) {
@@ -151,17 +227,15 @@ var applyAircraftState = func() {
     }
     if (stateCnD == 1) {
         print("Apply state: Cold-and-Dark");
-        coldAndDark();
+        state_coldAndDark();
     }
     if (stateRfT == 1) {
         print("Apply state: Ready-for-Takeoff");
-        engineRunning(1000, 0.1, 1, 1);
+        state_readyForTakeoff();
     }
     if (stateCruise == 1) {
         print("Apply state: cruise");
-        engineRunning(2000, 1, 0.9, 0.80);  # TODO: Mix should be calculated by altitude
-        setprop("/controls/gear/brake-parking", 0);
-        setprop("/controls/engines/engine/cowl-flaps-norm", 0);
+        state_cruising();
     }
 };
 
@@ -182,41 +256,27 @@ var autostart = func (msg=1, delay=1, setStates=0) {
             gui.popupTip("Autoshutdown engine engaged.", 5);
                 
         #After landing
-        setprop("/controls/flight/flaps", 0);
-        setprop("/controls/engines/engine/cowl-flaps-norm", 1);
-
-        #Securing Aircraft
-        setprop("/controls/gear/brake-parking", 1);
+        checklist_afterLanding();
+        
+        # Shutdown engine
         setprop("/controls/engines/engine[0]/throttle", 0.0);
-        setprop("/controls/lighting/nav-lights", 0);
-        setprop("/controls/lighting/strobe", 0);
-        setprop("/controls/lighting/beacon", 0);
-        setprop("/controls/switches/AVMBus1", 0);  
-        setprop("/controls/switches/AVMBus2", 0);  
         setprop("/controls/engines/engine[0]/mixture-lever", 0.0);
         setprop("/controls/switches/starter", 0);
-        setprop("/controls/engines/engine[0]/magnetos", 0);
-        setprop("/controls/engines/engine[0]/master-bat", 0);
-        setprop("/controls/engines/engine[0]/master-alt", 0);
-        setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
-        setprop("/controls/switches/fuel_tank_selector", 1);
+
+        #Securing Aircraft
+        checklist_secureAircraft();
         
         #securing Aircraft on ground
-        setprop("/sim/chocks001/enable", 1);
-        setprop("/sim/chocks002/enable", 1);
-        setprop("/sim/chocks003/enable", 1);
-        setprop("/sim/model/c182s/securing/pitot-cover-visible", 1);
-        setprop("/sim/model/c182s/securing/tiedownL-visible", 1);
-        setprop("/sim/model/c182s/securing/tiedownR-visible", 1);
-        setprop("/sim/model/c182s/securing/tiedownT-visible", 1);
+        secureAircraftOnGround(1);
         
         print("Autoshutdown engine complete.");
         return;
     }
     
     # Repair Aircraft
-    # This repairs any damage, reloads battery, removes water contamination, resets oil, etc
+    # This repairs any damage, reloads battery, removes water contamination, etc
     repair_damage();
+    reset_fuel_contamination();
     
 
     # Filling fuel tanks
@@ -235,8 +295,7 @@ var autostart = func (msg=1, delay=1, setStates=0) {
     setprop("/controls/flight/rudder-trim", 0.0);
     setprop("/controls/engines/engine[0]/master-bat", 1);
     setprop("/controls/engines/engine[0]/master-alt", 1);
-    setprop("/controls/switches/AVMBus1", 0);  # off for start
-    setprop("/controls/switches/AVMBus2", 0);  # off for start
+    setAvionics(0);
 
     # Setting lights
     setprop("/controls/lighting/nav-lights", 1);
@@ -255,26 +314,7 @@ var autostart = func (msg=1, delay=1, setStates=0) {
     setprop("/instrumentation/heading-indicator/offset-deg", -magnetic_variation);
 
     # Pre-flight inspection
-    setprop("/sim/model/c182s/cockpit/control-lock-placed", 0);
-    setprop("/controls/gear/brake-parking", 1);
-    setprop("/sim/chocks001/enable", 0);
-    setprop("/sim/chocks002/enable", 0);
-    setprop("/sim/chocks003/enable", 0);
-    setprop("/sim/model/c182s/securing/pitot-cover-visible", 0);
-    setprop("/sim/model/c182s/securing/tiedownL-visible", 0);
-    setprop("/sim/model/c182s/securing/tiedownR-visible", 0);
-    setprop("/sim/model/c182s/securing/tiedownT-visible", 0);
-    setprop("/engines/engine/external-heat/enabled", 0);
-
-
-    # Checking for minimal fuel level
-    var fuel_level_left  = getprop("/consumables/fuel/tank[0]/level-norm");
-    var fuel_level_right = getprop("/consumables/fuel/tank[1]/level-norm");
-
-    if (fuel_level_left < 0.25)
-        setprop("/consumables/fuel/tank[0]/level-norm", 0.25);
-    if (fuel_level_right < 0.25)
-        setprop("/consumables/fuel/tank[1]/level-norm", 0.25);
+    checklist_preflight();
 
     
     # Ensure disabled complex-engine-procedures
@@ -310,8 +350,6 @@ var autostart = func (msg=1, delay=1, setStates=0) {
             setprop("/controls/switches/AVMBus2", 1);
         }
 
-	
-        
         
         print("Autostart engine complete.");
         

@@ -51,171 +51,101 @@
         <radio>
             <halign>left</halign>
             <label>Automatic</label>
-            <property>/sim/start-state_auto</property>
+            <property>/sim/start-state-internal/gui-radio-auto</property>
             <live>true</live>
             <binding>
                 <command>dialog-apply</command>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/sim/start-state_saved</property>
-                <value>0</value>
+                <property>/sim/start-state</property>
+                <value>auto</value>
             </binding>
             <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_CnD</property>
-                <value>0</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_RfT</property>
-                <value>0</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_Crs</property>
-                <value>0</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_auto</property>
-                <value>1</value>
+                <command>nasal</command>
+                <script>
+                    c182s.updateStateSettingGUI();
+                </script>
             </binding>
         </radio>
         <radio>
             <halign>left</halign>
             <label>Saved state</label>
-            <property>/sim/start-state_saved</property>
+            <property>/sim/start-state-internal/gui-radio-saved</property>
             <live>true</live>
             <binding>
                 <command>dialog-apply</command>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/sim/start-state_saved</property>
-                <value>1</value>
+                <property>/sim/start-state</property>
+                <value>saved</value>
             </binding>
             <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_CnD</property>
-                <value>0</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_RfT</property>
-                <value>0</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_Crs</property>
-                <value>0</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_auto</property>
-                <value>0</value>
+                <command>nasal</command>
+                <script>
+                    c182s.updateStateSettingGUI();
+                </script>
             </binding>
         </radio>
         <radio>
             <halign>left</halign>
             <label>Cold and Dark</label>
-            <property>/sim/start-state_CnD</property>
+            <property>/sim/start-state-internal/gui-radio-cold-and-dark</property>
             <live>true</live>
             <binding>
                 <command>dialog-apply</command>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/sim/start-state_saved</property>
-                <value>0</value>
+                <property>/sim/start-state</property>
+                <value>cold-and-dark</value>
             </binding>
             <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_CnD</property>
-                <value>1</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_RfT</property>
-                <value>0</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_Crs</property>
-                <value>0</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_auto</property>
-                <value>0</value>
+                <command>nasal</command>
+                <script>
+                    c182s.updateStateSettingGUI();
+                </script>
             </binding>
         </radio>
         <radio>
             <halign>left</halign>
             <label>Ready for Takeoff</label>
-            <property>/sim/start-state_RfT</property>
+            <property>/sim/start-state-internal/gui-radio-ready-for-takeoff</property>
             <live>true</live>
             <binding>
                 <command>dialog-apply</command>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/sim/start-state_saved</property>
-                <value>0</value>
+                <property>/sim/start-state</property>
+                <value>ready-for-takeoff</value>
             </binding>
             <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_CnD</property>
-                <value>0</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_RfT</property>
-                <value>1</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_Crs</property>
-                <value>0</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_auto</property>
-                <value>0</value>
+                <command>nasal</command>
+                <script>
+                    c182s.updateStateSettingGUI();
+                </script>
             </binding>
         </radio>
         <radio>
             <halign>left</halign>
             <label>Cruising</label>
-            <property>/sim/start-state_Crs</property>
+            <property>/sim/start-state-internal/gui-radio-cruising</property>
             <live>true</live>
             <binding>
                 <command>dialog-apply</command>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/sim/start-state_saved</property>
-                <value>0</value>
+                <property>/sim/start-state</property>
+                <value>cruising</value>
             </binding>
             <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_CnD</property>
-                <value>0</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_RfT</property>
-                <value>0</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_Crs</property>
-                <value>1</value>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state_auto</property>
-                <value>0</value>
+                <command>nasal</command>
+                <script>
+                    c182s.updateStateSettingGUI();
+                </script>
             </binding>
         </radio>
         
@@ -230,7 +160,7 @@
                         <property>/sim/freeze/replay-state</property>
                     </not>
                     <not>
-                        <property>/sim/start-state_saved</property>
+                        <property>/sim/start-state-internal/gui-radio-saved</property>
                     </not>
                 </and>
             </enable>

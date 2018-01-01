@@ -6,7 +6,16 @@
 # The idea is that the checklist-states define states of the plane after conducting the checklist.
 # Common functions are centralized in specific functions.
 # The autostart- and state-functions then provide "bundles" of those checklists and override items if needed.
+#
+# The initial state can be overwritten by command line by adding for example: "--prop:/sim/start-state=cruising"
+#
+# Author: B. Hallinger 2017/2018
 ##########################################
+
+
+# The supported states in state property
+var supported_states = ["auto", "saved", "cold-and-dark", "ready-for-takeoff", "cruising"];
+var state_property   = "/sim/start-state";
 
 
 ####################
@@ -193,13 +202,9 @@ var state_cruising = func() {
 # Apply selected state
 ##########################################
 var applyAircraftState = func() {
-    var stateAuto   = getprop("/sim/start-state_auto") or 0;
-    var stateSaved  = getprop("/sim/start-state_saved") or 0;
-    var stateCnD    = getprop("/sim/start-state_CnD") or 0;
-    var stateRfT    = getprop("/sim/start-state_RfT") or 0;
-    var stateCruise = getprop("/sim/start-state_Crs") or 0;
+    var selected_state = getprop(state_property);
     
-    if (stateAuto == 1) {
+    if (selected_state == "auto") {
         # get from presets
         var prs_onground = getprop("/sim/presets/onground") or "";
         var prs_parkpos  = getprop("/sim/presets/parkpos") or "";
@@ -221,19 +226,19 @@ var applyAircraftState = func() {
             state_cruising();
         }
     }
-    if (stateSaved == 1) {
-        # do nothing, flightgear already has initialized
+    if (selected_state == "saved") {
+        # do nothing, flightgear already has initialized everything
         print("Apply state: saved");
     }
-    if (stateCnD == 1) {
+    if (selected_state == "cold-and-dark") {
         print("Apply state: Cold-and-Dark");
         state_coldAndDark();
     }
-    if (stateRfT == 1) {
+    if (selected_state == "ready-for-takeoff") {
         print("Apply state: Ready-for-Takeoff");
         state_readyForTakeoff();
     }
-    if (stateCruise == 1) {
+    if (selected_state == "cruising") {
         print("Apply state: cruise");
         state_cruising();
     }
@@ -359,12 +364,37 @@ var autostart = func (msg=1, delay=1, setStates=0) {
 };
 
 
+# Updates GUI radio buttons and ensure valid selection
+var updateStateSettingGUI = func() {
+    var default_state    = "auto";
+
+    var state_valid    = 0;
+    var state_selected = getprop(state_property) or "";
+    foreach(s; supported_states) {
+        var radio_propname = "/sim/start-state-internal/gui-radio-" ~ s;
+        if (s == state_selected) {
+            setprop(radio_propname, 1);
+            state_valid = 1;
+        } else {
+            setprop(radio_propname, 0);
+        }
+    };
+    
+    if (!state_valid) {
+        # requested state did not map to a valid selection
+        print("INFO: wrong state '" ~ state_selected ~ "' requested, using '" ~ default_state ~ "'");
+        setprop("/sim/start-state-internal/gui-radio-" ~ default_state, 1);
+        setprop(state_property, default_state);
+    }
+}
+
 
 
 ####################
 # INIT STATE
 ####################
+updateStateSettingGUI();
 setlistener("/sim/signals/fdm-initialized", func {
-    if (getprop("/sim/start-state_RfT") == nil) setprop("/sim/start-state_RfT", 1);  #init default
+    if (getprop(state_property) == nil) setprop(state_property, "ready-for-takeoff");  #init default
     settimer(applyAircraftState, 0.5); # runs myFunc after 2 seconds
 });

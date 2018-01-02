@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<PropertyList>
+
+  <name type="string" n="4">approach</name>
+
+  <description>
+    The plane will be in "approach" state with engines running.
+    Initial Airspeed is set to 80 knots.
+    You should also set an --altitude=... setting to start in-air
+    and an offset position to a runway to practice approaches or use the launcher to set this up.
+
+    Start this state with --state=approach.
+  </description>
+
+  <overlay>
+    <environment>
+      <overlay type="bool">true</overlay>
+    </environment>
+
+    <sim>
+        <!-- actual init is done via nasal "c182s-states.nas";
+             this value indicates the preset to it. -->
+        <init-state type="string">cruising</init-state>
+        
+      <presets>
+        <airspeed-kt type="double">80</airspeed-kt>
+      </presets>
+    </sim>
+
+  </overlay>
+</PropertyList>

@@ -164,7 +164,7 @@
 </securing>
 
 <procedural-lights type="bool">true</procedural-lights>
-<enable-fog-frost type="bool">true</enable-fog-frost>
+<enable-fog-frost type="bool">false</enable-fog-frost>
 <nw_fairing type="bool">true</nw_fairing>
 <mw_fairing type="bool">true</mw_fairing>
 <chrome_spinner type="bool">true</chrome_spinner>

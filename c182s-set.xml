@@ -138,7 +138,7 @@
         <iceable>
           <name>Pitot tube</name>
           <sensitivity type="double">1</sensitivity>
-          <salvage-control>/controls/anti-ice/pitot-heat</salvage-control>
+          <salvage-control>/systems/pitot/salvage</salvage-control>
           <output-property>/systems/pitot/icing</output-property>
         </iceable>
       </icing>

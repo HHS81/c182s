@@ -103,6 +103,16 @@
                 <z> 0 </z>
             </location>
         </pointmass>
+	
+      <pointmass name="Ice">
+           <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+            <x>37.37 </x>
+            <y> 0 </y>
+            <z>32.94 </z>
+            </location>
+        </pointmass>
+	
     </mass_balance>
 
     <ground_reactions>
@@ -733,11 +743,10 @@
              </kinematic>
 </channel>
 
-
-
     </flight_control>	
 
 <aerodynamics>
+        <property value="0.0">ice/wing</property>
         <alphalimits unit="RAD">
             <min>-0.087</min>
             <max>0.28</max>
@@ -747,7 +756,8 @@
             <min>0.09</min>
             <max>0.297</max>
         </hysteresis_limits>
-
+	
+    
         <function name="aero/function/kCDge">
             <description>Change_in_drag_due_to_ground_effect</description>
             <product>
@@ -907,6 +917,24 @@
                 </product>
             </function>
         </axis>
+	
+<!--taken from SenecaII by Torsten Dreyer-->
+           <function name="aero/coefficient/CLicew">
+                <description>Lift_decrease_due_to_ice_on_wing</description>
+                <product>
+                    <property>aero/qbar-area</property>
+                    <table>
+                        <independentVar>ice/wing</independentVar>
+                        <tableData>
+                            0.0      0
+                            0.5      -0.3
+                            1.0      -0.6
+                            2.0      -1.2
+                        </tableData>
+                    </table>
+                </product>
+            </function>
+
 
         <axis name="DRAG">
             <function name="aero/coefficient/CDo">
@@ -1006,6 +1034,23 @@
                     <property>aero/function/kCLge</property>
                         <property>propulsion/engine[0]/cowl-flaps-norm</property>
                     <value>0.0077</value>
+                </product>
+            </function>
+
+<!--taken from SenecaII by Torsten Dreyer-->
+            <function name="aero/coefficient/CDicew">
+                <description>Drag_due_to_ice_on_wing</description>
+                <product>
+                    <property>aero/qbar-area</property>
+                    <table>
+                        <independentVar>ice/wing</independentVar>
+                        <tableData>
+                            0.0      0
+                            0.5      0.06
+                            1.0      0.12
+                            2.0      0.3
+                        </tableData>
+                    </table>
                 </product>
             </function>
 

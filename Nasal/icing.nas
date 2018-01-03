@@ -31,15 +31,9 @@
 # /environment/rain-norm
 # /environment/snow-norm
 #
-##Clouds detection
+##Clouds detection see c182s.nas
 #inputs
-#/environment/metar/station-elevation-ft
-#/environment/metar/clouds/layer/elevation-ft
-#/environment/metar/clouds/layer/coverage
-#/environment/metar/clouds/layer[1]/elevation-ft
-#/environment/metar/clouds/layer[1]/coverage
-#/environment/metar/clouds/layer[2]/elevation-ft
-#/environment/metar/clouds/layer[2]/coverage
+#/environment/icing/InCloudIcing
 #
 # outputs
 # /environment/icing/icing-severity        numeric value of icing severity
@@ -99,6 +93,17 @@ var icingRootN    = props.globals.getNode( "/environment/icing", 1 );
 var visibilityN   = props.globals.getNode( "/environment/effective-visibility-m" );
 var rain =  props.globals.getNode( "/environment/rain-norm" );
 var snow = props.globals.getNode( "/environment/snow-norm" );
+#var visibility_factor = 0;
+#var InCloudIcing = props.globals.getNode( "/environment/icing/InCloudIcing" );
+
+#var ici = func{
+
+#if (InCloudIcing ==1){
+#visibility_factor.setValue(0.01)
+#}else{
+#visibility_factor.setValue(1)
+#}
+#}
 
 var severityN     = icingRootN.initNode( "icing-severity", ICING_NONE, "INT" );
 var severityNameN = icingRootN.initNode( "icing-severity-name", ICING_CATEGORY[severityN.getValue()] );
@@ -199,6 +204,85 @@ if( icingConfigN != nil ) {
   }
 };
 
+#########################################################################
+# implementation of the clouds altitude detection
+#########################################################################
+
+var Cloudaltitude = func {
+
+var mdewpointN     = props.globals.getValue( "/environment/metar/dewpoint-degc" ) or 0;
+var mtemperatureN  = getprop( "/environment/metar/temperature-degc");
+var statE = props.globals.getValue( "/environment/metar/station-elevation-ft" ) or 0;
+var cle0 = props.globals.getValue( "/environment/metar/clouds/layer[0]/elevation-ft" )or 0 ;
+var cle1 = props.globals.getValue( "/environment/metar/clouds/layer[1]/elevation-ft" )or 0 ;
+var cle2 = props.globals.getValue( "/environment/metar/clouds/layer[2]/elevation-ft" )or 0 ;
+var cle3 = props.globals.getValue( "/environment/metar/clouds/layer[3]/elevation-ft" )or 0 ;
+var cle4 = props.globals.getValue( "/environment/metar/clouds/layer[4]/elevation-ft" )or 0 ;
+
+altoffset = getprop("/local-weather/tmp/tile-alt-offset-ft") or 0;
+#altoffset = 0;
+
+cloud0 = props.globals.getNode("/environment/icing/clouds/cloud0", 1);
+cloud1 = props.globals.getNode("/environment/icing/clouds/cloud1", 1);
+cloud2 = props.globals.getNode("/environment/icing/clouds/cloud2", 1);
+cloud3 = props.globals.getNode("/environment/icing/clouds/cloud3", 1);
+cloud4 = props.globals.getNode("/environment/icing/clouds/cloud4", 1);
+
+
+setprop("/environment/icing/clouds/cloud0", (((mtemperatureN - mdewpointN)*30) + statE + cle0 + altoffset));
+setprop("/environment/icing/clouds/cloud1", (((mtemperatureN - mdewpointN)*30) + statE + cle1 + altoffset));
+setprop("/environment/icing/clouds/cloud2", (((mtemperatureN - mdewpointN)*30) + statE + cle2 + altoffset));
+setprop("/environment/icing/clouds/cloud3", (((mtemperatureN - mdewpointN)*30) + statE + cle3 + altoffset));
+setprop("/environment/icing/clouds/cloud4", (((mtemperatureN - mdewpointN)*30) + statE + cle4 + altoffset));
+
+ 
+settimer(Cloudaltitude, 0.0);
+}
+Cloudaltitude();
+
+
+###################
+#
+###################
+
+var d = func {
+cloud0 = getprop("/environment/icing/clouds/cloud0") or 0;
+cloud1 =  getprop("/environment/icing/clouds/cloud1") or 0;
+cloud2 =  getprop("/environment/icing/clouds/cloud2") or 0;
+cloud3 =  getprop("/environment/icing/clouds/cloud3") or 0;
+cloud4 =  getprop("/environment/icing/clouds/cloud4")or 0;
+
+coverage0 = getprop("/environment/metar/clouds/layer/coverage") or 0;
+coverage1 = getprop("/environment/metar/clouds/layer[1]/coverage") or 0;
+coverage2 = getprop("/environment/metar/clouds/layer[2]/coverage") or 0;
+coverage3 = getprop("/environment/metar/clouds/layer[3]/coverage") or 0;
+coverage4 = getprop("/environment/metar/clouds/layer[4]/coverage") or 0;
+
+var position = getprop("/position/altitude-ft") or 0;
+
+
+if (((coverage0 == "overcast") and (position > cloud0) and (position < (cloud0 + 2250)) or ((coverage0 == "broken") and (position > cloud0) and (position < (cloud0 + 1500)))  or ((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500))))
+or
+((coverage1 == "overcast") and (position > cloud1) and (position < (cloud1 + 2250)) or ((coverage0 == "broken") and (position > cloud1) and (position < (cloud1 + 1500))) or ((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500))))
+or
+((coverage2 == "overcast") and (position > cloud2) and (position < (cloud2 + 2250)) or ((coverage2 == "broken") and (position > cloud2) and (position < (cloud2 + 1500))) or ((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500))))
+or
+((coverage3 == "overcast") and (position > cloud30) and (position < (cloud3 + 2250)) or ((coverage3 == "broken") and (position > cloud3) and (position < (cloud3 + 1500))) or ((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500))))
+or
+((coverage4 == "overcast") and (position > cloud4) and (position < (cloud4 + 2250)) or ((coverage4 == "broken") and (position > cloud4) and (position < (cloud4 + 1500))) or((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500)))) )
+
+{
+		setprop("/environment/icing/InCloudIcing/detected", 1);
+	} else{
+		setprop("/environment/icing/InCloudIcing/detected", 0);
+}
+	
+
+	settimer(d, 0.0);
+}
+
+d();
+
 #####################################################################
 # the time triggered loop
 #####################################################################
@@ -207,6 +291,7 @@ var lastUpdate = 0.0;
 var icing = func {
 
   var temperature = temperatureN.getValue();
+  
  # var rain = rainN.getValue();
   #var snow = snowN.getValue();
   var severity = ICING_NONE;
@@ -214,7 +299,18 @@ var icing = func {
 
   var visibility = 0;
   if( visibilityN != nil ) {
-    visibility = visibilityN.getValue();
+  
+#var visibility_factor = 0;
+
+        var InCloudIcing = getprop("/environment/icing/InCloudIcing/detected" ) or 0;
+	if (InCloudIcing ==1){
+	setprop("/environment/icing/InCloudIcing/visibilityfactor", 0.01);
+	}else{
+	setprop("/environment/icing/InCloudIcing/visibilityfactor", 1);
+	}
+
+    visibilityE = visibilityN.getValue();
+    visibility = visibilityE * (getprop ("/environment/icing/InCloudIcing/visibilityfactor") or 0);
   }
 
   # check if we should create some ice

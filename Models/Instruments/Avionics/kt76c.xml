@@ -123,6 +123,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>CodeDigit4</object-name>
   <condition>
     <property>/systems/electrical/outputs/kt-76c</property>
+    <property>/controls/switches/kt-76c</property>
   </condition>
 </animation>
 

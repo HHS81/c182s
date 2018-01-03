@@ -74,11 +74,57 @@
         </binding>
     </action>
   </animation>
+  <animation>
+    <type>pick</type>
+    <object-name>OAT.swt.cs</object-name>
+    <visible>false</visible>
+    <nopreview/>
+    <condition>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
+    </condition>
+    <action>
+        <button>0</button>
+        <binding>
+            <command>property-cycle</command>
+            <property>/instrumentation/davtron803/top-mode</property>
+            <value type="string">E</value>
+            <value type="string">F</value>
+            <value type="string">C</value>
+        </binding>
+    </action>
+  </animation>
   
   <!-- Select button -->
   <animation>
     <type>pick</type>
     <object-name>Select.btn</object-name>
+    <object-name>Select.btn.cs</object-name>
+    <condition>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
+    </condition>
+    <action>
+        <button>0</button>
+        <binding>
+            <command>property-cycle</command>
+            <property>/instrumentation/davtron803/bot-mode</property>
+            <value type="string">UT</value>
+            <value type="string">LT</value>
+            <value type="string">FT</value>
+            <value type="string">ET</value>
+        </binding>
+    </action>
+  </animation>
+  <animation>
+    <type>pick</type>
+    <object-name>Select.btn.cs</object-name>
+    <visible>false</visible>
+    <nopreview/>
     <condition>
         <greater-than>
             <property>/systems/electrical/volts</property>
@@ -102,6 +148,26 @@
   <animation>
     <type>pick</type>
     <object-name>Control.btn</object-name>
+    <action>
+        <button>0</button>
+        <binding>
+            <command>nasal</command>
+            <script>davtron803.controlButtonPressed()</script>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>nasal</command>
+                <script>davtron803.controlButtonReleased()</script>
+            </binding>
+        </mod-up>
+    </action>
+  </animation>
+  
+  <animation>
+    <type>pick</type>
+    <object-name>Control.btn.cs</object-name>
+    <visible>false</visible>
+    <nopreview/>
     <action>
         <button>0</button>
         <binding>

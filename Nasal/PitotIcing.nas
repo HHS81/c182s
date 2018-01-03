@@ -3,6 +3,7 @@
 # http://www.flightgear.org/
 #
 # Copyright (C) 2009 Torsten Dreyer, Torsten (at) t3r _dot_ de
+# modified and used for C182S by Heiko H. Schulz 2018
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -60,7 +61,7 @@ PitotIcingHandler.listener = func {
 
     if( me.serviceableN.getBoolValue() == 0 ) {
       # if the inidcator failed before, re-enable it
-      print( me.baseNodeName ~ " is functional again" );
+      #print( me.baseNodeName ~ " is functional again" );
       me.serviceableN.setBoolValue( 1 );
     }
 
@@ -69,7 +70,7 @@ PitotIcingHandler.listener = func {
 
     if( me.serviceableN.getBoolValue() != 0 ) {
       # if the indicator was servicable before, fail it now
-      print( me.baseNodeName ~ " is failing" );
+      #print( me.baseNodeName ~ " is failing" );
       me.serviceableN.setBoolValue( 0 );
     }
 

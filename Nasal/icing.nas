@@ -3,6 +3,7 @@
 # http://www.flightgear.org/
 #
 # Copyright (C) 2009 Torsten Dreyer, Torsten (at) t3r _dot_ de
+# modified and used for C182S by Heiko H. Schulz 2018
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -205,7 +206,7 @@ if( icingConfigN != nil ) {
 };
 
 #########################################################################
-# implementation of the clouds altitude detection
+# implementation of the clouds altitude detection (HHS)
 #########################################################################
 
 var Cloudaltitude = func {
@@ -219,8 +220,15 @@ var cle2 = props.globals.getValue( "/environment/metar/clouds/layer[2]/elevation
 var cle3 = props.globals.getValue( "/environment/metar/clouds/layer[3]/elevation-ft" )or 0 ;
 var cle4 = props.globals.getValue( "/environment/metar/clouds/layer[4]/elevation-ft" )or 0 ;
 
-altoffset = getprop("/local-weather/tmp/tile-alt-offset-ft") or 0;
-#altoffset = 0;
+
+#cloffset = getprop("/local-weather/tmp/tile-alt-offset-ft") or 0;
+#var cloffset = 0;
+
+if (getprop("/local-weather/tmp/tile-alt-offset-ft") =="METAR") {
+cloffset = getprop("/local-weather/tmp/tile-alt-offset-ft") or 0
+}else{
+cloffset = 0;
+}
 
 cloud0 = props.globals.getNode("/environment/icing/clouds/cloud0", 1);
 cloud1 = props.globals.getNode("/environment/icing/clouds/cloud1", 1);
@@ -229,11 +237,11 @@ cloud3 = props.globals.getNode("/environment/icing/clouds/cloud3", 1);
 cloud4 = props.globals.getNode("/environment/icing/clouds/cloud4", 1);
 
 
-setprop("/environment/icing/clouds/cloud0", (((mtemperatureN - mdewpointN)*30) + statE + cle0 + altoffset));
-setprop("/environment/icing/clouds/cloud1", (((mtemperatureN - mdewpointN)*30) + statE + cle1 + altoffset));
-setprop("/environment/icing/clouds/cloud2", (((mtemperatureN - mdewpointN)*30) + statE + cle2 + altoffset));
-setprop("/environment/icing/clouds/cloud3", (((mtemperatureN - mdewpointN)*30) + statE + cle3 + altoffset));
-setprop("/environment/icing/clouds/cloud4", (((mtemperatureN - mdewpointN)*30) + statE + cle4 + altoffset));
+setprop("/environment/icing/clouds/cloud0", (((mtemperatureN - mdewpointN)*30) + statE + cle0 + cloffset));
+setprop("/environment/icing/clouds/cloud1", (((mtemperatureN - mdewpointN)*30) + statE + cle1 + cloffset));
+setprop("/environment/icing/clouds/cloud2", (((mtemperatureN - mdewpointN)*30) + statE + cle2 + cloffset));
+setprop("/environment/icing/clouds/cloud3", (((mtemperatureN - mdewpointN)*30) + statE + cle3 + cloffset));
+setprop("/environment/icing/clouds/cloud4", (((mtemperatureN - mdewpointN)*30) + statE + cle4 + cloffset));
 
  
 settimer(Cloudaltitude, 0.0);
@@ -261,15 +269,15 @@ coverage4 = getprop("/environment/metar/clouds/layer[4]/coverage") or 0;
 var position = getprop("/position/altitude-ft") or 0;
 
 
-if (((coverage0 == "overcast") and (position > cloud0) and (position < (cloud0 + 2250)) or ((coverage0 == "broken") and (position > cloud0) and (position < (cloud0 + 1500)))  or ((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500))))
+if (((coverage0 == "overcast") and (position > cloud0) and (position < (cloud0 + 2500)) or ((coverage0 == "broken") and (position > cloud0) and (position < (cloud0 + 2000)))  or ((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500))))
 or
-((coverage1 == "overcast") and (position > cloud1) and (position < (cloud1 + 2250)) or ((coverage0 == "broken") and (position > cloud1) and (position < (cloud1 + 1500))) or ((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500))))
+((coverage1 == "overcast") and (position > cloud1) and (position < (cloud1 + 2500)) or ((coverage0 == "broken") and (position > cloud1) and (position < (cloud1 + 2000))) or ((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500))))
 or
-((coverage2 == "overcast") and (position > cloud2) and (position < (cloud2 + 2250)) or ((coverage2 == "broken") and (position > cloud2) and (position < (cloud2 + 1500))) or ((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500))))
+((coverage2 == "overcast") and (position > cloud2) and (position < (cloud2 + 2500)) or ((coverage2 == "broken") and (position > cloud2) and (position < (cloud2 + 2000))) or ((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500))))
 or
-((coverage3 == "overcast") and (position > cloud30) and (position < (cloud3 + 2250)) or ((coverage3 == "broken") and (position > cloud3) and (position < (cloud3 + 1500))) or ((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500))))
+((coverage3 == "overcast") and (position > cloud30) and (position < (cloud3 + 2500)) or ((coverage3 == "broken") and (position > cloud3) and (position < (cloud3 + 2000))) or ((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500))))
 or
-((coverage4 == "overcast") and (position > cloud4) and (position < (cloud4 + 2250)) or ((coverage4 == "broken") and (position > cloud4) and (position < (cloud4 + 1500))) or((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500)))) )
+((coverage4 == "overcast") and (position > cloud4) and (position < (cloud4 + 2500)) or ((coverage4 == "broken") and (position > cloud4) and (position < (cloud4 + 2000))) or((coverage0 == "scattered") and (position > cloud0) and (position < (cloud0 + 1500)))) )
 
 {
 		setprop("/environment/icing/InCloudIcing/detected", 1);

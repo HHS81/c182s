@@ -42,6 +42,26 @@
             <blue>0.475</blue>
             <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
         </emission>
+        <specular>
+            <red>   0.6 </red>
+            <green> 0.6 </green>
+            <blue>  0.6 </blue>
+        </specular>
+        <ambient>
+            <red>   0.6 </red>
+            <green> 0.6 </green>
+            <blue>  0.6 </blue>
+        </ambient>
+        <diffuse>
+            <red>   0.6 </red>
+            <green> 0.6 </green>
+            <blue>  0.6 </blue>
+        </diffuse>
+        <shininess>
+            <red>   30 </red>
+            <green> 30 </green>
+            <blue>  30 </blue>
+        </shininess>
     </animation>
     
     <params>
@@ -190,6 +210,26 @@
             <blue>0.00005</blue>
             <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
         </emission>
+        <specular>
+            <red>   0.6 </red>
+            <green> 0.6 </green>
+            <blue>  0.6 </blue>
+        </specular>
+        <ambient>
+            <red>   0.6 </red>
+            <green> 0.6 </green>
+            <blue>  0.6 </blue>
+        </ambient>
+        <diffuse>
+            <red>   0.6 </red>
+            <green> 0.6 </green>
+            <blue>  0.6 </blue>
+        </diffuse>
+        <shininess>
+            <red>   30 </red>
+            <green> 30 </green>
+            <blue>  30 </blue>
+        </shininess>
     </animation>
     <animation>
         <type>material</type>
@@ -207,6 +247,26 @@
             <blue>0.50</blue>
             <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
         </emission>
+        <specular>
+            <red>   0.6 </red>
+            <green> 0.6 </green>
+            <blue>  0.6 </blue>
+        </specular>
+        <ambient>
+            <red>   0.6 </red>
+            <green> 0.6 </green>
+            <blue>  0.6 </blue>
+        </ambient>
+        <diffuse>
+            <red>   0.6 </red>
+            <green> 0.6 </green>
+            <blue>  0.6 </blue>
+        </diffuse>
+        <shininess>
+            <red>   30 </red>
+            <green> 30 </green>
+            <blue>  30 </blue>
+        </shininess>
     </animation>
 
     <animation>

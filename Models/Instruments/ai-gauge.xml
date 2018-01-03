@@ -17,6 +17,26 @@
    <blue>0.4</blue>
    <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
   </emission>
+   <specular>
+            <red>   0.6 </red>
+            <green> 0.6 </green>
+            <blue>  0.6 </blue>
+        </specular>
+        <ambient>
+            <red>   0.6 </red>
+            <green> 0.6 </green>
+            <blue>  0.6 </blue>
+        </ambient>
+        <diffuse>
+            <red>   0.6 </red>
+            <green> 0.6 </green>
+            <blue>  0.6 </blue>
+        </diffuse>
+        <shininess>
+            <red>   30 </red>
+            <green> 30 </green>
+            <blue>  30 </blue>
+        </shininess>
  </animation>
 
  <animation>

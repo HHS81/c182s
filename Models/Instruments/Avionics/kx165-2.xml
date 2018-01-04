@@ -3,7 +3,7 @@
 
     <!--
         Bendix/King KX155/165 COMM/NAV radio
-        Use this instrument as COMM1/NAV1 radio
+        Use this instrument as COMM2/NAV2 radio
 
         Created by Torsten Dreyer, October 2008
 
@@ -995,7 +995,7 @@
     <text>
         <name>textosg</name>
         <type type="string">literal</type>
-        <text type="string">COMM 1 / NAV 1</text>
+        <text type="string">COMM 2 / NAV 2</text>
         <draw-text type="bool">true</draw-text>
         <font>Helvetica.txf</font>
         <character-size type="double">0.014</character-size>

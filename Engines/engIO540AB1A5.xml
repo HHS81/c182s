@@ -31,15 +31,8 @@
     <minthrottle>    0.0 </minthrottle>
     <sparkfaildrop>  0.15 </sparkfaildrop>
     
-    <!-- cooling -->
-    <!-- Oil temp: level cruise: between 165degF and 200 degF, but not <100-->
-    <!--   set by cowl flaps; see c182s.xml <cooling-factor>0.75</cooling-factor>-->       
-    
-    <!-- oil pressure definitions -->
-    <!-- min=55; max=95; idle=25; start&warm-up=115 -->
-    <oil-pressure-relief-valve-psi>   70    </oil-pressure-relief-valve-psi> <!-- Stabilize at this pres when RPM>pressure-rpm-max -->
-    <oil-pressure-rpm-max>          1800    </oil-pressure-rpm-max> <!-- RPM at which oil pres stabilizes -->
-    <design-oil-temp-degK>           358    </design-oil-temp-degK> <!-- Oil pres=relief-valve-psi at this temp when RPM>pressure-rpm-max -->
-    <oil-viscosity-index>              0.20 </oil-viscosity-index>  <!-- how sensitive oil pres is to oil temp (psi/°k); 0.25 is default jsbsim value -->
-    
+    <!--<oil-pressure-relief-valve-psi>   75    </oil-pressure-relief-valve-psi> --><!-- min=55; max=95; idle=25; start&warm-up=115 -->
+    <!--<oil-pressure-rpm-max>          1940    </oil-pressure-rpm-max>--> <!-- 75% of 2575 -->
+    <!--<design-oil-temp-degK>           182    </design-oil-temp-degK>--> <!-- level cruise: between 165degF and 200 degF -->
+    <!--<oil-viscosity-index>              0.25 </oil-viscosity-index> --> <!-- TODO: .25 default jsbsim value -->
 </piston_engine>

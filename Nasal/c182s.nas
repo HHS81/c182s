@@ -2,9 +2,10 @@
 # liveries =========================================================
 aircraft.livery.init("Aircraft/c182s/Models/Liveries", "sim/model/livery/name", "sim/model/livery/index");
 
+#following ground equipement stuff placing was only possible by the help of the work by: Melchior Franz, Anders Gidenstam, Detelf Faber, onox. Thanks!
 #wheel chocks======================================================
-#to-do:
-#credits
+
+
 
 var chocks001_model = {
        index:   0,
@@ -117,8 +118,7 @@ settimer(init_common,0);
 
 
 #safety-cones======================================================
-#to-do:
-#credits
+
 
 var coneR_model = {
        index:   0,
@@ -193,8 +193,7 @@ settimer(init_common,0);
 
 
 #ground-power======================================================
-#to-do:
-#credits
+
 
 var gpu_model = {
        index:   0,
@@ -235,8 +234,8 @@ settimer(init_common,0);
 
 
 #ladder======================================================
-#to-do:
-#credits
+
+
 var ladder_model = {
        index:   0,
        add:   func {
@@ -275,8 +274,8 @@ settimer(init_common,0);
 
 
 #fueltanktrailer======================================================
-#to-do:
-#credits
+
+
 var fueltanktrailer_model = {
        index:   0,
        add:   func {
@@ -313,9 +312,10 @@ var init_common = func {
 }
 settimer(init_common,0);
 
+
 #Engine PreHeater======================================================
-#to-do:
-#credits
+
+
 var EngPreHeat_model = {
        index:   0,
        add:   func {
@@ -325,10 +325,10 @@ var EngPreHeat_model = {
                 for (; 1; i += 1)
                    if (manager.getChild("model", i, 0) == nil)
                       break;
-		var fueltanktrailer = geo.aircraft_position().set_alt(
+		var EngPreHeat = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
 				
-		geo.put_model("Aircraft/c182s/Models/Exterior/RedDragonEnginePreHeater.ac", fueltanktrailer,
+		geo.put_model("Aircraft/c182s/Models/Exterior/RedDragonEnginePreHeater.ac", EngPreHeat,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 				
 		 me.index = i;
@@ -351,7 +351,6 @@ var init_common = func {
 	});
 }
 settimer(init_common,0);
-
 	
 
 # doors ============================================================

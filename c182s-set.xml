@@ -28,6 +28,13 @@
   
   <checklists include="c182s-checklists.xml"/>
   
+  <!-- Overlays (called with "state" command line option) -->
+  <state include="states/auto-overlay.xml" n="0" />
+  <state include="states/parking-overlay.xml" n="1" />
+  <state include="states/idling-overlay.xml" n="2" />
+  <state include="states/cruising-overlay.xml" n="3" />
+  <state include="states/approach-overlay.xml" n="4" />
+  
   <systems>
     <autopilot>
         <!-- <path>Aircraft/c182s/generic-autopilot.xml</path>-->
@@ -63,11 +70,8 @@
     </electrical>
   </systems>
   
-  <start-state_saved type="bool">false</start-state_saved>
-  <start-state_auto type="bool">true</start-state_auto>
-  <start-state_CnD type="bool">false</start-state_CnD>
-  <start-state_RfT type="bool">false</start-state_RfT>
-  <start-state_Crs type="bool">false</start-state_Crs>
+  <!-- Aircraft states -->
+  <start-state type="string">auto</start-state>
   <start-state-internal>
       <oil-temp-override type="bool">false</oil-temp-override>
   </start-state-internal>
@@ -537,11 +541,7 @@
         
         <!-- Save these properties between sessions -->
         <aircraft-data>
-            <path>/sim/start-state_auto</path>
-            <path>/sim/start-state_saved</path>
-            <path>/sim/start-state_CnD</path>
-            <path>/sim/start-state_RfT</path>
-            <path>/sim/start-state_Crs</path>
+            <path>/sim/start-state</path>
             
             <path>/sim/time/hobbs/engine</path>
             <path>/engines/engine/complex-engine-procedures</path>

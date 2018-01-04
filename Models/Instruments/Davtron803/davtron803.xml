@@ -31,11 +31,31 @@
   
   <animation>
     <!-- buttons and overall instrument -->
+    <type>material</type>
     <object-name>face</object-name>
-    <object-name>lcd</object-name>
     <object-name>OAT.swt</object-name>    <!-- switch OAT mode -->
     <object-name>Select.btn</object-name> <!-- switch clock modes -->
     <object-name>Control.btn</object-name><!-- control current mode -->
+          <specular>
+            <red>   0.0 </red>
+            <green> 0.0 </green>
+            <blue>  0.0 </blue>
+        </specular>
+        <ambient>
+            <red>   1 </red>
+            <green> 1 </green>
+            <blue>  1 </blue>
+        </ambient>
+        <diffuse>
+            <red>   0.3 </red>
+            <green> 0.3 </green>
+            <blue>  0.3 </blue>
+        </diffuse>
+        <shininess>
+            <red>   0 </red>
+            <green> 0 </green>
+            <blue>  0 </blue>
+        </shininess>  
   </animation>
 
   <animation>
@@ -50,6 +70,26 @@
       <blue>  0.4 </blue>
       <factor-prop>systems/electrical/outputs/instrument-lights-norm</factor-prop>
     </emission>
+          <specular>
+            <red>   0.0 </red>
+            <green> 0.0 </green>
+            <blue>  0.0 </blue>
+        </specular>
+        <ambient>
+            <red>   1 </red>
+            <green> 1 </green>
+            <blue>  1 </blue>
+        </ambient>
+        <diffuse>
+            <red>   0.3 </red>
+            <green>0.3 </green>
+            <blue>  0.3 </blue>
+        </diffuse>
+        <shininess>
+            <red>   0 </red>
+            <green> 0 </green>
+            <blue>  0 </blue>
+        </shininess>  
   </animation>
   
   
@@ -74,11 +114,57 @@
         </binding>
     </action>
   </animation>
+  <animation>
+    <type>pick</type>
+    <object-name>OAT.swt.cs</object-name>
+    <visible>false</visible>
+    <nopreview/>
+    <condition>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
+    </condition>
+    <action>
+        <button>0</button>
+        <binding>
+            <command>property-cycle</command>
+            <property>/instrumentation/davtron803/top-mode</property>
+            <value type="string">E</value>
+            <value type="string">F</value>
+            <value type="string">C</value>
+        </binding>
+    </action>
+  </animation>
   
   <!-- Select button -->
   <animation>
     <type>pick</type>
     <object-name>Select.btn</object-name>
+    <object-name>Select.btn.cs</object-name>
+    <condition>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
+    </condition>
+    <action>
+        <button>0</button>
+        <binding>
+            <command>property-cycle</command>
+            <property>/instrumentation/davtron803/bot-mode</property>
+            <value type="string">UT</value>
+            <value type="string">LT</value>
+            <value type="string">FT</value>
+            <value type="string">ET</value>
+        </binding>
+    </action>
+  </animation>
+  <animation>
+    <type>pick</type>
+    <object-name>Select.btn.cs</object-name>
+    <visible>false</visible>
+    <nopreview/>
     <condition>
         <greater-than>
             <property>/systems/electrical/volts</property>
@@ -102,6 +188,26 @@
   <animation>
     <type>pick</type>
     <object-name>Control.btn</object-name>
+    <action>
+        <button>0</button>
+        <binding>
+            <command>nasal</command>
+            <script>davtron803.controlButtonPressed()</script>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>nasal</command>
+                <script>davtron803.controlButtonReleased()</script>
+            </binding>
+        </mod-up>
+    </action>
+  </animation>
+  
+  <animation>
+    <type>pick</type>
+    <object-name>Control.btn.cs</object-name>
+    <visible>false</visible>
+    <nopreview/>
     <action>
         <button>0</button>
         <binding>
@@ -701,9 +807,9 @@
         <blue>0.0</blue>
     </ambient>
     <diffuse>
-        <red>0.2</red>
-        <green>0.2</green>
-        <blue>0.2</blue>
+        <red>0.1</red>
+        <green>0.1</green>
+        <blue>0.1</blue>
     </diffuse>
   </animation>
   

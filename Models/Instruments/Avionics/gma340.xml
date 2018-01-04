@@ -42,11 +42,31 @@
     <object-name>gma340.Knob.Right</object-name>
 
      <emission>
-      <red>1.0</red>
-      <green>1.0</green>
-      <blue>1.0</blue>
+      <red>0.8</red>
+      <green>0.8</green>
+      <blue>0.8</blue>
       <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
     </emission>
+    <specular>
+        <red>   0.0 </red>
+        <green> 0.0 </green>
+        <blue>  0.0 </blue>
+    </specular>
+    <ambient>
+        <red>   1 </red>
+        <green> 1 </green>
+        <blue>  1 </blue>
+    </ambient>
+    <diffuse>
+        <red>   0.3 </red>
+        <green> 0.3 </green>
+        <blue>  0.3 </blue>
+    </diffuse>
+    <shininess>
+        <red>   0 </red>
+        <green> 0 </green>
+        <blue>  0 </blue>
+    </shininess>
   </animation>
 
   <animation>
@@ -67,6 +87,43 @@
       <blue>1.0</blue>
     </emission>
   </animation>
+  <animation>
+    <type>material</type>
+    <object-name>gma340.Marker.O</object-name>
+    <condition>
+      <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
+      <not><property>/instrumentation/marker-beacon/outer</property></not>
+      <not><property>/instrumentation/audio-panel/test</property></not>
+    </condition>
+    <emission>
+      <red>0.5</red>
+      <green>0.5</green>
+      <blue>0.5</blue>
+      <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
+    </emission>
+    <specular>
+        <red>   0.0 </red>
+        <green> 0.0 </green>
+        <blue>  0.0 </blue>
+    </specular>
+    <ambient>
+        <red>   1 </red>
+        <green> 1 </green>
+        <blue>  1 </blue>
+    </ambient>
+    <diffuse>
+        <red>   0.3 </red>
+        <green> 0.3 </green>
+        <blue>  0.3 </blue>
+    </diffuse>
+    <shininess>
+        <red>   0 </red>
+        <green> 0 </green>
+        <blue>  0 </blue>
+    </shininess>
+  </animation>
 
   <animation>
     <type>material</type>
@@ -86,6 +143,43 @@
       <blue>1.0</blue>
     </emission>
   </animation>
+  <animation>
+    <type>material</type>
+    <object-name>gma340.Marker.M</object-name>
+    <condition>
+      <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
+      <not><property>/instrumentation/marker-beacon/middle</property></not>
+      <not><property>/instrumentation/audio-panel/test</property></not>
+    </condition>
+    <emission>
+      <red>0.5</red>
+      <green>0.5</green>
+      <blue>0.5</blue>
+      <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
+    </emission>
+    <specular>
+        <red>   0.0 </red>
+        <green> 0.0 </green>
+        <blue>  0.0 </blue>
+    </specular>
+    <ambient>
+        <red>   1 </red>
+        <green> 1 </green>
+        <blue>  1 </blue>
+    </ambient>
+    <diffuse>
+        <red>   0.3 </red>
+        <green> 0.3 </green>
+        <blue>  0.3 </blue>
+    </diffuse>
+    <shininess>
+        <red>   0 </red>
+        <green> 0 </green>
+        <blue>  0 </blue>
+    </shininess>
+  </animation>
 
   <animation>
     <type>material</type>
@@ -104,6 +198,43 @@
       <green>1.0</green>
       <blue>1.0</blue>
     </emission>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>gma340.Marker.I</object-name>
+    <condition>
+      <property>/instrumentation/audio-panel/serviceable</property>
+      <property>/instrumentation/audio-panel/power-btn</property>
+      <property>/systems/electrical/outputs/audio-panel</property>
+      <not><property>/instrumentation/marker-beacon/inner</property></not>
+      <not><property>/instrumentation/audio-panel/test</property></not>
+    </condition>
+    <emission>
+      <red>0.5</red>
+      <green>0.5</green>
+      <blue>0.5</blue>
+      <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
+    </emission>
+    <specular>
+        <red>   0.0 </red>
+        <green> 0.0 </green>
+        <blue>  0.0 </blue>
+    </specular>
+    <ambient>
+        <red>   1 </red>
+        <green> 1 </green>
+        <blue>  1 </blue>
+    </ambient>
+    <diffuse>
+        <red>   0.3 </red>
+        <green> 0.3 </green>
+        <blue>  0.3 </blue>
+    </diffuse>
+    <shininess>
+        <red>   0 </red>
+        <green> 0 </green>
+        <blue>  0 </blue>
+    </shininess>
   </animation>
 
   <animation>

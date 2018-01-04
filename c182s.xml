@@ -421,6 +421,8 @@
     
     <system file="fuel"/> <!-- integrate advanced fuel system -->
     
+    <system file="external-heat"/> <!-- integrate external-heater -->
+    
     <system file="electrical"/> <!-- load electrical system -->
     
     <flight_control name="FCS: c182s">

@@ -23,6 +23,26 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
       <blue>0.75</blue>
       <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
     </emission>
+    <specular>
+        <red>   0.0 </red>
+        <green> 0.0 </green>
+        <blue>  0.0 </blue>
+    </specular>
+    <ambient>
+        <red>   1 </red>
+        <green> 1 </green>
+        <blue>  1 </blue>
+    </ambient>
+    <diffuse>
+        <red>   0.3 </red>
+        <green> 0.3 </green>
+        <blue>  0.3 </blue>
+    </diffuse>
+    <shininess>
+        <red>   0 </red>
+        <green> 0 </green>
+        <blue>  0 </blue>
+    </shininess>
 </animation>
 <animation>
   <type>material</type>
@@ -54,25 +74,25 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
     <blue>0.2</blue>
     <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
   </emission>
-      <specular>
-        <red>   0.6 </red>
-        <green> 0.6 </green>
-        <blue>  0.6 </blue>
+    <specular>
+        <red>   0.0 </red>
+        <green> 0.0 </green>
+        <blue>  0.0 </blue>
     </specular>
     <ambient>
-        <red>   0.6 </red>
-        <green> 0.6 </green>
-        <blue>  0.6 </blue>
+        <red>   1 </red>
+        <green> 1 </green>
+        <blue>  1 </blue>
     </ambient>
     <diffuse>
-        <red>   0.6 </red>
-        <green> 0.6 </green>
-        <blue>  0.6 </blue>
+        <red>   0.3 </red>
+        <green> 0.3 </green>
+        <blue>  0.3 </blue>
     </diffuse>
     <shininess>
-        <red>   30 </red>
-        <green> 30 </green>
-        <blue>  30 </blue>
+        <red>   0 </red>
+        <green> 0 </green>
+        <blue>  0 </blue>
     </shininess>
 </animation>
 

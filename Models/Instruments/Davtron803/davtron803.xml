@@ -82,7 +82,7 @@
         </ambient>
         <diffuse>
             <red>   0.3 </red>
-            <green> 0.3 </green>
+            <green>0.3 </green>
             <blue>  0.3 </blue>
         </diffuse>
         <shininess>
@@ -807,9 +807,9 @@
         <blue>0.0</blue>
     </ambient>
     <diffuse>
-        <red>0.2</red>
-        <green>0.2</green>
-        <blue>0.2</blue>
+        <red>0.1</red>
+        <green>0.1</green>
+        <blue>0.1</blue>
     </diffuse>
   </animation>
   

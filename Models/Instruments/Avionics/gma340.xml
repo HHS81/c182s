@@ -91,9 +91,6 @@
     <type>material</type>
     <object-name>gma340.Marker.O</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
       <not><property>/instrumentation/marker-beacon/outer</property></not>
       <not><property>/instrumentation/audio-panel/test</property></not>
     </condition>
@@ -147,9 +144,6 @@
     <type>material</type>
     <object-name>gma340.Marker.M</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
       <not><property>/instrumentation/marker-beacon/middle</property></not>
       <not><property>/instrumentation/audio-panel/test</property></not>
     </condition>
@@ -203,9 +197,6 @@
     <type>material</type>
     <object-name>gma340.Marker.I</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
       <not><property>/instrumentation/marker-beacon/inner</property></not>
       <not><property>/instrumentation/audio-panel/test</property></not>
     </condition>

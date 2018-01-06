@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<PropertyList>
+
+  <name type="string" n="1">parking</name>
+
+  <description>
+    The plane will be in "cold-and-dark" state, that is parked and secured, with all
+    equipment switched off. Preflight inspection has not be done yet.
+
+    Start this state with --state=cold-and-dark
+  </description>
+
+  <overlay>
+    <environment>
+      <overlay type="bool">true</overlay>
+    </environment>
+
+    <sim>
+        <!-- actual init is done via nasal "c182s-states.nas";
+             this value indicates the preset to it. -->
+        <init-state type="string">cold-and-dark</init-state>
+        <!--
+      <presets>
+        <airspeed-kt type="double">180</airspeed-kt>
+        </presets>-->
+    </sim>
+
+  </overlay>
+</PropertyList>

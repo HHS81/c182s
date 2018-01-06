@@ -1582,5 +1582,6 @@
     <system file="propulsion"/>
     <system file="indicated-airspeed"/>
    <system file="c182s-ground-effects"/>    
+      <system file="icing"/>    
 
 </fdm_config>

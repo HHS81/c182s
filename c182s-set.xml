@@ -595,6 +595,7 @@
             <path>/instrumentation/audio-panel/lo</path>
             <path>/instrumentation/audio-panel/volume-ics-pilot</path>
             <path>/instrumentation/marker-beacon/audio-btn</path>
+            <path>/instrumentation/marker-beacon/volume-default</path> <!-- hard wired in GMA340, but can be changed (in-sim just adjust the property) -->
             <path>/surface-positions/flap-pos-norm</path>
             <path>/instrumentation/nav[0]/radials/selected-deg</path>
             <path>/instrumentation/nav[0]/frequencies/selected-mhz</path>

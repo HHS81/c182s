@@ -21,7 +21,7 @@
     <stroke unit="IN">4.375</stroke>
     <cylinder-head-mass unit="KG"> 0.1</cylinder-head-mass>
     <compression-ratio>8.7</compression-ratio>
-    <volumetric-efficiency>0.88</volumetric-efficiency>
+    <volumetric-efficiency>0.95</volumetric-efficiency>
     <bsfc unit="LBS/HP*HR">0.445</bsfc>
     <maxhp>        230.0 </maxhp>
     <cycles>         4.0 </cycles>

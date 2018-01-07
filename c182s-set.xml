@@ -642,6 +642,7 @@
             <path>/instrumentation/davtron803/bot-mode</path>
             <path>/autopilot/settings/heading-bug-deg</path>
             <path>/instrumentation/transponder/id-code</path>
+            <path>/instrumentation/transponder/factory-vfr-code</path>
             <path>/engines/engine[0]/egt-bug-norm</path>
             
             <path>/controls/engines/engine[0]/magnetos</path>

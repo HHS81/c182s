@@ -26,6 +26,74 @@
    </load>
 </nasal>
 
+ <!-- Tyresmoke and spray -->
+ <model>
+     <!--<path>Effects/tyresmoke/tyre-smoke-nose.xml</path>-->
+  <path>Aircraft/Generic/Effects/tyre-smoke-nose.xml</path>
+  <name>tyre-smoke-n</name>
+  <offsets>
+    <x-m>-0.2392</x-m>
+    <y-m>0.0000</y-m>
+    <z-m>-1.1000</z-m>
+  </offsets>
+ </model>
+ 
+ <model>
+     <!--<path>Effects/tyresmoke/tyre-smoke-port.xml</path>-->
+  <path>Aircraft/Generic/Effects/tyre-smoke-port.xml</path>
+  <name>tyre-smoke-p</name>
+  <offsets>
+    <x-m>1.3608</x-m>
+    <y-m>-1.3000</y-m>
+    <z-m>-0.9433</z-m>
+  </offsets>
+ </model>
+ 
+ <model>
+     <!--<path>Effects/tyresmoke/tyre-smoke-stbd.xml</path>-->
+  <path>Aircraft/Generic/Effects/tyre-smoke-stbd.xml</path>
+  <name>tyre-smoke-s</name>
+  <offsets>
+   <x-m>1.3608</x-m>
+   <y-m>1.3000</y-m>
+   <z-m>-0.9433</z-m>
+  </offsets>
+ </model>
+
+<model>
+  <!--<path>Effects/tyrespray/rain-nose.xml</path>-->
+  <path>Aircraft/Generic/Effects/rain-nose.xml</path>
+  <name>tyre-smoke-n</name>
+  <offsets>
+    <x-m>-0.2392</x-m>
+    <y-m>0.0000</y-m>
+    <z-m>-1.1000</z-m>
+  </offsets>
+ </model>
+
+ <model>
+  <!--<path>Effects/tyrespray/rain-port.xml</path>-->
+  <path>Aircraft/Generic/Effects/rain-port.xml</path>
+  <name>tyre-smoke-p</name>
+  <offsets>
+    <x-m>1.3608</x-m>
+    <y-m>-1.3000</y-m>
+    <z-m>-0.9433</z-m>
+  </offsets>
+ </model>
+
+ <model>
+  <!--<path>Effects/tyrespray/rain-stbd.xml</path>-->
+  <path>Aircraft/Generic/Effects/rain-stbd.xml</path>
+  <name>tyre-smoke-s</name>
+  <offsets>
+   <x-m>1.3608</x-m>
+   <y-m>1.3000</y-m>
+   <z-m>-0.9433</z-m>
+  </offsets>
+ </model>
+
+
 <effect>
     <inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
    <object-name>Fuselage</object-name><!-- model obejcts parented in Blender - gives faster livery loading-->

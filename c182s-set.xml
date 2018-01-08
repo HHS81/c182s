@@ -995,6 +995,10 @@
     <failures> 
     <file>Aircraft/Generic/limits.nas</file>
   </failures>
+
+   <tyresmoke>
+     <file>Aircraft/c182s/Nasal/tyresmoke.nas</file>
+   </tyresmoke>
  </nasal>
 
  <!-- ================ map keyboard ================ -->

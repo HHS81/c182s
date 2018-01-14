@@ -127,7 +127,7 @@
                 <y>-51.56 </y>
                 <z>-43.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
-            <static_friction> 0.8 </static_friction>
+            <static_friction> 0.5 </static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
             <spring_coeff unit="LBS/FT"> 5400 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">200 </damping_coeff>
@@ -141,7 +141,7 @@
                 <y>51.56 </y>
                 <z>-43.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
-            <static_friction> 0.8 </static_friction>
+            <static_friction> 0.5</static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">5400 </spring_coeff>
@@ -732,7 +732,7 @@
                  <output>/sim/model/c182s/cockpit/brake-lever</output>
              </kinematic>
 </channel>
-	
+
     </flight_control>	
 
 <aerodynamics>

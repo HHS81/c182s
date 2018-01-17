@@ -8,7 +8,7 @@
 
     <channel name="engine power">
   	
-<fcs_function name="systems/engine/MP-alt-volumetric-efficiency-curve">
+<!--<fcs_function name="systems/engine/MP-alt-volumetric-efficiency-curve">
           <function>
                 <table>
                     <independentVar lookup="row">atmosphere/density-altitude</independentVar>
@@ -27,25 +27,46 @@
                 </table>  
           </function>
           <output>propulsion/engine/volumetric-efficiency</output>   
-        </fcs_function>
-
-
-<!--<fcs_function name="systems/engine/MP-alt-bsfc-lbs_hphr-curve">
+        </fcs_function>-->
+	
+<!--controls fuel flow depending on density altitude-->
+-<fcs_function name="systems/engine/MP-alt-volumetric-efficiency-curve">
           <function>
                 <table>
                     <independentVar lookup="row">atmosphere/density-altitude</independentVar>
                     <independentVar lookup="column">propulsion/engine/map-inhg</independentVar>
                     <tableData breakPoint="0">
-				14	15	16	17	18	19	20	21	22	23	24	25	26	28.5
-		0		0.30 0.445 	0.445	0.445	0.445	0.445	0.445	0.445	0.445	0.445 0.445 0.445 0.455 0.48
-		1000		0.30 0.458 	0.445	0.445	0.445	0.445	0.445	0.445	0.445	0.445 0.445 0.458 0.458 0.458
-		2000		0.30 0.35	0.33	0.33	0.33	0.33	0.33	0.333	0.336	0.32 0.352 0.355 0.455 0.455		
-		4000		0.30 0.337 0.337 0.337 0.337 0.337 0.337 0.338 0.339 0.340 0.341 0.417 0.417 0.417	
-		6000		0.30 0.425	0.337 0.337 0.337 0.337 0.337 0.338 0.339 0.425 0.425 0.425 0.425 0.425
-		8000		0.30	0.340	0.340	0.340	0.340	0.340 0.340 0.340 0.425 0.425 0.425 0.425 0.425 0.425
-		10000	0.30	0.341 0.341 0.341 0.341 0.342 0.342 0.415 0.415 0.415 0.415 0.415 0.415 0.415	 
-		12000	0.30	0.361	0.361	0.361 0.339 0.39 0.39 0.39 0.39  0.39 0.39 0.39 0.39 0.39 	
-		14000	0.30	0.335  0.336 0.40 0.40 0.40 0.40 0.40 0.40 0.40 0.40 0.40 0.40 0.40	
+			14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	28.5
+		0	0.15	0.25	0.36	0.46	0.56	0.66	0.761	0.763	0.764	0.772 0.78	0.79	0.78	0.80	0.86 0.88
+		2000	0.15	0.280	0.380	0.480	0.580	0.680	0.780	0.780	0.790	0.800	0.804	0.81	0.8	0.785	0.885	0.86   
+		4000	0.15	0.747	0.747	0.747	0.747	0.747	0.747	0.748	0.755	0.762	0.77	0.77	0.77	0.77	0.77	0.77
+		6000	0.15	0.755	0.755	0.755	0.755	0.755	0.755	0.76	0.77	0.78	0.78	0.78	0.78	0.78	0.78	0.78	  
+		8000	0.15	0.765	0.765	0.765	0.765	0.765	0.765	0.77	0.77	0.77	0.77	0.77	0.77	0.77	0.77	0.77	
+		10000 0.15	0.75	0.75	0.75	0.75	0.76	0.76	0.76	0.76	0.76	0.76	0.76	0.76	0.76	0.76	0.76   
+		12000 0.15	0.74	0.74	0.75	0.755	0.755	0.755	0.755	0.755	0.755	0.755	0.755	0.755	0.755	0.755	0.755	 
+		14000 0.15	0.76	0.76	0.76	0.76	0.76	0.76	0.76	0.76	0.76	0.76	0.76	0.76	0.76	0.76	0.76   
+                   </tableData> 
+                </table>  
+          </function>
+          <output>propulsion/engine/volumetric-efficiency</output>   
+        </fcs_function>
+	
+ <!--controls power depending on density altitude-->
+<fcs_function name="systems/engine/MP-alt-bsfc-lbs_hphr-curve">
+          <function>
+                <table>
+                    <independentVar lookup="row">atmosphere/density-altitude</independentVar>
+                    <independentVar lookup="column">propulsion/engine/map-inhg</independentVar>
+                    <tableData breakPoint="0">
+				15	16	17	18	19	20	21	22	23	24	25	26	27	28	28.5
+		0		0.375	0.375	0.375	0.375	0.375	0.375	0.35	0.34	0.33	0.32	0.31	0.30	0.31 0.443 0.443
+		2000		0.355	0.355	0.355	0.355	0.355	0.355	0.355	0.365	0.37	0.375	0.385	0.395	0.428	0.428	0.428		
+		4000		0.34	0.34	0.34	0.34	0.34	0.34	0.34 0.34 0.40 0.425 0.425 0.425 0.428 0.428 0.428	
+		6000		0.355	0.355	0.355	0.355	0.355	0.355	0.355	0.355	0.362	0.392	0.392	0.412	0.422	0.422	0.422
+		8000		0.37	0.37	0.37	0.37	0.37	0.37	0.37	0.37	0.374	0.394	0.414	0.414	0.414	0.414	0.414
+		10000	0.362	0.362	0.362	0.362	0.362	0.362	0.362	0.362	0.374	0.409	0.409	0.409	0.409	0.409	0.409	 
+		12000	0.359	0.359	0.359	0.359	0.359	0.363	0.373	0.383	0.393	0.403	0.413	0.413	0.413	0.413	0.413	
+		14000	0.359	0.359	0.359	0.369	0.370	0.375	0.385	0.395	0.405	0.405	0.405	0.405	0.405	0.405	0.405
                    </tableData>
                 </table>  
           </function>
@@ -54,9 +75,12 @@
              <max> 1.00 </max>
            </clipto>
           <output>propulsion/engine/bsfc-lbs_hphr</output>   
-        </fcs_function>-->
+        </fcs_function>
 
-<!-- Power based on fuel flow-->
+
+
+
+<!-- Power based on fuel flow
 <fcs_function name="systems/engine/MP-alt-bsfc-lbs_hphr-curve">
           <function>
                 <table>
@@ -80,7 +104,7 @@
              <max> 1.00 </max>
            </clipto>
           <output>propulsion/engine/bsfc-lbs_hphr</output>   
-        </fcs_function>
+        </fcs_function>-->
 	
  <fcs_function name="systems/engine/RAM-Air-Factor">
           <function>

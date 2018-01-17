@@ -1003,7 +1003,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCLge</property>
                         <property>propulsion/engine[0]/cowl-flaps-norm</property>
-                    <value>0.0077</value>
+                    <value>0.011</value>
                 </product>
             </function>
 
@@ -1532,8 +1532,8 @@
     </external_reactions>
     
     <system file="c182s-stallhorn"/>
-  <system file="propulsion"/>
+    <system file="propulsion"/>
     <system file="indicated-airspeed"/>
-   <system file="c182s-ground-effects"/>    
+    <system file="c182s-ground-effects"/>    
 
 </fdm_config>

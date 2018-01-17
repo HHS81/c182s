@@ -83,6 +83,7 @@
 <!-- Power based on fuel flow-->
 <fcs_function name="systems/engine/MP-alt-bsfc-lbs_hphr-curve">
           <function>
+	     <product>
                 <table>
                     <independentVar lookup="row">atmosphere/density-altitude</independentVar>
                     <independentVar lookup="column">propulsion/engine/fuel-flow-rate-gph</independentVar>

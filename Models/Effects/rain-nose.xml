@@ -63,9 +63,8 @@
 		<counter>
 			<particles-per-sec>
 				<property>gear/gear[0]/spray-density</property>
-				<factor>2.5</factor>
-				<!--<value>250</value>-->
-				<spread>100</spread>
+				<value>25</value>
+				<spread>10</spread>
 			</particles-per-sec>		</counter>
 
 		<align>billboard</align>

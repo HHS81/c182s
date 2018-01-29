@@ -62,6 +62,40 @@
    <z-m>-0.9433</z-m>
   </offsets>
  </model>
+ 
+  <model>
+  <path>Effects/prop_dust.xml</path>
+  <name>prop-dust</name>
+  <offsets>
+<pitch-deg>-4</pitch-deg>
+    <x-m>0</x-m><!-- translated below-->
+    <y-m>0.0000</y-m>
+    <z-m>0.00</z-m><!-- translated below-->
+  </offsets>
+ </model>
+ 
+ 	<animation>
+		<type>translate</type>
+		<object-name>prop-dust</object-name>
+		<property>position/altitude-agl-m</property>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+	</animation>
+	
+ 	<animation>
+		<type>translate</type>
+		<object-name>prop-dust</object-name>
+		<property>position/altitude-agl-m</property>
+	<factor>6</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
 
 
 <effect>

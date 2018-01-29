@@ -554,7 +554,7 @@
             <path>/consumables/fuel/tank[3]/level-gal_us</path>
             <path>/consumables/fuel/tank[4]/level-gal_us</path>
             <!--<path>/consumables/fuel/tank[5]/level-gal_us</path> manifold should not be saved! -->
-            <path>/controls/engines/engine[0]/mixture-lever</path>
+            <path>/controls/engines/engine[0]/mixture</path>
             <path>/controls/engines/engine[0]/throttle</path>
             <path>/controls/engines/engine[0]/propeller-pitch</path>
             <path>/engines/engine[0]/oil-level</path>
@@ -1010,35 +1010,7 @@
           <command>property-toggle</command>
           <property>sim/model/hide-yoke</property>
         </binding>
-      </key>
-
-      <key n="77">
-        <name>M</name>
-        <desc>Mixture leaner</desc>
-        <repeatable type="bool">true</repeatable>
-        <binding>
-          <command>property-adjust</command>
-          <property>/controls/engines/engine/mixture-lever</property>
-          <step>-0.01</step>
-          <min>0</min>
-          <max>1</max>
-        </binding>
-      </key>
-      <key n="109">
-        <name>M</name>
-        <desc>Mixture richer</desc>
-        <repeatable type="bool">true</repeatable>
-        <binding>
-          <command>property-adjust</command>
-          <property>/controls/engines/engine/mixture-lever</property>
-          <step>0.01</step>
-          <min>0</min>
-          <max>1</max>
-        </binding>
-      </key>
-      
-
-
+      </key>    
 
     </keyboard>
     </input>

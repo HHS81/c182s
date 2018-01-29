@@ -20,7 +20,6 @@ Implementation notice:
 Author: 09/2017  Benedikt Hallinger
 -->
 <system name="fuel">
-    <property type="double" value="0">/controls/engines/engine[0]/mixture-lever</property>
     <property type="bool" value="0">/controls/fuel/tank[0]/drain-valve</property>
     <property type="bool" value="0">/controls/fuel/tank[1]/drain-valve</property>
     <property type="bool" value="0">/controls/fuel/tank[2]/drain-valve</property>
@@ -512,13 +511,13 @@ Author: 09/2017  Benedikt Hallinger
             <test logic="AND" value="fuel/manifold-flooded-empty-cranking-rate-throttle-pps">
                 /engines/engine/cranking          EQ  1
                 /systems/fuel/engine-flooded      EQ  1
-                /controls/engines/engine/mixture-lever  LE  0.0
+                /controls/engines/engine/mixture  LE  0.0
                 /controls/engines/engine/throttle GE  0.499
             </test>
             <test logic="AND" value="-fuel/manifold-flooded-empty-cranking-rate-throttle-pps">
                 /engines/engine/cranking          EQ  1
                 /systems/fuel/engine-flooded      EQ  1
-                /controls/engines/engine/mixture-lever  GE  0.01
+                /controls/engines/engine/mixture  GE  0.01
             </test>
         </switch>
         <fcs_function name="fuel/manifold-flooded-empty-cranking-rate-throttle-pps">
@@ -536,7 +535,7 @@ Author: 09/2017  Benedikt Hallinger
         <fcs_function name="/systems/fuel/priming-mixture-flow-pps">
             <function>
                 <product>
-                    <property>/controls/engines/engine/mixture-lever</property>
+                    <property>/controls/engines/engine/mixture</property>
                     <property>/controls/engines/engine/throttle</property>
                     <value>0.125</value>
                 </product>
@@ -586,14 +585,14 @@ Author: 09/2017  Benedikt Hallinger
         <fcs_function name="/controls/engines/engine/mixture-shortly-after-start-setting">
             <function>
                 <max>
-                    <property>/controls/engines/engine/mixture-lever</property>
+                    <property>/controls/engines/engine/mixture</property>
                     <product>
                         <property>/fdm/jsbsim/propulsion/tank[6]/pct-full</property>
                         <value>0.01</value> <!-- percent to decimal -->
                     </product>
                 </max>
             </function>
-            <output>/controls/engines/engine/mixture</output>   
+            <output>fcs/mixture-pos-norm</output>   <!-- jsbsim internal mixture value fed to engine -->
         </fcs_function>
         
         

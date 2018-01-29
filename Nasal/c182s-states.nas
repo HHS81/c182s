@@ -100,7 +100,7 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
     # Essential lever and switch positions
     setprop("/controls/engines/engine/magnetos", 3);
     setprop("/controls/engines/engine[0]/throttle", 0.2);
-    setprop("/controls/engines/engine[0]/mixture-lever", 1.0);
+    setprop("/controls/engines/engine[0]/mixture", 1.0);
     setprop("/controls/engines/engine[0]/propeller-pitch", 1);
     
     
@@ -139,7 +139,7 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
         
         # apply desired after-start properties
         setprop("/controls/engines/engine[0]/throttle", throttle);
-        setprop("/controls/engines/engine[0]/mixture-lever", mix);
+        setprop("/controls/engines/engine[0]/mixture", mix);
         setprop("/controls/engines/engine[0]/propeller-pitch", prop);
         
         # all done, go home
@@ -166,7 +166,7 @@ var checklist_secureAircraft = func() {
     setprop("/controls/lighting/strobe", 0);
     setprop("/controls/lighting/beacon", 0);
     setAvionics(0);
-    setprop("/controls/engines/engine[0]/mixture-lever", 0.0);
+    setprop("/controls/engines/engine[0]/mixture", 0.0);
     setprop("/controls/switches/starter", 0);
     setprop("/controls/engines/engine[0]/magnetos", 0);
     setprop("/controls/engines/engine[0]/master-bat", 0);
@@ -202,7 +202,7 @@ var checklist_beforeEngineStart = func() {
     setprop("/controls/switches/fuel_tank_selector", 2);
     setprop("/controls/engines/engine[0]/magnetos", 3);
     setprop("/controls/engines/engine[0]/throttle", 0.2);
-    setprop("/controls/engines/engine[0]/mixture-lever", 1.0);
+    setprop("/controls/engines/engine[0]/mixture", 1.0);
     setprop("/controls/engines/engine[0]/propeller-pitch", 1);
     setprop("/controls/engines/engine/cowl-flaps-norm", 1);
     setprop("/controls/engines/engine[0]/fuel-pump", 0);
@@ -357,7 +357,7 @@ var autostart = func (msg=1, delay=1, setStates=0) {
         
         # Shutdown engine
         setprop("/controls/engines/engine[0]/throttle", 0.0);
-        setprop("/controls/engines/engine[0]/mixture-lever", 0.0);
+        setprop("/controls/engines/engine[0]/mixture", 0.0);
         setprop("/controls/switches/starter", 0);
 
         #Securing Aircraft

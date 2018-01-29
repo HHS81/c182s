@@ -146,7 +146,7 @@ item("Cowl Flaps") {
 }
 
 item("Mixture") {
-    s   = "controls/engines/engine[0]/mixture-lever";
+    s   = "controls/engines/engine[0]/mixture";
     gph = "/systems/fuel/indicated-manfold-fuel-flow-gph";
     state("IDLE CUT-OFF", s <= 0.0) {
         fgcommand("property-interpolate", property=s, value=0.0, rate=0.5);
@@ -171,7 +171,7 @@ item("Mixture") {
 
 item("Throttle") {
     thrt = "controls/engines/engine[0]/throttle";  
-    mix  = "controls/engines/engine[0]/mixture-lever";
+    mix  = "controls/engines/engine[0]/mixture";
     prop = "controls/engines/engine[0]/propeller-pitch";
     rpm  = "/fdm/jsbsim/propulsion/engine/engine-rpm";
     state("IDLE", thrt <= 0.0) {
@@ -180,7 +180,7 @@ item("Throttle") {
     state("CHECK IDLE", thrt <= 0.0) {
         fgcommand("property-interpolate", property=thrt, value=0.0, rate=0.5);
     }
-    state("OPEN 1/4 INCH", (thrt >= 0.07 && thrt <= 0.08)) {
+    state("OPEN 1/4 INCH", (thrt >= 0.06 && thrt <= 0.10)) {
         fgcommand("property-interpolate", property=thrt, value=0.08, rate=0.5);
     }
     state("FULL OPEN", thrt >= 1.0 ) {
@@ -214,7 +214,7 @@ item("Propeller Area") {
 
 item("Power") {
     thrt = "controls/engines/engine[0]/throttle";  
-    mix  = "controls/engines/engine[0]/mixture-lever";
+    mix  = "controls/engines/engine[0]/mixture";
     prop = "controls/engines/engine[0]/propeller-pitch";
     rpm  = "/fdm/jsbsim/propulsion/engine/engine-rpm";
     mfp  = "/engines/engine/mp-inhg";

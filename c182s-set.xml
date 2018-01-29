@@ -970,6 +970,7 @@
     <file>Aircraft/c182s/Nasal/immat.nas</file>
     <file>Aircraft/c182s/Nasal/gma340.nas</file>
     <file>Aircraft/c182s/Nasal/c182s-states.nas</file>
+    <file>Aircraft/c182s/Nasal/terrain.nas</file>
 </c182s>
 
 <davtron803>
@@ -999,6 +1000,7 @@
    <tyresmoke>
      <file>Aircraft/c182s/Nasal/tyresmoke.nas</file>
    </tyresmoke>
+
  </nasal>
 
  <!-- ================ map keyboard ================ -->

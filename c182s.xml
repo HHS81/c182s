@@ -112,8 +112,8 @@
                 <y> 0 </y>
                 <z>-47.09</z><!--includes offset due to gear compression animation, should be -47.17-->
             </location>
-            <static_friction> 0.99 </static_friction>
-            <dynamic_friction> 0.8 </dynamic_friction>
+            <static_friction> 0.5 </static_friction>
+            <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">3600 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">900 </damping_coeff>
@@ -127,7 +127,7 @@
                 <y>-51.56 </y>
                 <z>-43.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
-            <static_friction> 0.99 </static_friction>
+            <static_friction> 0.5 </static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
             <spring_coeff unit="LBS/FT"> 5400 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">200 </damping_coeff>
@@ -141,7 +141,7 @@
                 <y>51.56 </y>
                 <z>-43.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
-            <static_friction> 0.99 </static_friction>
+            <static_friction> 0.5</static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">5400 </spring_coeff>
@@ -732,7 +732,7 @@
                  <output>/sim/model/c182s/cockpit/brake-lever</output>
              </kinematic>
 </channel>
-	
+
     </flight_control>	
 
 <aerodynamics>
@@ -1003,7 +1003,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCLge</property>
                         <property>propulsion/engine[0]/cowl-flaps-norm</property>
-                    <value>0.0077</value>
+                    <value>0.028</value>
                 </product>
             </function>
 
@@ -1534,6 +1534,6 @@
     <system file="c182s-stallhorn"/>
     <system file="propulsion"/>
     <system file="indicated-airspeed"/>
-   <system file="c182s-ground-effects"/>    
+    <system file="c182s-ground-effects"/>    
 
 </fdm_config>

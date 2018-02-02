@@ -4,6 +4,8 @@
 Bendix/King KT76c Transponder
 Gary "Buckaroo" Neely
 Released under GNU GENERAL PUBLIC LICENSE Version 2
+
+Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-code"
 -->
 
 <PropertyList>

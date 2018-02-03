@@ -70,6 +70,18 @@
   </animation>
 
   <animation>
+      <type>select</type>
+      <object-name>gma340.Marker.O</object-name>
+      <object-name>gma340.Marker.M</object-name>
+      <object-name>gma340.Marker.I</object-name>
+      <condition>
+        <property>/instrumentation/audio-panel/serviceable</property>
+        <property>/instrumentation/audio-panel/power-btn</property>
+        <property>/systems/electrical/outputs/audio-panel</property>
+      </condition>
+  </animation>
+  
+  <animation>
     <type>material</type>
     <object-name>gma340.Marker.O</object-name>
     <condition>
@@ -241,6 +253,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -281,6 +294,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -321,6 +335,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -361,6 +376,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -401,6 +417,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -449,6 +466,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -489,6 +507,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -529,6 +548,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -570,6 +590,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -579,6 +600,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -588,6 +610,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -597,6 +620,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -606,6 +630,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -615,6 +640,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -656,6 +682,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -665,6 +692,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -674,6 +702,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -683,6 +712,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -692,6 +722,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -701,6 +732,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -742,6 +774,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -751,6 +784,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -760,6 +794,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -769,6 +804,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -778,6 +814,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -787,6 +824,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -827,6 +865,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -835,6 +874,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -894,6 +934,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -934,6 +975,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -974,6 +1016,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -1014,6 +1057,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -1054,6 +1098,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -1095,6 +1140,7 @@
         <condition>
             <property>/instrumentation/audio-panel/serviceable</property>
             <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <mod-up>

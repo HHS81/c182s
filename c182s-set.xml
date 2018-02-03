@@ -60,8 +60,11 @@
         <path>Aircraft/c182s/Systems/engine.xml</path>
     </property-rule>
     <property-rule n="105">
-            <name>FiltersOnly</name>
-            <path>Systems/instruments.xml</path>
+        <path>Aircraft/c182s/Systems/pax.xml</path>
+    </property-rule>
+    <property-rule n="106">
+        <name>FiltersOnly</name>
+        <path>Systems/instruments.xml</path>
     </property-rule>
     <electrical>        
       <!-- null electrical system path here so we can use a nasal based -->
@@ -165,13 +168,11 @@
 </securing>
 
 <procedural-lights type="bool">true</procedural-lights>
+<enable-fog-frost type="bool">false</enable-fog-frost>
 <nw_fairing type="bool">true</nw_fairing>
 <mw_fairing type="bool">true</mw_fairing>
+<chrome_spinner type="bool">true</chrome_spinner>
 
-
-  <procedural-lights type="bool">true</procedural-lights>
-
-      <chrome_spinner type="bool">true</chrome_spinner>
 	<material>
 		<fuselage>
 			<diffuse>
@@ -544,10 +545,12 @@
             <path>/sim/start-state</path>
             
             <path>/sim/time/hobbs/engine</path>
+            <path>/sim/model/c182s/enable-fog-frost</path>
             <path>/engines/engine/complex-engine-procedures</path>
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>
             <path>/engines/engine/winter-kit-installed</path>
+            
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
             <path>/consumables/fuel/tank[2]/level-gal_us</path>
@@ -560,6 +563,9 @@
             <path>/engines/engine[0]/oil-level</path>
             <path>/engines/engine[0]/oil-service-hours</path>
             <path>/controls/gear/brake-parking</path>
+            <path>/environment/aircraft-effects/cabin-heat-set</path>
+            <path>/environment/aircraft-effects/cabin-air-set</path>
+            <path>/environment/aircraft-effects/defrost-set</path>
             
             <path>/controls/lighting/landing-lights</path>
             <path>/controls/lighting/taxi-light</path>
@@ -955,8 +961,11 @@
 
  <nasal>
  <math_ext>
-            <file>Aircraft/c182s/Nasal/math_ext.nas</file>
+    <file>Aircraft/c182s/Nasal/math_ext.nas</file>
 </math_ext>
+<logger>
+    <file>Aircraft/c182s/Nasal/logger.nas</file>
+</logger>
 <updateloop>
             <file>Aircraft/Generic/updateloop.nas</file>
 </updateloop>

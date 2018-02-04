@@ -12,6 +12,15 @@
        <inherits-from>Effects/model-transparent</inherits-from>
     <object-name>SunVirsor.R</object-name>
     <object-name>SunVirsor.L</object-name>
+    <object-name>FuelFlowL.Ann</object-name>
+    <object-name>FuelFlow.Ann</object-name>
+    <object-name>FuelFlowR.Ann</object-name>
+    <object-name>PitchTrim.Ann</object-name>
+     <object-name>OilPress.Ann</object-name>
+    <object-name>VACL.Ann</object-name>
+    <object-name>VAC.Ann</object-name>
+    <object-name>VACR.Ann</object-name>
+    <object-name>Volts.Ann</object-name>
    </effect>
    
    <effect>
@@ -47,10 +56,10 @@
     <object-name>NavLightSwitch</object-name>
     <object-name>StrobeLightSwitch</object-name>
     <object-name>PitotHeatSwitch</object-name>
-    <!-- FLAPS GLARESHIELD BUG-WORKAROUND: SEE ISSUE #176: https://github.com/HHS81/c182s/issues/176#issuecomment-340090229
-    <object-name>Panel.001</object-name>
-    <object-name>FlapSwitch</object-name>  -->
     
+    <object-name>FlapSwitch</object-name>  
+    <object-name>FlapPos</object-name>   
+   
     <object-name>Breaker.Flap</object-name>
     <object-name>Breaker.Inst</object-name>
     <object-name>Breaker.AVNBus1</object-name>
@@ -120,6 +129,8 @@
     <object-name>IntWallBack</object-name>
     <object-name>DomeLight3</object-name>
     <object-name>DEL.swt</object-name>
+    
+    <object-name>POH</object-name>
    </effect>
 
 
@@ -2626,7 +2637,7 @@
         <offsets>
             <x-m>0.3515</x-m>
             <y-m>0.083</y-m>
-            <z-m>0.180</z-m>
+            <z-m>0.177</z-m>
         </offsets>
     </model>
     
@@ -3293,5 +3304,148 @@
 			</binding>
 		</hovered>
 	</animation>
+	
+   <!-- MOD: animation for the checklists -->
+    <animation>
+        <type>pick</type>
+        <object-name>POH</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>checklist</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>checklist</tooltip-id>
+                <label>Show checklists</label>
+            </binding>
+        </hovered>
+    </animation>
+    <!-- MODEND -->
+    
+    <!-- Annunciators-->
+    
+    <!-- Ann Test swt -->
+    <animation>
+        <type>pick</type>
+        <object-name>AnnTest.swt</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property></property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("light")</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>Annunciators-Test-Switch</tooltip-id>
+                <label>Annunciator Test: %s</label>
+                <mapping>on-off</mapping>
+                <property></property>
+            </binding>
+        </hovered>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>AnnTest.swt</object-name>
+        <property></property>
+        <factor>-55</factor>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>0.363</x-m>
+            <y-m>0.071</y-m>
+            <z-m>0.430</z-m>
+        </center>
+    </animation>
+   
+    
+ <!--<animation>
+  <type>select</type>
+    <object-name>FuelFlowL.Ann</object-name>
+  <condition>
+     <property></property>
+  </condition>
+ </animation>
+ 
+<animation>
+  <type>select</type>
+    <object-name>FuelFlow.Ann</object-name>
+     <property></property>
+  </condition>
+ </animation>
+ 
+<animation>
+  <type>select</type>
+    <object-name>FuelFlowR.Ann</object-name>
+  <condition>
+     <property></property>
+  </condition>
+ </animation>
+ 
+<animation>
+  <type>select</type>
+    <object-name>PitchTrim.Ann</object-name>
+  <condition>
+     <property></property>
+  </condition>
+ </animation>
+ 
+<animation>
+  <type>select</type>
+     <object-name>OilPress.Ann</object-name>
+  <condition>
+     <property></property>
+  </condition>
+ </animation>
+ 
+<animation>
+  <type>select</type>
+     <object-name>VACL.Ann</object-name>
+  <condition>
+     <property></property>
+  </condition>
+ </animation>
+ 
+<animation>
+  <type>select</type>
+    <object-name>VAC.Ann</object-name>
+  <condition>
+     <property></property>
+  </condition>
+ </animation>
+ 
+<animation>
+  <type>select</type>
+      <object-name>VACR.Ann</object-name>
+  <condition>
+     <property></property>
+  </condition>
+ </animation>
+ 
+<animation>
+  <type>select</type>
+    <object-name>Volts.Ann</object-name>
+  <condition>
+     <property></property>
+  </condition>
+ </animation>-->
+ 
 
 </PropertyList>

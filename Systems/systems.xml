@@ -28,8 +28,6 @@
     <pitot>
         <name>pitot</name>
         <number>0</number>
-
-        <!-- Default angle -->
         <stall-deg>60</stall-deg>
     </pitot>
 
@@ -37,22 +35,19 @@
         <name>static</name>
         <number>0</number>
         <tau>0.1</tau>
-        <!-- Side-slip angle influence only. Type 2 will also give AoA
-             influence. See Docs/README.systems.
-        -->
         <type>2</type>
         <error-factor>0.2</error-factor>
     </static>
 
 <vacuum>
-    <name>vacuum left</name>
+    <name>vacuum</name>
     <number>0</number>
     <rpm>engines/engine[0]/rpm</rpm>
     <scale>1.0</scale>
   </vacuum>
 
   <vacuum>
-    <name>vacuum right</name>
+    <name>vacuum</name>
     <number>1</number>
     <rpm>engines/engine[0]/rpm</rpm>
     <scale>1.0</scale>

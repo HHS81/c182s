@@ -36,10 +36,11 @@
   <state include="states/approach-overlay.xml" n="4" />
   
   <systems>
-    <autopilot>
-        <!-- <path>Aircraft/c182s/generic-autopilot.xml</path>-->
+ <path>Aircraft/c182s/Systems/systems.xml</path>
+	   
+	    <autopilot>
         <path>Aircraft/c182s/Systems/KAP140.xml</path>
-    </autopilot>
+	    </autopilot>
             <autopilot>
                 <path>Systems/glass-rain.xml</path>
             </autopilot>

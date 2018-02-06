@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<PropertyList>
+
+  <name type="string" n="3">cruise</name>
+
+  <description>
+    The plane will be in "crusing" state with engines running.
+    Initial Airspeed is set to 100 knots unless specified otherwise (eg. --vc=120)
+    You should also set an --altitude=... setting to start in-air.
+
+    Start this state with --state=cruising.
+  </description>
+
+  <overlay>
+    <environment>
+      <overlay type="bool">true</overlay>
+    </environment>
+
+    <sim>
+        <!-- actual init is done via nasal "c182s-states.nas";
+             this value indicates the preset to it. -->
+        <init-state type="string">cruising</init-state>
+        <!--
+      <presets>
+        <airspeed-kt type="double">180</airspeed-kt>
+        </presets>-->
+    </sim>
+
+  </overlay>
+</PropertyList>

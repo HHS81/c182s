@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<PropertyList>
+
+  <name type="string" n="2">take-off</name>
+
+  <description>
+    The plane will be in "ready-for-takeoff" state.
+    preflight checklist is complete and the engine is ready for takeoff.
+
+    Start this state with --state=ready-for-takeoff
+  </description>
+
+  <overlay>
+    <environment>
+      <overlay type="bool">true</overlay>
+    </environment>
+
+    <sim>
+        <!-- actual init is done via nasal "c182s-states.nas";
+             this value indicates the preset to it. -->
+        <init-state type="string">ready-for-takeoff</init-state>
+        <!--
+      <presets>
+        <airspeed-kt type="double">180</airspeed-kt>
+        </presets>-->
+    </sim>
+
+  </overlay>
+</PropertyList>

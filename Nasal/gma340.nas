@@ -20,6 +20,10 @@ var gma340_powerVolts     = props.globals.getNode("/systems/electrical/outputs/a
 var comm0_volume_selected = props.globals.getNode("instrumentation/comm[0]/volume-selected");
 var comm1_volume_selected = props.globals.getNode("instrumentation/comm[1]/volume-selected");
 
+# get preset marker beacon value. This is hard-wired factroy side but can be changed later.
+var default_marker_volume = props.globals.getNode("instrumentation/marker-beacon/volume-default", 1);
+if (!default_marker_volume.getValue()) default_marker_volume.setValue(0.5);
+
 # get handles to comm devices
 var comm0 = props.globals.getNode("instrumentation/comm[0]");
 var comm1 = props.globals.getNode("instrumentation/comm[1]");
@@ -31,8 +35,9 @@ var comm1_pwrSwitch   = comm1.getNode("power-btn");
 var comm1_serviceable = comm1.getNode("serviceable");
 
 # get COM real volume used by the simulator to play audio
-var comm0_volume = comm0.getNode("volume");
-var comm1_volume = comm1.getNode("volume");
+var comm0_volume  = comm0.getNode("volume");
+var comm1_volume  = comm1.getNode("volume");
+var marker_volume = props.globals.getNode("instrumentation/marker-beacon/volume");
 
 
 
@@ -88,11 +93,87 @@ var refresh_com1_volume = func {
         #print("muted com1 (power loss)");
     }
 };
+var refresh_marker_volume = func {
+    var pwrSw  = gma340_powerbtn.getValue();
+    var svcabl = gma340_serviceable.getValue();
+    var volts  = getprop("/systems/electrical/outputs/audio-panel");
+
+    if (pwrSw and svcabl and volts) {
+        # normal operable: set default volume
+        marker_volume.setDoubleValue(default_marker_volume.getValue());
+        
+    } else {
+        # power-loss: no volume
+        marker_volume.setDoubleValue(0);
+    }
+};
 var refresh_com_volumes = func {
     refresh_com0_volume();
     refresh_com1_volume();
+    refresh_marker_volume();
 };
 
+
+# Calulate marker-audio state
+# called from marker button after press
+var gma340_toggleMarkerMute = func() {
+    var marker_state = props.globals.getNode("/instrumentation/marker-beacon/audio-btn");
+    var gma_marker   = props.globals.getNode("/instrumentation/audio-panel/mkr");
+    
+    if (gma_marker.getBoolValue()) {
+        # when button was set to ON, set audio-out to on
+        marker_state.setBoolValue(1);
+        gma_marker.setBoolValue(1);
+        
+    } else {
+        # when button was set to OFF:
+        #  - if marker-beacon not active, just disable
+        #  - if marker-beacon is active, disable too, but reactivate
+        #  - if marker is actually muted, unmute instantly
+        
+        # unmute in case it was muted temporarily before
+        if (!marker_state.getBoolValue() and !gma_marker.getBoolValue()) {
+            gma_marker.setBoolValue(1);
+            marker_state.setBoolValue(1);
+            return;
+        }
+        
+        # mute and disable mkr-button on panel
+        marker_state.setBoolValue(0);
+        gma_marker.setBoolValue(0);
+        
+        # Detect marcer-beacon activity
+        # now sample the marker-beacon properties for changes.
+        # This can't be done easily with listeners, because they are tied properties.
+        # We poll as long as one of the markers is true and after then remain silent again, reactivate the audio.
+        var beacon_active    = 0;
+        var tp               = "/sim/time/elapsed-sec";
+        var last_seen_change = getprop(tp);
+        var marker_inner     = props.globals.getNode("/instrumentation/marker-beacon/inner");
+        var marker_middle    = props.globals.getNode("/instrumentation/marker-beacon/middle");
+        var marker_outer     = props.globals.getNode("/instrumentation/marker-beacon/outer");
+        var poll_loop = maketimer(0.1, func(){
+            var now = getprop(tp);
+            if (marker_inner.getBoolValue() or marker_middle.getBoolValue() or marker_outer.getBoolValue()) {
+                # marker is active: update timestamp and other stuff
+                beacon_active    = 1;
+                last_seen_change = now;
+                gma_marker.setBoolValue(1); # activate panel display, so user sees its only temporary muted
+            }
+            
+            # see if tha last change is too long ago, if yes abort loop
+            if (last_seen_change < now - 2) {
+                poll_loop.stop();  # end loop
+                if (beacon_active) {
+                    # if beacon was active, we turn on the audio now, as the mute should only be temporary
+                    marker_state.setBoolValue(1);
+                }
+            }
+         
+        });
+        poll_loop.start();
+    }
+};
 
 
 # Initialize GMA 340 at startup (delayed, so propertys are properly initialized)

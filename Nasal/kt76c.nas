@@ -15,6 +15,7 @@ var kt76c_goodcode	= props.globals.getNode("/instrumentation/transponder/goodcod
 var kt76c_ready		= props.globals.getNode("/instrumentation/transponder/ready");
 var kt76c_replying	= props.globals.getNode("/instrumentation/transponder/replying");
 var kt76c_serviceable	= props.globals.getNode("/instrumentation/transponder/serviceable");
+var kt76c_vfr_default	= props.globals.getNode("/instrumentation/transponder/factory-vfr-code", 1);
 
 var encoder_serviceable	= props.globals.getNode("/instrumentation/encoder/serviceable");
 
@@ -50,7 +51,16 @@ var kt76c_button_clr = func {
 									# Standard VFR code is 1200
 var kt76c_button_vfr = func {
   if (!kt76c_pwr.getValue()) { return 0; }
-  kt76c_codes = [1,2,0,0];
+  if (!kt76c_vfr_default.getValue()) kt76c_vfr_default.setIntValue(1200);  #set default factory VFR code unless already set
+  
+  vfr = kt76c_vfr_default.getValue();
+  vfr = vfr ~ ""; # convert to string so substr() can work
+  vfr1 = substr(vfr, 0, 1);
+  vfr2 = substr(vfr, 1, 1);
+  vfr3 = substr(vfr, 2, 1);
+  vfr4 = substr(vfr, 3, 1);
+  
+  kt76c_codes = [vfr1,vfr2,vfr3,vfr4];
   kt76c_goodcode.setValue(1);
   kt76c_copycode();
   #kt76c_entry_clock(0);

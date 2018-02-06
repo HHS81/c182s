@@ -42,6 +42,139 @@
 	</group>
 	<hrule/>
     
+    <group>
+        <layout>vbox</layout>
+        <text><halign>left</halign>
+            <label>Start options:</label>
+        </text>
+        <empty><stretch>true</stretch></empty>
+        <radio>
+            <halign>left</halign>
+            <label>Automatic</label>
+            <property>/sim/start-state-internal/gui-radio-auto</property>
+            <live>true</live>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state</property>
+                <value>auto</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    c182s.updateStateSettingGUI();
+                </script>
+            </binding>
+        </radio>
+        <radio>
+            <halign>left</halign>
+            <label>Saved state</label>
+            <property>/sim/start-state-internal/gui-radio-saved</property>
+            <live>true</live>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state</property>
+                <value>saved</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    c182s.updateStateSettingGUI();
+                </script>
+            </binding>
+        </radio>
+        <radio>
+            <halign>left</halign>
+            <label>Cold and Dark</label>
+            <property>/sim/start-state-internal/gui-radio-cold-and-dark</property>
+            <live>true</live>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state</property>
+                <value>cold-and-dark</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    c182s.updateStateSettingGUI();
+                </script>
+            </binding>
+        </radio>
+        <radio>
+            <halign>left</halign>
+            <label>Ready for Takeoff</label>
+            <property>/sim/start-state-internal/gui-radio-ready-for-takeoff</property>
+            <live>true</live>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state</property>
+                <value>ready-for-takeoff</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    c182s.updateStateSettingGUI();
+                </script>
+            </binding>
+        </radio>
+        <radio>
+            <halign>left</halign>
+            <label>Cruising</label>
+            <property>/sim/start-state-internal/gui-radio-cruising</property>
+            <live>true</live>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state</property>
+                <value>cruising</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    c182s.updateStateSettingGUI();
+                </script>
+            </binding>
+        </radio>
+        
+        <button>
+            <halign>center</halign>
+            <legend>Apply now</legend>
+            <pref-width>85</pref-width>
+            <pref-height>28</pref-height>
+            <enable>
+                <and>
+                    <not>
+                        <property>/sim/freeze/replay-state</property>
+                    </not>
+                    <not>
+                        <property>/sim/start-state-internal/gui-radio-saved</property>
+                    </not>
+                </and>
+            </enable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    c182s.applyAircraftState();
+                </script>
+            </binding>
+        </button>
+    </group>
+    
+    <hrule/>
+    
 	<group>
 	<layout>vbox</layout>
 	<padding>6</padding>
@@ -58,6 +191,16 @@
                     <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
                 </binding>
 	</checkbox>
+    
+            <checkbox>
+                <halign>left</halign>
+                <label>Enable frost and fog</label>
+                <property>/sim/model/c182s/enable-fog-frost</property>
+                <live>true</live>
+                <binding>
+                    <command>dialog-apply</command>
+                </binding>
+            </checkbox>
     
             <checkbox>
                 <halign>left</halign>
@@ -130,11 +273,34 @@
                 
         </group>
         
+        <checkbox>
+            <halign>left</halign>
+            <label>Winter Kit installed</label>
+            <property>/engines/engine/winter-kit-installed</property>
+            <live>true</live>
+            <enable>
+                <and>
+                    <less-than>
+                        <property>velocities/groundspeed-kt</property>
+                        <value>0.1</value>
+                    </less-than>
+                    <less-than>
+                        <property>/engines/engine/thruster/rpm</property>
+                        <value>0.0001</value>
+                    </less-than>
+                </and>
+            </enable>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+        </checkbox>
+        
 <hrule/>
 
         <group>
             <layout>hbox</layout>
 
+            <!-- to be implemented
             <checkbox>
                 <halign>left</halign>
                 <label>Damage</label>
@@ -143,7 +309,7 @@
                 <binding>
                     <command>dialog-apply</command>
                 </binding>
-            </checkbox>
+            </checkbox>-->
 
             <button>
                 <halign>right</halign>

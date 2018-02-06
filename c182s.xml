@@ -112,8 +112,8 @@
                 <y> 0 </y>
                 <z>-47.09</z><!--includes offset due to gear compression animation, should be -47.17-->
             </location>
-            <static_friction> 0.99 </static_friction>
-            <dynamic_friction> 0.8 </dynamic_friction>
+            <static_friction> 0.5 </static_friction>
+            <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">3600 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">900 </damping_coeff>
@@ -127,7 +127,7 @@
                 <y>-51.56 </y>
                 <z>-43.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
-            <static_friction> 0.99 </static_friction>
+            <static_friction> 0.5 </static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
             <spring_coeff unit="LBS/FT"> 5400 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">200 </damping_coeff>
@@ -141,7 +141,7 @@
                 <y>51.56 </y>
                 <z>-43.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
-            <static_friction> 0.99 </static_friction>
+            <static_friction> 0.5</static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">5400 </spring_coeff>
@@ -421,6 +421,12 @@
     
     <system file="fuel"/> <!-- integrate advanced fuel system -->
     
+    <system file="external-heat"/> <!-- integrate external-heater -->
+    
+    <system file="electrical"/> <!-- load electrical system -->
+    
+    <system file="cabin-heat_and_air"/> <!-- cabin heat and air -->
+    
     <flight_control name="FCS: c182s">
 <!--Cessna 182S POH Page 7-12: nose gear steer deg=11deg, by applying left or right brake increasing steer deg up to 29deg-->
  <channel name = "groundcontrol">
@@ -593,8 +599,20 @@
         </channel>
 	
        <channel name="Flaps">
+           <!-- Disable flap movement if electrical voltage is too low -->
+            <switch name="Flaps Command">
+                <default value="fcs/flap-cmd-norm"/>
+                <output>fcs/flap-input-norm</output>
+
+                <!-- Route back the (normalized) output of the <kinematic>
+                     to its input in order to disable it.
+                -->
+                <test logic="AND" value="fcs/flap-pos-norm">
+                    /systems/electrical/outputs/flaps le 16
+                </test>
+            </switch>
             <kinematic name="Flaps Control">
-                <input>fcs/flap-cmd-norm</input>
+                <input>fcs/flap-input-norm</input>
                 <traverse>
                     <setting>
                         <position>0</position>
@@ -644,7 +662,7 @@
                  <output>/sim/model/c182s/cockpit/flaps-lever</output>
              </kinematic>
         </channel>
-<!--
+        <!--
             Cowl Flaps 
         -->
         <channel name="Cowl Flaps">
@@ -671,11 +689,33 @@
                   <max>1</max>
                 </domain>
                 <range>
-                    <min>0.48</min>
-                    <max>0.85</max>
+                    <!-- Defines cooling airflow with min=closed/max=open cowl flaps -->
+                    <min>0.35</min>
+                    <max>0.80</max>
                 </range>
-                <output>propulsion/engine[0]/cooling-factor</output>
+                <output>propulsion/engine[0]/cooling-factor-cowlflaps</output>
             </aerosurface_scale>
+            <switch name="cooling-factor-winterkit">
+                <!-- winter kit reduces cooling airflow -->
+                <default value="1"/>
+                <test logic="AND" value="0.50">
+                    /engines/engine/winter-kit-installed  EQ  1
+                </test>
+                <output>propulsion/engine[0]/cooling-factor-winterkit</output>
+            </switch>
+            <fcs_function name="engine-cooling-factor">
+                <function>
+                    <product>
+                        <property>propulsion/engine[0]/cooling-factor-winterkit</property>
+                        <property>propulsion/engine[0]/cooling-factor-cowlflaps</property>
+                    </product>
+                </function>
+                <clipto>
+                    <min>0</min>
+                    <max>1</max>
+                </clipto>
+                <output>propulsion/engine[0]/cooling-factor</output> <!-- final cooling factor to engine -->
+            </fcs_function>
 	</channel>
 	
 <channel name= "brake-lever">
@@ -694,7 +734,7 @@
                  <output>/sim/model/c182s/cockpit/brake-lever</output>
              </kinematic>
 </channel>
-	
+
     </flight_control>	
 
 <aerodynamics>
@@ -965,7 +1005,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCLge</property>
                         <property>propulsion/engine[0]/cowl-flaps-norm</property>
-                    <value>0.0077</value>
+                    <value>0.028</value>
                 </product>
             </function>
 
@@ -1496,6 +1536,6 @@
     <system file="c182s-stallhorn"/>
     <system file="propulsion"/>
     <system file="indicated-airspeed"/>
-   <system file="c182s-ground-effects"/>    
+    <system file="c182s-ground-effects"/>    
 
 </fdm_config>

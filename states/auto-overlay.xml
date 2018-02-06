@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<PropertyList>
+
+  <name type="string" n="0">auto</name>
+
+  <description>
+    The plane state is automatically detected based on selected position:
+    - in-air: cruise
+    - airport parking position: parking (cold and dark)
+    - other: ready for take-off
+
+    Start this state with --state=auto
+  </description>
+
+  <overlay>
+    <environment>
+      <overlay type="bool">true</overlay>
+    </environment>
+
+    <sim>
+        <!-- actual init is done via nasal "c182s-states.nas";
+             this value indicates the preset to it. -->
+        <init-state type="string">auto</init-state>
+        <!--
+      <presets>
+        <airspeed-kt type="double">180</airspeed-kt>
+        </presets>-->
+    </sim>
+
+  </overlay>
+</PropertyList>

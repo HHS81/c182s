@@ -489,8 +489,8 @@ Author: 09/2017  Benedikt Hallinger
                     <independentVar lookup="row">/engines/engine/oil-final-temperature-degf</independentVar>
                     <tableData>
                         <!-- info: accoring to POH (4-33) one should use a external heater below 20°F / -6°C) -->
-                        19.4    75.0   <!-- -7°C --> <!-- flooded-point is 75%, so below this temp no start is possible without external heat! -->
-                        23.0    68.0   <!-- -5°C --> <!-- below -3°C it is very hard to prime -->
+                         -13.0    75.0  <!-- -25°C --> <!-- flooded-point is 75%, so below this temp no start is possible without external heat! -->
+                          5.0    68.0   <!-- -15°C --> <!-- below -15°C it is very hard to prime -->
                         32.0    56.0   <!--  0°C -->
                         50.0    42.5   <!-- 10°C --> <!-- a little more than 3s needed -->
                         68.0    20.0   <!-- 20°C --> <!-- a little less than 2s needed -->

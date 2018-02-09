@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-  <name type="string" n="2">take-off</name>
+  <name type="string">take-off</name>
 
   <description>
     The plane will be in "ready-for-takeoff" state.

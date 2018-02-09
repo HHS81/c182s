@@ -28,6 +28,12 @@ if (!default_marker_volume.getValue()) default_marker_volume.setValue(0.5);
 var comm0 = props.globals.getNode("instrumentation/comm[0]");
 var comm1 = props.globals.getNode("instrumentation/comm[1]");
 
+# get handles to NAV, DME and ADF devices
+var nav0 = props.globals.getNode("instrumentation/nav[0]");
+var nav1 = props.globals.getNode("instrumentation/nav[1]");
+var dme  = props.globals.getNode("instrumentation/dme");
+var adf  = props.globals.getNode("instrumentation/adf");
+
 # get COM power states
 var comm0_pwrSwitch   = comm0.getNode("power-btn");
 var comm0_serviceable = comm0.getNode("serviceable");
@@ -107,10 +113,35 @@ var refresh_marker_volume = func {
         marker_volume.setDoubleValue(0);
     }
 };
+var refresh_ident_volume = func {
+    var pwrSw  = gma340_powerbtn.getValue();
+    var svcabl = gma340_serviceable.getValue();
+    var volts  = getprop("/systems/electrical/outputs/audio-panel");
+
+    if (pwrSw and svcabl and volts) {
+        # normal operable: set default volume
+        # TODO: Not implemented currently; should be done like the marker-volume probably.
+        #       When power is lost, we just shut off the values, otherwise leave setting as-is.
+        #       This has the drawback that we shut-off the ident when we switch off the GMA or electrical supply.
+        
+    } else {
+        # power-loss: no volume
+        var nav0_ident = nav0.getNode("ident");
+        var nav1_ident = nav1.getNode("ident");
+        var dme_ident  = dme.getNode("ident");
+        var adf_ident  = adf.getNode("ident-audible");
+        nav0_ident.setDoubleValue(0);
+        nav1_ident.setDoubleValue(0);
+        dme_ident.setDoubleValue(0);
+        adf_ident.setDoubleValue(0);
+    }
+};
+
 var refresh_com_volumes = func {
     refresh_com0_volume();
     refresh_com1_volume();
     refresh_marker_volume();
+    refresh_ident_volume();
 };
 
 

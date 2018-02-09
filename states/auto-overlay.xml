@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-  <name type="string" n="0">auto</name>
+  <name type="string">auto</name>
 
   <description>
     The plane state is automatically detected based on selected position:

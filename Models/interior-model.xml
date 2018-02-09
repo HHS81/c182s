@@ -3329,39 +3329,15 @@
     <!-- MODEND -->
     
     <!-- Annunciators-->
+    <!-- They are nasal driven! -->
     
     <!-- Ann Test swt -->
     <animation>
-        <type>pick</type>
+        <type>knob</type>
         <object-name>AnnTest.swt</object-name>
-        <visible>true</visible>
-        <action>
-            <button>0</button>
-            <repeatable>false</repeatable>
-            <binding>
-                <command>property-toggle</command>
-                <property></property>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>c182s.click("light")</script>
-            </binding>
-        </action>
-        <hovered>
-            <binding>
-                <command>set-tooltip</command>
-                <tooltip-id>Annunciators-Test-Switch</tooltip-id>
-                <label>Annunciator Test: %s</label>
-                <mapping>on-off</mapping>
-                <property></property>
-            </binding>
-        </hovered>
-    </animation>
-    
-    <animation>
-        <type>rotate</type>
-        <object-name>AnnTest.swt</object-name>
-        <property></property>
+        <property>/instrumentation/annunciator/testswitch</property>
+        <drag-direction>vertical</drag-direction>
+        <offset-deg>55</offset-deg>
         <factor>-55</factor>
         <axis>
             <x>0.0</x>
@@ -3369,83 +3345,217 @@
             <z>0.0</z>
         </axis>
         <center>
-            <x-m>0.363</x-m>
-            <y-m>0.071</y-m>
-            <z-m>0.430</z-m>
+            <x-m>0.3600</x-m>
+            <y-m>0.0717</y-m>
+            <z-m>0.4292</z-m>
         </center>
+
+        <!-- Normal action, positions 0, 1 and 2 -->
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>/instrumentation/annunciator/testswitch</property>
+                <min>0</min>
+                <max>2</max>
+            </binding>
+        </action>
+
+        <!-- Release action, limit to 0 and 1. 2 is spring loaded starter position -->
+        <release>
+            <binding>
+                <command>property-adjust</command>
+                <property>/instrumentation/annunciator/testswitch</property>
+                <step>0</step>
+                <min>0</min>
+                <max>1</max>
+            </binding>
+        </release>
+        
+        <hovered>
+            <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>Annunciators-Test-Switch</tooltip-id>
+                <label>Annunciator Test: %s</label>
+            <property>/instrumentation/annunciator/testswitch</property>
+            <mapping>nasal</mapping>
+            <script>
+                var modes = ['DIM', 'BRT', 'TEST'];
+                return modes[arg[0]];
+            </script>
+            </binding>
+        </hovered>
     </animation>
    
+    <animation>
+    <type>select</type>
+        <object-name>FuelFlowL.Ann</object-name>
+    <condition>
+        <and>
+            <greater-than>
+                <property>/systems/electrical/outputs/annunciators</property>
+                <value>12</value>
+            </greater-than>
+            <property>/instrumentation/annunciator/serviceable</property>
+            <property>/instrumentation/annunciator/fuel-low-l-indicated</property>
+        </and>
+    </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>FuelFlow.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>/systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>/instrumentation/annunciator/serviceable</property>
+                <or>
+                    <!-- take value of L or R if just one of them is 'on', otherwise both -->
+                    <and>
+                        <property>/instrumentation/annunciator/fuel-low-l</property>
+                        <not><property>/instrumentation/annunciator/fuel-low-r</property></not>
+                        <property>/instrumentation/annunciator/fuel-low-l-indicated</property>
+                    </and>
+                    <and>
+                        <not><property>/instrumentation/annunciator/fuel-low-l</property></not>
+                        <property>/instrumentation/annunciator/fuel-low-r</property>
+                        <property>/instrumentation/annunciator/fuel-low-r-indicated</property>
+                    </and>
+                    <and>
+                        <property>/instrumentation/annunciator/fuel-low-r</property>
+                        <property>/instrumentation/annunciator/fuel-low-l</property>
+                        <property>/instrumentation/annunciator/fuel-low-r-indicated</property>
+                        <property>/instrumentation/annunciator/fuel-low-l-indicated</property>
+                    </and>
+                </or>
+            </and>
+        </condition>
+    </animation>
     
- <!--<animation>
-  <type>select</type>
-    <object-name>FuelFlowL.Ann</object-name>
-  <condition>
-     <property></property>
-  </condition>
- </animation>
- 
-<animation>
-  <type>select</type>
-    <object-name>FuelFlow.Ann</object-name>
-     <property></property>
-  </condition>
- </animation>
- 
-<animation>
-  <type>select</type>
-    <object-name>FuelFlowR.Ann</object-name>
-  <condition>
-     <property></property>
-  </condition>
- </animation>
- 
-<animation>
-  <type>select</type>
-    <object-name>PitchTrim.Ann</object-name>
-  <condition>
-     <property></property>
-  </condition>
- </animation>
- 
-<animation>
-  <type>select</type>
-     <object-name>OilPress.Ann</object-name>
-  <condition>
-     <property></property>
-  </condition>
- </animation>
- 
-<animation>
-  <type>select</type>
-     <object-name>VACL.Ann</object-name>
-  <condition>
-     <property></property>
-  </condition>
- </animation>
- 
-<animation>
-  <type>select</type>
-    <object-name>VAC.Ann</object-name>
-  <condition>
-     <property></property>
-  </condition>
- </animation>
- 
-<animation>
-  <type>select</type>
-      <object-name>VACR.Ann</object-name>
-  <condition>
-     <property></property>
-  </condition>
- </animation>
- 
-<animation>
-  <type>select</type>
-    <object-name>Volts.Ann</object-name>
-  <condition>
-     <property></property>
-  </condition>
- </animation>-->
+    <animation>
+        <type>select</type>
+        <object-name>FuelFlowR.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>/systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>/instrumentation/annunciator/serviceable</property>
+                <property>/instrumentation/annunciator/fuel-low-r-indicated</property>
+            </and>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>PitchTrim.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>/systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>/instrumentation/annunciator/serviceable</property>
+                <property>/instrumentation/annunciator/pitch-trim-indicated</property>
+            </and>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>OilPress.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>/systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>/instrumentation/annunciator/serviceable</property>
+                <property>/instrumentation/annunciator/oilpress-low-indicated</property>
+            </and>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>VACL.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>/systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>/instrumentation/annunciator/serviceable</property>
+                <property>/instrumentation/annunciator/vac-low-l-indicated</property>
+            </and>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>VAC.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>/systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>/instrumentation/annunciator/serviceable</property>
+                <or>
+                    <!-- take value of L or R if just one of them is 'on', otherwise both -->
+                    <and>
+                        <property>/instrumentation/annunciator/vac-low-l</property>
+                        <not><property>/instrumentation/annunciator/vac-low-r</property></not>
+                        <property>/instrumentation/annunciator/vac-low-l-indicated</property>
+                    </and>
+                    <and>
+                        <not><property>/instrumentation/annunciator/vac-low-l</property></not>
+                        <property>/instrumentation/annunciator/vac-low-r</property>
+                        <property>/instrumentation/annunciator/vac-low-r-indicated</property>
+                    </and>
+                    <and>
+                        <property>/instrumentation/annunciator/vac-low-r</property>
+                        <property>/instrumentation/annunciator/vac-low-l</property>
+                        <property>/instrumentation/annunciator/vac-low-r-indicated</property>
+                        <property>/instrumentation/annunciator/vac-low-l-indicated</property>
+                    </and>
+                </or>
+            </and>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>VACR.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>/systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>/instrumentation/annunciator/serviceable</property>
+                <property>/instrumentation/annunciator/vac-low-r-indicated</property>
+            </and>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>Volts.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>/systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>/instrumentation/annunciator/serviceable</property>
+                <property>/instrumentation/annunciator/volts-low-indicated</property>
+            </and>
+        </condition>
+    </animation>
  
 
 </PropertyList>

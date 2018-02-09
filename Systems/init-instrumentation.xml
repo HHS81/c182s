@@ -6,6 +6,11 @@
   <indicated-speed-kt type="double">0</indicated-speed-kt>
 </airspeed-indicator>
 
+<annunciator>
+    <testswitch type="int">1</testswitch>
+    <serviceable type="bool">1</serviceable>
+</annunciator>
+
 <audio-panel include="../Models/Instruments/Avionics/gma340properties.xml"/>
 
 <marker-beacon>

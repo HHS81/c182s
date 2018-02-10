@@ -132,7 +132,7 @@ annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"vac-low-r",   
 annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"oilpress-low", "/engines/engine/indicated-oil-pressure-psi", 21.0) );
 annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"fuel-low-r",   "/consumables/fuel/tank[1]/indicated-level-gal_us", 8) );
 annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"fuel-low-l",   "/consumables/fuel/tank[0]/indicated-level-gal_us", 8) );
-annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"pitch-trim",   "/systems/electrical/volts", 999) );
+annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"pitch-trim",   "/systems/electrical/volts", -999) );
 # ^^ TODO: Pitch Trim Property currently unknown, so always false currently, so at least the test switch works
 
 #TODO: for mor realism... the fuel detection should probably be modelled finer using a custom class: The POH says, that the annunciator nly fires if the low-condition is met for at least 60 seconds

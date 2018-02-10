@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-  <name type="string" n="4">approach</name>
+  <name type="string">approach</name>
 
   <description>
     The plane will be in "approach" state with engines running.

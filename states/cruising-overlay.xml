@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-  <name type="string" n="3">cruise</name>
+  <name type="string">cruise</name>
 
   <description>
     The plane will be in "crusing" state with engines running.

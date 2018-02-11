@@ -3377,6 +3377,52 @@
             </binding>
         </hovered>
     </animation>
+    
+<animation>
+        <type>knob</type>
+        <object-name>AnnTest.swt</object-name>
+        <visible>true</visible>
+        <property>instrumentation/annunciator/testswitch</property>
+        <drag-direction>vertical</drag-direction>
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/annunciator/testswitch</property>
+                <min>0</min>
+                <max>2</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script><![CDATA[
+                    var p = getprop("/instrumentation/annunciator/testswitch");
+                    if (p == 0) setprop("/instrumentation/annunciator/dim-factor", 0.5);
+                    if (p == 1) setprop("/instrumentation/annunciator/dim-factor", 1);
+                ]]></script>
+            </binding>
+        </action>
+        <release>        <!-- Release action, limit to 0 and 1. 2 is spring loaded starter position -->
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/annunciator/testswitch</property>
+                <step>0</step>
+                <min>0</min>
+                <max>1</max>
+            </binding>
+        </release>
+        <hovered>
+            <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>Annunciators-Test-Switch</tooltip-id>
+                <label>Annunciator Test: %s</label>
+            <property>instrumentation/annunciator/testswitch</property>
+            <mapping>nasal</mapping>
+            <script>
+                var modes = ['DIM', 'BRT', 'TEST'];
+                return modes[arg[0]];
+            </script>
+            </binding>
+        </hovered>
+    </animation>
 
     <animation>
         <type>rotate</type>

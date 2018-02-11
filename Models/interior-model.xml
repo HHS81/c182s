@@ -3335,7 +3335,6 @@
     <animation>
         <type>knob</type>
         <object-name>CS.AnnTest</object-name>
-        <object-name>AnnTest.swt</object-name>
         <visible>false</visible>
         <property>instrumentation/annunciator/testswitch</property>
         <drag-direction>vertical</drag-direction>

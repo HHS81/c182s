@@ -3346,6 +3346,14 @@
                 <min>0</min>
                 <max>2</max>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script><![CDATA[
+                    var p = getprop("/instrumentation/annunciator/testswitch");
+                    if (p == 0) setprop("/instrumentation/annunciator/dim-factor", 0.5);
+                    if (p == 1) setprop("/instrumentation/annunciator/dim-factor", 1);
+                ]]></script>
+            </binding>
         </action>
         <release>        <!-- Release action, limit to 0 and 1. 2 is spring loaded starter position -->
             <binding>
@@ -3370,12 +3378,12 @@
             </binding>
         </hovered>
     </animation>
-    
-<animation>
+
+    <animation>
         <type>rotate</type>
         <object-name>AnnTest.swt</object-name>
         <property>instrumentation/annunciator/testswitch</property>
-<offset-deg>55</offset-deg>
+        <offset-deg>55</offset-deg>
         <factor>-55</factor>
 		<center>
 			<x-m>0.361758</x-m>
@@ -3389,6 +3397,27 @@
 		</axis>
     </animation>
     
+    <animation>
+        <type>material</type>
+        <object-name>FuelFlow.Ann</object-name>
+        <object-name>FuelFlowR.Ann</object-name>
+        <object-name>FuelFlowL.Ann</object-name>
+        <object-name>PitchTrim.Ann</object-name>
+        <object-name>OilPress.Ann</object-name>
+        <object-name>VAC.Ann</object-name>
+        <object-name>VACR.Ann</object-name>
+        <object-name>VACL.Ann</object-name>
+        <object-name>Volts.Ann</object-name>
+        <condition>
+            <not><property>sim/rendering/rembrandt/enabled</property></not>
+        </condition>
+        <emission>
+            <red>   1.0 </red>
+            <green> 1.0 </green>
+            <blue>  1.0 </blue>
+            <factor-prop>instrumentation/annunciator/dim-factor</factor-prop>
+        </emission>
+    </animation>
    
     <animation>
     <type>select</type>

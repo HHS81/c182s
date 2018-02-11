@@ -586,6 +586,8 @@
             <path>/controls/flight/rudder-trim</path>
             <path>/controls/flight/flaps</path>
             
+            <path>/instrumentation/annunciator/testswitch</path>
+            <path>/instrumentation/annunciator/dim-factor</path>
             <path>/instrumentation/audio-panel/power-btn</path>
             <path>/instrumentation/audio-panel/volume-ics-pilot</path>
             <path>/instrumentation/audio-panel/com[0]</path>

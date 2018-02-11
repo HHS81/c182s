@@ -169,9 +169,7 @@
 
 <procedural-lights type="bool">true</procedural-lights>
 <enable-fog-frost type="bool">false</enable-fog-frost>
-<nw_fairing type="bool">true</nw_fairing>
-<mw_fairing type="bool">true</mw_fairing>
-<chrome_spinner type="bool">true</chrome_spinner>
+
 
 	<material>
 		<fuselage>
@@ -192,12 +190,19 @@
 			</ambient>
 		</fuselage>
 	</material>
-<nw_fairing type="bool">true</nw_fairing>
-<mw_fairing type="bool">true</mw_fairing>
+		<nw_fairing type="bool">true</nw_fairing>
+		<mw_fairing type="bool">true</mw_fairing>
+		<chrome_spinner>true</chrome_spinner>
+		<!-- show registration models -->
+                <immat>true</immat>
+                <immat-on-panel>true</immat-on-panel>
     </c182s>
     
     <rendering>
-        <refl_correction type="string">-0.3</refl_correction>
+		<refl_correction type="string">-0.5</refl_correction>
+		<ambient_correction type="string">0.1</ambient_correction>
+		<refl-type>1.0</refl-type>
+		<fresnel-factor>0.7</fresnel-factor>
     </rendering>
     
         <!-- Event sounds -->

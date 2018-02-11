@@ -66,6 +66,7 @@
     <object-name>Breaker.Transponder</object-name>
     <object-name>Breaker.ADF</object-name>
     <object-name>Breaker.AutoPilot</object-name>
+    <object-name>CowlFlapsLever</object-name>
    </effect>
 
    <effect>

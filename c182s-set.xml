@@ -817,6 +817,10 @@
     <ADF type="bool">1</ADF>
     <AutoPilot type="bool">1</AutoPilot>
   </circuit-breakers>
+  <stall-horn>
+      <serviceable type="bool">1</serviceable>
+      <test type="bool">0</test>
+  </stall-horn>
   </controls>
 
  

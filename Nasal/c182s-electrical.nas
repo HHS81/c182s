@@ -575,8 +575,10 @@ cross_feed_bus = func() {
 
     if ( getprop("/controls/circuit-breakers/Warn") ) {
         setprop("/systems/electrical/outputs/annunciators", bus_volts);
+        setprop("/systems/electrical/outputs/stallhorn", bus_volts);
     } else {
         setprop("/systems/electrical/outputs/annunciators", 0.0);
+        setprop("/systems/electrical/outputs/stallhorn", 0.0);
     }
 
     if ( getprop("/controls/circuit-breakers/InstLts") ) {

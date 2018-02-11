@@ -8,6 +8,7 @@
     <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
     <object-name>Aircraft</object-name>
     <object-name>CagedIndicator</object-name>
+    <object-name>CageKnob</object-name>
     <object-name>Pitch</object-name>
     <object-name>Roll</object-name>
     <object-name>RollReference</object-name>

@@ -35,6 +35,7 @@
       <object-name>OAT.swt</object-name>
       <object-name>Select.btn</object-name>
       <object-name>Control.btn</object-name>
+      <object-name>lcd</object-name>
   </effect>
 
   <animation>

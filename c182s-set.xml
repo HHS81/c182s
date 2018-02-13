@@ -36,10 +36,11 @@
   <state include="states/approach-overlay.xml" n="4" />
   
   <systems>
-    <autopilot>
-        <!-- <path>Aircraft/c182s/generic-autopilot.xml</path>-->
+ <path>Aircraft/c182s/Systems/systems.xml</path>
+	   
+	    <autopilot>
         <path>Aircraft/c182s/Systems/KAP140.xml</path>
-    </autopilot>
+	    </autopilot>
             <autopilot>
                 <path>Systems/glass-rain.xml</path>
             </autopilot>
@@ -590,6 +591,8 @@
             <path>/controls/flight/rudder-trim</path>
             <path>/controls/flight/flaps</path>
             
+            <path>/instrumentation/annunciator/testswitch</path>
+            <path>/instrumentation/annunciator/dim-factor</path>
             <path>/instrumentation/audio-panel/power-btn</path>
             <path>/instrumentation/audio-panel/volume-ics-pilot</path>
             <path>/instrumentation/audio-panel/com[0]</path>
@@ -985,6 +988,7 @@
     <file>Aircraft/c182s/Nasal/immat.nas</file>
     <file>Aircraft/c182s/Nasal/gma340.nas</file>
     <file>Aircraft/c182s/Nasal/c182s-states.nas</file>
+    <file>Aircraft/c182s/Nasal/annunciator_panel.nas</file>
 </c182s>
 
 <davtron803>

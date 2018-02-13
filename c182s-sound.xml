@@ -440,7 +440,8 @@
                 <value>0.8</value>
             </volume>
             <pitch>
-                <value>0.3</value>
+                <property>/fdm/jsbsim/sounds/stall-horn-pitch</property>
+                <offset>0.0</offset>
             </pitch>
             <reference-dist>0.5</reference-dist>
             <max-dist>50.0</max-dist>

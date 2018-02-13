@@ -718,7 +718,12 @@ item("Static Source opening") {
 }
 
 item("Stall Warning Vane") {
-    state("CHECK for freedom of movement");
+    s = "controls/stall-horn/test";
+    state("CHECK for freedom of movement") {
+        s=2.0;
+        fgcommand("property-interpolate", property=s, value=0.0, rate=2);
+    }
+    marker(0.5317, -2.2442, 0.7917, 7);
 }
 
 item("Landing/Taxi Light(s)") {

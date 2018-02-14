@@ -207,10 +207,10 @@
     </c182s>
     
     <rendering>
-		<refl_correction type="string">-0.5</refl_correction>
-		<ambient_correction type="string">0.1</ambient_correction>
-		<refl-type>1.0</refl-type>
-		<fresnel-factor>0.7</fresnel-factor>
+		  <refl_correction type="float">-0.5</refl_correction>
+		  <ambient_correction type="float">0.1</ambient_correction>
+		  <refl-type type="int">1</refl-type>
+		  <fresnel-factor type="float">0.7</fresnel-factor>
     </rendering>
     
         <!-- Event sounds -->

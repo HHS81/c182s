@@ -12,9 +12,12 @@
 
   <path>vsi.ac</path>
 
-  
-
-
+  <effect>
+    <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
+    <object-name>PointerCentre</object-name>
+    <object-name>PointerTip</object-name>
+    <object-name>Face</object-name>
+  </effect>
 
   <animation>
     <type>material</type>

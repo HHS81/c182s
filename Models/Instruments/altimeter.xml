@@ -3,7 +3,17 @@
 <PropertyList>
 
     <path>alt2.ac</path>
-    
+
+  <effect>
+    <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
+    <object-name>ALTface</object-name>
+    <object-name>needle100</object-name>
+    <object-name>needle1000</object-name>
+    <object-name>needle10000</object-name>
+    <object-name>inhg</object-name>
+    <object-name>InhgKnob</object-name>
+  </effect>
+
     <animation>
         <type>material</type>
         <object-name>ALTface</object-name>

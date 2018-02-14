@@ -28,7 +28,7 @@
 
 <effect>
     <inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
-   <object-name>Fuselage</object-name><!-- model obejcts parented in Blender - gives faster livery loading-->
+    <object-name>Fuselage</object-name><!-- model obejcts parented in Blender - gives faster livery loading-->
 <object-name>WinterKit</object-name>
    <!--<object-name>Spinner</object-name>
    <object-name>WheelFairingNose</object-name>
@@ -58,7 +58,7 @@
  </effect>
  
   <effect>
-       <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas-uber</inherits-from>
+    <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas-uber</inherits-from>
     <object-name>Windscreen</object-name>
     <object-name>Window.L</object-name>
     <object-name>Window.R</object-name>
@@ -81,7 +81,8 @@
    </effect>
    
 <effect>
-	<inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
+    <inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
+    
 	<parameters>
 			<reflection-correction type="float">1.0</reflection-correction>
 			<reflection-dynamic type="int">1</reflection-dynamic>

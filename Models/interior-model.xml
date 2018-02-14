@@ -9,7 +9,7 @@
  </offsets>
 
    <effect>
-       <inherits-from>Effects/model-transparent</inherits-from>
+       <inherits-from>Aircraft/c182s/Models/Effects/model-transparent</inherits-from>
     <object-name>SunVirsor.R</object-name>
     <object-name>SunVirsor.L</object-name>
     <object-name>FuelFlowL.Ann</object-name>
@@ -24,7 +24,7 @@
    </effect>
    
    <effect>
-       <inherits-from>Effects/c182s_glareshield</inherits-from>
+       <inherits-from>Aircraft/c182s/Models/Effects/c182s_glareshield</inherits-from>
     <object-name>Panel</object-name>
     <object-name>PanelLight</object-name>
     <object-name>Pedestal</object-name>
@@ -75,10 +75,19 @@
     <object-name>Breaker.Transponder</object-name>
     <object-name>Breaker.ADF</object-name>
     <object-name>Breaker.AutoPilot</object-name>
+    <object-name>CowlFlapsLever</object-name>
+   </effect>
+
+   <effect>
+      <inherits-from>Aircraft/c182s/Models/Effects/c182s_flashlight</inherits-from>
+      <object-name>FlapSwitch</object-name>
+      <object-name>key</object-name>
+      <object-name>start</object-name>
+      <object-name>starter</object-name>
    </effect>
    
 <effect>
-       <inherits-from>Effects/c182s_controls</inherits-from>
+       <inherits-from>Aircraft/c182s/Models/Effects/c182s_controls</inherits-from>
    
     <object-name>Yoke.R</object-name>
     <object-name>Yoke.L</object-name>
@@ -96,7 +105,7 @@
    </effect>
    
 <effect>
-       <inherits-from>Effects/c182s_seats</inherits-from>
+       <inherits-from>Aircraft/c182s/Models/Effects/c182s_seats</inherits-from>
    
     <object-name>FrontSeat.R</object-name>
     <object-name>FrontSeat.L</object-name>
@@ -105,7 +114,7 @@
 
 
 <effect>
-       <inherits-from>Effects/c182s_cabin</inherits-from>
+       <inherits-from>Aircraft/c182s/Models/Effects/c182s_cabin</inherits-from>
     <object-name>IntWallFront</object-name>
     <object-name>Glareshield</object-name>
     <object-name>IntDoor.L</object-name>
@@ -129,7 +138,6 @@
     <object-name>IntWallBack</object-name>
     <object-name>DomeLight3</object-name>
     <object-name>DEL.swt</object-name>
-    
     <object-name>POH</object-name>
    </effect>
 

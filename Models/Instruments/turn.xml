@@ -10,13 +10,14 @@
 
 <PropertyList>
 
-<path>turn-gauge.ac</path>
+  <path>turn-gauge.ac</path>
 
-
-
-
-
-
+  <effect>
+    <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
+    <object-name>TURNneedle</object-name>
+    <object-name>TURNgauge.001</object-name>
+    <object-name>slipball</object-name>
+  </effect>
 
   <animation>
     <type>material</type>

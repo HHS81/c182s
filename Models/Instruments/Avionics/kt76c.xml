@@ -12,6 +12,33 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 
 <path>kt76c.ac</path>
 
+<effect>
+  <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
+  <object-name>Bezel</object-name>
+  <object-name>Knob</object-name>
+  <object-name>BtnIDT</object-name>
+  <object-name>BtnCLR</object-name>
+  <object-name>BtnVFR</object-name>
+  <object-name>Btn0</object-name>
+  <object-name>Btn1</object-name>
+  <object-name>Btn2</object-name>
+  <object-name>Btn3</object-name>
+  <object-name>Btn4</object-name>
+  <object-name>Btn5</object-name>
+  <object-name>Btn6</object-name>
+  <object-name>Btn7</object-name>
+  
+  <object-name>LabelsAlt</object-name>
+  <object-name>LabelReply</object-name>
+  <object-name>CodeDigit1</object-name>
+  <object-name>CodeDigit2</object-name>
+  <object-name>CodeDigit3</object-name>
+  <object-name>CodeDigit4</object-name>
+  <object-name>AltDigit1</object-name>
+  <object-name>AltDigit2</object-name>
+  <object-name>AltDigit3</object-name>
+</effect>
+
 <animation>
   <type>material</type>
   <object-name>Bezel</object-name>

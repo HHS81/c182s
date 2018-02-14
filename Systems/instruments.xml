@@ -388,5 +388,26 @@
         <property>/sim/model/c182s/lighting/ident-norm</property>
       </output>
     </filter>
+
+    <!-- Nav1, Nav2, ADF, AP and Trans button lights -->
+    <filter>
+      <name>Instrument Stack Button Lights</name>
+      <type>gain</type>
+      <input>
+        <condition>
+          <greater-than>
+              <property>/controls/lighting/radio-lights-norm</property>
+              <value>0.0</value>
+            </greater-than>
+        </condition>
+        <property>/controls/lighting/radio-lights-norm</property>
+      </input>
+      <input>
+        <value>0.0</value>
+      </input>
+      <output>
+        <property>/sim/model/c182s/lighting/stack-buttons-norm</property>
+      </output>
+    </filter>
     
 </PropertyList>

@@ -176,6 +176,27 @@
         <input>
             <condition>
                 <and>
+                  <greater-than>
+                    <property>/controls/lighting/radio-lights-norm</property>
+                    <value>0.0</value>
+                  </greater-than>
+                  <or>
+                    <property>/controls/engines/engine/master-alt</property>
+                    <property>/controls/engines/engine/master-bat</property>
+                  </or>
+                  <not>
+                    <property>/controls/switches/AVMBus1</property>
+                  </not>
+                  <not>
+                    <property>/controls/switches/AVMBus2</property>
+                  </not>
+                </and>
+            </condition>
+            <property>/sim/model/c182s/lighting/stack-buttons-norm</property>
+        </input>
+        <input>
+            <condition>
+                <and>
                     <equals>
                         <property>/controls/lighting/radio-lights-norm</property>
                         <value>0.0</value>
@@ -337,6 +358,77 @@
                     <property>/sim/model/c182s/lighting/ident-norm</property>
                 </sum>
             </expression>
+        </input>
+        <input>
+            <condition>
+                <and>
+                    <equals>
+                        <property>/controls/lighting/radio-lights-norm</property>
+                        <value>0.0</value>
+                    </equals>
+                    <or>
+                      <property>/controls/engines/engine/master-alt</property>
+                      <property>/controls/engines/engine/master-bat</property>
+                    </or>
+                    <property>/controls/switches/AVMBus1</property>
+                    <not>
+                       <property>/controls/switches/AVMBus2</property>
+                    </not>
+                </and>
+            </condition>
+            <expression>
+                <sum>
+                    <property>/sim/model/c182s/lighting/audio-panel</property>
+                    <property>/sim/model/c182s/lighting/dme</property>
+                    <property>/sim/model/c182s/lighting/nav-1</property>
+                </sum>
+            </expression>
+        </input>
+        <input>
+            <condition>
+                <and>
+                    <equals>
+                        <property>/controls/lighting/radio-lights-norm</property>
+                        <value>0.0</value>
+                    </equals>
+                    <or>
+                      <property>/controls/engines/engine/master-alt</property>
+                      <property>/controls/engines/engine/master-bat</property>
+                    </or>
+                    <property>/controls/switches/AVMBus2</property>
+                    <not>
+                       <property>/controls/switches/AVMBus1</property>
+                    </not>
+                </and>
+            </condition>
+            <expression>
+                <sum>
+                    <property>/sim/model/c182s/lighting/nav-2</property>
+                    <property>/sim/model/c182s/lighting/adf</property>
+                    <property>/sim/model/c182s/lighting/ident</property>
+                </sum>
+            </expression>
+        </input>
+        <input>
+            <condition>
+                <and>
+                  <greater-than>
+                    <property>/controls/lighting/radio-lights-norm</property>
+                    <value>0.0</value>
+                  </greater-than>
+                  <or>
+                    <property>/controls/engines/engine/master-alt</property>
+                    <property>/controls/engines/engine/master-bat</property>
+                  </or>
+                  <not>
+                    <property>/controls/switches/AVMBus1</property>
+                  </not>
+                  <not>
+                    <property>/controls/switches/AVMBus2</property>
+                  </not>
+                </and>
+            </condition>
+            <property>/sim/model/c182s/lighting/stack-buttons-norm</property>
         </input>
         <input>
             <condition>
@@ -556,6 +648,77 @@
         <input>
             <condition>
                 <and>
+                  <greater-than>
+                    <property>/controls/lighting/radio-lights-norm</property>
+                    <value>0.0</value>
+                  </greater-than>
+                  <or>
+                    <property>/controls/engines/engine/master-alt</property>
+                    <property>/controls/engines/engine/master-bat</property>
+                  </or>
+                  <not>
+                    <property>/controls/switches/AVMBus1</property>
+                  </not>
+                  <not>
+                    <property>/controls/switches/AVMBus2</property>
+                  </not>
+                </and>
+            </condition>
+            <property>/sim/model/c182s/lighting/stack-buttons-norm</property>
+        </input>
+        <input>
+            <condition>
+                <and>
+                    <equals>
+                        <property>/controls/lighting/radio-lights-norm</property>
+                        <value>0.0</value>
+                    </equals>
+                    <or>
+                      <property>/controls/engines/engine/master-alt</property>
+                      <property>/controls/engines/engine/master-bat</property>
+                    </or>
+                    <property>/controls/switches/AVMBus1</property>
+                    <not>
+                       <property>/controls/switches/AVMBus2</property>
+                    </not>
+                </and>
+            </condition>
+            <expression>
+                <sum>
+                    <property>/sim/model/c182s/lighting/audio-panel</property>
+                    <property>/sim/model/c182s/lighting/dme</property>
+                    <property>/sim/model/c182s/lighting/nav-1</property>
+                </sum>
+            </expression>
+        </input>
+        <input>
+            <condition>
+                <and>
+                    <equals>
+                        <property>/controls/lighting/radio-lights-norm</property>
+                        <value>0.0</value>
+                    </equals>
+                    <or>
+                      <property>/controls/engines/engine/master-alt</property>
+                      <property>/controls/engines/engine/master-bat</property>
+                    </or>
+                    <property>/controls/switches/AVMBus2</property>
+                    <not>
+                       <property>/controls/switches/AVMBus1</property>
+                    </not>
+                </and>
+            </condition>
+            <expression>
+                <sum>
+                    <property>/sim/model/c182s/lighting/nav-2</property>
+                    <property>/sim/model/c182s/lighting/adf</property>
+                    <property>/sim/model/c182s/lighting/ident</property>
+                </sum>
+            </expression>
+        </input>
+        <input>
+            <condition>
+                <and>
                     <equals>
                         <property>/controls/lighting/radio-lights-norm</property>
                         <value>0.0</value>
@@ -594,7 +757,7 @@
             <expression>
                 <table>
                     <property>/systems/electrical/outputs/instrument-lights-norm</property>
-                    <entry><ind>0.0</ind><dep>2.0</dep></entry>
+                    <entry><ind>0.0</ind><dep>2.5</dep></entry>
                     <entry><ind>1.0</ind><dep>0.4</dep></entry>
                 </table>
             </expression>

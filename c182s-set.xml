@@ -36,10 +36,11 @@
   <state include="states/approach-overlay.xml" n="4" />
   
   <systems>
-    <autopilot>
-        <!-- <path>Aircraft/c182s/generic-autopilot.xml</path>-->
+ <path>Aircraft/c182s/Systems/systems.xml</path>
+	   
+	    <autopilot>
         <path>Aircraft/c182s/Systems/KAP140.xml</path>
-    </autopilot>
+	    </autopilot>
             <autopilot>
                 <path>Systems/glass-rain.xml</path>
             </autopilot>
@@ -169,9 +170,7 @@
 
 <procedural-lights type="bool">true</procedural-lights>
 <enable-fog-frost type="bool">false</enable-fog-frost>
-<nw_fairing type="bool">true</nw_fairing>
-<mw_fairing type="bool">true</mw_fairing>
-<chrome_spinner type="bool">true</chrome_spinner>
+
 
 	<material>
 		<fuselage>
@@ -192,18 +191,26 @@
 			</ambient>
 		</fuselage>
 	</material>
-<nw_fairing type="bool">true</nw_fairing>
-<mw_fairing type="bool">true</mw_fairing>
 
-        <lighting>
-            <ra-r type="double">0.05</ra-r>
-            <ra-g type="double">0.025</ra-g>
-            <ra-b type="double">0.025</ra-b>
-        </lighting>
+		<nw_fairing type="bool">true</nw_fairing>
+		<mw_fairing type="bool">true</mw_fairing>
+		<chrome_spinner>true</chrome_spinner>
+		<!-- show registration models -->
+                <immat>true</immat>
+                <immat-on-panel>true</immat-on-panel>
+
+      <lighting>
+          <ra-r type="double">0.05</ra-r>
+          <ra-g type="double">0.025</ra-g>
+          <ra-b type="double">0.025</ra-b>
+      </lighting>
     </c182s>
     
     <rendering>
-        <refl_correction type="string">-0.3</refl_correction>
+		<refl_correction type="string">-0.5</refl_correction>
+		<ambient_correction type="string">0.1</ambient_correction>
+		<refl-type>1.0</refl-type>
+		<fresnel-factor>0.7</fresnel-factor>
     </rendering>
     
         <!-- Event sounds -->
@@ -590,6 +597,8 @@
             <path>/controls/flight/rudder-trim</path>
             <path>/controls/flight/flaps</path>
             
+            <path>/instrumentation/annunciator/testswitch</path>
+            <path>/instrumentation/annunciator/dim-factor</path>
             <path>/instrumentation/audio-panel/power-btn</path>
             <path>/instrumentation/audio-panel/volume-ics-pilot</path>
             <path>/instrumentation/audio-panel/com[0]</path>
@@ -986,6 +995,7 @@
     <file>Aircraft/c182s/Nasal/gma340.nas</file>
     <file>Aircraft/c182s/Nasal/c182s-states.nas</file>
     <file>Aircraft/c182s/Nasal/flashlight.nas</file>
+    <file>Aircraft/c182s/Nasal/annunciator_panel.nas</file>
 </c182s>
 
 <davtron803>

@@ -24,6 +24,14 @@
       <!--<indicated-speed-kts>instrumentation/airspeed-indicator/indicated-speed-kt</indicated-speed-kts>-->
 <indicated-speed-kts>fdm/jsbsim/velocities/vias-kts</indicated-speed-kts><!-- does include error ccording POH Cessna 182S Page 5-9-->
     </params>
+
+    <effect>
+        <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
+        <object-name>Airspeed.TAS</object-name>
+        <object-name>Airspeed.IAS</object-name>
+        <object-name>Airspeed.Needle</object-name>
+        <!--<object-name>Airspeed.Knob</object-name>-->
+    </effect>
     
     <animation>
         <type>noshadow</type>

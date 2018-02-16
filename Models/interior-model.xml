@@ -9,13 +9,22 @@
  </offsets>
 
    <effect>
-       <inherits-from>Effects/model-transparent</inherits-from>
+       <inherits-from>Aircraft/c182s/Models/Effects/model-transparent</inherits-from>
     <object-name>SunVirsor.R</object-name>
     <object-name>SunVirsor.L</object-name>
+    <object-name>FuelFlowL.Ann</object-name>
+    <object-name>FuelFlow.Ann</object-name>
+    <object-name>FuelFlowR.Ann</object-name>
+    <object-name>PitchTrim.Ann</object-name>
+     <object-name>OilPress.Ann</object-name>
+    <object-name>VACL.Ann</object-name>
+    <object-name>VAC.Ann</object-name>
+    <object-name>VACR.Ann</object-name>
+    <object-name>Volts.Ann</object-name>
    </effect>
    
    <effect>
-       <inherits-from>Effects/c182s_glareshield</inherits-from>
+       <inherits-from>Aircraft/c182s/Models/Effects/c182s_glareshield</inherits-from>
     <object-name>Panel</object-name>
     <object-name>PanelLight</object-name>
     <object-name>Pedestal</object-name>
@@ -47,10 +56,10 @@
     <object-name>NavLightSwitch</object-name>
     <object-name>StrobeLightSwitch</object-name>
     <object-name>PitotHeatSwitch</object-name>
-    <!-- FLAPS GLARESHIELD BUG-WORKAROUND: SEE ISSUE #176: https://github.com/HHS81/c182s/issues/176#issuecomment-340090229
-    <object-name>Panel.001</object-name>
-    <object-name>FlapSwitch</object-name>  -->
     
+    <object-name>FlapSwitch</object-name>  
+    <object-name>FlapPos</object-name>   
+   
     <object-name>Breaker.Flap</object-name>
     <object-name>Breaker.Inst</object-name>
     <object-name>Breaker.AVNBus1</object-name>
@@ -66,10 +75,19 @@
     <object-name>Breaker.Transponder</object-name>
     <object-name>Breaker.ADF</object-name>
     <object-name>Breaker.AutoPilot</object-name>
+    <object-name>CowlFlapsLever</object-name>
+   </effect>
+
+   <effect>
+      <inherits-from>Aircraft/c182s/Models/Effects/c182s_flashlight</inherits-from>
+      <object-name>FlapSwitch</object-name>
+      <object-name>key</object-name>
+      <object-name>start</object-name>
+      <object-name>starter</object-name>
    </effect>
    
 <effect>
-       <inherits-from>Effects/c182s_controls</inherits-from>
+       <inherits-from>Aircraft/c182s/Models/Effects/c182s_controls</inherits-from>
    
     <object-name>Yoke.R</object-name>
     <object-name>Yoke.L</object-name>
@@ -87,7 +105,7 @@
    </effect>
    
 <effect>
-       <inherits-from>Effects/c182s_seats</inherits-from>
+       <inherits-from>Aircraft/c182s/Models/Effects/c182s_seats</inherits-from>
    
     <object-name>FrontSeat.R</object-name>
     <object-name>FrontSeat.L</object-name>
@@ -96,7 +114,7 @@
 
 
 <effect>
-       <inherits-from>Effects/c182s_cabin</inherits-from>
+       <inherits-from>Aircraft/c182s/Models/Effects/c182s_cabin</inherits-from>
     <object-name>IntWallFront</object-name>
     <object-name>Glareshield</object-name>
     <object-name>IntDoor.L</object-name>
@@ -120,6 +138,7 @@
     <object-name>IntWallBack</object-name>
     <object-name>DomeLight3</object-name>
     <object-name>DEL.swt</object-name>
+    <object-name>POH</object-name>
    </effect>
 
 
@@ -1306,7 +1325,7 @@
 <animation>
     <type>knob</type>
     <object-name>RadioLightKnob</object-name>
-    <property>/controls/lighting/radio-lights-norm</property>
+    <property>controls/lighting/radio-lights-norm</property>
     <factor>1</factor>
 <drag-direction>vertical</drag-direction>
     <offset-deg>0</offset-deg>
@@ -1323,7 +1342,7 @@
     <action>
       <binding>
         <command>property-adjust</command>
-        <property>/controls/lighting/radio-lights-norm</property>
+        <property>controls/lighting/radio-lights-norm</property>
         <factor>0.1</factor>
         <min>0</min>
         <max>1</max>
@@ -1336,7 +1355,7 @@
             <tooltip-id>radio-Light-tip</tooltip-id>
             <mapping>percent</mapping>
             <label>Radio Lights: %2d%%</label>
-            <property>/controls/lighting/radio-lights-norm</property>
+            <property>controls/lighting/radio-lights-norm</property>
         </binding>
     </hovered>
   </animation>
@@ -1344,7 +1363,7 @@
 <animation>
     <type>knob</type>
     <object-name>PanelLightKnob</object-name>
-    <property>/controls/lighting/instrument-lights-norm</property>
+    <property>controls/lighting/instrument-lights-norm</property>
     <factor>1</factor>
 <drag-direction>horizontal</drag-direction>
     <offset-deg>0</offset-deg>
@@ -1361,7 +1380,7 @@
     <action>
       <binding>
         <command>property-adjust</command>
-        <property>/controls/lighting/instrument-lights-norm</property>
+        <property>controls/lighting/instrument-lights-norm</property>
         <factor>0.1</factor>
         <min>0</min>
         <max>1</max>
@@ -1374,7 +1393,7 @@
             <tooltip-id>instruments-Light-tip</tooltip-id>
             <mapping>percent</mapping>
             <label>Instrument Lights: %2d%%</label>
-            <property>/controls/lighting/instrument-lights-norm</property>
+            <property>controls/lighting/instrument-lights-norm</property>
         </binding>
     </hovered>
   </animation>
@@ -1382,7 +1401,7 @@
 <animation>
     <type>knob</type>
     <object-name>GlareshieldLightKnob</object-name>
-    <property>/controls/lighting/glareshield-lights-norm</property>
+    <property>controls/lighting/glareshield-lights-norm</property>
     <factor>1</factor>
 <drag-direction>vertical</drag-direction>
     <offset-deg>0</offset-deg>
@@ -1399,7 +1418,7 @@
     <action>
       <binding>
         <command>property-adjust</command>
-        <property>/controls/lighting/glareshield-lights-norm</property>
+        <property>controls/lighting/glareshield-lights-norm</property>
         <factor>0.1</factor>
         <min>0</min>
         <max>1</max>
@@ -1412,7 +1431,7 @@
             <tooltip-id>glaresh-Light-tip</tooltip-id>
             <mapping>percent</mapping>
             <label>Glareshield Lights: %2d%%</label>
-            <property>/controls/lighting/glareshield-lights-norm</property>
+            <property>controls/lighting/glareshield-lights-norm</property>
         </binding>
     </hovered>
   </animation>
@@ -1420,7 +1439,7 @@
 <animation>
     <type>knob</type>
     <object-name>PedestalLightKnob</object-name>
-    <property>/controls/lighting/pedestal-lights-norm</property>
+    <property>controls/lighting/pedestal-lights-norm</property>
     <factor>1</factor>
 <drag-direction>horizontal</drag-direction>
     <offset-deg>0</offset-deg>
@@ -1437,7 +1456,7 @@
     <action>
       <binding>
         <command>property-adjust</command>
-        <property>/controls/lighting/pedestal-lights-norm</property>
+        <property>controls/lighting/pedestal-lights-norm</property>
         <factor>0.1</factor>
         <min>0</min>
         <max>1</max>
@@ -1450,7 +1469,7 @@
             <tooltip-id>pedestal-Light-tip</tooltip-id>
             <mapping>percent</mapping>
             <label>Pedestal Lights: %2d%%</label>
-            <property>/controls/lighting/pedestal-lights-norm</property>
+            <property>controls/lighting/pedestal-lights-norm</property>
         </binding>
     </hovered>
   </animation>
@@ -1464,7 +1483,7 @@
         <action>
             <binding>
                 <command>property-adjust</command>
-                <property>/environment/aircraft-effects/cabin-heat-set</property>
+                <property>environment/aircraft-effects/cabin-heat-set</property>
                 <factor>-0.05</factor>
                 <min>0</min>
                 <max>1</max>
@@ -1478,14 +1497,14 @@
                 <measure-text>Cabin Heat: 100%</measure-text>
                 <tooltip-id>cabinheat</tooltip-id>
                 <mapping>percent</mapping>
-                <property>/environment/aircraft-effects/cabin-heat-set</property>
+                <property>environment/aircraft-effects/cabin-heat-set</property>
             </binding>
         </hovered>
     </animation>
     <animation>
         <type>translate</type>
         <object-name>CabinHeat</object-name>
-        <property>/environment/aircraft-effects/cabin-heat-set</property>
+        <property>environment/aircraft-effects/cabin-heat-set</property>
         <factor>0.03</factor>
         <axis>
             <x>1.0</x>
@@ -1501,7 +1520,7 @@
         <action>
             <binding>
                 <command>property-adjust</command>
-                <property>/environment/aircraft-effects/cabin-air-set</property>
+                <property>environment/aircraft-effects/cabin-air-set</property>
                 <factor>-0.05</factor>
                 <min>0</min>
                 <max>1</max>
@@ -1515,14 +1534,14 @@
                 <measure-text>Cabin Air: 100%</measure-text>
                 <tooltip-id>cabinair</tooltip-id>
                 <mapping>percent</mapping>
-                <property>/environment/aircraft-effects/cabin-air-set</property>
+                <property>environment/aircraft-effects/cabin-air-set</property>
             </binding>
         </hovered>
     </animation>
     <animation>
         <type>translate</type>
         <object-name>CabinAir</object-name>
-        <property>/environment/aircraft-effects/cabin-air-set</property>
+        <property>environment/aircraft-effects/cabin-air-set</property>
         <factor>0.03</factor>
         <axis>
             <x>1.0</x>
@@ -1538,7 +1557,7 @@
         <action>
             <binding>
                 <command>property-adjust</command>
-                <property>/environment/aircraft-effects/defrost-set</property>
+                <property>environment/aircraft-effects/defrost-set</property>
                 <factor>-0.05</factor>
                 <min>0</min>
                 <max>1</max>
@@ -1552,14 +1571,14 @@
                 <measure-text>Defrost: 100%</measure-text>
                 <tooltip-id>defrost</tooltip-id>
                 <mapping>percent</mapping>
-                <property>/environment/aircraft-effects/defrost-set</property>
+                <property>environment/aircraft-effects/defrost-set</property>
             </binding>
         </hovered>
     </animation>
     <animation>
         <type>translate</type>
         <object-name>DeFrost</object-name>
-        <property>/environment/aircraft-effects/defrost-set</property>
+        <property>environment/aircraft-effects/defrost-set</property>
         <factor>0.03</factor>
         <axis>
             <x>1.0</x>
@@ -1959,7 +1978,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-                <property>/controls/anti-ice/pitot-heat</property>
+                <property>controls/anti-ice/pitot-heat</property>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -1972,7 +1991,7 @@
                 <tooltip-id>pitotheat-Switch</tooltip-id>
                 <label>Pitot Heat: %s</label>
                 <mapping>on-off</mapping>
-                <property>/controls/anti-ice/pitot-heat</property>
+                <property>controls/anti-ice/pitot-heat</property>
             </binding>
         </hovered>
     </animation>
@@ -1985,7 +2004,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-                <property>/controls/anti-ice/pitot-heat</property>
+                <property>controls/anti-ice/pitot-heat</property>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -1998,7 +2017,7 @@
                 <tooltip-id>pitotheat-Switch</tooltip-id>
                 <label>Pitot Heat: %s</label>
                 <mapping>on-off</mapping>
-                <property>/controls/anti-ice/pitot-heat</property>
+                <property>controls/anti-ice/pitot-heat</property>
             </binding>
         </hovered>
     </animation>
@@ -2013,7 +2032,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-                <property>/controls/switches/AVMBus1</property>
+                <property>controls/switches/AVMBus1</property>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -2026,7 +2045,7 @@
                 <tooltip-id>Avionics Master-Switch Bus1</tooltip-id>
                 <label>Avionics Master 1: %s</label>
                 <mapping>on-off</mapping>
-                <property>/controls/switches/AVMBus1</property>
+                <property>controls/switches/AVMBus1</property>
             </binding>
         </hovered>
     </animation>
@@ -2040,7 +2059,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-                <property>/controls/switches/AVMBus2</property>
+                <property>controls/switches/AVMBus2</property>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -2053,7 +2072,7 @@
                 <tooltip-id>Avionics Master-Switch Bus2</tooltip-id>
                 <label>Avionics Master 2: %s</label>
                 <mapping>on-off</mapping>
-                <property>/controls/switches/AVMBus2</property>
+                <property>controls/switches/AVMBus2</property>
             </binding>
         </hovered>
     </animation>
@@ -2067,7 +2086,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-                <property>/controls/lighting/dome-light-l</property>
+                <property>controls/lighting/dome-light-l</property>
             </binding>
         </action>
         <hovered>
@@ -2076,7 +2095,7 @@
                 <tooltip-id>Domelight Front Pilot</tooltip-id>
                 <label>Domelight Front Pilot: %s</label>
                 <mapping>on-off</mapping>
-                <property>/controls/lighting/dome-light-l</property>
+                <property>controls/lighting/dome-light-l</property>
             </binding>
         </hovered>
     </animation>
@@ -2101,7 +2120,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-                <property>/controls/lighting/dome-light-r</property>
+                <property>controls/lighting/dome-light-r</property>
             </binding>
         </action>
         <hovered>
@@ -2110,7 +2129,7 @@
                 <tooltip-id>Domelight Front CoPilot</tooltip-id>
                 <label>Domelight Front CoPilot: %s</label>
                 <mapping>on-off</mapping>
-                <property>/controls/lighting/dome-light-r</property>
+                <property>controls/lighting/dome-light-r</property>
             </binding>
         </hovered>
     </animation>
@@ -2135,7 +2154,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>property-toggle</command>
-                <property>/controls/lighting/dome-exterior-light</property>
+                <property>controls/lighting/dome-exterior-light</property>
             </binding>
         </action>
         <hovered>
@@ -2144,7 +2163,7 @@
                 <tooltip-id>DomelightRearExterior</tooltip-id>
                 <label>Domelight Rear and Courtesy: %s</label>
                 <mapping>on-off</mapping>
-                <property>/controls/lighting/dome-exterior-light</property>
+                <property>controls/lighting/dome-exterior-light</property>
             </binding>
         </hovered>
     </animation>
@@ -2164,7 +2183,7 @@
     <animation>
         <type>rotate</type>
         <object-name>PitotHeatSwitch</object-name>
-        <property>/controls/anti-ice/pitot-heat</property>
+        <property>controls/anti-ice/pitot-heat</property>
         <factor>-55</factor>
         <axis>
             <x>0.0</x>
@@ -2318,7 +2337,7 @@
 <animation>
         <type>rotate</type>
         <object-name>AVMBus1</object-name>
-        <property>/controls/switches/AVMBus1</property>
+        <property>controls/switches/AVMBus1</property>
         <factor>-20</factor>
         <axis>
             <x>0.0</x>
@@ -2335,7 +2354,7 @@
 <animation>
         <type>rotate</type>
         <object-name>AVMBus2</object-name>
-        <property>/controls/switches/AVMBus2</property>
+        <property>controls/switches/AVMBus2</property>
         <factor>-20</factor>
         <axis>
             <x>0.0</x>
@@ -2353,7 +2372,7 @@
     <animation>
         <type>translate</type>
         <object-name>DL.swt.L</object-name>
-        <property>/controls/lighting/dome-light-l</property>
+        <property>controls/lighting/dome-light-l</property>
         <factor>0.0057</factor>
         <axis>
             <x>0.0</x>
@@ -2365,7 +2384,7 @@
 <animation>
         <type>translate</type>
         <object-name>DL.swt.R</object-name>
-        <property>/controls/lighting/dome-light-r</property>
+        <property>controls/lighting/dome-light-r</property>
         <factor>0.0057</factor>
         <axis>
             <x>0.0</x>
@@ -2377,7 +2396,7 @@
 <animation>
         <type>translate</type>
         <object-name>DEL.swt</object-name>
-        <property>/controls/lighting/dome-exterior-light</property>
+        <property>controls/lighting/dome-exterior-light</property>
         <factor>0.0062</factor>
         <axis>
             <x>0.0</x>
@@ -2396,7 +2415,7 @@
             <binding>
                 <command>property-adjust</command>
                 <!--<property>/controls/switches/magnetos</property>-->
-                <property>/controls/engines/engine/magnetos</property>
+                <property>controls/engines/engine/magnetos</property>
                 <factor>1</factor>
                 <min>0</min>
                 <max>3</max>
@@ -2419,7 +2438,7 @@
                 <command>set-tooltip</command>
                 <tooltip-id>magneto-switch</tooltip-id>
                 <label>Magnetos: %s</label>
-                <property>/controls/engines/engine/magnetos</property>
+                <property>controls/engines/engine/magnetos</property>
                 <mapping>nasal</mapping>
                 <script>
                     var m = arg[0];
@@ -2436,7 +2455,7 @@
 <animation>
         <type>knob</type>
         <object-name>FuelTankSelector</object-name>
-        <property>/controls/switches/fuel_tank_selector</property>
+        <property>controls/switches/fuel_tank_selector</property>
         <visible>true</visible>
         <factor>90</factor>
         <offset-deg>90</offset-deg>
@@ -2453,7 +2472,7 @@
         <action>
             <binding>
                 <command>property-adjust</command>
-                <property>/controls/switches/fuel_tank_selector</property>
+                <property>controls/switches/fuel_tank_selector</property>
                 <wrap>true</wrap>
                 <min>0</min>
                 <max>4</max> <!-- 0=off, 1=right, 2=both, 3=left -->
@@ -2464,7 +2483,7 @@
                 <command>set-tooltip</command>
                 <tooltip-id>fuel-tank-selector</tooltip-id>
                 <label>Fuel tank selector: %s</label>
-                <property>/controls/switches/fuel_tank_selector</property>
+                <property>controls/switches/fuel_tank_selector</property>
                 <mapping>nasal</mapping>
                 <script>
                     var m = arg[0];
@@ -2487,7 +2506,7 @@
             <button>0</button>
             <binding>
                 <command>property-assign</command>
-                <property>/controls/switches/starter</property>
+                <property>controls/switches/starter</property>
                 <value>1</value>
             </binding>
             <binding>
@@ -2497,7 +2516,7 @@
             <mod-up>
                 <binding>
                     <command>property-assign</command>
-                    <property>/controls/switches/starter</property>
+                    <property>controls/switches/starter</property>
                     <value>0</value>
                 </binding>
                 <binding>
@@ -2526,13 +2545,13 @@
                     <!-- 1 if starter is false, 0 if starter is true -->
                     <difference>
                         <value>1</value>
-                        <property>/controls/switches/starter</property>
+                        <property>controls/switches/starter</property>
                     </difference>
-                    <property>/controls/engines/engine/magnetos</property>
+                    <property>controls/engines/engine/magnetos</property>
                     <value>30</value>
                 </product>
                 <product>
-                    <property>/controls/switches/starter</property>
+                    <property>controls/switches/starter</property>
                     <value>120</value>
                 </product>
             </sum>
@@ -2626,7 +2645,7 @@
         <offsets>
             <x-m>0.3515</x-m>
             <y-m>0.083</y-m>
-            <z-m>0.180</z-m>
+            <z-m>0.177</z-m>
         </offsets>
     </model>
     
@@ -2832,7 +2851,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.Flap</object-name>
-		<property>/controls/circuit-breakers/Flap</property>
+		<property>controls/circuit-breakers/Flap</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -2842,7 +2861,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/Flap</property>
+				<property>controls/circuit-breakers/Flap</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2855,7 +2874,7 @@
 				<tooltip-id>tt_brk_Flap</tooltip-id>
 				<label>Flap-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/Flap</property>
+				<property>controls/circuit-breakers/Flap</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -2863,7 +2882,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.Inst</object-name>
-		<property>/controls/circuit-breakers/Inst</property>
+		<property>controls/circuit-breakers/Inst</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -2873,7 +2892,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/Inst</property>
+				<property>controls/circuit-breakers/Inst</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2886,7 +2905,7 @@
 				<tooltip-id>tt_brk_Inst</tooltip-id>
 				<label>Inst-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/Inst</property>
+				<property>controls/circuit-breakers/Inst</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -2894,7 +2913,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.AVNBus1</object-name>
-		<property>/controls/circuit-breakers/AVNBus1</property>
+		<property>controls/circuit-breakers/AVNBus1</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -2904,7 +2923,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/AVNBus1</property>
+				<property>controls/circuit-breakers/AVNBus1</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2917,7 +2936,7 @@
 				<tooltip-id>tt_brk_AVNBus1</tooltip-id>
 				<label>AVNBus1-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/AVNBus1</property>
+				<property>controls/circuit-breakers/AVNBus1</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -2925,7 +2944,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.AVNBus2</object-name>
-		<property>/controls/circuit-breakers/AVNBus2</property>
+		<property>controls/circuit-breakers/AVNBus2</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -2935,7 +2954,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/AVNBus2</property>
+				<property>controls/circuit-breakers/AVNBus2</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2948,7 +2967,7 @@
 				<tooltip-id>tt_brk_AVNBus2</tooltip-id>
 				<label>AVNBus2-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/AVNBus2</property>
+				<property>controls/circuit-breakers/AVNBus2</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -2956,7 +2975,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.TurnCoord</object-name>
-		<property>/controls/circuit-breakers/TurnCoord</property>
+		<property>controls/circuit-breakers/TurnCoord</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -2966,7 +2985,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/TurnCoord</property>
+				<property>controls/circuit-breakers/TurnCoord</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -2979,7 +2998,7 @@
 				<tooltip-id>tt_brk_TurnCoord</tooltip-id>
 				<label>TurnCoord-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/TurnCoord</property>
+				<property>controls/circuit-breakers/TurnCoord</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -2987,7 +3006,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.InstLts</object-name>
-		<property>/controls/circuit-breakers/InstLts</property>
+		<property>controls/circuit-breakers/InstLts</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -2997,7 +3016,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/InstLts</property>
+				<property>controls/circuit-breakers/InstLts</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -3010,7 +3029,7 @@
 				<tooltip-id>tt_brk_InstLts</tooltip-id>
 				<label>InstLts-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/InstLts</property>
+				<property>controls/circuit-breakers/InstLts</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -3018,7 +3037,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.AltFLD</object-name>
-		<property>/controls/circuit-breakers/AltFLD</property>
+		<property>controls/circuit-breakers/AltFLD</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -3028,7 +3047,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/AltFLD</property>
+				<property>controls/circuit-breakers/AltFLD</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -3041,7 +3060,7 @@
 				<tooltip-id>tt_brk_AltFLD</tooltip-id>
 				<label>AltFLD-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/AltFLD</property>
+				<property>controls/circuit-breakers/AltFLD</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -3049,7 +3068,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.Warn</object-name>
-		<property>/controls/circuit-breakers/Warn</property>
+		<property>controls/circuit-breakers/Warn</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -3059,7 +3078,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/Warn</property>
+				<property>controls/circuit-breakers/Warn</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -3072,7 +3091,7 @@
 				<tooltip-id>tt_brk_Warn</tooltip-id>
 				<label>Warn-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/Warn</property>
+				<property>controls/circuit-breakers/Warn</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -3080,7 +3099,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.AvionicsFan</object-name>
-		<property>/controls/circuit-breakers/AvionicsFan</property>
+		<property>controls/circuit-breakers/AvionicsFan</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -3090,7 +3109,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/AvionicsFan</property>
+				<property>controls/circuit-breakers/AvionicsFan</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -3103,7 +3122,7 @@
 				<tooltip-id>tt_brk_AvionicsFan</tooltip-id>
 				<label>AvionicsFan-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/AvionicsFan</property>
+				<property>controls/circuit-breakers/AvionicsFan</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -3111,7 +3130,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.GPS</object-name>
-		<property>/controls/circuit-breakers/GPS</property>
+		<property>controls/circuit-breakers/GPS</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -3121,7 +3140,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/GPS</property>
+				<property>controls/circuit-breakers/GPS</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -3134,7 +3153,7 @@
 				<tooltip-id>tt_brk_GPS</tooltip-id>
 				<label>GPS-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/GPS</property>
+				<property>controls/circuit-breakers/GPS</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -3142,7 +3161,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.NavCom1</object-name>
-		<property>/controls/circuit-breakers/NavCom1</property>
+		<property>controls/circuit-breakers/NavCom1</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -3152,7 +3171,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/NavCom1</property>
+				<property>controls/circuit-breakers/NavCom1</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -3165,7 +3184,7 @@
 				<tooltip-id>tt_brk_NavCom1</tooltip-id>
 				<label>NavCom1-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/NavCom1</property>
+				<property>controls/circuit-breakers/NavCom1</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -3173,7 +3192,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.NavCom2</object-name>
-		<property>/controls/circuit-breakers/NavCom2</property>
+		<property>controls/circuit-breakers/NavCom2</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -3183,7 +3202,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/NavCom2</property>
+				<property>controls/circuit-breakers/NavCom2</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -3196,7 +3215,7 @@
 				<tooltip-id>tt_brk_NavCom2</tooltip-id>
 				<label>NavCom2-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/NavCom2</property>
+				<property>controls/circuit-breakers/NavCom2</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -3204,7 +3223,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.Transponder</object-name>
-		<property>/controls/circuit-breakers/Transponder</property>
+		<property>controls/circuit-breakers/Transponder</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -3214,7 +3233,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/Transponder</property>
+				<property>controls/circuit-breakers/Transponder</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -3227,7 +3246,7 @@
 				<tooltip-id>tt_brk_Transponder</tooltip-id>
 				<label>Transponder-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/Transponder</property>
+				<property>controls/circuit-breakers/Transponder</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -3235,7 +3254,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.ADF</object-name>
-		<property>/controls/circuit-breakers/ADF</property>
+		<property>controls/circuit-breakers/ADF</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -3245,7 +3264,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/ADF</property>
+				<property>controls/circuit-breakers/ADF</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -3258,7 +3277,7 @@
 				<tooltip-id>tt_brk_ADF</tooltip-id>
 				<label>ADF-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/ADF</property>
+				<property>controls/circuit-breakers/ADF</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -3266,7 +3285,7 @@
 		<type>slider</type>
 		<drag-direction>vertical</drag-direction>
 		<object-name>Breaker.AutoPilot</object-name>
-		<property>/controls/circuit-breakers/AutoPilot</property>
+		<property>controls/circuit-breakers/AutoPilot</property>
 		<factor>-0.0045</factor>
 		<axis>
 			<x>1</x>
@@ -3276,7 +3295,7 @@
 		<action>
 			<binding>
 				<command>property-toggle</command>
-				<property>/controls/circuit-breakers/AutoPilot</property>
+				<property>controls/circuit-breakers/AutoPilot</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -3289,9 +3308,340 @@
 				<tooltip-id>tt_brk_AutoPilot</tooltip-id>
 				<label>AutoPilot-breaker: %s</label>
 				<mapping>on-off</mapping>
-				<property>/controls/circuit-breakers/AutoPilot</property>
+				<property>controls/circuit-breakers/AutoPilot</property>
 			</binding>
 		</hovered>
 	</animation>
+	
+   <!-- MOD: animation for the checklists -->
+    <animation>
+        <type>pick</type>
+        <object-name>POH</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>checklist</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>checklist</tooltip-id>
+                <label>Show checklists</label>
+            </binding>
+        </hovered>
+    </animation>
+    <!-- MODEND -->
+    
+    <!-- Annunciators-->
+    <!-- They are nasal driven! -->
+    
+    <!-- Ann Test swt -->
+    <animation>
+        <type>knob</type>
+        <object-name>CS.AnnTest</object-name>
+        <visible>false</visible>
+        <property>instrumentation/annunciator/testswitch</property>
+        <drag-direction>vertical</drag-direction>
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/annunciator/testswitch</property>
+                <min>0</min>
+                <max>2</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script><![CDATA[
+                    var p = getprop("/instrumentation/annunciator/testswitch");
+                    if (p == 0) setprop("/instrumentation/annunciator/dim-factor", 0.5);
+                    if (p == 1) setprop("/instrumentation/annunciator/dim-factor", 1);
+                ]]></script>
+            </binding>
+        </action>
+        <release>        <!-- Release action, limit to 0 and 1. 2 is spring loaded starter position -->
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/annunciator/testswitch</property>
+                <step>0</step>
+                <min>0</min>
+                <max>1</max>
+            </binding>
+        </release>
+        <hovered>
+            <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>Annunciators-Test-Switch</tooltip-id>
+                <label>Annunciator Test: %s</label>
+            <property>instrumentation/annunciator/testswitch</property>
+            <mapping>nasal</mapping>
+            <script>
+                var modes = ['DIM', 'BRT', 'TEST'];
+                return modes[arg[0]];
+            </script>
+            </binding>
+        </hovered>
+    </animation>
+    
+<animation>
+        <type>knob</type>
+        <object-name>AnnTest.swt</object-name>
+        <visible>true</visible>
+        <property>instrumentation/annunciator/testswitch</property>
+        <drag-direction>vertical</drag-direction>
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/annunciator/testswitch</property>
+                <min>0</min>
+                <max>2</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script><![CDATA[
+                    var p = getprop("/instrumentation/annunciator/testswitch");
+                    if (p == 0) setprop("/instrumentation/annunciator/dim-factor", 0.5);
+                    if (p == 1) setprop("/instrumentation/annunciator/dim-factor", 1);
+                ]]></script>
+            </binding>
+        </action>
+        <release>        <!-- Release action, limit to 0 and 1. 2 is spring loaded starter position -->
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/annunciator/testswitch</property>
+                <step>0</step>
+                <min>0</min>
+                <max>1</max>
+            </binding>
+        </release>
+        <hovered>
+            <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>Annunciators-Test-Switch</tooltip-id>
+                <label>Annunciator Test: %s</label>
+            <property>instrumentation/annunciator/testswitch</property>
+            <mapping>nasal</mapping>
+            <script>
+                var modes = ['DIM', 'BRT', 'TEST'];
+                return modes[arg[0]];
+            </script>
+            </binding>
+        </hovered>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>AnnTest.swt</object-name>
+        <property>instrumentation/annunciator/testswitch</property>
+        <offset-deg>55</offset-deg>
+        <factor>-55</factor>
+		<center>
+			<x-m>0.361758</x-m>
+			<y-m>0.067491</y-m>
+			<z-m>0.430051</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1.0</y>
+			<z>0</z>
+		</axis>
+    </animation>
+    
+    <animation>
+        <type>material</type>
+        <object-name>FuelFlow.Ann</object-name>
+        <object-name>FuelFlowR.Ann</object-name>
+        <object-name>FuelFlowL.Ann</object-name>
+        <object-name>PitchTrim.Ann</object-name>
+        <object-name>OilPress.Ann</object-name>
+        <object-name>VAC.Ann</object-name>
+        <object-name>VACR.Ann</object-name>
+        <object-name>VACL.Ann</object-name>
+        <object-name>Volts.Ann</object-name>
+        <condition>
+            <not><property>sim/rendering/rembrandt/enabled</property></not>
+        </condition>
+        <emission>
+            <red>   1.0 </red>
+            <green> 1.0 </green>
+            <blue>  1.0 </blue>
+            <factor-prop>instrumentation/annunciator/dim-factor</factor-prop>
+        </emission>
+    </animation>
+   
+    <animation>
+    <type>select</type>
+        <object-name>FuelFlowL.Ann</object-name>
+    <condition>
+        <and>
+            <greater-than>
+                <property>systems/electrical/outputs/annunciators</property>
+                <value>12</value>
+            </greater-than>
+            <property>instrumentation/annunciator/serviceable</property>
+            <property>instrumentation/annunciator/fuel-low-l-indicated</property>
+        </and>
+    </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>FuelFlow.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>instrumentation/annunciator/serviceable</property>
+                <or>
+                    <!-- take value of L or R if just one of them is 'on', otherwise both -->
+                    <and>
+                        <property>instrumentation/annunciator/fuel-low-l</property>
+                        <not><property>instrumentation/annunciator/fuel-low-r</property></not>
+                        <property>instrumentation/annunciator/fuel-low-l-indicated</property>
+                    </and>
+                    <and>
+                        <not><property>instrumentation/annunciator/fuel-low-l</property></not>
+                        <property>instrumentation/annunciator/fuel-low-r</property>
+                        <property>instrumentation/annunciator/fuel-low-r-indicated</property>
+                    </and>
+                    <and>
+                        <property>instrumentation/annunciator/fuel-low-r</property>
+                        <property>instrumentation/annunciator/fuel-low-l</property>
+                        <property>instrumentation/annunciator/fuel-low-r-indicated</property>
+                        <property>instrumentation/annunciator/fuel-low-l-indicated</property>
+                    </and>
+                </or>
+            </and>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>FuelFlowR.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>instrumentation/annunciator/serviceable</property>
+                <property>instrumentation/annunciator/fuel-low-r-indicated</property>
+            </and>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>PitchTrim.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>instrumentation/annunciator/serviceable</property>
+                <property>instrumentation/annunciator/pitch-trim-indicated</property>
+            </and>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>OilPress.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>instrumentation/annunciator/serviceable</property>
+                <property>instrumentation/annunciator/oilpress-low-indicated</property>
+            </and>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>VACL.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>instrumentation/annunciator/serviceable</property>
+                <property>instrumentation/annunciator/vac-low-l-indicated</property>
+            </and>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>VAC.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>instrumentation/annunciator/serviceable</property>
+                <or>
+                    <!-- take value of L or R if just one of them is 'on', otherwise both -->
+                    <and>
+                        <property>instrumentation/annunciator/vac-low-l</property>
+                        <not><property>instrumentation/annunciator/vac-low-r</property></not>
+                        <property>instrumentation/annunciator/vac-low-l-indicated</property>
+                    </and>
+                    <and>
+                        <not><property>instrumentation/annunciator/vac-low-l</property></not>
+                        <property>instrumentation/annunciator/vac-low-r</property>
+                        <property>instrumentation/annunciator/vac-low-r-indicated</property>
+                    </and>
+                    <and>
+                        <property>instrumentation/annunciator/vac-low-r</property>
+                        <property>instrumentation/annunciator/vac-low-l</property>
+                        <property>instrumentation/annunciator/vac-low-r-indicated</property>
+                        <property>instrumentation/annunciator/vac-low-l-indicated</property>
+                    </and>
+                </or>
+            </and>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>VACR.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>instrumentation/annunciator/serviceable</property>
+                <property>instrumentation/annunciator/vac-low-r-indicated</property>
+            </and>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>Volts.Ann</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/annunciators</property>
+                    <value>12</value>
+                </greater-than>
+                <property>instrumentation/annunciator/serviceable</property>
+                <property>instrumentation/annunciator/volts-low-indicated</property>
+            </and>
+        </condition>
+    </animation>
+ 
 
 </PropertyList>

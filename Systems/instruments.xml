@@ -148,5 +148,266 @@
             <property>/engines/engine/indicated-manfold-fuel-flow-gph</property>
         </output>
     </filter>
+
+    <filter>
+      <name>Audio Panel</name>
+      <type>gain</type>
+      <input>
+        <condition>
+          <greater-than>
+              <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+              <value>0.0</value>
+            </greater-than>
+        </condition>
+        <value>1.0</value>
+      </input>
+      <input>
+        <value>0.0</value>
+      </input>
+      <output>
+        <property>/sim/model/c182s/lighting/audio-panel</property>
+      </output>
+    </filter>
+
+    <filter>
+      <name>DME</name>
+      <type>gain</type>
+      <input>
+        <condition>
+          <greater-than>
+              <property>/controls/switches/kn-62a</property>
+              <value>0.0</value>
+            </greater-than>
+        </condition>
+        <value>1.0</value>
+      </input>
+      <input>
+        <value>0.0</value>
+      </input>
+      <output>
+        <property>/sim/model/c182s/lighting/dme</property>
+      </output>
+    </filter>
+
+    <filter>
+      <name>NAV 1</name>
+      <type>gain</type>
+      <input>
+        <condition>
+          <greater-than>
+              <property>/instrumentation/nav[0]/volume</property>
+              <value>0.0</value>
+            </greater-than>
+        </condition>
+        <value>1.0</value>
+      </input>
+      <input>
+        <value>0.0</value>
+      </input>
+      <output>
+        <property>/sim/model/c182s/lighting/nav-1</property>
+      </output>
+    </filter>
+
+    <filter>
+      <name>NAV 2</name>
+      <type>gain</type>
+      <input>
+        <condition>
+          <greater-than>
+              <property>/instrumentation/nav[1]/volume</property>
+              <value>0.0</value>
+            </greater-than>
+        </condition>
+        <value>1.0</value>
+      </input>
+      <input>
+        <value>0.0</value>
+      </input>
+      <output>
+        <property>/sim/model/c182s/lighting/nav-2</property>
+      </output>
+    </filter>
+
+    <filter>
+      <name>ADF</name>
+      <type>gain</type>
+      <input>
+        <condition>
+          <greater-than>
+              <property>/instrumentation/adf[0]/volume-norm</property>
+              <value>0.0</value>
+            </greater-than>
+        </condition>
+        <value>1.0</value>
+      </input>
+      <input>
+        <value>0.0</value>
+      </input>
+      <output>
+        <property>/sim/model/c182s/lighting/adf</property>
+      </output>
+    </filter>
+
+    <filter>
+      <name>Transponder</name>
+      <type>gain</type>
+      <input>
+        <condition>
+          <greater-than>
+              <property>/controls/switches/kt-76c</property>
+              <value>0.0</value>
+            </greater-than>
+        </condition>
+       <value>1.0</value>
+      </input>
+      <input>
+        <value>0.0</value>
+      </input>
+      <output>
+        <property>/sim/model/c182s/lighting/ident</property>
+      </output>
+    </filter>
+
+    <filter>
+      <name>Audio Panel</name>
+      <type>gain</type>
+      <input>
+        <condition>
+          <greater-than>
+              <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+              <value>0.0</value>
+            </greater-than>
+        </condition>
+        <property>/controls/lighting/radio-lights-norm</property>
+      </input>
+      <input>
+        <value>0.0</value>
+      </input>
+      <output>
+        <property>/sim/model/c182s/lighting/audio-panel-norm</property>
+      </output>
+    </filter>
+
+    <filter>
+      <name>DME</name>
+      <type>gain</type>
+      <input>
+        <condition>
+          <greater-than>
+              <property>/controls/switches/kn-62a</property>
+              <value>0.0</value>
+            </greater-than>
+        </condition>
+        <property>/controls/lighting/radio-lights-norm</property>
+      </input>
+      <input>
+        <value>0.0</value>
+      </input>
+      <output>
+        <property>/sim/model/c182s/lighting/dme-norm</property>
+      </output>
+    </filter>
+
+    <filter>
+      <name>NAV 1</name>
+      <type>gain</type>
+      <input>
+        <condition>
+          <greater-than>
+              <property>/instrumentation/nav[0]/volume</property>
+              <value>0.0</value>
+            </greater-than>
+        </condition>
+        <property>/controls/lighting/radio-lights-norm</property>
+      </input>
+      <input>
+        <value>0.0</value>
+      </input>
+      <output>
+        <property>/sim/model/c182s/lighting/nav-1-norm</property>
+      </output>
+    </filter>
+
+    <filter>
+      <name>NAV 2</name>
+      <type>gain</type>
+      <input>
+        <condition>
+          <greater-than>
+              <property>/instrumentation/nav[1]/volume</property>
+              <value>0.0</value>
+            </greater-than>
+        </condition>
+        <property>/controls/lighting/radio-lights-norm</property>
+      </input>
+      <input>
+        <value>0.0</value>
+      </input>
+      <output>
+        <property>/sim/model/c182s/lighting/nav-2-norm</property>
+      </output>
+    </filter>
+
+    <filter>
+      <name>ADF</name>
+      <type>gain</type>
+      <input>
+        <condition>
+          <greater-than>
+              <property>/instrumentation/adf[0]/volume-norm</property>
+              <value>0.0</value>
+            </greater-than>
+        </condition>
+        <property>/controls/lighting/radio-lights-norm</property>
+      </input>
+      <input>
+        <value>0.0</value>
+      </input>
+      <output>
+        <property>/sim/model/c182s/lighting/adf-norm</property>
+      </output>
+    </filter>
+
+    <filter>
+      <name>Transponder</name>
+      <type>gain</type>
+      <input>
+        <condition>
+          <greater-than>
+              <property>/controls/switches/kt-76c</property>
+              <value>0.0</value>
+            </greater-than>
+        </condition>
+        <property>/controls/lighting/radio-lights-norm</property>
+      </input>
+      <input>
+        <value>0.0</value>
+      </input>
+      <output>
+        <property>/sim/model/c182s/lighting/ident-norm</property>
+      </output>
+    </filter>
+
+    <!-- Nav1, Nav2, ADF, AP and Trans button lights -->
+    <filter>
+      <name>Instrument Stack Button Lights</name>
+      <type>gain</type>
+      <input>
+        <condition>
+          <greater-than>
+              <property>/controls/lighting/radio-lights-norm</property>
+              <value>0.0</value>
+            </greater-than>
+        </condition>
+        <property>/controls/lighting/radio-lights-norm</property>
+      </input>
+      <input>
+        <value>0.0</value>
+      </input>
+      <output>
+        <property>/sim/model/c182s/lighting/stack-buttons-norm</property>
+      </output>
+    </filter>
     
 </PropertyList>

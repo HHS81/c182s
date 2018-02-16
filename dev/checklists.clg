@@ -120,7 +120,10 @@ item("Strobe Lights") {
 }
 
 item("Annunciator Panel Switch") {
-    state("PLACE AND HOLD IN TST POSITION");
+    s = "instrumentation/annunciator/testswitch";
+    state("PLACE AND HOLD IN TST POSITION", s == 2) s=2;
+    state("RELEASE", s==1||s==0) s=1;
+    marker(0.3600, 0.0717, 0.4283, 1.35);
 }
 
 item("Fuel Selector Valve") {
@@ -759,6 +762,7 @@ checklist("Preflight Inspection") {
         check("Avionics Master Switch", "OFF");
         check("Static Pressure Alternate Source Valve", "OFF");
         check("Annunciator Panel Switch", "PLACE AND HOLD IN TST POSITION", "and ensure all annunciators illuminate");
+        check("Annunciator Panel Switch", "RELEASE", "check that appropriate annunciators remain on");
         check("Fuel Selector Valve", "BOTH");
         check("Wing Flaps", "EXTEND");
         check("Pitot Heat", "ON", "(Carefully check that pitot tube is", "warm to the touch within 30 seconds)");

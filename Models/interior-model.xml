@@ -76,6 +76,10 @@
     <object-name>Breaker.ADF</object-name>
     <object-name>Breaker.AutoPilot</object-name>
     <object-name>CowlFlapsLever</object-name>
+    <object-name>TrimElevator</object-name>
+    <object-name>ElevatorTrimPos</object-name>
+    <object-name>RudderTrim</object-name>
+    <object-name>RudderTrimPos</object-name>
    </effect>
 
    <effect>
@@ -84,6 +88,10 @@
       <object-name>key</object-name>
       <object-name>start</object-name>
       <object-name>starter</object-name>
+      <object-name>TrimElevator</object-name>
+      <object-name>ElevatorTrimPos</object-name>
+      <object-name>RudderTrim</object-name>
+      <object-name>RudderTrimPos</object-name>
    </effect>
    
 <effect>

@@ -1032,6 +1032,33 @@
             </binding>
         </hovered>
     </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>StallVane.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <binding>
+                <command>property-assign</command>
+                <property>/controls/stall-horn/test</property>
+                <value>1</value>
+            </binding>
+        </action>
+        <release>
+            <binding>
+                <command>property-assign</command>
+                <property>/controls/stall-horn/test</property>
+                <value>0</value>
+            </binding>
+        </release>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>stallvanetest-tt-id</tooltip-id>
+                <label>Stall Vane</label>
+            </binding>
+        </hovered>
+    </animation>
  
 <animation>
    <type>pick</type>
@@ -1973,6 +2000,7 @@
         <object-name>LeftTank.cs</object-name>
         <object-name>LeftTankDrain.cs</object-name>
         <object-name>Oil.cs</object-name>
+        <object-name>StallVane.cs</object-name>
         <object-name>pitotcover.cs</object-name>
         <object-name>RightTank.cs</object-name>
         <object-name>RightTankDrain.cs</object-name>

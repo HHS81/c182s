@@ -9,7 +9,7 @@
  </offsets>
 
    <effect>
-       <inherits-from>Aircraft/c182s/Models/Effects/model-transparent</inherits-from>
+    <inherits-from>Effects/model-transparent</inherits-from>
     <object-name>SunVirsor.R</object-name>
     <object-name>SunVirsor.L</object-name>
     <object-name>FuelFlowL.Ann</object-name>

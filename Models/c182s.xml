@@ -1038,19 +1038,21 @@
         <object-name>StallVane.cs</object-name>
         <visible>false</visible>
         <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
             <binding>
                 <command>property-assign</command>
                 <property>/controls/stall-horn/test</property>
                 <value>1</value>
             </binding>
-        </action>
-        <release>
-            <binding>
-                <command>property-assign</command>
-                <property>/controls/stall-horn/test</property>
-                <value>0</value>
-            </binding>
-        </release>
+            <mod-up>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/controls/stall-horn/test</property>
+                    <value>0</value>
+                </binding>
+            </mod-up>
+        </action>  
         <hovered>
             <binding>
                 <command>set-tooltip</command>

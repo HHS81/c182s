@@ -10,6 +10,19 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
 
 <path>kma24.ac</path>
 
+<effect>
+    <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
+    <object-name>Bezel</object-name>
+    <object-name>Knob</object-name>
+    <object-name>BtnMkrAOn</object-name>
+    <object-name>BtnMkrA</object-name>
+    <object-name>BtnMkrOOn</object-name>
+    <object-name>BtnMkrO</object-name>
+    <object-name>BtnMkrMOn</object-name>
+    <object-name>BtnMkrM</object-name>
+    <object-name>BtnMkr</object-name>
+</effect>
+
 <animation>
   <type>material</type>
   <object-name>Bezel</object-name>

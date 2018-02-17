@@ -10,6 +10,38 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
 
 <path>kn62a.ac</path>
 
+<effect>
+  <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
+  <object-name>Bezel</object-name>
+  <object-name>Knob1</object-name>
+  <object-name>Knob2</object-name>
+  <object-name>SwFunction</object-name>
+  <object-name>SwPower</object-name>
+
+  <object-name>DashesNM</object-name>
+  <object-name>DashesGST</object-name>
+  <object-name>LabelsNM</object-name>
+  <object-name>LabelsMHZ</object-name>
+  <object-name>LabelsKTMIN</object-name>
+  <object-name>NMDigit1</object-name>
+  <object-name>NMDigit2</object-name>
+  <object-name>NMDigit3</object-name>
+  <object-name>NMDigit4</object-name>
+  <object-name>NMDecimal</object-name>
+  <object-name>NavDigit1</object-name>
+  <object-name>NavDigit2</object-name>
+  <object-name>NavDigit3</object-name>
+  <object-name>NavDigit4</object-name>
+  <object-name>NavDigit5</object-name>
+  <object-name>NavDecimal</object-name>
+  <object-name>KtDigit1</object-name>
+  <object-name>KtDigit2</object-name>
+  <object-name>KtDigit3</object-name>
+  <object-name>MinDigit1</object-name>
+  <object-name>MinDigit2</object-name>
+  <object-name>Min99</object-name>
+</effect>
+
 <animation>
   <type>material</type>
   <object-name>Bezel</object-name>

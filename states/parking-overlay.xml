@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-  <name type="string" n="1">parking</name>
+  <name type="string">parking</name>
 
   <description>
     The plane will be in "cold-and-dark" state, that is parked and secured, with all

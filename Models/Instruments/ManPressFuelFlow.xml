@@ -3,7 +3,14 @@
 <PropertyList>
 
     <path>ManPressFuelFlow.ac</path>
-    
+
+  <effect>
+    <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
+    <object-name>Face</object-name>
+    <object-name>ManPressNeedle</object-name>
+    <object-name>FuelFlowNeedle</object-name>
+  </effect>
+
     <animation>
         <type>material</type>
         <object-name>Face</object-name>

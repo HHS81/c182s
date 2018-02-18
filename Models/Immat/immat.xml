@@ -446,7 +446,7 @@
     </animation>
     
     <effect>
-      <inherits-from>Effects/c182s_flashlight</inherits-from>
+      <inherits-from>Aircraft/c182s/Models/Effects/c182s_flashlight</inherits-from>
       <object-name>ImatPanel1</object-name>
         <object-name>ImatPanel2</object-name>
         <object-name>ImatPanel3</object-name>

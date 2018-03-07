@@ -1020,6 +1020,7 @@
 </kap140>
     <failures> 
     <file>Aircraft/Generic/limits.nas</file>
+    <file>Aircraft/c182s/Nasal/custom-failures.nas</file>
   </failures>
  </nasal>
 

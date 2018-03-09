@@ -411,7 +411,7 @@ electrical_bus_1 = func() {
     }
 
     # Aux Fuel Pump Power
-    if ( getprop("/controls/engines/engine[0]/fuel-pump") and getprop("/controls/circuit-breakers/Inst")) {
+    if ( getprop("/controls/engines/engine[0]/fuel-pump") and getprop("/controls/circuit-breakers/Inst") and getprop("/systems/fuel/fuel-pump-aux-serviceable") ) {
         setprop("/systems/electrical/outputs/fuel-pump", bus_volts);
         load += bus_volts / 2;
     } else {

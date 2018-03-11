@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+  <name>extended-failure-dialog</name>
+  <modal>false</modal>
+  <layout>vbox</layout>
+
+  <group>
+    <layout>hbox</layout>
+    <empty><stretch>1</stretch></empty>
+
+    <text>
+      <label>System Failures</label>
+    </text>
+
+    <empty><stretch>1</stretch></empty>
+
+    <button>
+      <pref-width>16</pref-width>
+      <pref-height>16</pref-height>
+      <legend></legend>
+      <keynum>27</keynum>
+      <border>2</border>
+      <binding>
+        <command>dialog-close</command>
+      </binding>
+    </button>
+  </group>
+
+  <hrule/>
+
+  <text>
+    <halign>left</halign>
+    <label>  Uncheck a system to immediately fail it, or set the Mean Time/Cycles Between Failures.  </label>
+  </text>
+  <text>
+    <halign>left</halign>
+    <label>  Set to 0 to disable/unarm an activated MTBF/MCBF failure.  </label>
+  </text>
+
+  <hrule/>
+
+  <group>
+    <layout>hbox</layout>
+    <halign>left</halign>
+
+    <group>
+      <layout>table</layout>
+      <halign>center</halign>
+      <valign>top</valign>
+
+      <text>
+        <row>0</row>
+        <col>0</col>
+        <label>System</label>
+      </text>
+
+      <text>
+        <row>0</row>
+        <col>2</col>
+        <label>MTBF (sec)</label>
+      </text>
+
+      <text>
+        <row>1</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Engine fuel pump</label>
+      </text>
+      <checkbox>
+        <row>1</row>
+        <col>1</col>
+        <property>/systems/fuel/fuel-pump-engine-serviceable</property>
+      </checkbox>
+      <input>
+        <row>1</row>
+        <col>2</col>
+        <property>/sim/failure-manager/systems/fuel/engine-fuel-pump/mtbf</property>
+      </input>
+      
+      <text>
+        <row>2</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Aux fuel pump</label>
+      </text>
+      <checkbox>
+        <row>2</row>
+        <col>1</col>
+        <property>/systems/fuel/fuel-pump-aux-serviceable</property>
+      </checkbox>
+      <input>
+        <row>2</row>
+        <col>2</col>
+        <property>/sim/failure-manager/systems/fuel/aux-fuel-pump/mtbf</property>
+      </input>
+
+      <!--
+      <text>
+        <row>2</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Foo bar</label>
+      </text>
+
+      <checkbox>
+        <row>2</row>
+        <col>1</col>
+        <property>/sim/failure-manager/systems/static/serviceable</property>
+      </checkbox>
+
+      <input>
+        <row>2</row>
+        <col>2</col>
+        <property>/sim/failure-manager/systems/static/mtbf</property>
+      </input>
+      -->
+
+
+    </group>
+
+    <vrule/>
+
+    <group>
+      <layout>table</layout>
+      <halign>center</halign>
+      <valign>top</valign>
+
+      <text>
+        <row>0</row>
+        <col>0</col>
+        <label>System</label>
+      </text>
+
+      <text>
+        <row>0</row>
+        <col>2</col>
+        <label>MCBF</label>
+      </text>
+
+      <!--
+      <text>
+        <row>1</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>MCBF test</label>
+      </text>
+      <checkbox>
+        <row>1</row>
+        <col>1</col>
+        <property>/sim/failure-manager/controls/gear/serviceable</property>
+      </checkbox>
+      <input>
+        <row>1</row>
+        <col>2</col>
+        <property>/sim/failure-manager/controls/gear/mcbf</property>
+      </input>
+      -->
+   
+    </group>
+
+  </group>
+
+  <hrule/>
+
+  <group>
+    <layout>hbox</layout>
+    <default-padding>7</default-padding>
+
+    <button>
+      <legend>OK</legend>
+      <default>true</default>
+      <equal>true</equal>
+      <binding>
+        <command>dialog-apply</command>
+      </binding>
+      <binding>
+        <command>dialog-close</command>
+      </binding>
+    </button>
+
+    <button>
+      <legend>Apply</legend>
+      <equal>true</equal>
+      <binding>
+        <command>dialog-apply</command>
+      </binding>
+    </button>
+
+    <button>
+      <legend>Refresh</legend>
+      <equal>true</equal>
+      <binding>
+        <command>dialog-update</command>
+      </binding>
+    </button>
+
+    <button>
+      <legend>Cancel</legend>
+      <equal>true</equal>
+      <key>Esc</key>
+      <binding>
+        <command>dialog-close</command>
+      </binding>
+    </button>
+
+  </group>
+
+</PropertyList>

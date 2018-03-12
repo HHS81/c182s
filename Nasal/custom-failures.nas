@@ -105,7 +105,45 @@ customFailures = [
 
 #----------------------------------------------------------------------------
 
+# register a random timer failure
+# (needed to avoid the loop variable problem)
+var registerRandomFailureTimer = func(t_fire, failure){
+    var timer = maketimer(t_fire, failure, func(){
+        print("Custom failure initRandomFailures: execute " ~ me.description ~ "(" ~ me.id ~ ")");
+        FailureMgr.set_failure_level(me.id, 1);
+    });
+    timer.singleShot = 1;
+    timer.simulatedTime = 1;
+    #timer.start();
+    
+    return timer;
+}
 
+# Init some random failures
+var initRandomFailures = func() {
+    # lock button
+    setprop("/sim/failure-manager/surprise-mode/button-locked", 1);
+    
+    var howmany = getprop("/sim/failure-manager/surprise-mode/ammount") or 0;
+    var maxtime = getprop("/sim/failure-manager/surprise-mode/maxtime") or 0;
+    var maxseconds = maxtime * 60;
+    print("Custom failure initRandomFailures: " ~ howmany ~ " in " ~ maxtime ~ " minutes (" ~ maxseconds ~ "s)");
+    
+    #choose the random failures
+    var allKnownFailures = FailureMgr.get_failure_modes();  # returns vector with hashes: { id, description }
+    #print("DBG: i know " ~ size(allKnownFailures) ~ " failure modes...");
+    for (var i=1; i <= howmany; i=i+1) {
+        var which = math.floor(rand() * size(allKnownFailures)); #gives index to failuremodes (0->size)
+        var t_fire = math.round(rand() * maxseconds);
+        print("Custom failure initRandomFailures: picked " ~ i ~ ": " ~ which ~ "; t=" ~ t_fire ~ "; failure=" ~ allKnownFailures[which].description ~ " (" ~ allKnownFailures[which].id ~ ")");
+        var timer = registerRandomFailureTimer(t_fire, allKnownFailures[which]);
+        timer.start();
+        
+    }
+    
+    # unlock button after the max time
+    interpolate("/sim/failure-manager/surprise-mode/button-locked", 0, maxseconds);
+}
 
 
 #############################################################################################

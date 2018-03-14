@@ -5,6 +5,23 @@
   <name>extended-failure-dialog</name>
   <modal>false</modal>
   <layout>vbox</layout>
+  
+  <nasal>
+    <open>
+      <![CDATA[
+        # set some defaults for the gui
+        var props = [
+            ["/sim/failure-manager/surprise-mode/ammount", 1],
+            ["/sim/failure-manager/surprise-mode/maxtime", 30],
+            ["/sim/failure-manager/surprise-mode/timer",  30],
+        ];
+        foreach (cfg; props) {
+            if (!getprop(cfg[0])) setprop(cfg[0], cfg[1]);
+        }
+      ]]>
+    </open>
+  </nasal>
+
 
   <group>
     <layout>hbox</layout>
@@ -168,14 +185,14 @@
   <!-- input for surprise mode -->
   <text>
     <halign>left</halign>
-    <label>Initialize some random failures for a challenge</label>
+    <label>Initialize some random failures for a challenge!</label>
   </text>
   
   <group>
     <layout>hbox</layout>
 
     <text>
-        <label>Trigger</label>
+        <label>A)  Trigger</label>
         <halign>left</halign>
     </text>
 
@@ -232,11 +249,73 @@
       </enable>
       <binding>
         <command>nasal</command>
-        <script>failures.initRandomFailures();</script>
+        <script>
+            failures.initRandomFailures();
+            setprop("/sim/failure-manager/surprise-mode/button-locked",1);
+            interpolate("/sim/failure-manager/surprise-mode/button-locked", 0, 3);
+        </script>
       </binding>
     </button>
   </group>  
+  
+  <group>
+    <layout>hbox</layout>
+
+    <text>
+        <label>B)  Trigger one random failure about every </label>
+        <halign>left</halign>
+    </text>
+
+    <input>
+        <name>c182-customfailures-randomsurprise-timer</name>
+        <halign>left</halign>
+        <property>/sim/failure-manager/surprise-mode/timer</property>
+        <type>INT</type>
+        <width>100</width>
+        <live>true</live>
+        <binding>
+            <command>dialog-apply</command>
+            <name>c182-customfailures-randomsurprise-timer</name>
+        </binding>
+    </input>
     
+    <text>
+        <label>minutes</label>
+        <halign>left</halign>
+    </text>
+    
+    <button>
+      <legend>Start</legend>
+      <equal>true</equal>
+      <enable>
+        <and>
+            <not><property>/sim/failure-manager/surprise-mode/timer-active</property></not>
+            <greater-than>
+                <property>/sim/failure-manager/surprise-mode/timer</property>
+                <value>0</value>
+            </greater-than>
+        </and>
+      </enable>
+      <binding>
+        <command>nasal</command>
+        <script>failures.initRandomFailureTimer();</script>
+      </binding>
+    </button>
+    
+    <button>
+      <legend>Stop</legend>
+      <equal>true</equal>
+      <enable>
+        <and>
+            <property>/sim/failure-manager/surprise-mode/timer-active</property>
+        </and>
+      </enable>
+      <binding>
+        <command>nasal</command>
+        <script>failures.initRandomFailureTimer();</script>
+      </binding>
+    </button>
+  </group>
 
   
   <!-- Final buttons -->

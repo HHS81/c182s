@@ -120,10 +120,8 @@ var registerRandomFailureTimer = func(t_fire, failure){
 }
 
 # Init some random failures
-var initRandomFailures = func() {
-    # lock button
-    setprop("/sim/failure-manager/surprise-mode/button-locked", 1);
-    
+# (called by GUI mode)
+var initRandomFailures = func() {  
     var howmany = getprop("/sim/failure-manager/surprise-mode/ammount") or 0;
     var maxtime = getprop("/sim/failure-manager/surprise-mode/maxtime") or 0;
     var maxseconds = maxtime * 60;
@@ -140,9 +138,32 @@ var initRandomFailures = func() {
         timer.start();
         
     }
+}
+
+# Init some random failures each time period
+# (called by GUI mode)
+var randomFailureTimer = maketimer(99999999, func(){
+    #choose the random failures
+    var allKnownFailures = FailureMgr.get_failure_modes();  # returns vector with hashes: { id, description }
+    var which = math.floor(rand() * size(allKnownFailures)); #gives index to failuremodes (0->size)
+    var theFailure = allKnownFailures[which];
+    print("Custom failure randomFailureTimer: execute " ~ theFailure.description ~ "(" ~ theFailure.id ~ ")");
+    FailureMgr.set_failure_level(theFailure.id, 1);
+});
+randomFailureTimer.simulatedTime = 1;
+var initRandomFailureTimer = func() {
+    var running = getprop("/sim/failure-manager/surprise-mode/timer-active") or 0;
+    var time    = getprop("/sim/failure-manager/surprise-mode/timer") * 60;
     
-    # unlock button after the max time
-    interpolate("/sim/failure-manager/surprise-mode/button-locked", 0, maxseconds);
+    if (!running) {
+        # start the timer
+        print("Custom failure randomFailureTimer: restarted with t= " ~ time);
+        randomFailureTimer.restart(time);
+    } else {
+        print("Custom failure randomFailureTimer: stopped"); 
+        randomFailureTimer.stop();
+    }
+    setprop("/sim/failure-manager/surprise-mode/timer-active", !running);
 }
 
 

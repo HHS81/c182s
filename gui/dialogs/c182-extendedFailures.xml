@@ -78,57 +78,73 @@
         <col>2</col>
         <label>MTBF (sec)</label>
       </text>
-
+      
+     
       <text>
         <row>1</row>
         <col>0</col>
         <halign>right</halign>
-        <label>Engine fuel pump</label>
+        <label>Davtron 803 clock</label>
       </text>
       <checkbox>
         <row>1</row>
         <col>1</col>
-        <property>/systems/fuel/fuel-pump-engine-serviceable</property>
+        <property>/instrumentation/clock/serviceable</property>
       </checkbox>
       <input>
         <row>1</row>
         <col>2</col>
-        <property>/sim/failure-manager/systems/fuel/engine-fuel-pump/mtbf</property>
+        <property>/sim/failure-manager/instrumentation/clock/mtbf</property>
       </input>
       
       <text>
         <row>2</row>
         <col>0</col>
         <halign>right</halign>
-        <label>Aux fuel pump</label>
+        <label>Engine fuel pump</label>
       </text>
       <checkbox>
         <row>2</row>
         <col>1</col>
-        <property>/systems/fuel/fuel-pump-aux-serviceable</property>
+        <property>/systems/fuel/fuel-pump-engine-serviceable</property>
       </checkbox>
       <input>
         <row>2</row>
+        <col>2</col>
+        <property>/sim/failure-manager/systems/fuel/engine-fuel-pump/mtbf</property>
+      </input>
+      
+      <text>
+        <row>3</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Aux fuel pump</label>
+      </text>
+      <checkbox>
+        <row>3</row>
+        <col>1</col>
+        <property>/systems/fuel/fuel-pump-aux-serviceable</property>
+      </checkbox>
+      <input>
+        <row>3</row>
         <col>2</col>
         <property>/sim/failure-manager/systems/fuel/aux-fuel-pump/mtbf</property>
       </input>
 
       <!--
       <text>
-        <row>2</row>
+        <row>ADJUST</row>
         <col>0</col>
         <halign>right</halign>
         <label>Foo bar</label>
       </text>
-
       <checkbox>
-        <row>2</row>
+        <row>ADJUST</row>
         <col>1</col>
         <property>/sim/failure-manager/systems/static/serviceable</property>
       </checkbox>
-
       <input>
-        <row>2</row>
+        <row>ADJUST</row>
         <col>2</col>
         <property>/sim/failure-manager/systems/static/mtbf</property>
       </input>

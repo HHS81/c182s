@@ -87,6 +87,11 @@ var set_unserviceable_abs = func(path) {
 # Don't forget to enhance the gui too!
 #
 customFailures = [
+    {id:"instrumentation/clock",    name:"Davtron 803 clock",
+        actuator: set_unserviceable_abs("/instrumentation/clock/serviceable"),
+        trigger:  MtbfTrigger.new(0),
+    },
+
     {id:"systems/fuel/aux-fuel-pump",    name:"Aux fuel pump",
         actuator: set_unserviceable_abs("/systems/fuel/fuel-pump-aux-serviceable"),
         #trigger:  McbfTrigger.new("controls/engines/engine/fuel-pump", 0)

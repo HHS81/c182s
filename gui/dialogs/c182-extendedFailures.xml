@@ -89,7 +89,7 @@
       <checkbox>
         <row>1</row>
         <col>1</col>
-        <property>/instrumentation/clock/serviceable</property>
+        <property>/sim/failure-manager/instrumentation/clock/serviceable</property>
       </checkbox>
       <input>
         <row>1</row>
@@ -106,7 +106,7 @@
       <checkbox>
         <row>2</row>
         <col>1</col>
-        <property>/systems/fuel/fuel-pump-engine-serviceable</property>
+        <property>/sim/failure-manager/systems/fuel/engine-fuel-pump/serviceable</property>
       </checkbox>
       <input>
         <row>2</row>
@@ -123,7 +123,7 @@
       <checkbox>
         <row>3</row>
         <col>1</col>
-        <property>/systems/fuel/fuel-pump-aux-serviceable</property>
+        <property>/sim/failure-manager/systems/fuel/aux-fuel-pump/serviceable</property>
       </checkbox>
       <input>
         <row>3</row>

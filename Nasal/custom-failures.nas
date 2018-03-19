@@ -124,6 +124,22 @@ var registerRandomFailureTimer = func(t_fire, failure){
     return timer;
 }
 
+# register a "serviceable" property in the failure manager item tree
+# (this is mainly used by the GUI to immediately fail an item trough the actuator)
+var registerSVCProp = func(failureID) {
+    var svcPath = "/sim/failure-manager/" ~ failureID ~ "/serviceable";
+    var failSVCprop = props.globals.initNode(svcPath, 1, "BOOL");
+    setlistener(failSVCprop, func(node){
+        if (node.getBoolValue()) {
+            print("Custom failure serviceable-prop changed to SVCBLE: " ~ failureID);
+            FailureMgr.set_failure_level(failureID, 0);
+        } else {
+            print("Custom failure serviceable-prop changed to FAILED: " ~ failureID);
+            FailureMgr.set_failure_level(failureID, 1);
+        }
+    }, 0, 0);
+}
+
 # Init some random failures
 # (called by GUI mode)
 var initRandomFailures = func() {  
@@ -186,6 +202,9 @@ foreach (failure; customFailures) {
     if (substr(trigParamPath, 0, 1) != "/") trigParamPath = "/" ~ trigParamPath; # make path absolute so it can be matched against node.getPath() return
     path2Trigger[trigParamPath] = trigger;
     setlistener(trigParamPath, updateTriggerParameter, 0, 0);
+    
+    # register a serviceable-property in the failure prop tree that can trip the failure
+    registerSVCProp(failure.id);
 }
 
 # Maybe we want to init failures at startup?

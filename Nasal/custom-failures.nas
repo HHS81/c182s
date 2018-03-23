@@ -78,7 +78,48 @@ var set_unserviceable_abs = func(path) {
     }
 }
 
-
+# Workaround actuator to disable magnetos
+# This selects between left, right and both magnetos by random chance
+# TODO: we should separate internal state from engine magneto state somewhere in the future! Currently the key rotates too...
+var fail_random_magnetos = func(magProp) {
+    return {
+        parents: [FailureMgr.FailureActuator],
+        leftFailed:  1,
+        rightFailed: 1,
+        prop: magProp,
+        
+        set_failure_level: func(level) {
+            if (level > 0) {
+                me.leftFailed  = (rand() > 0.5)? 1 : 0;
+                me.rightFailed = (rand() > 0.5)? 1 : 0;
+                if (!me.leftFailed and !me.rightFailed) {
+                    # none failed -> fail both >:)
+                    me.leftFailed  = 1;
+                    me.rightFailed = 1;
+                }
+                
+                if (me.rightFailed)                   var mfi = 2; # set to LEFT
+                if (me.leftFailed)                    var mfi = 1; # set to RIGHT
+                if (me.leftFailed and me.rightFailed) var mfi = 0; # set to OFF
+                
+                var magnetoNode = props.globals.getNode(me.prop);
+                magnetoNode.setIntValue(mfi);
+                magnetoNode.setAttribute("writable", 0);
+                
+            } else {
+                me.leftFailed  = 0;
+                me.rightFailed = 0;
+                var magnetoNode = props.globals.getNode(me.prop);
+                magnetoNode.setAttribute("writable", 1);
+                magnetoNode.setIntValue(3); # reset to BOTH
+            }
+            
+        },
+        get_failure_level: func {
+            (me.leftFailed > 0 or me.rightFailed > 0)
+        }
+    }
+}
 
 
 ############################################################################################
@@ -91,18 +132,142 @@ customFailures = [
         actuator: set_unserviceable_abs("/instrumentation/clock/serviceable"),
         trigger:  MtbfTrigger.new(0),
     },
-
+    
+    {id:"instrumentation/fuelIndicator[0]",    name:"Left fuel indicator",
+        actuator: set_unserviceable("/instruments/fuelIndicator[0]"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"instrumentation/fuelIndicator[1]",    name:"Right fuel indicator",
+        actuator: set_unserviceable("/instruments/fuelIndicator[1]"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"instrumentation/egt",    name:"EGT",
+        actuator: set_unserviceable("/instruments/egt"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"instrumentation/cht",    name:"CHT",
+        actuator: set_unserviceable("/instruments/cht"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"instrumentation/oil-temp",    name:"OIL temp",
+        actuator: set_unserviceable("/instruments/oil-temp"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"instrumentation/oil-press",    name:"OIL press",
+        actuator: set_unserviceable("/instruments/oil-press"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    # TODO: Implement me
+    #{id:"instrumentation/vac",    name:"VAC",
+    #    actuator: set_unserviceable("/instruments/vac"),
+    #    trigger:  MtbfTrigger.new(0),
+    #},
+    #
+    #{id:"instrumentation/amp",    name:"AMP",
+    #    actuator: set_unserviceable("/instruments/amp"),
+    #    trigger:  MtbfTrigger.new(0),
+    #},
+    #
+    #{id:"instrumentation/manfold-press",    name:"Manifold pres.",
+    #    actuator: set_unserviceable("/instruments/manfold-press"),
+    #    trigger:  MtbfTrigger.new(0),
+    #},
+    
+    {id:"instrumentation/fuel-flow",    name:"Fuel flow",
+        actuator: set_unserviceable("/instruments/fuel-flow"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    
+    # TODO: Add lights: taxi, landing, instruments, glareshield, radio stack, cabin
+    
+    
+    {id:"instrumentation/annunciator",    name:"Annunciator panel",
+        actuator: set_unserviceable("instrumentation/annunciator"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"instrumentation/marker-beacon",    name:"Marker beacon",
+        actuator: set_unserviceable("instrumentation/marker-beacon"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"instrumentation/audio-panel",    name:"Audio panel",
+        actuator: set_unserviceable("instrumentation/audio-panel"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"instrumentation/avionics/dme",    name:"DME",
+        actuator: set_unserviceable("instrumentation/dme"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"instrumentation/avionics/comm[0]",    name:"NAV1/COMM1",
+        actuator: set_unserviceable("instrumentation/comm[0]"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"instrumentation/avionics/comm[1]",    name:"NAV2/COMM2",
+        actuator: set_unserviceable("instrumentation/comm[1]"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    # ADF is already in standards module (there is currently no distinction between radio and gauge)
+    #{id:"instrumentation/avionics/adf",    name:"ADF",
+    #    actuator: set_unserviceable("instrumentation/adf"),
+    #    trigger:  MtbfTrigger.new(0),
+    #},
+    
+    {id:"instrumentation/avionics/autopilot",    name:"Autopilot",
+        actuator: set_unserviceable("autopilot/KAP140"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"instrumentation/avionics/transponder",    name:"Transponder",
+        actuator: set_unserviceable("instrumentation/transponder"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    
+    
+    
     {id:"systems/fuel/aux-fuel-pump",    name:"Aux fuel pump",
         actuator: set_unserviceable_abs("/systems/fuel/fuel-pump-aux-serviceable"),
-        #trigger:  McbfTrigger.new("controls/engines/engine/fuel-pump", 0)
         trigger:  MtbfTrigger.new(0),
     },
     
     {id:"systems/fuel/engine-fuel-pump", name:"Engine fuel pump",
         actuator: set_unserviceable_abs("/systems/fuel/fuel-pump-engine-serviceable"),
-        #trigger:  McbfTrigger.new("engines/engine/running", 0)
         trigger:  MtbfTrigger.new(0)
-    }
+    },
+    
+    {id:"systems/electrical/alternator", name:"Alternator",
+        actuator: set_unserviceable_abs("/systems/electrical/alternator-serviceable"),
+        trigger:  MtbfTrigger.new(0)
+    },
+    
+    {id:"systems/electrical/battery", name:"Battery",
+        actuator: set_unserviceable_abs("/systems/electrical/battery-serviceable"),
+        trigger:  MtbfTrigger.new(0)
+    },
+    
+    
+    # TODO: Add Magnetos
+    {id:"engine/magnetos", name:"Magnetos",
+        actuator: fail_random_magnetos("controls/engines/engine[0]/magnetos"),
+        trigger:  MtbfTrigger.new(0)
+    },
+    
+    {id:"systems/stall-horn", name:"Stall horn",
+        actuator: set_unserviceable("/controls/stall-horn"),
+        trigger:  MtbfTrigger.new(0)
+    },
 ];
 
 

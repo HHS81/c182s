@@ -19,6 +19,8 @@ var vbus_volts = 0.0;
 var ebus1_volts = 0.0;
 var ebus2_volts = 0.0;
 
+props.globals.initNode("/systems/electrical/battery-serviceable",    1, "BOOL");
+props.globals.initNode("/systems/electrical/alternator-serviceable", 1, "BOOL");
 
 var ammeter_ave = 0.0;
 
@@ -117,6 +119,8 @@ BatteryClass.apply_load = func( amps, dt ) {
 #
 
 BatteryClass.get_output_volts = func {
+    if (!getprop("/systems/electrical/battery-serviceable")) return 0.0;
+    
     var x = 1.0 - me.charge_percent;
     var tmp = -(3.0 * x - 1.0);
     var factor = (tmp*tmp*tmp*tmp*tmp + 32) / 32;
@@ -187,7 +191,7 @@ AlternatorClass.get_output_volts = func {
         factor = 1.0;
     }
     # print( "alternator volts = ", me.ideal_volts * factor );
-    if ( getprop("/controls/circuit-breakers/AltFLD") ) {
+    if ( getprop("/controls/circuit-breakers/AltFLD") and getprop("/systems/electrical/alternator-serviceable") ) {
         return me.ideal_volts * factor;
     } else {
         return 0.0;
@@ -804,7 +808,7 @@ if ( bus_volts > 22 ) {
     }
 
     # Autopilot Power
-    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/AutoPilot")) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/AutoPilot") and getprop("/autopilot/KAP140/serviceable")) {
     setprop("/systems/electrical/outputs/autopilot", bus_volts);
      }else{ 
     setprop("/systems/electrical/outputs/autopilot", 0);

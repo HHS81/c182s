@@ -157,7 +157,7 @@ customFailures = [
         trigger:  MtbfTrigger.new(0),
     },
     
-    # TODO: Implement me
+    # TODO: Implement me - but: can they really fail?
     #{id:"instrumentation/vac",    name:"VAC",
     #    actuator: set_unserviceable("/instruments/vac"),
     #    trigger:  MtbfTrigger.new(0),
@@ -272,7 +272,7 @@ customFailures = [
     },
     
     
-    # TODO: Add Magnetos
+    
     {id:"engine/magnetos", name:"Magnetos",
         actuator: fail_random_magnetos(),
         trigger:  MtbfTrigger.new(0)

@@ -327,16 +327,10 @@ update_virtual_bus = func( dt ) {
     setprop("systems/electrical/outputs/starter[0]", starter_volts);
     if (starter_volts > 22) {
         setprop("controls/engines/engine[0]/starter",1);
-        setprop("controls/engines/engine[0]/magnetos",3);
+        setprop("controls/switches/magnetos",3);
     } else {
         setprop("controls/engines/engine[0]/starter",0);
     }
-    
-    controls.stepMagnetos = func {
-        var old_value = getprop("/controls/engines/engine/magnetos");
-        var new_value = std.max(0, std.min(old_value + arg[0], 3));
-        setprop("/controls/engines/engine/magnetos", new_value);
-    };
 
     # key 's' calls to this function when it is pressed DOWN even if I overwrite the binding in the -set.xml file!
     # fun fact: the key UP event can be overwriten!
@@ -356,7 +350,7 @@ update_virtual_bus = func( dt ) {
             return;
         }
         else {
-            setprop("/controls/engines/engine/magnetos", 3);
+            setprop("controls/switches/magnetos", 3);
             setprop("/controls/switches/starter", v);
         }
     };

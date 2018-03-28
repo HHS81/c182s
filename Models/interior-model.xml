@@ -2414,8 +2414,7 @@
         <action>
             <binding>
                 <command>property-adjust</command>
-                <!--<property>/controls/switches/magnetos</property>-->
-                <property>controls/engines/engine/magnetos</property>
+                <property>/controls/switches/magnetos</property>
                 <factor>1</factor>
                 <min>0</min>
                 <max>3</max>
@@ -2438,7 +2437,7 @@
                 <command>set-tooltip</command>
                 <tooltip-id>magneto-switch</tooltip-id>
                 <label>Magnetos: %s</label>
-                <property>controls/engines/engine/magnetos</property>
+                <property>/controls/switches/magnetos</property>
                 <mapping>nasal</mapping>
                 <script>
                     var m = arg[0];
@@ -2547,7 +2546,7 @@
                         <value>1</value>
                         <property>controls/switches/starter</property>
                     </difference>
-                    <property>controls/engines/engine/magnetos</property>
+                    <property>controls/switches/magnetos</property>
                     <value>30</value>
                 </product>
                 <product>

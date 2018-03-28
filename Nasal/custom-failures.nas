@@ -78,45 +78,39 @@ var set_unserviceable_abs = func(path) {
     }
 }
 
-# Workaround actuator to disable magnetos
+# Actuator to disable random magnetos
 # This selects between left, right and both magnetos by random chance
-# TODO: we should separate internal state from engine magneto state somewhere in the future! Currently the key rotates too...
-var fail_random_magnetos = func(magProp) {
+var fail_random_magnetos = func() {
     return {
         parents: [FailureMgr.FailureActuator],
-        leftFailed:  1,
-        rightFailed: 1,
-        prop: magProp,
+        l_p:     "/controls/engines/engine/faults/left-magneto-serviceable",
+        r_p:     "/controls/engines/engine/faults/right-magneto-serviceable",
         
         set_failure_level: func(level) {
+            var l_svc = getprop(me.l_p);
+            var r_svc = getprop(me.r_p);
+        
             if (level > 0) {
-                me.leftFailed  = (rand() > 0.5)? 1 : 0;
-                me.rightFailed = (rand() > 0.5)? 1 : 0;
-                if (!me.leftFailed and !me.rightFailed) {
+                var leftFailed  = (rand() > 0.5)? 1 : 0;
+                var rightFailed = (rand() > 0.5)? 1 : 0;
+                if (!leftFailed and !rightFailed) {
                     # none failed -> fail both >:)
-                    me.leftFailed  = 1;
-                    me.rightFailed = 1;
+                   leftFailed  = 1;
+                   rightFailed = 1;
                 }
-                
-                if (me.rightFailed)                   var mfi = 2; # set to LEFT
-                if (me.leftFailed)                    var mfi = 1; # set to RIGHT
-                if (me.leftFailed and me.rightFailed) var mfi = 0; # set to OFF
-                
-                var magnetoNode = props.globals.getNode(me.prop);
-                magnetoNode.setIntValue(mfi);
-                magnetoNode.setAttribute("writable", 0);
+                if (leftFailed)  setprop(me.l_p, 0);
+                if (rightFailed) setprop(me.r_p, 0);
                 
             } else {
-                me.leftFailed  = 0;
-                me.rightFailed = 0;
-                var magnetoNode = props.globals.getNode(me.prop);
-                magnetoNode.setAttribute("writable", 1);
-                magnetoNode.setIntValue(3); # reset to BOTH
+                setprop(me.l_p, 1);
+                setprop(me.r_p, 1);
             }
             
         },
         get_failure_level: func {
-            (me.leftFailed > 0 or me.rightFailed > 0)
+            var l_svc = getprop(me.l_p);
+            var r_svc = getprop(me.r_p);
+            (l_svc == 0 or r_svc == 0)
         }
     }
 }
@@ -280,7 +274,7 @@ customFailures = [
     
     # TODO: Add Magnetos
     {id:"engine/magnetos", name:"Magnetos",
-        actuator: fail_random_magnetos("controls/engines/engine[0]/magnetos"),
+        actuator: fail_random_magnetos(),
         trigger:  MtbfTrigger.new(0)
     },
     

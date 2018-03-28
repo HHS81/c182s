@@ -233,3 +233,35 @@ if (!getprop("/engines/engine[0]/oil-service-hours")) {
 oil_consumption.simulatedTime = 1;
 oil_consumption.start();
 calculate_real_oiltemp.start();
+
+
+# ======= Magneto handling ======
+var updateMagnetos = func() {
+    # update engine magneto state depending on switch position
+    var tgt_value = 0;
+    var keypos = getprop("/controls/switches/magnetos");
+    var magleft_svc  = getprop("/controls/engines/engine/faults/left-magneto-serviceable");
+    var magright_svc = getprop("/controls/engines/engine/faults/right-magneto-serviceable");
+    
+    if (keypos == 1) {
+        if (magright_svc) tgt_value = keypos;
+        
+    } else if (keypos == 2) {
+        if (magleft_svc) tgt_value = keypos;
+        
+    } else if (keypos == 3) {
+        if ( magright_svc and !magleft_svc) tgt_value = 1;
+        if (!magright_svc and  magleft_svc) tgt_value = 2;
+        if ( magright_svc and  magleft_svc) tgt_value = 3;
+        if (!magright_svc and !magleft_svc) tgt_value = 0;
+        
+    } else {
+        tgt_value = keypos;
+    }
+    
+    setprop("controls/engines/engine/magnetos", tgt_value);
+    #setprop("/engines/engine/magnetos", keypos); # this property seems not to be used!
+}
+setlistener("/controls/switches/magnetos", updateMagnetos, 1, 1);
+setlistener("/controls/engines/engine/faults/left-magneto-serviceable", updateMagnetos, 0, 1);
+setlistener("/controls/engines/engine/faults/right-magneto-serviceable", updateMagnetos, 0, 1);

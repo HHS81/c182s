@@ -185,7 +185,27 @@ customFailures = [
     },
     
     
-    # TODO: Add lights: taxi, landing, instruments, glareshield, radio stack, cabin
+    
+    {id:"lighting/taxi-light",    name:"Taxi light",
+        actuator: set_unserviceable_abs("/systems/electrical/taxi-light-serviceable"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"lighting/landing-light",    name:"Landing light",
+        actuator: set_unserviceable_abs("/systems/electrical/landing-light-serviceable"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"lighting/instruments",    name:"instruments/radio light",
+        actuator: set_unserviceable_abs("/systems/electrical/instrument-light-serviceable"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"lighting/cabin",    name:"cabin/glareshield/pedestal light",
+        actuator: set_unserviceable_abs("/systems/electrical/cabin-light-serviceable"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
     
     
     {id:"instrumentation/annunciator",    name:"Annunciator panel",

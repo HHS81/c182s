@@ -196,6 +196,56 @@
         <property>/sim/failure-manager/systems/stall-horn/mtbf</property>
       </input>
       
+      <text>
+        <row>8</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Landing lights</label>
+      </text>
+      <checkbox>
+        <row>8</row>
+        <col>1</col>
+        <property>/sim/failure-manager/lighting/landing-light/serviceable</property>
+      </checkbox>
+      <input>
+        <row>8</row>
+        <col>2</col>
+        <property>/sim/failure-manager/lighting/landing-light/mtbf</property>
+      </input>
+      
+      <text>
+        <row>9</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Taxi lights</label>
+      </text>
+      <checkbox>
+        <row>9</row>
+        <col>1</col>
+        <property>/sim/failure-manager/lighting/taxi-light/serviceable</property>
+      </checkbox>
+      <input>
+        <row>9</row>
+        <col>2</col>
+        <property>/sim/failure-manager/lighting/taxi-light/mtbf</property>
+      </input>
+      
+      <text>
+        <row>10</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Cabin lights</label>
+      </text>
+      <checkbox>
+        <row>10</row>
+        <col>1</col>
+        <property>/sim/failure-manager/lighting/cabin/serviceable</property>
+      </checkbox>
+      <input>
+        <row>10</row>
+        <col>2</col>
+        <property>/sim/failure-manager/lighting/cabin/mtbf</property>
+      </input>
 
       <!--
       <text>
@@ -423,6 +473,23 @@
         <property>/sim/failure-manager/instrumentation/amp/mtbf</property>
       </input>
       -->
+      
+      <text>
+        <row>12</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Instruments light</label>
+      </text>
+      <checkbox>
+        <row>12</row>
+        <col>1</col>
+        <property>/sim/failure-manager/lighting/instruments/serviceable</property>
+      </checkbox>
+      <input>
+        <row>12</row>
+        <col>2</col>
+        <property>/sim/failure-manager/lighting/instruments/mtbf</property>
+      </input>
       
       
       <!--<text>

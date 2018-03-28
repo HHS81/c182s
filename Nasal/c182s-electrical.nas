@@ -21,6 +21,10 @@ var ebus2_volts = 0.0;
 
 props.globals.initNode("/systems/electrical/battery-serviceable",    1, "BOOL");
 props.globals.initNode("/systems/electrical/alternator-serviceable", 1, "BOOL");
+props.globals.initNode("/systems/electrical/taxi-light-serviceable", 1, "BOOL");
+props.globals.initNode("/systems/electrical/landing-light-serviceable", 1, "BOOL");
+props.globals.initNode("/systems/electrical/instrument-light-serviceable", 1, "BOOL");
+props.globals.initNode("/systems/electrical/cabin-light-serviceable", 1, "BOOL");
 
 var ammeter_ave = 0.0;
 
@@ -439,8 +443,7 @@ electrical_bus_1 = func() {
 	setprop("/systems/electrical/outputs/fuel-pump-norm-end", 0.0)};
 
     # Landing Light Power
-
-    if ( getprop("/controls/lighting/landing-lights")and (bus_volts > 22) ) {
+    if ( getprop("/controls/lighting/landing-lights")and (bus_volts > 22) and getprop("/systems/electrical/landing-light-serviceable") ) {
         setprop("/systems/electrical/outputs/landing-lights", bus_volts);
         load += bus_volts / 0.11;
     }
@@ -525,8 +528,7 @@ electrical_bus_2 = func() {
     
   
     # Taxi Lights Power
-
-    if ( getprop("/controls/lighting/taxi-light" ) and (bus_volts > 22)) {
+    if ( getprop("/controls/lighting/taxi-light" ) and (bus_volts > 22) and getprop("/systems/electrical/taxi-light-serviceable")) {
         setprop("/systems/electrical/outputs/taxi-light", bus_volts);
         load += bus_volts / 0.22;
     } 
@@ -590,7 +592,7 @@ cross_feed_bus = func() {
     }
 
 
-    if ( getprop("/controls/lighting/dome-light-r")and (bus_volts > 22)) {
+    if ( getprop("/controls/lighting/dome-light-r")and (bus_volts > 22) and getprop("/systems/electrical/cabin-light-serviceable")) {
         setprop("/systems/electrical/outputs/dome-light-r", bus_volts/28);
         load += bus_volts / 28;
     }
@@ -599,7 +601,7 @@ cross_feed_bus = func() {
     }
 
 
- if ( getprop("/controls/lighting/dome-light-l")and (bus_volts > 22)) {
+ if ( getprop("/controls/lighting/dome-light-l")and (bus_volts > 22) and getprop("/systems/electrical/cabin-light-serviceable")) {
         setprop("/systems/electrical/outputs/dome-light-l", bus_volts/28);
         load += bus_volts / 28;
     } 
@@ -608,7 +610,7 @@ cross_feed_bus = func() {
     }
 
 
- if ( getprop("/controls/lighting/dome-exterior-light")and (bus_volts > 22)) {
+ if ( getprop("/controls/lighting/dome-exterior-light")and (bus_volts > 22) and getprop("/systems/electrical/cabin-light-serviceable")) {
         setprop("/systems/electrical/outputs/dome-exterior-light", bus_volts/28);
         load += bus_volts / 28;
     }
@@ -622,7 +624,7 @@ cross_feed_bus = func() {
 
 var IL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/instrument-lights-norm"));
 
-	if (getprop ("/controls/lighting/instrument-lights-norm") >0.05 and (bus_volts > 22)){
+	if (getprop ("/controls/lighting/instrument-lights-norm") >0.05 and (bus_volts > 22) and getprop("/systems/electrical/instrument-light-serviceable") ){
 	setprop("/systems/electrical/outputs/instrument-lights",IL_DIMMER);
 	setprop("/systems/electrical/outputs/instrument-lights-norm",IL_DIMMER/24);
 	}else{
@@ -634,7 +636,7 @@ var IL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("contro
 
 
 var GL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/glareshield-lights-norm"));
-	if (getprop ("/controls/lighting/glareshield-lights-norm") >0.05 and (bus_volts > 22)){
+	if (getprop ("/controls/lighting/glareshield-lights-norm") >0.05 and (bus_volts > 22) and getprop("/systems/electrical/cabin-light-serviceable")){
 	setprop("/systems/electrical/outputs/glareshield-lights",GL_DIMMER);
 	setprop("/systems/electrical/outputs/glareshield-lights-norm",GL_DIMMER/28);
 	}else{
@@ -646,7 +648,7 @@ var GL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("contro
 
 	
 var PL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/pedestal-lights-norm"));
-	if (getprop ("/controls/lighting/pedestal-lights-norm") >0.05 and (bus_volts > 22)){
+	if (getprop ("/controls/lighting/pedestal-lights-norm") >0.05 and (bus_volts > 22) and getprop("/systems/electrical/cabin-light-serviceable")){
 	setprop("/systems/electrical/outputs/pedestal-lights",PL_DIMMER);
 	setprop("/systems/electrical/outputs/pedestal-lights-norm",PL_DIMMER/28);
 	}else{
@@ -660,7 +662,7 @@ var PL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("contro
 	
 
 var RL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/radio-lights-norm"));
-	if (getprop ("/controls/lighting/radio-lights-norm") >0.05 and (bus_volts > 22)){
+	if (getprop ("/controls/lighting/radio-lights-norm") >0.05 and (bus_volts > 22) and getprop("/systems/electrical/instrument-light-serviceable")){
 	setprop("/systems/electrical/outputs/radio-lights",RL_DIMMER);
 	setprop("/systems/electrical/outputs/radio-lights-norm",RL_DIMMER/24);
 	}else{

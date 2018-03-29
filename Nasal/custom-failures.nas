@@ -282,6 +282,11 @@ customFailures = [
         actuator: set_unserviceable("/controls/stall-horn"),
         trigger:  MtbfTrigger.new(0)
     },
+    
+    {id:"systems/pitot-heat", name:"Pitot heat",
+        actuator: set_unserviceable_abs("/systems/pitot/pitot-heat-serviceable"),
+        trigger:  MtbfTrigger.new(0)
+    },
 ];
 
 

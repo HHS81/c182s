@@ -25,6 +25,7 @@ props.globals.initNode("/systems/electrical/taxi-light-serviceable", 1, "BOOL");
 props.globals.initNode("/systems/electrical/landing-light-serviceable", 1, "BOOL");
 props.globals.initNode("/systems/electrical/instrument-light-serviceable", 1, "BOOL");
 props.globals.initNode("/systems/electrical/cabin-light-serviceable", 1, "BOOL");
+props.globals.initNode("/systems/pitot/pitot-heat-serviceable", 1, "BOOL");
 
 var ammeter_ave = 0.0;
 
@@ -534,7 +535,7 @@ else {
   
     # Pitot Heat Power
 
-    if ( getprop("/controls/anti-ice/pitot-heat" )and (bus_volts > 22) ) {
+    if ( getprop("/controls/anti-ice/pitot-heat" )and (bus_volts > 22) and getprop("/systems/pitot/pitot-heat-serviceable")) {
         setprop("/systems/electrical/outputs/pitot-heat", bus_volts);
         load += bus_volts / 2.8;
     } 

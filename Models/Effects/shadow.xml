@@ -32,6 +32,9 @@
           </not>
           <property>/sim/rendering/shaders/skydome</property>
           <property>/sim/rendering/shadow-volume</property>
+          <not>
+            <property>/fdm/jsbsim/orientation/upside-down</property>
+          </not>
 		 </and>
         </condition>
       </animation>

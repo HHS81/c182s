@@ -316,10 +316,10 @@ var registerSVCProp = func(failureID) {
     var failSVCprop = props.globals.initNode(svcPath, 1, "BOOL");
     setlistener(failSVCprop, func(node){
         if (node.getBoolValue()) {
-            print("Custom failure serviceable-prop changed to SVCBLE: " ~ failureID);
+            #print("Custom failure serviceable-prop changed to SVCBLE: " ~ failureID);
             FailureMgr.set_failure_level(failureID, 0);
         } else {
-            print("Custom failure serviceable-prop changed to FAILED: " ~ failureID);
+            #print("Custom failure serviceable-prop changed to FAILED: " ~ failureID);
             FailureMgr.set_failure_level(failureID, 1);
         }
     }, 0, 0);
@@ -397,7 +397,7 @@ var initRandomFailureTimer = func() {
 # Initialize custom failures
 #
 foreach (failure; customFailures) {
-    print("Custom failure init: " ~ failure.id);
+    #print("Custom failure init: " ~ failure.id);
     FailureMgr.add_failure_mode(failure.id, failure.name, failure.actuator);
     FailureMgr.set_trigger(failure.id, failure.trigger);
     

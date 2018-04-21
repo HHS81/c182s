@@ -311,6 +311,7 @@ var registerRandomFailureTimer = func(t_fire, failure){
 # register a "serviceable" property in the failure manager item tree
 # (this is mainly used by the GUI to immediately fail an item trough the actuator)
 var registerSVCProp = func(failureID) {
+    # register the serviceable property and listen for changes
     var svcPath = "/sim/failure-manager/" ~ failureID ~ "/serviceable";
     var failSVCprop = props.globals.initNode(svcPath, 1, "BOOL");
     setlistener(failSVCprop, func(node){
@@ -322,6 +323,26 @@ var registerSVCProp = func(failureID) {
             FailureMgr.set_failure_level(failureID, 1);
         }
     }, 0, 0);
+    
+    # register "backlink" on failure-level to update the internal svc property we just created.
+    # This is mainly needed to let the failure be triggered again from the gui, but may be used otherwise too.
+    # (TODO: this code interacts directly with failureManager internal properties and avoids the API. This is bad, but i don't know a better approach currently)
+    var lvlPath = "/sim/failure-manager/" ~ failureID ~ "/failure-level";
+    setlistener(lvlPath, func(node){
+        var node_parent = node.getParent(); # the failure mode base tree
+        var node_svc    = node_parent.getNode("serviceable");
+
+        var newState = (node.getValue() > 0)? 0 : 1;
+        node_svc.setBoolValue(newState);
+        #print("DBG: RESET internal SVC " ~ node.getPath() ~ " to " ~ newState);
+    }, 0, 0);
+    
+    # maybe via events?? This does nothing so far... :/
+#    FailureMgr.events["trigger-fired"].subscribe( func(mode_id, trigger) {
+#        var newState = (FailureMgr.get_failure_level(mode_id) > 0)? 0 : 1;
+#        setProp(svcPath, newState);
+#        print("DBG: RESET internal SVC " ~ svcPath ~ " to " ~ newState);
+#    } );
 }
 
 # Init some random failures

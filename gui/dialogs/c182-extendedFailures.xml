@@ -55,6 +55,17 @@
     <halign>left</halign>
     <label>  Set to 0 to disable/unarm an activated MTBF/MCBF failure.  </label>
   </text>
+  <checkbox>
+    <halign>left</halign>
+    <valign>down</valign>
+    <name>onScreenMessages</name>
+    <label>Display failure messages on screen</label>
+    <width>10</width>
+    <height>10</height>
+    <property>/sim/failure-manager/display-on-screen</property>
+  </checkbox>
+
+
 
   <hrule/>
 

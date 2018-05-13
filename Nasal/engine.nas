@@ -167,6 +167,9 @@ var oil_consumption = maketimer(1.0, func {
         # engine.xml defines engine-killing level as 3.97
         low_oil_pressure_factor = 30 * oil_level_limited - 119;
         
+        # apply (potentially) falling pressure due to failure of oil pump
+        low_oil_pressure_factor = low_oil_pressure_factor * getprop("/engines/engine[0]/oil-pump/serviceable-norm"); 
+        
         # Should give 1.0 for oil_level = 4 and 1.5 for oil_level 3.97
         low_oil_temperature_factor = -50/3 * oil_level_limited + 203/3;
     
@@ -221,6 +224,16 @@ var calculate_real_oiltemp = maketimer(0.5, func {
         interpolate("/engines/engine/oil-temperature-env-diff", 0, 180); # hand over to jsbsim caluclation gradually over 2 minutes
     }
 });
+
+# ======= OIL Pump handling =====
+setlistener("/engines/engine[0]/oil-pump/serviceable", func {
+    svc = getprop("/engines/engine[0]/oil-pump/serviceable");
+    if (svc) {
+        interpolate("/engines/engine[0]/oil-pump/serviceable-norm", 1, 5);
+    } else {
+        interpolate("/engines/engine[0]/oil-pump/serviceable-norm", 0, 5);
+    }
+}, 1, 0);
 
 # ======= OIL SYSTEM INIT =======
 if (!getprop("/engines/engine[0]/oil-level")) {

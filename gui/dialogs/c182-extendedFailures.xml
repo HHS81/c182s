@@ -143,134 +143,152 @@
         <row>4</row>
         <col>0</col>
         <halign>right</halign>
-        <label>Alternator</label>
+        <label>Oil pump</label>
       </text>
       <checkbox>
         <row>4</row>
         <col>1</col>
-        <property>/sim/failure-manager/systems/electrical/alternator/serviceable</property>
+        <property>/sim/failure-manager/systems/oil/engine-oil-pump/serviceable</property>
       </checkbox>
       <input>
         <row>4</row>
+        <col>2</col>
+        <property>/sim/failure-manager/systems/oil/engine-oil-pump/mtbf</property>
+      </input>
+      
+      
+      <text>
+        <row>5</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Alternator</label>
+      </text>
+      <checkbox>
+        <row>5</row>
+        <col>1</col>
+        <property>/sim/failure-manager/systems/electrical/alternator/serviceable</property>
+      </checkbox>
+      <input>
+        <row>5</row>
         <col>2</col>
         <property>/sim/failure-manager/systems/electrical/alternator/mtbf</property>
       </input>
       
       <text>
-        <row>5</row>
+        <row>6</row>
         <col>0</col>
         <halign>right</halign>
         <label>Battery</label>
       </text>
       <checkbox>
-        <row>5</row>
+        <row>6</row>
         <col>1</col>
         <property>/sim/failure-manager/systems/electrical/battery/serviceable</property>
       </checkbox>
       <input>
-        <row>5</row>
+        <row>6</row>
         <col>2</col>
         <property>/sim/failure-manager/systems/electrical/battery/mtbf</property>
       </input>
       
       <text>
-        <row>6</row>
+        <row>7</row>
         <col>0</col>
         <halign>right</halign>
         <label>Magnetos</label>
       </text>
       <checkbox>
-        <row>6</row>
+        <row>7</row>
         <col>1</col>
         <property>/sim/failure-manager/engine/magnetos/serviceable</property>
       </checkbox>
       <input>
-        <row>6</row>
+        <row>7</row>
         <col>2</col>
         <property>/sim/failure-manager/engine/magnetos/mtbf</property>
       </input>
       
       <text>
-        <row>7</row>
+        <row>8</row>
         <col>0</col>
         <halign>right</halign>
         <label>Stall Horn</label>
       </text>
       <checkbox>
-        <row>7</row>
+        <row>8</row>
         <col>1</col>
         <property>/sim/failure-manager/systems/stall-horn/serviceable</property>
       </checkbox>
       <input>
-        <row>7</row>
+        <row>8</row>
         <col>2</col>
         <property>/sim/failure-manager/systems/stall-horn/mtbf</property>
       </input>
       
       <text>
-        <row>8</row>
+        <row>9</row>
         <col>0</col>
         <halign>right</halign>
         <label>Pitot Heat</label>
       </text>
       <checkbox>
-        <row>8</row>
+        <row>9</row>
         <col>1</col>
         <property>/sim/failure-manager/systems/pitot-heat/serviceable</property>
       </checkbox>
       <input>
-        <row>8</row>
+        <row>9</row>
         <col>2</col>
         <property>/sim/failure-manager/systems/pitot-heat/mtbf</property>
       </input>
       
       <text>
-        <row>9</row>
+        <row>10</row>
         <col>0</col>
         <halign>right</halign>
         <label>Landing lights</label>
       </text>
       <checkbox>
-        <row>9</row>
+        <row>10</row>
         <col>1</col>
         <property>/sim/failure-manager/lighting/landing-light/serviceable</property>
       </checkbox>
       <input>
-        <row>9</row>
+        <row>10</row>
         <col>2</col>
         <property>/sim/failure-manager/lighting/landing-light/mtbf</property>
       </input>
       
       <text>
-        <row>10</row>
+        <row>11</row>
         <col>0</col>
         <halign>right</halign>
         <label>Taxi lights</label>
       </text>
       <checkbox>
-        <row>10</row>
+        <row>11</row>
         <col>1</col>
         <property>/sim/failure-manager/lighting/taxi-light/serviceable</property>
       </checkbox>
       <input>
-        <row>10</row>
+        <row>11</row>
         <col>2</col>
         <property>/sim/failure-manager/lighting/taxi-light/mtbf</property>
       </input>
       
       <text>
-        <row>11</row>
+        <row>12</row>
         <col>0</col>
         <halign>right</halign>
         <label>Cabin lights</label>
       </text>
       <checkbox>
-        <row>11</row>
+        <row>12</row>
         <col>1</col>
         <property>/sim/failure-manager/lighting/cabin/serviceable</property>
       </checkbox>
       <input>
-        <row>11</row>
+        <row>12</row>
         <col>2</col>
         <property>/sim/failure-manager/lighting/cabin/mtbf</property>
       </input>

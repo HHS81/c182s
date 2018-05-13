@@ -261,6 +261,11 @@ customFailures = [
         trigger:  MtbfTrigger.new(0)
     },
     
+    {id:"systems/oil/engine-oil-pump", name:"Engine oil pump",
+        actuator: set_unserviceable_abs("/engines/engine[0]/oil-pump/serviceable"),
+        trigger:  MtbfTrigger.new(0)
+    },
+    
     {id:"systems/electrical/alternator", name:"Alternator",
         actuator: set_unserviceable_abs("/systems/electrical/alternator-serviceable"),
         trigger:  MtbfTrigger.new(0)

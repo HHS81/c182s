@@ -174,8 +174,7 @@
                     <table>
                         <independentVar>/engines/engine[0]/oil-pressure-psi-final</independentVar>
                         <tableData>
-                            0.0   50.0     <!-- added friction due to failing lubrication -->
-                            10.0  50.0
+                            15.0  50.0  <!-- added friction due to failing lubrication -->
                             20.0   0.0  <!-- minimum "OK"-range -->
                         </tableData>
                     </table>
@@ -196,7 +195,7 @@
                 </setting>
                 <setting>
                     <position>1</position>
-                    <time>10</time>
+                    <time>15</time> <!-- how long it takes to finally kill the engine -->
                 </setting>
             </traverse>
             <output>systems/propulsion/friction-critical-induced-friction-norm</output>
@@ -226,9 +225,6 @@
         
         
         
-        
-        <!-- STAGE 2: Defining friction sources -->
-        <!-- ================================== -->
 
         <!-- sum up all friction variables affecting the killing-by-too-high-friction -->
         <summer name="systems/propulsion/friction-summer">

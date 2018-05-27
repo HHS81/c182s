@@ -182,14 +182,10 @@
                     
                 </and>
                     
-                <!-- Engine is coughing if oil level is too low and engine about to die -->
+                <!-- Engine is coughing if friction is critical -->
                 <and>
                     <property>/engines/engine/complex-engine-procedures</property>
-                    <property>/engines/engine/allow-oil-management</property>
-                    <less-than>
-                        <property>/engines/engine[0]/oil-level</property>
-                        <value>3.98</value>
-                    </less-than>
+                    <property>/fdm/jsbsim/systems/propulsion/friction-critical</property>
                 </and>
                 
                 <!-- Engine is coughing if still cold and throttle is wide open -->
@@ -249,7 +245,7 @@
             </not>
         </S>
         <time>
-            <value>10.0</value> <!-- time in seconds to tolerate critical friction limits -->
+            <value>15.0</value> <!-- time in seconds to tolerate critical friction limits -->
         </time>
         <output>
             <property>/fdm/jsbsim/systems/propulsion/friction-critical</property>
@@ -263,7 +259,7 @@
         <inverted type="bool">true</inverted>
         <S>  <not><property>/fdm/jsbsim/systems/propulsion/friction-critical</property></not>  </S>
         <time>
-            <value>10.0</value> <!-- how long the engine survives critical friction levels -->
+            <value>45.0</value> <!-- how many seconds the engine survives at critical friction levels (recoverable) -->
         </time>
         <output>
             <property>/fdm/jsbsim/systems/propulsion/friction-iskillingengine</property>

@@ -95,6 +95,7 @@
                 
                 
                 <!-- Engine is killed if oil level is too low -->
+                <!-- REPLACED BY FRICTION SIMULATION; see propulsion.xml
                 <and>
                     <property>/engines/engine/complex-engine-procedures</property>
                     <property>/engines/engine/allow-oil-management</property>
@@ -103,6 +104,7 @@
                         <value>3.97</value>
                     </less-than>
                 </and>
+                -->
 
             </or>
         </input>
@@ -221,6 +223,52 @@
             <property>/engines/engine[0]/coughing</property>
         </output>
     </logic>
+    
+    <!-- Detect critical friction levels -->
+    <flipflop>
+        <name>friction-critical</name>
+        <type>monostable</type>
+        <inverted type="bool">true</inverted>
+        <S>
+            <not>
+                <or>
+                    <and>
+                        <!-- running engine: evaluate real friction -->
+                        <property>/engines/engine/running</property>
+                        <greater-than-equals>
+                            <property>/fdm/jsbsim/systems/propulsion/friction-summer</property>
+                            <value>50</value> <!-- friction limit to tolerate not anymore-->
+                        </greater-than-equals>
+                    </and>
+                    <and>
+                        <!-- stopped engine: see if we had critical friction ad are not repairing -->
+                        <property>/fdm/jsbsim/systems/propulsion/friction-critical</property>
+                        <not><property>/fdm/jsbsim/damage/repairing</property></not>
+                    </and>
+                </or>
+            </not>
+        </S>
+        <time>
+            <value>10.0</value> <!-- time in seconds to tolerate critical friction limits -->
+        </time>
+        <output>
+            <property>/fdm/jsbsim/systems/propulsion/friction-critical</property>
+        </output>
+    </flipflop>
+    
+    <!-- Detect critical friction level causing killed enginge (interwired in propulsion.xml) -->
+    <flipflop>
+        <name>friction-is-killing-engine</name>
+        <type>monostable</type>
+        <inverted type="bool">true</inverted>
+        <S>  <not><property>/fdm/jsbsim/systems/propulsion/friction-critical</property></not>  </S>
+        <time>
+            <value>10.0</value> <!-- how long the engine survives critical friction levels -->
+        </time>
+        <output>
+            <property>/fdm/jsbsim/systems/propulsion/friction-iskillingengine</property>
+        </output>
+    </flipflop>
     
     
     <!-- Oil temperature -->

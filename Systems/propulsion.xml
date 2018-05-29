@@ -153,7 +153,7 @@
                         <!--<independentVar>propulsion/engine/oil-temperature-degF</independentVar>-->
                         <independentVar>/engines/engine/oil-final-temperature-degf</independentVar>
                         <tableData>
-                            -20.0   40.0   <!-- -28°C --> <!-- engine does not develop full power -->
+                            -20.0   40.0   <!-- -28°C --> <!-- engine does not develop full power and is harder to keep running once started -->
                             75.0     0.0   <!--  32°C --> <!-- engine is considered "warm" -->
                             245.0    0.0   <!--  93°C --> <!-- engine is starting to overheat -->
                             250.0   10.0
@@ -170,7 +170,6 @@
                 <product>
                     <property>/engines/engine/complex-engine-procedures</property>  <!-- only apply with complex-engine-procedures EQ 1 -->
                     <property>/engines/engine/allow-oil-management</property>       <!-- only apply with allow-oil-management EQ 1 -->
-                    <!--<property>/engines/engine/running</property>--> <!-- only apply with engine running -->
                     <table>
                         <independentVar>/engines/engine[0]/oil-pressure-psi-final</independentVar>
                         <tableData>
@@ -185,9 +184,9 @@
         
         <!-- "Special source": if friction levels are too high for an extendet ammount of time, friction should runaway
              and kill the engine. This applies to high CHT temps and loss of oil pressure (failing pump/low oil levels), etc. -->
-        <kinematic name="systems/propulsion/friction-critical-induced-friction-norm">
+        <kinematic name="systems/propulsion/friction-kill-engine-norm">
             <!-- kinematic applies friction slowly to get engine down with a nice effect -->
-            <input>systems/propulsion/friction-iskillingengine</input>  <!-- gets 1 if friction is critical for too long -->
+            <input>/engines/engine[0]/killed</input> <!-- various sources can kill engine -->
             <traverse>
                 <setting>
                     <position>0</position>
@@ -198,24 +197,25 @@
                     <time>15</time> <!-- how long it takes to finally kill the engine -->
                 </setting>
             </traverse>
-            <output>systems/propulsion/friction-critical-induced-friction-norm</output>
+            <output>systems/propulsion/friction-kill-engine-norm</output>
         </kinematic>
 
-        
-        <fcs_function name="systems/propulsion/friction-critical-induced-friction">
+        <!-- add friction to kill engine -->
+        <fcs_function name="systems/propulsion/friction-kill-engine">
             <function>
                 <product>
                     <table>
-                        <independentVar>systems/propulsion/friction-critical-induced-friction-norm</independentVar>
+                        <independentVar>systems/propulsion/friction-kill-engine-norm</independentVar>
                         <tableData>
                             0.0     0.0
                             1.0   250.0   <!-- applied friction to kill engine -->
                         </tableData>
                     </table>
-                    <property>systems/propulsion/friction-critical</property> <!-- reset immediately to zero friction if not critical anymore -->
+                    <property>/engines/engine[0]/killed</property> <!-- reset immediately to zero friction if not critical anymore -->
                 </product>
             </function>
         </fcs_function>
+        
         
         
         
@@ -231,7 +231,6 @@
             <input> systems/propulsion/oil-temp-friction </input>
             <input> systems/propulsion/oil-press-friction </input>
             <input> systems/propulsion/expansion-friction </input>
-            <input> systems/propulsion/friction-critical-induced-friction </input>  <!-- runaway friction will stay there until repaired -->
             <output>systems/propulsion/friction-summer</output>
         </summer>
         
@@ -239,6 +238,7 @@
         <summer name="systems/propulsion/friction-summer-final">
             <!--<bias> 1.5 </bias>-->
             <input> systems/propulsion/friction-summer </input>
+            <input> systems/propulsion/friction-kill-engine </input>
             <input> systems/propulsion/manual-friction </input>     <!-- we might have fun trough telnet/scripts... -->
             <!-- TODO: <input> prop-strike </input> -->
             <!-- TODO: <input> plane-crashed </input> -->

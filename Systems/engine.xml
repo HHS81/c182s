@@ -220,7 +220,7 @@
         </output>
     </logic>
     
-    <!-- Detect critical friction levels -->
+    <!-- Detect critical friction levels damaging/killing the engine (and already causing smoke etc.) -->
     <flipflop>
         <name>friction-critical</name>
         <type>monostable</type>
@@ -237,7 +237,7 @@
                         </greater-than-equals>
                     </and>
                     <and>
-                        <!-- stopped engine: see if we had critical friction ad are not repairing -->
+                        <!-- stopped engine: see if we had critical friction and are not repairing -->
                         <property>/fdm/jsbsim/systems/propulsion/friction-critical</property>
                         <not><property>/fdm/jsbsim/damage/repairing</property></not>
                     </and>
@@ -245,7 +245,7 @@
             </not>
         </S>
         <time>
-            <value>15.0</value> <!-- time in seconds to tolerate critical friction limits -->
+            <value>65.0</value> <!-- time in seconds to tolerate critical friction limits with no permanent harm -->
         </time>
         <output>
             <property>/fdm/jsbsim/systems/propulsion/friction-critical</property>
@@ -259,7 +259,7 @@
         <inverted type="bool">true</inverted>
         <S>  <not><property>/fdm/jsbsim/systems/propulsion/friction-critical</property></not>  </S>
         <time>
-            <value>45.0</value> <!-- how many seconds the engine survives at critical friction levels (recoverable) -->
+            <value>18.0</value> <!-- how many seconds the engine still survives at critical friction levels (non recoverable already) -->
         </time>
         <output>
             <property>/fdm/jsbsim/systems/propulsion/friction-iskillingengine</property>

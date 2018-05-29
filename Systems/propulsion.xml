@@ -127,7 +127,7 @@
                             200.0    0.0
                             500.0    0.0
                             550.0    1.0   <!-- clinders running really too hot! -->
-                            600.0   50.0   <!-- stress on CHT, this will trigger the killing flip-flop if remaining for too long there -->
+                            650.0   50.0   <!-- stress on CHT, this will trigger the killing flip-flop if remaining for too long there -->
                         </tableData>
                     </table>
                 </product>

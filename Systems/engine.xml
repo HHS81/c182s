@@ -216,16 +216,14 @@
         <inverted type="bool">true</inverted>
         <S>
             <not>
-                <or>
-                    <and>
-                        <!-- running engine: evaluate real friction -->
-                        <property>/engines/engine/running</property>
-                        <greater-than-equals>
-                            <property>/fdm/jsbsim/systems/propulsion/friction-summer</property>
-                            <value>25</value> <!-- friction limit to tolerate not anymore-->
-                        </greater-than-equals>
-                    </and>
-                </or>
+                <and>
+                    <!-- running engine: evaluate real friction -->
+                    <property>/engines/engine/running</property>
+                    <greater-than-equals>
+                        <property>/fdm/jsbsim/systems/propulsion/friction-summer</property>
+                        <value>25</value> <!-- friction limit to tolerate not anymore-->
+                    </greater-than-equals>
+                </and>
             </not>
         </S>
         <time>

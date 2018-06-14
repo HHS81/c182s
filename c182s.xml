@@ -690,7 +690,7 @@
                 </domain>
                 <range>
                     <!-- Defines cooling airflow with min=closed/max=open cowl flaps -->
-                    <min>0.35</min>
+                    <min>0.48</min>
                     <max>0.80</max>
                 </range>
                 <output>propulsion/engine[0]/cooling-factor-cowlflaps</output>

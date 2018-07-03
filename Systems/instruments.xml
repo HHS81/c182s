@@ -17,7 +17,7 @@
             <property>/consumables/fuel/tank[0]/level-gal_us</property>
         </input>
         <input>
-            <value>0.0</value>
+            <value>-5.0</value>
         </input>
         <output>
             <property>/consumables/fuel/tank[0]/indicated-level-gal_us</property>
@@ -39,7 +39,7 @@
             <property>/consumables/fuel/tank[1]/level-gal_us</property>
         </input>
         <input>
-            <value>0.0</value>
+            <value>-5.0</value>
         </input>
         <output>
             <property>/consumables/fuel/tank[1]/indicated-level-gal_us</property>

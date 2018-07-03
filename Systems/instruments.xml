@@ -8,6 +8,16 @@
         <filter-time>2.0</filter-time>
         <input>
             <condition>
+                <not><property>/instruments/fuelIndicator[0]/serviceable</property></not>
+                <greater-than>
+                    <property>/systems/electrical/outputs/instr-ignition-switch</property>
+                    <value>12.0</value>
+                </greater-than>
+            </condition>
+            <value>-5.0</value>
+        </input>
+        <input>
+            <condition>
                 <property>/instruments/fuelIndicator[0]/serviceable</property>
                 <greater-than>
                     <property>/systems/electrical/outputs/instr-ignition-switch</property>
@@ -17,7 +27,7 @@
             <property>/consumables/fuel/tank[0]/level-gal_us</property>
         </input>
         <input>
-            <value>-5.0</value>
+            <value>0.0</value>
         </input>
         <output>
             <property>/consumables/fuel/tank[0]/indicated-level-gal_us</property>
@@ -30,6 +40,16 @@
         <filter-time>2.0</filter-time>
         <input>
             <condition>
+                <not><property>/instruments/fuelIndicator[1]/serviceable</property></not>
+                <greater-than>
+                    <property>/systems/electrical/outputs/instr-ignition-switch</property>
+                    <value>12.0</value>
+                </greater-than>
+            </condition>
+            <value>-5.0</value>
+        </input>
+        <input>
+            <condition>
                 <property>/instruments/fuelIndicator[1]/serviceable</property>
                 <greater-than>
                     <property>/systems/electrical/outputs/instr-ignition-switch</property>
@@ -39,7 +59,7 @@
             <property>/consumables/fuel/tank[1]/level-gal_us</property>
         </input>
         <input>
-            <value>-5.0</value>
+            <value>0.0</value>
         </input>
         <output>
             <property>/consumables/fuel/tank[1]/indicated-level-gal_us</property>

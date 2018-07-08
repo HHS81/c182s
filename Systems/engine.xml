@@ -28,8 +28,9 @@
         <name>Engine Killed</name>
         <input>
             <or>
-                <property>/engines/engine[0]/crashed</property>
-                <property>/engines/engine[0]/kill-engine</property>
+                <property>/engines/engine[0]/kill-engine</property> <!-- if manually selected or set by scripts/telnet etc -->
+                <property>/engines/engine[0]/crashed</property> <!-- if crashed too hard on the ground -->
+                <property>/fdm/jsbsim/systems/propulsion/friction-iskillingengine</property>  <!-- gets 1 if friction is critical for too long -->
 
                 <!-- Engine is killed if fuel contamination is higher than 0.2 on a selected tank -->
                 <!-- (but only if complex engine model is requested!) -->
@@ -91,17 +92,6 @@
                         </greater-than>
                         
                     </or>
-                </and>
-                
-                
-                <!-- Engine is killed if oil level is too low -->
-                <and>
-                    <property>/engines/engine/complex-engine-procedures</property>
-                    <property>/engines/engine/allow-oil-management</property>
-                    <less-than>
-                        <property>/engines/engine[0]/oil-level</property>
-                        <value>3.97</value>
-                    </less-than>
                 </and>
 
             </or>
@@ -180,14 +170,10 @@
                     
                 </and>
                     
-                <!-- Engine is coughing if oil level is too low and engine about to die -->
+                <!-- Engine is coughing if friction is critical -->
                 <and>
                     <property>/engines/engine/complex-engine-procedures</property>
-                    <property>/engines/engine/allow-oil-management</property>
-                    <less-than>
-                        <property>/engines/engine[0]/oil-level</property>
-                        <value>3.98</value>
-                    </less-than>
+                    <property>/fdm/jsbsim/systems/propulsion/friction-critical</property>
                 </and>
                 
                 <!-- Engine is coughing if still cold and throttle is wide open -->
@@ -221,6 +207,76 @@
             <property>/engines/engine[0]/coughing</property>
         </output>
     </logic>
+    
+    <!-- Detect critical friction that may damage the engine -->
+    <!-- TODO: may be used later on to simulate longtime engine wear&tear / engine state / overhaul -->
+    <flipflop>
+        <name>friction-damaging-engine</name>
+        <type>monostable</type>
+        <inverted type="bool">true</inverted>
+        <S>
+            <not>
+                <and>
+                    <!-- running engine: evaluate real friction -->
+                    <property>/engines/engine/running</property>
+                    <greater-than-equals>
+                        <property>/fdm/jsbsim/systems/propulsion/friction-summer</property>
+                        <value>25</value> <!-- friction limit to tolerate not anymore-->
+                    </greater-than-equals>
+                </and>
+            </not>
+        </S>
+        <time>
+            <value>5</value> <!-- time in seconds to tolerate critical friction limits without causing engine wear -->
+        </time>
+        <output>
+            <property>/fdm/jsbsim/systems/propulsion/friction-damaging-engine</property>
+        </output>
+    </flipflop>
+    
+    <!-- Detect critical friction levels quickly damaging/killing the engine (and already causing smoke etc.) -->
+    <flipflop>
+        <name>friction-critical</name>
+        <type>monostable</type>
+        <inverted type="bool">true</inverted>
+        <S>
+            <not>
+                <or>
+                    <and>
+                        <!-- if critical friction with running engine is occurring -->
+                        <property>/fdm/jsbsim/systems/propulsion/friction-damaging-engine</property>
+                        <property>/engines/engine/running</property>
+                    </and>
+                    <and>
+                        <!-- if we have/had critical friction and are not repairing -->
+                        <!-- note: this "sticks", i.e. once reached critical wear levels, there is no way around a killed engine! -->
+                        <property>/fdm/jsbsim/systems/propulsion/friction-critical</property>
+                        <not><property>/fdm/jsbsim/damage/repairing</property></not>
+                    </and>
+                </or>
+            </not>
+        </S>
+        <time>
+            <value>65.0</value> <!-- time in seconds to tolerate critical friction limits without leading to immanent engie failure -->
+        </time>
+        <output>
+            <property>/fdm/jsbsim/systems/propulsion/friction-critical</property>
+        </output>
+    </flipflop>
+    
+    <!-- Detect critical friction level causing killed enginge (interwired in propulsion.xml) -->
+    <flipflop>
+        <name>friction-is-killing-engine</name>
+        <type>monostable</type>
+        <inverted type="bool">true</inverted>
+        <S>  <not><property>/fdm/jsbsim/systems/propulsion/friction-critical</property></not>  </S>
+        <time>
+            <value>18.0</value> <!-- how many seconds the engine still survives at critical friction levels (non recoverable already) -->
+        </time>
+        <output>
+            <property>/fdm/jsbsim/systems/propulsion/friction-iskillingengine</property>
+        </output>
+    </flipflop>
     
     
     <!-- Oil temperature -->

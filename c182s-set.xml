@@ -29,11 +29,12 @@
   <checklists include="c182s-checklists.xml"/>
   
   <!-- Overlays (called with "state" command line option) -->
-  <state include="states/auto-overlay.xml" n="0" />
-  <state include="states/parking-overlay.xml" n="1" />
-  <state include="states/idling-overlay.xml" n="2" />
-  <state include="states/cruising-overlay.xml" n="3" />
-  <state include="states/approach-overlay.xml" n="4" />
+  <state include="states/auto-overlay.xml"     n="0" />
+  <state include="states/saved-overlay.xml"    n="1" />
+  <state include="states/parking-overlay.xml"  n="2" />
+  <state include="states/idling-overlay.xml"   n="3" />
+  <state include="states/cruising-overlay.xml" n="4" />
+  <state include="states/approach-overlay.xml" n="5" />
   
   <systems>
  <path>Aircraft/c182s/Systems/systems.xml</path>
@@ -867,6 +868,10 @@
        <applied-norm type="double">0.0</applied-norm>
        <applied-degF type="double">0.0</applied-degF>
    </external-heat>
+   <oil-pump>
+       <serviceable type="bool">true</serviceable>
+       <serviceable-norm type="float">1.0</serviceable-norm>
+   </oil-pump>
    <oil-final-temperature-degf type="double">60</oil-final-temperature-degf> <!-- this is the final oil temperature after all effects -->
    <oil-temperature-degf-indicated type="double">60</oil-temperature-degf-indicated> <!-- oil temp for the gauge (filtered) -->
    <cowling-air-temperature-degf>40</cowling-air-temperature-degf> <!-- OAT in the cowling -->

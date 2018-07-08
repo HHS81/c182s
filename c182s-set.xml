@@ -29,11 +29,12 @@
   <checklists include="c182s-checklists.xml"/>
   
   <!-- Overlays (called with "state" command line option) -->
-  <state include="states/auto-overlay.xml" n="0" />
-  <state include="states/parking-overlay.xml" n="1" />
-  <state include="states/idling-overlay.xml" n="2" />
-  <state include="states/cruising-overlay.xml" n="3" />
-  <state include="states/approach-overlay.xml" n="4" />
+  <state include="states/auto-overlay.xml"     n="0" />
+  <state include="states/saved-overlay.xml"    n="1" />
+  <state include="states/parking-overlay.xml"  n="2" />
+  <state include="states/idling-overlay.xml"   n="3" />
+  <state include="states/cruising-overlay.xml" n="4" />
+  <state include="states/approach-overlay.xml" n="5" />
   
   <systems>
  <path>Aircraft/c182s/Systems/systems.xml</path>

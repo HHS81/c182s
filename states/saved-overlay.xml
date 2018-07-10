@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-  <name type="string">Saved</name>
+  <name type="string">saved</name>
 
   <description>
     The plane will be in the state you left it the last time.

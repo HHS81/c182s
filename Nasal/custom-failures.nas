@@ -388,7 +388,7 @@ var initRandomFailureTimer = func() {
     
     if (!running) {
         # start the timer
-        print("Custom failure randomFailureTimer: restarted with t= " ~ time);
+        print("Custom failure randomFailureTimer: restarted with t=" ~ time);
         randomFailureTimer.restart(time);
     } else {
         print("Custom failure randomFailureTimer: stopped"); 
@@ -417,11 +417,49 @@ foreach (failure; customFailures) {
     registerSVCProp(failure.id);
 }
 
-# Maybe we want to init failures at startup?
+# Maybe we want to init saved failures at startup?
 #   Then we need to:
 #    - add the mbtf/mcbf-propertys to savestate
-#    - change the trigger creation to pickou the saved value
+#    - change the trigger creation to pickout the saved value
 #    - uncomment the line below
 # updateAllExtendedFailures();
 
+
+# Make default failure manager quiet if requested.
+# (we need to use a custom property here, because failure-manager
+#  seems to set 'display-on-screen' to '1' before we reach our code)
+if (getprop("/sim/failure-manager/quiet")) {
+    print("Custom failure modes: request quiet failure-manager on startup...");
+    setprop("/sim/failure-manager/display-on-screen", 0);
+}
+
 print("Custom failure modes init: done");
+
+
+# Init failure modes in case requested by startup.
+# This can be done by providing the following properties through the laucher or cli:
+#  + random failures (fail at most n systems in max x time)
+#     --prop:/sim/failure-manager/surprise-mode/ammount=<number>
+#     --prop:/sim/failure-manager/surprise-mode/maxtime=<minutes> (optional, default 30)
+#
+#  + random surprise mode (fail one system every x minutes): 
+#     --prop:/sim/failure-manager/surprise-mode/timer-active=1
+#     --prop:/sim/failure-manager/surprise-mode/timer=<minutes>  (optional, default 30)
+#
+#  To also turn off screen messages, use:
+#     --prop:/sim/failure-manager/quiet=1
+#
+setlistener("/sim/signals/fdm-initialized", func {
+    if (getprop("/sim/failure-manager/surprise-mode/ammount")) {
+        print("Custom failure modes: request random failures on startup...");
+        if (!getprop("/sim/failure-manager/surprise-mode/maxtime")) setprop("/sim/failure-manager/surprise-mode/maxtime", 30);
+        initRandomFailures();
+    }
+    
+    if (getprop("/sim/failure-manager/surprise-mode/timer-active")) {
+        print("Custom failure modes: request surprise mode on startup...");
+        if (!getprop("/sim/failure-manager/surprise-mode/timer")) setprop("/sim/failure-manager/surprise-mode/timer", 30);
+        setprop("/sim/failure-manager/surprise-mode/timer-active",0);  # reset it, so timer will start
+        initRandomFailureTimer();
+    }  
+});

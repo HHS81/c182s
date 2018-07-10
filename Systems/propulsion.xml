@@ -3,9 +3,9 @@
 
 <system name="Propulsion">
     
-    <property type="double" value="0">oil-powergain-factor-calc</property>
-   
-
+    <!-- for debugging/fooling around: manual added engine friction -->
+    <property type="double" value="0">systems/propulsion/manual-friction</property>
+    
     <channel name="engine power">
   	
 <fcs_function name="systems/engine/MP-alt-volumetric-efficiency-curve">
@@ -34,11 +34,10 @@
 <!-- Power based on fuel flow-->
 <fcs_function name="systems/engine/MP-alt-bsfc-lbs_hphr-curve">
           <function>
-	     <product>
-                <table>
-                    <independentVar lookup="row">atmosphere/density-altitude</independentVar>
-                    <independentVar lookup="column">propulsion/engine/fuel-flow-rate-gph</independentVar>
-                    <tableData breakPoint="0">
+            <table>
+                <independentVar lookup="row">atmosphere/density-altitude</independentVar>
+                <independentVar lookup="column">propulsion/engine/fuel-flow-rate-gph</independentVar>
+                <tableData breakPoint="0">
 				8.0	9.0	13.5	14.5	15.5	16.5	17.5	19.0	20.5	21.5
 		0		0.360	0.360	0.36	0.415	0.425	0.425	0.437	0.455	0.475 0.53
 		2000		0.355	0.355	0.355	0.415	0.425	0.425	0.457	0.475	0.53 0.53
@@ -48,10 +47,8 @@
 		10000	0.370	0.310	0.415	0.415	0.437	0.53	0.53	0.53	0.53 0.53
 		12000	0.395	0.335	0.415	0.435	0.53	0.53	0.53	0.53	0.53 0.53
 		14000	0.360	0.332	0.445	0.53	0.53	0.53 0.53 0.53	0.53 0.53
-                   </tableData>
-                </table>  
-                <property>/engines/engine/oil-powergain-factor</property>
-                </product>
+                </tableData>
+            </table>  
           </function>
           <clipto>
              <min> 0.0 </min>
@@ -100,36 +97,154 @@
         </fcs_function>-->
 	
    
-        
-        
-        <!-- OIL Power gain factor -->
-        <!-- (cold oil makes the engine output less power due to reduced viscosity/increased friction) -->
-        <!-- This also simulates "running the engine warm" -->
-        <switch name="engines/engine/oil-powergain-factor">
-            <default value="1"/>
-            <test logic="AND" value="oil-powergain-factor-calc">
-                /engines/engine/complex-engine-procedures EQ 1
-                /engines/engine/allow-oil-management EQ 1
-                /sim/start-state-internal/oil-temp-override EQ 0
-            </test>
-            <output>/engines/engine/oil-powergain-factor</output>
-        </switch>
-        <fcs_function name="oil-powergain-factor-calc">
+
+    </channel>
+    
+    
+    <!-- Engine friction depending on Oil parameters
+         with credits and many thanks to Ron Jensen: https://sourceforge.net/p/jsbsim/mailman/message/30264774/
+         The friction depends on oil viscosity (temperature) and CHT.
+         Added friction will also raise CHT and thus oil temps.
+    
+         The overall system works in two stages:
+           1.  several sources add friction independently
+           2.  the souces are summed up end can eventually kill the engine
+           2a. a "special" source is caused by a flip-flop that monitors friction itself; if friction exceeds a limit
+               for a defined ammount of time, additional friction is applied that will kill the engine.
+            
+    -->
+    <channel name="Engine Friction">
+        <fcs_function name="systems/propulsion/expansion-friction">
+            <description>made up data to simulate too hot CHT causing friction</description>
             <function>
-                <table>
-                    <independentVar lookup="row">/engines/engine/oil-final-temperature-degf</independentVar>
-                    <tableData breakPoint="0">
-                        19.4   2.00   <!-- -7°C -->
-                        90.0   1.00   <!-- 32°C --> <!-- engine is considered "hot" -->
-                    </tableData>
-                </table>  
+                <!-- Only apply if this test is TRUE, otherwise interference with autostart and other things -->
+                <product>
+                    <property>/engines/engine/complex-engine-procedures</property>  <!-- complex-engine-procedures EQ 1 -->
+                
+                    <table>
+                        <independentVar>propulsion/engine/cht-degF</independentVar>
+                        <tableData>
+                            200.0    0.0
+                            500.0    0.0
+                            550.0    1.0   <!-- clinders running really too hot! -->
+                            650.0   50.0   <!-- stress on CHT, this will trigger the killing flip-flop if remaining for too long there -->
+                        </tableData>
+                    </table>
+                </product>
             </function>
-            <clipto>
-                <min> 1.0 </min>  <!-- 1=no more better; <1 is boost! -->
-                <max> 1.5 </max>  <!-- bigger=less power -->
-            </clipto>
-            <output>oil-powergain-factor-calc</output>
         </fcs_function>
+
+        <fcs_function name="systems/propulsion/oil-temp-friction">
+            <description>made up data for engine oil temperature affecting viscosity </description>
+            <function>
+                <!-- Only apply if this test is TRUE, otherwise interference with autostart and other things -->
+                <product>
+                    <property>/engines/engine/complex-engine-procedures</property>  <!-- complex-engine-procedures EQ 1 -->
+                    <property>/engines/engine/allow-oil-management</property>       <!-- allow-oil-management EQ 1 -->
+                    <abs> <!-- oil-temp-override EQ 0; esp. for autostart -->
+                        <difference>
+                            <property>/sim/start-state-internal/oil-temp-override</property>
+                            <value> 1 </value>
+                        </difference>
+                    </abs>
+                    <!--<property>/engines/engine/running</property>--> <!-- only apply with pistons moving -->
+                
+                    <table>
+                        <!--<independentVar>propulsion/engine/oil-temperature-degF</independentVar>-->
+                        <independentVar>/engines/engine/oil-final-temperature-degf</independentVar>
+                        <tableData>
+                            -20.0   40.0   <!-- -28°C --> <!-- engine does not develop full power and is harder to keep running once started -->
+                            75.0     0.0   <!--  32°C --> <!-- engine is considered "warm" -->
+                            245.0    0.0   <!--  93°C --> <!-- engine is starting to overheat -->
+                            250.0   10.0
+                            280.0   50.0                  <!-- oil is too hot and oil film will rip -->
+                        </tableData>
+                    </table>
+                </product>
+            </function>
+        </fcs_function>
+        
+        <fcs_function name="systems/propulsion/oil-press-friction">
+            <description>made up data for engine lubrication by oil pressure</description>
+            <function>
+                <product>
+                    <property>/engines/engine/complex-engine-procedures</property>  <!-- only apply with complex-engine-procedures EQ 1 -->
+                    <property>/engines/engine/allow-oil-management</property>       <!-- only apply with allow-oil-management EQ 1 -->
+                    <table>
+                        <independentVar>/engines/engine[0]/oil-pressure-psi-final</independentVar>
+                        <tableData>
+                            15.0  50.0  <!-- added friction due to failing lubrication -->
+                            20.0   0.0  <!-- minimum "OK"-range -->
+                        </tableData>
+                    </table>
+                </product>
+            </function>
+        </fcs_function>
+        
+        
+        <!-- "Special source": if friction levels are too high for an extendet ammount of time, friction should runaway
+             and kill the engine. This applies to high CHT temps and loss of oil pressure (failing pump/low oil levels), etc. -->
+        <kinematic name="systems/propulsion/friction-kill-engine-norm">
+            <!-- kinematic applies friction slowly to get engine down with a nice effect -->
+            <input>/engines/engine[0]/killed</input> <!-- various sources can kill engine -->
+            <traverse>
+                <setting>
+                    <position>0</position>
+                    <time>0</time>
+                </setting>
+                <setting>
+                    <position>1</position>
+                    <time>15</time> <!-- how long it takes to finally kill the engine -->
+                </setting>
+            </traverse>
+            <output>systems/propulsion/friction-kill-engine-norm</output>
+        </kinematic>
+
+        <!-- add friction to kill engine -->
+        <fcs_function name="systems/propulsion/friction-kill-engine">
+            <function>
+                <product>
+                    <table>
+                        <independentVar>systems/propulsion/friction-kill-engine-norm</independentVar>
+                        <tableData>
+                            0.0     0.0
+                            1.0   250.0   <!-- applied friction to kill engine -->
+                        </tableData>
+                    </table>
+                    <property>/engines/engine[0]/killed</property> <!-- reset immediately to zero friction if not critical anymore -->
+                </product>
+            </function>
+        </fcs_function>
+        
+        
+        
+        
+        
+        <!-- TODO: it is possible model existing stuff here, like fuel tanks contaminated and prop-strike; -->
+        
+        
+        
+        
+
+        <!-- sum up all friction variables affecting the killing-by-too-high-friction -->
+        <summer name="systems/propulsion/friction-summer">
+            <input> systems/propulsion/oil-temp-friction </input>
+            <input> systems/propulsion/oil-press-friction </input>
+            <input> systems/propulsion/expansion-friction </input>
+            <output>systems/propulsion/friction-summer</output>
+        </summer>
+        
+        <!-- finally sum up again and output to jsbsim, affecting engine RPM -->
+        <summer name="systems/propulsion/friction-summer-final">
+            <!--<bias> 1.5 </bias>-->
+            <input> systems/propulsion/friction-summer </input>
+            <input> systems/propulsion/friction-kill-engine </input>
+            <input> systems/propulsion/manual-friction </input>     <!-- we might have fun trough telnet/scripts... -->
+            <!-- TODO: <input> prop-strike </input> -->
+            <!-- TODO: <input> plane-crashed </input> -->
+            <!-- TODO: <input> fuel-contaminated </input> -->
+            <output>propulsion/engine/friction-hp</output>
+        </summer>
 
     </channel>
 </system>

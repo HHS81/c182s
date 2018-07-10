@@ -26,6 +26,17 @@
    </load>
 </nasal>
 
+<!-- Engine smoke -->
+<model>
+  <path>Aircraft/c182s/Models/Effects/c182_enginesmoke.xml</path>
+  <name>enginesmoke</name>
+  <offsets>
+    <x-m>-0.60</x-m>
+    <y-m> 0.00</y-m>
+    <z-m>-0.10</z-m>
+  </offsets>
+</model>
+
 <effect>
     <inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
     <object-name>Fuselage</object-name><!-- model obejcts parented in Blender - gives faster livery loading-->

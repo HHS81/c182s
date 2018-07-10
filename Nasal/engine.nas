@@ -229,15 +229,9 @@ var calculate_real_oiltemp = maketimer(0.5, func {
 setlistener("/engines/engine[0]/oil-pump/serviceable", func {
     svc = getprop("/engines/engine[0]/oil-pump/serviceable");
     if (svc) {
-        interpolate("/engines/engine[0]/oil-pump/serviceable-norm", 1, 5);
-        setprop("/fdm/jsbsim/propulsion/engine/friction-hp", 1.5);  # repair; TODO: REMOVE once proper oil simulation is in place
+        interpolate("/engines/engine[0]/oil-pump/serviceable-norm", 1, 5);  # repair
     } else {
         interpolate("/engines/engine[0]/oil-pump/serviceable-norm", 0, 5);
-        settimer(func() {
-            # kill engine slowly once oil pump has died; TODO: REMOVE once proper oil simulation is in place
-            interpolate("/fdm/jsbsim/propulsion/engine/friction-hp", 500, 18);
-        } , 38);
-          
     }
 }, 1, 0);
 

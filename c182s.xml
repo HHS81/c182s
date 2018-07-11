@@ -1026,6 +1026,43 @@
                     <value>0.028</value>
                 </product>
             </function>
+            
+            <function name="aero/coefficient/CDdoorL">
+                <description>Drag_due_to_door_left</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>/sim/model/door-positions/DoorL/position-norm</property>
+                    <value>0.0250</value>
+                </product>
+            </function>
+            <function name="aero/coefficient/CDdoorR">
+                <description>Drag_due_to_door_right</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>/sim/model/door-positions/DoorR/position-norm</property>
+                    <value>0.0250</value>
+                </product>
+            </function>
+            <function name="aero/coefficient/CDwindow-l">
+                <description>Drag_due_to_window_left</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>/sim/model/door-positions/WindowL/position-norm</property>
+                    <value>0.0100</value>
+                </product>
+            </function>
+            <function name="aero/coefficient/CDwindow-r">
+                <description>Drag_due_to_window_right</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>/sim/model/door-positions/WindowR/position-norm</property>
+                    <value>0.0100</value>
+                </product>
+            </function>
 
         </axis>
 

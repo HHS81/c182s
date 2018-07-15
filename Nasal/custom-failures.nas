@@ -125,17 +125,17 @@ var fail_random_magnetos = func() {
 
 # Function to register a "failed" prop and a listener to the breakers property, so we can detect a reset
 var pop_breaker_registerElecFailureMode = func(breaker) {
-    print("Custom failures: registering breaker '" ~ breaker ~ "': " ~ breaker ~ "-failed");
+    #print("Custom failures: registering breaker '" ~ breaker ~ "': " ~ breaker ~ "-failed");
     setprop(breaker ~ "-failed", 0);
     setlistener(breaker, func(node) {
         var brkp = node.getPath();
-        print("Custom failures: braker '" ~ brkp ~ "' changed to '" ~ getprop(brkp) ~ "'");
+        #print("Custom failures: braker '" ~ brkp ~ "' changed to '" ~ getprop(brkp) ~ "'");
         # When the breaker is pushed in, kill elec system by random chance:
         if (getprop(brkp) and getprop(brkp ~ "-failed")) {
-            print("Custom failures: braker '" ~ brkp ~ "' pushed in, but was protecting a faulty circuit!");
+            #print("Custom failures: braker '" ~ brkp ~ "' pushed in, but was protecting a faulty circuit!");
             var chance = rand();
             if (chance >= 0.15) {
-                print("Custom failures: braker '" ~ brkp ~ "' elec damage triggered!");
+                #print("Custom failures: braker '" ~ brkp ~ "' elec damage triggered!");
                 setprop("/sim/failure-manager/systems/electrical/serviceable", 0);
             }
         }
@@ -144,7 +144,7 @@ var pop_breaker_registerElecFailureMode = func(breaker) {
 
 # for all breakers known, register the failure mode and property
 var breakersVector = props.globals.getNode("/controls/circuit-breakers/").getChildren();
-print("Custom failures: register " ~ size(breakersVector) ~ " breakers");
+#print("Custom failures: register " ~ size(breakersVector) ~ " breakers");
 foreach(brknode; breakersVector) {
     var brkprop = brknode.getPath();
     if (!getprop(brkprop ~ "-failed")) {
@@ -165,10 +165,10 @@ var pop_breakerActuator = func() {
                 if (count_r >= 0.8) howmany = 3;
                 if (count_r >= 0.5) howmany = 2;
                 if (count_r <  0.5) howmany = 1;
-                print("Custom failures: breaker actuator now popping " ~ howmany ~ " breakers");
+                #print("Custom failures: breaker actuator now popping " ~ howmany ~ " breakers");
                 for (var i=1; i <= howmany; i=i+1) {
                     var which = math.floor(rand() * size(breakersVector)); #gives random index (0->size)
-                    print("Custom failures: breaker actuator pop i=" ~ which ~ " (" ~ breakersVector[which].getPath() ~ ")");
+                    #print("Custom failures: breaker actuator pop i=" ~ which ~ " (" ~ breakersVector[which].getPath() ~ ")");
                     var brkprop = breakersVector[which].getPath();
                     setprop(brkprop, 0);
                     setprop(brkprop ~ "-failed", 1);
@@ -177,7 +177,7 @@ var pop_breakerActuator = func() {
             } else {
                 foreach(brknode; breakersVector) {
                     var brkprop = brknode.getPath();
-                    print("Custom failures: breaker actuator reset/repair " ~ brkprop);
+                    #print("Custom failures: breaker actuator reset/repair " ~ brkprop);
                     setprop(brkprop, 1);
                     setprop(brkprop ~ "-failed", 0);
                 }
@@ -191,7 +191,7 @@ var pop_breakerActuator = func() {
                     r = 1;
                 }
             }
-            print("Custom failures: breaker actuator return failure level=" ~ r);
+            #print("Custom failures: breaker actuator return failure level=" ~ r);
             (r > 0)
         }
     }

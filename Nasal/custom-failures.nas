@@ -116,6 +116,89 @@ var fail_random_magnetos = func() {
 }
 
 
+# Simple handling of random breaker failure.
+# It consists of a specialized generic actuator, that selects some random breaker and sets a special propert "failed" there;
+# this property is meant to indicate an electrical failure in the protected circuit popped that breaker.
+# A listener to the normal breaker property will catch pilot breaker-resets and evaluate the "failed"-property.
+# If a failed breaker with faulty circuit is reset, there is a chance that the electircal system will fail.
+#   TODO: Breaker failure should be modelled more realistically when the elec system supports this (overvoltage, shorts and bus failures, maybe fire?).
+
+# Function to register a "failed" prop and a listener to the breakers property, so we can detect a reset
+var pop_breaker_registerElecFailureMode = func(breaker) {
+    print("Custom failures: registering breaker '" ~ breaker ~ "': " ~ breaker ~ "-failed");
+    setprop(breaker ~ "-failed", 0);
+    setlistener(breaker, func(node) {
+        var brkp = node.getPath();
+        print("Custom failures: braker '" ~ brkp ~ "' changed to '" ~ getprop(brkp) ~ "'");
+        # When the breaker is pushed in, kill elec system by random chance:
+        if (getprop(brkp) and getprop(brkp ~ "-failed")) {
+            print("Custom failures: braker '" ~ brkp ~ "' pushed in, but was protecting a faulty circuit!");
+            var chance = rand();
+            if (chance >= 0.15) {
+                print("Custom failures: braker '" ~ brkp ~ "' elec damage triggered!");
+                setprop("/sim/failure-manager/systems/electrical/serviceable", 0);
+            }
+        }
+    });
+}
+
+# for all breakers known, register the failure mode and property
+var breakersVector = props.globals.getNode("/controls/circuit-breakers/").getChildren();
+print("Custom failures: register " ~ size(breakersVector) ~ " breakers");
+foreach(brknode; breakersVector) {
+    var brkprop = brknode.getPath();
+    if (!getprop(brkprop ~ "-failed")) {
+        # only register breakers without "failed" property
+        pop_breaker_registerElecFailureMode(brkprop);
+    }
+}
+
+# Simple actuator that pops some random breakers and marks them as failed
+var pop_breakerActuator = func() {
+    return {
+        parents: [FailureMgr.FailureActuator],
+        set_failure_level: func(level) {
+            # use global variable above, otherwise we need to filter out the "-failed" ones  =>  var breakersVector = props.globals.getNode("/controls/circuit-breakers/").getChildren();
+            if (level > 0) {
+                var count_r = rand();
+                var howmany = 0;
+                if (count_r >= 0.8) howmany = 3;
+                if (count_r >= 0.5) howmany = 2;
+                if (count_r <  0.5) howmany = 1;
+                print("Custom failures: breaker actuator now popping " ~ howmany ~ " breakers");
+                for (var i=1; i <= howmany; i=i+1) {
+                    var which = math.floor(rand() * size(breakersVector)); #gives random index (0->size)
+                    print("Custom failures: breaker actuator pop i=" ~ which ~ " (" ~ breakersVector[which].getPath() ~ ")");
+                    var brkprop = breakersVector[which].getPath();
+                    setprop(brkprop, 0);
+                    setprop(brkprop ~ "-failed", 1);
+                }
+                
+            } else {
+                foreach(brknode; breakersVector) {
+                    var brkprop = brknode.getPath();
+                    print("Custom failures: breaker actuator reset/repair " ~ brkprop);
+                    setprop(brkprop, 1);
+                    setprop(brkprop ~ "-failed", 0);
+                }
+            }
+        },
+        get_failure_level: func {
+            var r = 0;
+            foreach(brknode; breakersVector) {
+                var brkfprop = brknode.getPath() ~ "-failed";
+                if (getprop(brkfprop) ==1) {
+                    r = 1;
+                }
+            }
+            print("Custom failures: breaker actuator return failure level=" ~ r);
+            (r > 0)
+        }
+    }
+}
+
+
+
 ############################################################################################
 # Overall failure setup
 # Define all custom failures here. they get picked up by the init and handling code below.
@@ -273,6 +356,11 @@ customFailures = [
     
     {id:"systems/electrical/battery", name:"Battery",
         actuator: set_unserviceable_abs("/systems/electrical/battery-serviceable"),
+        trigger:  MtbfTrigger.new(0)
+    },
+    
+    {id:"systems/electrical/breakers", name:"Breakers",
+        actuator: pop_breakerActuator(),
         trigger:  MtbfTrigger.new(0)
     },
     

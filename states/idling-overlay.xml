@@ -8,7 +8,7 @@
     The plane will be in "ready-for-takeoff" state.
     preflight checklist is complete and the engine is ready for takeoff.
 
-    Start this state with --state=ready-for-takeoff
+    Start this state with --state=take-off
   </description>
 
   <overlay>

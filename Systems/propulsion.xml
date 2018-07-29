@@ -236,7 +236,7 @@
         
         <!-- finally sum up again and output to jsbsim, affecting engine RPM -->
         <summer name="systems/propulsion/friction-summer-final">
-            <!--<bias> 1.5 </bias>-->
+            <bias> 0.5 </bias>
             <input> systems/propulsion/friction-summer </input>
             <input> systems/propulsion/friction-kill-engine </input>
             <input> systems/propulsion/manual-friction </input>     <!-- we might have fun trough telnet/scripts... -->

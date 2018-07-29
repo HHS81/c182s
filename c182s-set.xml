@@ -129,7 +129,7 @@
         </map>
 
     <livery>
-      <file type="string">liveries/Default.png</file>
+      <file type="string">liveries/default.png</file>
       <index type="int">0</index>
     </livery>
     

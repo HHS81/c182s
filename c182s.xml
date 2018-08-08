@@ -1050,7 +1050,7 @@
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <property>sim/model/door-positions/BaggageDoor/position-norm</property>
+                    <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
                     <value>0.0150</value>
                 </product>
             </function>

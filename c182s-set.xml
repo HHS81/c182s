@@ -115,6 +115,7 @@
   </panel>
 
   <model>
+    <fallback-model-index>3</fallback-model-index>
    <path archive="y">Aircraft/c182s/Models/c182s.xml</path>
     <hide-yoke>false</hide-yoke>
 

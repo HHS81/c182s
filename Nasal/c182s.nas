@@ -371,11 +371,7 @@ var slamShutDoors = func() {
             doorEntity.swingtime = 0.5;
             doorEntity.close();
             doorEntity.swingtime = oriSwingTime;
-            print("DBG: check door: SHUT CLOSE: " ~ doorEntity.node.getPath() ~ " (airspeed=" ~ airspeed ~ "; groundspeed=" ~ groundspeed ~ ")");
-        } else {
-            print("DBG: check door: unchanged:  " ~ doorEntity.node.getPath() ~ " (airspeed=" ~ airspeed ~ "; groundspeed=" ~ groundspeed ~ ")");
-        }
-        
+        }        
     }
 };
 slamShutDoors_loop = maketimer(2, slamShutDoors);

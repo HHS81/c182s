@@ -360,23 +360,6 @@ BaggageDoor = aircraft.door.new( "/sim/model/door-positions/BaggageDoor", 2, 0 )
 WindowR = aircraft.door.new( "/sim/model/door-positions/WindowR", 2, 0 );
 WindowL = aircraft.door.new( "/sim/model/door-positions/WindowL", 2, 0 );
 
-# Slam shut doors due to airspeed
-var slamShutDoors = func() {
-    airspeed    = getprop("/velocities/airspeed-kt") or 0;
-    groundspeed = getprop("/velocities/groundspeed-kt") or 0;
-    doorOpenChecks = [DoorL, DoorR, BaggageDoor];
-    foreach(doorEntity; doorOpenChecks) {
-        if (abs(airspeed) > 35 and groundspeed > 1 and doorEntity.getpos() > 0) {
-            var oriSwingTime = doorEntity.swingtime;
-            doorEntity.swingtime = 0.5;
-            doorEntity.close();
-            doorEntity.swingtime = oriSwingTime;
-        }        
-    }
-};
-slamShutDoors_loop = maketimer(2, slamShutDoors);
-slamShutDoors_loop.start();
-
 
 #####################
 # Adjust properties when in motion

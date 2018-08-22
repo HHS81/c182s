@@ -20,7 +20,7 @@
     <bore unit="IN">5.125</bore>
     <stroke unit="IN">4.375</stroke>
     <cylinders> 6 </cylinders>
-    <cylinder-head-mass unit="KG"> 10 </cylinder-head-mass>
+    <cylinder-head-mass unit="KG"> 4 </cylinder-head-mass>
     <compression-ratio>8.7</compression-ratio>
     <volumetric-efficiency>0.88</volumetric-efficiency>
     <bsfc unit="LBS/HP*HR">0.445</bsfc>

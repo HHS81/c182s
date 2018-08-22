@@ -155,11 +155,21 @@
                         <tableData>
                             -20.0   25.0   <!-- -28°C --> <!-- engine does not develop full power and is harder to keep running once started -->
                             75.0     0.0   <!--  32°C --> <!-- engine is considered "warm" -->
-                            245.0    0.0   <!--  93°C --> <!-- engine is starting to overheat -->
-                            250.0   10.0
-                            280.0   30.0                  <!-- oil is too hot and oil film will rip -->
+                            255.0    0.0   <!--  93°C --> <!-- engine is starting to overheat -->
+                            275.0   10.0
+                            300.0   30.0                  <!-- oil is too hot and oil film will rip -->
                         </tableData>
                     </table>
+                    
+                    <!-- apply friction gradually depending on engine RPM, with no effect in low RPM -->
+                    <table>
+                        <independentVar>propulsion/engine/engine-rpm</independentVar>
+                        <tableData>
+                            1000  0.0
+                            1400  1.0
+                        </tableData>
+                    </table>
+                    
                 </product>
             </function>
         </fcs_function>

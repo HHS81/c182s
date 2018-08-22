@@ -284,7 +284,7 @@
                     </greater-than>
                     <less-than>
                         <property>/engines/engine/oil-final-temperature-degf</property>
-                        <value>70</value>
+                        <value>65</value>
                     </less-than>
                 </and>
                 

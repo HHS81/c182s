@@ -32,14 +32,10 @@
                     <property>/fdm/jsbsim/systems/propulsion/oil-press-friction</property>
                     <value>1</value>
                 </greater-than>
-                <greater-than>
-                    <property>/fdm/jsbsim/systems/propulsion/oil-temp-friction</property>
-                    <value>10</value>
-                </greater-than>
             </or>
         </input>
         <output>
-            <property>/engines/engine[0]/oil-lubrication-low</property>
+            <property>/engines/engine[0]/oilpress-low</property>
         </output>
     </logic>
     <logic>
@@ -67,7 +63,7 @@
                 <property>/engines/engine[0]/kill-engine</property> <!-- if manually selected or set by scripts/telnet etc -->
                 <property>/engines/engine[0]/crashed</property> <!-- if crashed too hard on the ground -->
                 <property>/engines/engine[0]/kill-causes/cht-too-high</property>
-                <property>/engines/engine[0]/kill-causes/oil-lubrication</property>
+                <property>/engines/engine[0]/kill-causes/oilpress-low</property>
 
 
                 <!-- Engine is killed if fuel contamination is higher than 0.2 on a selected tank -->
@@ -170,21 +166,21 @@
     
     <!-- Kill engine: low oil lubrication for too long -->
     <flipflop>
-        <name>engine-oil-lubrication-fail</name>
+        <name>engine-oilpress-low-fail</name>
         <type>monostable</type>
         <inverted type="bool">true</inverted>
         <S>  <not>
                 <or>
                     <and>
                         <!-- value got critical: only reapairing helps now -->
-                        <property>/engines/engine[0]/kill-causes/oil-lubrication</property>
+                        <property>/engines/engine[0]/kill-causes/oilpress-low</property>
                         <not><property>/fdm/jsbsim/damage/repairing</property></not>
                     </and>
 
                     <and>
                         <property>/engines/engine/running</property>
                         <property>/engines/engine/complex-engine-procedures</property>
-                        <property>/engines/engine[0]/smoke-causes/oil-lubrication</property>  <!-- piggyback on engine smoking -->
+                        <property>/engines/engine[0]/smoke-causes/oilpress-low</property>  <!-- piggyback on engine smoking -->
                     </and>
                 </or>
              </not>
@@ -193,7 +189,7 @@
             <value>30.0</value> <!-- kill after this much seconds after first smoke developed -->
         </time>
         <output>
-            <property>/engines/engine[0]/kill-causes/oil-lubrication</property>
+            <property>/engines/engine[0]/kill-causes/oilpress-low</property>
         </output>
     </flipflop>
     
@@ -312,7 +308,7 @@
         <input>
             <or>
                 <property>/engines/engine[0]/smoke-causes/cht-too-high</property>
-                <property>/engines/engine[0]/smoke-causes/oil-lubrication</property>
+                <property>/engines/engine[0]/smoke-causes/oilpress-low</property>
             </or>
         </input>
         <output>
@@ -334,7 +330,7 @@
              </not>
         </S>
         <time>
-            <value>100.0</value> <!-- develop smoke after this many secs -->
+            <value>180.0</value> <!-- develop smoke after this many secs -->
         </time>
         <output>
             <property>/engines/engine[0]/smoke-causes/cht-too-high</property>
@@ -350,7 +346,7 @@
                 <and>
                     <property>/engines/engine/running</property>
                     <property>/engines/engine/complex-engine-procedures</property>
-                    <property>/engines/engine[0]/oil-lubrication-low</property>
+                    <property>/engines/engine[0]/oilpress-low</property>
                 </and>
              </not>
         </S>
@@ -358,7 +354,7 @@
             <value>100.0</value> <!-- develop smoke after this many secs -->
         </time>
         <output>
-            <property>/engines/engine[0]/smoke-causes/oil-lubrication</property>
+            <property>/engines/engine[0]/smoke-causes/oilpress-low</property>
         </output>
     </flipflop>
     

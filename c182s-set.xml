@@ -859,7 +859,6 @@
    <complex-engine-procedures type="bool">false</complex-engine-procedures>
    <allow-fuel-contamination type="bool">false</allow-fuel-contamination>
    <allow-oil-management type="bool">false</allow-oil-management>
-   <oil-powergain-factor type="double">1</oil-powergain-factor>
    <winter-kit-installed type="bool">false</winter-kit-installed>
    <oil-temperature-env-diff type="double">0</oil-temperature-env-diff>
    <oil-compensated-temperature-degf type="double">60</oil-compensated-temperature-degf>

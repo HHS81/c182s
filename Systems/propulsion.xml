@@ -236,18 +236,11 @@
         
         
 
-        <!-- sum up all friction variables affecting the killing-by-too-high-friction -->
+        <!-- sum up all friction variables and output to jsbsim, affecting engine RPM -->
         <summer name="systems/propulsion/friction-summer">
             <input> systems/propulsion/oil-temp-friction </input>
             <input> systems/propulsion/oil-press-friction </input>
             <input> systems/propulsion/expansion-friction </input>
-            <output>systems/propulsion/friction-summer</output>
-        </summer>
-        
-        <!-- finally sum up again and output to jsbsim, affecting engine RPM -->
-        <summer name="systems/propulsion/friction-summer-final">
-            <bias> 0.5 </bias>
-            <input> systems/propulsion/friction-summer </input>
             <input> systems/propulsion/friction-kill-engine </input>
             <input> systems/propulsion/manual-friction </input>     <!-- we might have fun trough telnet/scripts... -->
             <!-- TODO: <input> prop-strike </input> -->

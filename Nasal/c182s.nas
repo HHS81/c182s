@@ -371,7 +371,7 @@ ad = func {
 
     if (GROUNDSPEED > 0.1) {
         setprop("/controls/electric/external-power", "false");
-        setprop("/engines/engine/external-heat/enabled", "false");
+        #setprop("/engines/engine/external-heat/enabled", "false"); #not needed, as you can't start the engine with preheater enabled, nor enable the preheater anyway when engine running, or aircraft moving
     }
     
     if (AGL > 10) {

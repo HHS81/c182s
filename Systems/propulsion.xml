@@ -134,6 +134,35 @@
             </function>
         </fcs_function>
 
+        <fcs_function name="systems/propulsion/oil-age-friction">
+            <description>made up data for engine oil age affecting viscosity </description>
+            <function>
+                <!-- Only apply if this test is TRUE, otherwise interference with autostart and other things -->
+                <product>
+                    <property>/engines/engine/complex-engine-procedures</property>  <!-- complex-engine-procedures EQ 1 -->
+                    <property>/engines/engine/allow-oil-management</property>       <!-- allow-oil-management EQ 1 -->
+                
+                    <table>
+                        <independentVar>/engines/engine[0]/oil-service-hours</independentVar>
+                        <tableData>
+                            65       0.0
+                            100     10.0
+                        </tableData>
+                    </table>
+                    
+                    <!-- apply friction gradually depending on engine RPM, with no effect in low RPM -->
+                    <table>
+                        <independentVar>propulsion/engine/engine-rpm</independentVar>
+                        <tableData>
+                            800   0.0
+                            1200  1.0
+                        </tableData>
+                    </table>
+                    
+                </product>
+            </function>
+        </fcs_function>
+        
         <fcs_function name="systems/propulsion/oil-temp-friction">
             <description>made up data for engine oil temperature affecting viscosity </description>
             <function>
@@ -238,6 +267,8 @@
 
         <!-- sum up all friction variables and output to jsbsim, affecting engine RPM -->
         <summer name="systems/propulsion/friction-summer">
+            <bias> 0.5 </bias>
+            <input> systems/propulsion/oil-age-friction </input>
             <input> systems/propulsion/oil-temp-friction </input>
             <input> systems/propulsion/oil-press-friction </input>
             <input> systems/propulsion/expansion-friction </input>

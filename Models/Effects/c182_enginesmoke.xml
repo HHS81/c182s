@@ -17,16 +17,10 @@
 
 		<condition>
 			<and>
-                <or>
-                    <equals>
-                        <property>/fdm/jsbsim/systems/propulsion/friction-critical</property>
-                        <value>1</value>
-                    </equals>
-                    <greater-than>
-                        <property>/fdm/jsbsim/systems/propulsion/friction-kill-engine</property>
-                        <value>15</value> <!-- no smoke if just killed shortly (like in coughing) -->
-                    </greater-than>
-                </or>
+                <equals>
+                    <property>/engines/engine[0]/smoking</property>
+                    <value>1</value>
+                </equals>
                 
 				<equals>
 					<property>/engines/engine[0]/running</property>

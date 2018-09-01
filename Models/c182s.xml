@@ -1199,8 +1199,8 @@
 <animation>
    <type>blend</type>
    <object-name>PlaneX</object-name>
-   <property>/systems/electrical/outputs/beacon</property>
-   <factor>0.0416</factor>
+   <property>/systems/electrical/outputs/beacon-norm</property>
+   <factor>1</factor>
    <max>1.0</max>
    <min>0.0</min>
  </animation>
@@ -1218,7 +1218,10 @@
 	<property>/sim/model/c182s/procedural-lights</property>
 	</not>
 	</or>
-	<property>/systems/electrical/outputs/beacon</property>
+	<greater-than>
+	<property>/systems/electrical/outputs/beacon-norm</property>
+	<value>0.01</value>
+	</greater-than>
 	</and>
 	</condition>
 </animation>

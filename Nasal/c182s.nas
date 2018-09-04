@@ -555,18 +555,34 @@ var repair_damage = func() {
 # FOG AND FROST stuff
 ###########################################
 
+var update_cabintempchange_text = func {
+    # Sets a verbally text based on temperature change.
+    var txtp = "/fdm/jsbsim/heat/cabin-temperature-change-text";
+    var chng = getprop("/fdm/jsbsim/heat/cabin-air-transfer-total") or 0;
+
+    if (chng < -3) {         setprop(txtp, "cooling down quickly");
+    } else if (chng <= -1) { setprop(txtp, "cooling down");
+    } else if (chng >= 3) {  setprop(txtp, "heating up quickly");
+    } else if (chng >= 1) {  setprop(txtp, "heating up");
+    } else {                 setprop(txtp, "");
+    }
+};
+var cabin_tempchangetxt_updateloop = maketimer(5.0, update_cabintempchange_text); # update text with some lag
+
 var update_cabintemp_humidity_text = func {
     # Sets a verbally text based on temperature.
     # TODO: should be enhanced to perceived temperature some time because humidity plays a role in the perception of temperatue
     var txtp = "/fdm/jsbsim/heat/cabin-temperature-text";
     var temp = getprop("/fdm/jsbsim/heat/cabin-air-temp-degc") or 0;
+    var tchng = getprop("/fdm/jsbsim/heat/cabin-temperature-change-text") or "";
+    if (tchng != "") tchng = " (" ~ tchng ~ ")";
 
-    if (temp < 0) {           setprop(txtp, "My fingers are freezing");
-    } else if (temp <= 10) {  setprop(txtp, "A little bit fresh here");
-    } else if (temp <= 18) {  setprop(txtp, "A little too cold here for my taste");
-    } else if (temp <= 25) {  setprop(txtp, "I feel comfortably warm now");
-    } else if (temp <= 30) {  setprop(txtp, "It is getting hot in here");
-    } else {                  setprop(txtp, "Uh, are we taking a sauna in here?");
+    if (temp < 0) {           setprop(txtp, "My fingers are freezing" ~ tchng);
+    } else if (temp <= 10) {  setprop(txtp, "A little bit fresh here" ~ tchng);
+    } else if (temp <= 18) {  setprop(txtp, "A little too cold here for my taste" ~ tchng);
+    } else if (temp <= 25) {  setprop(txtp, "I feel comfortably warm now" ~ tchng);
+    } else if (temp <= 30) {  setprop(txtp, "It is getting hot in here" ~ tchng);
+    } else {                  setprop(txtp, "Uh, are we taking a sauna in here?" ~ tchng);
     }
     
     # Sets a verbally text based on humidity.
@@ -651,6 +667,7 @@ settimer(func(){
     cabin_temp_updateloop.start();
     cabin_temp_outsideSpecComplainLoop.start();
 #    cabin_hum_outsideSpecComplainLoop.start();
+    cabin_tempchangetxt_updateloop.start();
 }, 2.0);
 
 setlistener("sim/current-view/internal", func (node) {

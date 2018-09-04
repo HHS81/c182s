@@ -172,6 +172,7 @@
 
 <procedural-lights type="bool">true</procedural-lights>
 <enable-fog-frost type="bool">false</enable-fog-frost>
+<enable-fog-frost-msgs type="bool">true</enable-fog-frost-msgs>
 
 
 	<material>
@@ -560,6 +561,7 @@
             
             <path>/sim/time/hobbs/engine</path>
             <path>/sim/model/c182s/enable-fog-frost</path>
+            <path>/sim/model/c182s/enable-fog-frost-msgs</path>
             <path>/engines/engine/complex-engine-procedures</path>
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>

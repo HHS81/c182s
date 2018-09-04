@@ -583,7 +583,7 @@ var cabin_temp_updateloop = maketimer(15.0, update_cabintemp_humidity_text); # u
 var lastTemperaturePrinted = -100; # to prevent spam with outside-spec loop; but always print the first time
 var print_cabintemp_text = func {
     # Log changed temperature feelings
-    if (getprop("/sim/model/c182s/enable-fog-frost")) {
+    if (getprop("/sim/model/c182s/enable-fog-frost") and getprop("/sim/model/c182s/enable-fog-frost-msgs")) {
         var temp      = getprop("/fdm/jsbsim/heat/cabin-air-temp-degc") or 0;
         var temp_txt  = getprop("/fdm/jsbsim/heat/cabin-temperature-text");
         if (temp_txt) {
@@ -667,7 +667,7 @@ setlistener("sim/current-view/internal", func (node) {
 
 var log_fog_frost = func {
     # log that frost/fog appeared and what to do against it
-    if (getprop("/sim/model/c182s/enable-fog-frost")) {
+    if (getprop("/sim/model/c182s/enable-fog-frost") and getprop("/sim/model/c182s/enable-fog-frost-msgs")) {
         logger.screen.white("Wait until fog/frost clears up or engage defroster or decrease cabin air temperature");
     }
 };

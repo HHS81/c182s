@@ -201,6 +201,33 @@
                     <command>dialog-apply</command>
                 </binding>
             </checkbox>
+            <group>
+                <layout>hbox</layout>
+                <!-- Small left padding -->
+                <group>
+                    <layout>vbox</layout>
+                    <padding>6</padding>
+                </group>
+                
+                <group>
+                    <layout>hbox</layout>
+                    <checkbox>
+                        <halign>left</halign>
+                        <label>  Show hint messages</label>
+                        <property>/sim/model/c182s/enable-fog-frost-msgs</property>
+                        <live>true</live>
+                        <enable>
+                            <and>
+                                <property>/sim/model/c182s/enable-fog-frost</property>
+                            </and>
+                        </enable>
+                        <binding>
+                            <command>dialog-apply</command>
+                        </binding>
+                    </checkbox>
+                </group>
+                <empty><stretch>true</stretch></empty> <!-- force group to the left -->
+            </group>
     
             <checkbox>
                 <halign>left</halign>

@@ -1493,11 +1493,19 @@
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <label>Cabin Heat: %3d%%</label>
-                <measure-text>Cabin Heat: 100%</measure-text>
                 <tooltip-id>cabinheat</tooltip-id>
-                <mapping>percent</mapping>
-                <property>environment/aircraft-effects/cabin-heat-set</property>
+                <label>%s</label>
+                <property>environment/aircraft-effects/cabin-heat-set</property> <!-- currently only updating on change to the lever... :/ -->
+                <mapping>nasal</mapping>
+                <script>
+                    <![CDATA[
+                    var setting     = math.round(arg[0] * 100);
+                    var heatChange  = getprop("/fdm/jsbsim/heat/cabin-temperature-change-text") or "";
+                    if (heatChange != "") heatChange = "\n(" ~ heatChange ~ ")";
+                    var returnString = "Cabin Heat: " ~ setting ~ "%" ~ heatChange;
+                    return returnString;
+                    ]]>
+                </script>
             </binding>
         </hovered>
     </animation>
@@ -1530,11 +1538,19 @@
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <label>Cabin Air: %3d%%</label>
-                <measure-text>Cabin Air: 100%</measure-text>
                 <tooltip-id>cabinair</tooltip-id>
-                <mapping>percent</mapping>
-                <property>environment/aircraft-effects/cabin-air-set</property>
+                <label>%s</label>
+                <property>environment/aircraft-effects/cabin-air-set</property> <!-- currently only updating on change to the lever... :/ -->
+                <mapping>nasal</mapping>
+                <script>
+                    <![CDATA[
+                    var setting     = math.round(arg[0] * 100);
+                    var heatChange  = getprop("/fdm/jsbsim/heat/cabin-temperature-change-text") or "";
+                    if (heatChange != "") heatChange = "\n(" ~ heatChange ~ ")";
+                    var returnString = "Cabin Air: " ~ setting ~ "%" ~ heatChange;
+                    return returnString;
+                    ]]>
+                </script>
             </binding>
         </hovered>
     </animation>

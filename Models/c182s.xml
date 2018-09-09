@@ -1716,11 +1716,11 @@
                 <command>set-tooltip</command>
                 <tooltip-id>pitot</tooltip-id>
                 <label>%s</label>
-                <property>/sim/model/c182s/securing/pitot-cover-visible</property>
+                <property>/sim/model/c182s/securing/pitot-cover-visible-changed</property>
                 <mapping>nasal</mapping>
                 <script>
                     var cover = "On";
-                    if (!arg[0]) {
+                    if (!getprop("/sim/model/c182s/securing/pitot-cover-visible")) {
                         cover = "Off";
                     }
                     

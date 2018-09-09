@@ -409,5 +409,23 @@
         <property>/sim/model/c182s/lighting/stack-buttons-norm</property>
       </output>
     </filter>
+
+    
+    <!-- update tooltip trigger for pitot -->
+    <filter>
+        <name>update-pitot-tooltip</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <sum>
+                    <property>/sim/model/c182s/securing/pitot-cover-visible</property>
+                    <property>/systems/pitot/heat-applied-norm</property>
+                </sum>
+            </expression>
+        </input>
+        <output>
+            <property>/sim/model/c182s/securing/pitot-cover-visible-changed</property>
+        </output>
+    </filter>
     
 </PropertyList>

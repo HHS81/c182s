@@ -281,6 +281,10 @@
     <object-name>davtron.top.lcd.oat-volts</object-name>
     <condition>
         <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/top-mode</property>
             <value>E</value>
@@ -325,6 +329,10 @@
     <object-name>davtron.top.lcd.oat-degf</object-name>
     <condition>
         <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/top-mode</property>
             <value>F</value>
@@ -369,6 +377,10 @@
     <object-name>davtron.top.lcd.oat-degc</object-name>
     <condition>
         <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/top-mode</property>
             <value>C</value>
@@ -415,6 +427,10 @@
     <object-name>davtron.lcd.line</object-name>
     <condition>
         <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
     </condition>
   </animation>
   
@@ -459,6 +475,10 @@
     <object-name>davtron.bot.lcd.utc</object-name>
     <condition>
         <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>UT</value>
@@ -502,6 +522,10 @@
     <object-name>davtron.bot.lcd.lt</object-name>
     <condition>
         <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>LT</value>
@@ -545,6 +569,10 @@
     <object-name>davtron.bot.lcd.ft</object-name>
     <condition>
         <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>FT</value>
@@ -588,6 +616,10 @@
     <object-name>davtron.bot.lcd.et</object-name>
     <condition>
         <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>ET</value>
@@ -666,6 +698,10 @@
     <object-name>davtron.lcd.mode2</object-name>
     <condition>
         <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
     </condition>
   </animation>
  
@@ -700,6 +736,10 @@
     <object-name>davtron.lcd.mode.UTsel</object-name>
     <condition>
         <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>UT</value>
@@ -736,6 +776,10 @@
     <object-name>davtron.lcd.mode.LTsel</object-name>
     <condition>
         <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>LT</value>
@@ -773,6 +817,10 @@
     <object-name>davtron.lcd.mode.FTsel</object-name>
     <condition>
         <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>FT</value>
@@ -809,6 +857,10 @@
     <object-name>davtron.lcd.mode.ETsel</object-name>
     <condition>
         <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>ET</value>

@@ -97,8 +97,15 @@ props.globals.initNode("/instrumentation/davtron803/elapsed-time-secs", 0, "INT"
 var davtron_flight_time  = aircraft.timer.new("/instrumentation/davtron803/flight-time-secs", 1, 0);
 var davtron_elapsed_time = aircraft.timer.new("/instrumentation/davtron803/elapsed-time-secs", 1, 0);
 
-# Activate the FT timer at startup
-davtron_flight_time.start();
+# Activate the FT timer at startup of elec system
+# and stop if no power registered (note, the ET timer seems to count on as seen in real life. FT timer behavior is not verified in this way and may be wrong)
+setlistener("/systems/electrical/volts", func(clocknode) {
+    if (clocknode.getValue() > 1) {
+        davtron_flight_time.start();
+    } else {
+        davtron_flight_time.stop();
+    }
+}, 1, 0);
 
 # Generate formatted output in separate properties
 timeFormatUpdateLoop = maketimer(1, func(){

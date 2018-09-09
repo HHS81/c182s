@@ -428,4 +428,22 @@
         </output>
     </filter>
     
+    <!-- update tooltip trigger for Cabin Heat and Air levers -->
+    <filter>
+        <name>update-airheat-tooltip</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <sum>
+                    <property>/environment/aircraft-effects/cabin-air-set</property>
+                    <property>/environment/aircraft-effects/cabin-heat-set</property>
+                    <property>/fdm/jsbsim/heat/cabin-air-transfer-total</property>
+                </sum>
+            </expression>
+        </input>
+        <output>
+            <property>/fdm/jsbsim/heat/cabin-temperature-change-text-update</property>
+        </output>
+    </filter>
+    
 </PropertyList>

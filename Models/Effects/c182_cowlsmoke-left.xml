@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+
+<!-- Simulating smoke from exhaust -->
+<PropertyList>
+    <particlesystem>
+		<name>exhaust-smoke-left</name>
+		<texture>smoke.png</texture>
+		<emissive>false</emissive>
+		<lighting>false</lighting>
+
+		<offsets>
+            <x-m>0</x-m>
+            <y-m>0</y-m>
+            <z-m>0</z-m>
+		</offsets>
+
+		<condition>
+			<and>
+                <equals>
+                    <property>/engines/engine[0]/running</property>
+                    <value>1</value>
+                </equals>
+                <!-- Currently we just use the "after start virtual tank" to generate smoke
+                     for a brief period after engine start. This should be changed to a real
+                     Air-to-Fuel-Ratio setting: i think too-rich mixture will always generate
+                     smoke because of incomplete combustion (as is the case shortly after startup) -->
+                
+                <greater-than-equals>
+                    <property>/fdm/jsbsim/propulsion/tank[6]/pct-full</property>
+                    <value>0.45</value>
+                </greater-than-equals>
+			</and>
+		</condition>
+
+		<attach>world</attach>
+
+		<placer>
+			<type>point</type>
+        </placer>
+        
+        <shooter>
+            <theta-min-deg>120</theta-min-deg>
+            <theta-max-deg>140</theta-max-deg>
+            <phi-min-deg>0.5</phi-min-deg>
+            <phi-max-deg>-1.5</phi-max-deg>
+            <speed-mps>
+                <value>5</value>
+                <spread>0.5</spread>
+            </speed-mps>
+            <rotation-speed>
+                <x-min-deg-sec>0</x-min-deg-sec>
+                <y-min-deg-sec>0</y-min-deg-sec>
+                <z-min-deg-sec>0</z-min-deg-sec>
+                <x-max-deg-sec>0</x-max-deg-sec>
+                <y-max-deg-sec>0</y-max-deg-sec>
+                <z-max-deg-sec>0</z-max-deg-sec>
+            </rotation-speed>
+        </shooter>
+
+		<counter>
+			<particles-per-sec>
+				<value>50</value>
+                <spread>5</spread>
+			</particles-per-sec>
+		</counter>
+
+		<align>billboard</align>
+
+		<particle>
+			<start>
+				<color>
+					<red>
+						<value>0.15</value>
+					</red>
+					<green>
+						<value>0.15</value>
+					</green>
+					<blue>
+						<value>0.15</value>
+					</blue>
+					<alpha>
+						<value>0.5</value>
+					</alpha>
+				</color>
+				<size>
+					<value>0.05</value>
+				</size>
+			</start>
+			<end>
+				<color>
+					<red>
+						<value>0.15</value>
+					</red>
+					<green>
+						<value>0.15</value>
+					</green>
+					<blue>
+						<value>0.15</value>
+					</blue>
+					<alpha>
+						<value>0.020</value>
+					</alpha>
+				</color>
+				<size>
+					<value>0.25</value>
+				</size>
+			</end>
+			<life-sec>
+				<value>1</value>
+			</life-sec>
+			<mass-kg>0.00015</mass-kg>
+			<radius-m>0.0125</radius-m>
+		</particle>
+        
+
+		<program>
+			<fluid>air</fluid>
+			<gravity>false</gravity>
+			<wind>true</wind>
+		</program>
+
+	</particlesystem>
+</PropertyList>

@@ -19,6 +19,7 @@
     <displacement unit="IN3">  541.5 </displacement>
     <bore unit="IN">5.125</bore>
     <stroke unit="IN">4.375</stroke>
+    <static-friction>1.5</static-friction>
     <cylinders> 6 </cylinders>
     <cylinder-head-mass unit="KG"> 4 </cylinder-head-mass>
     <compression-ratio>8.7</compression-ratio>

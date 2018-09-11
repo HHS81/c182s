@@ -267,7 +267,7 @@
 
         <!-- sum up all friction variables and output to jsbsim, affecting engine RPM -->
         <summer name="systems/propulsion/friction-summer">
-            <bias> 0.5 </bias>
+            <!--<bias> 0.5 </bias>-->
             <input> systems/propulsion/oil-age-friction </input>
             <input> systems/propulsion/oil-temp-friction </input>
             <input> systems/propulsion/oil-press-friction </input>

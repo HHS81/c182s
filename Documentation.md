@@ -105,6 +105,12 @@ The surprise modes can be activated at startup from commandline. You can add, ad
 #
 ```
 
+### Icing
+When flying into icing conditions (high humidity and low temperatures, esp. in clouds) the plane may ice.
+This can add drag and affect aircraft performance, as well as raising the stall speed to unexpected values.
+The pitot tube and stall horn can ice too, so you might not get any warning of a imminent stall anymore. Activate the
+`pitot-heat` switch to melt the ice, the stall warning vane is also linked to this switch.
+
 ### Various advanced runtime properties
 Some properties can be set at runtime to adjust the simulators state. You may use this for example in a script or trough a telnet session.  
 Additionally to the default ones, the c182 knows the following:

@@ -572,17 +572,18 @@ var cabin_tempchangetxt_updateloop = maketimer(5.0, update_cabintempchange_text)
 var update_cabintemp_humidity_text = func {
     # Sets a verbally text based on temperature.
     # TODO: should be enhanced to perceived temperature some time because humidity plays a role in the perception of temperatue
-    var txtp = "/fdm/jsbsim/heat/cabin-temperature-text";
-    var temp = getprop("/fdm/jsbsim/heat/cabin-air-temp-degc") or 0;
-    var tchng = getprop("/fdm/jsbsim/heat/cabin-temperature-change-text") or "";
+    var txtp    = "/fdm/jsbsim/heat/cabin-temperature-text";
+    var txtpsht = "/fdm/jsbsim/heat/cabin-temperature-text-short";
+    var temp    = getprop("/fdm/jsbsim/heat/cabin-air-temp-degc") or 0;
+    var tchng   = getprop("/fdm/jsbsim/heat/cabin-temperature-change-text") or "";
     if (tchng != "") tchng = " (" ~ tchng ~ ")";
 
-    if (temp < 0) {           setprop(txtp, "My fingers are freezing" ~ tchng);
-    } else if (temp <= 10) {  setprop(txtp, "A little bit fresh here" ~ tchng);
-    } else if (temp <= 18) {  setprop(txtp, "A little too cold here for my taste" ~ tchng);
-    } else if (temp <= 25) {  setprop(txtp, "I feel comfortably warm now" ~ tchng);
-    } else if (temp <= 30) {  setprop(txtp, "It is getting hot in here" ~ tchng);
-    } else {                  setprop(txtp, "Uh, are we taking a sauna in here?" ~ tchng);
+    if (temp < 0) {           setprop(txtp, "My fingers are freezing" ~ tchng);             setprop(txtpsht, "frosty");
+    } else if (temp <= 10) {  setprop(txtp, "A little bit fresh here" ~ tchng);             setprop(txtpsht, "chilly");
+    } else if (temp <= 18) {  setprop(txtp, "A little too cold here for my taste" ~ tchng); setprop(txtpsht, "cool");
+    } else if (temp <= 25) {  setprop(txtp, "I feel comfortably warm now" ~ tchng);         setprop(txtpsht, "comfortable");
+    } else if (temp <= 30) {  setprop(txtp, "It is getting hot in here" ~ tchng);           setprop(txtpsht, "warm");
+    } else {                  setprop(txtp, "Uh, are we taking a sauna in here?" ~ tchng);  setprop(txtpsht, "hot");
     }
     
     # Sets a verbally text based on humidity.

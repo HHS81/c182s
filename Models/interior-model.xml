@@ -1501,8 +1501,10 @@
                     <![CDATA[
                     var setting     = math.round(getprop("/environment/aircraft-effects/cabin-heat-set") * 100);
                     var heatChange  = getprop("/fdm/jsbsim/heat/cabin-temperature-change-text") or "";
-                    if (heatChange != "") heatChange = "\n(" ~ heatChange ~ ")";
-                    var returnString = "Cabin Heat: " ~ setting ~ "%" ~ heatChange;
+                    var temptxt     = getprop("/fdm/jsbsim/heat/cabin-temperature-text-short") or "";
+                    if (heatChange != "") heatChange = "; " ~ heatChange;
+                    var heatTxt     = "\n(" ~ temptxt ~ heatChange ~ ")";
+                    var returnString = "Cabin Heat: " ~ setting ~ "%\n" ~ heatTxt;
                     return returnString;
                     ]]>
                 </script>
@@ -1546,8 +1548,10 @@
                     <![CDATA[
                     var setting     = math.round(getprop("/environment/aircraft-effects/cabin-air-set") * 100);
                     var heatChange  = getprop("/fdm/jsbsim/heat/cabin-temperature-change-text") or "";
-                    if (heatChange != "") heatChange = "\n(" ~ heatChange ~ ")";
-                    var returnString = "Cabin Air: " ~ setting ~ "%" ~ heatChange;
+                    var temptxt     = getprop("/fdm/jsbsim/heat/cabin-temperature-text-short") or "";
+                    if (heatChange != "") heatChange = "; " ~ heatChange;
+                    var heatTxt     = "\n(" ~ temptxt ~ heatChange ~ ")";
+                    var returnString = "Cabin Air: " ~ setting ~ "%\n" ~ heatTxt;
                     return returnString;
                     ]]>
                 </script>

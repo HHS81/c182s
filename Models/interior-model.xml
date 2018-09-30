@@ -1495,14 +1495,16 @@
                 <command>set-tooltip</command>
                 <tooltip-id>cabinheat</tooltip-id>
                 <label>%s</label>
-                <property>environment/aircraft-effects/cabin-heat-set</property> <!-- currently only updating on change to the lever... :/ -->
+                <property>/fdm/jsbsim/heat/cabin-temperature-change-text-update</property>
                 <mapping>nasal</mapping>
                 <script>
                     <![CDATA[
-                    var setting     = math.round(arg[0] * 100);
+                    var setting     = math.round(getprop("/environment/aircraft-effects/cabin-heat-set") * 100);
                     var heatChange  = getprop("/fdm/jsbsim/heat/cabin-temperature-change-text") or "";
-                    if (heatChange != "") heatChange = "\n(" ~ heatChange ~ ")";
-                    var returnString = "Cabin Heat: " ~ setting ~ "%" ~ heatChange;
+                    var temptxt     = getprop("/fdm/jsbsim/heat/cabin-temperature-text-short") or "";
+                    if (heatChange != "") heatChange = "; " ~ heatChange;
+                    var heatTxt     = "\n(" ~ temptxt ~ heatChange ~ ")";
+                    var returnString = "Cabin Heat: " ~ setting ~ "%\n" ~ heatTxt;
                     return returnString;
                     ]]>
                 </script>
@@ -1540,14 +1542,16 @@
                 <command>set-tooltip</command>
                 <tooltip-id>cabinair</tooltip-id>
                 <label>%s</label>
-                <property>environment/aircraft-effects/cabin-air-set</property> <!-- currently only updating on change to the lever... :/ -->
+                <property>/fdm/jsbsim/heat/cabin-temperature-change-text-update</property>
                 <mapping>nasal</mapping>
                 <script>
                     <![CDATA[
-                    var setting     = math.round(arg[0] * 100);
+                    var setting     = math.round(getprop("/environment/aircraft-effects/cabin-air-set") * 100);
                     var heatChange  = getprop("/fdm/jsbsim/heat/cabin-temperature-change-text") or "";
-                    if (heatChange != "") heatChange = "\n(" ~ heatChange ~ ")";
-                    var returnString = "Cabin Air: " ~ setting ~ "%" ~ heatChange;
+                    var temptxt     = getprop("/fdm/jsbsim/heat/cabin-temperature-text-short") or "";
+                    if (heatChange != "") heatChange = "; " ~ heatChange;
+                    var heatTxt     = "\n(" ~ temptxt ~ heatChange ~ ")";
+                    var returnString = "Cabin Air: " ~ setting ~ "%\n" ~ heatTxt;
                     return returnString;
                     ]]>
                 </script>

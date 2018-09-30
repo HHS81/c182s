@@ -36,6 +36,24 @@
     <z-m>-0.10</z-m>
   </offsets>
 </model>
+<model>
+  <path>Aircraft/c182s/Models/Effects/c182_cowlsmoke-left.xml</path>
+  <name>enginesmoke</name>
+  <offsets>
+    <x-m>-0.1558</x-m>
+    <y-m>-0.3067</y-m>
+    <z-m>-0.5783</z-m>
+  </offsets>
+</model>
+<model>
+  <path>Aircraft/c182s/Models/Effects/c182_cowlsmoke-right.xml</path>
+  <name>enginesmoke</name>
+  <offsets>
+    <x-m>-0.1558</x-m>
+    <y-m>0.3108</y-m>
+    <z-m>-0.5783</z-m>
+  </offsets>
+</model>
 
 <effect>
     <inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
@@ -1716,11 +1734,11 @@
                 <command>set-tooltip</command>
                 <tooltip-id>pitot</tooltip-id>
                 <label>%s</label>
-                <property>/sim/model/c182s/securing/pitot-cover-visible</property>
+                <property>/sim/model/c182s/securing/pitot-cover-visible-changed</property>
                 <mapping>nasal</mapping>
                 <script>
                     var cover = "On";
-                    if (!arg[0]) {
+                    if (!getprop("/sim/model/c182s/securing/pitot-cover-visible")) {
                         cover = "Off";
                     }
                     

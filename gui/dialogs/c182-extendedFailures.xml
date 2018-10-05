@@ -357,7 +357,7 @@
       <text>
         <row>0</row>
         <col>2</col>
-        <label>MBTF</label>
+        <label>MTBF</label>
       </text>
       
       <group>
@@ -599,7 +599,7 @@
       <text>
         <row>0</row>
         <col>2</col>
-        <label>MBTF</label>
+        <label>MTBF</label>
       </text>
       
      

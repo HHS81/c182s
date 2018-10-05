@@ -51,6 +51,7 @@
         <object-name>FuelLeftNeedle</object-name>
   <property>consumables/fuel/tank[0]/indicated-level-gal_us</property>
   <interpolation>
+   <entry><ind> -5.0</ind><dep>11 </dep></entry>
    <entry><ind>  0.0</ind><dep>0 </dep></entry>     
    <entry><ind>5</ind><dep> -21.40 </dep></entry>     
    <entry><ind> 10</ind><dep> -44 </dep></entry>     
@@ -75,6 +76,7 @@
         <object-name>FuelRightNeedle</object-name>
   <property>consumables/fuel/tank[1]/indicated-level-gal_us</property>
   <interpolation>
+   <entry><ind> -5.0</ind><dep>-11 </dep></entry>
    <entry><ind>  0.0</ind><dep>0 </dep></entry>     
    <entry><ind>5</ind><dep> 21.40 </dep></entry>     
    <entry><ind> 10</ind><dep> 44 </dep></entry>     

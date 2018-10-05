@@ -669,7 +669,8 @@
             <path>/instrumentation/transponder/factory-vfr-code</path>
             <path>/engines/engine[0]/egt-bug-norm</path>
             
-            <path>/controls/engines/engine[0]/magnetos</path>
+            <!-- now calculated in engine.nas! <path>/controls/engines/engine[0]/magnetos</path> -->
+            <path>/controls/switches/magnetos</path>
             <path>/controls/engines/engine[0]/master-bat</path>
             <path>/controls/engines/engine[0]/master-alt</path>
             <path>/controls/switches/AVMBus1</path>
@@ -726,12 +727,31 @@
             <path>/controls/circuit-breakers/Transponder</path>
             <path>/controls/circuit-breakers/ADF</path>
             <path>/controls/circuit-breakers/AutoPilot</path>
+            
+            <path>/sim/failure-manager/display-on-screen</path>
+            <path>/sim/failure-manager/restore-on-start</path>
         </aircraft-data>
 
  </sim>
  
-  <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
- 
+ <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+  <instruments>
+    <airspeed-indicator>
+        <indicated-speed-kt type="float">0</indicated-speed-kt>
+    </airspeed-indicator>
+          
+    <fuelIndicator n="0">  <serviceable type="bool">true</serviceable>  </fuelIndicator>
+    <fuelIndicator n="1">  <serviceable type="bool">true</serviceable>  </fuelIndicator>
+    <egt>  <serviceable type="bool">true</serviceable>  </egt>
+    <cht>  <serviceable type="bool">true</serviceable>  </cht>
+    <oil-temp>  <serviceable type="bool">true</serviceable>  </oil-temp>
+    <oil-press>  <serviceable type="bool">true</serviceable>  </oil-press>
+    <!--<vac>  <serviceable type="bool">true</serviceable>  </vac>  IMPLEMENT ME -->
+    <!--<amp>  <serviceable type="bool">true</serviceable>  </amp>  IMPLEMENT ME -->
+    <fuel-flow>  <serviceable type="bool">true</serviceable>  </fuel-flow>
+    <!--<manfold-press> <serviceable type="bool">true</serviceable> </manfold-press> IMPLEMENT ME -->
+  </instruments>
+  
    <consumables>
     <fuel>
       <tank n="0">
@@ -817,6 +837,7 @@
    <kt-76c type="double">0</kt-76c>
    <kn-62a type="double">0</kn-62a>
    <fuel_tank_selector type="double">2</fuel_tank_selector> <!-- 0=off, 1=right, 2=both, 3=left -->
+   <magnetos type="int">3</magnetos>
   </switches>
   <circuit-breakers>
     <Flap type="bool">1</Flap>
@@ -843,6 +864,7 @@
    <settings>
     <auto-pitch-trim type="bool">true</auto-pitch-trim>
    </settings>
+   <serviceable type="bool">true</serviceable>
   </KAP140>
  </autopilot>
  
@@ -1028,6 +1050,7 @@
 </kap140>
     <failures> 
     <file>Aircraft/Generic/limits.nas</file>
+    <file>Aircraft/c182s/Nasal/custom-failures.nas</file>
   </failures>
  </nasal>
 

@@ -226,6 +226,14 @@ var checklist_beforeEngineStart = func() {
     # Set heading offset
     var magnetic_variation = getprop("/environment/magnetic-variation-deg");
     setprop("/instrumentation/heading-indicator/offset-deg", -magnetic_variation);
+    
+    # close doors
+    DoorL.close();
+    DoorR.close();
+    BaggageDoor.close();
+    # may remain open: WindowL.close();
+    # may remain open: WindowR.close();
+
 }
 
 

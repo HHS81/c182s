@@ -707,6 +707,11 @@
             <path>/sim/model/c182s/securing/pitot-cover-visible</path>
             <path>/controls/SunVisor[0]/position-deg</path>
             <path>/controls/SunVisor[1]/position-deg</path>
+            <path>/sim/model/door-positions/DoorL/position-norm</path>
+            <path>/sim/model/door-positions/DoorR/position-norm</path>
+            <path>/sim/model/door-positions/BaggageDoor/position-norm</path>
+            <path>/sim/model/door-positions/WindowL/position-norm</path>
+            <path>/sim/model/door-positions/WindowR/position-norm</path>
         
             <path>/controls/circuit-breakers/Flap</path>
             <path>/controls/circuit-breakers/Inst</path>

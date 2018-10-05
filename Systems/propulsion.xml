@@ -20,9 +20,9 @@
 		4000	0.15 0.87 0.87 0.87 0.87 0.870.87 0.87 0.87 0.87 0.87  0.87 0.87 1.080 1.080 1.080
 		6000	0.15 0.83	0.83	0.83	0.83	0.83	 0.83 0.83 0.84 0.85 0.86 1.08 1.080 1.080 1.078 1.080	  
 		8000	0.15 0.83	0.83	0.83	0.83	0.83	 0.835 0.835  0.80 0.80  0.90	0.90 	0.90 0.90	0.90	0.90	
-		10000 0.15 0.840	0.840	0.840	0.840	0.835	0.835	0.77	0.77	0.87 0.87	0.87  0.87 0.87 0.87 0.87   
-		12000 0.15 0.82 0.83 0.835 0.85 0.79 0.79  0.79 0.79 0.89 0.89 0.89	0.89  0.89 0.89 0.89 
-		14000 0.15 0.84 0.835 0.84 0.77 0.77 0.77 0.77 0.87 0.87 0.87 0.87 0.87  0.87 0.87 0.87 
+		10000 0.20 0.840	0.840	0.840	0.840	0.835	0.835	0.77	0.77	0.87 0.87	0.87  0.87 0.87 0.87 0.87   
+		12000 0.22 0.82 0.83 0.835 0.85 0.79 0.79  0.79 0.79 0.89 0.89 0.89	0.89  0.89 0.89 0.89 
+		14000 0.25 0.84 0.835 0.84 0.77 0.77 0.77 0.77 0.87 0.87 0.87 0.87 0.87  0.87 0.87 0.87 
                    </tableData> 
                 </table>  
           </function>
@@ -127,13 +127,42 @@
                             200.0    0.0
                             500.0    0.0
                             550.0    1.0   <!-- clinders running really too hot! -->
-                            650.0   50.0   <!-- stress on CHT, this will trigger the killing flip-flop if remaining for too long there -->
+                            650.0   30.0   <!-- stress on CHT -->
                         </tableData>
                     </table>
                 </product>
             </function>
         </fcs_function>
 
+        <fcs_function name="systems/propulsion/oil-age-friction">
+            <description>made up data for engine oil age affecting viscosity </description>
+            <function>
+                <!-- Only apply if this test is TRUE, otherwise interference with autostart and other things -->
+                <product>
+                    <property>/engines/engine/complex-engine-procedures</property>  <!-- complex-engine-procedures EQ 1 -->
+                    <property>/engines/engine/allow-oil-management</property>       <!-- allow-oil-management EQ 1 -->
+                
+                    <table>
+                        <independentVar>/engines/engine[0]/oil-service-hours</independentVar>
+                        <tableData>
+                            65       0.0
+                            100     10.0
+                        </tableData>
+                    </table>
+                    
+                    <!-- apply friction gradually depending on engine RPM, with no effect in low RPM -->
+                    <table>
+                        <independentVar>propulsion/engine/engine-rpm</independentVar>
+                        <tableData>
+                            800   0.0
+                            1200  1.0
+                        </tableData>
+                    </table>
+                    
+                </product>
+            </function>
+        </fcs_function>
+        
         <fcs_function name="systems/propulsion/oil-temp-friction">
             <description>made up data for engine oil temperature affecting viscosity </description>
             <function>
@@ -153,13 +182,23 @@
                         <!--<independentVar>propulsion/engine/oil-temperature-degF</independentVar>-->
                         <independentVar>/engines/engine/oil-final-temperature-degf</independentVar>
                         <tableData>
-                            -20.0   40.0   <!-- -28°C --> <!-- engine does not develop full power and is harder to keep running once started -->
+                            -20.0   25.0   <!-- -28°C --> <!-- engine does not develop full power and is harder to keep running once started -->
                             75.0     0.0   <!--  32°C --> <!-- engine is considered "warm" -->
-                            245.0    0.0   <!--  93°C --> <!-- engine is starting to overheat -->
-                            250.0   10.0
-                            280.0   50.0                  <!-- oil is too hot and oil film will rip -->
+                            255.0    0.0   <!--  93°C --> <!-- engine is starting to overheat -->
+                            275.0   10.0
+                            300.0   30.0                  <!-- oil is too hot and oil film will rip -->
                         </tableData>
                     </table>
+                    
+                    <!-- apply friction gradually depending on engine RPM, with no effect in low RPM -->
+                    <table>
+                        <independentVar>propulsion/engine/engine-rpm</independentVar>
+                        <tableData>
+                            1000  0.0
+                            1400  1.0
+                        </tableData>
+                    </table>
+                    
                 </product>
             </function>
         </fcs_function>
@@ -173,7 +212,7 @@
                     <table>
                         <independentVar>/engines/engine[0]/oil-pressure-psi-final</independentVar>
                         <tableData>
-                            15.0  50.0  <!-- added friction due to failing lubrication -->
+                            15.0  30.0  <!-- added friction due to failing lubrication -->
                             20.0   0.0  <!-- minimum "OK"-range -->
                         </tableData>
                     </table>
@@ -226,18 +265,13 @@
         
         
 
-        <!-- sum up all friction variables affecting the killing-by-too-high-friction -->
+        <!-- sum up all friction variables and output to jsbsim, affecting engine RPM -->
         <summer name="systems/propulsion/friction-summer">
+            <!--<bias> 0.5 </bias>-->
+            <input> systems/propulsion/oil-age-friction </input>
             <input> systems/propulsion/oil-temp-friction </input>
             <input> systems/propulsion/oil-press-friction </input>
             <input> systems/propulsion/expansion-friction </input>
-            <output>systems/propulsion/friction-summer</output>
-        </summer>
-        
-        <!-- finally sum up again and output to jsbsim, affecting engine RPM -->
-        <summer name="systems/propulsion/friction-summer-final">
-            <!--<bias> 1.5 </bias>-->
-            <input> systems/propulsion/friction-summer </input>
             <input> systems/propulsion/friction-kill-engine </input>
             <input> systems/propulsion/manual-friction </input>     <!-- we might have fun trough telnet/scripts... -->
             <!-- TODO: <input> prop-strike </input> -->

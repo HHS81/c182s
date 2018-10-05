@@ -131,7 +131,15 @@ var oil_consumption = maketimer(1.0, func {
         if (service_hours_increase > 1.5) service_hours_increase = 1.5;  # cap at that rate
         consumption_qph = consumption_qph + service_hours_increase;
     
+        # Consumption should be higher with high oil temperature (oil burning)
+        var oiltemp = getprop("/engines/engine/oil-final-temperature-degf") or 70;
+        oiltemp_increase = 0.02*oiltemp - 5.5;   # raises linearly from 275°F=0qph to 300°F=0.5qph
+        if(oiltemp_increase > 0.5) oiltemp_increase = 0.5; # cap at that rate
+        if (oiltemp_increase > 0) consumption_qph = consumption_qph + oiltemp_increase;
     
+    
+    
+        #############################################
         # Calculate consumption and update properties
         # Example:  2200 RPM with pristine oil has 0.155+0.0=0.155qts/hr    (sump 8->4 = ~25:50 hrs flight time)
         #           2200 RPM with 25hrs old oil has 0.155+0.125=0.28qts/hr  (sump 8->4 = ~14:15 hrs flight time)

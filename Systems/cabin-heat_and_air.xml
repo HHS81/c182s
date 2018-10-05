@@ -23,8 +23,6 @@
     <property value="37.0">heat/human-body-temp-degc</property>
     
     <property>/environment/aircraft-effects/defrost-set</property>    <!-- defrost lever in cockpit -->
-    <property>/environment/aircraft-effects/cabin-heat-set</property> <!-- heat lever in cockpit -->
-    <property>/environment/aircraft-effects/cabin-air-set</property>  <!-- air lever in cockpit -->
     <property>/controls/climate-control/overhead-vent-front-left</property>
     <property>/controls/climate-control/overhead-vent-front-right</property>
 

@@ -409,5 +409,41 @@
         <property>/sim/model/c182s/lighting/stack-buttons-norm</property>
       </output>
     </filter>
+
+    
+    <!-- update tooltip trigger for pitot -->
+    <filter>
+        <name>update-pitot-tooltip</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <sum>
+                    <property>/sim/model/c182s/securing/pitot-cover-visible</property>
+                    <property>/systems/pitot/heat-applied-norm</property>
+                </sum>
+            </expression>
+        </input>
+        <output>
+            <property>/sim/model/c182s/securing/pitot-cover-visible-changed</property>
+        </output>
+    </filter>
+    
+    <!-- update tooltip trigger for Cabin Heat and Air levers -->
+    <filter>
+        <name>update-airheat-tooltip</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <sum>
+                    <property>/environment/aircraft-effects/cabin-air-set</property>
+                    <property>/environment/aircraft-effects/cabin-heat-set</property>
+                    <property>/fdm/jsbsim/heat/cabin-air-transfer-total</property>
+                </sum>
+            </expression>
+        </input>
+        <output>
+            <property>/fdm/jsbsim/heat/cabin-temperature-change-text-update</property>
+        </output>
+    </filter>
     
 </PropertyList>

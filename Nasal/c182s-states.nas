@@ -100,7 +100,7 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
     # Essential lever and switch positions
     setprop("/controls/engines/engine/magnetos", 3);
     setprop("/controls/engines/engine[0]/throttle", 0.2);
-    setprop("/controls/engines/engine[0]/mixture", 1.0);
+    setprop("/controls/engines/engine[0]/mixture", getprop("/controls/engines/engine/mixture-maxaltitude"));
     setprop("/controls/engines/engine[0]/propeller-pitch", 1);
     
     
@@ -202,7 +202,7 @@ var checklist_beforeEngineStart = func() {
     setprop("/controls/switches/fuel_tank_selector", 2);
     setprop("/controls/engines/engine[0]/magnetos", 3);
     setprop("/controls/engines/engine[0]/throttle", 0.2);
-    setprop("/controls/engines/engine[0]/mixture", 1.0);
+    setprop("/controls/engines/engine[0]/mixture", getprop("/controls/engines/engine/mixture-maxaltitude"));
     setprop("/controls/engines/engine[0]/propeller-pitch", 1);
     setprop("/controls/engines/engine/cowl-flaps-norm", 1);
     setprop("/controls/engines/engine[0]/fuel-pump", 0);
@@ -233,6 +233,14 @@ var checklist_beforeEngineStart = func() {
     BaggageDoor.close();
     # may remain open: WindowL.close();
     # may remain open: WindowR.close();
+
+    # Adjust winterkit depending on OAT
+    # (we must do this with delay on sim sart to give the weather system a chance to adjust temperature at startup)
+    var wkdelay =  getprop("/sim/time/elapsed-sec") > 1 ? 0.5 : 5;
+    settimer(func {
+        var wk_install = getprop("/environment/temperature-degf") > 20? 0 : 1;
+        setprop("/engines/engine/winter-kit-installed", wk_install);
+    }, wkdelay);
 
 }
 
@@ -270,7 +278,7 @@ var state_readyForTakeoff = func() {
     secureAircraftOnGround(0);
     checklist_beforeEngineStart();
     setAvionics(1);
-    setEngineRunning(1000, 0.1, 1, 1); # TODO: Mix should be calculated by altitude and fuel-flow placard value
+    setEngineRunning(1000, 0.1, getprop("/controls/engines/engine/mixture-maxaltitude"), 1);
     setprop("/controls/gear/brake-parking", 1);
     setprop("/controls/engines/engine/cowl-flaps-norm", 1);
 };
@@ -281,7 +289,7 @@ var state_cruising = func() {
     secureAircraftOnGround(0);
     checklist_beforeEngineStart();
     setAvionics(1);
-    setEngineRunning(2000, 0.75, 0.8, 0.80);  # TODO: Mix should be calculated lean by altitude
+    setEngineRunning(2000, 0.75, 0.7, 0.80);  # TODO: Mix should be calculated lean by altitude
     setprop("/controls/gear/brake-parking", 0);
     setprop("/controls/engines/engine/cowl-flaps-norm", 0);
 }
@@ -396,7 +404,7 @@ var autostart = func (msg=1, delay=1, setStates=0) {
     var delay = 1;
     settimer(func {
         print("Autostart engine: execute setEngineRunning");
-        setEngineRunning(2400, 0.05, 1.0, 1.0);   # TODO: mixture should be calculated from altitude
+        setEngineRunning(2400, 0.05, getprop("/controls/engines/engine/mixture-maxaltitude"), 1.0);
          
         # investigate results once starter is done
         var startListener = setlistener("/engines/engine/auto-start", func(n){

@@ -115,6 +115,7 @@
   </panel>
 
   <model>
+    <fallback-model-index>3</fallback-model-index>
    <path archive="y">Aircraft/c182s/Models/c182s.xml</path>
     <hide-yoke>false</hide-yoke>
 
@@ -129,7 +130,7 @@
         </map>
 
     <livery>
-      <file type="string">liveries/Default.png</file>
+      <file type="string">liveries/default.png</file>
       <index type="int">0</index>
     </livery>
     
@@ -171,6 +172,7 @@
 
 <procedural-lights type="bool">true</procedural-lights>
 <enable-fog-frost type="bool">false</enable-fog-frost>
+<enable-fog-frost-msgs type="bool">true</enable-fog-frost-msgs>
 
 
 	<material>
@@ -559,6 +561,7 @@
             
             <path>/sim/time/hobbs/engine</path>
             <path>/sim/model/c182s/enable-fog-frost</path>
+            <path>/sim/model/c182s/enable-fog-frost-msgs</path>
             <path>/engines/engine/complex-engine-procedures</path>
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>
@@ -864,7 +867,6 @@
    <complex-engine-procedures type="bool">false</complex-engine-procedures>
    <allow-fuel-contamination type="bool">false</allow-fuel-contamination>
    <allow-oil-management type="bool">false</allow-oil-management>
-   <oil-powergain-factor type="double">1</oil-powergain-factor>
    <winter-kit-installed type="bool">false</winter-kit-installed>
    <oil-temperature-env-diff type="double">0</oil-temperature-env-diff>
    <oil-compensated-temperature-degf type="double">60</oil-compensated-temperature-degf>
@@ -879,6 +881,7 @@
    </oil-pump>
    <oil-final-temperature-degf type="double">60</oil-final-temperature-degf> <!-- this is the final oil temperature after all effects -->
    <oil-temperature-degf-indicated type="double">60</oil-temperature-degf-indicated> <!-- oil temp for the gauge (filtered) -->
+   <oil-service-hours type="double">0</oil-service-hours>
    <cowling-air-temperature-degf>40</cowling-air-temperature-degf> <!-- OAT in the cowling -->
   </engine>
  </engines>

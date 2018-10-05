@@ -64,6 +64,15 @@
     <height>10</height>
     <property>/sim/failure-manager/display-on-screen</property>
   </checkbox>
+  <checkbox>
+    <halign>left</halign>
+    <valign>down</valign>
+    <name>saveAndrestoreFailures</name>
+    <label>Restore failures on next session</label>
+    <width>10</width>
+    <height>10</height>
+    <property>/sim/failure-manager/restore-on-start</property>
+  </checkbox>
 
 
 

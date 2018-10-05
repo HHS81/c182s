@@ -724,6 +724,9 @@
             <path>/controls/circuit-breakers/Transponder</path>
             <path>/controls/circuit-breakers/ADF</path>
             <path>/controls/circuit-breakers/AutoPilot</path>
+            
+            <path>/sim/failure-manager/display-on-screen</path>
+            <path>/sim/failure-manager/restore-on-start</path>
         </aircraft-data>
 
  </sim>

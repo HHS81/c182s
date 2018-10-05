@@ -11,10 +11,33 @@
 # /!\ TO DEFINE NEW FAILURES, see customFailures vector below! /!\
 #
 
+
+# See if we have any saved state that should be restored later on.
+# This also supports setting initial failures via commandline,
+#   example: --prop:/sim/failure-manager/instrumentation/annunciator/failure-level=1
+var failure_props   = props.globals.getNode("/sim/failure-manager/",1);
+var failure_cats    = failure_props.getChildren();
+var restoreFailures = [];
+foreach (failCat; failure_cats) {
+    var failure_cat_items  = failCat.getChildren();
+    foreach (failCat_item; failure_cat_items) {
+        # also search one level deeper
+        var failure_cat_childs = failCat_item.getChildren();
+        foreach (failCat_chld; failure_cat_childs) {
+            append(failure_cat_items, failCat_chld);
+        }
+    }
+    foreach (failCat_item; failure_cat_items) {
+        var failure_level = failCat_item.getChild("failure-level");
+        if (failure_level != nil and failure_level.getValue() > 0) {
+            #print("DBG: failure-manager   " ~ failure_level.getPath() ~ "=" ~ failure_level.getValue());
+            append(restoreFailures, [failure_level.getPath(), failure_level.getValue()]);  # prop=lvl
+            failure_level.remove(); # unregister the node, so failur-maner initializes the triggers properly
+        }
+    }
+}
+
 io.include("Aircraft/Generic/Systems/failures.nas");  #include base compat failure modes (make default triggers (etc) available)
-
-
-
 
 #############################################################################################
 # First, some library functions
@@ -549,5 +572,35 @@ setlistener("/sim/signals/fdm-initialized", func {
         if (!getprop("/sim/failure-manager/surprise-mode/timer")) setprop("/sim/failure-manager/surprise-mode/timer", 30);
         setprop("/sim/failure-manager/surprise-mode/timer-active",0);  # reset it, so timer will start
         initRandomFailureTimer();
-    }  
+    }
+    
+    # restore any saved failures, if user requested it
+    if (getprop("/sim/failure-manager/restore-on-start")) {
+        foreach (rf; restoreFailures) {
+            print("failure-manager: restoring " ~ rf[0] ~ " to level " ~ rf[1]);
+            setprop(rf[0], rf[1]);
+        }
+    }
+    
+    # register all present failure level properties for savestate
+    var failure_props   = props.globals.getNode("/sim/failure-manager/",1);
+    var failure_cats    = failure_props.getChildren();
+    foreach (failCat; failure_cats) {
+        var failure_cat_items = failCat.getChildren();
+        foreach (failCat_item; failure_cat_items) {
+            # also search one level deeper
+            var failure_cat_childs = failCat_item.getChildren();
+            foreach (failCat_chld; failure_cat_childs) {
+                append(failure_cat_items, failCat_chld);
+            }
+        }
+        foreach (failCat_item; failure_cat_items) {
+            var failure_level = failCat_item.getChild("failure-level");
+            if (failure_level != nil) {
+                #print("DBG: failure-manager register propslist for save: " ~ failure_level.getPath());
+                aircraft.data.add(failure_level.getPath());
+            }
+        }
+    }
+
 });

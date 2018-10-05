@@ -725,7 +725,7 @@
    <object-name>WindowFrame.L</object-name>
 <object-name>Window.L</object-name>
 <object-name>Window.L.001</object-name>
-   <property>sim/model/door-positions/DoorL/position-norm</property>
+   <property>sim/model/door-positions/DoorL/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>
@@ -773,7 +773,7 @@
    <object-name>WindowFrame.R</object-name>
 <object-name>Window.R</object-name>
 <object-name>Window.R.001</object-name>
-   <property>sim/model/door-positions/DoorR/position-norm</property>
+   <property>sim/model/door-positions/DoorR/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>
@@ -1114,7 +1114,7 @@
  <animation>
    <type>rotate</type>
    <object-name>BaggageDoor</object-name>
-   <property>sim/model/door-positions/BaggageDoor/position-norm</property>
+   <property>sim/model/door-positions/BaggageDoor/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>

@@ -912,8 +912,8 @@
             <path>Sounds/door-closing.wav</path>
             <condition>
                 <less-than>
-                    <property>sim/model/door-positions/DoorL/position-norm</property>
-                    <value>0.5</value>
+                    <property>sim/model/door-positions/DoorL/position-norm-effective</property>
+                    <value>0.511</value>
                 </less-than>
             </condition>
             <position>
@@ -950,8 +950,8 @@
             <path>Sounds/door-closing.wav</path>
             <condition>
                 <less-than>
-                    <property>sim/model/door-positions/DoorR/position-norm</property>
-                    <value>0.5</value>
+                    <property>sim/model/door-positions/DoorR/position-norm-effective</property>
+                    <value>0.511</value>
                 </less-than>
             </condition>
             <position>
@@ -988,8 +988,8 @@
             <path>Sounds/door-closing.wav</path>
             <condition>
                 <less-than>
-                    <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
-                    <value>0.06</value>
+                    <property>/sim/model/door-positions/BaggageDoor/position-norm-effective</property>
+                    <value>0.021</value>
                 </less-than>
             </condition>
             <position>

@@ -1032,8 +1032,8 @@
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <property>/sim/model/door-positions/DoorL/position-norm</property>
-                    <value>0.0250</value>
+                    <property>/sim/model/door-positions/DoorL/position-norm-effective</property>
+                    <value>0.0150</value>
                 </product>
             </function>
             <function name="aero/coefficient/CDdoorR">
@@ -1041,8 +1041,17 @@
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <property>/sim/model/door-positions/DoorR/position-norm</property>
-                    <value>0.0250</value>
+                    <property>/sim/model/door-positions/DoorR/position-norm-effective</property>
+                    <value>0.0150</value>
+                </product>
+            </function>
+            <function name="aero/coefficient/CDbaggagedoor">
+                <description>Drag_due_to_door_left</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>/sim/model/door-positions/BaggageDoor/position-norm-effective</property>
+                    <value>0.0150</value>
                 </product>
             </function>
             <function name="aero/coefficient/CDwindow-l">
@@ -1051,7 +1060,7 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>/sim/model/door-positions/WindowL/position-norm</property>
-                    <value>0.0100</value>
+                    <value>0.0020</value>
                 </product>
             </function>
             <function name="aero/coefficient/CDwindow-r">
@@ -1060,7 +1069,7 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>/sim/model/door-positions/WindowR/position-norm</property>
-                    <value>0.0100</value>
+                    <value>0.0020</value>
                 </product>
             </function>
 

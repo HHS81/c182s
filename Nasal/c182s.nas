@@ -354,11 +354,24 @@ settimer(init_common,0);
 	
 
 # doors ============================================================
-DoorL = aircraft.door.new( "/sim/model/door-positions/DoorL", 2, 0 );
-DoorR = aircraft.door.new( "/sim/model/door-positions/DoorR", 2, 0 );
+DoorL       = aircraft.door.new( "/sim/model/door-positions/DoorL", 2, 0 );
+DoorR       = aircraft.door.new( "/sim/model/door-positions/DoorR", 2, 0 );
 BaggageDoor = aircraft.door.new( "/sim/model/door-positions/BaggageDoor", 2, 0 );
-WindowR = aircraft.door.new( "/sim/model/door-positions/WindowR", 2, 0 );
-WindowL = aircraft.door.new( "/sim/model/door-positions/WindowL", 2, 0 );
+WindowR     = aircraft.door.new( "/sim/model/door-positions/WindowR", 2, 0 );
+WindowL     = aircraft.door.new( "/sim/model/door-positions/WindowL", 2, 0 );
+
+# restore saved door state
+DoorL_saved       = getprop("/sim/model/door-positions/DoorL/position-norm") or 0;
+DoorR_saved       = getprop("/sim/model/door-positions/DoorR/position-norm") or 0;
+BaggageDoor_saved = getprop("/sim/model/door-positions/BaggageDoor/position-norm") or 0;
+WindowL_saved     = getprop("/sim/model/door-positions/WindowL/position-norm") or 0;
+WindowR_saved     = getprop("/sim/model/door-positions/WindowR/position-norm") or 0;
+DoorL.setpos(DoorL_saved);
+DoorR.setpos(DoorR_saved);
+BaggageDoor.setpos(BaggageDoor_saved);
+WindowL.setpos(WindowL_saved);
+WindowR.setpos(WindowR_saved);
+
 
 #####################
 # Adjust properties when in motion

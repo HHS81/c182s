@@ -227,6 +227,13 @@ var checklist_beforeEngineStart = func() {
     var magnetic_variation = getprop("/environment/magnetic-variation-deg");
     setprop("/instrumentation/heading-indicator/offset-deg", -magnetic_variation);
     
+    # close doors
+    DoorL.close();
+    DoorR.close();
+    BaggageDoor.close();
+    # may remain open: WindowL.close();
+    # may remain open: WindowR.close();
+
     # Adjust winterkit depending on OAT
     # (we must do this with delay on sim sart to give the weather system a chance to adjust temperature at startup)
     var wkdelay =  getprop("/sim/time/elapsed-sec") > 1 ? 0.5 : 5;
@@ -234,6 +241,7 @@ var checklist_beforeEngineStart = func() {
         var wk_install = getprop("/environment/temperature-degf") > 20? 0 : 1;
         setprop("/engines/engine/winter-kit-installed", wk_install);
     }, wkdelay);
+
 }
 
 

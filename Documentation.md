@@ -72,7 +72,7 @@ Examples:
 
 
 ### Engine failure simulation
-In the aircraft menu you can select `Extended failures`. This brings up a dialog in which you can fail most aircraft systems and equipment.
+In the aircraft menu you can select `Extended failures`. This brings up a dialog in which you can fail most aircraft systems and equipment. If you wish, you can also have failures be restored in your next session, but be aware this only works reliably with the saved and parked state, because take-off and cruise will set the aircraft in an repaired state (as would be assumed by running the checklists properly beforehand).
 You have also convinient access to FGFS default failures from there.  
 By default, the simulation will print a red text showing that a component failed, informing the pilot. You can turn off that message with the `Display failure messages on screen` checkbox.
 

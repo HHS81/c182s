@@ -383,6 +383,7 @@
             <mode>looped</mode>
             <path>Aircraft/c182s/Sounds/stall2.wav</path>
             <condition>
+                    <property>/controls/stall-horn/serviceable</property>
                     <greater-than>
                         <property>velocities/airspeed-kt</property>
                         <value>10</value>
@@ -390,6 +391,14 @@
                     <not>
                         <property>gear/gear[0]/wow</property> <!--stall sound audible as long nose wheel don't touch the ground-->
                     </not>
+                    <property>/controls/circuit-breakers/Warn</property>
+                    <property>/systems/electrical/outputs/stallhorn</property>
+                    <!-- TODO: Piggyback on pitot icing once it is ready:
+                    <less-than>
+                        <property>/instrumentation/airspeed-indicator[0]/icing</property>
+                        <value>0.3</value>
+                    </less-than>
+                    -->
             </condition>
             <position>
                 <x>-0.0360</x>
@@ -406,6 +415,37 @@
             <reference-dist>0.5</reference-dist>
             <max-dist>50.0</max-dist>
         </stall>
+        <stall-test>
+            <name>stall-test</name>
+            <mode>looped</mode>
+            <path>Aircraft/c182s/Sounds/stall2.wav</path>
+            <condition>
+                <property>/controls/stall-horn/serviceable</property>
+                <property>/controls/stall-horn/test</property>
+                <property>/controls/circuit-breakers/Warn</property>
+                <property>/systems/electrical/outputs/stallhorn</property>
+                <!-- TODO: Piggyback on pitot icing once it is ready:
+                <less-than>
+                    <property>/instrumentation/airspeed-indicator[0]/icing</property>
+                    <value>0.3</value>
+                </less-than>
+                -->
+            </condition>
+            <position>
+                <x>-0.0360</x>
+                <y>0.5174</y>
+                <z>0.4831</z>
+            </position>
+            <volume>
+                <value>0.8</value>
+            </volume>
+            <pitch>
+                <property>/fdm/jsbsim/sounds/stall-horn-pitch</property>
+                <offset>0.0</offset>
+            </pitch>
+            <reference-dist>0.5</reference-dist>
+            <max-dist>50.0</max-dist>
+        </stall-test>
 
  
 <!-- no binding yet?

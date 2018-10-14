@@ -532,8 +532,8 @@
     <object-name>TrenDEL_05_TrenDEL_05</object-name>
    <object-name>TrenDEL_01_TrenDEL_01</object-name>
    <object-name>TrenDEL_04_TrenDEL_04</object-name>
-   <property>fdm/jsbsim/fcs/steer-pos-deg</property>
-   <factor>-1</factor>
+   <property>/gear/gear/steering-norm</property>
+   <factor>-11</factor>
 		<center>
 			<x-m>-0.160396</x-m>
 			<y-m>0.000524</y-m>

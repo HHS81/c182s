@@ -429,29 +429,35 @@
     
     <flight_control name="FCS: c182s">
 <!--Cessna 182S POH Page 7-12: nose gear steer deg=11deg, by applying left or right brake increasing steer deg up to 29deg-->
- <channel name = "groundcontrol">
-
-
  
-<fcs_function name="left brake nose-gear">
-          <function name="fcs/nose-gear-left-brake-steer-factor">
-                	<product>
-		 <property>fcs/left-brake-cmd-norm</property>
-                <value>-1</value>
-                	</product>
-	</function>
-        </fcs_function>
-	
-<fcs_function name="right brake nose-gear">
-          <function name="fcs/nose-gear-right-brake-steer-factor">
-                	<product>
-		 <property>fcs/right-brake-cmd-norm</property>
-                <value>1</value>
-                	</product>
-	</function>
-        </fcs_function>
+ <!-- following code by Jonathan Redpath aka legoboyvdlp-->
+<channel name="NWS">
+            <switch name="fcs/nws-enabled">
+                <default value="0"/>
+                <test logic="OR" value="1"> <!-- NWS mechanically centered if gear is fully extended -->
+                    /gear/gear[0]/compression-norm gt 0.001
+                </test>
+            </switch>
 
-            <summer name="Brake-Sum">
+            <fcs_function name="left brake nose-gear">
+                <function name="fcs/nose-gear-left-brake-steer-factor">
+                    <product>
+                        <property>fcs/left-brake-cmd-norm</property>
+                        <value>-1</value>
+                    </product>
+                </function>
+            </fcs_function>
+
+            <fcs_function name="right brake nose-gear">
+                <function name="fcs/nose-gear-right-brake-steer-factor">
+                    <product>
+                        <property>fcs/right-brake-cmd-norm</property>
+                        <value>1</value>
+                    </product>
+                </function>
+            </fcs_function>
+
+            <summer name="fcs/brake-sum">
                 <input>fcs/nose-gear-right-brake-steer-factor</input>
                 <input>fcs/nose-gear-left-brake-steer-factor</input>
                 <clipto>
@@ -460,24 +466,52 @@
                 </clipto>
             </summer>
 
-	    
-<fcs_function name="Nose Wheel Steering">
-          <function name="fcs/brake-steer-influence">
-            <description>Steering command for nose gear</description>
-		<table>
-                   <independentVar lookup="row">fcs/brake-sum</independentVar>
-                   <independentVar lookup="column">fcs/steer-cmd-norm</independentVar>
-                   <tableData>
-			-1	0	1
-                  -1	-29	0	11 
-                   0	-11	0	11
-                   1	-11	0	29  
-                   </tableData>
-                </table>
-	</function>
-          <output>fcs/steer-pos-deg</output> 
-        </fcs_function>
- </channel>
+            <switch name="fcs/brake-influence-enabled"> <!-- brake should not influence nws if the aircraft is not moving -->
+                <default value="0"/>
+                <test logic="OR" value="1">
+                    /gear/gear[0]/rollspeed-ms gt 0.25
+                </test>
+            </switch>
+
+            <fcs_function name="fcs/brake-sum-adjusted">
+                <function>
+                    <product>
+                        <property>fcs/brake-influence-enabled</property>
+                        <property>fcs/brake-sum</property>
+                    </product>
+                </function>
+            </fcs_function>
+
+            <fcs_function name="fcs/nws-cmd-deg"> <!-- Drive the nose wheel with the rudder and brakes -->
+                <function>
+                    <table>
+                        <independentVar lookup="row">fcs/brake-sum-adjusted</independentVar>
+                        <independentVar lookup="column">/controls/flight/rudder</independentVar>
+                        <tableData>
+                                -1  0   1
+                          -1    -29 0   11
+                           0    -11 0   11
+                           1    -11 0   29
+                        </tableData>
+                    </table>
+                </function>
+            </fcs_function>
+
+            <fcs_function name="fcs/nws-cmd-deg-adjusted">
+                <function>
+                    <product>
+                        <property>fcs/nws-cmd-deg</property>
+                        <property>fcs/nws-enabled</property>
+                    </product>
+                </function>
+            </fcs_function>
+
+            <actuator name="fcs/steer-deg">
+                <input>fcs/nws-cmd-deg-adjusted</input>
+                <rate_limit>80</rate_limit> <!-- 80 deg / s , or 1/8 second to full deflection with NWS -->
+                <output>fcs/steer-pos-deg</output>
+            </actuator>
+</channel>
 
         <channel name="Pitch">
             <summer name="Pitch Trim Sum">

@@ -103,6 +103,16 @@
                 <z> 0 </z>
             </location>
         </pointmass>
+        
+      <pointmass name="Ice">
+           <weight unit="LBS"> 0 </weight>
+            <location name="POINTMASS" unit="IN">
+            <x>37.37 </x>
+            <y> 0 </y>
+            <z>32.94 </z>
+            </location>
+        </pointmass>
+        
     </mass_balance>
 
     <ground_reactions>
@@ -738,6 +748,7 @@
     </flight_control>	
 
 <aerodynamics>
+        <property value="0.0">ice/wing</property>
         <alphalimits unit="RAD">
             <min>-0.087</min>
             <max>0.28</max>
@@ -925,6 +936,23 @@
                 </product>
             </function>
         </axis>
+        
+<!--taken from SenecaII by Torsten Dreyer-->
+           <function name="aero/coefficient/CLicew">
+                <description>Lift_decrease_due_to_ice_on_wing</description>
+                <product>
+                    <property>aero/qbar-area</property>
+                    <table>
+                        <independentVar>ice/wing</independentVar>
+                        <tableData>
+                            0.0      0
+                            0.5      -0.3
+                            1.0      -0.6
+                            2.0      -1.2
+                        </tableData>
+                    </table>
+                </product>
+            </function>
 
         <axis name="DRAG">
             <function name="aero/coefficient/CDo">
@@ -1070,6 +1098,23 @@
                     <property>metrics/Sw-sqft</property>
                     <property>/sim/model/door-positions/WindowR/position-norm</property>
                     <value>0.0020</value>
+                </product>
+            </function>
+            
+<!--taken from SenecaII by Torsten Dreyer-->
+            <function name="aero/coefficient/CDicew">
+                <description>Drag_due_to_ice_on_wing</description>
+                <product>
+                    <property>aero/qbar-area</property>
+                    <table>
+                        <independentVar>ice/wing</independentVar>
+                        <tableData>
+                            0.0      0
+                            0.5      0.06
+                            1.0      0.12
+                            2.0      0.3
+                        </tableData>
+                    </table>
                 </product>
             </function>
 
@@ -1609,5 +1654,6 @@
     <system file="propulsion"/>
     <system file="indicated-airspeed"/>
     <system file="c182s-ground-effects"/>    
+      <system file="icing"/>    
 
 </fdm_config>

@@ -61,9 +61,10 @@
 			<reflection-fresnel type="float">0.0</reflection-fresnel>
 			<reflection-rainbow type="float">0.0</reflection-rainbow>
 			<reflection-noise type="float">0.0</reflection-noise>
-      <dirt-enabled type="int">0</dirt-enabled>
-			<dirt-color type="vec3d">1.0 1.0 1.0</dirt-color>
-			<dirt-factor type="float">0.5</dirt-factor>
+                		<dirt-enabled type="int">1</dirt-enabled>
+                		<dirt-multi type="int">0</dirt-multi>
+			<dirt-color type="vec3d">0.85 1.0 1.0</dirt-color>
+			<dirt-factor type="float"><use>/fdm/jsbsim/ice/graphic</use></dirt-factor>
 		</parameters>
 <!-- ####################
 ### NORMALMAP INCLUDE ###

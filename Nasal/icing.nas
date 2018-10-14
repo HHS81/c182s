@@ -237,11 +237,11 @@ cloud3 = props.globals.getNode("/environment/icing/clouds/cloud3", 1);
 cloud4 = props.globals.getNode("/environment/icing/clouds/cloud4", 1);
 
 
-setprop("/environment/icing/clouds/cloud0", (((mtemperatureN - mdewpointN)*30) + statE + cle0 + cloffset));
-setprop("/environment/icing/clouds/cloud1", (((mtemperatureN - mdewpointN)*30) + statE + cle1 + cloffset));
-setprop("/environment/icing/clouds/cloud2", (((mtemperatureN - mdewpointN)*30) + statE + cle2 + cloffset));
-setprop("/environment/icing/clouds/cloud3", (((mtemperatureN - mdewpointN)*30) + statE + cle3 + cloffset));
-setprop("/environment/icing/clouds/cloud4", (((mtemperatureN - mdewpointN)*30) + statE + cle4 + cloffset));
+setprop("/environment/icing/clouds/cloud0", (((mtemperatureN - mdewpointN)*30) + statE + cle0 ));
+setprop("/environment/icing/clouds/cloud1", (((mtemperatureN - mdewpointN)*30) + statE + cle1 ));
+setprop("/environment/icing/clouds/cloud2", (((mtemperatureN - mdewpointN)*30) + statE + cle2 ));
+setprop("/environment/icing/clouds/cloud3", (((mtemperatureN - mdewpointN)*30) + statE + cle3 ));
+setprop("/environment/icing/clouds/cloud4", (((mtemperatureN - mdewpointN)*30) + statE + cle4 ));
 
  
 settimer(Cloudaltitude, 0.0);

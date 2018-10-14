@@ -24,8 +24,8 @@ Simulates effects of icing to weight, all other effects like drag and loss of li
         <channel>
 
         <pure_gain name="ice/weight">
-            <input>ice/wing</input>
-            <gain>250</gain>
+            <input>ice/graphic</input>
+            <gain>100</gain>
             <output>inertia/pointmass-weight-lbs[6]</output>
         </pure_gain>
 	

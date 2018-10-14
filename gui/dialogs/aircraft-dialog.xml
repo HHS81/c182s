@@ -339,7 +339,7 @@
             </checkbox>-->
 
             <button>
-                <halign>right</halign>
+                <halign>left</halign>
                 <legend>Repair</legend>
                 <pref-width>60</pref-width>
                 <pref-height>28</pref-height>
@@ -363,6 +363,52 @@
                         c182s.repair_damage();
                         c182s.click("engine-repair", 6.0);
                     </script>
+                </binding>
+            </button>
+            
+              <button>
+                <halign>right</halign>
+                <legend>Clean Aircraft</legend>
+                <pref-width>100</pref-width>
+                <pref-height>28</pref-height>
+                <enable>
+                    <and>
+                        <not>
+                            <property>/sim/freeze/replay-state</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/engines/engine[0]/running</property>
+                        </not>
+                    </and>
+                </enable>
+                <binding>
+  <command>property-assign</command>
+  <property>/fdm/jsbsim/ice/wing</property>
+  <value>0</value>
+                </binding>
+                <binding>
+  <command>property-assign</command>
+  <property>/fdm/jsbsim/ice/stabilizer</property>
+  <value>0</value>
+                </binding>
+                <binding>
+  <command>property-assign</command>
+  <property>/fdm/jsbsim/ice/propeller</property>
+  <value>0</value>
+                </binding>
+                    <binding>
+  <command>property-assign</command>
+  <property>/fdm/jsbsim/ice/fuselage</property>
+  <value>0</value>
+                </binding>
+                <binding>
+  <command>property-assign</command>
+  <property>/fdm/jsbsim/ice/windshield</property>
+  <value>0</value>
                 </binding>
             </button>
         </group>

@@ -31,7 +31,6 @@
 </signals>
 
     
-
     <!-- Engine faults -->
     <signals include="/Aircraft/Generic/flightrecorder/components/faults-engines.xml">
         <count type="int">1</count>

@@ -10,6 +10,38 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
 
 <path>kn62a.ac</path>
 
+<effect>
+  <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
+  <object-name>Bezel</object-name>
+  <object-name>Knob1</object-name>
+  <object-name>Knob2</object-name>
+  <object-name>SwFunction</object-name>
+  <object-name>SwPower</object-name>
+
+  <object-name>DashesNM</object-name>
+  <object-name>DashesGST</object-name>
+  <object-name>LabelsNM</object-name>
+  <object-name>LabelsMHZ</object-name>
+  <object-name>LabelsKTMIN</object-name>
+  <object-name>NMDigit1</object-name>
+  <object-name>NMDigit2</object-name>
+  <object-name>NMDigit3</object-name>
+  <object-name>NMDigit4</object-name>
+  <object-name>NMDecimal</object-name>
+  <object-name>NavDigit1</object-name>
+  <object-name>NavDigit2</object-name>
+  <object-name>NavDigit3</object-name>
+  <object-name>NavDigit4</object-name>
+  <object-name>NavDigit5</object-name>
+  <object-name>NavDecimal</object-name>
+  <object-name>KtDigit1</object-name>
+  <object-name>KtDigit2</object-name>
+  <object-name>KtDigit3</object-name>
+  <object-name>MinDigit1</object-name>
+  <object-name>MinDigit2</object-name>
+  <object-name>Min99</object-name>
+</effect>
+
 <animation>
   <type>material</type>
   <object-name>Bezel</object-name>
@@ -135,6 +167,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>NMDigit1</object-name>
   <condition>
     <and>
+    <property>/instrumentation/dme/serviceable</property>
     <property>/systems/electrical/outputs/dme</property>
     <property>/controls/switches/kn-62a</property>
     <property>/instrumentation/dme/in-range</property>
@@ -150,6 +183,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>NMDigit2</object-name>
   <condition>
     <and>
+    <property>/instrumentation/dme/serviceable</property>
     <property>/systems/electrical/outputs/dme</property>
     <property>/controls/switches/kn-62a</property>
     <property>/instrumentation/dme/in-range</property>
@@ -167,6 +201,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>NMDecimal</object-name>
   <condition>
     <and>
+    <property>/instrumentation/dme/serviceable</property>
     <property>/systems/electrical/outputs/dme</property>
     <property>/controls/switches/kn-62a</property>
     <property>/instrumentation/dme/in-range</property>
@@ -178,6 +213,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>DashesNM</object-name>
   <condition>
     <and>
+    <property>/instrumentation/dme/serviceable</property>
     <property>/systems/electrical/outputs/dme</property>
     <property>/controls/switches/kn-62a</property>
     <not><property>/instrumentation/dme/in-range</property></not>
@@ -196,6 +232,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>LabelsMHZ</object-name>
   <condition>
     <and>
+      <property>/instrumentation/dme/serviceable</property>
       <property>/systems/electrical/outputs/dme</property>
       <property>/controls/switches/kn-62a</property>
       <equals><property>/controls/switches/kn-62a-mode</property><value>1</value></equals>
@@ -207,6 +244,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <type>select</type>
   <object-name>LabelsNM</object-name>
   <condition>
+    <property>/instrumentation/dme/serviceable</property>
     <property>/systems/electrical/outputs/dme</property>
     <property>/controls/switches/kn-62a</property>
   </condition>
@@ -217,6 +255,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>LabelsKTMIN</object-name>
   <condition>
     <and>
+      <property>/instrumentation/dme/serviceable</property>
       <property>/systems/electrical/outputs/dme</property>
       <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
@@ -229,6 +268,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>KtDigit1</object-name>
   <condition>
     <and>
+      <property>/instrumentation/dme/serviceable</property>
       <property>/systems/electrical/outputs/dme</property>
       <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
@@ -245,6 +285,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>KtDigit2</object-name>
   <condition>
     <and>
+      <property>/instrumentation/dme/serviceable</property>
       <property>/systems/electrical/outputs/dme</property>
       <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
@@ -261,6 +302,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>KtDigit3</object-name>
   <condition>
     <and>
+      <property>/instrumentation/dme/serviceable</property>
       <property>/systems/electrical/outputs/dme</property>
       <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
@@ -274,6 +316,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>MinDigit1</object-name>
   <condition>
     <and>
+      <property>/instrumentation/dme/serviceable</property>
       <property>/systems/electrical/outputs/dme</property>
       <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
@@ -291,6 +334,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>MinDigit2</object-name>
   <condition>
     <and>
+      <property>/instrumentation/dme/serviceable</property>
       <property>/systems/electrical/outputs/dme</property>
       <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
@@ -304,6 +348,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>Min99</object-name>
   <condition>
     <and>
+      <property>/instrumentation/dme/serviceable</property>
       <property>/systems/electrical/outputs/dme</property>
       <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
@@ -318,6 +363,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>DashesGST</object-name>
   <condition>
     <and>
+      <property>/instrumentation/dme/serviceable</property>
       <property>/systems/electrical/outputs/dme</property>
       <property>/controls/switches/kn-62a</property>
       <not-equals><property>/controls/switches/kn-62a-mode</property><value>1</value></not-equals>
@@ -677,6 +723,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
         <binding>
             <condition>
                 <and>
+                    <property>/instrumentation/dme/serviceable</property>
                     <property>/systems/electrical/outputs/dme</property>
                     <property>/controls/switches/kn-62a</property>
                     <equals>
@@ -726,6 +773,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
         <binding>
             <condition>
                 <and>
+                    <property>/instrumentation/dme/serviceable</property>
                     <property>/systems/electrical/outputs/dme</property>
                     <property>/controls/switches/kn-62a</property>
                     <equals>
@@ -758,6 +806,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
         <binding>
             <condition>
                 <and>
+                    <property>/instrumentation/dme/serviceable</property>
                     <property>/systems/electrical/outputs/dme</property>
                     <property>/controls/switches/kn-62a</property>
                     <equals>
@@ -808,6 +857,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
         <binding>
           <condition>
             <and>
+            <property>/instrumentation/dme/serviceable</property>
             <property>/systems/electrical/outputs/dme</property>
             <property>/controls/switches/kn-62a</property>
             <equals>
@@ -840,6 +890,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
             <binding>
           <condition>
             <and>
+            <property>/instrumentation/dme/serviceable</property>
             <property>/systems/electrical/outputs/dme</property>
             <property>/controls/switches/kn-62a</property>
             <equals>

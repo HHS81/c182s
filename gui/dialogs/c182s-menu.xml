@@ -59,8 +59,15 @@
                     <dialog-name>fuelmgmt-dialog</dialog-name>
                 </binding>
             </item>
+            
+            <item>
+                <label>Aircraft Failure Management</label>
+                <binding>
+                    <command>dialog-show</command>
+                    <dialog-name>extended-failure-dialog</dialog-name>
+                </binding>
+            </item>
 
-            <!--
             <item>
                 <label>Flashlight</label>
                 <binding>
@@ -68,7 +75,7 @@
                     <script>c182s.toggle_flashlight()</script>
                 </binding>
             </item>
-            -->
+
 
             <item>
                 <label>Auto Startup/Shutdown</label>

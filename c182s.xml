@@ -103,16 +103,6 @@
                 <z> 0 </z>
             </location>
         </pointmass>
-	
-      <pointmass name="Ice">
-           <weight unit="LBS"> 0 </weight>
-            <location name="POINTMASS" unit="IN">
-            <x>37.37 </x>
-            <y> 0 </y>
-            <z>32.94 </z>
-            </location>
-        </pointmass>
-	
     </mass_balance>
 
     <ground_reactions>
@@ -122,8 +112,8 @@
                 <y> 0 </y>
                 <z>-47.09</z><!--includes offset due to gear compression animation, should be -47.17-->
             </location>
-            <static_friction> 0.99 </static_friction>
-            <dynamic_friction> 0.8 </dynamic_friction>
+            <static_friction> 0.5 </static_friction>
+            <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">3600 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">900 </damping_coeff>
@@ -137,7 +127,7 @@
                 <y>-51.56 </y>
                 <z>-43.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
-            <static_friction> 0.99 </static_friction>
+            <static_friction> 0.5 </static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
             <spring_coeff unit="LBS/FT"> 5400 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">200 </damping_coeff>
@@ -151,7 +141,7 @@
                 <y>51.56 </y>
                 <z>-43.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
-            <static_friction> 0.99 </static_friction>
+            <static_friction> 0.5</static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">5400 </spring_coeff>
@@ -435,6 +425,8 @@
     
     <system file="electrical"/> <!-- load electrical system -->
     
+    <system file="cabin-heat_and_air"/> <!-- cabin heat and air -->
+    
     <flight_control name="FCS: c182s">
 <!--Cessna 182S POH Page 7-12: nose gear steer deg=11deg, by applying left or right brake increasing steer deg up to 29deg-->
  <channel name = "groundcontrol">
@@ -698,7 +690,7 @@
                 </domain>
                 <range>
                     <!-- Defines cooling airflow with min=closed/max=open cowl flaps -->
-                    <min>0.35</min>
+                    <min>0.48</min>
                     <max>0.80</max>
                 </range>
                 <output>propulsion/engine[0]/cooling-factor-cowlflaps</output>
@@ -746,7 +738,6 @@
     </flight_control>	
 
 <aerodynamics>
-        <property value="0.0">ice/wing</property>
         <alphalimits unit="RAD">
             <min>-0.087</min>
             <max>0.28</max>
@@ -756,8 +747,7 @@
             <min>0.09</min>
             <max>0.297</max>
         </hysteresis_limits>
-	
-    
+
         <function name="aero/function/kCDge">
             <description>Change_in_drag_due_to_ground_effect</description>
             <product>
@@ -807,6 +797,24 @@
             </product>
 <value>1.0</value>
         </function>
+	
+	<function name="aero/function/vel-propwash-fps">
+            <description> propeller induced velocity </description>
+            <sum>
+                <property>propulsion/engine/prop-induced-velocity_fps</property>
+             </sum>
+        </function>
+
+        <function name="aero/function/qbar-propwash-psf">
+            <description> q bar due to the propeller induced velocity </description>
+            <product>
+                <property>aero/function/vel-propwash-fps</property>
+                <property>aero/function/vel-propwash-fps</property>
+                <property>atmosphere/rho-slugs_ft3</property>
+                <value>0.5</value>
+            </product>
+        </function>
+	
 
         <function name="aero/function/velocity-induced-fps">
             <description> velocity including the propulsion induced velocity.</description>
@@ -917,24 +925,6 @@
                 </product>
             </function>
         </axis>
-	
-<!--taken from SenecaII by Torsten Dreyer-->
-           <function name="aero/coefficient/CLicew">
-                <description>Lift_decrease_due_to_ice_on_wing</description>
-                <product>
-                    <property>aero/qbar-area</property>
-                    <table>
-                        <independentVar>ice/wing</independentVar>
-                        <tableData>
-                            0.0      0
-                            0.5      -0.3
-                            1.0      -0.6
-                            2.0      -1.2
-                        </tableData>
-                    </table>
-                </product>
-            </function>
-
 
         <axis name="DRAG">
             <function name="aero/coefficient/CDo">
@@ -1033,24 +1023,53 @@
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCLge</property>
                         <property>propulsion/engine[0]/cowl-flaps-norm</property>
-                    <value>0.0077</value>
+                    <value>0.028</value>
                 </product>
             </function>
-
-<!--taken from SenecaII by Torsten Dreyer-->
-            <function name="aero/coefficient/CDicew">
-                <description>Drag_due_to_ice_on_wing</description>
+            
+            <function name="aero/coefficient/CDdoorL">
+                <description>Drag_due_to_door_left</description>
                 <product>
-                    <property>aero/qbar-area</property>
-                    <table>
-                        <independentVar>ice/wing</independentVar>
-                        <tableData>
-                            0.0      0
-                            0.5      0.06
-                            1.0      0.12
-                            2.0      0.3
-                        </tableData>
-                    </table>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>/sim/model/door-positions/DoorL/position-norm-effective</property>
+                    <value>0.0150</value>
+                </product>
+            </function>
+            <function name="aero/coefficient/CDdoorR">
+                <description>Drag_due_to_door_right</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>/sim/model/door-positions/DoorR/position-norm-effective</property>
+                    <value>0.0150</value>
+                </product>
+            </function>
+            <function name="aero/coefficient/CDbaggagedoor">
+                <description>Drag_due_to_door_left</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>/sim/model/door-positions/BaggageDoor/position-norm-effective</property>
+                    <value>0.0150</value>
+                </product>
+            </function>
+            <function name="aero/coefficient/CDwindow-l">
+                <description>Drag_due_to_window_left</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>/sim/model/door-positions/WindowL/position-norm</property>
+                    <value>0.0020</value>
+                </product>
+            </function>
+            <function name="aero/coefficient/CDwindow-r">
+                <description>Drag_due_to_window_right</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>/sim/model/door-positions/WindowR/position-norm</property>
+                    <value>0.0020</value>
                 </product>
             </function>
 
@@ -1419,7 +1438,7 @@
                 </product>
             </function>
 	    
-<function name="aero/coefficient/Cnp">
+	<function name="aero/coefficient/Cnp">
                 <description>yawing moment due to roll rate</description>
                 <product>
                     <property>aero/qbar-psf</property>
@@ -1437,7 +1456,15 @@
                 </product>
             </function>
 	    
-
+	<function name="aero/coefficient/Cnspw">
+                <description>Yaw_moment_due_to_spiraling_propwash</description>
+                <product>
+                    <property>aero/function/qbar-propwash-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/bw-ft</property>
+                    <value>-0.05</value>
+                </product>
+            </function> 
 
             <function name="aero/coefficient/Cnr">
                 <description>Yaw_moment_due_to_yaw_rate</description>
@@ -1581,7 +1608,6 @@
     <system file="c182s-stallhorn"/>
     <system file="propulsion"/>
     <system file="indicated-airspeed"/>
-   <system file="c182s-ground-effects"/>    
-      <system file="icing"/>    
+    <system file="c182s-ground-effects"/>    
 
 </fdm_config>

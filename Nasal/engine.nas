@@ -131,7 +131,15 @@ var oil_consumption = maketimer(1.0, func {
         if (service_hours_increase > 1.5) service_hours_increase = 1.5;  # cap at that rate
         consumption_qph = consumption_qph + service_hours_increase;
     
+        # Consumption should be higher with high oil temperature (oil burning)
+        var oiltemp = getprop("/engines/engine/oil-final-temperature-degf") or 70;
+        oiltemp_increase = 0.02*oiltemp - 5.5;   # raises linearly from 275°F=0qph to 300°F=0.5qph
+        if(oiltemp_increase > 0.5) oiltemp_increase = 0.5; # cap at that rate
+        if (oiltemp_increase > 0) consumption_qph = consumption_qph + oiltemp_increase;
     
+    
+    
+        #############################################
         # Calculate consumption and update properties
         # Example:  2200 RPM with pristine oil has 0.155+0.0=0.155qts/hr    (sump 8->4 = ~25:50 hrs flight time)
         #           2200 RPM with 25hrs old oil has 0.155+0.125=0.28qts/hr  (sump 8->4 = ~14:15 hrs flight time)
@@ -166,6 +174,9 @@ var oil_consumption = maketimer(1.0, func {
         # Should give 1.0 for oil_level = 4 and 0.1 for oil_level 3.97,
         # engine.xml defines engine-killing level as 3.97
         low_oil_pressure_factor = 30 * oil_level_limited - 119;
+        
+        # apply (potentially) falling pressure due to failure of oil pump
+        low_oil_pressure_factor = low_oil_pressure_factor * getprop("/engines/engine[0]/oil-pump/serviceable-norm"); 
         
         # Should give 1.0 for oil_level = 4 and 1.5 for oil_level 3.97
         low_oil_temperature_factor = -50/3 * oil_level_limited + 203/3;
@@ -222,6 +233,16 @@ var calculate_real_oiltemp = maketimer(0.5, func {
     }
 });
 
+# ======= OIL Pump handling =====
+setlistener("/engines/engine[0]/oil-pump/serviceable", func {
+    svc = getprop("/engines/engine[0]/oil-pump/serviceable");
+    if (svc) {
+        interpolate("/engines/engine[0]/oil-pump/serviceable-norm", 1, 5);  # repair
+    } else {
+        interpolate("/engines/engine[0]/oil-pump/serviceable-norm", 0, 5);
+    }
+}, 1, 0);
+
 # ======= OIL SYSTEM INIT =======
 if (!getprop("/engines/engine[0]/oil-level")) {
      setprop("/engines/engine[0]/oil-level", 8);
@@ -233,3 +254,35 @@ if (!getprop("/engines/engine[0]/oil-service-hours")) {
 oil_consumption.simulatedTime = 1;
 oil_consumption.start();
 calculate_real_oiltemp.start();
+
+
+# ======= Magneto handling ======
+var updateMagnetos = func() {
+    # update engine magneto state depending on switch position
+    var tgt_value = 0;
+    var keypos = getprop("/controls/switches/magnetos");
+    var magleft_svc  = getprop("/controls/engines/engine/faults/left-magneto-serviceable");
+    var magright_svc = getprop("/controls/engines/engine/faults/right-magneto-serviceable");
+    
+    if (keypos == 1) {
+        if (magright_svc) tgt_value = keypos;
+        
+    } else if (keypos == 2) {
+        if (magleft_svc) tgt_value = keypos;
+        
+    } else if (keypos == 3) {
+        if ( magright_svc and !magleft_svc) tgt_value = 1;
+        if (!magright_svc and  magleft_svc) tgt_value = 2;
+        if ( magright_svc and  magleft_svc) tgt_value = 3;
+        if (!magright_svc and !magleft_svc) tgt_value = 0;
+        
+    } else {
+        tgt_value = keypos;
+    }
+    
+    setprop("controls/engines/engine/magnetos", tgt_value);
+    #setprop("/engines/engine/magnetos", keypos); # this property seems not to be used!
+}
+setlistener("/controls/switches/magnetos", updateMagnetos, 1, 1);
+setlistener("/controls/engines/engine/faults/left-magneto-serviceable", updateMagnetos, 0, 1);
+setlistener("/controls/engines/engine/faults/right-magneto-serviceable", updateMagnetos, 0, 1);

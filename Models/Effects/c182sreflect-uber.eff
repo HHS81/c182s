@@ -41,31 +41,29 @@
 			<reflection-dynamic type="int">1</reflection-dynamic>
 			<ambient-correction type="float"><use>/sim/rendering/ambient_correction</use></ambient-correction>
 			<texture n="4">
-				<image>Aircraft/c182s/Models/Effects/greymap.png</image>
-			         <filter>linear-mipmap-linear</filter>
-				<wrap-s>clamp</wrap-s>
-				<wrap-t>clamp</wrap-t>
-				<internal-format>normalized</internal-format>
-			</texture>
-			<texture n="5">
-				<type>cubemap</type>
-      <images>
-			<positive-x>Aircraft/Generic/Effects/CubeMaps/buildings/N.png</positive-x>
-			<negative-x>Aircraft/Generic/Effects/CubeMaps/buildings/S.png</negative-x>
-			<positive-y>Aircraft/Generic/Effects/CubeMaps/buildings/W.png</positive-y>
-			<negative-y>Aircraft/Generic/Effects/CubeMaps/buildings/E.png</negative-y>
-			<positive-z>Aircraft/Generic/Effects/CubeMaps/buildings/U.png</positive-z>
-			<negative-z>Aircraft/Generic/Effects/CubeMaps/buildings/D.png</negative-z>
-            </images>
+        <image>Aircraft/c182s/Models/Effects/greymap.png</image>
+        <filter>linear-mipmap-linear</filter>
+        <wrap-s>clamp</wrap-s>
+        <wrap-t>clamp</wrap-t>
+        <internal-format>normalized</internal-format>
+      </texture>
+      <texture n="5">
+        <type>cubemap</type>
+        <images>
+          <positive-x>Aircraft/Generic/Effects/CubeMaps/buildings/N.png</positive-x>
+          <negative-x>Aircraft/Generic/Effects/CubeMaps/buildings/S.png</negative-x>
+          <positive-y>Aircraft/Generic/Effects/CubeMaps/buildings/W.png</positive-y>
+          <negative-y>Aircraft/Generic/Effects/CubeMaps/buildings/E.png</negative-y>
+          <positive-z>Aircraft/Generic/Effects/CubeMaps/buildings/U.png</positive-z>
+          <negative-z>Aircraft/Generic/Effects/CubeMaps/buildings/D.png</negative-z>
+        </images>
 			</texture>
 			<reflection-fresnel type="float">0.0</reflection-fresnel>
 			<reflection-rainbow type="float">0.0</reflection-rainbow>
 			<reflection-noise type="float">0.0</reflection-noise>
-			<ambient-correction type="float">0.1</ambient-correction>
-                		<dirt-enabled type="int">1</dirt-enabled>
-                		<dirt-multi type="int">0</dirt-multi>
-			<dirt-color type="vec3d">0.85 1.0 1.0</dirt-color>
-			<dirt-factor type="float"><use>/fdm/jsbsim/ice/graphic</use></dirt-factor>
+      <dirt-enabled type="int">0</dirt-enabled>
+			<dirt-color type="vec3d">1.0 1.0 1.0</dirt-color>
+			<dirt-factor type="float">0.5</dirt-factor>
 		</parameters>
 <!-- ####################
 ### NORMALMAP INCLUDE ###

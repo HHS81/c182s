@@ -2,13 +2,13 @@
 
 <PropertyList>
 
-  <name type="string" n="2">take-off</name>
+  <name type="string">take-off</name>
 
   <description>
     The plane will be in "ready-for-takeoff" state.
     preflight checklist is complete and the engine is ready for takeoff.
 
-    Start this state with --state=ready-for-takeoff
+    Start this state with --state=take-off
   </description>
 
   <overlay>

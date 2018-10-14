@@ -28,7 +28,16 @@
 <PropertyList>
 
   <path>Davtron803.ac</path>
-  
+
+  <effect>
+      <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
+      <object-name>face</object-name>
+      <object-name>OAT.swt</object-name>
+      <object-name>Select.btn</object-name>
+      <object-name>Control.btn</object-name>
+      <object-name>lcd</object-name>
+  </effect>
+
   <animation>
     <!-- buttons and overall instrument -->
     <type>material</type>
@@ -98,6 +107,7 @@
     <type>pick</type>
     <object-name>OAT.swt</object-name>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
         <greater-than>
             <property>/systems/electrical/volts</property>
             <value>0</value>
@@ -120,6 +130,7 @@
     <visible>false</visible>
     <nopreview/>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
         <greater-than>
             <property>/systems/electrical/volts</property>
             <value>0</value>
@@ -143,6 +154,7 @@
     <object-name>Select.btn</object-name>
     <object-name>Select.btn.cs</object-name>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
         <greater-than>
             <property>/systems/electrical/volts</property>
             <value>0</value>
@@ -166,6 +178,7 @@
     <visible>false</visible>
     <nopreview/>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
         <greater-than>
             <property>/systems/electrical/volts</property>
             <value>0</value>
@@ -267,6 +280,11 @@
     <type>select</type>
     <object-name>davtron.top.lcd.oat-volts</object-name>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/top-mode</property>
             <value>E</value>
@@ -310,6 +328,11 @@
     <type>select</type>
     <object-name>davtron.top.lcd.oat-degf</object-name>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/top-mode</property>
             <value>F</value>
@@ -353,6 +376,11 @@
     <type>select</type>
     <object-name>davtron.top.lcd.oat-degc</object-name>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/top-mode</property>
             <value>C</value>
@@ -394,6 +422,17 @@
     <kerning>default</kerning> 
     <alignment>center-center</alignment>
   </text>
+  <animation>
+    <type>select</type>
+    <object-name>davtron.lcd.line</object-name>
+    <condition>
+        <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
+    </condition>
+  </animation>
   
   
   <!-- ######################## -->
@@ -435,6 +474,11 @@
     <type>select</type>
     <object-name>davtron.bot.lcd.utc</object-name>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>UT</value>
@@ -477,6 +521,11 @@
     <type>select</type>
     <object-name>davtron.bot.lcd.lt</object-name>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>LT</value>
@@ -519,6 +568,11 @@
     <type>select</type>
     <object-name>davtron.bot.lcd.ft</object-name>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>FT</value>
@@ -561,6 +615,11 @@
     <type>select</type>
     <object-name>davtron.bot.lcd.et</object-name>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>ET</value>
@@ -633,6 +692,18 @@
     <kerning>default</kerning> 
     <alignment>left-center</alignment>
   </text>
+  <animation>
+    <type>select</type>
+    <object-name>davtron.lcd.mode1</object-name>
+    <object-name>davtron.lcd.mode2</object-name>
+    <condition>
+        <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
+    </condition>
+  </animation>
  
   
   <!-- Selection highlighters -->
@@ -664,6 +735,11 @@
     <type>select</type>
     <object-name>davtron.lcd.mode.UTsel</object-name>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>UT</value>
@@ -699,6 +775,11 @@
     <type>select</type>
     <object-name>davtron.lcd.mode.LTsel</object-name>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>LT</value>
@@ -735,6 +816,11 @@
     <type>select</type>
     <object-name>davtron.lcd.mode.FTsel</object-name>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>FT</value>
@@ -770,6 +856,11 @@
     <type>select</type>
     <object-name>davtron.lcd.mode.ETsel</object-name>
     <condition>
+        <property>/instrumentation/clock/serviceable</property>
+        <greater-than>
+            <property>/systems/electrical/volts</property>
+            <value>0</value>
+        </greater-than>
         <equals>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value>ET</value>

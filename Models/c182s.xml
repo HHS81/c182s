@@ -26,9 +26,38 @@
    </load>
 </nasal>
 
+<!-- Engine smoke -->
+<model>
+  <path>Aircraft/c182s/Models/Effects/c182_enginesmoke.xml</path>
+  <name>enginesmoke</name>
+  <offsets>
+    <x-m>-0.60</x-m>
+    <y-m> 0.00</y-m>
+    <z-m>-0.10</z-m>
+  </offsets>
+</model>
+<model>
+  <path>Aircraft/c182s/Models/Effects/c182_cowlsmoke-left.xml</path>
+  <name>enginesmoke</name>
+  <offsets>
+    <x-m>-0.1558</x-m>
+    <y-m>-0.3067</y-m>
+    <z-m>-0.5783</z-m>
+  </offsets>
+</model>
+<model>
+  <path>Aircraft/c182s/Models/Effects/c182_cowlsmoke-right.xml</path>
+  <name>enginesmoke</name>
+  <offsets>
+    <x-m>-0.1558</x-m>
+    <y-m>0.3108</y-m>
+    <z-m>-0.5783</z-m>
+  </offsets>
+</model>
+
 <effect>
     <inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
-   <object-name>Fuselage</object-name><!-- model obejcts parented in Blender - gives faster livery loading-->
+    <object-name>Fuselage</object-name><!-- model obejcts parented in Blender - gives faster livery loading-->
 <object-name>WinterKit</object-name>
    <!--<object-name>Spinner</object-name>
    <object-name>WheelFairingNose</object-name>
@@ -58,7 +87,7 @@
  </effect>
  
   <effect>
-       <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas-uber</inherits-from>
+    <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas-uber</inherits-from>
     <object-name>Windscreen</object-name>
     <object-name>Window.L</object-name>
     <object-name>Window.R</object-name>
@@ -81,7 +110,8 @@
    </effect>
    
 <effect>
-	<inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
+    <inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
+    
 	<parameters>
 			<reflection-correction type="float">1.0</reflection-correction>
 			<reflection-dynamic type="int">1</reflection-dynamic>
@@ -196,7 +226,7 @@
   <condition>
    <less-than>
     <property>engines/engine[0]/rpm</property>
-    <value>1001</value>
+    <value>651</value>
    </less-than>
   </condition>
  </animation>
@@ -207,7 +237,7 @@
   <condition>
    <greater-than>
     <property>engines/engine[0]/rpm</property>
-    <value>1001</value>
+    <value>651</value>
    </greater-than>
    <less-than>
     <property>engines/engine[0]/rpm</property>
@@ -695,7 +725,7 @@
    <object-name>WindowFrame.L</object-name>
 <object-name>Window.L</object-name>
 <object-name>Window.L.001</object-name>
-   <property>sim/model/door-positions/DoorL/position-norm</property>
+   <property>sim/model/door-positions/DoorL/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>
@@ -743,7 +773,7 @@
    <object-name>WindowFrame.R</object-name>
 <object-name>Window.R</object-name>
 <object-name>Window.R.001</object-name>
-   <property>sim/model/door-positions/DoorR/position-norm</property>
+   <property>sim/model/door-positions/DoorR/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>
@@ -1031,6 +1061,35 @@
             </binding>
         </hovered>
     </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>StallVane.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>/controls/stall-horn/test</property>
+                <value>1</value>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/controls/stall-horn/test</property>
+                    <value>0</value>
+                </binding>
+            </mod-up>
+        </action>  
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>stallvanetest-tt-id</tooltip-id>
+                <label>Stall Vane</label>
+            </binding>
+        </hovered>
+    </animation>
  
 <animation>
    <type>pick</type>
@@ -1084,7 +1143,7 @@
  <animation>
    <type>rotate</type>
    <object-name>BaggageDoor</object-name>
-   <property>sim/model/door-positions/BaggageDoor/position-norm</property>
+   <property>sim/model/door-positions/BaggageDoor/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>
@@ -1187,8 +1246,8 @@
 <animation>
    <type>blend</type>
    <object-name>PlaneX</object-name>
-   <property>/systems/electrical/outputs/beacon</property>
-   <factor>0.0416</factor>
+   <property>/systems/electrical/outputs/beacon-norm</property>
+   <factor>1</factor>
    <max>1.0</max>
    <min>0.0</min>
  </animation>
@@ -1206,7 +1265,10 @@
 	<property>/sim/model/c182s/procedural-lights</property>
 	</not>
 	</or>
-	<property>/systems/electrical/outputs/beacon</property>
+	<greater-than>
+	<property>/systems/electrical/outputs/beacon-norm</property>
+	<value>0.01</value>
+	</greater-than>
 	</and>
 	</condition>
 </animation>
@@ -1701,11 +1763,11 @@
                 <command>set-tooltip</command>
                 <tooltip-id>pitot</tooltip-id>
                 <label>%s</label>
-                <property>/sim/model/c182s/securing/pitot-cover-visible</property>
+                <property>/sim/model/c182s/securing/pitot-cover-visible-changed</property>
                 <mapping>nasal</mapping>
                 <script>
                     var cover = "On";
-                    if (!arg[0]) {
+                    if (!getprop("/sim/model/c182s/securing/pitot-cover-visible")) {
                         cover = "Off";
                     }
                     
@@ -1972,6 +2034,7 @@
         <object-name>LeftTank.cs</object-name>
         <object-name>LeftTankDrain.cs</object-name>
         <object-name>Oil.cs</object-name>
+        <object-name>StallVane.cs</object-name>
         <object-name>pitotcover.cs</object-name>
         <object-name>RightTank.cs</object-name>
         <object-name>RightTankDrain.cs</object-name>

@@ -6,6 +6,12 @@
   <indicated-speed-kt type="double">0</indicated-speed-kt>
 </airspeed-indicator>
 
+<annunciator>
+    <testswitch type="int">1</testswitch>
+    <dim-factor type="float">1</dim-factor>
+    <serviceable type="bool">1</serviceable>
+</annunciator>
+
 <audio-panel include="../Models/Instruments/Avionics/gma340properties.xml"/>
 
 <marker-beacon>
@@ -74,6 +80,7 @@
 </dme>
 
 <davtron803>
+    <serviceable type="bool">1</serviceable>
     <top-mode type="string">F</top-mode>
     <bot-mode type="string">LT</bot-mode>
     <flight-time type="string">00:00</flight-time>

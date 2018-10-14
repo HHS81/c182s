@@ -2,14 +2,14 @@
 
 <PropertyList>
 
-  <name type="string" n="3">cruise</name>
+  <name type="string">cruise</name>
 
   <description>
     The plane will be in "crusing" state with engines running.
     Initial Airspeed is set to 100 knots unless specified otherwise (eg. --vc=120)
     You should also set an --altitude=... setting to start in-air.
 
-    Start this state with --state=cruising.
+    Start this state with --state=cruise.
   </description>
 
   <overlay>

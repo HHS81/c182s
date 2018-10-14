@@ -4,8 +4,119 @@
 Under the GPL. Used by shadows under ALS -->
 
 <PropertyList>
+    
+    <!-- ================================================================== -->
+    <!-- Climate effects                                                    -->
+    <!-- ================================================================== -->
 
-<filter>
+    <filter>
+        <name>Aircraft Effect Fog Level</name>
+        <type>noise-spike</type>
+        <max-rate-of-change>0.1</max-rate-of-change>
+        <enable>
+            <condition>
+                <not>
+                    <property>/sim/freeze/replay-state</property>
+                </not>
+            </condition>
+        </enable>
+        <input>
+            <condition>
+                <property>/sim/model/c182s/enable-fog-frost</property>
+            </condition>
+            <property>/fdm/jsbsim/heat/fog-level</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/environment/aircraft-effects/fog-level</property>
+        </output>
+    </filter>
+
+    <filter>
+        <name>Aircraft Effect Frost Level</name>
+        <type>noise-spike</type>
+        <max-rate-of-change>0.1</max-rate-of-change>
+        <enable>
+            <condition>
+                <not>
+                    <property>/sim/freeze/replay-state</property>
+                </not>
+            </condition>
+        </enable>
+        <input>
+            <condition>
+                <property>/sim/model/c182s/enable-fog-frost</property>
+            </condition>
+            <property>/fdm/jsbsim/heat/frost-level</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/environment/aircraft-effects/frost-level</property>
+        </output>
+    </filter>
+
+    <logic>
+        <name>Aircraft Effect Temperature In Range</name>
+        <enable>
+            <condition>
+                <not>
+                    <property>/sim/freeze/replay-state</property>
+                </not>
+            </condition>
+        </enable>
+        <input>
+            <and>
+                <less-than>
+                    <property>/fdm/jsbsim/heat/cabin-air-temp-degc</property>
+                    <value>32.0</value>
+                </less-than>
+                <greater-than>
+                    <property>/fdm/jsbsim/heat/cabin-air-temp-degc</property>
+                    <value>0.0</value>
+                </greater-than>
+            </and>
+        </input>
+        <output>
+            <property>/sim/model/c182s/cabin-air-temp-in-range</property>
+        </output>
+    </logic>
+
+    <logic>
+        <name>Aircraft Effect Fog Or Frost Increasing</name>
+        <enable>
+            <condition>
+                <not>
+                    <property>/sim/freeze/replay-state</property>
+                </not>
+            </condition>
+        </enable>
+        <input>
+            <and>
+                <greater-than>
+                    <property>/fdm/jsbsim/heat/moisture-norm</property>
+                    <value>0.5</value>
+                </greater-than>
+                <greater-than>
+                    <property>/fdm/jsbsim/heat/surface-dewpoint-diff</property>
+                    <value>0.0</value>
+                </greater-than>
+            </and>
+        </input>
+        <output>
+            <property>/sim/model/c182s/fog-or-frost-increasing</property>
+        </output>
+    </logic>
+    
+    
+    
+    <!-- ================================================================== -->
+    <!-- Tiedown                                                     -->
+    <!-- ================================================================== -->
+    <filter>
         <type>gain</type>
         <gain>0.3048</gain>
         <input>
@@ -15,8 +126,6 @@ Under the GPL. Used by shadows under ALS -->
             <property>/position/altitude-agl-m</property>
         </output>
     </filter>
-
-
 
     <!-- logic for tiedowns -->
     <logic>
@@ -80,5 +189,202 @@ Under the GPL. Used by shadows under ALS -->
             <property>/sim/model/c182s/securing/tiedownT-addable</property>
         </output>
     </logic>
+    
+    <!-- ================================================================== -->
+    <!-- Checking if doors are opened or closed in order to skip or not     -->
+    <!-- the handle animation                                               -->
+    <!-- ================================================================== -->
+
+    <filter>
+        <name>Right door opened</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <or>
+                    <equals>
+                        <property>/sim/model/door-positions/DoorR/position-norm</property>
+                        <value>1.0</value>
+                    </equals>
+                    <equals>
+                        <property>/sim/model/door-positions/DoorR/position-norm</property>
+                        <value>0.0</value>
+                    </equals>
+                </or>
+            </condition>
+        </enable>
+        <input>
+            <condition>
+                <equals>
+                    <property>/sim/model/door-positions/DoorR/position-norm</property>
+                    <value>1.0</value>
+                </equals>
+            </condition>
+            <value>1.0</value>
+        </input>
+        <input>
+            <condition>
+                <equals>
+                    <property>/sim/model/door-positions/DoorR/position-norm</property>
+                    <value>0.0</value>
+                </equals>
+            </condition>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/sim/model/door-positions/DoorR/opened</property>
+        </output>
+    </filter>
+
+    <filter>
+        <name>Left door opened</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <or>
+                    <equals>
+                        <property>/sim/model/door-positions/DoorL/position-norm</property>
+                        <value>1.0</value>
+                    </equals>
+                    <equals>
+                        <property>/sim/model/door-positions/DoorL/position-norm</property>
+                        <value>0.0</value>
+                    </equals>
+                </or>
+            </condition>
+        </enable>
+        <input>
+            <condition>
+                <equals>
+                    <property>/sim/model/door-positions/DoorL/position-norm</property>
+                    <value>1.0</value>
+                </equals>
+            </condition>
+            <value>1.0</value>
+        </input>
+        <input>
+            <condition>
+                <equals>
+                    <property>/sim/model/door-positions/DoorL/position-norm</property>
+                    <value>0.0</value>
+                </equals>
+            </condition>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/sim/model/door-positions/DoorL/opened</property>
+        </output>
+    </filter>
+    
+    <!-- ================================================================== -->
+    <!-- Max range for doors and baggage doors  -->
+    <!-- ================================================================== -->
+
+    <filter>
+        <name>Effective range for right door</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <product>
+                    <property>/sim/model/door-positions/DoorR/position-norm</property>
+                    <max>
+                        <min>
+                            <difference>
+                                <value>1.0</value>
+                                <product>
+                                    <sum>
+                                        <property>/velocities/airspeed-kt</property>
+                                        <sin>
+                                            <product>
+                                                <value>1.07</value>
+                                                <property>/velocities/airspeed-kt</property>
+                                            </product>
+                                        </sin>
+                                    </sum>
+                                    <value>0.01</value>
+                                </product>
+                            </difference>
+                            <value>1.0</value>
+                        </min>
+                        <value>0.51</value>
+                    </max>
+                </product>
+            </expression>
+        </input>
+        <output>
+            <property>/sim/model/door-positions/DoorR/position-norm-effective</property>
+        </output>
+    </filter>
+
+    <filter>
+        <name>Effective range for left door</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <product>
+                    <property>/sim/model/door-positions/DoorL/position-norm</property>
+                    <max>
+                        <min>
+                            <difference>
+                                <value>1.0</value>
+                                <product>
+                                    <sum>
+                                        <property>/velocities/airspeed-kt</property>
+                                        <sin>
+                                            <product>
+                                                <value>1.38</value>
+                                                <property>/velocities/airspeed-kt</property>
+                                            </product>
+                                        </sin>
+                                    </sum>
+                                    <value>0.01</value>
+                                </product>
+                            </difference>
+                            <value>1.0</value>
+                        </min>
+                        <value>0.51</value>
+                    </max>
+                </product>
+            </expression>
+        </input>
+        <output>
+            <property>/sim/model/door-positions/DoorL/position-norm-effective</property>
+        </output>
+    </filter>
+
+    <filter>
+        <name>Effective range for baggage door</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <product>
+                    <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
+                    <max>
+                        <min>
+                            <difference>
+                                <value>1.0</value>
+                                <product>
+                                    <sum>
+                                        <property>/velocities/airspeed-kt</property>
+                                        <sin>
+                                            <product>
+                                                <value>0.73</value>
+                                                <property>/velocities/airspeed-kt</property>
+                                            </product>
+                                        </sin>
+                                    </sum>
+                                    <value>0.02</value>
+                                </product>
+                            </difference>
+                            <value>1.0</value>
+                        </min>
+                        <value>0.02</value>
+                    </max>
+                </product>
+            </expression>
+        </input>
+        <output>
+            <property>/sim/model/door-positions/BaggageDoor/position-norm-effective</property>
+        </output>
+    </filter>
 
 </PropertyList>

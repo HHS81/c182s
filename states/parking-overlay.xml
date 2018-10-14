@@ -2,13 +2,13 @@
 
 <PropertyList>
 
-  <name type="string" n="1">parking</name>
+  <name type="string">parking</name>
 
   <description>
     The plane will be in "cold-and-dark" state, that is parked and secured, with all
     equipment switched off. Preflight inspection has not be done yet.
 
-    Start this state with --state=cold-and-dark
+    Start this state with --state=parking
   </description>
 
   <overlay>

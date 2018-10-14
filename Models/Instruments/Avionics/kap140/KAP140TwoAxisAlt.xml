@@ -19,6 +19,14 @@ properties' values.
   <name>KAP140TwoAxisAlt</name>
   <path>kap140.ac</path>
 
+  <effect>
+    <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
+    <object-name>knob-outer</object-name>
+    <object-name>knob-inner</object-name>
+    <object-name>base</object-name>
+    <object-name>buttons</object-name>
+  </effect>
+
   <animation>
     <type>material</type>
     <object-name>knob-outer</object-name>
@@ -54,7 +62,7 @@ properties' values.
   
   <animation>
     <type>material</type>
-    <object-name>buttons</object-name>>
+    <object-name>buttons</object-name>
     <condition>
         <not>
             <property>sim/rendering/rembrandt/enabled</property>

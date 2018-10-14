@@ -4,6 +4,13 @@
 
 <path>Compass.ac</path>
 
+  <effect>
+    <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
+    <object-name>Compass</object-name>
+	  <object-name>Needle</object-name>
+	  <object-name>Interior</object-name>
+  </effect>
+
 <animation>
 	<type>material</type>
 	<object-name>Compass</object-name>

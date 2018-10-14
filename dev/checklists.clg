@@ -120,7 +120,10 @@ item("Strobe Lights") {
 }
 
 item("Annunciator Panel Switch") {
-    state("PLACE AND HOLD IN TST POSITION");
+    s = "instrumentation/annunciator/testswitch";
+    state("PLACE AND HOLD IN TST POSITION", s == 2) s=2;
+    state("RELEASE", s==1||s==0) s=1;
+    marker(0.3600, 0.0717, 0.4283, 1.35);
 }
 
 item("Fuel Selector Valve") {
@@ -146,7 +149,7 @@ item("Cowl Flaps") {
 }
 
 item("Mixture") {
-    s   = "controls/engines/engine[0]/mixture-lever";
+    s   = "controls/engines/engine[0]/mixture";
     gph = "/systems/fuel/indicated-manfold-fuel-flow-gph";
     state("IDLE CUT-OFF", s <= 0.0) {
         fgcommand("property-interpolate", property=s, value=0.0, rate=0.5);
@@ -171,7 +174,7 @@ item("Mixture") {
 
 item("Throttle") {
     thrt = "controls/engines/engine[0]/throttle";  
-    mix  = "controls/engines/engine[0]/mixture-lever";
+    mix  = "controls/engines/engine[0]/mixture";
     prop = "controls/engines/engine[0]/propeller-pitch";
     rpm  = "/fdm/jsbsim/propulsion/engine/engine-rpm";
     state("IDLE", thrt <= 0.0) {
@@ -180,7 +183,7 @@ item("Throttle") {
     state("CHECK IDLE", thrt <= 0.0) {
         fgcommand("property-interpolate", property=thrt, value=0.0, rate=0.5);
     }
-    state("OPEN 1/4 INCH", (thrt >= 0.07 && thrt <= 0.08)) {
+    state("OPEN 1/4 INCH", (thrt >= 0.06 && thrt <= 0.10)) {
         fgcommand("property-interpolate", property=thrt, value=0.08, rate=0.5);
     }
     state("FULL OPEN", thrt >= 1.0 ) {
@@ -214,7 +217,7 @@ item("Propeller Area") {
 
 item("Power") {
     thrt = "controls/engines/engine[0]/throttle";  
-    mix  = "controls/engines/engine[0]/mixture-lever";
+    mix  = "controls/engines/engine[0]/mixture";
     prop = "controls/engines/engine[0]/propeller-pitch";
     rpm  = "/fdm/jsbsim/propulsion/engine/engine-rpm";
     mfp  = "/engines/engine/mp-inhg";
@@ -718,7 +721,12 @@ item("Static Source opening") {
 }
 
 item("Stall Warning Vane") {
-    state("CHECK for freedom of movement");
+    s = "controls/stall-horn/test";
+    state("CHECK for freedom of movement") {
+        s=2.0;
+        fgcommand("property-interpolate", property=s, value=0.0, rate=2);
+    }
+    marker(0.5317, -2.2442, 0.7917, 7);
 }
 
 item("Landing/Taxi Light(s)") {
@@ -754,6 +762,7 @@ checklist("Preflight Inspection") {
         check("Avionics Master Switch", "OFF");
         check("Static Pressure Alternate Source Valve", "OFF");
         check("Annunciator Panel Switch", "PLACE AND HOLD IN TST POSITION", "and ensure all annunciators illuminate");
+        check("Annunciator Panel Switch", "RELEASE", "check that appropriate annunciators remain on");
         check("Fuel Selector Valve", "BOTH");
         check("Wing Flaps", "EXTEND");
         check("Pitot Heat", "ON", "(Carefully check that pitot tube is", "warm to the touch within 30 seconds)");

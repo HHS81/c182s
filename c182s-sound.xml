@@ -394,7 +394,7 @@
                     <property>/controls/circuit-breakers/Warn</property>
                     <property>/systems/electrical/outputs/stallhorn</property>
                     <less-than>
-                        <property>/instrumentation/airspeed-indicator[0]/icing</property>
+                        <property>/systems/pitot/icing</property>
                         <value>0.3</value>
                     </less-than>
             </condition>
@@ -423,7 +423,7 @@
                 <property>/controls/circuit-breakers/Warn</property>
                 <property>/systems/electrical/outputs/stallhorn</property>
                 <less-than>
-                    <property>/instrumentation/airspeed-indicator[0]/icing</property>
+                    <property>/systems/pitot/icing</property>
                     <value>0.3</value>
                 </less-than>
             </condition>

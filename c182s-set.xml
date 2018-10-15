@@ -75,6 +75,8 @@
     </electrical>
   </systems>
   
+
+  
   <!-- Aircraft states -->
   <start-state type="string">auto</start-state>
   <start-state-internal>
@@ -533,6 +535,8 @@
     <desc>Engine Starter</desc>
    </key>
   </help>
+  
+
 
         <menubar include="gui/dialogs/c182s-menu.xml"/>
         
@@ -736,6 +740,8 @@
             <path>/sim/failure-manager/display-on-screen</path>
             <path>/sim/failure-manager/restore-on-start</path>
         </aircraft-data>
+        
+     <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>
 
  </sim>
  

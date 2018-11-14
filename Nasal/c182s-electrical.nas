@@ -800,10 +800,12 @@ if ( bus_volts > 22 ) {
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/Transponder")) {
      if (getprop("/controls/switches/kt-76c") > 0) {
          setprop("/systems/electrical/outputs/kt-76c", bus_volts);
+         setprop("/systems/electrical/outputs/transponder", bus_volts);
         load += bus_volts / 28;
     } 
     }else {
         setprop("/systems/electrical/outputs/kt-76c", 0.0);
+        setprop("/systems/electrical/outputs/transponder", 0.0);
     }
 
     # Autopilot Power

@@ -182,10 +182,25 @@ IceSensitiveElement.update = func {
   var dist_nm = arg[1];
   var factor  = arg[2];
 
-  var v = me.iceAmountN.getValue() + dist_nm * factor * me.sensitivityN.getValue();
-  if( v < 0.0 ) {
+#hack for getting rain and snow speeding up the ice amount
+
+  var rainN = (getprop ("/environment/rain-norm") or 0);
+var snowN =  (getprop ("/environment/snow-norm") or 0);
+var tempN =  (getprop ("/environment/temperature-degc") or 0);
+
+if (tempN <0 ){
+rainF = rainN * 1;
+snowF = snowN * 1;
+}else{
+rainF = rainN * 0;
+snowF = snowN * 0;
+}
+
+
+  var v = me.iceAmountN.getValue() + dist_nm * factor  * me.sensitivityN.getValue() + (0.005*rainF) + (0.005*snowF) ;
+  if(( v < 0.0 ) ){
     v = 0.0;
-  }
+  } 
   if( me.iceAmountN.getValue() != v ) {
     me.iceAmountN.setValue( v );
   }

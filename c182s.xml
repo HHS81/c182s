@@ -967,9 +967,9 @@
                         <independentVar>ice/wing</independentVar>
                         <tableData>
                             0.0      0
-                            0.5      -0.3
-                            1.0      -0.6
-                            2.0      -1.2
+                            0.5      -0.6
+                            1.0      -1.2
+                            2.0      -2.4
                         </tableData>
                     </table>
                 </product>
@@ -1131,9 +1131,9 @@
                         <independentVar>ice/wing</independentVar>
                         <tableData>
                             0.0      0
-                            0.5      0.06
-                            1.0      0.12
-                            2.0      0.3
+                            0.5      0.12
+                            1.0      0.24
+                            2.0      0.6
                         </tableData>
                     </table>
                 </product>

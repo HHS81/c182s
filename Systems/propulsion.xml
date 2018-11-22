@@ -5,6 +5,8 @@
     
     <!-- for debugging/fooling around: manual added engine friction -->
     <property type="double" value="0">systems/propulsion/manual-friction</property>
+    <property type="double" value="0">ice/propeller</property>
+
     
     <channel name="engine power">
   	
@@ -28,6 +30,8 @@
           </function>
           <output>propulsion/engine/volumetric-efficiency</output>   
         </fcs_function>
+        
+        
 	
 
 
@@ -96,10 +100,39 @@
           <output>propulsion/engine/air-intake-impedance-factor</output>   
         </fcs_function>-->
 	
-   
+       </channel>
 
-    </channel>
-    
+<channel name= "Prop Icing">
+<fcs_function name="systems/propulsion/prop-ice">
+          <function>
+                <table>
+                    <independentVar lookup="row">ice/propeller</independentVar>
+                    <tableData breakPoint="0">
+                        0   1		
+                        1   0
+                </tableData>
+                </table>  
+          </function>
+          <output>propulsion/engine/prop-ice-factor</output>   
+        </fcs_function>
+        
+<fcs_function name="Prop Icing Drag">
+          <function name="fcs/prop-ice">
+            <description>faking drag of ice on prop</description>
+		<table>
+                   <independentVar lookup="row">fcs/advance-cmd-norm</independentVar>
+                   <independentVar lookup="column">propulsion/engine/prop-ice-factor</independentVar>
+                   <tableData>
+                        0   1
+                   0	1   0	
+                   1    0   1	
+                   </tableData>
+                </table>
+	</function>
+          <output>fcs/advance-pos-norm</output> 
+        </fcs_function>
+
+ </channel>
     
     <!-- Engine friction depending on Oil parameters
          with credits and many thanks to Ron Jensen: https://sourceforge.net/p/jsbsim/mailman/message/30264774/

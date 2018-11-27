@@ -107,7 +107,26 @@ var kt76c_copycode = func {
   kt76c_code.setValue(code);
 }
 
-									# Various things to do based on power switch settings
+# update encoded FL
+# encoder prop mode-c-alt-ft must be polled (tied property, setlistener wont work)
+var kt76c_updateFLcode = func {
+  fl_strm = "---";  # default: display invalid
+  var fl      = getprop("/instrumentation/encoder/mode-c-alt-ft") or 0;
+  if (fl >= 0) {
+    fl_strm    = fl ~ "";                  # convert to string so substr() can work
+    fl_strm    = sprintf("%05d", fl_strm); # convert to 5 digits, prepended with zeros (7100 ft => 07100)
+    fl_strm    = substr(fl_strm, 0, 3);    # convert to left 3 digits (07100 => 071)
+  }
+  
+  kt76c_fl.setValue(fl_strm);
+  #print("KT76C DBG:  fl=" ~ fl_strm ~ "; encoder=" ~ fl);
+}
+var kt76c_fl_update_timer = maketimer(2.5, kt76c_updateFLcode);
+kt76c_fl_update_timer.simulatedTime = 1;
+kt76c_fl_update_timer.singleShot = 0;
+
+
+# Various things to do based on power switch settings
 setlistener(kt76c_pwr, func {
   #if (kt76c_pwr.getValue() >= 3) {
   #  #enable blink prop
@@ -136,5 +155,15 @@ setlistener(kt76c_pwr, func {
 });
 
 
-# init knob and instuments
-kt76c_knob_mode.setValue(getprop("/controls/switches/kt-76c"));  #sync internal knob state to real knob state
+
+# INIT
+setlistener("/sim/signals/fdm-initialized", func {
+
+    # init knob and instuments
+    kt76c_knob_mode.setValue(getprop("/controls/switches/kt-76c"));  #sync internal knob state to real knob state
+
+    # init FL update
+    kt76c_fl_update_timer.start();
+
+    print("KT76C transponder initialized");
+});

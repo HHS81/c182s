@@ -132,8 +132,7 @@
         </map>
 
     <livery>
-      <file type="string">liveries/default.png</file>
-      <index type="int">0</index>
+        <name type="string">default</name>
     </livery>
     
   <c182s>

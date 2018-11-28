@@ -784,7 +784,6 @@
 
         <function name="aero/function/kCDge">
             <description>Change_in_drag_due_to_ground_effect</description>
-            <product>
                 <table>
                     <independentVar>aero/h_b-mac-ft</independentVar>
                     <tableData>
@@ -803,13 +802,10 @@
                           1.1000	1.0000
                       </tableData>
                 </table>
-            </product>
-<value>1.0</value>
         </function>
 
         <function name="aero/function/kCLge">
             <description>Change_in_lift_due_to_ground_effect</description>
-            <product>
                 <table>
                     <independentVar>aero/h_b-mac-ft</independentVar>
                     <tableData>
@@ -828,8 +824,6 @@
                           1.1000	1.0000
                       </tableData>
                 </table>
-            </product>
-<value>1.0</value>
         </function>
 	
 	<function name="aero/function/vel-propwash-fps">

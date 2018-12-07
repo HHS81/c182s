@@ -1,6 +1,7 @@
 # KT-76c Transponder Support
 #
 # Gary Neely aka 'Buckaroo'
+# Enhanced 2018 B. Hallinger (Multiplayer/ATCPie and more close to KT manual)
 #
 # Released under GNU GENERAL PUBLIC LICENSE Version 2
 
@@ -18,10 +19,11 @@ var kt76c_replying	= props.globals.getNode("/instrumentation/transponder/replyin
 var kt76c_serviceable	= props.globals.getNode("/instrumentation/transponder/serviceable");
 var kt76c_vfr_default	= props.globals.getNode("/instrumentation/transponder/factory-vfr-code", 1);
 
-var kt76c_alt       = props.globals.getNode("/instrumentation/transponder/altitude");
-var kt76c_alt_valid = props.globals.getNode("/instrumentation/transponder/altitude-valid");
-var kt76c_knob_mode = props.globals.getNode("/instrumentation/transponder/inputs/knob-mode");
-var kt76c_ident_btn = props.globals.getNode("/instrumentation/transponder/inputs/ident-btn");
+var kt76c_alt        = props.globals.getNode("/instrumentation/transponder/altitude");
+var kt76c_alt_valid  = props.globals.getNode("/instrumentation/transponder/altitude-valid");
+var kt76c_knob_state = props.globals.getNode("/controls/switches/kt-76c");
+var kt76c_knob_mode  = props.globals.getNode("/instrumentation/transponder/inputs/knob-mode");
+var kt76c_ident_btn  = props.globals.getNode("/instrumentation/transponder/inputs/ident-btn");
 
 var encoder_serviceable	= props.globals.getNode("/instrumentation/encoder/serviceable");
 
@@ -29,7 +31,35 @@ var kt76c_codes		= [];						# Array for 4 code digits
 var kt76c_last		= [];						# Holds copy of last known good code
 
 
-									# Set next digit (push on list)
+# Update transponders knob-mode for ATC clients
+#   Translate: We must skip mode 3=GND; knob pos 3 must result in mode 4
+#   Power and serviceable is also considered.
+var kt76c_updateMode = func() {
+    var svc = kt76c_serviceable.getValue() or 0;
+    var pwr = kt76c_pwr.getValue() or 0;
+    var rdy = kt76c_ready.getValue() or 0;
+    var im  = kt76c_knob_state.getValue();
+    var om  = im;
+    if  (im > 2)  om = om + 1;  # 2=2, but 3->4 and 4->5
+    
+    # if power is lost, or not serviceable anymore, set mode to off
+    if (!svc or pwr < 3) {
+        om = 0;
+        #print("KT76C transponder: update mode: im=" ~ im ~ "; om=" ~ om ~ "NOT SERVICEABLE / POWER LOST (svc=" ~ svc ~ "; PWR=" ~ pwr ~ ")");
+    }
+    
+    # if not yet ready, do not tansmitt anything
+    if (rdy < 0.95) {
+        om = 0;
+        #print("KT76C transponder: update mode: im=" ~ im ~ "; om=" ~ om ~ "NOT READY");
+    }
+    
+    kt76c_knob_mode.setIntValue(om);
+    #print("KT76C transponder: update mode: im=" ~ im ~ "; om=" ~ om);
+}
+
+
+# Set next digit (push on list)
 var kt76c_button_code = func(i) {					# i = 0-7
   if (!kt76c_pwr.getValue()) { return 0; }
   if (size(kt76c_codes) >= 4) { return 0; }				# Max of 4 digits
@@ -47,7 +77,8 @@ var kt76c_button_code = func(i) {					# i = 0-7
   #kt76c_entry_clock(0);
 }
 
-									# Clear last digit (pop from list)
+
+# Clear last digit (pop from list)
 var kt76c_button_clr = func {
   if (!kt76c_pwr.getValue()) { return 0; }
   if (size(kt76c_codes)) {
@@ -56,7 +87,8 @@ var kt76c_button_clr = func {
   }
 }
 
-									# Standard VFR code is 1200
+
+# Standard VFR code is 1200
 var kt76c_button_vfr = func {
   if (!kt76c_pwr.getValue()) { return 0; }
   if (!kt76c_vfr_default.getValue()) kt76c_vfr_default.setIntValue(1200);  #set default factory VFR code unless already set
@@ -74,7 +106,8 @@ var kt76c_button_vfr = func {
   #kt76c_entry_clock(0);
 }
 
-									# Send our good code for 18 seconds
+
+# Send our good code for 18 seconds
 var kt76c_button_idt = func {
   if (kt76c_pwr.getValue() < 3) { return 0; }
   if (kt76c_goodcode.getValue() and kt76c_ready.getValue() == 1) {
@@ -84,15 +117,14 @@ var kt76c_button_idt = func {
     settimer(kt76c_disable_reply, 18);
   }
 }
-
-
 var kt76c_disable_reply = func {
   kt76c_replying.setValue(0);
   kt76c_ident_btn.setValue(0);
 }
 
-									# Codes are held in an array; copycode forms an
-									# integer from the code
+
+# Codes are held in an array; copycode forms an
+# integer from the code
 var kt76c_copycode = func {
   if (!size(kt76c_codes)) {
     kt76c_code.setValue(0);
@@ -106,6 +138,7 @@ var kt76c_copycode = func {
   code = code + codestr;
   kt76c_code.setValue(code);
 }
+
 
 # update encoded FL
 # encoder prop mode-c-alt-ft must be polled (tied property, setlistener wont work)
@@ -127,17 +160,20 @@ kt76c_fl_update_timer.singleShot = 0;
 
 
 # Various things to do based on power switch settings
+# TODO: This forces the listener on each power change. This is not good and uses more performance then neccessary.
 setlistener(kt76c_pwr, func {
   #if (kt76c_pwr.getValue() >= 3) {
   #  #enable blink prop
   #} else {
   #  #disable link prop
   #}
-  if (kt76c_pwr.getValue() > 0) {					# Enable transponder flight level encoder support
-    kt76c_serviceable.setValue("true");					# Note that power must also be on the encoder output
+  if (kt76c_pwr.getValue() >= 3) {					# Enable transponder flight level encoder support
+    #kt76c_serviceable.setValue("true");			# Note that power must also be on the encoder output
+    kt76c_updateMode();
     encoder_serviceable.setValue("true");
   } else {
-    kt76c_serviceable.setValue("false");
+    #kt76c_serviceable.setValue("false");
+    kt76c_updateMode();
     encoder_serviceable.setValue("false");
   }
   if (kt76c_pwr.getValue() > 0 and kt76c_ready.getValue() < 1)  {
@@ -154,13 +190,19 @@ setlistener(kt76c_pwr, func {
   }
 });
 
-
+# listen to serviceable property
+setlistener(kt76c_serviceable, func {
+    kt76c_updateMode();
+});
 
 # INIT
 setlistener("/sim/signals/fdm-initialized", func {
 
     # init knob and instuments
-    kt76c_knob_mode.setValue(getprop("/controls/switches/kt-76c"));  #sync internal knob state to real knob state
+    kt76c_updateMode();  #sync internal knob state to real knob state
+    
+    # init goodcode with current code
+    kt76c_goodcode.setValue(1);
 
     # init FL update
     kt76c_fl_update_timer.start();

@@ -334,12 +334,8 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
                 <wrap>false</wrap>
             </binding>
             <binding>
-                <command>property-adjust</command>
-                <property>/instrumentation/transponder/inputs/knob-mode</property>
-                <step>1</step>
-                <min>0</min>
-                <max>4</max>
-                <wrap>false</wrap>
+                <command>nasal</command>
+                <script>c182s.kt76c_updateMode()</script>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -356,12 +352,8 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
                 <wrap>false</wrap>
             </binding>
             <binding>
-                <command>property-adjust</command>
-                <property>/instrumentation/transponder/inputs/knob-mode</property>
-                <step>-1</step>
-                <min>0</min>
-                <max>4</max>
-                <wrap>false</wrap>
+                <command>nasal</command>
+                <script>c182s.kt76c_updateMode()</script>
             </binding>
             <binding>
                 <command>nasal</command>

@@ -828,9 +828,7 @@
 	
 	<function name="aero/function/vel-propwash-fps">
             <description> propeller induced velocity </description>
-            <sum>
                 <property>propulsion/engine/prop-induced-velocity_fps</property>
-             </sum>
         </function>
 
         <function name="aero/function/qbar-propwash-psf">

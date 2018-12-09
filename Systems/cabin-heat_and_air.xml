@@ -363,7 +363,6 @@
 
         <fcs_function name="heat/future-cabin-rel-humidity-calc">
             <function>
-                <sum>
                     <quotient>
                         <sum>
                             <product>
@@ -382,7 +381,6 @@
                             <property>heat/humans-airflow</property>
                         </sum>
                     </quotient>
-                </sum>
             </function>
         </fcs_function>
         

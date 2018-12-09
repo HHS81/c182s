@@ -510,6 +510,22 @@ setlistener("/sim/signals/fdm-initialized", func {
 
 
 ##########################################
+#Icing graphic helper
+##########################################
+var icinggraphic = func {
+    var ice= getprop("/fdm/jsbsim/ice/wing") or 0;
+    setprop("/fdm/jsbsim/ice/graphic", (ice *2.55));
+
+
+settimer(icinggraphic, 0.1);
+}
+icinggraphic();
+
+
+
+
+
+##########################################
 # Preflight control surface check: left aileron
 ##########################################
 var control_surface_check_left_aileron = func {

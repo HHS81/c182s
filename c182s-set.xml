@@ -121,7 +121,39 @@
    <path archive="y">Aircraft/c182s/Models/c182s.xml</path>
     <hide-yoke>false</hide-yoke>
 
-  
+     <icing>
+        <iceable>
+          <name>Wing</name>
+          <sensitivity type="double">1.0</sensitivity>
+          <output-property>/fdm/jsbsim/ice/wing</output-property>
+        </iceable>
+        <iceable>
+          <name>Stabilizer</name>
+          <sensitivity type="double">1.0</sensitivity>
+          <output-property>/fdm/jsbsim/ice/stabilizer</output-property>
+        </iceable>
+        <iceable>
+          <name>Propeller</name>
+          <sensitivity type="double">0.5</sensitivity>
+          <output-property>/fdm/jsbsim/ice/propeller</output-property>
+        </iceable>
+        <iceable>
+          <name>Windshield</name>
+          <sensitivity type="double">0.5</sensitivity>
+          <!-- not relevant for fdm, ignore output-property -->
+        </iceable>
+        <iceable>
+          <name>Fuselage</name>
+          <sensitivity type="double">0.3</sensitivity>
+          <output-property>/fdm/jsbsim/ice/fuselage</output-property>
+        </iceable>
+        <iceable>
+          <name>Pitot tube</name>
+          <sensitivity type="double">1</sensitivity>
+          <salvage-control>/systems/pitot/salvage</salvage-control>
+          <output-property>/systems/pitot/icing</output-property>
+        </iceable>
+      </icing>
     
 <!-- An exit for the walker -->
         <map>
@@ -1062,10 +1094,18 @@
     ]]>
 </script>
 </kap140>
+
     <failures> 
     <file>Aircraft/Generic/limits.nas</file>
     <file>Aircraft/c182s/Nasal/custom-failures.nas</file>
   </failures>
+  
+     
+<icing>
+      <file>Aircraft/c182s/Nasal/icing.nas</file>
+      <file>Aircraft/c182s/Nasal/PitotIcing.nas</file>
+</icing> 
+  
  </nasal>
 
  <!-- ================ map keyboard ================ -->

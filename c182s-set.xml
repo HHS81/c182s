@@ -1082,6 +1082,37 @@
           <property>sim/model/hide-yoke</property>
         </binding>
       </key>    
+      
+      
+      <!-- overwriting { and } default aliases -->
+      <key n="123">
+        <name>{</name>
+        <desc>Decrease Magneto on Selected Engine</desc>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.stepMagnetos(-1)</script>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.stepMagnetos(0)</script>
+            </binding>
+        </mod-up>
+      </key>
+      <key n="125">
+        <name>}</name>
+        <desc>Increase Magneto on Selected Engine</desc>
+        <binding>
+            <command>nasal</command>
+                <script>c182s.stepMagnetos(1)</script>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.stepMagnetos(0)</script>
+            </binding>
+        </mod-up>
+      </key>
 
     </keyboard>
     </input>

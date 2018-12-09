@@ -718,6 +718,28 @@ setlistener("/sim/model/c182s/fog-or-frost-increasing", func (node) {
 }, 1, 0);
 
 
+##########
+# Magneto key bindings
+# called by pressing { or } (see redefinition in c182-set.xml)
+##########
+var stepMagnetos = func(p) {
+    var keypos = getprop("/controls/switches/magnetos");
+    var magpos = getprop("controls/engines/engine/magnetos");
+    #print("stepMagnetos called with p=" ~ p ~ "; keypos=" ~ keypos ~ "; magpos=" ~ magpos);
+    
+    if (p == -1 and keypos <= 3 and keypos > 0) {
+        # mag decrease
+        var tgt_value = keypos - 1;
+        setprop("/controls/switches/magnetos", tgt_value);   # triggers an update listener
+    }
+    if (p == 1 and keypos < 3 and keypos >= 0) {
+        # mag increase
+        var tgt_value = keypos + 1;
+        setprop("/controls/switches/magnetos", tgt_value);   # triggers an update listener
+    }
+    
+}
+
 
 
 ###########

@@ -24,6 +24,7 @@ var kt76c_alt_valid  = props.globals.getNode("/instrumentation/transponder/altit
 var kt76c_knob_state = props.globals.getNode("/controls/switches/kt-76c");
 var kt76c_knob_mode  = props.globals.getNode("/instrumentation/transponder/inputs/knob-mode");
 var kt76c_ident_btn  = props.globals.getNode("/instrumentation/transponder/inputs/ident-btn");
+var kt76c_test       = props.globals.getNode("/instrumentation/transponder/testmode", 1);
 
 var encoder_serviceable	= props.globals.getNode("/instrumentation/encoder/serviceable");
 
@@ -42,6 +43,13 @@ var kt76c_updateMode = func() {
     var om  = im;
     if  (im > 2)  om = om + 1;  # 2=2, but 3->4 and 4->5
     
+    # announce test mode activation
+    if  (im == 2) {
+        kt76c_test.setIntValue(1);
+    } else {
+        kt76c_test.setIntValue(0);
+    }
+    
     # if power is lost, or not serviceable anymore, set mode to off
     if (!svc or pwr < 3) {
         om = 0;
@@ -57,6 +65,40 @@ var kt76c_updateMode = func() {
     kt76c_knob_mode.setIntValue(om);
     #print("KT76C transponder: update mode: im=" ~ im ~ "; om=" ~ om);
 }
+
+
+# Update reply state
+# The "R" sign blinks if operating or lights steadily in IDENT and TEST mode
+kt76c_replyCycle   = 0;
+var kt76c_updateReply = func() {
+    var rs = 0; # reply state to finally set
+
+    var im   = kt76c_knob_state.getValue();
+    var svc  = kt76c_serviceable.getValue() or 0;
+    var pwr  = kt76c_pwr.getValue() or 0;
+    var rdy  = kt76c_ready.getValue() or 0;
+    var tst  = kt76c_test.getValue() or 0;
+    var idnt = getprop("/instrumentation/transponder/ident") or 0;
+
+    # show reply sign when either IDENT is active, TEST mode selected or the blink cycle is at point 0.
+    if (pwr and svc and rdy > 0.9 and im >= 2 and (tst or idnt or kt76c_replyCycle == 0)) {
+        rs = 1;
+    }
+    
+    #print("KT76C DBG: calc R-cycle=" ~ rs ~ "; im=" ~ im ~ "; svc=" ~ svc ~ "; pwr=" ~ pwr ~ "rdy=" ~ rdy ~ "; ident=" ~ idnt);
+    kt76c_replying.setValue(rs);
+}
+var kt76c_updateReplyTimer = func() {
+    # calculate reply state changes by cycle (this depends on the listener called per second)
+    kt76c_replyCycle = kt76c_replyCycle + 1;
+    if (kt76c_replyCycle > 4) kt76c_replyCycle = 0;
+    
+    kt76c_updateReply();
+}
+var kt76c_reply_update_timer = maketimer(1, kt76c_updateReplyTimer);
+kt76c_reply_update_timer.simulatedTime = 1;
+kt76c_reply_update_timer.singleShot = 0;
+
 
 
 # Set next digit (push on list)
@@ -111,15 +153,9 @@ var kt76c_button_vfr = func {
 var kt76c_button_idt = func {
   if (kt76c_pwr.getValue() < 3) { return 0; }
   if (kt76c_goodcode.getValue() and kt76c_ready.getValue() == 1) {
-    kt76c_replying.setValue(1);
     kt76c_ident_btn.setValue(1);
-    
-    settimer(kt76c_disable_reply, 18);
+    kt76c_updateReply();
   }
-}
-var kt76c_disable_reply = func {
-  kt76c_replying.setValue(0);
-  kt76c_ident_btn.setValue(0);
 }
 
 
@@ -151,6 +187,12 @@ var kt76c_updateFLcode = func {
     fl_strm    = substr(fl_strm, 0, 3);    # convert to left 3 digits (07100 => 071)
   }
   
+  # honor test mode
+  var tst  = kt76c_test.getValue() or 0;
+  if (tst) {
+    fl_strm = "888";
+  }
+  
   kt76c_fl.setValue(fl_strm);
   #print("KT76C DBG:  fl=" ~ fl_strm ~ "; encoder=" ~ fl);
 }
@@ -162,11 +204,6 @@ kt76c_fl_update_timer.singleShot = 0;
 # Various things to do based on power switch settings
 # TODO: This forces the listener on each power change. This is not good and uses more performance then neccessary.
 setlistener(kt76c_pwr, func {
-  #if (kt76c_pwr.getValue() >= 3) {
-  #  #enable blink prop
-  #} else {
-  #  #disable link prop
-  #}
   if (kt76c_pwr.getValue() >= 3) {					# Enable transponder flight level encoder support
     #kt76c_serviceable.setValue("true");			# Note that power must also be on the encoder output
     kt76c_updateMode();
@@ -188,6 +225,8 @@ setlistener(kt76c_pwr, func {
   } else {
     kt76c_alt_valid.setValue(1);
   }
+  
+  kt76c_updateReply();
 });
 
 # listen to serviceable property
@@ -195,17 +234,45 @@ setlistener(kt76c_serviceable, func {
     kt76c_updateMode();
 });
 
+# listen to knob changes
+setlistener(kt76c_knob_state, func(n) {
+    kt76c_updateMode();
+    kt76c_updateFLcode();
+    kt76c_updateReply();
+});
+
+# listen to test mode changes
+setlistener(kt76c_test, func(n) {
+    if (n.getValue()) {
+        # test mode entered
+        kt76c_code.setIntValue(8888);
+    } else {
+        # test mode leaved
+        kt76c_code.setIntValue(kt76c_last[0] ~ kt76c_last[1] ~ kt76c_last[2] ~ kt76c_last[3]);
+    }
+}, 0, 0);
+
 # INIT
 setlistener("/sim/signals/fdm-initialized", func {
+    # init goodcode with current saved code
+    code = kt76c_code.getValue();
+    code = code ~ ""; # convert to string so substr() can work
+    code1 = substr(code, 0, 1);
+    code2 = substr(code, 1, 1);
+    code3 = substr(code, 2, 1);
+    code4 = substr(code, 3, 1);
+    kt76c_codes = [code1,code2,code3,code4];
+    kt76c_last = kt76c_codes;
+    kt76c_goodcode.setValue(1);
 
     # init knob and instuments
     kt76c_updateMode();  #sync internal knob state to real knob state
-    
-    # init goodcode with current code
-    kt76c_goodcode.setValue(1);
 
     # init FL update
     kt76c_fl_update_timer.start();
+    
+    # init reply sign timer
+    kt76c_reply_update_timer.start();
 
     print("KT76C transponder initialized");
 });

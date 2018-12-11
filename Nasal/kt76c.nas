@@ -227,7 +227,7 @@ setlistener(kt76c_pwr, func {
   }
   
   kt76c_updateReply();
-});
+}, 0 ,0);
 
 # listen to serviceable property
 setlistener(kt76c_serviceable, func {

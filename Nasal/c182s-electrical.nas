@@ -797,7 +797,7 @@ if ( bus_volts > 22 ) {
      }
 
      # Transponder
-    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/Transponder")) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/Transponder") and getprop("/instrumentation/transponder/serviceable")) {
      if (getprop("/controls/switches/kt-76c") > 0) {
          setprop("/systems/electrical/outputs/kt-76c", sprintf("%.1f", bus_volts)); # use a rounded version so the listener wont be called as often to conserve performance
          setprop("/systems/electrical/outputs/transponder", bus_volts);

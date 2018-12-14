@@ -175,6 +175,35 @@
     
     <hrule/>
     
+    <group>
+        <layout>hbox</layout>
+
+        <text>
+            <label>Transponder factory VFR code:</label>
+            <halign>left</halign>
+        </text>
+
+        <input>
+            <halign>left</halign>
+            <property>/instrumentation/transponder/factory-vfr-code</property>
+            <type>INT</type>
+            <width>4</width>
+        </input>
+        <button>
+            <legend>Apply</legend>
+            <equal>true</equal>
+            <default>false</default>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+    
+    <hrule/>
+    
 	<group>
 	<layout>vbox</layout>
 	<padding>6</padding>

@@ -103,33 +103,19 @@
        </channel>
 
 <channel name= "Prop Icing">
-<fcs_function name="systems/propulsion/prop-ice">
-          <function>
-                <table>
-                    <independentVar lookup="row">ice/propeller</independentVar>
-                    <tableData breakPoint="0">
-                        0   1		
-                        1   0
-                </tableData>
-                </table>  
-          </function>
-          <output>propulsion/engine/prop-ice-factor</output>   
-        </fcs_function>
         
-<fcs_function name="Prop Icing Drag">
-          <function name="fcs/prop-ice">
-            <description>faking drag of ice on prop</description>
+<fcs_function name="Prop Icing rpm  input">
+          <function name="fcs/prop-rpm-ice">
+            <description>faking drag of ice on prop rpm</description>
 		<table>
-                   <independentVar lookup="row">fcs/advance-cmd-norm</independentVar>
-                   <independentVar lookup="column">propulsion/engine/prop-ice-factor</independentVar>
+                   <independentVar lookup="row">ice/propeller</independentVar>
                    <tableData>
-                        0   1
-                   0	1   0	
-                   1    0   1	
+                        0   0
+                        1   50
                    </tableData>
                 </table>
 	</function>
-          <output>fcs/advance-pos-norm</output> 
+          <output>systems/propulsion/prop-ice-friction</output> 
         </fcs_function>
 
  </channel>
@@ -301,6 +287,7 @@
         <!-- sum up all friction variables and output to jsbsim, affecting engine RPM -->
         <summer name="systems/propulsion/friction-summer">
             <!--<bias> 0.5 </bias>-->
+            <input> systems/propulsion/prop-ice-friction </input>
             <input> systems/propulsion/oil-age-friction </input>
             <input> systems/propulsion/oil-temp-friction </input>
             <input> systems/propulsion/oil-press-friction </input>

@@ -28,6 +28,10 @@ Simulates effects of icing to weight, all other effects like drag and loss of li
             <gain>100</gain>
             <output>inertia/pointmass-weight-lbs[6]</output>
         </pure_gain>
+        
+
+        
+        
 	
        <!--<fcs_function name="systems/engine/ice">
           <function>

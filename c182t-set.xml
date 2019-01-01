@@ -863,6 +863,7 @@
    <winter-kit-installed type="bool">false</winter-kit-installed>
    <oil-temperature-env-diff type="double">0</oil-temperature-env-diff>
    <oil-compensated-temperature-degf type="double">60</oil-compensated-temperature-degf>
+   <oil-service-hours type="double">5</oil-service-hours>
    <external-heat>
        <enabled type="bool">false</enabled>
        <applied-norm type="double">0.0</applied-norm>
@@ -1025,6 +1026,15 @@
     <file>Aircraft/Generic/limits.nas</file>
   </failures>
  </nasal>
+
+ <fdm>
+   <jsbsim>
+     <ice>
+       <fuselage type="double">0</fuselage>
+     </ice>
+   </jsbsim>
+ </fdm>
+
 
  <!-- ================ map keyboard ================ -->
  <input>

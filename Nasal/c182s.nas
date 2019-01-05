@@ -16,15 +16,15 @@ var chocks001_model = {
                 for (; 1; i += 1)
                    if (manager.getChild("model", i, 0) == nil)
                       break;
-		      
+
 		var chocks001 = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
-				
+
 		geo.put_model("Aircraft/c182s/Models/Exterior/chock001.ac", chocks001,
 				props.globals.getNode("/orientation/heading-deg").getValue());
-					 me.index = i;	
+					 me.index = i;
           },
-	  
+
        remove:   func {
                 #print("chocks001_model.remove");
              props.globals.getNode("/models", 1).removeChild("model", me.index);
@@ -53,15 +53,15 @@ var chocks002_model = {
                 for (; 1; i += 1)
                    if (manager.getChild("model", i, 0) == nil)
                       break;
-		      
+
 		var chocks002 = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
-				
+
 		geo.put_model("Aircraft/c182s/Models/Exterior/chock002.ac", chocks002,
 				props.globals.getNode("/orientation/heading-deg").getValue());
-					 me.index = i;	
+					 me.index = i;
           },
-	  
+
        remove:   func {
                 #print("chocks002_model.remove");
              props.globals.getNode("/models", 1).removeChild("model", me.index);
@@ -90,15 +90,15 @@ var chocks003_model = {
                 for (; 1; i += 1)
                    if (manager.getChild("model", i, 0) == nil)
                       break;
-		      
+
 		var chocks003 = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
-				
+
 		geo.put_model("Aircraft/c182s/Models/Exterior/chock003.ac", chocks003,
 				props.globals.getNode("/orientation/heading-deg").getValue());
-					 me.index = i;	
+					 me.index = i;
           },
-	  
+
        remove:   func {
                 #print("chocks003_model.remove");
              props.globals.getNode("/models", 1).removeChild("model", me.index);
@@ -131,12 +131,12 @@ var coneR_model = {
                       break;
 		var cones = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
-				
+
 		geo.put_model("Aircraft/c182s/Models/Exterior/safety-cone_R.ac", cones,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 				 me.index = i;
           },
-	  
+
        remove:   func {
                 #print("coneR_model.remove");
              props.globals.getNode("/models", 1).removeChild("model", me.index);
@@ -167,12 +167,12 @@ var coneL_model = {
                       break;
 		var cones = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
-				
+
 		geo.put_model("Aircraft/c182s/Models/Exterior/safety-cone_L.ac", cones,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 				 me.index = i;
           },
-	  
+
        remove:   func {
                 #print("coneL_model.remove");
              props.globals.getNode("/models", 1).removeChild("model", me.index);
@@ -204,15 +204,15 @@ var gpu_model = {
                 for (; 1; i += 1)
                    if (manager.getChild("model", i, 0) == nil)
                       break;
-		      
+
 		var gpu = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
-				
+
 		geo.put_model("Aircraft/c182s/Models/Exterior/external-power.xml", gpu,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 		 me.index = i;
           },
-	  
+
        remove:   func {
                 #print("gpu_model.remove");
              props.globals.getNode("/models", 1).removeChild("model", me.index);
@@ -247,14 +247,14 @@ var ladder_model = {
                       break;
 		var ladder = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
-				
+
 		geo.put_model("Aircraft/c182s/Models/Exterior/ladder.xml", ladder,
 				props.globals.getNode("/orientation/heading-deg").getValue());
-				
+
 		 me.index = i;
-				
+
           },
-	  
+
        remove:   func {
                 #print("ladder_model.remove");
              props.globals.getNode("/models", 1).removeChild("model", me.index);
@@ -287,14 +287,14 @@ var fueltanktrailer_model = {
                       break;
 		var fueltanktrailer = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
-				
+
 		geo.put_model("Aircraft/c182s/Models/Exterior/fueltanktrailer.ac", fueltanktrailer,
 				props.globals.getNode("/orientation/heading-deg").getValue());
-				
+
 		 me.index = i;
-				
+
           },
-	  
+
        remove:   func {
                 #print("fueltanktrailer_model.remove");
              props.globals.getNode("/models", 1).removeChild("model", me.index);
@@ -327,14 +327,14 @@ var EngPreHeat_model = {
                       break;
 		var EngPreHeat = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
-				
+
 		geo.put_model("Aircraft/c182s/Models/Exterior/RedDragonEnginePreHeater.ac", EngPreHeat,
 				props.globals.getNode("/orientation/heading-deg").getValue());
-				
+
 		 me.index = i;
-				
+
           },
-	  
+
        remove:   func {
                 #print("EngPreHeat_model.remove");
              props.globals.getNode("/models", 1).removeChild("model", me.index);
@@ -351,7 +351,7 @@ var init_common = func {
 	});
 }
 settimer(init_common,0);
-	
+
 
 # doors ============================================================
 DoorL       = aircraft.door.new( "/sim/model/door-positions/DoorL", 2, 0 );
@@ -379,27 +379,27 @@ WindowR.setpos(WindowR_saved);
 # - remove external heat
 # - tear tiedowns when significantly off ground
 ad = func {
-    GROUNDSPEED = getprop("/velocities/groundspeed-kt") or 0; 
+    GROUNDSPEED = getprop("/velocities/groundspeed-kt") or 0;
     AGL         = getprop("/position/altitude-agl-ft")  or 0;
 
     if (GROUNDSPEED > 0.1) {
         setprop("/controls/electric/external-power", "false");
         #setprop("/engines/engine/external-heat/enabled", "false"); #not needed, as you can't start the engine with preheater enabled, nor enable the preheater anyway when engine running, or aircraft moving
     }
-    
+
     if (AGL > 10) {
         setprop("/sim/model/c182s/securing/tiedownT-visible", 0);
         setprop("/sim/model/c182s/securing/tiedownL-visible", 0);
         setprop("/sim/model/c182s/securing/tiedownR-visible", 0);
     }
-    
-    settimer(ad, 0.1);   
+
+    settimer(ad, 0.1);
 }
 init = func {
    settimer(ad, 0.0);
 }
 
-init();	
+init();
 
 
 
@@ -503,7 +503,7 @@ setlistener("/engines/engine[0]/killed", func (node) {
 ##########################################
 # Thunder sound
 ##########################################
-setlistener("/sim/signals/fdm-initialized", func {   
+setlistener("/sim/signals/fdm-initialized", func {
     # Listening for lightning strikes
     setlistener("/environment/lightning/lightning-pos-y", thunder);
 });
@@ -570,12 +570,11 @@ var control_surface_check_rudder = func {
 var repair_damage = func() {
     print("Repairing damage...");
     setprop("/fdm/jsbsim/damage/repairing", 1);
-    
+
     setprop("/engines/engine[0]/kill-engine", 0.0);
     setprop("/engines/engine[0]/crashed", 0.0);
     electrical.reset_battery_and_circuit_breakers();
     FailureMgr.repair_all();
-    
     settimer(func(){ setprop("/fdm/jsbsim/damage/repairing", 0); }, 1.0);
 };
 
@@ -615,7 +614,7 @@ var update_cabintemp_humidity_text = func {
     } else if (temp <= 30) {  setprop(txtp, "It is getting hot in here" ~ tchng);           setprop(txtpsht, "warm");
     } else {                  setprop(txtp, "Uh, are we taking a sauna in here?" ~ tchng);  setprop(txtpsht, "hot");
     }
-    
+
     # Sets a verbally text based on humidity.
     var txth = "/fdm/jsbsim/heat/cabin-humidity-text";
     var hum  = getprop("/fdm/jsbsim/heat/cabin-relative-humidity") or 0;
@@ -642,7 +641,7 @@ var print_cabintemp_text = func {
             } else if (temp <= 30) {  logger.screen.white(txt);
             } else {                  logger.screen.red(txt);
             }
-            
+
             lastTemperaturePrinted = getprop("/sim/time/elapsed-sec");
         }
     }
@@ -674,7 +673,7 @@ var cabin_temp_outsideSpecComplainLoop = maketimer(30.0, func () {
 #            } else if (hum <= 70) {  logger.screen.white(txt);
 #            } else {                 logger.screen.red(txt);
 #            }
-#            
+#
 #            lastHumidityPrinted = getprop("/sim/time/elapsed-sec");
 #        }
 #    }
@@ -742,7 +741,7 @@ var stepMagnetos = func(p) {
     var keypos = getprop("/controls/switches/magnetos");
     var magpos = getprop("controls/engines/engine/magnetos");
     #print("stepMagnetos called with p=" ~ p ~ "; keypos=" ~ keypos ~ "; magpos=" ~ magpos);
-    
+
     if (p == -1 and keypos <= 3 and keypos > 0) {
         # mag decrease
         var tgt_value = keypos - 1;
@@ -753,7 +752,7 @@ var stepMagnetos = func(p) {
         var tgt_value = keypos + 1;
         setprop("/controls/switches/magnetos", tgt_value);   # triggers an update listener
     }
-    
+
 }
 
 
@@ -766,8 +765,8 @@ var stepMagnetos = func(p) {
 setlistener("/sim/signals/fdm-initialized", func {
     # Fuel contamination
     init_fuel_contamination();
-    
-    
+
+
     # Reapply tiedowns/chocks to current position in case they
     # were engaged at startup (this avoids the weird aircraft dance)
     # note: this is a little hacky and probably should be solved cleanly!
@@ -795,5 +794,5 @@ setlistener("/sim/signals/fdm-initialized", func {
         setprop("/sim/chocks003/enable", 0);
         settimer(func(){ setprop("/sim/chocks003/enable", 1);}, 0.25);
     }
-    
+
 });

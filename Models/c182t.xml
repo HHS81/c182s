@@ -1,0 +1,2462 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>c182s.ac</path>
+ <offsets>
+   <pitch-deg>0.0</pitch-deg>
+   <z-m> -0.0 </z-m>
+ </offsets>
+
+   <!-- for checklist/tutorial markers -->
+   <model>
+    <path>Aircraft/Generic/marker.xml</path>
+   </model>
+
+   <model>
+    <path>Models/interior-model-c182t.xml</path>
+    <usage>interior</usage>
+  </model>
+
+  <nasal>
+   <load>
+       var livery_update = aircraft.livery_update.new(
+     "Aircraft/c182s/Models/Liveries", 10,
+     func { print("c182t livery update") });
+   </load>
+</nasal>
+
+<!-- Engine smoke -->
+<model>
+  <path>Aircraft/c182s/Models/Effects/c182_enginesmoke.xml</path>
+  <name>enginesmoke</name>
+  <offsets>
+    <x-m>-0.60</x-m>
+    <y-m> 0.00</y-m>
+    <z-m>-0.10</z-m>
+  </offsets>
+</model>
+
+<effect>
+    <inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
+    <object-name>Fuselage</object-name><!-- model obejcts parented in Blender - gives faster livery loading-->
+<object-name>WinterKit</object-name>
+   <!--<object-name>Spinner</object-name>
+   <object-name>WheelFairingNose</object-name>
+   <object-name>WheelFairing.R</object-name>
+   <object-name>WheelFairing.L</object-name>
+   <object-name>MainStrut.L</object-name>
+   <object-name>MainStrut.R</object-name>
+   <object-name>CowlFlap.L</object-name>
+   <object-name>CowlFlap.R</object-name>
+<object-name>NoseWheelFork</object-name>
+   <object-name>Damp</object-name>
+<object-name>Door.L</object-name>
+   <object-name>DoorHandle.L</object-name>
+<object-name>Door.R</object-name>
+   <object-name>DoorHandle.R</object-name>
+   <object-name>WindowFrame.R</object-name>
+   <object-name>WindowFrame.L</object-name>
+   <object-name>BaggageDoor</object-name>
+   <object-name>VStab</object-name>
+<object-name>Elevator</object-name>
+   <object-name>Rudder</object-name>
+<object-name>ElevatorTrim</object-name>
+   <object-name>Aileron.L</object-name>
+   <object-name>Aileron.R</object-name>
+   <object-name>Flap.L</object-name>
+   <object-name>Flap.R</object-name>-->
+ </effect>
+
+  <effect>
+    <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas-uber</inherits-from>
+    <object-name>Windscreen</object-name>
+    <object-name>Window.L</object-name>
+    <object-name>Window.R</object-name>
+    <object-name>llglas</object-name>
+   </effect>
+
+   <effect>
+       <inherits-from>Effects/model-transparent</inherits-from>
+       <object-name>FastProp</object-name>
+       <object-name>SlowProp</object-name>
+        <object-name>TaxiLight</object-name>
+		<object-name>PlaneX</object-name>
+		<object-name>Plane.002X</object-name>
+		<object-name>Plane.003X</object-name>
+        <object-name>LandingLight</object-name>
+        <object-name>TaxiLight</object-name>
+        <object-name>PlaneTailLight</object-name>
+        <object-name>NavLightRed</object-name>
+        <object-name>NavLightGreen</object-name>
+   </effect>
+
+<effect>
+    <inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
+
+	<parameters>
+			<reflection-correction type="float">1.0</reflection-correction>
+			<reflection-dynamic type="int">1</reflection-dynamic>
+	</parameters>
+	<object-name>chrome_spinner</object-name>
+</effect>
+
+    <effect>
+        <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_front</inherits-from>
+        <object-name>Windscreen.Int</object-name>
+    </effect>
+
+    <effect>
+        <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_side</inherits-from>
+        <object-name>Windscreen.Side.Left</object-name>
+        <object-name>Window.L.001</object-name>
+    </effect>
+
+        <effect>
+        <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_side</inherits-from>
+        <object-name>Windscreen.Side.Right</object-name>
+        <object-name>Window.R.001</object-name>
+    </effect>
+
+<!-- ALS volume shadow  -->
+    <model>
+        <path>Effects/shadow.xml</path>
+    </model>
+
+    <!-- Registration number -->
+    <model>
+        <path>Immat/immat.xml</path>
+        <offsets>
+            <x-m> 0.0 </x-m>
+            <y-m> 0.0 </y-m>
+            <z-m> 0.0 </z-m>
+            <roll-deg>    0.0 </roll-deg>
+            <pitch-deg>   0.0 </pitch-deg>
+            <heading-deg> 0.0 </heading-deg>
+        </offsets>
+    </model>
+
+ <animation>
+   <type>material</type>
+   <object-name>Fuselage</object-name><!-- grouped in Blender for faster loading of liveries-->
+  <!--<object-name>Spinner</object-name>
+   <object-name>WheelFairingNose</object-name>
+   <object-name>WheelFairing.R</object-name>
+   <object-name>WheelFairing.L</object-name>
+   <object-name>MainStrut.L</object-name>
+   <object-name>MainStrut.R</object-name>
+   <object-name>FrontWheel</object-name>
+   <object-name>MainWheel.L</object-name>
+   <object-name>MainWheel.R</object-name>
+   <object-name>CowlFlap.L</object-name>
+   <object-name>CowlFlap.R</object-name>
+   <object-name>NoseWheelFork</object-name>
+   <object-name>Damp</object-name>
+<object-name>Door.L</object-name>
+   <object-name>DoorHandle.L</object-name>
+<object-name>Door.R</object-name>
+   <object-name>DoorHandle.R</object-name>
+   <object-name>WindowFrame.R</object-name>
+   <object-name>WindowFrame.L</object-name>
+   <object-name>BaggageDoor</object-name>
+   <object-name>VStab</object-name>
+<object-name>Elevator</object-name>
+   <object-name>Rudder</object-name>
+<object-name>ElevatorTrim</object-name>
+   <object-name>Aileron.L</object-name>
+   <object-name>Aileron.R</object-name>
+   <object-name>Flap.L</object-name>
+   <object-name>Flap.R</object-name>-->
+   <property-base>sim/model/livery/</property-base>
+   <texture-prop>texture</texture-prop>
+   <texture>Default.png</texture>
+ </animation>
+
+ <animation>
+     <type>material</type>
+     <object-name>Fuselage</object-name>
+<property-base>sim/model/c182s/material/fuselage</property-base>
+      <diffuse>
+			<red-prop>diffuse/red</red-prop>
+			<green-prop>diffuse/green</green-prop>
+			<blue-prop>diffuse/blue</blue-prop>
+		</diffuse>
+
+		<specular>
+			<red-prop>specular/red</red-prop>
+			<green-prop>specular/green</green-prop>
+			<blue-prop>specular/blue</blue-prop>
+		</specular>
+
+		<ambient>
+		          <red-prop>ambient/red</red-prop>
+			<green-prop>ambient/green</green-prop>
+			<blue-prop>ambient/blue</blue-prop>
+		</ambient>
+ </animation>
+<!-- Object movements -->
+<animation>
+        <name>Prop</name>
+        <object-name>Blade1</object-name>
+        <object-name>Blade2</object-name>
+         <object-name>Blade3</object-name>
+    </animation>
+
+  <animation>
+  <type>select</type>
+  <object-name>Prop</object-name>
+  <condition>
+   <less-than>
+    <property>engines/engine[0]/rpm</property>
+    <value>651</value>
+   </less-than>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>SlowProp</object-name>
+  <condition>
+   <greater-than>
+    <property>engines/engine[0]/rpm</property>
+    <value>651</value>
+   </greater-than>
+   <less-than>
+    <property>engines/engine[0]/rpm</property>
+    <value>1899</value>
+    </less-than>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>FastProp</object-name>
+  <condition>
+   <greater-than>
+    <property>engines/engine[0]/rpm</property>
+    <value>1900</value>
+   </greater-than>
+  </condition>
+ </animation>
+
+<animation>
+   <type>blend</type>
+   <object-name>FastProp</object-name>
+   <property>engines/engine[0]/rpm</property>
+   <factor>0.0005</factor>
+   <max>0.75</max>
+   <min>0.0</min>
+ </animation>
+
+<animation>
+   <type>blend</type>
+   <object-name>SlowProp</object-name>
+   <property>engines/engine[0]/rpm</property>
+   <factor>0.0002</factor>
+   <max>0.375</max>
+   <min>0.0</min>
+ </animation>
+
+ <animation>
+   <type>spin</type>
+  <object-name>FastProp</object-name>
+   <property>engines/engine[0]/rpm</property>
+   <factor>-0.005</factor>
+		<center>
+			<x-m>-1.462241</x-m>
+			<y-m>0.001089</y-m>
+			<z-m>0.011581</z-m>
+		</center>
+		<axis>
+			<x>0.468632</x>
+			<y>0.00018</y>
+			<z>0.019567</z>
+		</axis>
+ </animation>
+
+ <animation>
+   <type>spin</type>
+  <object-name>SlowProp</object-name>
+   <property>engines/engine[0]/rpm</property>
+   <factor>-1</factor>
+		<center>
+			<x-m>-1.462241</x-m>
+			<y-m>0.001089</y-m>
+			<z-m>0.011581</z-m>
+		</center>
+		<axis>
+			<x>0.468632</x>
+			<y>0.00018</y>
+			<z>0.019567</z>
+		</axis>
+ </animation>
+
+ <animation>
+   <type>spin</type>
+  <object-name>Prop</object-name>
+   <property>engines/engine[0]/rpm</property>
+   <factor>-1</factor>
+		<center>
+			<x-m>-1.462241</x-m>
+			<y-m>0.001089</y-m>
+			<z-m>0.011581</z-m>
+		</center>
+		<axis>
+			<x>0.468632</x>
+			<y>0.00018</y>
+			<z>0.019567</z>
+		</axis>
+ </animation>
+
+
+<!--CowlFlaps-->
+    <animation>
+        <type>rotate</type>
+        <object-name>CowlFlap.L</object-name>
+        <object-name>CowlFlap.L.Int</object-name>
+        <property>fdm/jsbsim/propulsion/engine[0]/cowl-flaps-norm</property>
+        <factor>-25</factor>
+		<center>
+			<x-m>-0.474443</x-m>
+			<y-m>-0.230376</y-m>
+			<z-m>-0.515989</z-m>
+		</center>
+		<axis>
+			<x>-0.001801</x>
+			<y>-0.218309</y>
+			<z>0.04501</z>
+		</axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>CowlFlap.R</object-name>
+        <object-name>CowlFlap.R.Int</object-name>
+        <property>fdm/jsbsim/propulsion/engine[0]/cowl-flaps-norm</property>
+        <factor>25</factor>
+		<center>
+			<x-m>-0.474443</x-m>
+			<y-m>0.230376</y-m>
+			<z-m>-0.515989</z-m>
+		</center>
+		<axis>
+			<x>-0.001801</x>
+			<y>0.218309</y>
+			<z>0.04501</z>
+		</axis>
+    </animation>
+
+<!--Flight Surfaces-->
+ <animation>
+  <type>rotate</type>
+  <object-name>Aileron.L</object-name>
+  <property>surface-positions/left-aileron-pos-norm</property>
+  <interpolation>
+   <entry>
+    <ind>-1.0</ind>
+    <dep>-20</dep>
+   </entry>
+   <entry>
+    <ind>0.0</ind>
+    <dep>0</dep>
+   </entry>
+   <entry>
+    <ind>1.0</ind>
+    <dep>15</dep>
+   </entry>
+  </interpolation>
+		<center>
+			<x-m>1.656383</x-m>
+			<y-m>-3.900922</y-m>
+			<z-m>0.892718</z-m>
+		</center>
+		<axis>
+			<x>0.237831</x>
+			<y>2.720408</y>
+			<z>-0.124793</z>
+		</axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Aileron.R</object-name>
+  <property>surface-positions/left-aileron-pos-norm</property>
+  <interpolation>
+   <entry>
+    <ind>-1.0</ind>
+    <dep>-20</dep>
+   </entry>
+   <entry>
+    <ind>0.0</ind>
+    <dep>0</dep>
+   </entry>
+   <entry>
+    <ind>1.0</ind>
+    <dep>15</dep>
+   </entry>
+  </interpolation>
+		<center>
+			<x-m>1.656383</x-m>
+			<y-m>3.900922</y-m>
+			<z-m>0.892718</z-m>
+		</center>
+		<axis>
+			<x>0.237831</x>
+			<y>-2.720408</y>
+			<z>-0.124793</z>
+		</axis>
+ </animation>
+
+
+ <animation>
+   <type>translate</type>
+   <object-name>Flap.L</object-name>
+   <object-name>Flap.R</object-name>
+   <property>surface-positions/flap-pos-norm</property>
+   <factor>0.15</factor>
+   <axis>
+     <x>1.0</x>
+     <y>0.0</y>
+     <z>0.0</z>
+   </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Flap.L</object-name>
+  <property>surface-positions/flap-pos-norm</property>
+  <factor>-38</factor>
+		<center>
+			<x-m>1.665323</x-m>
+			<y-m>-1.595262</y-m>
+			<z-m>0.763406</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1.89202</y>
+			<z>0.068318</z>
+		</axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Flap.R</object-name>
+  <property>surface-positions/flap-pos-norm</property>
+  <factor>38</factor>
+		<center>
+			<x-m>1.665323</x-m>
+			<y-m>1.595262</y-m>
+			<z-m>0.763406</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1.89202</y>
+			<z>0.068318</z>
+		</axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Elevator</object-name>
+  <object-name>ElevatorTrim</object-name>
+  <property>surface-positions/elevator-pos-norm</property>
+  <interpolation>
+   <entry>
+    <ind>-1.0</ind>
+    <dep>-28</dep>
+   </entry>
+   <entry>
+    <ind>0</ind>
+    <dep>0</dep>
+   </entry>
+   <entry>
+    <ind>1.0</ind>
+    <dep>23</dep>
+   </entry>
+  </interpolation>
+		<center>
+			<x-m>5.591823</x-m>
+			<y-m>1e-06</y-m>
+			<z-m>0.423554</z-m>
+		</center>
+		<axis>
+			<x>1e-06</x>
+			<y>3.383721</y>
+			<z>0</z>
+		</axis>
+ </animation>
+
+
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Rudder</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <factor>17.5</factor>
+		<center>
+			<x-m>6.015226</x-m>
+			<y-m>0.00263</y-m>
+			<z-m>1.158865</z-m>
+		</center>
+		<axis>
+			<x>0.165473</x>
+			<y>9.3e-05</y>
+			<z>0.284685</z>
+		</axis>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+   <object-name>WheelFairingNose</object-name>
+   <object-name>FrontWheel</object-name>
+   <object-name>NoseWheelFork</object-name>
+   <object-name>Damp</object-name>
+    <object-name>TrenDEL_05_TrenDEL_05</object-name>
+   <object-name>TrenDEL_01_TrenDEL_01</object-name>
+   <object-name>TrenDEL_04_TrenDEL_04</object-name>
+   <property>fdm/jsbsim/fcs/steer-pos-deg</property>
+   <factor>-1</factor>
+		<center>
+			<x-m>-0.160396</x-m>
+			<y-m>0.000524</y-m>
+			<z-m>-0.660746</z-m>
+		</center>
+		<axis>
+			<x>0.037427</x>
+			<y>0</y>
+			<z>0.138826</z>
+		</axis>
+ </animation>
+
+<!--compression-->
+ <animation>
+   <type>translate</type>
+   <object-name>WheelFairingNose</object-name>
+   <object-name>FrontWheel</object-name>
+<object-name>NoseWheelFork</object-name>
+   <object-name>Damp</object-name>
+   <property>gear/gear[0]/compression-norm</property>
+   <factor>0.18</factor>
+   <axis>
+     <x>0.27</x>
+     <y>0</y>
+     <z>1.0</z>
+   </axis>
+ </animation>
+
+ <!--gear scissors tracking animation
+ <animation>
+    <type>locked-track</type>
+    <object-name>TrenDEL_04_TrenDEL_04</object-name>
+    <center>
+      <x-m>-1.582</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.716</z-m>
+    </center>
+    <lock-axis>
+      <x>0</x>
+      <y>1</y>
+      <z>0</z>
+    </lock-axis>
+    <track-axis>
+     <x>0.27</x>
+     <y>0</y>
+     <z>1.0</z>
+    </track-axis>
+
+    <target-name>NoseWheelFork</target-name>
+    <target-center>
+      <x-m>-1.607</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.806</z-m>
+    </target-center>
+
+    <slave-name>TrenDEL_05_TrenDEL_05</slave-name>
+    <slave-center>
+      <x-m>-1.480</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.781</z-m>
+    </slave-center>
+  </animation>-->
+
+<!-- gear compression-->
+  <animation>
+    <type>rotate</type>
+    <object-name>WheelFairing.L</object-name>
+    <object-name>MainWheel.L</object-name>
+    <object-name>MainStrut.L</object-name>
+    <property>gear/gear[1]/compression-norm</property>
+    <interpolation>
+        <entry>
+        <ind>0.0</ind>
+        <dep>-5</dep>
+      </entry>
+      <entry>
+        <ind>0.1</ind>
+        <dep>-2.3</dep>
+      </entry>
+      <entry>
+        <ind>0.2</ind>
+        <dep>0</dep>
+      </entry>
+      <entry>
+        <ind>0.3</ind>
+        <dep>2.62</dep>
+      </entry>
+      <entry>
+        <ind>0.4</ind>
+        <dep>5</dep>
+      </entry>
+      <entry>
+        <ind>0.5</ind>
+        <dep>7</dep>
+      </entry>
+      <entry>
+        <ind>0.6</ind>
+        <dep>9</dep>
+      </entry>
+      <entry>
+        <ind>0.7</ind>
+        <dep>11</dep>
+      </entry>
+
+    </interpolation>
+		<center>
+			<x-m>1.489661</x-m>
+			<y-m>-0.55715</y-m>
+			<z-m>-0.465515</z-m>
+		</center>
+		<axis>
+			<x>-0.206429</x>
+			<y>-0.000807</y>
+			<z>-0.002205</z>
+		</axis>
+  </animation>
+
+<animation>
+    <type>rotate</type>
+    <object-name>WheelFairing.R</object-name>
+    <object-name>MainWheel.R</object-name>
+    <object-name>MainStrut.R</object-name>
+    <property>gear/gear[2]/compression-norm</property>
+    <interpolation>
+  <entry>
+        <ind>0.0</ind>
+        <dep>5</dep>
+      </entry>
+      <entry>
+        <ind>0.1</ind>
+        <dep>2.3</dep>
+      </entry>
+      <entry>
+        <ind>0.2</ind>
+        <dep>0</dep>
+      </entry>
+      <entry>
+        <ind>0.3</ind>
+        <dep>-2.62</dep>
+      </entry>
+      <entry>
+        <ind>0.4</ind>
+        <dep>-5</dep>
+      </entry>
+      <entry>
+        <ind>0.5</ind>
+        <dep>-7</dep>
+      </entry>
+      <entry>
+        <ind>0.6</ind>
+        <dep>-9</dep>
+      </entry>
+      <entry>
+        <ind>0.7</ind>
+        <dep>-11</dep>
+      </entry>
+    </interpolation>
+		<center>
+			<x-m>1.489661</x-m>
+			<y-m>0.55715</y-m>
+			<z-m>-0.465515</z-m>
+		</center>
+		<axis>
+			<x>-0.206429</x>
+			<y>0.000807</y>
+			<z>-0.002205</z>
+		</axis>
+  </animation>
+
+<!-- Doors-->
+<animation>
+   <type>pick</type>
+   <object-name>Door.L</object-name>
+   <visible>true</visible>
+   <action>
+     <button>0</button>
+     <repeatable>false</repeatable>
+     <binding>
+        <command>nasal</command>
+        <script>c182s.DoorL.toggle();</script>
+     </binding>
+   </action>
+   </animation>
+
+ <animation>
+   <type>rotate</type>
+<object-name>Door.L</object-name>
+   <object-name>DoorHandle.L</object-name>
+   <object-name>WindowFrame.L</object-name>
+<object-name>Window.L</object-name>
+<object-name>Window.L.001</object-name>
+   <property>sim/model/door-positions/DoorL/position-norm</property>
+   <interpolation>
+     <entry>
+       <ind>0.0</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind>0.5</ind>
+       <dep>0</dep>
+     </entry>
+     <entry>
+       <ind>1</ind>
+       <dep>70.0</dep>
+     </entry>
+   </interpolation>
+		<center>
+			<x-m>0.684703</x-m>
+			<y-m>-0.638082</y-m>
+			<z-m>0.002244</z-m>
+		</center>
+		<axis>
+			<x>-0.053987</x>
+			<y>0.007794</y>
+			<z>-0.508674</z>
+		</axis>
+ </animation>
+
+<animation>
+   <type>pick</type>
+   <object-name>Door.R</object-name>
+   <visible>true</visible>
+   <action>
+     <button>0</button>
+     <repeatable>false</repeatable>
+     <binding>
+        <command>nasal</command>
+        <script>c182s.DoorR.toggle();</script>
+     </binding>
+   </action>
+  </animation>
+
+ <animation>
+   <type>rotate</type>
+<object-name>Door.R</object-name>
+   <object-name>DoorHandle.R</object-name>
+   <object-name>WindowFrame.R</object-name>
+<object-name>Window.R</object-name>
+<object-name>Window.R.001</object-name>
+   <property>sim/model/door-positions/DoorR/position-norm</property>
+   <interpolation>
+     <entry>
+       <ind>0.0</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind>0.5</ind>
+       <dep>0</dep>
+     </entry>
+     <entry>
+       <ind>1</ind>
+       <dep>-70.0</dep>
+     </entry>
+   </interpolation>
+		<center>
+			<x-m>0.684703</x-m>
+			<y-m>0.638082</y-m>
+			<z-m>0.002244</z-m>
+		</center>
+		<axis>
+			<x>-0.053987</x>
+			<y>-0.007794</y>
+			<z>-0.508674</z>
+		</axis>
+ </animation>
+
+
+
+
+ <animation>
+        <type>pick</type>
+        <object-name>WindowFrame.R</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+        <script>c182s.WindowR.toggle();</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>door-handle-r</tooltip-id>
+                <label>Right Window Open/Close</label>
+            </binding>
+        </hovered>
+    </animation>
+
+<animation>
+   <type>rotate</type>
+        <object-name>WindowFrame.R</object-name>
+<object-name>Window.R</object-name>
+<object-name>Window.R.001</object-name>
+   <property>sim/model/door-positions/WindowR/position-norm</property>
+   <interpolation>
+     <entry>
+       <ind>0.0</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind>0.1</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind>1</ind>
+       <dep>-45.0</dep>
+     </entry>
+   </interpolation>
+		<center>
+			<x-m>1.153534</x-m>
+			<y-m>0.630055</y-m>
+			<z-m>0.593459</z-m>
+		</center>
+		<axis>
+			<x>-0.611986</x>
+			<y>-0.002058</y>
+			<z>-0.01543</z>
+		</axis>
+ </animation>
+
+
+
+
+
+ <animation>
+        <type>pick</type>
+        <object-name>WindowFrame.L</object-name>
+        <object-name>FrameInt.L</object-name>
+        <object-name>FrameLock2.L</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+        <script>c182s.WindowL.toggle();</script>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>door-handle-l</tooltip-id>
+                <label>Left Window Open/Close</label>
+            </binding>
+        </hovered>
+    </animation>
+
+<animation>
+   <type>rotate</type>
+        <object-name>WindowFrame.L</object-name>
+     <object-name>Window.L</object-name>
+<object-name>Window.L.001</object-name>
+   <property>sim/model/door-positions/WindowL/position-norm</property>
+   <interpolation>
+     <entry>
+       <ind>0.0</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind>0.1</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind>1</ind>
+       <dep>45.0</dep>
+     </entry>
+   </interpolation>
+		<center>
+			<x-m>1.153534</x-m>
+			<y-m>-0.630055</y-m>
+			<z-m>0.593459</z-m>
+		</center>
+		<axis>
+			<x>-0.611986</x>
+			<y>-0.002058</y>
+			<z>-0.01543</z>
+		</axis>
+ </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>LeftTank.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-left-fuel-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuel-cap-port</tooltip-id>
+                <label>Fuel Cap</label>
+            </binding>
+        </hovered>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>LeftTankDrain.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-left-fuel-drain-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuel-drain-left-tt</tooltip-id>
+                <label>Fuel Drain</label>
+            </binding>
+        </hovered>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>RightTank.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-right-fuel-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuel-cap-starboard</tooltip-id>
+                <label>Fuel Cap</label>
+            </binding>
+        </hovered>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>RightTankDrain.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-right-fuel-drain-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuel-drain-right-tt</tooltip-id>
+                <label>Fuel Drain</label>
+            </binding>
+        </hovered>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>FuelSelectorDrain.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-fuelselector-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuelselector-dialog-tt</tooltip-id>
+                <label>Fuel Selector Drain</label>
+            </binding>
+        </hovered>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>FuelStrainerDrain.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-fuelstrainer-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>fuelstrainer-dialog-tt</tooltip-id>
+                <label>Fuel Strainer Drain</label>
+            </binding>
+        </hovered>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Oil.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>c182s-oilmanagement-dialog</dialog-name>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>oilmanagement-dialog-tt</tooltip-id>
+                <label>Oil</label>
+            </binding>
+        </hovered>
+    </animation>
+
+<animation>
+   <type>pick</type>
+   <object-name>BaggageDoor</object-name>
+   <visible>true</visible>
+   <action>
+     <button>0</button>
+     <repeatable>false</repeatable>
+     <binding>
+        <condition>
+            <or>
+                <equals>
+                    <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
+                    <value>1</value>
+                </equals>
+                <and>
+                    <equals>
+                        <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
+                        <value>0</value>
+                    </equals>
+                    <less-than>
+                        <property>velocities/groundspeed-kt</property>
+                        <value>1.0</value>
+                    </less-than>
+                </and>
+            </or>
+        </condition>
+        <command>nasal</command>
+        <script>c182s.BaggageDoor.toggle();</script>
+     </binding>
+      <binding>
+          <condition>
+              <equals>
+                  <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
+                  <value>0</value>
+              </equals>
+          </condition>
+          <command>dialog-show</command>
+          <dialog-name>c182s-baggage-weight-dialog</dialog-name>
+      </binding>
+      <hovered>
+          <binding>
+              <command>set-tooltip</command>
+              <tooltip-id>door-handle-baggage</tooltip-id>
+              <label>Baggage Door Open/Close</label>
+          </binding>
+      </hovered>
+   </action>
+ </animation>
+
+ <animation>
+   <type>rotate</type>
+   <object-name>BaggageDoor</object-name>
+   <property>sim/model/door-positions/BaggageDoor/position-norm</property>
+   <interpolation>
+     <entry>
+       <ind>0.0</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind>1</ind>
+       <dep>-90.0</dep>
+     </entry>
+   </interpolation>
+		<center>
+			<x-m>2.184053</x-m>
+			<y-m>-0.563392</y-m>
+			<z-m>-0.002403</z-m>
+		</center>
+		<axis>
+			<x>0.012746</x>
+			<y>-0.033766</y>
+			<z>0.42203</z>
+		</axis>
+ </animation>
+
+
+<!--Exterior Lights-->
+ <animation>
+  <type>select</type>
+  <object-name>ExtLight</object-name>
+  <condition>
+   <greater-than>
+    <property>systems/electrical/outputs/dome-exterior-light</property>
+    <value>0</value>
+   </greater-than>
+  </condition>
+ </animation>
+<!--Beacon-->
+
+<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>25000</max-m>
+	</animation>
+
+	<PlaneXparams>
+		<light-near>0.8</light-near>
+		<light-med>1.6</light-med>
+		<light-far>10</light-far>
+	</PlaneXparams>
+
+
+	<animation>
+		<type>alpha-test</type>
+		<object-name>PlaneX</object-name>
+		<alpha-factor>0.001</alpha-factor>
+	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>PlaneX</object-name>
+		<offset-m>6.499384</offset-m>
+		<axis>
+			<x>6.1647</x>
+			<y>0.003322</y>
+			<z>2.058752</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>billboard</type>
+		<object-name>PlaneX</object-name>
+		<spherical type="bool">true</spherical>
+	</animation>
+
+	<animation>
+		<type>dist-scale</type>
+		<object-name>PlaneX</object-name>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep alias="../../../../PlaneXparams/light-near"/>
+			</entry>
+			<entry>
+				<ind>500</ind>
+				<dep alias="../../../../PlaneXparams/light-med"/>
+			</entry>
+			<entry>
+				<ind>16000</ind>
+				<dep alias="../../../../PlaneXparams/light-far"/>
+			</entry>
+		</interpolation>
+	</animation>
+
+<!--<animation>
+	<type>select</type>
+        <object-name>PlaneX</object-name>
+	<condition>
+	<property>/systems/electrical/outputs/beacon</property>
+	</condition>
+</animation>-->
+
+<animation>
+   <type>blend</type>
+   <object-name>PlaneX</object-name>
+   <property>/systems/electrical/outputs/beacon</property>
+   <factor>0.0416</factor>
+   <max>1.0</max>
+   <min>0.0</min>
+ </animation>
+
+<animation>
+	<type>select</type>
+        <object-name>PlaneX</object-name>
+	<condition>
+	<and>
+	<or>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	<not>
+	<property>/sim/model/c182s/procedural-lights</property>
+	</not>
+	</or>
+	<property>/systems/electrical/outputs/beacon</property>
+	</and>
+	</condition>
+</animation>
+
+
+
+<!--left strobe-->
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>25000</max-m>
+	</animation>
+
+	<Plane.002Xparams>
+		<light-near>1.6</light-near>
+		<light-med>3.2</light-med>
+		<light-far>10</light-far>
+	</Plane.002Xparams>
+
+
+	<animation>
+		<type>alpha-test</type>
+		<object-name>Plane.002X</object-name>
+		<alpha-factor>0.001</alpha-factor>
+	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>Plane.002X</object-name>
+		<offset-m>5.609323</offset-m>
+		<axis>
+			<x>0.898882</x>
+			<y>-5.464475</y>
+			<z>0.892203</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>billboard</type>
+		<object-name>Plane.002X</object-name>
+		<spherical type="bool">true</spherical>
+	</animation>
+
+	<animation>
+		<type>dist-scale</type>
+		<object-name>Plane.002X</object-name>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep alias="../../../../Plane.002Xparams/light-near"/>
+			</entry>
+			<entry>
+				<ind>500</ind>
+				<dep alias="../../../../Plane.002Xparams/light-med"/>
+			</entry>
+			<entry>
+				<ind>16000</ind>
+				<dep alias="../../../../Plane.002Xparams/light-far"/>
+			</entry>
+		</interpolation>
+	</animation>
+
+<animation>
+	<type>select</type>
+        <object-name>Plane.002X</object-name>
+	<condition>
+	<and>
+	<or>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	<not>
+	<property>/sim/model/c182s/procedural-lights</property>
+	</not>
+	</or>
+	<property>/systems/electrical/outputs/strobe</property>
+	</and>
+	</condition>
+</animation>
+
+<!-- right strobe-->
+<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>25000</max-m>
+	</animation>
+
+	<Plane.003Xparams>
+		<light-near>1.6</light-near>
+		<light-med>3.2</light-med>
+		<light-far>10</light-far>
+	</Plane.003Xparams>
+
+
+	<animation>
+		<type>alpha-test</type>
+		<object-name>Plane.003X</object-name>
+		<alpha-factor>0.001</alpha-factor>
+	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>Plane.003X</object-name>
+		<offset-m>5.612077</offset-m>
+		<axis>
+			<x>0.898882</x>
+			<y>5.467302</y>
+			<z>0.892203</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>billboard</type>
+		<object-name>Plane.003X</object-name>
+		<spherical type="bool">true</spherical>
+	</animation>
+
+	<animation>
+		<type>dist-scale</type>
+		<object-name>Plane.003X</object-name>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep alias="../../../../Plane.003Xparams/light-near"/>
+			</entry>
+			<entry>
+				<ind>500</ind>
+				<dep alias="../../../../Plane.003Xparams/light-med"/>
+			</entry>
+			<entry>
+				<ind>16000</ind>
+				<dep alias="../../../../Plane.003Xparams/light-far"/>
+			</entry>
+		</interpolation>
+	</animation>
+
+<animation>
+	<type>select</type>
+        <object-name>Plane.003X</object-name>
+<condition>
+	<and>
+	<or>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	<not>
+	<property>/sim/model/c182s/procedural-lights</property>
+	</not>
+	</or>
+	<property>/systems/electrical/outputs/strobe</property>
+	</and>
+	</condition>
+</animation>
+
+<!--LandingLight-->
+ <animation>
+        <type>flash</type>
+        <object-name>LandingLight</object-name>
+        <center>
+            <x-m>0.596</x-m>
+            <y-m>-3.844</y-m>
+            <z-m>0.875</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <power>2</power>
+        <factor>6</factor>
+        <offset>0</offset>
+        <two-sides type="bool">false</two-sides>
+        <min>0.5</min>
+        <max>80</max>
+    </animation>
+
+
+<animation>
+	<type>select</type>
+        <object-name>LandingLight</object-name>
+	<condition>
+	<property>/systems/electrical/outputs/landing-lights</property>
+	</condition>
+</animation>
+
+<animation>
+	<type>select</type>
+        <object-name>llglas</object-name>
+	<condition>
+	<not>
+	<property>/systems/electrical/outputs/landing-lights</property>
+	</not>
+	</condition>
+</animation>
+
+<!--TaxiLight-->
+ <animation>
+        <type>flash</type>
+        <object-name>TaxiLight</object-name>
+		 <center>
+            <x-m>0.587</x-m>
+            <y-m>-3.704</y-m>
+            <z-m>0.869</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <power>2</power>
+        <factor>6</factor>
+        <offset>0</offset>
+        <two-sides type="bool">false</two-sides>
+        <min>0.5</min>
+        <max>80</max>
+    </animation>
+
+
+<animation>
+	<type>select</type>
+        <object-name>TaxiLight</object-name>
+	<condition>
+	<property>/systems/electrical/outputs/taxi-light</property>
+	</condition>
+</animation>
+
+<animation>
+	<type>select</type>
+        <object-name>llglas</object-name>
+	<condition>
+	<not>
+	<property>/systems/electrical/outputs/taxi-light</property>
+	</not>
+	</condition>
+</animation>
+
+<!--NavLightTail-->
+ <animation>
+        <type>flash</type>
+        <object-name>PlaneTailLight</object-name>
+        <center>
+            <x-m>6.162</x-m>
+            <y-m>-0.006</y-m>
+            <z-m>0.474</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <power>8</power>
+        <factor>3</factor>
+        <offset>0</offset>
+        <two-sides type="bool">false</two-sides>
+        <min>0.5</min>
+        <max>20</max>
+    </animation>
+
+
+<animation>
+	<type>select</type>
+        <object-name>PlaneTailLight</object-name>
+	<condition>
+	<and>
+	<or>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	<not>
+	<property>/sim/model/c182s/procedural-lights</property>
+	</not>
+	</or>
+	<property>/systems/electrical/outputs/nav-lights</property>
+	</and>
+	</condition>
+</animation>
+
+<!--NavLightWings-->
+ <animation>
+        <type>flash</type>
+        <object-name>NavLightRed</object-name>
+		<center>
+			<x-m>0.853</x-m>
+			<y-m>-5.451</y-m>
+			<z-m>0.897</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+        <power>8</power>
+        <factor>3</factor>
+        <offset>0</offset>
+        <two-sides type="bool">false</two-sides>
+        <min>0.5</min>
+        <max>20</max>
+    </animation>
+
+
+<animation>
+	<type>select</type>
+        <object-name>NavLightRed</object-name>
+	<condition>
+	<and>
+	<or>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	<not>
+	<property>/sim/model/c182s/procedural-lights</property>
+	</not>
+	</or>
+	<property>/systems/electrical/outputs/nav-lights</property>
+	</and>
+	</condition>
+</animation>
+
+ <animation>
+        <type>flash</type>
+        <object-name>NavLightGreen</object-name>
+		<center>
+			<x-m>0.854</x-m>
+			<y-m>5.47</y-m>
+			<z-m>0.897</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+        <power>8</power>
+        <factor>3</factor>
+        <offset>0</offset>
+        <two-sides type="bool">false</two-sides>
+        <min>0.5</min>
+        <max>20</max>
+    </animation>
+
+
+<animation>
+	<type>select</type>
+        <object-name>NavLightGreen</object-name>
+	<condition>
+	<and>
+	<or>
+	<not>
+	<property>/sim/rendering/shaders/skydome</property>
+	</not>
+	<not>
+	<property>/sim/model/c182s/procedural-lights</property>
+	</not>
+	</or>
+	<property>/systems/electrical/outputs/nav-lights</property>
+	</and>
+	</condition>
+</animation>
+
+<!--procedural lights - ALS only-->
+<model>
+<condition>
+<and>
+	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182s/procedural-lights</property>
+</and>
+</condition>
+  <path>Aircraft/c182s/Models/Effects/beacon.xml</path>
+        <offsets>
+            <x-m> 6.165 </x-m>
+            <y-m> 0.003 </y-m>
+            <z-m> 2.062 </z-m>
+        </offsets>
+ </model>
+
+<model>
+<condition>
+<and>
+	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182s/procedural-lights</property>
+</and>
+</condition>
+  <path>Aircraft/c182s/Models/Effects/green-navlight.xml</path>
+        <offsets>
+	<x-m>0.854</x-m>
+	<y-m>5.46</y-m>
+	<z-m>0.897</z-m>
+        </offsets>
+ </model>
+
+ <model>
+<condition>
+<and>
+	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182s/procedural-lights</property>
+</and>
+</condition>
+  <path>Aircraft/c182s/Models/Effects/red-navlight.xml</path>
+        <offsets>
+	<x-m>0.854</x-m>
+	<y-m>-5.46</y-m>
+	<z-m>0.897</z-m>
+        </offsets>
+ </model>
+
+ <model>
+ <condition>
+<and>
+	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182s/procedural-lights</property>
+</and>
+</condition>
+  <path>Aircraft/c182s/Models/Effects/tail-navlight.xml</path>
+        <offsets>
+            <x-m>6.162</x-m>
+            <y-m>-0.006</y-m>
+            <z-m>0.474</z-m>
+        </offsets>
+ </model>
+
+<model>
+<condition>
+<and>
+	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182s/procedural-lights</property>
+</and>
+</condition>
+  <path>Aircraft/c182s/Models/Effects/left-strobe.xml</path>
+        <offsets>
+            <x-m>0.898882</x-m>
+            <y-m>-5.464475</y-m>
+            <z-m>0.892203</z-m>
+        </offsets>
+ </model>
+
+
+<model>
+<condition>
+<and>
+	<property>/sim/rendering/shaders/skydome</property>
+	<property>/sim/model/c182s/procedural-lights</property>
+</and>
+</condition>
+  <path>Aircraft/c182s/Models/Effects/right-strobe.xml</path>
+        <offsets>
+            <x-m>0.898882</x-m>
+            <y-m>5.464475</y-m>
+            <z-m>0.892203</z-m>
+        </offsets>
+ </model>
+
+
+<!--exterior stuff which is not called by nasal-script-->
+
+<model>
+        <path>Aircraft/c182s/Models/Exterior/pitot-cover.xml</path>
+        <name>pitot-cover</name>
+        <offsets>
+            <x-m>0.0</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.0</z-m>
+        </offsets>
+	<condition>
+	<property>/sim/model/c182s/securing/pitot-cover-visible</property>
+	</condition>
+	</model>
+
+
+
+
+<animation>
+ <nopreview/>
+         <type>pick</type>
+        <object-name>pitotcover.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>/sim/model/c182s/securing/pitot-cover-visible</property>
+            </binding>
+        </action>
+        <hovered>
+           <!-- <binding>
+                <command>set-tooltip</command>
+                <label>Pitot Cover: %s</label>
+                <property>/sim/model/c182s/securing/pitot-cover-visible</property>
+                <tooltip-id>pitot-cover</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>-->
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>pitot</tooltip-id>
+                <label>%s</label>
+                <property>/sim/model/c182s/securing/pitot-cover-visible</property>
+                <mapping>nasal</mapping>
+                <script>
+                    var cover = "On";
+                    if (!arg[0]) {
+                        cover = "Off";
+                    }
+
+                    var heat = "cold";
+                    if (getprop("/systems/pitot/heat-applied-norm") > 0.75) {
+                        heat = "warm";
+                    }
+                    var returnString = "Pitot-Cover: " ~ cover ~ "\nTouch: " ~ heat;
+                    return returnString;
+                </script>
+            </binding>
+        </hovered>
+    </animation>
+
+ <animation>
+ <nopreview/>
+   <type>select</type>
+        <object-name>pitotcover.cs</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+
+<animation>
+	<type>select</type>
+        <object-name>WinterKit</object-name>
+	<condition>
+	<property>/engines/engine/winter-kit-installed</property>
+	</condition>
+</animation>
+<animation>
+ <nopreview/>
+        <type>pick</type>
+        <object-name>winterkit.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+	<property>/engines/engine/winter-kit-installed</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>WinterKit installed: %s</label>
+	<property>/engines/engine/winter-kit-installed</property>
+                <tooltip-id>WinterKit</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+ <animation>
+  <nopreview/>
+   <type>select</type>
+        <object-name>winterkit.cs</object-name>
+   <condition>
+       <and>
+            <less-than>
+                <property>velocities/groundspeed-kt</property>
+                <value>0.1</value>
+            </less-than>
+            <less-than>
+                <property>/engines/engine/thruster/rpm</property>
+                <value>0.0001</value>
+            </less-than>
+        </and>
+   </condition>
+ </animation>
+
+<animation>
+ <nopreview/>
+        <type>pick</type>
+        <object-name>chokes.cs.001</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/chocks001/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Wheel Choke Nose Gear: %s</label>
+        <property>/sim/chocks001/enable</property>
+                <tooltip-id>wheel-chokes</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+
+<animation>
+ <nopreview/>
+        <type>pick</type>
+        <object-name>chokes.cs.002</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/chocks002/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Wheel Choke Left Main Gear: %s</label>
+        <property>/sim/chocks002/enable</property>
+                <tooltip-id>wheel-chokes</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+
+<animation>
+ <nopreview/>
+        <type>pick</type>
+        <object-name>chokes.cs.003</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/chocks003/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Wheel Choke Right Main Gear: %s</label>
+        <property>/sim/chocks003/enable</property>
+                <tooltip-id>wheel-chokes</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+
+ <animation>
+  <nopreview/>
+   <type>select</type>
+        <object-name>chokes.cs.001</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+
+ <animation>
+  <nopreview/>
+   <type>select</type>
+        <object-name>chokes.cs.002</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+
+ <animation>
+  <nopreview/>
+   <type>select</type>
+        <object-name>chokes.cs.003</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+
+<animation>
+ <nopreview/>
+        <type>pick</type>
+        <object-name>safety-cone.cs.R</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/coneR/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Safety Cone: Right: %s</label>
+        <property>/sim/coneR/enable</property>
+                <tooltip-id>Safety Cone Right</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+
+<animation>
+ <nopreview/>
+        <type>pick</type>
+        <object-name>safety-cone.cs.L</object-name>
+        <visible>false</visible>
+        <action>
+            <name>Select</name>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+        <property>/sim/coneL/enable</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Safety Cone: Left: %s</label>
+        <property>/sim/coneL/enable</property>
+                <tooltip-id>Safety Cone Left</tooltip-id>
+                <mapping>on-off</mapping>
+            </binding>
+        </hovered>
+    </animation>
+
+ <animation>
+  <nopreview/>
+   <type>select</type>
+        <object-name>safety-cone.cs.L</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+
+ <animation>
+  <nopreview/>
+   <type>select</type>
+        <object-name>safety-cone.cs.R</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+
+
+    <!-- Hide these clickspots when inside the cockpit -->
+    <animation>
+        <type>select</type>
+        <object-name>chokes.cs.001</object-name>
+        <object-name>chokes.cs.002</object-name>
+        <object-name>chokes.cs.003</object-name>
+        <object-name>FuelSelectorDrain.cs</object-name>
+        <object-name>FuelStrainerDrain.cs</object-name>
+        <object-name>LeftTank.cs</object-name>
+        <object-name>LeftTankDrain.cs</object-name>
+        <object-name>Oil.cs</object-name>
+        <object-name>pitotcover.cs</object-name>
+        <object-name>RightTank.cs</object-name>
+        <object-name>RightTankDrain.cs</object-name>
+        <object-name>safety-cone.cs.L</object-name>
+        <object-name>safety-cone.cs.R</object-name>
+        <object-name>winterkit.cs</object-name>
+        <condition>
+        <not>
+            <property>sim/current-view/internal</property>
+        </not>
+        </condition>
+    </animation>
+
+
+<!--tiedown-->
+
+<!-- Left Tiedowns -->
+    <model>
+        <name>tiedownL</name>
+        <path>Aircraft/c182s/Models/Exterior/tiedownL.xml</path>
+        <offsets>
+            <x-m>0.794</x-m>
+            <y-m>-2.473</y-m>
+            <z-m>0.691</z-m>
+            <heading-deg>-90.0</heading-deg>
+        </offsets>
+    </model>
+
+ <animation>
+  <nopreview/>
+        <type>select</type>
+        <object-name>tiedownL</object-name>
+        <object-name>TieDownLeft</object-name>	<!-- tiedown handle -->
+        <condition>
+        <property>sim/model/c182s/securing/tiedownL-visible</property>
+        </condition>
+    </animation>
+
+    <animation>
+     <nopreview/>
+        <type>pick</type>
+        <object-name>tiedownL</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+        <property>sim/model/c182s/securing/tiedownL-visible</property>
+                <value>false</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+        <property>sim/model/c182s/securing/tiedownL-visible</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>remove-left-tiedowns</tooltip-id>
+                <label>Remove Left Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+
+     <animation>
+      <nopreview/>
+        <type>pick</type>
+        <object-name>TiedownHotSpotLeft</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                   <property>sim/model/c182s/securing/tiedownL-visible</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>secure-with-left-tiedowns</tooltip-id>
+                <label>Secure With Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+
+    <!-- Right Tiedowns -->
+    <model>
+        <name>tiedownR</name>
+        <path>Aircraft/c182s/Models/Exterior/tiedownR.xml</path>
+        <offsets>
+            <x-m>0.794</x-m>
+            <y-m>2.473</y-m>
+            <z-m>0.691</z-m>
+            <heading-deg>90.0</heading-deg>
+        </offsets>
+    </model>
+
+    <animation>
+     <nopreview/>
+        <type>select</type>
+        <object-name>tiedownR</object-name>
+        <object-name>TieDownRight</object-name>	<!-- tiedown handle -->
+        <condition>
+        <property>sim/model/c182s/securing/tiedownR-visible</property>
+        </condition>
+    </animation>
+
+    <animation>
+     <nopreview/>
+        <type>pick</type>
+        <object-name>tiedownR</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+        <property>sim/model/c182s/securing/tiedownR-visible</property>
+                <value>false</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+        <property>sim/model/c182s/securing/tiedownR-visible</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>remove-right-tiedowns</tooltip-id>
+                <label>Remove Right Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+
+     <animation>
+      <nopreview/>
+        <type>pick</type>
+        <object-name>TiedownHotSpotRight</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                   <property>sim/model/c182s/securing/tiedownR-visible</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>secure-with-right-tiedowns</tooltip-id>
+                <label>Secure With Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+
+
+    <!-- Tail Tiedowns -->
+    <model>
+        <name>tiedownT</name>
+        <path>Aircraft/c182s/Models/Exterior/tiedownT.xml</path>
+        <offsets>
+            <x-m>5.601</x-m>
+            <y-m>0.0</y-m>
+            <z-m>0.115</z-m>
+            <heading-deg>180.0</heading-deg>
+        </offsets>
+    </model>
+
+    <animation>
+     <nopreview/>
+        <type>select</type>
+        <object-name>tiedownT</object-name>
+        <object-name>TieDownTail</object-name> <!-- tiedown handle -->
+        <condition>
+            <property>sim/model/c182s/securing/tiedownT-visible</property>
+        </condition>
+    </animation>
+
+    <animation>
+     <nopreview/>
+        <type>pick</type>
+        <object-name>tiedownT</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+            <property>sim/model/c182s/securing/tiedownT-visible</property>
+                <value>false</value>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <condition>
+            <property>sim/model/c182s/securing/tiedownT-visible</property>
+                </condition>
+                <command>set-tooltip</command>
+                <tooltip-id>remove-tail-tiedowns</tooltip-id>
+                <label>Remove Tail Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+
+    <animation>
+     <nopreview/>
+        <type>pick</type>
+        <object-name>TiedownHotSpotTail</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+            <property>sim/model/c182s/securing/tiedownT-visible</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>secure-with-tail-tiedowns</tooltip-id>
+                <label>Secure With Tie-Down</label>
+            </binding>
+        </hovered>
+    </animation>
+
+ <animation>
+  <nopreview/>
+   <type>select</type>
+        <object-name>TiedownHotSpotRight</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+
+ <animation>
+  <nopreview/>
+   <type>select</type>
+        <object-name>TiedownHotSpotLeft</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+
+ <animation>
+  <nopreview/>
+   <type>select</type>
+        <object-name>TiedownHotSpotTail</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+
+ <animation>
+  <nopreview/>
+   <type>select</type>
+        <object-name>TieDownRight</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+
+ <animation>
+  <nopreview/>
+   <type>select</type>
+        <object-name>TieDownLeft</object-name>
+   <condition>
+		<less-than>
+			<property>velocities/groundspeed-kt</property>
+			<value>0.1</value>
+		</less-than>
+   </condition>
+ </animation>
+
+
+
+<!--object animation-->
+ <animation>
+   <type>select</type>
+   <object-name>Spinner</object-name>
+   <condition>
+   <not>
+     <property>sim/model/c182s/chrome_spinner</property>
+     </not>
+   </condition>
+ </animation>
+
+ <animation>
+   <type>select</type>
+   <object-name>chrome_spinner</object-name>
+   <condition>
+     <property>sim/model/c182s/chrome_spinner</property>
+   </condition>
+ </animation>
+
+  <animation>
+   <type>select</type>
+   <object-name>WheelFairing.L</object-name>
+   <object-name>WheelFairing.R</object-name>
+   <condition>
+     <property>sim/model/c182s/mw_fairing</property>
+   </condition>
+ </animation>
+
+  <animation>
+   <type>select</type>
+   <object-name>WheelFairingNose</object-name>
+   <condition>
+     <property>sim/model/c182s/nw_fairing</property>
+   </condition>
+ </animation>
+
+    <!-- Baggage models -->
+    <model>
+        <name>suitcase1</name>
+        <path>Baggages/suitcase1.xml</path>
+        <offsets>
+            <x-m>2.43</x-m>
+            <y-m>-0.14</y-m>
+            <z-m>-0.1</z-m>
+            <pitch-deg>-7</pitch-deg>
+        </offsets>
+    </model>
+    <model>
+        <name>suitcase2</name>
+        <path>Baggages/suitcase2.xml</path>
+        <offsets>
+            <x-m>2.43</x-m>
+            <y-m>0.14</y-m>
+            <z-m>-0.1</z-m>
+            <pitch-deg>-7</pitch-deg>
+        </offsets>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>suitcase1</object-name>
+        <condition>
+            <greater-than>
+                <property>payload/weight[4]/weight-lb</property>
+                <value>20.0</value>
+            </greater-than>
+        </condition>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>suitcase2</object-name>
+        <condition>
+            <greater-than>
+                <property>payload/weight[5]/weight-lb</property>
+                <value>20.0</value>
+            </greater-than>
+        </condition>
+    </animation>
+
+
+    <!-- Preflight surface checks -->
+    <!-- elevator surface check -->
+    <animation>
+        <type>pick</type>
+        <object-name>Elevator</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <and>
+                        <not>
+                            <property>/engines/engine[0]/running</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/sim/current-view/internal</property>
+                        </not>
+                    </and>
+                </condition>
+                <command>nasal</command>
+                <script>c182s.control_surface_check_elevator();</script>
+            </binding>
+        </action>
+    </animation>
+
+    <!-- left aileron surface check -->
+    <animation>
+        <type>pick</type>
+        <object-name>Aileron.L</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <and>
+                        <not>
+                            <property>/engines/engine[0]/running</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/sim/current-view/internal</property>
+                        </not>
+                    </and>
+                </condition>
+                <command>nasal</command>
+                <script>c182s.control_surface_check_left_aileron();</script>
+            </binding>
+        </action>
+    </animation>
+
+    <!-- right aileron surface check -->
+    <animation>
+        <type>pick</type>
+        <object-name>Aileron.R</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <and>
+                        <not>
+                            <property>/engines/engine[0]/running</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/sim/current-view/internal</property>
+                        </not>
+                    </and>
+                </condition>
+                <command>nasal</command>
+                <script>c182s.control_surface_check_right_aileron();</script>
+            </binding>
+        </action>
+    </animation>
+
+    <!-- rudder surface check -->
+    <animation>
+        <type>pick</type>
+        <object-name>Rudder</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <condition>
+                    <and>
+                        <not>
+                            <property>/engines/engine[0]/running</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/sim/current-view/internal</property>
+                        </not>
+                    </and>
+                </condition>
+                <command>nasal</command>
+                <script>c182s.control_surface_check_rudder();</script>
+            </binding>
+        </action>
+    </animation>
+
+</PropertyList>

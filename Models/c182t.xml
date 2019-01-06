@@ -36,6 +36,24 @@
     <z-m>-0.10</z-m>
   </offsets>
 </model>
+<model>
+  <path>Aircraft/c182s/Models/Effects/c182_cowlsmoke-left.xml</path>
+  <name>enginesmoke</name>
+  <offsets>
+    <x-m>-0.1558</x-m>
+    <y-m>-0.3067</y-m>
+    <z-m>-0.5783</z-m>
+  </offsets>
+</model>
+<model>
+  <path>Aircraft/c182s/Models/Effects/c182_cowlsmoke-right.xml</path>
+  <name>enginesmoke</name>
+  <offsets>
+    <x-m>-0.1558</x-m>
+    <y-m>0.3108</y-m>
+    <z-m>-0.5783</z-m>
+  </offsets>
+</model>
 
 <effect>
     <inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
@@ -67,7 +85,7 @@
    <object-name>Flap.L</object-name>
    <object-name>Flap.R</object-name>-->
  </effect>
-
+ 
   <effect>
     <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas-uber</inherits-from>
     <object-name>Windscreen</object-name>
@@ -75,7 +93,7 @@
     <object-name>Window.R</object-name>
     <object-name>llglas</object-name>
    </effect>
-
+   
    <effect>
        <inherits-from>Effects/model-transparent</inherits-from>
        <object-name>FastProp</object-name>
@@ -90,10 +108,10 @@
         <object-name>NavLightRed</object-name>
         <object-name>NavLightGreen</object-name>
    </effect>
-
+   
 <effect>
     <inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
-
+    
 	<parameters>
 			<reflection-correction type="float">1.0</reflection-correction>
 			<reflection-dynamic type="int">1</reflection-dynamic>
@@ -105,24 +123,24 @@
         <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_front</inherits-from>
         <object-name>Windscreen.Int</object-name>
     </effect>
-
+    
     <effect>
         <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_side</inherits-from>
         <object-name>Windscreen.Side.Left</object-name>
         <object-name>Window.L.001</object-name>
     </effect>
-
+    
         <effect>
         <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_side</inherits-from>
         <object-name>Windscreen.Side.Right</object-name>
         <object-name>Window.R.001</object-name>
     </effect>
-
+    
 <!-- ALS volume shadow  -->
     <model>
         <path>Effects/shadow.xml</path>
     </model>
-
+    
     <!-- Registration number -->
     <model>
         <path>Immat/immat.xml</path>
@@ -135,7 +153,7 @@
             <heading-deg> 0.0 </heading-deg>
         </offsets>
     </model>
-
+    
  <animation>
    <type>material</type>
    <object-name>Fuselage</object-name><!-- grouped in Blender for faster loading of liveries-->
@@ -171,7 +189,7 @@
    <texture-prop>texture</texture-prop>
    <texture>Default.png</texture>
  </animation>
-
+ 
  <animation>
      <type>material</type>
      <object-name>Fuselage</object-name>
@@ -181,13 +199,13 @@
 			<green-prop>diffuse/green</green-prop>
 			<blue-prop>diffuse/blue</blue-prop>
 		</diffuse>
-
+		
 		<specular>
 			<red-prop>specular/red</red-prop>
 			<green-prop>specular/green</green-prop>
 			<blue-prop>specular/blue</blue-prop>
 		</specular>
-
+		
 		<ambient>
 		          <red-prop>ambient/red</red-prop>
 			<green-prop>ambient/green</green-prop>
@@ -200,7 +218,7 @@
         <object-name>Blade1</object-name>
         <object-name>Blade2</object-name>
          <object-name>Blade3</object-name>
-    </animation>
+    </animation>  
 
   <animation>
   <type>select</type>
@@ -227,7 +245,7 @@
     </less-than>
   </condition>
  </animation>
-
+ 
  <animation>
   <type>select</type>
   <object-name>FastProp</object-name>
@@ -247,7 +265,7 @@
    <max>0.75</max>
    <min>0.0</min>
  </animation>
-
+ 
 <animation>
    <type>blend</type>
    <object-name>SlowProp</object-name>
@@ -256,7 +274,7 @@
    <max>0.375</max>
    <min>0.0</min>
  </animation>
-
+ 
  <animation>
    <type>spin</type>
   <object-name>FastProp</object-name>
@@ -273,7 +291,7 @@
 			<z>0.019567</z>
 		</axis>
  </animation>
-
+ 
  <animation>
    <type>spin</type>
   <object-name>SlowProp</object-name>
@@ -290,7 +308,7 @@
 			<z>0.019567</z>
 		</axis>
  </animation>
-
+ 
  <animation>
    <type>spin</type>
   <object-name>Prop</object-name>
@@ -307,8 +325,8 @@
 			<z>0.019567</z>
 		</axis>
  </animation>
-
-
+ 
+ 
 <!--CowlFlaps-->
     <animation>
         <type>rotate</type>
@@ -327,7 +345,7 @@
 			<z>0.04501</z>
 		</axis>
     </animation>
-
+    
     <animation>
         <type>rotate</type>
         <object-name>CowlFlap.R</object-name>
@@ -345,7 +363,7 @@
 			<z>0.04501</z>
 		</axis>
     </animation>
-
+    
 <!--Flight Surfaces-->
  <animation>
   <type>rotate</type>
@@ -406,8 +424,8 @@
 			<z>-0.124793</z>
 		</axis>
  </animation>
-
-
+ 
+ 
  <animation>
    <type>translate</type>
    <object-name>Flap.L</object-name>
@@ -437,7 +455,7 @@
 			<z>0.068318</z>
 		</axis>
  </animation>
-
+ 
  <animation>
   <type>rotate</type>
   <object-name>Flap.R</object-name>
@@ -485,7 +503,7 @@
 			<z>0</z>
 		</axis>
  </animation>
-
+ 
 
 
  <animation>
@@ -504,7 +522,7 @@
 			<z>0.284685</z>
 		</axis>
  </animation>
-
+ 
  <animation>
    <type>rotate</type>
    <object-name>WheelFairingNose</object-name>
@@ -514,8 +532,8 @@
     <object-name>TrenDEL_05_TrenDEL_05</object-name>
    <object-name>TrenDEL_01_TrenDEL_01</object-name>
    <object-name>TrenDEL_04_TrenDEL_04</object-name>
-   <property>fdm/jsbsim/fcs/steer-pos-deg</property>
-   <factor>-1</factor>
+   <property>/gear/gear/steering-norm</property>
+   <factor>-11</factor>
 		<center>
 			<x-m>-0.160396</x-m>
 			<y-m>0.000524</y-m>
@@ -526,9 +544,9 @@
 			<y>0</y>
 			<z>0.138826</z>
 		</axis>
- </animation>
-
-<!--compression-->
+ </animation> 
+ 
+<!--compression--> 
  <animation>
    <type>translate</type>
    <object-name>WheelFairingNose</object-name>
@@ -543,7 +561,7 @@
      <z>1.0</z>
    </axis>
  </animation>
-
+ 
  <!--gear scissors tracking animation
  <animation>
     <type>locked-track</type>
@@ -563,14 +581,14 @@
      <y>0</y>
      <z>1.0</z>
     </track-axis>
-
+ 
     <target-name>NoseWheelFork</target-name>
     <target-center>
       <x-m>-1.607</x-m>
       <y-m>0</y-m>
       <z-m>-0.806</z-m>
     </target-center>
-
+ 
     <slave-name>TrenDEL_05_TrenDEL_05</slave-name>
     <slave-center>
       <x-m>-1.480</x-m>
@@ -578,7 +596,7 @@
       <z-m>-0.781</z-m>
     </slave-center>
   </animation>-->
-
+ 
 <!-- gear compression-->
   <animation>
     <type>rotate</type>
@@ -619,7 +637,7 @@
         <ind>0.7</ind>
         <dep>11</dep>
       </entry>
-
+ 
     </interpolation>
 		<center>
 			<x-m>1.489661</x-m>
@@ -632,7 +650,7 @@
 			<z>-0.002205</z>
 		</axis>
   </animation>
-
+  
 <animation>
     <type>rotate</type>
     <object-name>WheelFairing.R</object-name>
@@ -684,7 +702,7 @@
 			<z>-0.002205</z>
 		</axis>
   </animation>
-
+  
 <!-- Doors-->
 <animation>
    <type>pick</type>
@@ -699,7 +717,7 @@
      </binding>
    </action>
    </animation>
-
+   
  <animation>
    <type>rotate</type>
 <object-name>Door.L</object-name>
@@ -707,7 +725,7 @@
    <object-name>WindowFrame.L</object-name>
 <object-name>Window.L</object-name>
 <object-name>Window.L.001</object-name>
-   <property>sim/model/door-positions/DoorL/position-norm</property>
+   <property>sim/model/door-positions/DoorL/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>
@@ -733,7 +751,7 @@
 			<z>-0.508674</z>
 		</axis>
  </animation>
-
+ 
 <animation>
    <type>pick</type>
    <object-name>Door.R</object-name>
@@ -747,7 +765,7 @@
      </binding>
    </action>
   </animation>
-
+  
  <animation>
    <type>rotate</type>
 <object-name>Door.R</object-name>
@@ -755,7 +773,7 @@
    <object-name>WindowFrame.R</object-name>
 <object-name>Window.R</object-name>
 <object-name>Window.R.001</object-name>
-   <property>sim/model/door-positions/DoorR/position-norm</property>
+   <property>sim/model/door-positions/DoorR/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>
@@ -781,10 +799,10 @@
 			<z>-0.508674</z>
 		</axis>
  </animation>
+ 
 
-
-
-
+   
+    
  <animation>
         <type>pick</type>
         <object-name>WindowFrame.R</object-name>
@@ -805,7 +823,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
 <animation>
    <type>rotate</type>
         <object-name>WindowFrame.R</object-name>
@@ -837,11 +855,11 @@
 			<z>-0.01543</z>
 		</axis>
  </animation>
+ 
 
-
-
-
-
+    
+    
+    
  <animation>
         <type>pick</type>
         <object-name>WindowFrame.L</object-name>
@@ -864,7 +882,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
 <animation>
    <type>rotate</type>
         <object-name>WindowFrame.L</object-name>
@@ -896,7 +914,7 @@
 			<z>-0.01543</z>
 		</axis>
  </animation>
-
+ 
     <animation>
         <type>pick</type>
         <object-name>LeftTank.cs</object-name>
@@ -917,7 +935,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
     <animation>
         <type>pick</type>
         <object-name>LeftTankDrain.cs</object-name>
@@ -938,7 +956,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
     <animation>
         <type>pick</type>
         <object-name>RightTank.cs</object-name>
@@ -959,7 +977,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
     <animation>
         <type>pick</type>
         <object-name>RightTankDrain.cs</object-name>
@@ -980,7 +998,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
     <animation>
         <type>pick</type>
         <object-name>FuelSelectorDrain.cs</object-name>
@@ -1001,7 +1019,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
     <animation>
         <type>pick</type>
         <object-name>FuelStrainerDrain.cs</object-name>
@@ -1022,7 +1040,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
     <animation>
         <type>pick</type>
         <object-name>Oil.cs</object-name>
@@ -1043,7 +1061,36 @@
             </binding>
         </hovered>
     </animation>
-
+    
+    <animation>
+        <type>pick</type>
+        <object-name>StallVane.cs</object-name>
+        <visible>false</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>/controls/stall-horn/test</property>
+                <value>1</value>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/controls/stall-horn/test</property>
+                    <value>0</value>
+                </binding>
+            </mod-up>
+        </action>  
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>stallvanetest-tt-id</tooltip-id>
+                <label>Stall Vane</label>
+            </binding>
+        </hovered>
+    </animation>
+ 
 <animation>
    <type>pick</type>
    <object-name>BaggageDoor</object-name>
@@ -1092,11 +1139,11 @@
       </hovered>
    </action>
  </animation>
-
+ 
  <animation>
    <type>rotate</type>
    <object-name>BaggageDoor</object-name>
-   <property>sim/model/door-positions/BaggageDoor/position-norm</property>
+   <property>sim/model/door-positions/BaggageDoor/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>
@@ -1118,8 +1165,8 @@
 			<z>0.42203</z>
 		</axis>
  </animation>
-
-
+ 
+ 
 <!--Exterior Lights-->
  <animation>
   <type>select</type>
@@ -1187,7 +1234,7 @@
 			</entry>
 		</interpolation>
 	</animation>
-
+	
 <!--<animation>
 	<type>select</type>
         <object-name>PlaneX</object-name>
@@ -1199,8 +1246,8 @@
 <animation>
    <type>blend</type>
    <object-name>PlaneX</object-name>
-   <property>/systems/electrical/outputs/beacon</property>
-   <factor>0.0416</factor>
+   <property>/systems/electrical/outputs/beacon-norm</property>
+   <factor>1</factor>
    <max>1.0</max>
    <min>0.0</min>
  </animation>
@@ -1218,7 +1265,10 @@
 	<property>/sim/model/c182s/procedural-lights</property>
 	</not>
 	</or>
-	<property>/systems/electrical/outputs/beacon</property>
+	<greater-than>
+	<property>/systems/electrical/outputs/beacon-norm</property>
+	<value>0.01</value>
+	</greater-than>
 	</and>
 	</condition>
 </animation>
@@ -1280,7 +1330,7 @@
 			</entry>
 		</interpolation>
 	</animation>
-
+	
 <animation>
 	<type>select</type>
         <object-name>Plane.002X</object-name>
@@ -1298,7 +1348,7 @@
 	</and>
 	</condition>
 </animation>
-
+	
 <!-- right strobe-->
 <animation>
 		<type>range</type>
@@ -1354,7 +1404,7 @@
 			</entry>
 		</interpolation>
 	</animation>
-
+	
 <animation>
 	<type>select</type>
         <object-name>Plane.003X</object-name>
@@ -1394,8 +1444,8 @@
         <min>0.5</min>
         <max>80</max>
     </animation>
-
-
+    
+    
 <animation>
 	<type>select</type>
         <object-name>LandingLight</object-name>
@@ -1435,8 +1485,8 @@
         <min>0.5</min>
         <max>80</max>
     </animation>
-
-
+    
+    
 <animation>
 	<type>select</type>
         <object-name>TaxiLight</object-name>
@@ -1476,8 +1526,8 @@
         <min>0.5</min>
         <max>20</max>
     </animation>
-
-
+    
+    
 <animation>
 	<type>select</type>
         <object-name>PlaneTailLight</object-name>
@@ -1517,8 +1567,8 @@
         <min>0.5</min>
         <max>20</max>
     </animation>
-
-
+    
+    
 <animation>
 	<type>select</type>
         <object-name>NavLightRed</object-name>
@@ -1534,7 +1584,7 @@
 	</or>
 	<property>/systems/electrical/outputs/nav-lights</property>
 	</and>
-	</condition>
+	</condition>	
 </animation>
 
  <animation>
@@ -1557,8 +1607,8 @@
         <min>0.5</min>
         <max>20</max>
     </animation>
-
-
+    
+    
 <animation>
 	<type>select</type>
         <object-name>NavLightGreen</object-name>
@@ -1574,7 +1624,7 @@
 	</or>
 	<property>/systems/electrical/outputs/nav-lights</property>
 	</and>
-	</condition>
+	</condition>	
 </animation>
 
 <!--procedural lights - ALS only-->
@@ -1592,7 +1642,7 @@
             <z-m> 2.062 </z-m>
         </offsets>
  </model>
-
+ 
 <model>
 <condition>
 <and>
@@ -1607,7 +1657,7 @@
 	<z-m>0.897</z-m>
         </offsets>
  </model>
-
+ 
  <model>
 <condition>
 <and>
@@ -1622,7 +1672,7 @@
 	<z-m>0.897</z-m>
         </offsets>
  </model>
-
+ 
  <model>
  <condition>
 <and>
@@ -1637,7 +1687,7 @@
             <z-m>0.474</z-m>
         </offsets>
  </model>
-
+ 
 <model>
 <condition>
 <and>
@@ -1653,7 +1703,7 @@
         </offsets>
  </model>
 
-
+ 
 <model>
 <condition>
 <and>
@@ -1668,8 +1718,8 @@
             <z-m>0.892203</z-m>
         </offsets>
  </model>
-
-
+ 
+ 
 <!--exterior stuff which is not called by nasal-script-->
 
 <model>
@@ -1684,7 +1734,7 @@
 	<property>/sim/model/c182s/securing/pitot-cover-visible</property>
 	</condition>
 	</model>
-
+	
 
 
 
@@ -1713,14 +1763,14 @@
                 <command>set-tooltip</command>
                 <tooltip-id>pitot</tooltip-id>
                 <label>%s</label>
-                <property>/sim/model/c182s/securing/pitot-cover-visible</property>
+                <property>/sim/model/c182s/securing/pitot-cover-visible-changed</property>
                 <mapping>nasal</mapping>
                 <script>
                     var cover = "On";
-                    if (!arg[0]) {
+                    if (!getprop("/sim/model/c182s/securing/pitot-cover-visible")) {
                         cover = "Off";
                     }
-
+                    
                     var heat = "cold";
                     if (getprop("/systems/pitot/heat-applied-norm") > 0.75) {
                         heat = "warm";
@@ -1731,7 +1781,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
  <animation>
  <nopreview/>
    <type>select</type>
@@ -1742,14 +1792,14 @@
 			<value>0.1</value>
 		</less-than>
    </condition>
- </animation>
-
+ </animation> 
+ 
 <animation>
 	<type>select</type>
         <object-name>WinterKit</object-name>
 	<condition>
 	<property>/engines/engine/winter-kit-installed</property>
-	</condition>
+	</condition>	
 </animation>
 <animation>
  <nopreview/>
@@ -1790,8 +1840,8 @@
             </less-than>
         </and>
    </condition>
- </animation>
-
+ </animation> 
+    
 <animation>
  <nopreview/>
         <type>pick</type>
@@ -1815,7 +1865,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
 <animation>
  <nopreview/>
         <type>pick</type>
@@ -1839,7 +1889,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
 <animation>
  <nopreview/>
         <type>pick</type>
@@ -1874,7 +1924,7 @@
 			<value>0.1</value>
 		</less-than>
    </condition>
- </animation>
+ </animation> 
 
  <animation>
   <nopreview/>
@@ -1886,7 +1936,7 @@
 			<value>0.1</value>
 		</less-than>
    </condition>
- </animation>
+ </animation> 
 
  <animation>
   <nopreview/>
@@ -1898,7 +1948,7 @@
 			<value>0.1</value>
 		</less-than>
    </condition>
- </animation>
+ </animation>    
 
 <animation>
  <nopreview/>
@@ -1923,7 +1973,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
 <animation>
  <nopreview/>
         <type>pick</type>
@@ -1947,7 +1997,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
  <animation>
   <nopreview/>
    <type>select</type>
@@ -1959,7 +2009,7 @@
 		</less-than>
    </condition>
  </animation>
-
+ 
  <animation>
   <nopreview/>
    <type>select</type>
@@ -1971,7 +2021,7 @@
 		</less-than>
    </condition>
  </animation>
-
+    
 
     <!-- Hide these clickspots when inside the cockpit -->
     <animation>
@@ -1984,6 +2034,7 @@
         <object-name>LeftTank.cs</object-name>
         <object-name>LeftTankDrain.cs</object-name>
         <object-name>Oil.cs</object-name>
+        <object-name>StallVane.cs</object-name>
         <object-name>pitotcover.cs</object-name>
         <object-name>RightTank.cs</object-name>
         <object-name>RightTankDrain.cs</object-name>
@@ -1996,8 +2047,8 @@
         </not>
         </condition>
     </animation>
-
-
+    
+    
 <!--tiedown-->
 
 <!-- Left Tiedowns -->
@@ -2011,7 +2062,7 @@
             <heading-deg>-90.0</heading-deg>
         </offsets>
     </model>
-
+    
  <animation>
   <nopreview/>
         <type>select</type>
@@ -2021,7 +2072,7 @@
         <property>sim/model/c182s/securing/tiedownL-visible</property>
         </condition>
     </animation>
-
+    
     <animation>
      <nopreview/>
         <type>pick</type>
@@ -2045,8 +2096,8 @@
                 <label>Remove Left Tie-Down</label>
             </binding>
         </hovered>
-    </animation>
-
+    </animation>   
+    
      <animation>
       <nopreview/>
         <type>pick</type>
@@ -2067,7 +2118,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
     <!-- Right Tiedowns -->
     <model>
         <name>tiedownR</name>
@@ -2079,7 +2130,7 @@
             <heading-deg>90.0</heading-deg>
         </offsets>
     </model>
-
+    
     <animation>
      <nopreview/>
         <type>select</type>
@@ -2089,7 +2140,7 @@
         <property>sim/model/c182s/securing/tiedownR-visible</property>
         </condition>
     </animation>
-
+    
     <animation>
      <nopreview/>
         <type>pick</type>
@@ -2114,7 +2165,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
      <animation>
       <nopreview/>
         <type>pick</type>
@@ -2148,7 +2199,7 @@
             <heading-deg>180.0</heading-deg>
         </offsets>
     </model>
-
+    
     <animation>
      <nopreview/>
         <type>select</type>
@@ -2158,7 +2209,7 @@
             <property>sim/model/c182s/securing/tiedownT-visible</property>
         </condition>
     </animation>
-
+    
     <animation>
      <nopreview/>
         <type>pick</type>
@@ -2183,7 +2234,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
     <animation>
      <nopreview/>
         <type>pick</type>
@@ -2204,7 +2255,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
  <animation>
   <nopreview/>
    <type>select</type>
@@ -2216,7 +2267,7 @@
 		</less-than>
    </condition>
  </animation>
-
+ 
  <animation>
   <nopreview/>
    <type>select</type>
@@ -2228,7 +2279,7 @@
 		</less-than>
    </condition>
  </animation>
-
+    
  <animation>
   <nopreview/>
    <type>select</type>
@@ -2240,7 +2291,7 @@
 		</less-than>
    </condition>
  </animation>
-
+ 
  <animation>
   <nopreview/>
    <type>select</type>
@@ -2252,7 +2303,7 @@
 		</less-than>
    </condition>
  </animation>
-
+ 
  <animation>
   <nopreview/>
    <type>select</type>
@@ -2266,7 +2317,7 @@
  </animation>
 
 
-
+ 
 <!--object animation-->
  <animation>
    <type>select</type>
@@ -2277,7 +2328,7 @@
      </not>
    </condition>
  </animation>
-
+ 
  <animation>
    <type>select</type>
    <object-name>chrome_spinner</object-name>
@@ -2285,7 +2336,7 @@
      <property>sim/model/c182s/chrome_spinner</property>
    </condition>
  </animation>
-
+ 
   <animation>
    <type>select</type>
    <object-name>WheelFairing.L</object-name>
@@ -2294,7 +2345,7 @@
      <property>sim/model/c182s/mw_fairing</property>
    </condition>
  </animation>
-
+ 
   <animation>
    <type>select</type>
    <object-name>WheelFairingNose</object-name>
@@ -2344,8 +2395,8 @@
             </greater-than>
         </condition>
     </animation>
-
-
+    
+    
     <!-- Preflight surface checks -->
     <!-- elevator surface check -->
     <animation>
@@ -2357,7 +2408,7 @@
             <binding>
                 <condition>
                     <and>
-                        <not>
+                        <not>            
                             <property>/engines/engine[0]/running</property>
                         </not>
                         <less-than>
@@ -2374,7 +2425,7 @@
             </binding>
         </action>
     </animation>
-
+    
     <!-- left aileron surface check -->
     <animation>
         <type>pick</type>
@@ -2385,7 +2436,7 @@
             <binding>
                 <condition>
                     <and>
-                        <not>
+                        <not>            
                             <property>/engines/engine[0]/running</property>
                         </not>
                         <less-than>
@@ -2402,7 +2453,7 @@
             </binding>
         </action>
     </animation>
-
+    
     <!-- right aileron surface check -->
     <animation>
         <type>pick</type>
@@ -2413,7 +2464,7 @@
             <binding>
                 <condition>
                     <and>
-                        <not>
+                        <not>            
                             <property>/engines/engine[0]/running</property>
                         </not>
                         <less-than>
@@ -2430,7 +2481,7 @@
             </binding>
         </action>
     </animation>
-
+    
     <!-- rudder surface check -->
     <animation>
         <type>pick</type>
@@ -2441,7 +2492,7 @@
             <binding>
                 <condition>
                     <and>
-                        <not>
+                        <not>            
                             <property>/engines/engine[0]/running</property>
                         </not>
                         <less-than>

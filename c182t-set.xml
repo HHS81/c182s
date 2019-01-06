@@ -117,6 +117,39 @@
   <model>
    <path archive="y">Aircraft/c182s/Models/c182t.xml</path>
     <hide-yoke>false</hide-yoke>
+    
+    <icing>
+       <iceable>
+         <name>Wing</name>          <sensitivity type="double">1.0</sensitivity>
+          <output-property>/fdm/jsbsim/ice/wing</output-property>
+        </iceable>
+        <iceable>
+         <name>Stabilizer</name>
+          <sensitivity type="double">1.0</sensitivity>
+          <output-property>/fdm/jsbsim/ice/stabilizer</output-property>
+        </iceable>
+        <iceable>
+          <name>Propeller</name>
+          <sensitivity type="double">0.5</sensitivity>
+          <output-property>/fdm/jsbsim/ice/propeller</output-property>
+       </iceable>
+       <iceable>
+          <name>Windshield</name>
+          <sensitivity type="double">0.5</sensitivity>
+         <!-- not relevant for fdm, ignore output-property -->
+        </iceable>
+       <iceable>
+          <name>Fuselage</name>
+          <sensitivity type="double">0.3</sensitivity>
+          <output-property>/fdm/jsbsim/ice/fuselage</output-property>
+        </iceable>
+        <iceable>
+         <name>Pitot tube</name>
+          <sensitivity type="double">1</sensitivity>
+          <salvage-control>/systems/pitot/salvage</salvage-control>
+          <output-property>/systems/pitot/icing</output-property>
+        </iceable>
+      </icing>
 
 
 
@@ -129,8 +162,7 @@
         </map>
 
     <livery>
-      <file type="string">liveries/Default.png</file>
-      <index type="int">0</index>
+        <name type="string">default</name>
     </livery>
 
   <c182s>
@@ -170,7 +202,7 @@
 </securing>
 
 <procedural-lights type="bool">true</procedural-lights>
-<enable-fog-frost type="bool">false</enable-fog-frost>
+<enable-fog-frost type="bool">true</enable-fog-frost>
 
 
 	<material>
@@ -257,27 +289,27 @@
   </model>
 
   <view n="0">
-    <internal archive="y">true</internal>
-    <config>
-      <default-field-of-view-deg>60</default-field-of-view-deg>
-      <x-offset-m archive="y">-0.25</x-offset-m>
-      <y-offset-m archive="y">0.59</y-offset-m>
-      <z-offset-m archive="y">1.26</z-offset-m>
-      <pitch-offset-deg>-2.5</pitch-offset-deg>
-      <limits>
-        <enabled type="bool">true</enabled>
-        <left>
-          <heading-max-deg type="double">160</heading-max-deg>
-          <x-offset-max-m type="double">0.15</x-offset-max-m>
-          <x-offset-threshold-deg type="double">40</x-offset-threshold-deg>
-        </left>
-        <right>
-          <heading-max-deg type="double">160</heading-max-deg>
-          <x-offset-max-m type="double">0.22</x-offset-max-m>
-          <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
-        </right>
-      </limits>
-    </config>
+   <internal archive="y">true</internal>
+   <config>
+<default-field-of-view-deg>75</default-field-of-view-deg>
+     <x-offset-m archive="y">-0.25</x-offset-m>
+     <y-offset-m archive="y">0.59</y-offset-m>
+     <z-offset-m archive="y">1.26</z-offset-m>
+     <pitch-offset-deg>-10</pitch-offset-deg>
+<limits>
+                <enabled type="bool">true</enabled>
+                <left>
+                  <heading-max-deg type="double">160</heading-max-deg>
+                  <x-offset-max-m type="double">0.15</x-offset-max-m>
+                  <x-offset-threshold-deg type="double">40</x-offset-threshold-deg>
+                </left>
+                <right>
+                    <heading-max-deg type="double">160</heading-max-deg>
+                    <x-offset-max-m type="double">0.22</x-offset-max-m>
+                    <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                </right>
+            </limits>
+   </config>
   </view>
 
   <view n="100">
@@ -556,14 +588,15 @@
         <!-- Save these properties between sessions -->
         <aircraft-data>
             <path>/sim/start-state</path>
-
+            
             <path>/sim/time/hobbs/engine</path>
             <path>/sim/model/c182s/enable-fog-frost</path>
+            <path>/sim/model/c182s/enable-fog-frost-msgs</path>
             <path>/engines/engine/complex-engine-procedures</path>
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>
             <path>/engines/engine/winter-kit-installed</path>
-
+            
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
             <path>/consumables/fuel/tank[2]/level-gal_us</path>
@@ -579,17 +612,17 @@
             <path>/environment/aircraft-effects/cabin-heat-set</path>
             <path>/environment/aircraft-effects/cabin-air-set</path>
             <path>/environment/aircraft-effects/defrost-set</path>
-
+            
             <path>/controls/lighting/landing-lights</path>
             <path>/controls/lighting/taxi-light</path>
             <path>/controls/lighting/strobe</path>
             <path>/controls/lighting/beacon</path>
             <path>/controls/lighting/nav-lights</path>
-
+            
             <path>/controls/anti-ice/pitot-heat</path>
             <path>/controls/engines/engine[0]/fuel-pump</path>
-            <path>/controls/switches/AVMBus1</path>
-            <path>/controls/switches/AVMBus2</path>
+            <path>/controls/switches/AVMBus1</path>  
+            <path>/controls/switches/AVMBus2</path>  
             <path>/controls/switches/kt-76c</path>
             <path>/controls/switches/kn-62a</path>
             <path>/controls/switches/fuel_tank_selector</path>
@@ -597,7 +630,7 @@
             <path>/controls/flight/elevator-trim</path>
             <path>/controls/flight/rudder-trim</path>
             <path>/controls/flight/flaps</path>
-
+            
             <path>/instrumentation/annunciator/testswitch</path>
             <path>/instrumentation/annunciator/dim-factor</path>
             <path>/instrumentation/audio-panel/power-btn</path>
@@ -665,8 +698,9 @@
             <path>/instrumentation/transponder/id-code</path>
             <path>/instrumentation/transponder/factory-vfr-code</path>
             <path>/engines/engine[0]/egt-bug-norm</path>
-
-            <path>/controls/engines/engine[0]/magnetos</path>
+            
+            <!-- now calculated in engine.nas! <path>/controls/engines/engine[0]/magnetos</path> -->
+            <path>/controls/switches/magnetos</path>
             <path>/controls/engines/engine[0]/master-bat</path>
             <path>/controls/engines/engine[0]/master-alt</path>
             <path>/controls/switches/AVMBus1</path>
@@ -680,14 +714,14 @@
             <path>/controls/lighting/pedestal-lights-norm</path>
             <path>/controls/lighting/radio-lights-norm</path>
             <path>/systems/electrical/battery-charge-percent</path>
-
+            
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[0]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[1]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[2]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[3]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[4]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[5]</path>
-
+            
             <path>/sim/model/c182s/securing/tiedownR-visible</path>
             <path>/sim/model/c182s/securing/tiedownL-visible</path>
             <path>/sim/model/c182s/securing/tiedownT-visible</path>
@@ -707,7 +741,12 @@
             <path>/sim/model/c182s/securing/pitot-cover-visible</path>
             <path>/controls/SunVisor[0]/position-deg</path>
             <path>/controls/SunVisor[1]/position-deg</path>
-
+            <path>/sim/model/door-positions/DoorL/position-norm</path>
+            <path>/sim/model/door-positions/DoorR/position-norm</path>
+            <path>/sim/model/door-positions/BaggageDoor/position-norm</path>
+            <path>/sim/model/door-positions/WindowL/position-norm</path>
+            <path>/sim/model/door-positions/WindowR/position-norm</path>
+        
             <path>/controls/circuit-breakers/Flap</path>
             <path>/controls/circuit-breakers/Inst</path>
             <path>/controls/circuit-breakers/AVNBus1</path>
@@ -723,11 +762,30 @@
             <path>/controls/circuit-breakers/Transponder</path>
             <path>/controls/circuit-breakers/ADF</path>
             <path>/controls/circuit-breakers/AutoPilot</path>
+            
+            <path>/sim/failure-manager/display-on-screen</path>
+            <path>/sim/failure-manager/restore-on-start</path>
         </aircraft-data>
 
  </sim>
 
-  <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+ <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+  <instruments>
+    <airspeed-indicator>
+        <indicated-speed-kt type="float">0</indicated-speed-kt>
+    </airspeed-indicator>
+          
+    <fuelIndicator n="0">  <serviceable type="bool">true</serviceable>  </fuelIndicator>
+    <fuelIndicator n="1">  <serviceable type="bool">true</serviceable>  </fuelIndicator>
+    <egt>  <serviceable type="bool">true</serviceable>  </egt>
+    <cht>  <serviceable type="bool">true</serviceable>  </cht>
+    <oil-temp>  <serviceable type="bool">true</serviceable>  </oil-temp>
+    <oil-press>  <serviceable type="bool">true</serviceable>  </oil-press>
+    <!--<vac>  <serviceable type="bool">true</serviceable>  </vac>  IMPLEMENT ME -->
+    <!--<amp>  <serviceable type="bool">true</serviceable>  </amp>  IMPLEMENT ME -->
+    <fuel-flow>  <serviceable type="bool">true</serviceable>  </fuel-flow>
+    <!--<manfold-press> <serviceable type="bool">true</serviceable> </manfold-press> IMPLEMENT ME -->
+  </instruments>
 
    <consumables>
     <fuel>
@@ -832,6 +890,10 @@
     <ADF type="bool">1</ADF>
     <AutoPilot type="bool">1</AutoPilot>
   </circuit-breakers>
+  <stall-horn>
+      <serviceable type="bool">1</serviceable>
+      <test type="bool">0</test>
+  </stall-horn>
   </controls>
 
 
@@ -840,6 +902,7 @@
    <settings>
     <auto-pitch-trim type="bool">true</auto-pitch-trim>
    </settings>
+   <serviceable type="bool">true</serviceable>
   </KAP140>
  </autopilot>
 
@@ -847,7 +910,7 @@
 
 
 
- <engines>
+<engines>
   <engine>
    <rpm type="double">0</rpm>
    <magnetos type="int">0</magnetos>
@@ -859,11 +922,9 @@
    <complex-engine-procedures type="bool">false</complex-engine-procedures>
    <allow-fuel-contamination type="bool">false</allow-fuel-contamination>
    <allow-oil-management type="bool">false</allow-oil-management>
-   <oil-powergain-factor type="double">1</oil-powergain-factor>
    <winter-kit-installed type="bool">false</winter-kit-installed>
    <oil-temperature-env-diff type="double">0</oil-temperature-env-diff>
    <oil-compensated-temperature-degf type="double">60</oil-compensated-temperature-degf>
-   <oil-service-hours type="double">5</oil-service-hours>
    <external-heat>
        <enabled type="bool">false</enabled>
        <applied-norm type="double">0.0</applied-norm>
@@ -875,6 +936,7 @@
    </oil-pump>
    <oil-final-temperature-degf type="double">60</oil-final-temperature-degf> <!-- this is the final oil temperature after all effects -->
    <oil-temperature-degf-indicated type="double">60</oil-temperature-degf-indicated> <!-- oil temp for the gauge (filtered) -->
+   <oil-service-hours type="double">0</oil-service-hours>
    <cowling-air-temperature-degf>40</cowling-air-temperature-degf> <!-- OAT in the cowling -->
   </engine>
  </engines>
@@ -1037,9 +1099,9 @@
 
 
  <!-- ================ map keyboard ================ -->
- <input>
-    <keyboard>
-
+ <input> 
+    <keyboard> 
+     
 
       <key n="89">
         <name>Y</name>
@@ -1049,10 +1111,41 @@
           <command>property-toggle</command>
           <property>sim/model/hide-yoke</property>
         </binding>
+      </key>    
+      
+      
+      <!-- overwriting { and } default aliases -->
+      <key n="123">
+        <name>{</name>
+        <desc>Decrease Magneto on Selected Engine</desc>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.stepMagnetos(-1)</script>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.stepMagnetos(0)</script>
+            </binding>
+        </mod-up>
+      </key>
+      <key n="125">
+        <name>}</name>
+        <desc>Increase Magneto on Selected Engine</desc>
+        <binding>
+            <command>nasal</command>
+                <script>c182s.stepMagnetos(1)</script>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.stepMagnetos(0)</script>
+            </binding>
+        </mod-up>
       </key>
 
     </keyboard>
     </input>
 
-
+  
 </PropertyList>

@@ -2538,7 +2538,7 @@
                         <value>1</value>
                         <property>controls/switches/starter</property>
                     </difference>
-                    <property>controls/engines/engine/magnetos</property>
+                    <property>controls/switches/magnetos</property>
                     <value>30</value>
                 </product>
                 <product>

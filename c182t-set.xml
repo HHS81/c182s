@@ -291,24 +291,25 @@
   <view n="0">
    <internal archive="y">true</internal>
    <config>
-<default-field-of-view-deg>75</default-field-of-view-deg>
+     <!-- Reduced FoV so the FG1000 is readable on most displays -->
+     <default-field-of-view-deg>48</default-field-of-view-deg>
      <x-offset-m archive="y">-0.25</x-offset-m>
      <y-offset-m archive="y">0.59</y-offset-m>
      <z-offset-m archive="y">1.26</z-offset-m>
      <pitch-offset-deg>-10</pitch-offset-deg>
-<limits>
-                <enabled type="bool">true</enabled>
-                <left>
-                  <heading-max-deg type="double">160</heading-max-deg>
-                  <x-offset-max-m type="double">0.15</x-offset-max-m>
-                  <x-offset-threshold-deg type="double">40</x-offset-threshold-deg>
-                </left>
-                <right>
-                    <heading-max-deg type="double">160</heading-max-deg>
-                    <x-offset-max-m type="double">0.22</x-offset-max-m>
-                    <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
-                </right>
-            </limits>
+     <limits>
+       <enabled type="bool">true</enabled>
+      <left>
+        <heading-max-deg type="double">160</heading-max-deg>
+        <x-offset-max-m type="double">0.15</x-offset-max-m>
+        <x-offset-threshold-deg type="double">40</x-offset-threshold-deg>
+      </left>
+      <right>
+        <heading-max-deg type="double">160</heading-max-deg>
+        <x-offset-max-m type="double">0.22</x-offset-max-m>
+        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+      </right>
+    </limits>
    </config>
   </view>
 
@@ -587,6 +588,13 @@
                   </script>
                 </binding>
               </item>
+              <item>
+          			<name>route-manager</name>
+          			<binding>
+          				<command>dialog-show</command>
+          				<dialog-name>route-manager</dialog-name>
+          			</binding>
+          		</item>
             </menu>
           </default>
         </menubar>
@@ -1127,7 +1135,7 @@
  <!-- ================ map keyboard ================ -->
  <input>
     <keyboard>
-
+      <multikey include="Aircraft/Instruments-3d/FG1000/fg1000-multikey.xml"/>
 
       <key n="89">
         <name>Y</name>

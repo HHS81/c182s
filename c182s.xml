@@ -290,7 +290,7 @@
                     <pitch> 0.0 </pitch>
                     <yaw> 0.0 </yaw>
                 </orient>
-                <sense> -1 </sense>
+                <sense> 1 </sense>
                 <p_factor>5 </p_factor>
             </thruster>
         </engine>

@@ -117,7 +117,7 @@
   <model>
    <path archive="y">Aircraft/c182s/Models/c182t.xml</path>
     <hide-yoke>false</hide-yoke>
-    
+
     <icing>
        <iceable>
          <name>Wing</name>          <sensitivity type="double">1.0</sensitivity>
@@ -291,24 +291,25 @@
   <view n="0">
    <internal archive="y">true</internal>
    <config>
-<default-field-of-view-deg>75</default-field-of-view-deg>
+     <!-- Reduced FoV so the FG1000 is readable on most displays -->
+     <default-field-of-view-deg>48</default-field-of-view-deg>
      <x-offset-m archive="y">-0.25</x-offset-m>
      <y-offset-m archive="y">0.59</y-offset-m>
      <z-offset-m archive="y">1.26</z-offset-m>
      <pitch-offset-deg>-10</pitch-offset-deg>
-<limits>
-                <enabled type="bool">true</enabled>
-                <left>
-                  <heading-max-deg type="double">160</heading-max-deg>
-                  <x-offset-max-m type="double">0.15</x-offset-max-m>
-                  <x-offset-threshold-deg type="double">40</x-offset-threshold-deg>
-                </left>
-                <right>
-                    <heading-max-deg type="double">160</heading-max-deg>
-                    <x-offset-max-m type="double">0.22</x-offset-max-m>
-                    <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
-                </right>
-            </limits>
+     <limits>
+       <enabled type="bool">true</enabled>
+      <left>
+        <heading-max-deg type="double">160</heading-max-deg>
+        <x-offset-max-m type="double">0.15</x-offset-max-m>
+        <x-offset-threshold-deg type="double">40</x-offset-threshold-deg>
+      </left>
+      <right>
+        <heading-max-deg type="double">160</heading-max-deg>
+        <x-offset-max-m type="double">0.22</x-offset-max-m>
+        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+      </right>
+    </limits>
    </config>
   </view>
 
@@ -564,7 +565,40 @@
    </key>
   </help>
 
-        <menubar include="gui/dialogs/c182s-menu.xml"/>
+        <menubar include="gui/dialogs/c182s-menu.xml">
+          <default n="0">
+            <menu n="10">
+              <item n="98">
+                <label>Display PFD</label>
+                <binding>
+                  <command>nasal</command>
+                  <script>
+                    var fg1000system = fg1000.FG1000.getOrCreateInstance();
+                    fg1000system.displayGUI(1, 0.66);
+                  </script>
+                </binding>
+              </item>
+              <item n="99">
+                <label>Display MFD</label>
+                <binding>
+                  <command>nasal</command>
+                  <script>
+                    var fg1000system = fg1000.FG1000.getOrCreateInstance();
+                    fg1000system.displayGUI(2, 0.66);
+                  </script>
+                </binding>
+              </item>
+              <item>
+          			<name>route-manager</name>
+          			<binding>
+          				<command>dialog-show</command>
+          				<dialog-name>route-manager</dialog-name>
+          			</binding>
+          		</item>
+            </menu>
+          </default>
+        </menubar>
+
 
         <!-- Splash screens. One is randomly chosen when FlightGear starts -->
         <startup>
@@ -588,7 +622,7 @@
         <!-- Save these properties between sessions -->
         <aircraft-data>
             <path>/sim/start-state</path>
-            
+
             <path>/sim/time/hobbs/engine</path>
             <path>/sim/model/c182s/enable-fog-frost</path>
             <path>/sim/model/c182s/enable-fog-frost-msgs</path>
@@ -596,7 +630,7 @@
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>
             <path>/engines/engine/winter-kit-installed</path>
-            
+
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
             <path>/consumables/fuel/tank[2]/level-gal_us</path>
@@ -612,17 +646,17 @@
             <path>/environment/aircraft-effects/cabin-heat-set</path>
             <path>/environment/aircraft-effects/cabin-air-set</path>
             <path>/environment/aircraft-effects/defrost-set</path>
-            
+
             <path>/controls/lighting/landing-lights</path>
             <path>/controls/lighting/taxi-light</path>
             <path>/controls/lighting/strobe</path>
             <path>/controls/lighting/beacon</path>
             <path>/controls/lighting/nav-lights</path>
-            
+
             <path>/controls/anti-ice/pitot-heat</path>
             <path>/controls/engines/engine[0]/fuel-pump</path>
-            <path>/controls/switches/AVMBus1</path>  
-            <path>/controls/switches/AVMBus2</path>  
+            <path>/controls/switches/AVMBus1</path>
+            <path>/controls/switches/AVMBus2</path>
             <path>/controls/switches/kt-76c</path>
             <path>/controls/switches/kn-62a</path>
             <path>/controls/switches/fuel_tank_selector</path>
@@ -630,7 +664,7 @@
             <path>/controls/flight/elevator-trim</path>
             <path>/controls/flight/rudder-trim</path>
             <path>/controls/flight/flaps</path>
-            
+
             <path>/instrumentation/annunciator/testswitch</path>
             <path>/instrumentation/annunciator/dim-factor</path>
             <path>/instrumentation/audio-panel/power-btn</path>
@@ -698,7 +732,7 @@
             <path>/instrumentation/transponder/id-code</path>
             <path>/instrumentation/transponder/factory-vfr-code</path>
             <path>/engines/engine[0]/egt-bug-norm</path>
-            
+
             <!-- now calculated in engine.nas! <path>/controls/engines/engine[0]/magnetos</path> -->
             <path>/controls/switches/magnetos</path>
             <path>/controls/engines/engine[0]/master-bat</path>
@@ -714,14 +748,14 @@
             <path>/controls/lighting/pedestal-lights-norm</path>
             <path>/controls/lighting/radio-lights-norm</path>
             <path>/systems/electrical/battery-charge-percent</path>
-            
+
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[0]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[1]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[2]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[3]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[4]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[5]</path>
-            
+
             <path>/sim/model/c182s/securing/tiedownR-visible</path>
             <path>/sim/model/c182s/securing/tiedownL-visible</path>
             <path>/sim/model/c182s/securing/tiedownT-visible</path>
@@ -746,7 +780,7 @@
             <path>/sim/model/door-positions/BaggageDoor/position-norm</path>
             <path>/sim/model/door-positions/WindowL/position-norm</path>
             <path>/sim/model/door-positions/WindowR/position-norm</path>
-        
+
             <path>/controls/circuit-breakers/Flap</path>
             <path>/controls/circuit-breakers/Inst</path>
             <path>/controls/circuit-breakers/AVNBus1</path>
@@ -762,7 +796,7 @@
             <path>/controls/circuit-breakers/Transponder</path>
             <path>/controls/circuit-breakers/ADF</path>
             <path>/controls/circuit-breakers/AutoPilot</path>
-            
+
             <path>/sim/failure-manager/display-on-screen</path>
             <path>/sim/failure-manager/restore-on-start</path>
         </aircraft-data>
@@ -774,7 +808,7 @@
     <airspeed-indicator>
         <indicated-speed-kt type="float">0</indicated-speed-kt>
     </airspeed-indicator>
-          
+
     <fuelIndicator n="0">  <serviceable type="bool">true</serviceable>  </fuelIndicator>
     <fuelIndicator n="1">  <serviceable type="bool">true</serviceable>  </fuelIndicator>
     <egt>  <serviceable type="bool">true</serviceable>  </egt>
@@ -1099,9 +1133,9 @@
 
 
  <!-- ================ map keyboard ================ -->
- <input> 
-    <keyboard> 
-     
+ <input>
+    <keyboard>
+      <multikey include="Aircraft/Instruments-3d/FG1000/fg1000-multikey.xml"/>
 
       <key n="89">
         <name>Y</name>
@@ -1111,9 +1145,9 @@
           <command>property-toggle</command>
           <property>sim/model/hide-yoke</property>
         </binding>
-      </key>    
-      
-      
+      </key>
+
+
       <!-- overwriting { and } default aliases -->
       <key n="123">
         <name>{</name>
@@ -1147,5 +1181,5 @@
     </keyboard>
     </input>
 
-  
+
 </PropertyList>

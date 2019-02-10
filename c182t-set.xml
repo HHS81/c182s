@@ -37,14 +37,13 @@
   <state include="states/approach-overlay.xml" n="5" />
 
   <systems>
- <path>Aircraft/c182s/Systems/systems.xml</path>
-
-	    <autopilot>
-        <path>Aircraft/c182s/Systems/KAP140.xml</path>
-	    </autopilot>
-            <autopilot>
-                <path>Systems/glass-rain.xml</path>
-            </autopilot>
+    <path>Aircraft/c182s/Systems/systems.xml</path>
+    <autopilot>
+      <path>Aircraft/Instruments-3d/FG1000/GFC700.xml</path>
+    </autopilot>
+    <autopilot>
+        <path>Systems/glass-rain.xml</path>
+    </autopilot>
     <property-rule n="100">
         <name>FiltersOnly</name>
         <path>Aircraft/c182s/Systems/NAVandGSfilters.xml</path>
@@ -261,8 +260,6 @@
             <click-dme-mode type="bool">false</click-dme-mode>
             <click-dme-power type="bool">false</click-dme-power>
             <click-dme-source type="bool">false</click-dme-source>
-            <click-kap140 type="bool">false</click-kap140>
-            <click-kap140-dial type="bool">false</click-kap140-dial>
             <click-kma20 type="bool">false</click-kma20>
             <click-kma20-dial type="bool">false</click-kma20-dial>
             <click-kr87-adf type="bool">false</click-kr87-adf>
@@ -930,16 +927,6 @@
   </stall-horn>
   </controls>
 
-
- <autopilot>
-  <KAP140>
-   <settings>
-    <auto-pitch-trim type="bool">true</auto-pitch-trim>
-   </settings>
-   <serviceable type="bool">true</serviceable>
-  </KAP140>
- </autopilot>
-
 <instrumentation include="Systems/init-instrumentation.xml"/>
 
 
@@ -1106,22 +1093,11 @@
  <file>Aircraft/c182s/Nasal/c182s-electrical.nas</file>
 </electrical>
 
-<kap140>
-   <file>Aircraft/Generic/kap140.nas</file>
-   <!-- We can set some variables that might be
-        aircraft specific. We must do it after the file
-        to override the ones that are in the .nas file.-->
-   <script><![CDATA[
-                    headingNeedleDeflection = "/instrumentation/nav/heading-needle-deflection";
-                    gsNeedleDeflection = "/instrumentation/nav/gs-needle-deflection-norm";
-                    staticPressure = "systems/static/pressure-inhg";
-    ]]>
-</script>
-</kap140>
-    <failures>
-    <file>Aircraft/Generic/limits.nas</file>
-  </failures>
- </nasal>
+<failures>
+  <file>Aircraft/Generic/limits.nas</file>
+  <file>Aircraft/c182s/Nasal/custom-failures.nas</file>
+</failures>
+</nasal>
 
  <fdm>
    <jsbsim>
@@ -1180,6 +1156,4 @@
 
     </keyboard>
     </input>
-
-
 </PropertyList>

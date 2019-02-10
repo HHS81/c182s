@@ -2573,17 +2573,7 @@
 <!--avionics-->
 
   <model>
-      <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/KAP140TwoAxisAlt.xml</path>
-      <name>kap140</name>
-      <offsets>
-          <x-m>0.3515</x-m>
-          <y-m>0.083</y-m>
-          <z-m>0.132</z-m>
-      </offsets>
-  </model>
-
-  <model>
-    <path>Aircraft/Instruments-3d/FG1000/GDU104X/GDU-1040.1.xml</path>
+    <path>Aircraft/Instruments-3d/FG1000/GDU104X/GDU-1044B.1.xml</path>
     <offsets>
       <x-m>  0.352 </x-m>
       <y-m> -0.248 </y-m>
@@ -2601,7 +2591,7 @@
   </model>
 
   <model>
-    <path>Aircraft/Instruments-3d/FG1000/GDU104X/GDU-1040.2.xml</path>
+    <path>Aircraft/Instruments-3d/FG1000/GDU104X/GDU-1044B.2.xml</path>
     <offsets>
       <x-m> 0.352 </x-m>
       <y-m> 0.112 </y-m>

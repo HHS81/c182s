@@ -132,4 +132,5 @@ Most of the [C172p's FAQ](http://wiki.flightgear.org/Cessna_172P#FAQ) also appli
 5. Why does the engine die immediately after startup?  
    Most probably the engine is too cold and you advanced the throttle too fast. Warm the engine at about 1000rpm for some more time. Other sources may
    be contaminated fuel or a damaged engine.
-6. 
+6. The glareshield, pedestal and interior lights are not working. Is there a bug?
+   Most probably you just need to enable ALS and move the model shader slider to the right (check extended settings!) in your graphic settings.

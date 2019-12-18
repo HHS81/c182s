@@ -591,8 +591,8 @@
   <summer name="Aileron Norm Right">
       <input>fcs/roll-trim-sum</input>
       <clipto>
-        <min>1.0</min>
-        <max>-1.0</max>
+        <min>-1.0</min>
+        <max>1.0</max>
       </clipto>
       <output>fcs/right-aileron-pos-norm</output>
    </summer>

@@ -1359,9 +1359,9 @@
 <drag-direction>horizontal</drag-direction>
     <offset-deg>0</offset-deg>
 		<center>
-			<x-m>0.387</x-m>
-			<y-m>-0.121</y-m>
-			<z-m>0.116</z-m>
+			<x-m>0.373</x-m>
+			<y-m>-0.471</y-m>
+			<z-m>0.219</z-m>
 		</center>
 		<axis>
 			<x>1</x>
@@ -1397,9 +1397,9 @@
 <drag-direction>vertical</drag-direction>
     <offset-deg>0</offset-deg>
 		<center>
-			<x-m>0.371</x-m>
-			<y-m>-0.121</y-m>
-			<z-m>0.073</z-m>
+			<x-m>0.373</x-m>
+			<y-m>-0.471</y-m>
+			<z-m>0.218</z-m>
 		</center>
 		<axis>
 			<x>1</x>
@@ -1435,9 +1435,9 @@
 <drag-direction>horizontal</drag-direction>
     <offset-deg>0</offset-deg>
 		<center>
-			<x-m>0.371</x-m>
-			<y-m>-0.121</y-m>
-			<z-m>0.073</z-m>
+			<x-m>0.373</x-m>
+			<y-m>-0.442</y-m>
+			<z-m>0.218</z-m>
 		</center>
 		<axis>
 			<x>1</x>

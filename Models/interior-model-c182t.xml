@@ -2639,8 +2639,8 @@
    <path>Aircraft/c182s/Models/Instruments/ELT/ArtexELT.xml</path>
    <offsets>
      <x-m>0.3505</x-m>
-     <y-m>0.435</y-m>
-     <z-m>0.413</z-m>
+     <y-m>0.285</y-m>
+     <z-m>0.433</z-m>
    </offsets>
  </model>
 
@@ -2650,8 +2650,8 @@
    <path>Aircraft/c182s/Models/Instruments/hobbs/hobbs.xml</path>
    <offsets>
      <x-m>0.350</x-m>
-     <y-m>0.444</y-m>
-     <z-m>0.376</z-m>
+     <y-m>0.324</y-m>
+     <z-m>0.443</z-m>
    </offsets>
  </model>
 

@@ -290,7 +290,7 @@
                     <pitch> 0.0 </pitch>
                     <yaw> 0.0 </yaw>
                 </orient>
-                <sense> -1 </sense>
+                <sense> 1 </sense>
                 <p_factor>5 </p_factor>
             </thruster>
         </engine>
@@ -591,8 +591,8 @@
   <summer name="Aileron Norm Right">
       <input>fcs/roll-trim-sum</input>
       <clipto>
-        <min>1.0</min>
-        <max>-1.0</max>
+        <min>-1.0</min>
+        <max>1.0</max>
       </clipto>
       <output>fcs/right-aileron-pos-norm</output>
    </summer>

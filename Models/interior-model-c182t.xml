@@ -2405,8 +2405,7 @@
         <action>
             <binding>
                 <command>property-adjust</command>
-                <!--<property>/controls/switches/magnetos</property>-->
-                <property>controls/engines/engine/magnetos</property>
+                <property>/controls/switches/magnetos</property>
                 <factor>1</factor>
                 <min>0</min>
                 <max>3</max>
@@ -2429,7 +2428,7 @@
                 <command>set-tooltip</command>
                 <tooltip-id>magneto-switch</tooltip-id>
                 <label>Magnetos: %s</label>
-                <property>controls/engines/engine/magnetos</property>
+                <property>/controls/switches/magnetos</property>
                 <mapping>nasal</mapping>
                 <script>
                     var m = arg[0];
@@ -2441,7 +2440,6 @@
             </binding>
         </hovered>
     </animation>
-
 
 <animation>
         <type>knob</type>
@@ -2538,7 +2536,7 @@
                         <value>1</value>
                         <property>controls/switches/starter</property>
                     </difference>
-                    <property>controls/engines/engine/magnetos</property>
+                    <property>controls/switches/magnetos</property>
                     <value>30</value>
                 </product>
                 <product>
@@ -2575,17 +2573,7 @@
 <!--avionics-->
 
   <model>
-      <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/KAP140TwoAxisAlt.xml</path>
-      <name>kap140</name>
-      <offsets>
-          <x-m>0.3515</x-m>
-          <y-m>0.083</y-m>
-          <z-m>0.132</z-m>
-      </offsets>
-  </model>
-
-  <model>
-    <path>Aircraft/Instruments-3d/FG1000/GDU104X/GDU-1040.1.xml</path>
+    <path>Aircraft/Instruments-3d/FG1000/GDU104X/GDU-1044B.1.xml</path>
     <offsets>
       <x-m>  0.352 </x-m>
       <y-m> -0.248 </y-m>
@@ -2603,7 +2591,7 @@
   </model>
 
   <model>
-    <path>Aircraft/Instruments-3d/FG1000/GDU104X/GDU-1040.2.xml</path>
+    <path>Aircraft/Instruments-3d/FG1000/GDU104X/GDU-1044B.2.xml</path>
     <offsets>
       <x-m> 0.352 </x-m>
       <y-m> 0.112 </y-m>

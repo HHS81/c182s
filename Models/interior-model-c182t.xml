@@ -26,10 +26,10 @@
     <object-name>AVMBus1</object-name>
     <object-name>AVMBus2</object-name>
 
-  <object-name>PanelLightKnob</object-name>
+  <!--<object-name>PanelLightKnob</object-name>
     <object-name>RadioLightKnob</object-name>
     <object-name>PedestalLightKnob</object-name>
-    <object-name>GlareshieldLightKnob</object-name>
+    <object-name>GlareshieldLightKnob</object-name>-->
 
   <object-name>Throttle</object-name>
     <object-name>PropControl</object-name>

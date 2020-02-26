@@ -15,7 +15,7 @@
    </effect>
 
    <effect>
-       <inherits-from>Aircraft/c182s/Models/Effects/c182s_glareshield</inherits-from>
+       <inherits-from>Aircraft/c182s/Models/Effects/c182T_glareshield</inherits-from>
     <object-name>Panel</object-name>
     <object-name>PanelLight</object-name>
     <object-name>Pedestal</object-name>
@@ -1355,12 +1355,12 @@
     <type>knob</type>
     <object-name>PanelLightKnob</object-name>
     <property>controls/lighting/instrument-lights-norm</property>
-    <factor>1</factor>
+    <factor>-180</factor>
 <drag-direction>horizontal</drag-direction>
-    <offset-deg>0</offset-deg>
+    <offset-deg>-180</offset-deg>
 		<center>
 			<x-m>0.373</x-m>
-			<y-m>-0.471</y-m>
+			<y-m>-0.442</y-m>
 			<z-m>0.219</z-m>
 		</center>
 		<axis>
@@ -1393,13 +1393,13 @@
     <type>knob</type>
     <object-name>GlareshieldLightKnob</object-name>
     <property>controls/lighting/glareshield-lights-norm</property>
-    <factor>1</factor>
+    <factor>-180</factor>
 <drag-direction>vertical</drag-direction>
-    <offset-deg>0</offset-deg>
+    <offset-deg>-180</offset-deg>
 		<center>
 			<x-m>0.373</x-m>
 			<y-m>-0.471</y-m>
-			<z-m>0.218</z-m>
+			<z-m>0.219</z-m>
 		</center>
 		<axis>
 			<x>1</x>
@@ -1431,13 +1431,13 @@
     <type>knob</type>
     <object-name>PedestalLightKnob</object-name>
     <property>controls/lighting/pedestal-lights-norm</property>
-    <factor>1</factor>
+    <factor>-180</factor>
 <drag-direction>horizontal</drag-direction>
     <offset-deg>0</offset-deg>
 		<center>
 			<x-m>0.373</x-m>
-			<y-m>-0.442</y-m>
-			<z-m>0.218</z-m>
+			<y-m>-0.471</y-m>
+			<z-m>0.187</z-m>
 		</center>
 		<axis>
 			<x>1</x>

@@ -560,6 +560,14 @@
     <name>s</name>
     <desc>Engine Starter</desc>
    </key>
+   <key>
+    <name>:p</name>
+    <desc>PFD keyboad shortcuts</desc>
+   </key>
+   <key>
+    <name>:m</name>
+    <desc>MFD keyboad shortcuts</desc>
+   </key>
   </help>
 
         <menubar include="gui/dialogs/c182s-menu.xml">

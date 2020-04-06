@@ -560,6 +560,14 @@
     <name>s</name>
     <desc>Engine Starter</desc>
    </key>
+   <key>
+    <name>:p</name>
+    <desc>PFD keyboad shortcuts</desc>
+   </key>
+   <key>
+    <name>:m</name>
+    <desc>MFD keyboad shortcuts</desc>
+   </key>
   </help>
 
         <menubar include="gui/dialogs/c182s-menu.xml">
@@ -596,19 +604,24 @@
           </default>
         </menubar>
 
-
         <!-- Splash screens. One is randomly chosen when FlightGear starts -->
-        <startup>
-            <splash-texture>Aircraft/c182s/splash1.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash2.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash3.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash4.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash5.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash6.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash7.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash8.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash9.png</splash-texture>
-        </startup>
+        <previews>
+            <preview>
+                <type>cockpit</type>
+                <path>Previews/cockpit_c182t.jpg</path>
+                <splash type="bool">true</splash>
+            </preview>
+            <preview>
+                <type>exterior</type>
+                <path>Previews/exterior1.jpg</path>
+                <splash type="bool">true</splash>
+            </preview>
+            <preview>
+                <type>exterior</type>
+                <path>Previews/exterior2.jpg</path>
+                <splash type="bool">true</splash>
+            </preview>
+        </previews>
 
         <!-- Fix scrolling direction of knobs -->
         <mouse>

@@ -15,7 +15,7 @@
    </effect>
 
    <effect>
-       <inherits-from>Aircraft/c182s/Models/Effects/c182s_glareshield</inherits-from>
+       <inherits-from>Aircraft/c182s/Models/Effects/c182T_glareshield</inherits-from>
     <object-name>Panel</object-name>
     <object-name>PanelLight</object-name>
     <object-name>Pedestal</object-name>
@@ -26,10 +26,10 @@
     <object-name>AVMBus1</object-name>
     <object-name>AVMBus2</object-name>
 
-  <object-name>PanelLightKnob</object-name>
+  <!--<object-name>PanelLightKnob</object-name>
     <object-name>RadioLightKnob</object-name>
     <object-name>PedestalLightKnob</object-name>
-    <object-name>GlareshieldLightKnob</object-name>
+    <object-name>GlareshieldLightKnob</object-name>-->
 
   <object-name>Throttle</object-name>
     <object-name>PropControl</object-name>
@@ -1355,12 +1355,12 @@
     <type>knob</type>
     <object-name>PanelLightKnob</object-name>
     <property>controls/lighting/instrument-lights-norm</property>
-    <factor>1</factor>
+    <factor>-180</factor>
 <drag-direction>horizontal</drag-direction>
-    <offset-deg>0</offset-deg>
+    <offset-deg>-180</offset-deg>
 		<center>
 			<x-m>0.373</x-m>
-			<y-m>-0.471</y-m>
+			<y-m>-0.442</y-m>
 			<z-m>0.219</z-m>
 		</center>
 		<axis>
@@ -1393,13 +1393,13 @@
     <type>knob</type>
     <object-name>GlareshieldLightKnob</object-name>
     <property>controls/lighting/glareshield-lights-norm</property>
-    <factor>1</factor>
+    <factor>-180</factor>
 <drag-direction>vertical</drag-direction>
-    <offset-deg>0</offset-deg>
+    <offset-deg>-180</offset-deg>
 		<center>
 			<x-m>0.373</x-m>
 			<y-m>-0.471</y-m>
-			<z-m>0.218</z-m>
+			<z-m>0.219</z-m>
 		</center>
 		<axis>
 			<x>1</x>
@@ -1431,13 +1431,13 @@
     <type>knob</type>
     <object-name>PedestalLightKnob</object-name>
     <property>controls/lighting/pedestal-lights-norm</property>
-    <factor>1</factor>
+    <factor>-180</factor>
 <drag-direction>horizontal</drag-direction>
     <offset-deg>0</offset-deg>
 		<center>
 			<x-m>0.373</x-m>
-			<y-m>-0.442</y-m>
-			<z-m>0.218</z-m>
+			<y-m>-0.471</y-m>
+			<z-m>0.187</z-m>
 		</center>
 		<axis>
 			<x>1</x>
@@ -2639,8 +2639,8 @@
    <path>Aircraft/c182s/Models/Instruments/ELT/ArtexELT.xml</path>
    <offsets>
      <x-m>0.3505</x-m>
-     <y-m>0.435</y-m>
-     <z-m>0.413</z-m>
+     <y-m>0.285</y-m>
+     <z-m>0.433</z-m>
    </offsets>
  </model>
 
@@ -2650,8 +2650,8 @@
    <path>Aircraft/c182s/Models/Instruments/hobbs/hobbs.xml</path>
    <offsets>
      <x-m>0.350</x-m>
-     <y-m>0.444</y-m>
-     <z-m>0.376</z-m>
+     <y-m>0.324</y-m>
+     <z-m>0.443</z-m>
    </offsets>
  </model>
 

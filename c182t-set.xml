@@ -93,12 +93,15 @@
   </gpu>
 
   <rendering>
-      <als-secondary-lights>
-          <landing-light1-offset-deg type="float">-4.0</landing-light1-offset-deg>
-          <landing-light2-offset-deg type="float">-3.5</landing-light2-offset-deg>
-      </als-secondary-lights>
-      <!-- Enable the ALS shadow volume by default -->
-      <shadow-volume type="bool">true</shadow-volume>
+    <als-secondary-lights>
+      <landing-light1-offset-deg type="float">-4.0</landing-light1-offset-deg>
+      <landing-light2-offset-deg type="float">-3.5</landing-light2-offset-deg>
+    </als-secondary-lights>
+    <!-- Enable the ALS shadow volume by default -->
+    <shadow-volume type="bool">true</shadow-volume>
+    <pilot-model>
+      <available>true</available>
+    </pilot-model>
   </rendering>
 
 <instrumentation n="0">

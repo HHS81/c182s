@@ -2396,6 +2396,15 @@
         </condition>
     </animation>
 
+    <model>
+        <name>Pilot</name>
+        <path>Aircraft/Generic/Pilot/General/pilot.xml</path>
+        <offsets>
+            <x-m>0.900 </x-m>
+            <y-m>-0.300 </y-m>
+            <z-m>0.155 </z-m>
+        </offsets>
+    </model>
 
     <!-- Preflight surface checks -->
     <!-- elevator surface check -->

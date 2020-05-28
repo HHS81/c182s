@@ -32,8 +32,6 @@ var setAvionics = func(state) {
     setprop("/controls/switches/kn-62a", state);
     setprop("/instrumentation/nav[0]/power-btn", state);
     setprop("/instrumentation/nav[1]/power-btn", state);
-    setprop("/instrumentation/comm[0]/power-btn", state);
-    setprop("/instrumentation/comm[1]/power-btn", state);
     setprop("/instrumentation/comm[0]/volume-selected", state);
     setprop("/instrumentation/comm[1]/volume-selected", state);
     setprop("/controls/switches/kn-62a-mode", state);

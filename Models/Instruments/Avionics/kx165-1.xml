@@ -690,6 +690,7 @@
                 <max>1.0</max>
                 <wrap>false</wrap>
             </binding>
+            <!-- moved to Systems/electrical.xml so it can be calculated depending on available power/serviceable etc
             <binding>
                 <command>property-assign</command>
                 <property alias="../../../../params/power-comm"/>
@@ -712,6 +713,7 @@
                     </less-than>
                 </condition>
             </binding>
+            -->
             <binding>
                 <command>property-assign</command>
                 <property alias="../../../../params/power-nav"/>

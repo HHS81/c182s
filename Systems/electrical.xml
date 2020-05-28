@@ -32,4 +32,28 @@
           <output>/systems/electrical/battery-capacity-factor</output>   
         </fcs_function>
     </channel>
+    
+    
+    <!-- Calculate COM1/2 power button states depending on serviceable, power and volume knob.
+         (This is useful for FGCom and common ATC integrations)  -->
+    <channel name="com_power_buttons">
+        <switch name="com1_power-btn">
+            <output>/instrumentation/comm[0]/power-btn</output>   
+            <default value="0"/>
+            <test value="1">
+                /instrumentation/comm[0]/volume-selected > 0.05
+                /instrumentation/comm[0]/serviceable == 1
+                /systems/electrical/outputs/comm[0]  >= 22
+            </test>
+        </switch>
+        <switch name="com2_power-btn">
+            <output>/instrumentation/comm[1]/power-btn</output>   
+            <default value="0"/>
+            <test value="1">
+                /instrumentation/comm[1]/volume-selected > 0.05
+                /instrumentation/comm[1]/serviceable == 1
+                /systems/electrical/outputs/comm[1]  >= 22
+            </test>
+        </switch>
+    </channel>
 </system>

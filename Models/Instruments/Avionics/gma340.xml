@@ -667,8 +667,24 @@
       <property>/instrumentation/audio-panel/power-btn</property>
       <property>/systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/com-mic[0]</property>
         <property>/instrumentation/audio-panel/test</property>
+        <and>
+            <property>/instrumentation/audio-panel/com-mic[0]</property>
+            <not>
+                <or>
+                    <property>/instrumentation/comm/ptt</property> <!-- old FGCom property before 2020.2 -->
+                    <property>/controls/radios/comm-ptt</property>
+                </or>
+            </not>
+        </and>
+        <and>
+            <property>/instrumentation/audio-panel/com-mic[0]</property>
+            <or>
+                <property>/instrumentation/comm/ptt</property> <!-- old FGCom property before 2020.2 -->
+                <property>/controls/radios/comm-ptt</property>
+            </or>
+            <property>/instrumentation/audio-panel/ptt_blinker</property>
+        </and>
       </or>
     </condition>
     <emission>
@@ -759,8 +775,24 @@
       <property>/instrumentation/audio-panel/power-btn</property>
       <property>/systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/com-mic[1]</property>
         <property>/instrumentation/audio-panel/test</property>
+        <and>
+            <property>/instrumentation/audio-panel/com-mic[1]</property>
+            <not>
+                <or>
+                    <property>/instrumentation/comm/ptt</property> <!-- old FGCom property before 2020.2 -->
+                    <property>/controls/radios/comm-ptt</property>
+                </or>
+            </not>
+        </and>
+        <and>
+            <property>/instrumentation/audio-panel/com-mic[1]</property>
+            <or>
+                <property>/instrumentation/comm/ptt</property> <!-- old FGCom property before 2020.2 -->
+                <property>/controls/radios/comm-ptt</property>
+            </or>
+            <property>/instrumentation/audio-panel/ptt_blinker</property>
+        </and>
       </or>
     </condition>
     <emission>
@@ -991,6 +1023,15 @@
       <binding>
           <command>nasal</command>
           <script>c182s.click("gma340")</script>
+      </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.gma340_refresh_spkr_volume()</script>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
+        </condition>
       </binding>
     </action>
   </animation>

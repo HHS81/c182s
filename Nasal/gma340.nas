@@ -12,9 +12,13 @@
 # get GMA-340 switch states
 var gma340_com0           = props.globals.getNode("/instrumentation/audio-panel/com[0]");
 var gma340_com1           = props.globals.getNode("/instrumentation/audio-panel/com[1]");
+var gma340_com_mic0       = props.globals.getNode("/instrumentation/audio-panel/com-mic[0]");
+var gma340_com_mic1       = props.globals.getNode("/instrumentation/audio-panel/com-mic[1]");
+var gma340_com_mic2       = props.globals.getNode("/instrumentation/audio-panel/com-mic[2]");
 var gma340_serviceable    = props.globals.getNode("/instrumentation/audio-panel/serviceable");
 var gma340_powerbtn       = props.globals.getNode("/instrumentation/audio-panel/power-btn");
 var gma340_powerVolts     = props.globals.getNode("/systems/electrical/outputs/audio-panel");
+var gma340_spkrbtn        = props.globals.getNode("/instrumentation/audio-panel/spkr");
 
 # get preset values. This is assumed to be set from the volume-knob.
 var comm0_volume_selected = props.globals.getNode("instrumentation/comm[0]/volume-selected");
@@ -45,7 +49,24 @@ var comm0_volume  = comm0.getNode("volume");
 var comm1_volume  = comm1.getNode("volume");
 var marker_volume = props.globals.getNode("instrumentation/marker-beacon/volume");
 
+# get FGCom state
+var fgcom_spkr_volume    = props.globals.getNode("/sim/fgcom/speaker-level");
+var fgcom_radio_selected = props.globals.getNode("/controls/radios/comm-radio-selected", 1);
 
+# Make a looped timer so we can let the MIC led blink when FGCom PTT is pressed
+var gma340_blinker   = props.globals.getNode("/instrumentation/audio-panel/ptt_blinker", 1);
+var gma340_blinker_c = 4;
+var gma340_blinkloop = maketimer(0.2, func(){
+        if (gma340_blinker_c == 0) {
+            gma340_blinker_c = 4;
+            gma340_blinker.setValue(0);
+        } else {
+            gma340_blinker_c = gma340_blinker_c - 1;
+            gma340_blinker.setValue(1);
+        }
+});
+gma340_blinkloop.simulatedTime = 1;
+        
 
 # Functions to calculate correct state of internal volume of comms
 var refresh_com0_volume = func {
@@ -137,11 +158,98 @@ var refresh_ident_volume = func {
     }
 };
 
+# Calculate FGCom speaker volume
+# called from spkr button after press
+var gma340_spkr_oldVolume = -1;
+var gma340_refresh_spkr_volume = func {
+    # The FGCom speaker-volume is controlled from the FGCom dialog (in real-life it's set factory-side).
+    # Current behavior is that if GMA340 power is lost (or turned off), the speaker
+    # setting remains the same. I guessed that from the intended behaviour, because
+    # if GMA340 fails, internal wiring for mic and audio falls back to COM1.
+    # Note, the speaker is only ever used from FGCom when the radios volumes are down,
+    # otherwise the selected COM volume is used.
+    var spkr_vol  = fgcom_spkr_volume.getValue();
+    var spkrbtn   = gma340_spkrbtn.getValue();
+    
+    # init for the first time - record current manual user setting for later restore
+    if (gma340_spkr_oldVolume == -1) {
+        #print("GMA340: initialize cabin speaker: ", spkr_vol);
+        gma340_spkr_oldVolume = spkr_vol;
+    }
+    
+    if (spkrbtn) {
+        # Button ON: reset old setting
+        #print("GMA340: SPKR set to ON, restore volume: ", spkr_vol, "->", gma340_spkr_oldVolume);
+        fgcom_spkr_volume.setValue(gma340_spkr_oldVolume);
+        
+    } else {
+        # Button OFF: remember current setting, then set to zero
+        #print("GMA340: SPKR set to OFF, mute volume: ", spkr_vol, "-> 0");
+        gma340_spkr_oldVolume = spkr_vol;
+        fgcom_spkr_volume.setValue(0);
+    }
+};
+
+# Adjust selected FGCom mic/transmit com device
+# On GMA340 failure, hardwired failsafe revert to COM1.
+# SPLIT-COM feature of GMA340 not Implemented: Pressing the COM 1/2 button
+#    activates the Split COM function. There Pilot and Copilot can transmit on
+#    separate radios, but FGCom is singleplayer.
+var gma340_recalc_radio_selected = func() {
+    var pwrSw     = gma340_powerbtn.getValue();
+    var svcabl    = gma340_serviceable.getValue();
+    var volts     = getprop("/systems/electrical/outputs/audio-panel");
+    var mic0      = gma340_com_mic0.getValue();
+    var mic1      = gma340_com_mic1.getValue();
+    var mic2      = gma340_com_mic2.getValue();
+    var curSelCom = fgcom_radio_selected.getValue();  
+    
+    var com0_pwr    = getprop("/instrumentation/comm[0]/power-btn");
+    var com0_volts  = getprop("/systems/electrical/outputs/comm[0]");
+    var com0_svcabl = getprop("/instrumentation/comm[0]/serviceable");
+    
+    var com1_pwr    = getprop("/instrumentation/comm[1]/power-btn");
+    var com1_volts  = getprop("/systems/electrical/outputs/comm[1]");
+    var com1_svcabl = getprop("/instrumentation/comm[1]/serviceable");
+      
+    if (pwrSw and svcabl and volts) {
+        # GMA340 operable and on: set fgcom selected mic; FGCom source code says: 0=disabled, 1=com0, 2=com1
+        if (mic0 and com0_pwr and com0_volts > 22 and com0_svcabl) {
+            #print("GMA340: selected radio = COM1");
+            fgcom_radio_selected.setValue(1);
+        } else if (mic1 and com1_pwr and com1_volts > 22 and com1_svcabl) {
+            #print("GMA340: selected radio = COM2");
+            fgcom_radio_selected.setValue(2);
+        } else if (mic2) {
+            # Note: COM3 not installed in c182s, so using this is a pilots error
+            #print("GMA340: selected radio = COM3 (disconnected)");
+            fgcom_radio_selected.setValue(0);
+        } else {
+            # Something went wrong (selected radio has no power or failed?): disconnect
+            #print("GMA340: selected radio is dead! (mic0=",mic0,"; mic1=",mic1,"; mic2=",mic2,";)");
+            fgcom_radio_selected.setValue(0);
+        }
+        
+    } else {
+        # GMA340 failure/off: Failsafe revert to COM1
+        #print("GMA340: selected radio = COM1 (failsafe wiring)");
+        
+        if (com0_svcabl and com0_pwr and com0_volts > 22) {
+            fgcom_radio_selected.setValue(1);  # revert to hardwired COM1
+        } else {
+            #print("GMA340: selected radio = COM1 (failsafe wiring) FAILED: COM1 is dead");
+            fgcom_radio_selected.setValue(0);  # com0 failed also
+        }
+    }
+};
+
+
 var refresh_com_volumes = func {
     refresh_com0_volume();
     refresh_com1_volume();
     refresh_marker_volume();
     refresh_ident_volume();
+    gma340_recalc_radio_selected();
 };
 
 
@@ -215,8 +323,12 @@ setlistener("/sim/signals/fdm-initialized", func {
         # Monitor changes to GMA-340 switches
         setlistener("/instrumentation/audio-panel/com[0]", refresh_com_volumes, 1, 0);
         setlistener("/instrumentation/audio-panel/com[1]", refresh_com_volumes, 1, 0);
+        setlistener("/instrumentation/audio-panel/com-mic[0]", refresh_com_volumes, 1, 0);
+        setlistener("/instrumentation/audio-panel/com-mic[1]", refresh_com_volumes, 1, 0);
+        setlistener("/instrumentation/audio-panel/com-mic[2]", refresh_com_volumes, 1, 0);
         setlistener("/instrumentation/audio-panel/power-btn", refresh_com_volumes, 1, 0);
         setlistener("/instrumentation/audio-panel/serviceable", refresh_com_volumes, 1, 0);
+        setlistener("/instrumentation/audio-panel/spkr", refresh_com_volumes, 1, 0);
         
         # Monitor changes to voltage
         setlistener("/systems/electrical/outputs/audio-panel", refresh_com_volumes, 1, 0);
@@ -236,10 +348,12 @@ setlistener("/sim/signals/fdm-initialized", func {
 
         # init the first time
         refresh_com_volumes();
+        gma340_refresh_spkr_volume();
 
         
         print("GMA340 audio panel initialized");
     });
     gma340_init.singleShot = 1;
     gma340_init.start();
+    gma340_blinkloop.start();
 });

@@ -29,7 +29,7 @@
   <com-mic n="1" archive="y" type="bool">false</com-mic>
   <com-mic n="2" archive="y" type="bool">false</com-mic>
   <com1-2        archive="y" type="bool">false</com1-2>
-  <spkr          archive="y" type="bool">false</spkr>
+  <spkr          archive="y" type="bool">true</spkr>
   <pa            archive="y" type="bool">false</pa>
   <crew          archive="y" type="bool">false</crew>
   <pilot         archive="y" type="bool">false</pilot>

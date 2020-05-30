@@ -671,19 +671,18 @@
         <and>
             <property>/instrumentation/audio-panel/com-mic[0]</property>
             <not>
-                <or>
-                    <property>/instrumentation/comm/ptt</property> <!-- old FGCom property before 2020.2 -->
+                <equals>
                     <property>/controls/radios/comm-ptt</property>
-                </or>
+                    <value>1</value>
+                </equals>
             </not>
         </and>
         <and>
-            <property>/instrumentation/audio-panel/com-mic[0]</property>
-            <or>
-                <property>/instrumentation/comm/ptt</property> <!-- old FGCom property before 2020.2 -->
-                <property>/controls/radios/comm-ptt</property>
-            </or>
             <property>/instrumentation/audio-panel/ptt_blinker</property>
+            <equals>
+                <property>/controls/radios/comm-ptt</property>
+                <value>1</value>
+            </equals>
         </and>
       </or>
     </condition>
@@ -779,19 +778,18 @@
         <and>
             <property>/instrumentation/audio-panel/com-mic[1]</property>
             <not>
-                <or>
-                    <property>/instrumentation/comm/ptt</property> <!-- old FGCom property before 2020.2 -->
+                <equals>
                     <property>/controls/radios/comm-ptt</property>
-                </or>
+                    <value>2</value>
+                </equals>
             </not>
         </and>
         <and>
-            <property>/instrumentation/audio-panel/com-mic[1]</property>
-            <or>
-                <property>/instrumentation/comm/ptt</property> <!-- old FGCom property before 2020.2 -->
-                <property>/controls/radios/comm-ptt</property>
-            </or>
             <property>/instrumentation/audio-panel/ptt_blinker</property>
+            <equals>
+                <property>/controls/radios/comm-ptt</property>
+                <value>2</value>
+            </equals>
         </and>
       </or>
     </condition>

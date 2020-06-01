@@ -52,6 +52,11 @@ var marker_volume = props.globals.getNode("instrumentation/marker-beacon/volume"
 # get FGCom state
 var fgcom_spkr_volume    = props.globals.getNode("/sim/fgcom/speaker-level");
 var fgcom_radio_selected = props.globals.getNode("/controls/radios/comm-radio-selected", 1);
+var fgcom_radio_ptt = [
+        props.globals.getNode("/instrumentation/comm[0]/ptt", 1),
+        props.globals.getNode("/instrumentation/comm[1]/ptt", 1),
+        props.globals.getNode("/instrumentation/comm[2]/ptt", 1)   #note: no com3 installed, but can be selected in GMA; so this way we avoid an outofBounds error at line 223 (ptt-release) below.
+    ];
 
 # Make a looped timer so we can let the MIC led blink when FGCom PTT is pressed
 var gma340_blinker   = props.globals.getNode("/instrumentation/audio-panel/ptt_blinker", 1);
@@ -190,57 +195,135 @@ var gma340_refresh_spkr_volume = func {
     }
 };
 
-# Adjust selected FGCom mic/transmit com device
+# PTT function, gets called when pressing/releasing space
+#   active: 1 if ptt is pressed
+#   mode: 0 normal, 1 shift-space
+var gma340_ptt = func(active, mode) {
+    var modifiers = props.globals.getNode("/devices/status/keyboard");
+    var fgcom_integration = getprop("/instrumentation/audio-panel/fgcom-integration");
+    if (fgcom_integration == nil) fgcom_integration = 0;
+    #print("GMA340: PTT integrated=", fgcom_integration, "; active=", active, "; mode=", mode, "; modifiers=",  modifiers.getValue());
+    
+    if (fgcom_integration) {
+        # FGCom integration activated: detect which radio is activated at the panel and if it is operable
+        var selectedRadio = gma340_get_selected_radio();
+        if (active) {
+            #print("GMA340: [PTT] activated; panel selected radio COM", selectedRadio + 1);
+            var selectedRadio_isOK = gma340_check_radio(selectedRadio);
+            if (selectedRadio_isOK) {
+                print("GMA340: [PTT] now transmitting on selected radio COM", selectedRadio + 1);
+                fgcom_radio_ptt[selectedRadio].setValue(1);
+            } else {
+                # Radio was not operable
+                print("GMA340: [PTT] selected radio COM", selectedRadio + 1, " is not operable. Not sending transmission!");
+            }
+            
+        } else {
+            print("GMA340: [PTT] released, selected radio=COM", selectedRadio + 1);
+            fgcom_radio_ptt[selectedRadio].setValue(0);  # possible outOfBounds error, see comment at fgcom_radio_ptt definition above
+        }
+    
+    } else {
+        # FGCom not integrated: tunnel trough to standard behavior
+        # we use the listeners the default implementation listens to.
+        
+        # space pressed
+        if (active and mode == 0) {
+            fgcom_radio_ptt[0].setValue(1);
+            
+        # space released
+        } else if (!active and mode == 0) {
+            fgcom_radio_ptt[0].setValue(0);
+            
+        # shift-space pressed
+        } else if (active and mode == 1) {
+            fgcom_radio_ptt[1].setValue(1);
+            
+        # shift-space released
+        } else if (!active and mode == 1) {
+            fgcom_radio_ptt[1].setValue(0);
+            
+        # fallback
+        } else {
+            fgcom_radio_ptt[0].setValue(0);
+            fgcom_radio_ptt[0].setValue(0);
+        }
+    }
+    
+};
+
+# Updater function for FGComs internal selectd-radio property
+# This checks if the currently selected radio is operable and adjusts
+# the property accordingly.
+var gma340_fgcom_updateServiceable = func() {
+    var fgcom_integration = getprop("/instrumentation/audio-panel/fgcom-integration");
+    if (fgcom_integration == nil) fgcom_integration = 0;
+    if (fgcom_integration) {
+        var selectedRadio = gma340_get_selected_radio();
+        var selectedRadio_isOK = gma340_check_radio(selectedRadio);
+       # print("GMA340: FGCom integration active; checking radio status of COM", selectedRadio +1);
+        
+        if (! selectedRadio_isOK) {
+            #print("GMA340:     COM", selectedRadio + 1, " failed: disabling");
+            fgcom_radio_selected.setValue(0); #0=disconnected
+            # ... as soon as the PTT is pressed or some voltage changes etc,
+            # the property is reestablished automatically.
+            
+        } else {
+            fgcom_radio_selected.setValue(selectedRadio + 1 );
+        }
+    }
+};
+
+# Get prinicipially selected radio from GMA panel
+# This just returns the selected switch (or failsafe selection).
 # On GMA340 failure, hardwired failsafe revert to COM1.
 # SPLIT-COM feature of GMA340 not Implemented: Pressing the COM 1/2 button
 #    activates the Split COM function. There Pilot and Copilot can transmit on
-#    separate radios, but FGCom is singleplayer.
-var gma340_recalc_radio_selected = func() {
+#    separate radios, but FGCom is singleplayer...
+# returns: 0=COM1, 1=COM2, 2=COM3
+var gma340_get_selected_radio = func() {
     var pwrSw     = gma340_powerbtn.getValue();
     var svcabl    = gma340_serviceable.getValue();
     var volts     = getprop("/systems/electrical/outputs/audio-panel");
-    var mic0      = gma340_com_mic0.getValue();
-    var mic1      = gma340_com_mic1.getValue();
-    var mic2      = gma340_com_mic2.getValue();
-    var curSelCom = fgcom_radio_selected.getValue();  
     
-    var com0_pwr    = getprop("/instrumentation/comm[0]/power-btn");
-    var com0_volts  = getprop("/systems/electrical/outputs/comm[0]");
-    var com0_svcabl = getprop("/instrumentation/comm[0]/serviceable");
+    if (pwrSw and svcabl and volts > 20) {
+        # GMA Panel is operable: get selected switch
+        var ret = 0;
+        if (gma340_com_mic0.getValue() == 1) ret = 0;
+        if (gma340_com_mic1.getValue() == 1) ret = 1;
+        if (gma340_com_mic2.getValue() == 1) ret = 2;
+        #print("GMA340: panel operable, selected_radio=COM", ret + 1);
+        return ret;
+    } else {
+        # Audio panel ist not operable: fial-safe hardwired to COM1
+        #print("GMA340: panel not operable, failsafe=COM1");
+        return 0;
+    }
+};
+
+# Check if an com device is operable
+# param selectedRadio is property index (com1=0, ...)
+var gma340_check_radio = func(selectedRadio) {
+    var radioStatus = 1;  # return value
     
-    var com1_pwr    = getprop("/instrumentation/comm[1]/power-btn");
-    var com1_volts  = getprop("/systems/electrical/outputs/comm[1]");
-    var com1_svcabl = getprop("/instrumentation/comm[1]/serviceable");
-      
-    if (pwrSw and svcabl and volts) {
-        # GMA340 operable and on: set fgcom selected mic; FGCom source code says: 0=disabled, 1=com0, 2=com1
-        if (mic0 and com0_pwr and com0_volts > 22 and com0_svcabl) {
-            #print("GMA340: selected radio = COM1");
-            fgcom_radio_selected.setValue(1);
-        } else if (mic1 and com1_pwr and com1_volts > 22 and com1_svcabl) {
-            #print("GMA340: selected radio = COM2");
-            fgcom_radio_selected.setValue(2);
-        } else if (mic2) {
-            # Note: COM3 not installed in c182s, so using this is a pilots error
-            #print("GMA340: selected radio = COM3 (disconnected)");
-            fgcom_radio_selected.setValue(0);
-        } else {
-            # Something went wrong (selected radio has no power or failed?): disconnect
-            #print("GMA340: selected radio is dead! (mic0=",mic0,"; mic1=",mic1,"; mic2=",mic2,";)");
-            fgcom_radio_selected.setValue(0);
-        }
+    # check if the selected radio is operational
+    selCom_pwr   = getprop("/instrumentation/comm[" ~ selectedRadio ~ "]/power-btn");
+    selCom_volts = getprop("systems/electrical/outputs/comm[" ~ selectedRadio ~ "]");
+    selCom_svabl = getprop("/instrumentation/comm[" ~ selectedRadio ~ "]/serviceable");
+    #print("GMA340: [PTT] Check radio COM", selectedRadio + 1, ": pwr=",selCom_pwr,"; volts=",selCom_volts,"; svabl=",selCom_svabl );
+    
+    if (selCom_pwr and selCom_volts > 22 and selCom_svabl) {
+        #print("GMA340: [PTT] radio COM", selectedRadio + 1, ": is up and running.");
+        radioStatus = 1;
         
     } else {
-        # GMA340 failure/off: Failsafe revert to COM1
-        #print("GMA340: selected radio = COM1 (failsafe wiring)");
-        
-        if (com0_svcabl and com0_pwr and com0_volts > 22) {
-            fgcom_radio_selected.setValue(1);  # revert to hardwired COM1
-        } else {
-            #print("GMA340: selected radio = COM1 (failsafe wiring) FAILED: COM1 is dead");
-            fgcom_radio_selected.setValue(0);  # com0 failed also
-        }
+        #print("GMA340: [PTT] radio COM", selectedRadio + 1, ": is NOT operable.");
+        radioStatus = 0;
     }
+    
+    return radioStatus;
+
 };
 
 
@@ -249,7 +332,7 @@ var refresh_com_volumes = func {
     refresh_com1_volume();
     refresh_marker_volume();
     refresh_ident_volume();
-    gma340_recalc_radio_selected();
+    gma340_fgcom_updateServiceable();
 };
 
 
@@ -320,6 +403,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     var delayInit = 1; # delay in seconds
     
     var gma340_init = maketimer(delayInit, func(){
+
         # Monitor changes to GMA-340 switches
         setlistener("/instrumentation/audio-panel/com[0]", refresh_com_volumes, 1, 0);
         setlistener("/instrumentation/audio-panel/com[1]", refresh_com_volumes, 1, 0);
@@ -345,6 +429,9 @@ setlistener("/sim/signals/fdm-initialized", func {
         
         # Monitor electrical systems
         setlistener("/systems/electrical/serviceable", refresh_com_volumes, 1, 0);
+        
+        # Monitor changes to general FGCom integration
+        setlistener("/instrumentation/audio-panel/fgcom-integration", refresh_com_volumes, 1, 0);
 
         # init the first time
         refresh_com_volumes();

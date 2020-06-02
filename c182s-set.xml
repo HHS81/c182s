@@ -604,6 +604,7 @@
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>
             <path>/engines/engine/winter-kit-installed</path>
+            <path>/fdm/jsbsim/settings/damage</path>
 
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
@@ -1075,6 +1076,7 @@
     <file>Aircraft/c182s/Nasal/c182s-states.nas</file>
     <file>Aircraft/c182s/Nasal/flashlight.nas</file>
     <file>Aircraft/c182s/Nasal/annunciator_panel.nas</file>
+    <file>Aircraft/c182s/Nasal/damage.nas</file>
 </c182s>
 
 <davtron803>

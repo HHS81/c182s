@@ -564,21 +564,6 @@ var control_surface_check_rudder = func {
 };
 
 
-##########################################
-# REPAIR DAMAGE
-##########################################
-var repair_damage = func() {
-    print("Repairing damage...");
-    setprop("/fdm/jsbsim/damage/repairing", 1);
-
-    setprop("/engines/engine[0]/kill-engine", 0.0);
-    setprop("/engines/engine[0]/crashed", 0.0);
-    electrical.reset_battery_and_circuit_breakers();
-    FailureMgr.repair_all();
-    settimer(func(){ setprop("/fdm/jsbsim/damage/repairing", 0); }, 1.0);
-};
-
-
 
 ###########################################
 # FOG AND FROST stuff

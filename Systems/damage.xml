@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright (c) 2015 onox
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<system name="c182 damage">
+    <property type="bool" value="0">settings/damage</property>
+    
+    <channel name="gear-forces">
+
+        <!--
+            References:
+                [1] https://www.youtube.com/watch?v=O1yWkbJuqkE#t=420
+        -->
+
+        <!--
+            Numbers MUST be the same coefficients as spring_coeff and
+            damping_coeff in the FDM for nose and main gear!
+        -->
+
+        <fcs_function name="damage/force-nose-gear">
+            <function>
+                <sum>
+                    <product>
+                        <value>3600</value><!-- spring coefficient -->
+                        <property>gear/unit[0]/compression-ft</property>
+                    </product>
+                    <product>
+                        <value>900</value><!-- damping coefficient -->
+                        <property>gear/unit[0]/compression-velocity-fps</property>
+                    </product>
+                </sum>
+            </function>
+        </fcs_function>
+
+        <fcs_function name="damage/force-left-gear">
+            <function>
+                <sum>
+                    <product>
+                        <value>5400</value><!-- spring coefficient -->
+                        <property>gear/unit[1]/compression-ft</property>
+                    </product>
+                    <product>
+                        <value>200</value><!-- damping coefficient -->
+                        <property>gear/unit[1]/compression-velocity-fps</property>
+                    </product>
+                </sum>
+            </function>
+        </fcs_function>
+
+        <fcs_function name="damage/force-right-gear">
+            <function>
+                <sum>
+                    <product>
+                        <value>5400</value><!-- spring coefficient -->
+                        <property>gear/unit[2]/compression-ft</property>
+                    </product>
+                    <product>
+                        <value>200</value><!-- damping coefficient -->
+                        <property>gear/unit[2]/compression-velocity-fps</property>
+                    </product>
+                </sum>
+            </function>
+        </fcs_function>
+
+        <switch name="nose-gear-broken">
+            <output>gear/unit[0]/broken</output>
+            <default value="gear/unit[0]/broken"/>
+
+            <!-- No damage -->
+            <test logic="OR" value="0">
+                settings/damage EQ 0
+                damage/repairing EQ 1
+                simulation/sim-time-sec LT 0.25
+            </test>
+
+            <test logic="AND" value="1">
+                damage/force-nose-gear GT 1500.0
+                gear/unit[0]/compression-ft GT 0.3
+            </test>
+        </switch>
+
+        <switch name="left-gear-broken">
+            <output>gear/unit[1]/broken</output>
+            <default value="gear/unit[1]/broken"/>
+
+            <!-- No damage -->
+            <test logic="OR" value="0">
+                settings/damage EQ 0
+                damage/repairing EQ 1
+                simulation/sim-time-sec LT 0.25
+            </test>
+
+            <!-- [1] used to guess required force -->
+            <test logic="AND" value="1">
+                damage/force-left-gear GT 6500.0
+                gear/unit[1]/compression-ft GT 0.8
+            </test>
+
+            <!-- Side force on left gear -->
+            <test logic="AND" value="1">
+                forces/fby-gear-lbs GT 1500.0
+                gear/unit[1]/compression-ft GT 0.23
+            </test>
+        </switch>
+
+        <switch name="right-gear-broken">
+            <output>gear/unit[2]/broken</output>
+            <default value="gear/unit[2]/broken"/>
+
+            <!-- No damage -->
+            <test logic="OR" value="0">
+                settings/damage EQ 0
+                damage/repairing EQ 1
+                simulation/sim-time-sec LT 0.25
+            </test>
+
+            <!-- [1] used to guess required force -->
+            <test logic="AND" value="1">
+                damage/force-right-gear GT 6500.0
+                gear/unit[2]/compression-ft GT 0.8
+            </test>
+
+            <!-- Side force on right gear -->
+            <test logic="AND" value="1">
+                forces/fby-gear-lbs LT -1500.0
+                gear/unit[2]/compression-ft GT 0.23
+            </test>
+        </switch>
+
+    </channel>
+
+    <channel name="wing-damage">
+
+        <!-- Roll moment due to (diedra + roll rate + yaw rate + ailerons) -->
+        <fcs_function name="damage/roll-moment">
+            <function>
+                <sum>
+                    <property>aero/coefficient/Clb</property>
+                    <property>aero/coefficient/Clp</property>
+                    <property>aero/coefficient/Clr</property>
+                    <property>aero/coefficient/ClDa</property>
+                </sum>
+            </function>
+        </fcs_function>
+
+        <!-- Limits for overspeed damage -->
+        <pure_gain name="damage/limits-vne-high">
+            <input>/limits/vne</input> 
+            <gain>1.225</gain> <!--  Vne x sqrt(1.5), 214 KIAS -->
+        </pure_gain>
+        <pure_gain name="damage/limits-vne-medium">
+            <input>/limits/vne</input>
+            <gain>1.14</gain> <!-- 199 KIAS -->
+        </pure_gain>
+        <pure_gain name="damage/limits-vne-low">
+            <input>/limits/vne</input>
+            <gain>1.0</gain> <!-- 175 KIAS -->
+        </pure_gain>
+
+        <!-- Limits for over-g damage, lift-force driven -->
+        <pure_gain name="damage/limits-lift-high">
+            <input>/fdm/jsbsim/inertia/weight-lbs</input>
+            <gain>5.7</gain> <!-- 3.8 g's x 1.5 -->
+        </pure_gain>
+        <pure_gain name="damage/limits-lift-medium">
+            <input>/fdm/jsbsim/inertia/weight-lbs</input>
+            <gain>4.75</gain> <!-- 3.8 g's x 1.25 -->
+        </pure_gain>
+        <pure_gain name="damage/limits-lift-low">
+            <input>/fdm/jsbsim/inertia/weight-lbs</input>
+            <gain>3.8</gain> <!-- 3.8 g's -->
+        </pure_gain>
+
+        <pure_gain name="damage/force-aero-lbs">
+            <input>forces/fbz-aero-lbs</input>
+            <gain>-1.0</gain>
+        </pure_gain>
+
+        <pure_gain name="damage/force-gear-lbs">
+            <input>forces/fbz-gear-lbs</input>
+            <gain>-1.0</gain>
+        </pure_gain>
+
+        <!-- Wings collapsed -->
+        <switch name="wings-collapsed">
+            <output>crash</output>
+            <default value="crash"/>
+
+            <!-- No damage -->
+            <test logic="OR" value="0.0">
+                settings/damage EQ 0
+                damage/repairing EQ 1
+                simulation/sim-time-sec LT 0.25
+            </test>
+
+            <test logic="AND" value="1.0">
+                contact/unit[6]/WOW EQ 1
+                contact/unit[7]/WOW EQ 1
+                contact/unit[8]/WOW EQ 1
+                damage/force-gear-lbs GT damage/limits-lift-high
+                wing-damage/left-wing LT 1.0
+                wing-damage/right-wing LT 1.0
+            </test>
+        </switch>
+
+        <!-- Left wing damage -->
+        <switch name="left-wing-damage">
+            <output>wing-damage/left-wing</output>
+            <default value="wing-damage/left-wing"/>
+
+            <!-- No damage -->
+            <test logic="OR" value="0.0">
+                settings/damage EQ 0
+                damage/repairing EQ 1
+                simulation/sim-time-sec LT 0.25
+            </test>
+
+            <!-- ================================================================== -->
+            <!-- Broken                                                             -->
+            <!-- ================================================================== -->
+
+            <!-- Break wing when its wing tip hits the ground or an object -->
+            <test logic="OR" value="1.0">
+                contact/unit[4]/compression-ft GT 0.005
+                crash EQ 1
+            </test>
+
+            <!-- Overspeed -->
+            <test logic="AND" value="1.0">
+                /velocities/airspeed-kt GT damage/limits-vne-high
+            </test>
+
+            <test logic="AND" value="1.0">
+                /velocities/airspeed-kt GT damage/limits-vne-medium
+                damage/roll-moment GT 12000.0
+            </test>
+
+            <!-- Over-g -->
+            <test logic="AND" value="1.0">
+                damage/force-aero-lbs GT damage/limits-lift-high
+            </test>
+
+            <test logic="AND" value="1.0">
+                damage/force-aero-lbs GT damage/limits-lift-medium
+                damage/roll-moment GT 8000.0
+            </test>
+
+            <!-- ================================================================== -->
+            <!-- Heavy damage                                                       -->
+            <!-- ================================================================== -->
+
+            <!-- Overspeed -->
+            <test logic="AND" value="0.3">
+                /velocities/airspeed-kt GT damage/limits-vne-medium
+                damage/roll-moment LT 12000.0
+                damage/roll-moment GT -12000.0
+                wing-damage/left-wing LT 0.3
+            </test>
+
+            <!-- Over-g -->
+            <test logic="AND" value="0.3">
+                damage/force-aero-lbs GT damage/limits-lift-medium
+                damage/roll-moment LT 8000.0
+                damage/roll-moment GT -8000.0
+                wing-damage/left-wing LT 0.3
+            </test>
+
+            <!-- ================================================================== -->
+            <!-- Light damage                                                       -->
+            <!-- ================================================================== -->
+
+            <!-- Overspeed -->
+            <test logic="AND" value="0.085">
+                /velocities/airspeed-kt GT damage/limits-vne-low
+                damage/roll-moment GT 8000.0
+                wing-damage/left-wing LT 0.085
+            </test>
+
+            <!-- Over-g -->
+            <test logic="AND" value="0.085">
+                damage/force-aero-lbs GT damage/limits-lift-low
+                damage/roll-moment GT 8000.0
+                wing-damage/left-wing LT 0.085
+            </test>
+        </switch>
+
+        <!-- Right wing damage -->
+        <switch name="right-wing-damage">
+            <output>wing-damage/right-wing</output>
+            <default value="wing-damage/right-wing"/>
+
+            <!-- No damage -->
+            <test logic="OR" value="0.0">
+                settings/damage EQ 0
+                damage/repairing EQ 1
+                simulation/sim-time-sec LT 0.25
+            </test>
+
+            <!-- ================================================================== -->
+            <!-- Broken                                                             -->
+            <!-- ================================================================== -->
+
+            <!-- Break wing when its wing tip hits the ground or an object -->
+            <test logic="OR" value="1.0">
+                contact/unit[5]/compression-ft GT 0.005
+                crash EQ 1
+            </test>
+
+            <!-- Overspeed -->
+            <test logic="AND" value="1.0">
+                /velocities/airspeed-kt GT damage/limits-vne-high
+            </test>
+
+            <test logic="AND" value="1.0">
+                /velocities/airspeed-kt GT damage/limits-vne-medium
+                damage/roll-moment LT -12000.0
+            </test>
+
+            <!-- Over-g -->
+            <test logic="AND" value="1.0">
+                damage/force-aero-lbs GT damage/limits-lift-high
+            </test>
+
+            <test logic="AND" value="1.0">
+                damage/force-aero-lbs GT damage/limits-lift-medium
+                damage/roll-moment LT -8000.0
+            </test>
+
+            <!-- ================================================================== -->
+            <!-- Heavy damage                                                       -->
+            <!-- ================================================================== -->
+
+            <!-- Overspeed -->
+            <test logic="AND" value="0.3">
+                /velocities/airspeed-kt GT damage/limits-vne-medium
+                damage/roll-moment LT 12000.0
+                damage/roll-moment GT -12000.0
+                wing-damage/right-wing LT 0.3
+            </test>
+
+            <!-- Over-g -->
+            <test logic="AND" value="0.3">
+                damage/force-aero-lbs GT damage/limits-lift-medium
+                damage/roll-moment LT 8000.0
+                damage/roll-moment GT -8000.0
+                wing-damage/right-wing LT 0.3
+            </test>
+
+            <!-- ================================================================== -->
+            <!-- Light damage                                                       -->
+            <!-- ================================================================== -->
+
+            <!-- Overspeed -->
+            <test logic="AND" value="0.085">
+                /velocities/airspeed-kt GT damage/limits-vne-low
+                damage/roll-moment LT -8000.0
+                wing-damage/right-wing LT 0.085
+            </test>
+
+            <!-- Over-g -->
+            <test logic="AND" value="0.085">
+                damage/force-aero-lbs GT damage/limits-lift-low
+                damage/roll-moment LT -8000.0
+                wing-damage/right-wing LT 0.085
+            </test>
+        </switch>
+
+    </channel>
+
+    <channel name="upside-down">
+
+        <!-- Aircraft upside down -->
+        <switch name="upside-down">
+            <output>orientation/upside-down</output>
+            <default value="0"/>
+
+            <test logic="OR" value="1">
+                /orientation/pitch-deg GT  90
+                /orientation/pitch-deg LT -90
+                /orientation/roll-deg GT  90
+                /orientation/roll-deg LT -90
+            </test>
+        </switch>
+
+    </channel>
+
+</system>

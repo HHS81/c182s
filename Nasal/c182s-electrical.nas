@@ -336,6 +336,9 @@ update_virtual_bus = func( dt ) {
     # key 's' calls to this function when it is pressed DOWN even if I overwrite the binding in the -set.xml file!
     # fun fact: the key UP event can be overwriten!
     controls.startEngine = func(v = 1) {
+        # Bail out if engine is crashed
+        if (getprop("/engines/engine[0]/crashed") == 1) return;
+        
         # only operate in non-walker mode ('s' is also bound to walk-backward)
         if (getprop("/sim/current-view/name") == getprop("/sim/view[110]/name") or
             getprop("/sim/current-view/name") == getprop("/sim/view[111]/name") )  return;

@@ -57,6 +57,19 @@
     <!-- ============================================================== -->
 
     <logic>
+        <name>Engine crashed</name>
+        <input>
+            <!-- broken nose gear indicates collision nose/ground with too much force -->
+            <or>
+                <property>/fdm/jsbsim/gear/unit[0]/broken</property>
+            </or>
+        </input>
+        <output>
+            <property>/engines/engine[0]/crashed</property>
+        </output>
+    </logic>
+    
+    <logic>
         <name>Engine Killed</name>
         <input>
             <or>

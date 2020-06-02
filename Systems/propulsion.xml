@@ -288,7 +288,15 @@
             </function>
         </fcs_function>
         
-        
+        <!-- When engine crashes, it really immediately halts -->
+        <fcs_function name="systems/propulsion/friction-crashed-engine">
+            <function>
+                <product>
+                    <property>/engines/engine[0]/crashed</property>
+                    <value> 500 </value>
+                </product>
+            </function>
+        </fcs_function>
         
         
         
@@ -307,8 +315,8 @@
             <input> systems/propulsion/expansion-friction </input>
             <input> systems/propulsion/friction-kill-engine </input>
             <input> systems/propulsion/manual-friction </input>     <!-- we might have fun trough telnet/scripts... -->
+            <input> systems/propulsion/friction-crashed-engine </input>
             <!-- TODO: <input> prop-strike </input> -->
-            <!-- TODO: <input> plane-crashed </input> -->
             <!-- TODO: <input> fuel-contaminated </input> -->
             <output>propulsion/engine/friction-hp</output>
         </summer>

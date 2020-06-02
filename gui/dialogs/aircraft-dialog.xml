@@ -382,6 +382,9 @@
                 <enable>
                     <and>
                         <not>
+                            <property>/fdm/jsbsim/damage/repairing</property>
+                        </not>
+                        <not>
                             <property>/sim/freeze/replay-state</property>
                         </not>
                         <less-than>

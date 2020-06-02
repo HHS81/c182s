@@ -83,10 +83,15 @@ setlistener("/sim/signals/fdm-initialized", func {
 var repair_damage = func() {
     print("Repairing damage...");
     setprop("/fdm/jsbsim/damage/repairing", 1);
+    var damagesetting_prev = getprop("fdm/jsbsim/settings/damage");
+    setprop("fdm/jsbsim/settings/damage", 0);
 
     setprop("/engines/engine[0]/kill-engine", 0.0);
     setprop("/engines/engine[0]/crashed", 0.0);
     electrical.reset_battery_and_circuit_breakers();
     FailureMgr.repair_all();
-    settimer(func(){ setprop("/fdm/jsbsim/damage/repairing", 0); }, 1.0);
+    settimer(func(){
+        setprop("fdm/jsbsim/settings/damage", damagesetting_prev);
+        setprop("/fdm/jsbsim/damage/repairing", 0);
+    }, 1.0);
 };

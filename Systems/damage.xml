@@ -412,7 +412,7 @@
             <function>
                 <ifthen>
                     <property>gear/unit[0]/broken</property>
-                    <value>0.0</value>
+                    <value>-22.8</value>
                     <!--<value>-20.3</value>-->
                     <value>-47.09</value>
                 </ifthen>
@@ -424,7 +424,7 @@
             <function>
                 <ifthen>
                     <property>gear/unit[1]/broken</property>
-                    <value>0.0</value>
+                    <value>-22.5</value>
                     <!--<value>-15.3</value>-->
                     <value>-43.67</value>
                 </ifthen>
@@ -436,7 +436,7 @@
             <function>
                 <ifthen>
                     <property>gear/unit[2]/broken</property>
-                    <value>0.0</value>
+                    <value>-22.5</value>
                     <!--<value>-15.1</value>-->
                     <value>-43.67</value>
                 </ifthen>

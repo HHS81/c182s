@@ -31,6 +31,9 @@ var registerDamageListener = func(id, name) {
                 logger.screen.red(name ~ " broke!");
             }
             
+            # store the value in a -saved property so we can reinitialize it in the next session
+            setprop(id ~ "-saved", node.getValue());
+            
         }, 0, 0);
 };
 
@@ -50,10 +53,18 @@ setlistener("/sim/signals/fdm-initialized", func {
         {id:"/fdm/jsbsim/wing-damage/right-wing", name:"Right wing"}
     ];
     
-    var dmgdelayInit = 1; # delay in seconds
+    var dmgdelayInit = 0.15; # delay in seconds; should be before init of aircraft states (it might repair the plane)
     var damageSystemInit = maketimer(dmgdelayInit, func(){
+        
+        # Initialize saved state
         foreach (thingy; breakableThings) {
-            print("C182 basic damage system: init ", thingy.name);
+            var savedDmgProp = getprop(thingy.id ~ "-saved");
+            if (savedDmgProp != nil) setprop(thingy.id, savedDmgProp);
+        }
+        
+        # Initialize listeners
+        foreach (thingy; breakableThings) {
+            print("C182 basic damage system: init ", thingy.name, " (curVal=",getprop(thingy.id),")");
             registerDamageListener(thingy.id, thingy.name);
         }
         

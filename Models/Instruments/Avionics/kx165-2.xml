@@ -691,28 +691,6 @@
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property alias="../../../../params/power-comm"/>
-                <value>1</value>
-                <condition>
-                    <greater-than>
-                        <property alias="../../../../../../params/comm-volume"/>
-                        <value>0.05</value>
-                    </greater-than>
-                </condition>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property alias="../../../../params/power-comm"/>
-                <value>0</value>
-                <condition>
-                    <less-than>
-                        <property alias="../../../../../../params/comm-volume"/>
-                        <value>0.05</value>
-                    </less-than>
-                </condition>
-            </binding>
-            <binding>
-                <command>property-assign</command>
                 <property alias="../../../../params/power-nav"/>
                 <value>1</value>
                 <condition>

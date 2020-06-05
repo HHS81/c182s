@@ -4,7 +4,10 @@
  <path>left-strobe.ac</path>
  <nopreview/>
 
-
+<animation>
+  <type>noshadow</type>
+   <object-name>left-strobe</object-name>
+ </animation>
  
 <effect>
    <inherits-from>Aircraft/c182s/Models/Effects/left-strobe</inherits-from>

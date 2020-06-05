@@ -4,7 +4,10 @@
  <path>green-navlight.ac</path>
  <nopreview/>
 
-
+<animation>
+  <type>noshadow</type>
+   <object-name>green-navlight</object-name>
+ </animation>
 
  <effect>
    <inherits-from>Aircraft/c182s/Models/Effects/green-navlight</inherits-from>

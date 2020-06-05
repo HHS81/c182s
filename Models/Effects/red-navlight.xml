@@ -4,7 +4,10 @@
  <path>red-navlight.ac</path>
  <nopreview/>
 
-
+<animation>
+  <type>noshadow</type>
+   <object-name>red-navlight</object-name>
+ </animation>
 
  <effect>
    <inherits-from>Aircraft/c182s/Models/Effects/red-navlight</inherits-from>

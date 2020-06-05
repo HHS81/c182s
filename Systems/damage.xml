@@ -412,9 +412,21 @@
             <function>
                 <ifthen>
                     <property>gear/unit[0]/broken</property>
-                    <value>-22.8</value>
+                    <value>-21.8</value>
                     <!--<value>-20.3</value>-->
                     <value>-47.09</value>
+                </ifthen>
+            </function>
+        </fcs_function>
+        
+ <fcs_function name="z-position-nose-gear-friction">
+            <output>gear/unit[0]/rolling_friction_coeff</output>
+            <function>
+                <ifthen>
+                    <property>gear/unit[0]/broken</property>
+                    <value>1.0</value>
+                    <!--<value>-20.3</value>-->
+                    <value>0.02</value>
                 </ifthen>
             </function>
         </fcs_function>
@@ -424,9 +436,21 @@
             <function>
                 <ifthen>
                     <property>gear/unit[1]/broken</property>
-                    <value>-22.5</value>
+                    <value>-19.5</value>
                     <!--<value>-15.3</value>-->
                     <value>-43.67</value>
+                </ifthen>
+            </function>
+        </fcs_function>
+        
+ <fcs_function name="z-position-left-gear-friction">
+            <output>gear/unit[1]/rolling_friction_coeff</output>
+            <function>
+                <ifthen>
+                    <property>gear/unit[1]/broken</property>
+                    <value>1.0</value>
+                    <!--<value>-20.3</value>-->
+                    <value>0.02</value>
                 </ifthen>
             </function>
         </fcs_function>
@@ -436,12 +460,24 @@
             <function>
                 <ifthen>
                     <property>gear/unit[2]/broken</property>
-                    <value>-22.5</value>
+                    <value>-19.5</value>
                     <!--<value>-15.1</value>-->
                     <value>-43.67</value>
                 </ifthen>
             </function>
-        </fcs_function>-->
+        </fcs_function>
+        
+ <fcs_function name="z-position-right-gear-friction">
+            <output>gear/unit[2]/rolling_friction_coeff</output>
+            <function>
+                <ifthen>
+                    <property>gear/unit[2]/broken</property>
+                    <value>1.0</value>
+                    <!--<value>-20.3</value>-->
+                    <value>0.02</value>
+                </ifthen>
+            </function>
+        </fcs_function>
 
         <fcs_function name="z-position-effect-nose-gear">
             <output>contact/unit[6]/z-position</output>

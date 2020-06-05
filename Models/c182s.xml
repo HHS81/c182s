@@ -234,15 +234,37 @@
          <object-name>Blade3</object-name>
     </animation>  
 
-  <animation>
+<animation>
   <type>select</type>
   <object-name>Prop</object-name>
   <condition>
-   <less-than>
+    <less-than>
     <property>engines/engine[0]/rpm</property>
     <value>651</value>
    </less-than>
-  </condition>
+   </condition>
+ </animation>
+ 
+ <animation>
+  <type>select</type>
+  <object-name>Prop</object-name>
+  <condition>
+  <not>
+     <property>engines/engine/crashed</property>
+        <value>true</value>
+        </not>
+   </condition>
+ </animation>
+ 
+  <animation>
+  <type>select</type>
+  <object-name>Blade1.001</object-name>
+<object-name>Blade2.001</object-name>
+    <object-name>Blade3.001</object-name>
+  <condition>
+     <property>engines/engine/crashed</property>
+        <value>true</value>
+   </condition>
  </animation>
 
  <animation>
@@ -576,6 +598,64 @@
    </axis>
  </animation>
  
+<animation><!-- damage animation-->
+   <type>rotate</type>
+   <object-name>WheelFairingNose</object-name>
+   <object-name>FrontWheel</object-name>
+   <object-name>NoseWheelFork</object-name>
+   <object-name>Damp</object-name>
+    <object-name>TrenDEL_05_TrenDEL_05</object-name>
+   <object-name>TrenDEL_01_TrenDEL_01</object-name>
+   <object-name>TrenDEL_04_TrenDEL_04</object-name>
+   <property>fdm/jsbsim/gear/unit[0]/z-position</property>
+ <interpolation>
+        <entry>
+        <ind>-47.09</ind>
+        <dep>0</dep>
+      </entry>
+      <entry>
+        <ind>-22.8</ind>
+        <dep>-72</dep>
+      </entry>
+    </interpolation>
+		<center>
+			<x-m>-0.11244</x-m>
+			<y-m>0.000524</y-m>
+			<z-m>-0.482892</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-0.058975</y>
+			<z>0</z>
+		</axis>
+ </animation>
+
+<animation><!-- damage animation-->
+   <type>rotate</type>
+   <object-name>WheelFairingNose</object-name>
+    <property>fdm/jsbsim/gear/unit[0]/z-position</property>
+ <interpolation>
+        <entry>
+        <ind>-47.09</ind>
+        <dep>0</dep>
+      </entry>
+      <entry>
+        <ind>-21.8</ind>
+        <dep>-72</dep>
+      </entry>
+    </interpolation>
+		<center>
+			<x-m>-0.11244</x-m>
+			<y-m>0.000524</y-m>
+			<z-m>-0.482892</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-0.058975</y>
+			<z>0</z>
+		</axis>
+ </animation> 
+ 
  <!--gear scissors tracking animation
  <animation>
     <type>locked-track</type>
@@ -664,6 +744,34 @@
 			<z>-0.002205</z>
 		</axis>
   </animation>
+
+<animation>
+    <type>rotate</type>
+    <object-name>WheelFairing.L</object-name>
+    <object-name>MainWheel.L</object-name>
+    <object-name>MainStrut.L</object-name>
+    <property>fdm/jsbsim/gear/unit[1]/z-position</property>
+    <interpolation>
+  <entry>
+        <ind>-43.67</ind>
+        <dep>0</dep>
+      </entry>
+      <entry>
+        <ind>-19.5</ind>
+        <dep>40</dep>
+      </entry>
+    </interpolation>
+		<center>
+			<x-m>1.493636</x-m>
+			<y-m>-0.570105</y-m>
+			<z-m>-0.469631</z-m>
+		</center>
+		<axis>
+			<x>-0.230576</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+  </animation>
   
 <animation>
     <type>rotate</type>
@@ -714,6 +822,34 @@
 			<x>-0.206429</x>
 			<y>0.000807</y>
 			<z>-0.002205</z>
+		</axis>
+  </animation>
+  
+<animation>
+    <type>rotate</type>
+    <object-name>WheelFairing.R</object-name>
+    <object-name>MainWheel.R</object-name>
+    <object-name>MainStrut.R</object-name>
+    <property>fdm/jsbsim/gear/unit[2]/z-position</property>
+    <interpolation>
+  <entry>
+        <ind>-43.67</ind>
+        <dep>0</dep>
+      </entry>
+      <entry>
+        <ind>-19.5</ind>
+        <dep>90</dep>
+      </entry>
+    </interpolation>
+		<center>
+			<x-m>1.493636</x-m>
+			<y-m>0.456261</y-m>
+			<z-m>-0.464098</z-m>
+		</center>
+		<axis>
+			<x>0.003171</x>
+			<y>-0.115688</y>
+			<z>-0.049128</z>
 		</axis>
   </animation>
   

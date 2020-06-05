@@ -15,7 +15,7 @@
 
    <model>
    <name>interior</name>
-    <path>Models/interior-model.xml</path>
+    <path>Models/interior-model-c182t.xml</path>
     <usage>interior</usage>
   </model>
 

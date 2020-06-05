@@ -4,6 +4,11 @@
  <path>tail-navlight.ac</path>
  <nopreview/>
 
+<animation>
+  <type>noshadow</type>
+   <object-name>tail-navlight</object-name>
+      <object-name>tail-navlight.001</object-name>
+ </animation>
  
 <effect>
    <inherits-from>Aircraft/c182s/Models/Effects/tail-navlight</inherits-from>

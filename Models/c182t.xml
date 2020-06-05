@@ -14,6 +14,7 @@
    </model>
 
    <model>
+   <name>interior</name>
     <path>Models/interior-model-c182t.xml</path>
     <usage>interior</usage>
   </model>
@@ -54,6 +55,19 @@
     <z-m>-0.5783</z-m>
   </offsets>
 </model>
+
+<animation>
+  <type>noshadow</type>
+        <object-name>TaxiLight</object-name>
+		<object-name>PlaneX</object-name>
+		<object-name>Plane.002X</object-name>
+		<object-name>Plane.003X</object-name>
+        <object-name>LandingLight</object-name>
+        <object-name>TaxiLight</object-name>
+        <object-name>PlaneTailLight</object-name>
+        <object-name>NavLightRed</object-name>
+        <object-name>NavLightGreen</object-name>
+ </animation>
 
 <effect>
     <inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>

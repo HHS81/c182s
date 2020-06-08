@@ -93,5 +93,5 @@ var repair_damage = func() {
     settimer(func(){
         setprop("fdm/jsbsim/settings/damage", damagesetting_prev);
         setprop("/fdm/jsbsim/damage/repairing", 0);
-    }, 1.0);
+    }, 5.0);
 };

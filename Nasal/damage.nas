@@ -75,6 +75,29 @@ setlistener("/sim/signals/fdm-initialized", func {
     damageSystemInit.start();
 });
 
+##########################################
+# system to recognize a forest
+##########################################
+
+
+var t = func {
+
+var forest = getprop("/fdm/jsbsim/environment/terrain-names") or 0;
+var agl = getprop("/fdm/jsbsim/position/h-agl-ft") or 0;
+
+
+
+if  ( (forest == "MixedForestCover" or forest == "DeciduousBroadCover" or forest == "EvergreenBroadCover" or forest == "DeciduousBroadCover" or forest == "EvergreenNeedleCover" or forest == "DeciduousNeedleCover") and (agl < 95) ) {
+		setprop("/fdm/jsbsim/environment/in-forest-detected", 1);
+	} else{
+		setprop("/fdm/jsbsim/environment/in-forest-detected", 0);
+}
+
+
+	settimer(t, 0.0);
+}
+
+t();
 
 
 ##########################################

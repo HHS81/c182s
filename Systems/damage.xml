@@ -216,12 +216,25 @@
                 wing-damage/left-wing LT 1.0
                 wing-damage/right-wing LT 1.0
             </test>
+            
+               <test logic="AND" value="1.0">
+                environment/in-forest-detected EQ 1
+                wing-damage/left-wing LT 1.0
+                wing-damage/right-wing LT 1.0
+            </test>
         </switch>
+        
+  
+    
+    
 
         <!-- Left wing damage -->
         <switch name="left-wing-damage">
             <output>wing-damage/left-wing</output>
             <default value="wing-damage/left-wing"/>
+        
+
+            
 
             <!-- No damage -->
             <test logic="OR" value="0.0">

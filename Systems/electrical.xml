@@ -6,6 +6,8 @@
     <property type="double" value="0">/systems/electrical/volts</property>
     <property type="double" value="0">/systems/electrical/outputs/flaps</property>
     <property type="double" value="0">/systems/electrical/outputs/pitot-heat</property>
+    <property type="double" value="0">/systems/electrical/outputs/comm[0]</property>
+    <property type="double" value="0">/systems/electrical/outputs/comm[1]</property>
 
     <!-- the electrical system is implemented in electrical.nas! -->
 

@@ -2,8 +2,8 @@
 <PropertyList>
 
     <!--
-        Bendix/King KX155/165 COMM/NAV radio
-        Use this instrument as COMM2/NAV2 radio
+        Bendix/King KX155/165 COM/NAV radio
+        Use this instrument as COM1/NAV1 radio
 
         Created by Torsten Dreyer, October 2008
 
@@ -12,13 +12,13 @@
         flightgear sessions
 
         aircraft.data.add(
-        "instrumentation/comm[1]/volume",
+        "instrumentation/comm[1]/volume-selected",
         "instrumentation/comm[1]/frequencies/selected-mhz",
         "instrumentation/comm[1]/frequencies/standby-mhz",
         "instrumentation/comm[1]/frequencies/dial-khz",
         "instrumentation/comm[1]/frequencies/dial-mhz",
         "instrumentation/comm[1]/test-btn",
-        "instrumentation/nav[1]/audio-btn",
+        "instrumentation/nav[1]/ident-audible",
         "instrumentation/nav[1]/power-btn",
         "instrumentation/nav[1]/frequencies/selected-mhz",
         "instrumentation/nav[1]/frequencies/standby-mhz",
@@ -27,19 +27,101 @@
         );
     -->
 
+    <params>
+        <comm-serviceable>instrumentation/comm[1]/serviceable</comm-serviceable>
+        <nav-serviceable>instrumentation/nav[1]/serviceable</nav-serviceable>
+        <power-nav>instrumentation/nav[1]/power-btn</power-nav>
+        <power-comm>instrumentation/comm[1]/power-btn</power-comm>
+        <comm-frq-swp>instrumentation/comm[1]/frq-swap-btn</comm-frq-swp>
+        <comm-frq-selected>instrumentation/comm[1]/frequencies/selected-mhz</comm-frq-selected>
+        <comm-frq-standby>instrumentation/comm[1]/frequencies/standby-mhz</comm-frq-standby>
+        <comm-dial-khz>instrumentation/comm[1]/frequencies/dial-khz</comm-dial-khz>
+        <comm-dial-mhz>instrumentation/comm[1]/frequencies/dial-mhz</comm-dial-mhz>
+        <comm-volume>instrumentation/comm[1]/volume-selected</comm-volume>
+        <comm-test>instrumentation/comm[1]/test-btn</comm-test>
+        <channel-mode-selector>instrumentation/comm[1]/channel-mode-selector</channel-mode-selector>
+        <nav-frq-swp>instrumentation/nav[1]/frq-swap-btn</nav-frq-swp>
+        <nav-frq-selected>instrumentation/nav[1]/frequencies/selected-mhz</nav-frq-selected>
+        <nav-frq-standby>instrumentation/nav[1]/frequencies/standby-mhz</nav-frq-standby>
+        <nav-dial-khz>instrumentation/nav[1]/frequencies/dial-khz</nav-dial-khz>
+        <nav-dial-mhz>instrumentation/nav[1]/frequencies/dial-mhz</nav-dial-mhz>
+        <nav-volume>instrumentation/nav[1]/volume</nav-volume>
+        <nav-audio>instrumentation/nav[1]/ident-audible</nav-audio>
+    </params>
+
+    <path>kx165-2.ac</path>
+
+    <effect>
+        <inherits-from>../../../Effects/lm-kx165-2r</inherits-from>
+        <object-name>COMknobKHZ</object-name>
+        <object-name>COMknobMHZ</object-name>
+        <object-name>COMxfer</object-name>
+        <object-name>COMvol</object-name>
+        <object-name>COMchan</object-name>
+        <object-name>NAVknobKHZ</object-name>
+        <object-name>NAVknobMHZ</object-name>
+        <object-name>NAVxfer</object-name>
+        <object-name>NAVmode</object-name>
+        <object-name>NAVvol</object-name>
+    </effect>
+    <effect>
+        <inherits-from>../../../Effects/lm-kx165-2</inherits-from>
+        <object-name>COMxfer</object-name>
+        <object-name>COMchan</object-name>
+        <object-name>NAVxfer</object-name>
+        <object-name>NAVmode</object-name>
+        <object-name>KX165</object-name>
+        <object-name>Screen</object-name>
+    </effect>
+    
+    <effect>
+        <inherits-from>../../../Effects/c182s_interior_radiance</inherits-from>
+        <object-name>CommStby100K</object-name>
+        <object-name>CommStby100M</object-name>
+        <object-name>CommStby10K</object-name>
+        <object-name>CommStby10M</object-name>
+        <object-name>CommStby1K</object-name>
+        <object-name>CommStby1M</object-name>
+        <object-name>CommStbyDot</object-name>
+        <object-name>CommUse100K</object-name>
+        <object-name>CommUse100M</object-name>
+        <object-name>CommUse10K</object-name>
+        <object-name>CommUse10M</object-name>
+        <object-name>CommUse1K</object-name>
+        <object-name>CommUse1M</object-name>
+        <object-name>CommUseDot</object-name>
+        <object-name>NavStby100K</object-name>
+        <object-name>NavStby100M</object-name>
+        <object-name>NavStby10K</object-name>
+        <object-name>NavStby10M</object-name>
+        <object-name>NavStby1M</object-name>
+        <object-name>NavStbyDot</object-name>
+        <object-name>NavUse100K</object-name>
+        <object-name>NavUse100M</object-name>
+        <object-name>NavUse10K</object-name>
+        <object-name>NavUse10M</object-name>
+        <object-name>NavUse1M</object-name>
+        <object-name>NavUseDot</object-name>
+        <object-name>KX165Line</object-name>
+    </effect>
+    
     <animation>
         <type>material</type>
-        <object-name>Chassis</object-name>
-        <object-name>CommKHz</object-name>
-        <object-name>CommMHz</object-name>
-        <object-name>CommVolume</object-name>
-        <object-name>NavKHz</object-name>
-        <object-name>NavMHz</object-name>
-        <object-name>NavVolume</object-name>
+        <object-name>KX165</object-name>
+        <object-name>COMknobKHZ</object-name>
+        <object-name>COMknobMHZ</object-name>
+        <object-name>COMxfer</object-name>
+        <object-name>COMchan</object-name>
+        <object-name>COMvol</object-name>
+        <object-name>NAVknobKHZ</object-name>
+        <object-name>NAVknobMHZ</object-name>
+        <object-name>NAVxfer</object-name>
+        <object-name>NAVmode</object-name>
+        <object-name>NAVvol</object-name>
         <emission>
-            <red>0.475</red>
-            <green>0.475</green>
-            <blue>0.475</blue>
+            <red>0.50</red>
+            <green>0.50</green>
+            <blue>0.50</blue>
             <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
         </emission>
         <specular>
@@ -63,268 +145,166 @@
             <blue>  0 </blue>
         </shininess>
     </animation>
-    
-    <params>
-        <comm-serviceable>instrumentation/comm[1]/serviceable</comm-serviceable>
-        <nav-serviceable>instrumentation/nav[1]/serviceable</nav-serviceable>
-        <power-nav>instrumentation/nav[1]/power-btn</power-nav>
-        <power-comm>instrumentation/comm[1]/power-btn</power-comm>
-        <comm-frq-swp>instrumentation/comm[1]/frq-swap-btn</comm-frq-swp>
-        <comm-frq-selected>instrumentation/comm[1]/frequencies/selected-mhz</comm-frq-selected>
-        <comm-frq-standby>instrumentation/comm[1]/frequencies/standby-mhz</comm-frq-standby>
-        <comm-dial-khz>instrumentation/comm[1]/frequencies/dial-khz</comm-dial-khz>
-        <comm-dial-mhz>instrumentation/comm[1]/frequencies/dial-mhz</comm-dial-mhz>
-        <comm-volume>instrumentation/comm[1]/volume-selected</comm-volume>
-        <comm-test>instrumentation/comm[1]/test-btn</comm-test>
-        <nav-frq-swp>instrumentation/nav[1]/frq-swap-btn</nav-frq-swp>
-        <nav-frq-selected>instrumentation/nav[1]/frequencies/selected-mhz</nav-frq-selected>
-        <nav-frq-standby>instrumentation/nav[1]/frequencies/standby-mhz</nav-frq-standby>
-        <nav-dial-khz>instrumentation/nav[1]/frequencies/dial-khz</nav-dial-khz>
-        <nav-dial-mhz>instrumentation/nav[1]/frequencies/dial-mhz</nav-dial-mhz>
-        <nav-volume>instrumentation/nav[1]/volume</nav-volume>
-        <nav-audio>instrumentation/nav[1]/audio-btn</nav-audio>
-    </params>
-
-    <path>kx165.ac</path>
-
-    <effect>
-      <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
-      <object-name>CommKnobs</object-name>
-      <object-name>CommKHz</object-name>
-      <object-name>CommMHz</object-name>
-      <object-name>CommToggle</object-name>
-      <object-name>CommVolume</object-name>
-      <object-name>CommStby</object-name>
-      <object-name>CommStby100K</object-name>
-      <object-name>CommStby100M</object-name>
-      <object-name>CommStby10K</object-name>
-      <object-name>CommStby10M</object-name>
-      <object-name>CommStby1M</object-name>
-      <object-name>CommStbyDot</object-name>
-      <object-name>CommUse</object-name>
-      <object-name>CommUse100K</object-name>
-      <object-name>CommUse100M</object-name>
-      <object-name>CommUse10K</object-name>
-      <object-name>CommUse10M</object-name>
-      <object-name>CommUse1M</object-name>
-      <object-name>CommUseDot</object-name>
-      <object-name>NavKnobs</object-name>
-      <object-name>NavKHz</object-name>
-      <object-name>NavMHz</object-name>
-      <object-name>NavToggle</object-name>
-      <object-name>NavVolume</object-name>
-      <object-name>NavStby</object-name>
-      <object-name>NavStby100K</object-name>
-      <object-name>NavStby100M</object-name>
-      <object-name>NavStby10K</object-name>
-      <object-name>NavStby10M</object-name>
-      <object-name>NavStby1M</object-name>
-      <object-name>NavStbyDot</object-name>
-      <object-name>NavUse</object-name>
-      <object-name>NavUse100K</object-name>
-      <object-name>NavUse100M</object-name>
-      <object-name>NavUse10K</object-name>
-      <object-name>NavUse10M</object-name>
-      <object-name>NavUse1M</object-name>
-      <object-name>NavUseDot</object-name>
-      <object-name>Chassis</object-name>
-    </effect>
 
     <animation>
-        <object-name>CommKnobs</object-name>
-        <object-name>CommKHz</object-name>
-        <object-name>CommMHz</object-name>
-        <object-name>CommToggle</object-name>
-        <object-name>CommVolume</object-name>
-        <object-name>CommStby</object-name>
-        <object-name>CommStby100K</object-name>
-        <object-name>CommStby100M</object-name>
-        <object-name>CommStby10K</object-name>
-        <object-name>CommStby10M</object-name>
-        <object-name>CommStby1M</object-name>
-        <object-name>CommStbyDot</object-name>
-        <object-name>CommUse</object-name>
-        <object-name>CommUse100K</object-name>
-        <object-name>CommUse100M</object-name>
-        <object-name>CommUse10K</object-name>
-        <object-name>CommUse10M</object-name>
-        <object-name>CommUse1M</object-name>
-        <object-name>CommUseDot</object-name>
-        <object-name>NavKnobs</object-name>
-        <object-name>NavKHz</object-name>
-        <object-name>NavMHz</object-name>
-        <object-name>NavToggle</object-name>
-        <object-name>NavVolume</object-name>
-        <object-name>NavStby</object-name>
-        <object-name>NavStby100K</object-name>
-        <object-name>NavStby100M</object-name>
-        <object-name>NavStby10K</object-name>
-        <object-name>NavStby10M</object-name>
-        <object-name>NavStby1M</object-name>
-        <object-name>NavStbyDot</object-name>
-        <object-name>NavUse</object-name>
-        <object-name>NavUse100K</object-name>
-        <object-name>NavUse100M</object-name>
-        <object-name>NavUse10K</object-name>
-        <object-name>NavUse10M</object-name>
-        <object-name>NavUse1M</object-name>
-        <object-name>NavUseDot</object-name>
-        <object-name>Chassis</object-name>
+        <type>material</type>
+        <object-name>KX165</object-name>
+        <object-name>COMknobKHZ</object-name>
+        <object-name>COMknobMHZ</object-name>
+        <object-name>COMxfer</object-name>
+        <object-name>COMchan</object-name>
+        <object-name>COMvol</object-name>
+        <object-name>NAVknobKHZ</object-name>
+        <object-name>NAVknobMHZ</object-name>
+        <object-name>NAVxfer</object-name>
+        <object-name>NAVmode</object-name>
+        <object-name>NAVvol</object-name>
+        <condition>
+            <not>
+                <property>/sim/rendering/shaders/skydome</property>
+            </not>
+        </condition>
+        <emission>
+            <red-prop>/sim/model/c182s/lighting/rgb-ra-r-factor</red-prop>
+            <green-prop>/sim/model/c182s/lighting/rgb-ra-g-factor</green-prop>
+            <blue-prop>/sim/model/c182s/lighting/rgb-ra-b-factor</blue-prop>
+        </emission>
     </animation>
 
     <animation>
         <type>material</type>
-        <object-name>CommKnobs</object-name>
-        <object-name>CommKHz</object-name>
-        <object-name>CommMHz</object-name>
-        <object-name>CommToggle</object-name>
-        <object-name>CommVolume</object-name>
-        <object-name>CommStby</object-name>
+        <object-name>COMknobKHZ</object-name>
+        <object-name>COMknobMHZ</object-name>
+        <object-name>COMxfer</object-name>
+        <object-name>COMchan</object-name>
+        <object-name>COMvol</object-name>
         <object-name>CommStby100K</object-name>
         <object-name>CommStby100M</object-name>
         <object-name>CommStby10K</object-name>
         <object-name>CommStby10M</object-name>
+        <object-name>CommStby1K</object-name>
         <object-name>CommStby1M</object-name>
         <object-name>CommStbyDot</object-name>
-        <object-name>CommUse</object-name>
         <object-name>CommUse100K</object-name>
         <object-name>CommUse100M</object-name>
         <object-name>CommUse10K</object-name>
         <object-name>CommUse10M</object-name>
+        <object-name>CommUse1K</object-name>
         <object-name>CommUse1M</object-name>
         <object-name>CommUseDot</object-name>
-        <object-name>NavKnobs</object-name>
-        <object-name>NavKHz</object-name>
-        <object-name>NavMHz</object-name>
-        <object-name>NavToggle</object-name>
-        <object-name>NavVolume</object-name>
-        <object-name>NavStby</object-name>
+        <object-name>NAVknobKHZ</object-name>
+        <object-name>NAVknobMHZ</object-name>
+        <object-name>NAVxfer</object-name>
+        <object-name>NAVmode</object-name>
+        <object-name>NAVvol</object-name>
         <object-name>NavStby100K</object-name>
         <object-name>NavStby100M</object-name>
         <object-name>NavStby10K</object-name>
         <object-name>NavStby10M</object-name>
         <object-name>NavStby1M</object-name>
         <object-name>NavStbyDot</object-name>
-        <object-name>NavUse</object-name>
         <object-name>NavUse100K</object-name>
         <object-name>NavUse100M</object-name>
         <object-name>NavUse10K</object-name>
         <object-name>NavUse10M</object-name>
         <object-name>NavUse1M</object-name>
         <object-name>NavUseDot</object-name>
-        <object-name>Chassis</object-name>
+        <object-name>KX165Line</object-name>
+        <object-name>KX165</object-name>
+        <object-name>Screen</object-name>
         <property-base>/sim/instrumentation/comm[1]</property-base>
         <texture-prop>texture-file</texture-prop>
     </animation>
 
     <animation>
         <type>select</type>
-        <object-name>CommUse</object-name>
-        <object-name>CommStby</object-name>
-        <object-name>NavUse</object-name>
-        <object-name>NavStby</object-name>
+        <object-name>CommStby100K</object-name>
+        <object-name>CommStby100M</object-name>
+        <object-name>CommStby10K</object-name>
+        <object-name>CommStby10M</object-name>
+        <object-name>CommStby1K</object-name>
+        <object-name>CommStby1M</object-name>
+        <object-name>CommStbyDot</object-name>
+        <object-name>CommUse100K</object-name>
+        <object-name>CommUse100M</object-name>
+        <object-name>CommUse10K</object-name>
+        <object-name>CommUse10M</object-name>
+        <object-name>CommUse1K</object-name>
+        <object-name>CommUse1M</object-name>
+        <object-name>CommUseDot</object-name>
+        <object-name>NavStby100K</object-name>
+        <object-name>NavStby100M</object-name>
+        <object-name>NavStby10K</object-name>
+        <object-name>NavStby10M</object-name>
+        <object-name>NavStby1M</object-name>
+        <object-name>NavStbyDot</object-name>
+        <object-name>NavUse100K</object-name>
+        <object-name>NavUse100M</object-name>
+        <object-name>NavUse10K</object-name>
+        <object-name>NavUse10M</object-name>
+        <object-name>NavUse1M</object-name>
+        <object-name>NavUseDot</object-name>
+        <object-name>KX165Line</object-name>
         <condition>
-            <property alias="../../../params/power-nav"/>
-            <property alias="../../../params/comm-serviceable"/>
-            <property alias="../../../params/nav-serviceable"/>
-            <greater-than>
-                <property>systems/electrical/outputs/comm[1]</property>
-                <value>1</value>
-            </greater-than>
+            <property>/sim/model/c182s/lighting/comm1-power</property>
         </condition>
     </animation>
 
     <animation>
         <type>material</type>
-        <object-name>CommToggle</object-name>
-        <object-name>NavToggle</object-name>
+        <object-name>COMxfer</object-name>
+        <object-name>COMchan</object-name>
+        <object-name>NAVxfer</object-name>
+        <object-name>NAVmode</object-name>
         <condition>
             <not>
                 <property>sim/rendering/rembrandt/enabled</property>
             </not>
-            <greater-than>
-                <property>/systems/electrical/outputs/radio-lights-norm</property>
-                <value>0</value>
-            </greater-than>
         </condition>
         <emission>
             <red>0.5</red>
             <green>0.1</green>
             <blue>0.00005</blue>
-            <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
+            <factor-prop>/sim/model/c182s/lighting/comm1</factor-prop>
         </emission>
-        <specular>
-            <red>   0.0 </red>
-            <green> 0.0 </green>
-            <blue>  0.0 </blue>
-        </specular>
-        <ambient>
-            <red>   0.7 </red>
-            <green> 0.7 </green>
-            <blue>  0.7 </blue>
-        </ambient>
-        <diffuse>
-            <red>   0.3 </red>
-            <green> 0.3 </green>
-            <blue>  0.3 </blue>
-        </diffuse>
-        <shininess>
-            <red>   0 </red>
-            <green> 0 </green>
-            <blue>  0 </blue>
-        </shininess>
-    </animation>
-    <animation>
-        <type>material</type>
-        <object-name>CommToggle</object-name>
-        <object-name>NavToggle</object-name>
-        <condition>
-            <equals>
-                <property>/systems/electrical/outputs/radio-lights-norm</property>
-                <value>0</value>
-            </equals>
-        </condition>
-        <emission>
-            <red>0.50</red>
-            <green>0.50</green>
-            <blue>0.50</blue>
-            <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
-        </emission>
-        <specular>
-            <red>   0.0 </red>
-            <green> 0.0 </green>
-            <blue>  0.0 </blue>
-        </specular>
-        <ambient>
-            <red>   0.7 </red>
-            <green> 0.7 </green>
-            <blue>  0.7 </blue>
-        </ambient>
-        <diffuse>
-            <red>   0.3 </red>
-            <green> 0.3 </green>
-            <blue>  0.3 </blue>
-        </diffuse>
-        <shininess>
-            <red>   0 </red>
-            <green> 0 </green>
-            <blue>  0 </blue>
-        </shininess>
     </animation>
 
     <animation>
         <type>material</type>
-        <object-name>CommUse</object-name>
-        <object-name>CommStby</object-name>
-        <object-name>NavUse</object-name>
-        <object-name>NavStby</object-name>
+        <object-name>CommStby100K</object-name>
+        <object-name>CommStby100M</object-name>
+        <object-name>CommStby10K</object-name>
+        <object-name>CommStby10M</object-name>
+        <object-name>CommStby1K</object-name>
+        <object-name>CommStby1M</object-name>
+        <object-name>CommStbyDot</object-name>
+        <object-name>CommUse100K</object-name>
+        <object-name>CommUse100M</object-name>
+        <object-name>CommUse10K</object-name>
+        <object-name>CommUse10M</object-name>
+        <object-name>CommUse1K</object-name>
+        <object-name>CommUse1M</object-name>
+        <object-name>CommUseDot</object-name>
+        <object-name>NavStby100K</object-name>
+        <object-name>NavStby100M</object-name>
+        <object-name>NavStby10K</object-name>
+        <object-name>NavStby10M</object-name>
+        <object-name>NavStby1M</object-name>
+        <object-name>NavStbyDot</object-name>
+        <object-name>NavUse100K</object-name>
+        <object-name>NavUse100M</object-name>
+        <object-name>NavUse10K</object-name>
+        <object-name>NavUse10M</object-name>
+        <object-name>NavUse1M</object-name>
+        <object-name>NavUseDot</object-name>
+        <object-name>KX165Line</object-name>
         <condition>
             <and>
                 <not>
                     <property>sim/rendering/rembrandt/enabled</property>
                 </not>
                 <greater-than>
-                    <property>/systems/electrical/outputs/radio-lights-norm</property>
+                    <property>/sim/model/c182s/lighting/comm1</property>
                     <value>0.0</value>
                 </greater-than>
             </and>
@@ -333,23 +313,48 @@
             <red>0.91</red>
             <green>0.91</green>
             <blue>0.91</blue>
-            <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
+            <factor-prop>/sim/model/c182s/lighting/comm1</factor-prop>
         </emission>
     </animation>
+    
     <effect>
         <inherits-from>Effects/model-transparent</inherits-from>
-        <object-name>CommUse</object-name>
-        <object-name>CommStby</object-name>
-        <object-name>NavUse</object-name>
-        <object-name>NavStby</object-name>
+        <object-name>CommStby100K</object-name>
+        <object-name>CommStby100M</object-name>
+        <object-name>CommStby10K</object-name>
+        <object-name>CommStby10M</object-name>
+        <object-name>CommStby1K</object-name>
+        <object-name>CommStby1M</object-name>
+        <object-name>CommStbyDot</object-name>
+        <object-name>CommUse100K</object-name>
+        <object-name>CommUse100M</object-name>
+        <object-name>CommUse10K</object-name>
+        <object-name>CommUse10M</object-name>
+        <object-name>CommUse1K</object-name>
+        <object-name>CommUse1M</object-name>
+        <object-name>CommUseDot</object-name>
+        <object-name>NavStby100K</object-name>
+        <object-name>NavStby100M</object-name>
+        <object-name>NavStby10K</object-name>
+        <object-name>NavStby10M</object-name>
+        <object-name>NavStby1M</object-name>
+        <object-name>NavStbyDot</object-name>
+        <object-name>NavUse100K</object-name>
+        <object-name>NavUse100M</object-name>
+        <object-name>NavUse10K</object-name>
+        <object-name>NavUse10M</object-name>
+        <object-name>NavUse1M</object-name>
+        <object-name>NavUseDot</object-name>
+        <object-name>KX165Line</object-name>
+        <object-name>Screen</object-name>
     </effect>
 
     <!-- comm part -->
     <animation>
         <type>translate</type>
-        <object-name>CommToggle</object-name>
+        <object-name>COMxfer</object-name>
         <property alias="../../params/comm-frq-swp"/>
-        <factor>-0.004</factor>
+        <factor>-0.003</factor>
         <axis>
             <x>1</x>
             <y>0</y>
@@ -426,6 +431,20 @@
             <z>0</z>
         </axis>
     </animation>
+    
+    <animation>
+        <type>textranslate</type>
+        <object-name>CommUse1K</object-name>
+        <property alias="../../params/comm-frq-selected"/>
+        <step>0.001</step>
+        <factor>100</factor>
+        <bias>0.0001</bias>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
 
     <animation>
         <type>textranslate</type>
@@ -489,6 +508,20 @@
         <property alias="../../params/comm-frq-standby"/>
         <step>0.01</step>
         <factor>10</factor>
+        <bias>0.0001</bias>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    
+    <animation>
+        <type>textranslate</type>
+        <object-name>CommStby1K</object-name>
+        <property alias="../../params/comm-frq-standby"/>
+        <step>0.001</step>
+        <factor>100</factor>
         <bias>0.0001</bias>
         <axis>
             <x>1</x>
@@ -500,9 +533,9 @@
     <!-- NAV part -->
     <animation>
         <type>translate</type>
-        <object-name>NavToggle</object-name>
+        <object-name>NAVxfer</object-name>
         <property alias="../../params/nav-frq-swp"/>
-        <factor>-0.004</factor>
+        <factor>-0.003</factor>
         <axis>
             <x>1</x>
             <y>0</y>
@@ -650,10 +683,9 @@
         </axis>
     </animation>
 
-    <!-- Knobs and buttons -->
     <animation>
         <type>translate</type>
-        <object-name>NavVolume</object-name>
+        <object-name>NAVvol</object-name>
         <property alias="../../params/nav-audio"/>
         <factor>0.002</factor>
         <axis>
@@ -662,23 +694,23 @@
             <z>0</z>
         </axis>
     </animation>
-
+    
     <!-- Actions -->
     <!-- Comm part -->
     <animation>
         <type>knob</type>
-        <object-name>CommVolume</object-name>
+        <object-name>COMvol</object-name>
         <property alias="../../params/comm-volume"/>
-        <factor>-250</factor>
+        <factor>-65</factor>
         <axis>
             <x>1</x>
             <y>0</y>
             <z>0</z>
         </axis>
         <center>
-            <x-m>0.0188947</x-m>
-            <y-m>-0.0620002</y-m>
-            <z-m>-0.0139999</z-m>
+            <x-m>-0.34939</x-m>
+            <y-m> 0.05132</y-m>
+            <z-m> 0.01737</z-m>
         </center>
         <action>
             <binding>
@@ -688,6 +720,28 @@
                 <min>0.0</min>
                 <max>1.0</max>
                 <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property alias="../../../../params/power-comm"/>
+                <value>1</value>
+                <condition>
+                    <greater-than>
+                        <property alias="../../../../../../params/comm-volume"/>
+                        <value>0.05</value>
+                    </greater-than>
+                </condition>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property alias="../../../../params/power-comm"/>
+                <value>0</value>
+                <condition>
+                    <less-than>
+                        <property alias="../../../../../../params/comm-volume"/>
+                        <value>0.05</value>
+                    </less-than>
+                </condition>
             </binding>
             <binding>
                 <command>property-assign</command>
@@ -719,8 +773,8 @@
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <tooltip-id>comm-volume</tooltip-id>
-                <label>Volume: %3d%%</label>
+                <tooltip-id>comm2-volume</tooltip-id>
+                <label>COM2 Volume: %d%%</label>
                 <property alias="../../../../params/comm-volume"/>
                 <mapping>percent</mapping>
             </binding>
@@ -728,8 +782,32 @@
     </animation>
 
     <animation>
+        <type>translate</type>
+        <object-name>COMknobKHZ</object-name>
+        <factor>0.005</factor>
+        <property>instrumentation/comm[1]/channel-mode-selector</property>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    
+    <animation>
+        <type>translate</type>
+        <object-name>COMchan</object-name>
+        <factor>-0.001</factor>
+        <property>instrumentation/comm[1]/channel-button</property>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    
+    <animation>
         <type>knob</type>
-        <object-name>CommKHz</object-name>
+        <object-name>COMknobKHZ</object-name>
         <property alias="/params/comm-dial-khz"/>
         <factor>-0.25</factor>
         <axis>
@@ -738,42 +816,65 @@
             <z>0</z>
         </axis>
         <center>
-            <x-m>0.0320882</x-m>
-            <y-m>-0.022</y-m>
-            <z-m>-0.012</z-m>
+            <x-m>-0.34726</x-m>
+            <y-m> 0.09336</y-m>
+            <z-m> 0.02016</z-m>
         </center>
         <action>
-            <binding>
-                <condition>
-                    <property alias="../../../../../params/power-comm"/>
-                </condition>
-                <command>property-adjust</command>
-                <property alias="/params/comm-frq-standby"/>
-                <factor>0.025</factor>
-                <min>0.0</min>
-                <max>1.0</max>
-                <resolution>0.025</resolution>
-                <wrap>true</wrap>
-                <mask>decimal</mask>
-            </binding>
             <binding>
                 <command>property-adjust</command>
                 <property alias="/params/comm-dial-khz"/>
                 <factor>4</factor>
                 <min>0</min>
-                <max>360</max>
+                <max>1440</max>
                 <wrap>true</wrap>
+            </binding>
+        </action>
+        <increase>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    c182s.increment(1, 1);
+                </script>
             </binding>
             <binding>
                 <command>nasal</command>
                 <script>c182s.click("kx165-2-dial")</script>
             </binding>
-        </action>
+        </increase>
+        <decrease>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    c182s.increment(1, -1);
+                </script>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.click("kx165-2-dial")</script>
+            </binding>
+        </decrease>
+        <shift-action>
+            <repeatable>0</repeatable>
+            <binding>
+                <command>property-cycle</command>
+                <property>instrumentation/comm[1]/channel-mode-selector</property>
+                <value>0</value>
+                <value>1</value>
+            </binding>
+        </shift-action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>comm2-kHz</tooltip-id>
+                <label>Adjust COM2 kHz; Shift click to toggle 8.33</label>
+            </binding>
+        </hovered>
     </animation>
 
     <animation>
         <type>knob</type>
-        <object-name>CommMHz</object-name>
+        <object-name>COMknobMHZ</object-name>
         <property alias="/params/comm-dial-mhz"/>
         <factor>-0.25</factor>
         <axis>
@@ -782,9 +883,9 @@
             <z>0</z>
         </axis>
         <center>
-            <x-m>0.0320882</x-m>
-            <y-m>-0.022</y-m>
-            <z-m>-0.012</z-m>
+            <x-m>-0.34954</x-m>
+            <y-m> 0.09337</y-m>
+            <z-m> 0.02016</z-m>
         </center>
         <action>
             <binding>
@@ -795,7 +896,7 @@
                 <property alias="/params/comm-frq-standby"/>
                 <factor>1</factor>
                 <min>118.0</min>
-                <max>137.0</max>
+                <max>136.99167</max>
                 <wrap>true</wrap>
                 <mask>integer</mask>
             </binding>
@@ -812,11 +913,18 @@
                 <script>c182s.click("kx165-2-dial")</script>
             </binding>
         </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>comm2-MHz</tooltip-id>
+                <label>Adjust COM2 MHz</label>
+            </binding>
+        </hovered>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>CommToggle</object-name>
+        <object-name>COMxfer</object-name>
         <visible>true</visible>
         <action>
             <button>0</button>
@@ -847,23 +955,30 @@
                 </binding>
             </mod-up>
         </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>comm1-toggle</tooltip-id>
+                <label>Swap COM2 frequencies</label>
+            </binding>
+        </hovered>
     </animation>
 
     <!-- Nav part -->
     <animation>
         <type>knob</type>
-        <object-name>NavVolume</object-name>
+        <object-name>NAVvol</object-name>
         <property alias="../../params/nav-volume"/>
-        <factor>-250</factor>
+        <factor>-65</factor>
         <axis>
             <x>1</x>
             <y>0</y>
             <z>0</z>
         </axis>
         <center>
-            <x-m>0.0188946</x-m>
-            <y-m>0.0180001</y-m>
-            <z-m>-0.0139999</z-m>
+            <x-m>-0.34939</x-m>
+            <y-m> 0.13118</y-m>
+            <z-m> 0.01737</z-m>
         </center>
         <action>
             <binding>
@@ -879,20 +994,40 @@
                 <script>c182s.click("kx165-2-dial")</script>
             </binding>
         </action>
+        <shift-action>
+            <binding>
+                <command>property-toggle</command>
+                <property alias="../../../../params/nav-audio"/>
+            </binding>
+        </shift-action>
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <tooltip-id>nav-volume</tooltip-id>
-                <label>Volume: %3d%%</label>
+                <tooltip-id>nav1-volume</tooltip-id>
+                <label>%s</label>
+                <measure-text>NAV2 Volume: 100% ; Ident disabled (Shift + click to pull)</measure-text>
                 <property alias="../../../../params/nav-volume"/>
-                <mapping>percent</mapping>
+                <mapping>nasal</mapping>
+                <script>
+                    var v = arg[0];
+                    var a = getprop("/instrumentation/nav[1]/ident-audible");
+
+                    var s = "NAV2 Volume: ";
+                    s = s ~ sprintf("%3d", (v * 100) + .1); # rounding errors
+                    s = s ~ "% ; Ident ";
+                    if (a)
+                        s = s ~ "enabled (Shift + click to push)";
+                    else
+                        s = s ~ "disabled (Shift + click to pull)";
+                    return s;
+                </script>
             </binding>
         </hovered>
     </animation>
 
     <animation>
         <type>knob</type>
-        <object-name>NavKHz</object-name>
+        <object-name>NAVknobKHZ</object-name>
         <property alias="/params/nav-dial-khz"/>
         <factor>-0.25</factor>
         <axis>
@@ -901,9 +1036,9 @@
             <z>0</z>
         </axis>
         <center>
-            <x-m>0.0320882</x-m>
-            <y-m>0.058</y-m>
-            <z-m>-0.012</z-m>
+            <x-m>-0.34726</x-m>
+            <y-m> 0.17527</y-m>
+            <z-m> 0.02016</z-m>
         </center>
         <action>
             <binding>
@@ -924,7 +1059,7 @@
                 <property alias="/params/nav-dial-khz"/>
                 <factor>4</factor>
                 <min>0</min>
-                <max>360</max>
+                <max>1440</max>
                 <wrap>true</wrap>
             </binding>
             <binding>
@@ -932,11 +1067,18 @@
                 <script>c182s.click("kx165-2-dial")</script>
             </binding>
         </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>nav1-kHz</tooltip-id>
+                <label>Adjust NAV2 kHz</label>
+            </binding>
+        </hovered>
     </animation>
 
     <animation>
         <type>knob</type>
-        <object-name>NavMHz</object-name>
+        <object-name>NAVknobMHZ</object-name>
         <property alias="/params/nav-dial-mhz"/>
         <factor>-0.25</factor>
         <axis>
@@ -945,9 +1087,9 @@
             <z>0</z>
         </axis>
         <center>
-            <x-m>0.0320882</x-m>
-            <y-m>0.058</y-m>
-            <z-m>-0.012</z-m>
+            <x-m>-0.34954</x-m>
+            <y-m> 0.17527</y-m>
+            <z-m> 0.02016</z-m>
         </center>
         <action>
             <binding>
@@ -975,11 +1117,18 @@
                 <script>c182s.click("kx165-2-dial")</script>
             </binding>
         </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>nav2-MHz</tooltip-id>
+                <label>Adjust NAV2 MHz</label>
+            </binding>
+        </hovered>
     </animation>
 
     <animation>
         <type>pick</type>
-        <object-name>NavToggle</object-name>
+        <object-name>NAVxfer</object-name>
         <visible>true</visible>
         <action>
             <button>0</button>
@@ -996,7 +1145,7 @@
             </binding>
             <binding>
                 <command>nasal</command>
-                <script>c182s.click("kx165-2")</script>
+                <script>c182s.click("kx165-1")</script>
             </binding>
             <mod-up>
                 <binding>
@@ -1010,47 +1159,13 @@
                 </binding>
             </mod-up>
         </action>
-    </animation>
-
-    <!-- TEXT OSG -->
-    <text>
-        <name>textosg</name>
-        <type type="string">literal</type>
-        <text type="string">COMM 2 / NAV 2</text>
-        <draw-text type="bool">true</draw-text>
-        <font>Helvetica.txf</font>
-        <character-size type="double">0.014</character-size>
-        <character-aspect-ratio type="double">1.0</character-aspect-ratio>
-        <axis-alignment>yz-plane</axis-alignment>
-        <max-height>0.06</max-height>
-        <max-width>0.15</max-width>
-        <font-resolution>
-            <width type="int">64</width>
-            <height type="int">64</height>
-        </font-resolution>
-        <alignment>center-center</alignment>
-        <offsets>
-            <x-m>  0.015 </x-m>
-            <y-m>  0.000 </y-m>
-            <z-m>  0.015 </z-m>
-        </offsets>
-    </text>
-    <animation>
-        <type>material</type>
-        <object-name>textosg</object-name>
-        <emission>
-            <red>   0.8 </red>
-            <green> 0.8 </green>
-            <blue>  0.0 </blue>
-        </emission>
-    </animation>
-
-    <animation>
-        <type>select</type>
-        <object-name>textosg</object-name>
-        <condition>
-            <property>sim/panel-hotspots</property>
-        </condition>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>nav1-toggle</tooltip-id>
+                <label>Swap NAV2 frequencies</label>
+            </binding>
+        </hovered>
     </animation>
 
 </PropertyList>

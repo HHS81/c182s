@@ -660,26 +660,38 @@
             <path>/instrumentation/marker-beacon/audio-btn</path>
             <path>/instrumentation/marker-beacon/volume-default</path> <!-- hard wired in GMA340, but can be changed (in-sim just adjust the property) -->
             <path>/surface-positions/flap-pos-norm</path>
+            <path>/instrumentation/nav[0]/frequencies/dial-khz</path>
+            <path>/instrumentation/nav[0]/frequencies/dial-mhz</path>
             <path>/instrumentation/nav[0]/radials/selected-deg</path>
             <path>/instrumentation/nav[0]/frequencies/selected-mhz</path>
             <path>/instrumentation/nav[0]/frequencies/standby-mhz</path>
             <path>/instrumentation/nav[0]/power-btn</path>
             <path>/instrumentation/nav[0]/ident</path>
+            <path>/instrumentation/nav[0]/ident-audible</path>
             <path>/instrumentation/nav[0]/volume</path>
+            <path>/instrumentation/nav[1]/frequencies/dial-khz</path>
+            <path>/instrumentation/nav[1]/frequencies/dial-mhz</path>
             <path>/instrumentation/nav[1]/radials/selected-deg</path>
             <path>/instrumentation/nav[1]/frequencies/selected-mhz</path>
             <path>/instrumentation/nav[1]/frequencies/standby-mhz</path>
             <path>/instrumentation/nav[1]/power-btn</path>
             <path>/instrumentation/nav[1]/ident</path>
+            <path>/instrumentation/nav[1]/ident-audible</path>
             <path>/instrumentation/nav[1]/volume</path>
+            <path>/instrumentation/comm[0]/frequencies/dial-khz</path>
+            <path>/instrumentation/comm[0]/frequencies/dial-mhz</path>
             <path>/instrumentation/comm[0]/frequencies/selected-mhz</path>
             <path>/instrumentation/comm[0]/frequencies/standby-mhz</path>
             <path>/instrumentation/comm[0]/power-btn</path>
+            <path>/instrumentation/comm[0]/test-btn</path>
             <!-- set by GMA340.nas: <path>/instrumentation/comm[0]/volume</path> -->
             <path>/instrumentation/comm[0]/volume-selected</path>
+            <path>/instrumentation/comm[0]/frequencies/dial-khz</path>
+            <path>/instrumentation/comm[0]/frequencies/dial-mhz</path>
             <path>/instrumentation/comm[1]/frequencies/selected-mhz</path>
             <path>/instrumentation/comm[1]/frequencies/standby-mhz</path>
             <path>/instrumentation/comm[1]/power-btn</path>
+            <path>/instrumentation/comm[1]/test-btn</path>
             <!-- set by GMA340.nas: <path>/instrumentation/comm[1]/volume</path> -->
             <path>/instrumentation/comm[1]/volume-selected</path>
             <path>/instrumentation/dme[0]/frequencies/selected-mhz</path>
@@ -1067,6 +1079,7 @@
     <file>Aircraft/c182s/Nasal/c182s.nas</file>
     <file>Aircraft/c182s/Nasal/engine.nas</file>
     <file>Aircraft/c182s/Nasal/fuelcontamination.nas</file>
+    <file>Aircraft/c182s/Nasal/kx165a.nas</file>
     <file>Aircraft/c182s/Nasal/kt76c.nas</file>
     <file>Aircraft/c182s/Nasal/kn62a.nas</file>
     <file>Aircraft/c182s/Nasal/kr87.nas</file>

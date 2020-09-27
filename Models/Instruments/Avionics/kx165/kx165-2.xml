@@ -110,13 +110,9 @@
         <object-name>KX165</object-name>
         <object-name>COMknobKHZ</object-name>
         <object-name>COMknobMHZ</object-name>
-        <object-name>COMxfer</object-name>
-        <object-name>COMchan</object-name>
         <object-name>COMvol</object-name>
         <object-name>NAVknobKHZ</object-name>
         <object-name>NAVknobMHZ</object-name>
-        <object-name>NAVxfer</object-name>
-        <object-name>NAVmode</object-name>
         <object-name>NAVvol</object-name>
         <emission>
             <red>0.50</red>
@@ -151,14 +147,8 @@
         <object-name>KX165</object-name>
         <object-name>COMknobKHZ</object-name>
         <object-name>COMknobMHZ</object-name>
-        <object-name>COMxfer</object-name>
-        <object-name>COMchan</object-name>
-        <object-name>COMvol</object-name>
         <object-name>NAVknobKHZ</object-name>
         <object-name>NAVknobMHZ</object-name>
-        <object-name>NAVxfer</object-name>
-        <object-name>NAVmode</object-name>
-        <object-name>NAVvol</object-name>
         <condition>
             <not>
                 <property>/sim/rendering/shaders/skydome</property>
@@ -169,6 +159,89 @@
             <green-prop>/sim/model/c182s/lighting/rgb-ra-g-factor</green-prop>
             <blue-prop>/sim/model/c182s/lighting/rgb-ra-b-factor</blue-prop>
         </emission>
+    </animation>
+    
+    <animation>
+        <type>material</type>
+        <object-name>COMxfer</object-name>
+        <object-name>COMchan</object-name>
+        <object-name>NAVxfer</object-name>
+        <object-name>NAVmode</object-name>
+        <condition>
+            <not>
+                <property>sim/rendering/rembrandt/enabled</property>
+            </not>
+            <greater-than>
+                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <value>0</value>
+            </greater-than>
+        </condition>
+        <emission>
+            <red>0.5</red>
+            <green>0.1</green>
+            <blue>0.00005</blue>
+            <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
+        </emission>
+        <specular>
+            <red>   0.0 </red>
+            <green> 0.0 </green>
+            <blue>  0.0 </blue>
+        </specular>
+        <ambient>
+            <red>   0.7 </red>
+            <green> 0.7 </green>
+            <blue>  0.7 </blue>
+        </ambient>
+        <diffuse>
+            <red>   0.3 </red>
+            <green> 0.3 </green>
+            <blue>  0.3 </blue>
+        </diffuse>
+        <shininess>
+            <red>   0 </red>
+            <green> 0 </green>
+            <blue>  0 </blue>
+        </shininess>
+
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name>COMxfer</object-name>
+        <object-name>COMchan</object-name>
+        <object-name>NAVxfer</object-name>
+        <object-name>NAVmode</object-name>
+        <condition>
+            <equals>
+                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <value>0</value>
+            </equals>
+        </condition>
+        <emission>
+            <red>0.50</red>
+            <green>0.50</green>
+            <blue>0.50</blue>
+            <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
+        </emission>
+        <specular>
+            <red>   0.0 </red>
+            <green> 0.0 </green>
+            <blue>  0.0 </blue>
+        </specular>
+        <ambient>
+            <red>   0.7 </red>
+            <green> 0.7 </green>
+            <blue>  0.7 </blue>
+        </ambient>
+        <diffuse>
+            <red>   0.3 </red>
+            <green> 0.3 </green>
+            <blue>  0.3 </blue>
+        </diffuse>
+        <shininess>
+            <red>   0 </red>
+            <green> 0 </green>
+            <blue>  0 </blue>
+        </shininess>
     </animation>
 
     <animation>
@@ -246,27 +319,14 @@
         <object-name>NavUseDot</object-name>
         <object-name>KX165Line</object-name>
         <condition>
-            <property>/sim/model/c182s/lighting/comm1-power</property>
+            <property alias="../../../params/power-nav"/>
+            <property alias="../../../params/comm-serviceable"/>
+            <property alias="../../../params/nav-serviceable"/>
+            <greater-than>
+                <property>systems/electrical/outputs/comm[1]</property>
+                <value>1</value>
+            </greater-than>
         </condition>
-    </animation>
-
-    <animation>
-        <type>material</type>
-        <object-name>COMxfer</object-name>
-        <object-name>COMchan</object-name>
-        <object-name>NAVxfer</object-name>
-        <object-name>NAVmode</object-name>
-        <condition>
-            <not>
-                <property>sim/rendering/rembrandt/enabled</property>
-            </not>
-        </condition>
-        <emission>
-            <red>0.5</red>
-            <green>0.1</green>
-            <blue>0.00005</blue>
-            <factor-prop>/sim/model/c182s/lighting/comm1</factor-prop>
-        </emission>
     </animation>
 
     <animation>
@@ -304,7 +364,7 @@
                     <property>sim/rendering/rembrandt/enabled</property>
                 </not>
                 <greater-than>
-                    <property>/sim/model/c182s/lighting/comm1</property>
+                    <property>/systems/electrical/outputs/radio-lights-norm</property>
                     <value>0.0</value>
                 </greater-than>
             </and>
@@ -313,7 +373,7 @@
             <red>0.91</red>
             <green>0.91</green>
             <blue>0.91</blue>
-            <factor-prop>/sim/model/c182s/lighting/comm1</factor-prop>
+            <factor-prop>/systems/electrical/outputs/radio-lights-norm</factor-prop>
         </emission>
     </animation>
     

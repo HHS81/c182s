@@ -70,10 +70,11 @@
         <object-name>COMchan</object-name>
         <object-name>NAVxfer</object-name>
         <object-name>NAVmode</object-name>
-        <object-name>KX165</object-name>
+        <!--<object-name>KX165</object-name>-->
         <object-name>Screen</object-name>
     </effect>
     
+<!--
     <effect>
         <inherits-from>../../../Effects/c182s_interior_radiance</inherits-from>
         <object-name>CommStby100K</object-name>
@@ -104,6 +105,7 @@
         <object-name>NavUseDot</object-name>
         <object-name>KX165Line</object-name>
     </effect>
+-->
     
     <animation>
         <type>material</type>
@@ -142,7 +144,7 @@
         </shininess>
     </animation>
 
-    <animation>
+<!--    <animation>
         <type>material</type>
         <object-name>KX165</object-name>
         <object-name>COMknobKHZ</object-name>
@@ -159,7 +161,7 @@
             <green-prop>/sim/model/c182s/lighting/rgb-ra-g-factor</green-prop>
             <blue-prop>/sim/model/c182s/lighting/rgb-ra-b-factor</blue-prop>
         </emission>
-    </animation>
+    </animation>-->
     
     <animation>
         <type>material</type>

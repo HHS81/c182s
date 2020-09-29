@@ -175,6 +175,35 @@
     
     <hrule/>
     
+    <group>
+        <layout>hbox</layout>
+
+        <text>
+            <label>Transponder factory VFR code:</label>
+            <halign>left</halign>
+        </text>
+
+        <input>
+            <halign>left</halign>
+            <property>/instrumentation/transponder/factory-vfr-code</property>
+            <type>INT</type>
+            <width>4</width>
+        </input>
+        <button>
+            <legend>Apply</legend>
+            <equal>true</equal>
+            <default>false</default>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+    
+    <hrule/>
+    
 	<group>
 	<layout>vbox</layout>
 	<padding>6</padding>
@@ -201,6 +230,33 @@
                     <command>dialog-apply</command>
                 </binding>
             </checkbox>
+            <group>
+                <layout>hbox</layout>
+                <!-- Small left padding -->
+                <group>
+                    <layout>vbox</layout>
+                    <padding>6</padding>
+                </group>
+                
+                <group>
+                    <layout>hbox</layout>
+                    <checkbox>
+                        <halign>left</halign>
+                        <label>  Show hint messages</label>
+                        <property>/sim/model/c182s/enable-fog-frost-msgs</property>
+                        <live>true</live>
+                        <enable>
+                            <and>
+                                <property>/sim/model/c182s/enable-fog-frost</property>
+                            </and>
+                        </enable>
+                        <binding>
+                            <command>dialog-apply</command>
+                        </binding>
+                    </checkbox>
+                </group>
+                <empty><stretch>true</stretch></empty> <!-- force group to the left -->
+            </group>
     
             <checkbox>
                 <halign>left</halign>
@@ -275,6 +331,16 @@
         
         <checkbox>
             <halign>left</halign>
+            <label>Enable FGCom audio panel integration</label>
+            <property>/instrumentation/audio-panel/fgcom-integration</property>
+            <live>true</live>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+        </checkbox>
+        
+        <checkbox>
+            <halign>left</halign>
             <label>Winter Kit installed</label>
             <property>/engines/engine/winter-kit-installed</property>
             <live>true</live>
@@ -312,7 +378,7 @@
             </checkbox>-->
 
             <button>
-                <halign>right</halign>
+                <halign>left</halign>
                 <legend>Repair</legend>
                 <pref-width>60</pref-width>
                 <pref-height>28</pref-height>
@@ -336,6 +402,52 @@
                         c182s.repair_damage();
                         c182s.click("engine-repair", 6.0);
                     </script>
+                </binding>
+            </button>
+            
+              <button>
+                <halign>right</halign>
+                <legend>Clean Aircraft</legend>
+                <pref-width>100</pref-width>
+                <pref-height>28</pref-height>
+                <enable>
+                    <and>
+                        <not>
+                            <property>/sim/freeze/replay-state</property>
+                        </not>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>1.0</value>
+                        </less-than>
+                        <not>
+                            <property>/engines/engine[0]/running</property>
+                        </not>
+                    </and>
+                </enable>
+                <binding>
+  <command>property-assign</command>
+  <property>/fdm/jsbsim/ice/wing</property>
+  <value>0</value>
+                </binding>
+                <binding>
+  <command>property-assign</command>
+  <property>/fdm/jsbsim/ice/stabilizer</property>
+  <value>0</value>
+                </binding>
+                <binding>
+  <command>property-assign</command>
+  <property>/fdm/jsbsim/ice/propeller</property>
+  <value>0</value>
+                </binding>
+                    <binding>
+  <command>property-assign</command>
+  <property>/fdm/jsbsim/ice/fuselage</property>
+  <value>0</value>
+                </binding>
+                <binding>
+  <command>property-assign</command>
+  <property>/fdm/jsbsim/ice/windshield</property>
+  <value>0</value>
                 </binding>
             </button>
         </group>

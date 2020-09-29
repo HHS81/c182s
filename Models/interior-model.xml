@@ -155,7 +155,7 @@
 <object-name>doorhandleint_left</object-name>
 <object-name>FrameLock1.L</object-name>
 <object-name>FrameLock2.L</object-name>
-   <property>sim/model/door-positions/DoorL/position-norm</property>
+   <property>sim/model/door-positions/DoorL/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>
@@ -190,7 +190,7 @@
 <object-name>doorhandleint_right</object-name>
 <object-name>FrameLock1.R</object-name>
 <object-name>FrameLock2.R</object-name>
-   <property>sim/model/door-positions/DoorR/position-norm</property>
+   <property>sim/model/door-positions/DoorR/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>
@@ -264,23 +264,51 @@
     <animation>
         <type>rotate</type>
         <object-name>doorhandleint_right</object-name>
-   <property>sim/model/door-positions/DoorR/position-norm</property>
+        <property>sim/model/door-positions/DoorR/position-norm-effective</property>
+        <condition>
+            <equals>
+                <property>/sim/model/door-positions/DoorR/opened</property>
+                <value>0.0</value>
+            </equals>
+        </condition>
+        <condition>
+            <equals>
+                <property>/sim/model/door-positions/leftDoor/opened</property>
+                <value>0.0</value>
+            </equals>
+        </condition>
         <interpolation>
             <entry>
                 <ind>0.0</ind>
                 <dep>0.0</dep>
             </entry>
             <entry>
+                <ind>0.18</ind>
+                <dep>70.0</dep>
+            </entry>
+            <entry>
+                <ind>0.26</ind>
+                <dep>70.0</dep>
+            </entry>
+            <entry>
+                <ind>0.35</ind>
+                <dep>110.0</dep>
+            </entry>
+            <entry>
+                <ind>0.43</ind>
+                <dep>110.0</dep>
+            </entry>
+            <entry>
                 <ind>0.5</ind>
-                <dep>50.0</dep>
+                <dep>0.0</dep>
             </entry>
             <entry>
                 <ind>1</ind>
-                <dep>50.0</dep>
+                <dep>0.0</dep>
             </entry>
         </interpolation>
 		<center>
-			<x-m>0.969679</x-m>
+			<x-m>0.903840</x-m>
 			<y-m>0.569469</y-m>
 			<z-m>0.143912</z-m>
 		</center>
@@ -400,23 +428,45 @@
     <animation>
         <type>rotate</type>
         <object-name>doorhandleint_left</object-name>
-   <property>sim/model/door-positions/DoorL/position-norm</property>
+        <property>sim/model/door-positions/DoorL/position-norm-effective</property>
+        <condition>
+            <equals>
+                <property>/sim/model/door-positions/DoorL/opened</property>
+                <value>0.0</value>
+            </equals>
+        </condition>
         <interpolation>
             <entry>
                 <ind>0.0</ind>
                 <dep>0.0</dep>
             </entry>
             <entry>
+                <ind>0.18</ind>
+                <dep>70.0</dep>
+            </entry>
+            <entry>
+                <ind>0.26</ind>
+                <dep>70.0</dep>
+            </entry>
+            <entry>
+                <ind>0.35</ind>
+                <dep>110.0</dep>
+            </entry>
+            <entry>
+                <ind>0.43</ind>
+                <dep>110.0</dep>
+            </entry>
+            <entry>
                 <ind>0.5</ind>
-                <dep>50.0</dep>
+                <dep>0.0</dep>
             </entry>
             <entry>
                 <ind>1</ind>
-                <dep>50.0</dep>
+                <dep>0.0</dep>
             </entry>
         </interpolation>
 		<center>
-			<x-m>0.969679</x-m>
+			<x-m>0.903840</x-m>
 			<y-m>-0.569469</y-m>
 			<z-m>0.143912</z-m>
 		</center>
@@ -513,7 +563,7 @@
  <animation>
    <type>rotate</type>
 <object-name>BaggageIntDoor</object-name>
-   <property>sim/model/door-positions/BaggageDoor/position-norm</property>
+   <property>sim/model/door-positions/BaggageDoor/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>
@@ -1493,11 +1543,21 @@
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <label>Cabin Heat: %3d%%</label>
-                <measure-text>Cabin Heat: 100%</measure-text>
                 <tooltip-id>cabinheat</tooltip-id>
-                <mapping>percent</mapping>
-                <property>environment/aircraft-effects/cabin-heat-set</property>
+                <label>%s</label>
+                <property>/fdm/jsbsim/heat/cabin-temperature-change-text-update</property>
+                <mapping>nasal</mapping>
+                <script>
+                    <![CDATA[
+                    var setting     = math.round(getprop("/environment/aircraft-effects/cabin-heat-set") * 100);
+                    var heatChange  = getprop("/fdm/jsbsim/heat/cabin-temperature-change-text") or "";
+                    var temptxt     = getprop("/fdm/jsbsim/heat/cabin-temperature-text-short") or "";
+                    if (heatChange != "") heatChange = "; " ~ heatChange;
+                    var heatTxt     = "\n(" ~ temptxt ~ heatChange ~ ")";
+                    var returnString = "Cabin Heat: " ~ setting ~ "%\n" ~ heatTxt;
+                    return returnString;
+                    ]]>
+                </script>
             </binding>
         </hovered>
     </animation>
@@ -1530,11 +1590,21 @@
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <label>Cabin Air: %3d%%</label>
-                <measure-text>Cabin Air: 100%</measure-text>
                 <tooltip-id>cabinair</tooltip-id>
-                <mapping>percent</mapping>
-                <property>environment/aircraft-effects/cabin-air-set</property>
+                <label>%s</label>
+                <property>/fdm/jsbsim/heat/cabin-temperature-change-text-update</property>
+                <mapping>nasal</mapping>
+                <script>
+                    <![CDATA[
+                    var setting     = math.round(getprop("/environment/aircraft-effects/cabin-air-set") * 100);
+                    var heatChange  = getprop("/fdm/jsbsim/heat/cabin-temperature-change-text") or "";
+                    var temptxt     = getprop("/fdm/jsbsim/heat/cabin-temperature-text-short") or "";
+                    if (heatChange != "") heatChange = "; " ~ heatChange;
+                    var heatTxt     = "\n(" ~ temptxt ~ heatChange ~ ")";
+                    var returnString = "Cabin Air: " ~ setting ~ "%\n" ~ heatTxt;
+                    return returnString;
+                    ]]>
+                </script>
             </binding>
         </hovered>
     </animation>
@@ -2414,8 +2484,7 @@
         <action>
             <binding>
                 <command>property-adjust</command>
-                <!--<property>/controls/switches/magnetos</property>-->
-                <property>controls/engines/engine/magnetos</property>
+                <property>/controls/switches/magnetos</property>
                 <factor>1</factor>
                 <min>0</min>
                 <max>3</max>
@@ -2438,7 +2507,7 @@
                 <command>set-tooltip</command>
                 <tooltip-id>magneto-switch</tooltip-id>
                 <label>Magnetos: %s</label>
-                <property>controls/engines/engine/magnetos</property>
+                <property>/controls/switches/magnetos</property>
                 <mapping>nasal</mapping>
                 <script>
                     var m = arg[0];
@@ -2547,7 +2616,7 @@
                         <value>1</value>
                         <property>controls/switches/starter</property>
                     </difference>
-                    <property>controls/engines/engine/magnetos</property>
+                    <property>controls/switches/magnetos</property>
                     <value>30</value>
                 </product>
                 <product>

@@ -3,7 +3,10 @@ Cessna 182S
 
 A high detailed, realistic version of the Cessna 182S aircraft for FlightGear. Can be flown according real pilot manual.
 
-Development thread: http://forum.flightgear.org/viewtopic.php?f=4&t=28475
+Further information can be read in [Documentation.md](Documentation.md).
+
+Development thread: http://forum.flightgear.org/viewtopic.php?f=4&t=28475  
+FG Wiki page: http://wiki.flightgear.org/Cessna_182S
 
 ![c182s Climb](http://abload.de/img/fgfs-screen-006boeqb.jpg)
 ![c182s cockpit](https://abload.de/img/fgfs-screen-002tpq3h.jpg)
@@ -34,7 +37,7 @@ This aircraft was modified and updated in a joint effort by the following people
 
 * David Megginson 
 
-* Benedikt Hallinger (fuel/oil system, custom registration livery, checklists, save-state and some more small additions)
+* Benedikt Hallinger (fuel/oil system, custom registration livery, checklists, save-state, failures, cockpit/avionics improvements and many more small additions)
 
 ---
 

@@ -667,8 +667,23 @@
       <property>/instrumentation/audio-panel/power-btn</property>
       <property>/systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/com-mic[0]</property>
         <property>/instrumentation/audio-panel/test</property>
+        <and>
+            <property>/instrumentation/audio-panel/com-mic[0]</property>
+            <not>
+                <equals>
+                    <property>/controls/radios/comm-ptt</property>
+                    <value>1</value>
+                </equals>
+            </not>
+        </and>
+        <and>
+            <property>/instrumentation/audio-panel/ptt_blinker</property>
+            <equals>
+                <property>/controls/radios/comm-ptt</property>
+                <value>1</value>
+            </equals>
+        </and>
       </or>
     </condition>
     <emission>
@@ -759,8 +774,23 @@
       <property>/instrumentation/audio-panel/power-btn</property>
       <property>/systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/com-mic[1]</property>
         <property>/instrumentation/audio-panel/test</property>
+        <and>
+            <property>/instrumentation/audio-panel/com-mic[1]</property>
+            <not>
+                <equals>
+                    <property>/controls/radios/comm-ptt</property>
+                    <value>2</value>
+                </equals>
+            </not>
+        </and>
+        <and>
+            <property>/instrumentation/audio-panel/ptt_blinker</property>
+            <equals>
+                <property>/controls/radios/comm-ptt</property>
+                <value>2</value>
+            </equals>
+        </and>
       </or>
     </condition>
     <emission>
@@ -991,6 +1021,15 @@
       <binding>
           <command>nasal</command>
           <script>c182s.click("gma340")</script>
+      </binding>
+      <binding>
+        <command>nasal</command>
+        <script>c182s.gma340_refresh_spkr_volume()</script>
+        <condition>
+            <property>/instrumentation/audio-panel/serviceable</property>
+            <property>/instrumentation/audio-panel/power-btn</property>
+            <property>/systems/electrical/outputs/audio-panel</property>
+        </condition>
       </binding>
     </action>
   </animation>

@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- gratefully taken from c172p model -->
+
+<PropertyList>
+
+    <path>immat-c182t.ac</path>
+
+    <animation>
+        <!-- Immatriculations -->
+        <object-name>ImatWing1</object-name>
+        <object-name>ImatWing2</object-name>
+        <object-name>ImatWing3</object-name>
+        <object-name>ImatWing4</object-name>
+        <object-name>ImatWing5</object-name>
+        <object-name>ImatWing6</object-name>
+        <object-name>ImatFuselageL1</object-name>
+        <object-name>ImatFuselageL2</object-name>
+        <object-name>ImatFuselageL3</object-name>
+        <object-name>ImatFuselageL4</object-name>
+        <object-name>ImatFuselageL5</object-name>
+        <object-name>ImatFuselageL6</object-name>
+        <object-name>ImatFuselageR1</object-name>
+        <object-name>ImatFuselageR2</object-name>
+        <object-name>ImatFuselageR3</object-name>
+        <object-name>ImatFuselageR4</object-name>
+        <object-name>ImatFuselageR5</object-name>
+        <object-name>ImatFuselageR6</object-name>
+        <object-name>ImatPanel1</object-name>
+        <object-name>ImatPanel2</object-name>
+        <object-name>ImatPanel3</object-name>
+        <object-name>ImatPanel4</object-name>
+        <object-name>ImatPanel5</object-name>
+        <object-name>ImatPanel6</object-name>
+    </animation>
+    <animation>
+        <type>noshadow</type>
+        <object-name>ImatWing1</object-name>
+        <object-name>ImatWing2</object-name>
+        <object-name>ImatWing3</object-name>
+        <object-name>ImatWing4</object-name>
+        <object-name>ImatWing5</object-name>
+        <object-name>ImatWing6</object-name>
+        <object-name>ImatFuselageL1</object-name>
+        <object-name>ImatFuselageL2</object-name>
+        <object-name>ImatFuselageL3</object-name>
+        <object-name>ImatFuselageL4</object-name>
+        <object-name>ImatFuselageL5</object-name>
+        <object-name>ImatFuselageL6</object-name>
+        <object-name>ImatFuselageR1</object-name>
+        <object-name>ImatFuselageR2</object-name>
+        <object-name>ImatFuselageR3</object-name>
+        <object-name>ImatFuselageR4</object-name>
+        <object-name>ImatFuselageR5</object-name>
+        <object-name>ImatFuselageR6</object-name>
+        <object-name>ImatPanel1</object-name>
+        <object-name>ImatPanel2</object-name>
+        <object-name>ImatPanel3</object-name>
+        <object-name>ImatPanel4</object-name>
+        <object-name>ImatPanel5</object-name>
+        <object-name>ImatPanel6</object-name>
+        <object-name>ImatPanelBack</object-name>
+    </animation>
+
+    <!--
+       Image width           : 2048 pixels
+       Character width       :   50 pixels
+       Available boxes       : 2048/50 = 40.96
+       factor                : 1/40.96 = 0.0244140625
+    -->
+
+    <!-- Left fuselage -->
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatFuselageL1</object-name>
+        <property>sim/model/c182s/regnum1</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatFuselageL2</object-name>
+        <property>sim/model/c182s/regnum2</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatFuselageL3</object-name>
+        <property>sim/model/c182s/regnum3</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatFuselageL4</object-name>
+        <property>sim/model/c182s/regnum4</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatFuselageL5</object-name>
+        <property>sim/model/c182s/regnum5</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatFuselageL6</object-name>
+        <property>sim/model/c182s/regnum6</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <!-- Right fuselage -->
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatFuselageR1</object-name>
+        <property>sim/model/c182s/regnum1</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatFuselageR2</object-name>
+        <property>sim/model/c182s/regnum2</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatFuselageR3</object-name>
+        <property>sim/model/c182s/regnum3</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatFuselageR4</object-name>
+        <property>sim/model/c182s/regnum4</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatFuselageR5</object-name>
+        <property>sim/model/c182s/regnum5</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatFuselageR6</object-name>
+        <property>sim/model/c182s/regnum6</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <!-- Label on wings -->
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatWing1</object-name>
+        <property>sim/model/c182s/regnum1</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatWing2</object-name>
+        <property>sim/model/c182s/regnum2</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatWing3</object-name>
+        <property>sim/model/c182s/regnum3</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatWing4</object-name>
+        <property>sim/model/c182s/regnum4</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatWing5</object-name>
+        <property>sim/model/c182s/regnum5</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatWing6</object-name>
+        <property>sim/model/c182s/regnum6</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <!-- Label inside the cockpit -->
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatPanel1</object-name>
+        <property>sim/model/c182s/regnum1</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatPanel2</object-name>
+        <property>sim/model/c182s/regnum2</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatPanel3</object-name>
+        <property>sim/model/c182s/regnum3</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatPanel4</object-name>
+        <property>sim/model/c182s/regnum4</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatPanel5</object-name>
+        <property>sim/model/c182s/regnum5</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>textranslate</type>
+        <object-name>ImatPanel6</object-name>
+        <property>sim/model/c182s/regnum6</property>
+        <factor> 0.0244140625 </factor>
+        <axis>
+            <x> 1 </x>
+            <y> 0 </y>
+            <z> 0 </z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>ImatWing1</object-name>
+        <object-name>ImatWing2</object-name>
+        <object-name>ImatWing3</object-name>
+        <object-name>ImatWing4</object-name>
+        <object-name>ImatWing5</object-name>
+        <object-name>ImatWing6</object-name>
+        <object-name>ImatFuselageL1</object-name>
+        <object-name>ImatFuselageL2</object-name>
+        <object-name>ImatFuselageL3</object-name>
+        <object-name>ImatFuselageL4</object-name>
+        <object-name>ImatFuselageL5</object-name>
+        <object-name>ImatFuselageL6</object-name>
+        <object-name>ImatFuselageR1</object-name>
+        <object-name>ImatFuselageR2</object-name>
+        <object-name>ImatFuselageR3</object-name>
+        <object-name>ImatFuselageR4</object-name>
+        <object-name>ImatFuselageR5</object-name>
+        <object-name>ImatFuselageR6</object-name>
+        <condition>
+            <property>sim/model/c182s/immat</property>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>ImatPanel1</object-name>
+        <object-name>ImatPanel2</object-name>
+        <object-name>ImatPanel3</object-name>
+        <object-name>ImatPanel4</object-name>
+        <object-name>ImatPanel5</object-name>
+        <object-name>ImatPanel6</object-name>
+        <object-name>ImatPanelBack</object-name>
+        <condition>
+            <property>sim/model/c182s/immat-on-panel</property>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>material</type>
+        <object-name>ImatPanel1</object-name>
+        <object-name>ImatPanel2</object-name>
+        <object-name>ImatPanel3</object-name>
+        <object-name>ImatPanel4</object-name>
+        <object-name>ImatPanel5</object-name>
+        <object-name>ImatPanel6</object-name>
+        <emission>
+        <red>0.8</red>
+        <green>0.8</green>
+        <blue>0.8</blue>
+        <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
+        </emission>
+        <specular>
+            <red>   0.0 </red>
+            <green> 0.0 </green>
+            <blue>  0.0 </blue>
+        </specular>
+        <ambient>
+            <red>   1 </red>
+            <green> 1 </green>
+            <blue>  1 </blue>
+        </ambient>
+        <diffuse>
+            <red>   0.3 </red>
+            <green> 0.3 </green>
+            <blue>  0.3 </blue>
+        </diffuse>
+        <shininess>
+            <red>   0 </red>
+            <green> 0 </green>
+            <blue>  0 </blue>
+        </shininess>
+    </animation>
+    <animation>
+        <type>material</type>
+        <object-name>ImatPanelBack</object-name>
+        <emission>
+        <red>0.1</red>
+        <green>0.1</green>
+        <blue>0.1</blue>
+        <factor-prop>/systems/electrical/outputs/glareshield-lights-norm</factor-prop>
+        </emission>
+    </animation>
+    
+    <effect>
+      <inherits-from>Aircraft/c182s/Models/Effects/c182s_flashlight</inherits-from>
+      <object-name>ImatPanel1</object-name>
+        <object-name>ImatPanel2</object-name>
+        <object-name>ImatPanel3</object-name>
+        <object-name>ImatPanel4</object-name>
+        <object-name>ImatPanel5</object-name>
+        <object-name>ImatPanel6</object-name>
+        <!--<object-name>ImatPanelBack</object-name>-->
+   </effect>
+
+</PropertyList>

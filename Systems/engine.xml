@@ -19,6 +19,38 @@
 -->
 
 <PropertyList>
+    
+    <!-- ============================================== -->
+    <!-- Generic engine state                           -->
+    <!-- (used to trigger smoke and killing of engine)  -->
+    <!-- ============================================== -->
+    <logic>
+        <name>Engine insufficient oil lubrication</name>
+        <input>
+            <or>
+                <greater-than>
+                    <property>/fdm/jsbsim/systems/propulsion/oil-press-friction</property>
+                    <value>1</value>
+                </greater-than>
+            </or>
+        </input>
+        <output>
+            <property>/engines/engine[0]/oilpress-low</property>
+        </output>
+    </logic>
+    <logic>
+        <name>Engine CHT friction high</name>
+        <input>
+            <greater-than>
+                <property>/fdm/jsbsim/systems/propulsion/expansion-friction</property>
+                <value>1</value>
+            </greater-than>
+        </input>
+        <output>
+            <property>/engines/engine[0]/cht-friction-high</property>
+        </output>
+    </logic>
+    
 
     <!-- ============================================================== -->
     <!-- Fuel contamination and low oil level                           -->
@@ -28,8 +60,11 @@
         <name>Engine Killed</name>
         <input>
             <or>
-                <property>/engines/engine[0]/crashed</property>
-                <property>/engines/engine[0]/kill-engine</property>
+                <property>/engines/engine[0]/kill-engine</property> <!-- if manually selected or set by scripts/telnet etc -->
+                <property>/engines/engine[0]/crashed</property> <!-- if crashed too hard on the ground -->
+                <property>/engines/engine[0]/kill-causes/cht-too-high</property>
+                <property>/engines/engine[0]/kill-causes/oilpress-low</property>
+
 
                 <!-- Engine is killed if fuel contamination is higher than 0.2 on a selected tank -->
                 <!-- (but only if complex engine model is requested!) -->
@@ -92,17 +127,6 @@
                         
                     </or>
                 </and>
-                
-                
-                <!-- Engine is killed if oil level is too low -->
-                <and>
-                    <property>/engines/engine/complex-engine-procedures</property>
-                    <property>/engines/engine/allow-oil-management</property>
-                    <less-than>
-                        <property>/engines/engine[0]/oil-level</property>
-                        <value>3.97</value>
-                    </less-than>
-                </and>
 
             </or>
         </input>
@@ -110,6 +134,65 @@
             <property>/engines/engine[0]/killed</property>
         </output>
     </logic>
+    
+    <!-- Kill engine: high CHT friction/temps for too long -->
+    <flipflop>
+        <name>engine-cht-tohigh</name>
+        <type>monostable</type>
+        <inverted type="bool">true</inverted>
+        <S>  <not>
+                <or>
+                    <and>
+                        <!-- value got critical: only reapairing helps now -->
+                        <property>/engines/engine[0]/kill-causes/cht-too-high</property>
+                        <not><property>/fdm/jsbsim/damage/repairing</property></not>
+                    </and>
+                    <and>
+                        <property>/engines/engine/running</property>
+                        <property>/engines/engine/complex-engine-procedures</property>
+                        <property>/engines/engine[0]/smoke-causes/cht-too-high</property> <!-- piggyback on engine smoking -->
+                    </and>
+                </or>
+             </not>
+        </S>
+        <time>
+            <value>20.0</value> <!-- kill after this much seconds after first smoke developed -->
+        </time>
+        <output>
+            <property>/engines/engine[0]/kill-causes/cht-too-high</property>
+        </output>
+    </flipflop>
+    
+    
+    <!-- Kill engine: low oil lubrication for too long -->
+    <flipflop>
+        <name>engine-oilpress-low-fail</name>
+        <type>monostable</type>
+        <inverted type="bool">true</inverted>
+        <S>  <not>
+                <or>
+                    <and>
+                        <!-- value got critical: only reapairing helps now -->
+                        <property>/engines/engine[0]/kill-causes/oilpress-low</property>
+                        <not><property>/fdm/jsbsim/damage/repairing</property></not>
+                    </and>
+
+                    <and>
+                        <property>/engines/engine/running</property>
+                        <property>/engines/engine/complex-engine-procedures</property>
+                        <property>/engines/engine[0]/smoke-causes/oilpress-low</property>  <!-- piggyback on engine smoking -->
+                    </and>
+                </or>
+             </not>
+        </S>
+        <time>
+            <value>30.0</value> <!-- kill after this much seconds after first smoke developed -->
+        </time>
+        <output>
+            <property>/engines/engine[0]/kill-causes/oilpress-low</property>
+        </output>
+    </flipflop>
+    
 
     
     <!-- Low level of fuel contamination or just above oil minimal level makes engine cough-->
@@ -180,14 +263,10 @@
                     
                 </and>
                     
-                <!-- Engine is coughing if oil level is too low and engine about to die -->
+                <!-- Engine is coughing if friction is critical -->
                 <and>
                     <property>/engines/engine/complex-engine-procedures</property>
-                    <property>/engines/engine/allow-oil-management</property>
-                    <less-than>
-                        <property>/engines/engine[0]/oil-level</property>
-                        <value>3.98</value>
-                    </less-than>
+                    <property>/fdm/jsbsim/systems/propulsion/friction-critical</property>
                 </and>
                 
                 <!-- Engine is coughing if still cold and throttle is wide open -->
@@ -201,7 +280,7 @@
                     </greater-than>
                     <less-than>
                         <property>/engines/engine/oil-final-temperature-degf</property>
-                        <value>70</value>
+                        <value>65</value>
                     </less-than>
                 </and>
                 
@@ -221,6 +300,65 @@
             <property>/engines/engine[0]/coughing</property>
         </output>
     </logic>
+    
+    
+    <!-- Let engine develop smoke (see effects/enginesmoke.xml) -->
+    <logic>
+        <name>Engine smoking</name>
+        <input>
+            <or>
+                <property>/engines/engine[0]/smoke-causes/cht-too-high</property>
+                <property>/engines/engine[0]/smoke-causes/oilpress-low</property>
+            </or>
+        </input>
+        <output>
+            <property>/engines/engine[0]/smoking</property>
+        </output>
+    </logic>
+    
+    <!-- engine smoke: high CHT friction/temps press for too long -->
+    <flipflop>
+        <name>engine-smoke-cht-tohigh</name>
+        <type>monostable</type>
+        <inverted type="bool">true</inverted>
+        <S>  <not>
+                <and>
+                    <property>/engines/engine/running</property>
+                    <property>/engines/engine/complex-engine-procedures</property>
+                    <property>/engines/engine[0]/cht-friction-high</property>
+                </and>
+             </not>
+        </S>
+        <time>
+            <value>180.0</value> <!-- develop smoke after this many secs -->
+        </time>
+        <output>
+            <property>/engines/engine[0]/smoke-causes/cht-too-high</property>
+        </output>
+    </flipflop>
+    
+    <!-- engine smoke: oil lubrication insufficient for too long (too hot or oil pressure lacking) -->
+    <flipflop>
+        <name>engine-smoke-oillubrication</name>
+        <type>monostable</type>
+        <inverted type="bool">true</inverted>
+        <S>  <not>
+                <and>
+                    <property>/engines/engine/running</property>
+                    <property>/engines/engine/complex-engine-procedures</property>
+                    <property>/engines/engine[0]/oilpress-low</property>
+                </and>
+             </not>
+        </S>
+        <time>
+            <value>100.0</value> <!-- develop smoke after this many secs -->
+        </time>
+        <output>
+            <property>/engines/engine[0]/smoke-causes/oilpress-low</property>
+        </output>
+    </flipflop>
+    
+    
     
     
     <!-- Oil temperature -->

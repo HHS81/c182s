@@ -9,7 +9,7 @@
     Initial Airspeed is set to 100 knots unless specified otherwise (eg. --vc=120)
     You should also set an --altitude=... setting to start in-air.
 
-    Start this state with --state=cruising.
+    Start this state with --state=cruise.
   </description>
 
   <overlay>

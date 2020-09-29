@@ -4,7 +4,10 @@
  <path>right-strobe.ac</path>
  <nopreview/>
 
-
+<animation>
+  <type>noshadow</type>
+   <object-name>right-strobe</object-name>
+ </animation>
  
 <effect>
    <inherits-from>Aircraft/c182s/Models/Effects/right-strobe</inherits-from>

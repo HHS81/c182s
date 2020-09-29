@@ -4,9 +4,9 @@
  <sim>
 
   <description>Cessna 182S (1996)</description>
-   <long-description>The Cessna 182 Skylane is a four-seat, single-engine, high-wing fixed-wing aircraft. 
+   <long-description>The Cessna 182 Skylane is a four-seat, single-engine, high-wing fixed-wing aircraft.
       First flown in 1956 and still in production, it is the second most popular Cessna model, after the 172.
-      The  model represents the "S" Variant, built between 1996 and 2001. 
+      The  model represents the "S" Variant, built between 1996 and 2001.
         </long-description><tags>
             <tag>ga</tag>
             <tag>cessna</tag>
@@ -22,22 +22,23 @@
       <model type="int">5</model>
       <cockpit type="int">5</cockpit>
     </rating>
- 
+
   <flight-model>jsb</flight-model>
   <aero>c182s</aero>
-  
+
   <checklists include="c182s-checklists.xml"/>
-  
+
   <!-- Overlays (called with "state" command line option) -->
-  <state include="states/auto-overlay.xml" n="0" />
-  <state include="states/parking-overlay.xml" n="1" />
-  <state include="states/idling-overlay.xml" n="2" />
-  <state include="states/cruising-overlay.xml" n="3" />
-  <state include="states/approach-overlay.xml" n="4" />
-  
+  <state include="states/auto-overlay.xml"     n="0" />
+  <state include="states/saved-overlay.xml"    n="1" />
+  <state include="states/parking-overlay.xml"  n="2" />
+  <state include="states/idling-overlay.xml"   n="3" />
+  <state include="states/cruising-overlay.xml" n="4" />
+  <state include="states/approach-overlay.xml" n="5" />
+
   <systems>
  <path>Aircraft/c182s/Systems/systems.xml</path>
-	   
+
 	    <autopilot>
         <path>Aircraft/c182s/Systems/KAP140.xml</path>
 	    </autopilot>
@@ -67,13 +68,15 @@
         <name>FiltersOnly</name>
         <path>Systems/instruments.xml</path>
     </property-rule>
-    <electrical>        
+    <electrical>
       <!-- null electrical system path here so we can use a nasal based -->
       <!-- model defined later in the nasal section of this file. -->
       <path></path>
     </electrical>
   </systems>
-  
+
+
+
   <!-- Aircraft states -->
   <start-state type="string">auto</start-state>
   <start-state-internal>
@@ -83,27 +86,30 @@
   <chocks>
   <enable type="bool">false</enable>
   </chocks>
-  
+
   <cones>
   <enable type="bool">false</enable>
   </cones>
-  
+
   <gpu>
   <enable>false</enable>
   </gpu>
 
   <rendering>
-      <als-secondary-lights>
-          <landing-light1-offset-deg type="float">-4.0</landing-light1-offset-deg>
-          <landing-light2-offset-deg type="float">-3.5</landing-light2-offset-deg>
-      </als-secondary-lights>
-      <!-- Enable the ALS shadow volume by default -->
-      <shadow-volume type="bool">true</shadow-volume>
+    <als-secondary-lights>
+        <landing-light1-offset-deg type="float">-4.0</landing-light1-offset-deg>
+        <landing-light2-offset-deg type="float">-3.5</landing-light2-offset-deg>
+    </als-secondary-lights>
+    <!-- Enable the ALS shadow volume by default -->
+    <shadow-volume type="bool">true</shadow-volume>
+    <pilot-model>
+      <available>true</available>
+    </pilot-model>
   </rendering>
-  
+
 <instrumentation n="0">
     <path>Aircraft/c182s/Systems/instrumentation.xml</path>
-  </instrumentation>  
+  </instrumentation>
 
   <sound>
    <path>Aircraft/c182s/c182s-sound.xml</path>
@@ -114,11 +120,44 @@
   </panel>
 
   <model>
+    <fallback-model-index>3</fallback-model-index>
    <path archive="y">Aircraft/c182s/Models/c182s.xml</path>
     <hide-yoke>false</hide-yoke>
 
-  
-    
+     <icing>
+        <iceable>
+          <name>Wing</name>
+          <sensitivity type="double">1.0</sensitivity>
+          <output-property>/fdm/jsbsim/ice/wing</output-property>
+        </iceable>
+        <iceable>
+          <name>Stabilizer</name>
+          <sensitivity type="double">1.0</sensitivity>
+          <output-property>/fdm/jsbsim/ice/stabilizer</output-property>
+        </iceable>
+        <iceable>
+          <name>Propeller</name>
+          <sensitivity type="double">0.5</sensitivity>
+          <output-property>/fdm/jsbsim/ice/propeller</output-property>
+        </iceable>
+        <iceable>
+          <name>Windshield</name>
+          <sensitivity type="double">0.5</sensitivity>
+          <!-- not relevant for fdm, ignore output-property -->
+        </iceable>
+        <iceable>
+          <name>Fuselage</name>
+          <sensitivity type="double">0.3</sensitivity>
+          <output-property>/fdm/jsbsim/ice/fuselage</output-property>
+        </iceable>
+        <iceable>
+          <name>Pitot tube</name>
+          <sensitivity type="double">1</sensitivity>
+          <salvage-control>/systems/pitot/salvage</salvage-control>
+          <output-property>/systems/pitot/icing</output-property>
+        </iceable>
+      </icing>
+
 <!-- An exit for the walker -->
         <map>
             <default_exit>
@@ -128,10 +167,9 @@
         </map>
 
     <livery>
-      <file type="string">liveries/Default.png</file>
-      <index type="int">0</index>
+        <name type="string">default</name>
     </livery>
-    
+
   <c182s>
 <ladder_position_l type ="int">1</ladder_position_l>
 <tiedowns>
@@ -170,6 +208,7 @@
 
 <procedural-lights type="bool">true</procedural-lights>
 <enable-fog-frost type="bool">false</enable-fog-frost>
+<enable-fog-frost-msgs type="bool">true</enable-fog-frost-msgs>
 
 
 	<material>
@@ -205,14 +244,14 @@
           <ra-b type="double">0.025</ra-b>
       </lighting>
     </c182s>
-    
+
     <rendering>
 		  <refl_correction type="float">-0.5</refl_correction>
 		  <ambient_correction type="float">0.1</ambient_correction>
 		  <refl-type type="int">1</refl-type>
 		  <fresnel-factor type="float">0.7</fresnel-factor>
     </rendering>
-    
+
         <!-- Event sounds -->
         <sound>
             <click-light type="bool">false</click-light>
@@ -347,7 +386,7 @@
             <pitch-offset-deg>-10</pitch-offset-deg>
         </config>
     </view>
-    
+
 <view n="102">
         <name>Rearseat Right</name>
         <enabled type="bool">true</enabled>
@@ -375,7 +414,7 @@
             <pitch-offset-deg>-10</pitch-offset-deg>
         </config>
     </view>
-    
+
  <view n="103">
         <name>Tail Camera</name>
         <enabled type="bool">true</enabled>
@@ -403,7 +442,7 @@
             <pitch-offset-deg>-15</pitch-offset-deg>
         </config>
     </view>
-    
+
 <view n="104">
         <name>Left Wing</name>
         <enabled type="bool">true</enabled>
@@ -433,7 +472,7 @@
         </config>
     </view>
 
-    
+
 		<view n="1">
 			<config>
 				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
@@ -469,7 +508,7 @@
 				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
 			</config>
 		</view>
-  
+
    <flaps>
       <setting>0.000</setting>
       <!-- flaps up -->
@@ -531,8 +570,10 @@
    </key>
   </help>
 
+
+
         <menubar include="gui/dialogs/c182s-menu.xml"/>
-        
+
         <!-- Splash screens. One is randomly chosen when FlightGear starts -->
         <startup>
             <splash-texture>Aircraft/c182s/splash1.png</splash-texture>
@@ -550,19 +591,20 @@
         <mouse>
             <invert-mouse-wheel type="bool">true</invert-mouse-wheel>
         </mouse>
-        
-        
+
+
         <!-- Save these properties between sessions -->
         <aircraft-data>
             <path>/sim/start-state</path>
-            
+
             <path>/sim/time/hobbs/engine</path>
             <path>/sim/model/c182s/enable-fog-frost</path>
+            <path>/sim/model/c182s/enable-fog-frost-msgs</path>
             <path>/engines/engine/complex-engine-procedures</path>
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>
             <path>/engines/engine/winter-kit-installed</path>
-            
+
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
             <path>/consumables/fuel/tank[2]/level-gal_us</path>
@@ -578,17 +620,17 @@
             <path>/environment/aircraft-effects/cabin-heat-set</path>
             <path>/environment/aircraft-effects/cabin-air-set</path>
             <path>/environment/aircraft-effects/defrost-set</path>
-            
+
             <path>/controls/lighting/landing-lights</path>
             <path>/controls/lighting/taxi-light</path>
             <path>/controls/lighting/strobe</path>
             <path>/controls/lighting/beacon</path>
             <path>/controls/lighting/nav-lights</path>
-            
+
             <path>/controls/anti-ice/pitot-heat</path>
             <path>/controls/engines/engine[0]/fuel-pump</path>
-            <path>/controls/switches/AVMBus1</path>  
-            <path>/controls/switches/AVMBus2</path>  
+            <path>/controls/switches/AVMBus1</path>
+            <path>/controls/switches/AVMBus2</path>
             <path>/controls/switches/kt-76c</path>
             <path>/controls/switches/kn-62a</path>
             <path>/controls/switches/fuel_tank_selector</path>
@@ -596,7 +638,7 @@
             <path>/controls/flight/elevator-trim</path>
             <path>/controls/flight/rudder-trim</path>
             <path>/controls/flight/flaps</path>
-            
+
             <path>/instrumentation/annunciator/testswitch</path>
             <path>/instrumentation/annunciator/dim-factor</path>
             <path>/instrumentation/audio-panel/power-btn</path>
@@ -614,6 +656,7 @@
             <path>/instrumentation/audio-panel/hi</path>
             <path>/instrumentation/audio-panel/lo</path>
             <path>/instrumentation/audio-panel/volume-ics-pilot</path>
+            <path>/instrumentation/audio-panel/fgcom-integration</path>
             <path>/instrumentation/marker-beacon/audio-btn</path>
             <path>/instrumentation/marker-beacon/volume-default</path> <!-- hard wired in GMA340, but can be changed (in-sim just adjust the property) -->
             <path>/surface-positions/flap-pos-norm</path>
@@ -664,8 +707,9 @@
             <path>/instrumentation/transponder/id-code</path>
             <path>/instrumentation/transponder/factory-vfr-code</path>
             <path>/engines/engine[0]/egt-bug-norm</path>
-            
-            <path>/controls/engines/engine[0]/magnetos</path>
+
+            <!-- now calculated in engine.nas! <path>/controls/engines/engine[0]/magnetos</path> -->
+            <path>/controls/switches/magnetos</path>
             <path>/controls/engines/engine[0]/master-bat</path>
             <path>/controls/engines/engine[0]/master-alt</path>
             <path>/controls/switches/AVMBus1</path>
@@ -679,14 +723,14 @@
             <path>/controls/lighting/pedestal-lights-norm</path>
             <path>/controls/lighting/radio-lights-norm</path>
             <path>/systems/electrical/battery-charge-percent</path>
-            
+
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[0]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[1]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[2]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[3]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[4]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[5]</path>
-            
+
             <path>/sim/model/c182s/securing/tiedownR-visible</path>
             <path>/sim/model/c182s/securing/tiedownL-visible</path>
             <path>/sim/model/c182s/securing/tiedownT-visible</path>
@@ -706,7 +750,12 @@
             <path>/sim/model/c182s/securing/pitot-cover-visible</path>
             <path>/controls/SunVisor[0]/position-deg</path>
             <path>/controls/SunVisor[1]/position-deg</path>
-        
+            <path>/sim/model/door-positions/DoorL/position-norm</path>
+            <path>/sim/model/door-positions/DoorR/position-norm</path>
+            <path>/sim/model/door-positions/BaggageDoor/position-norm</path>
+            <path>/sim/model/door-positions/WindowL/position-norm</path>
+            <path>/sim/model/door-positions/WindowR/position-norm</path>
+
             <path>/controls/circuit-breakers/Flap</path>
             <path>/controls/circuit-breakers/Inst</path>
             <path>/controls/circuit-breakers/AVNBus1</path>
@@ -722,12 +771,33 @@
             <path>/controls/circuit-breakers/Transponder</path>
             <path>/controls/circuit-breakers/ADF</path>
             <path>/controls/circuit-breakers/AutoPilot</path>
+
+            <path>/sim/failure-manager/display-on-screen</path>
+            <path>/sim/failure-manager/restore-on-start</path>
         </aircraft-data>
 
+     <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>
+
  </sim>
- 
-  <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
- 
+
+ <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+  <instruments>
+    <airspeed-indicator>
+        <indicated-speed-kt type="float">0</indicated-speed-kt>
+    </airspeed-indicator>
+
+    <fuelIndicator n="0">  <serviceable type="bool">true</serviceable>  </fuelIndicator>
+    <fuelIndicator n="1">  <serviceable type="bool">true</serviceable>  </fuelIndicator>
+    <egt>  <serviceable type="bool">true</serviceable>  </egt>
+    <cht>  <serviceable type="bool">true</serviceable>  </cht>
+    <oil-temp>  <serviceable type="bool">true</serviceable>  </oil-temp>
+    <oil-press>  <serviceable type="bool">true</serviceable>  </oil-press>
+    <!--<vac>  <serviceable type="bool">true</serviceable>  </vac>  IMPLEMENT ME -->
+    <!--<amp>  <serviceable type="bool">true</serviceable>  </amp>  IMPLEMENT ME -->
+    <fuel-flow>  <serviceable type="bool">true</serviceable>  </fuel-flow>
+    <!--<manfold-press> <serviceable type="bool">true</serviceable> </manfold-press> IMPLEMENT ME -->
+  </instruments>
+
    <consumables>
     <fuel>
       <tank n="0">
@@ -744,7 +814,7 @@
         <sample-water-contamination type="double">0.0</sample-water-contamination>
         <fuel-sample-taken type="bool">false</fuel-sample-taken>
       </tank>
-      
+
       <tank n="2">
         <name type="string">Fuel selector sump</name>
         <drain-valve>0</drain-valve>
@@ -771,11 +841,11 @@
         <name type="string">Virtual engine-mix setting</name>
         <hidden type="bool">true</hidden>
       </tank>
-      
+
     </fuel>
   </consumables>
-  
- 
+
+
 
  <controls>
   <flight>
@@ -813,6 +883,7 @@
    <kt-76c type="double">0</kt-76c>
    <kn-62a type="double">0</kn-62a>
    <fuel_tank_selector type="double">2</fuel_tank_selector> <!-- 0=off, 1=right, 2=both, 3=left -->
+   <magnetos type="int">3</magnetos>
   </switches>
   <circuit-breakers>
     <Flap type="bool">1</Flap>
@@ -831,17 +902,22 @@
     <ADF type="bool">1</ADF>
     <AutoPilot type="bool">1</AutoPilot>
   </circuit-breakers>
+  <stall-horn>
+      <serviceable type="bool">1</serviceable>
+      <test type="bool">0</test>
+  </stall-horn>
   </controls>
 
- 
+
  <autopilot>
   <KAP140>
    <settings>
     <auto-pitch-trim type="bool">true</auto-pitch-trim>
    </settings>
+   <serviceable type="bool">true</serviceable>
   </KAP140>
  </autopilot>
- 
+
 <instrumentation include="Systems/init-instrumentation.xml"/>
 
 
@@ -858,7 +934,6 @@
    <complex-engine-procedures type="bool">false</complex-engine-procedures>
    <allow-fuel-contamination type="bool">false</allow-fuel-contamination>
    <allow-oil-management type="bool">false</allow-oil-management>
-   <oil-powergain-factor type="double">1</oil-powergain-factor>
    <winter-kit-installed type="bool">false</winter-kit-installed>
    <oil-temperature-env-diff type="double">0</oil-temperature-env-diff>
    <oil-compensated-temperature-degf type="double">60</oil-compensated-temperature-degf>
@@ -867,12 +942,17 @@
        <applied-norm type="double">0.0</applied-norm>
        <applied-degF type="double">0.0</applied-degF>
    </external-heat>
+   <oil-pump>
+       <serviceable type="bool">true</serviceable>
+       <serviceable-norm type="float">1.0</serviceable-norm>
+   </oil-pump>
    <oil-final-temperature-degf type="double">60</oil-final-temperature-degf> <!-- this is the final oil temperature after all effects -->
    <oil-temperature-degf-indicated type="double">60</oil-temperature-degf-indicated> <!-- oil temp for the gauge (filtered) -->
+   <oil-service-hours type="double">0</oil-service-hours>
    <cowling-air-temperature-degf>40</cowling-air-temperature-degf> <!-- OAT in the cowling -->
   </engine>
  </engines>
- 
+
 
 
 <payload>
@@ -1019,20 +1099,27 @@
     ]]>
 </script>
 </kap140>
-    <failures> 
+
+    <failures>
     <file>Aircraft/Generic/limits.nas</file>
+    <file>Aircraft/c182s/Nasal/custom-failures.nas</file>
   </failures>
 
    <tyresmoke>
      <file>Aircraft/c182s/Nasal/tyresmoke.nas</file>
    </tyresmoke>
 
+<icing>
+      <file>Aircraft/c182s/Nasal/icing.nas</file>
+      <file>Aircraft/c182s/Nasal/PitotIcing.nas</file>
+</icing>
+
  </nasal>
 
  <!-- ================ map keyboard ================ -->
- <input> 
-    <keyboard> 
-     
+ <input>
+    <keyboard>
+
 
       <key n="89">
         <name>Y</name>
@@ -1042,10 +1129,69 @@
           <command>property-toggle</command>
           <property>sim/model/hide-yoke</property>
         </binding>
-      </key>    
+      </key>
+
+
+      <!-- overwriting { and } default aliases -->
+      <key n="123">
+        <name>{</name>
+        <desc>Decrease Magneto on Selected Engine</desc>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.stepMagnetos(-1)</script>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.stepMagnetos(0)</script>
+            </binding>
+        </mod-up>
+      </key>
+      <key n="125">
+        <name>}</name>
+        <desc>Increase Magneto on Selected Engine</desc>
+        <binding>
+            <command>nasal</command>
+                <script>c182s.stepMagnetos(1)</script>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.stepMagnetos(0)</script>
+            </binding>
+        </mod-up>
+      </key>
+      
+      <!-- Overwrite FGCom PTT (space) -->
+      <key n="32">
+        <name>SPACE</name>
+        <desc>PTT - Push To Talk (via FGCom) but select radio</desc>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.gma340_ptt(1, 0)</script>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.gma340_ptt(0, 0)</script>
+            </binding>
+        </mod-up>
+        <mod-shift>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.gma340_ptt(1, 1)</script>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>nasal</command>
+                    <script>c182s.gma340_ptt(0, 1)</script>
+                </binding>
+            </mod-up>
+        </mod-shift>
+      </key>
 
     </keyboard>
     </input>
 
-  
+
 </PropertyList>

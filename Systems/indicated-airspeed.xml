@@ -68,6 +68,7 @@ So use this numbers and create a table which corrects the output shown on the AS
     Pitot implementation
     taken from from c172p, thanks dany93.
     enhanced by B. Hallinger for c182s
+    failure due to pitot icing  by H. Schulz 
 -->
         
         <switch name="/systems/pitot/heating">
@@ -98,13 +99,26 @@ So use this numbers and create a table which corrects the output shown on the AS
         <switch name="/systems/asi/pitot-serviceable">
             <output>/systems/pitot/serviceable</output>
             <default value="1"/>
-
-            <test logic="AND" value="0">
+	    
+            <test logic="OR" value="0">
                 /sim/model/c182s/securing/pitot-cover-visible EQ 1
+ 	     /systems/pitot/icing GT 0.03
             </test>
         </switch>	
 	
-        <!-- TODO: icing to be implemented -->
+        <switch name="/systems/pitot/salvage-control">
+            <output>/systems/pitot/salvage</output>
+            <default value="1"/>
+	    
+            <test logic="OR" value="0">
+               /systems/pitot/heat-applied-norm LT 0.3
+            </test>
+        </switch>	
+
+
+
+
+
         
     </channel>
 </system>

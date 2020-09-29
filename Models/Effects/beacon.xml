@@ -4,6 +4,10 @@
  <path>beacon.ac</path>
  <nopreview/>
 
+<animation>
+  <type>noshadow</type>
+  <object-name>beacon</object-name>
+ </animation>
 
  <animation>
   <type>scale</type>

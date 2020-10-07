@@ -759,6 +759,7 @@
             <path>/controls/lighting/instrument-lights-norm</path>
             <path>/controls/lighting/glareshield-lights-norm</path>
             <path>/controls/lighting/pedestal-lights-norm</path>
+            <path>/controls/lighting/avionics-lights-norm</path>
             <path>/controls/lighting/radio-lights-norm</path>
             <path>/systems/electrical/battery-charge-percent</path>
 
@@ -910,6 +911,7 @@
    <instrument-lights-norm type="double">0.0</instrument-lights-norm>
    <glareshield-lights-norm type="double">0.0</glareshield-lights-norm>
    <pedestal-lights-norm type="double">0.0</pedestal-lights-norm>
+   <avionics-lights-norm type="double">0.0</avionics-lights-norm>
    <radio-lights-norm type="double">0.0</radio-lights-norm>
   </lighting>
   <switches>
@@ -1106,7 +1108,7 @@
 </davtron803>
 
 <electrical>
- <file>Aircraft/c182s/Nasal/c182s-electrical.nas</file>
+ <file>Aircraft/c182s/Nasal/c182t-electrical.nas</file>
 </electrical>
 
 <failures>

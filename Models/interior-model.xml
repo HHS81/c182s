@@ -2,7 +2,7 @@
 
 <PropertyList>
 
- <path>Models/interior-model.ac</path>
+ <path>interior-model.ac</path>
  <offsets>
    <pitch-deg>0.0</pitch-deg>
    <z-m> -0.0 </z-m>

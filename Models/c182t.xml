@@ -14,8 +14,8 @@
    </model>
 
    <model>
-   <name>interior</name>
-    <path>Models/interior-model-c182t.xml</path>
+    <name>interior</name>
+    <path>Aircraft/c182s/Models/interior-model-c182t.xml</path>
     <usage>interior</usage>
   </model>
 

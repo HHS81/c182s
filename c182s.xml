@@ -758,8 +758,8 @@
                 </domain>
                 <range>
                     <!-- reducing factor: 1=no reduction/0=full blocked; min=no-ice, max=full-ice -->
-                    <min>1.00</min>
-                    <max>0.75</max>
+                    <min>0.75</min>
+                    <max>1.00</max>
                 </range>
                 <clipto>
                     <min>0.75</min>

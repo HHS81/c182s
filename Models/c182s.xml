@@ -14,9 +14,13 @@
    </model>
  
    <model>
-   <name>interior</name>
-    <path>Aircraft/c182s/Models/interior-model.xml</path>
+    <path>Aircraft/c182s/Models/interior-model-c182s.xml</path>
     <usage>interior</usage>
+    <offsets>
+        <x-m>0</x-m>
+        <y-m>0 </y-m>
+        <z-m>0</z-m>
+    </offsets>
   </model>
 
   <nasal>

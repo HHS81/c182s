@@ -127,7 +127,8 @@
 
   <model>
    <path archive="y">Aircraft/c182s/Models/c182t.xml</path>
-    <hide-yoke>false</hide-yoke>
+   <fallback-model-index>3</fallback-model-index>
+   <hide-yoke>false</hide-yoke>
 
     <icing>
        <iceable>

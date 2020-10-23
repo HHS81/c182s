@@ -116,6 +116,15 @@
    <visibility archive="y">false</visibility>
   </panel>
 
+  <multiplay>
+    <generic>
+      <float n="30" alias="/sim/rendering/refl_correction"/>
+      <float n="31" alias="/sim/rendering/fresnel-factor"/>
+      <float n="32" alias="/sim/rendering/refl-type"/>
+      <float n="33" alias="/sim/rendering/ambient_correction"/>
+    </generic>
+  </multiplay>
+
   <model>
    <path archive="y">Aircraft/c182s/Models/c182t.xml</path>
     <hide-yoke>false</hide-yoke>

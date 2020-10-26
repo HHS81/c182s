@@ -2673,31 +2673,26 @@
     </model>
 
 
-    
     <model>
-        <path>Aircraft/c182s/Models/Instruments/Avionics/kx165-1.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/Avionics/kx165/kx165-1.xml</path>
         <name>kx165</name>
         <offsets>
-            <x-m>0.3450</x-m>
-            <y-m>0.083</y-m>
-            <z-m>0.314</z-m>
+            <x-m>0.708</x-m>
+            <y-m>-0.030</y-m>
+            <z-m>0.230</z-m>
         </offsets>
     </model>
-    
 
-    
     <model>
-        <path>Aircraft/c182s/Models/Instruments/Avionics/kx165-2.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/Avionics/kx165/kx165-2.xml</path>
         <name>kx165</name>
         <offsets>
-            <x-m>0.3450</x-m>
-            <y-m>0.083</y-m>
-            <z-m>0.261</z-m>
+            <x-m>0.708</x-m>
+            <y-m>-0.030</y-m>
+            <z-m>0.230</z-m>
         </offsets>
     </model>
-    
 
-    
     <model>
         <path>Aircraft/c182s/Models/Instruments/Avionics/kr87.xml</path>
         <name>kr87</name>

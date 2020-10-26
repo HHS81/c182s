@@ -449,8 +449,8 @@
                     <max>20</max>
                 </domain>
                 <range>
-                    <min>-1</min>
-                    <max>1</max>
+                    <min>1</min>
+                    <max>-1</max>
                 </range>
                 <output>fcs/right-aileron-pos-norm</output>
             </aerosurface_scale>

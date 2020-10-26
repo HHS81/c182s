@@ -190,9 +190,9 @@
             <blue>  0.0 </blue>
         </specular>
         <ambient>
-            <red>   0.7 </red>
-            <green> 0.7 </green>
-            <blue>  0.7 </blue>
+            <red>   1.0 </red>
+            <green>1.0 </green>
+            <blue>  1.0 </blue>
         </ambient>
         <diffuse>
             <red>   0.3 </red>
@@ -230,9 +230,9 @@
             <blue>  0.0 </blue>
         </specular>
         <ambient>
-            <red>   0.7 </red>
-            <green> 0.7 </green>
-            <blue>  0.7 </blue>
+            <red>   1.0 </red>
+            <green>1.0 </green>
+            <blue>  1.0 </blue>
         </ambient>
         <diffuse>
             <red>   0.3 </red>

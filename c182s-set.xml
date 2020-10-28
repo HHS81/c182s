@@ -1,6 +1,51 @@
 <?xml version="1.0"?>
 <!--<PropertyList>-->
 <PropertyList include="Aircraft/Generic/Human/Include/walker-include.xml">
+
+<!-- Descriptive information
+     not used for simulation, but for GUI;
+     see: http://wiki.flightgear.org/Aircraft-set.xml#Performance_and_Flight-planning
+-->
+<aircraft>
+  <icao>
+    <wake-turbulence-category>L</wake-turbulence-category> <!-- see: https://www.skybrary.aero/index.php/C182 -->
+    <type type="string">C182</type> 
+    <equipment type="string">SDFY</equipment>  <!-- ICAO equipment string (see: https://en.wikipedia.org/wiki/Equipment_codes) -->
+    <surveillance type="string">C</surveillance>  <!-- ICAO surveillance string;  mode-A/C transponder (see again: https://en.wikipedia.org/wiki/Equipment_codes) -->
+  </icao>
+  <performance>
+    <!-- from the POH -->
+    <minimum>
+      <takeoff-length-ft type="int">365</takeoff-length-ft>  <!-- POH p. 5-17; 2300lbs at sea level. Increaes to 715ft@3100lbs at sea level and 1480ft at max weight at 8000ft altitude. -->
+      <landing-length-ft type="int">520</landing-length-ft>  <!-- POH p. 5-35; 2950lbs at sea level. Increases to 755ft at 8000ft altitude. -->
+    </minimum>
+    <climb> <!-- POH 5-20 -->
+      <!-- potential for climb data in the future 
+      <airspeed-knots type="int">90</airspeed-knots>
+      <vertical-speed-fpm type="int">675</vertical-speed-fpm>
+      -->
+    </climb>
+    <cruise>
+      <airspeed-knots type="int">140</airspeed-knots> <!-- max. struct cruise speed -->
+      <altitude-ft type="int">6000</altitude-ft>
+    </cruise>
+    <descent> <!-- from checklist / POH 4-22 -->
+      <!-- potential for descent data in the future 
+      <airspeed-knots type="int">120</airspeed-knots> 
+      <vertical-speed-fpm type="int">-500</vertical-speed-fpm>
+      -->
+    </descent>
+    <approach>
+      <airspeed-knots type="int">80</airspeed-knots> <!-- from Checklist, normal flaps-up approach -->
+    </approach>
+    <maximum>
+      <altitude-ft type="int">18000</altitude-ft> <!-- service ceiling -->
+      <airspeed-knots type="int">175</airspeed-knots> <!-- VNe airframe structural limit -->
+    </maximum>
+  </performance >
+</aircraft>
+
+
  <sim>
 
   <description>Cessna 182S (1996)</description>
@@ -25,6 +70,9 @@
 
   <flight-model>jsb</flight-model>
   <aero>c182s</aero>
+
+  <aircraft-class type="string">ga</aircraft-class>
+  <aircraft-operator type="string">NONE</aircraft-operator>
 
   <checklists include="c182s-checklists.xml"/>
 

@@ -56,9 +56,12 @@
             <tag>ga</tag>
             <tag>cessna</tag>
             <tag>piston</tag>
-            <tag>90's</tag>
+            <tag>1990s</tag>
             <tag>single-engine</tag>
             <tag>fixed-gear</tag>
+            <tag>tricycle</tag>
+            <tag>ifr</tag>
+            <tag>high-wing</tag>
         </tags>
     <minimum-fg-version>2017.3.1</minimum-fg-version>
     <rating>

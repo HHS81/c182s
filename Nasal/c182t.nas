@@ -19,10 +19,22 @@ fg1000system.display(2);
 #  Display a GUI version of device 1 at 50% scale.
 #fg1000system.displayGUI(1, 0.5);
 
-setlistener("/systems/electrical/outputs/gps", func(n) {
+# Switch the FG1000 on/off depending on power.
+setlistener("/systems/electrical/outputs/fg1000", func(n) {
     if (n.getValue() > 0) {
       fg1000system.show();
+      setprop("/instrumentation/FG1000/Lightmap", getprop("/controls/lighting/avionics-lights-norm"));
     } else {
       fg1000system.hide();
+      setprop("/instrumentation/FG1000/Lightmap", 0.0);
+    }
+}, 0, 0);
+
+# Control the backlighting of the bezel based on the avionics light knob
+setlistener("/controls/lighting/avionics-lights-norm", func(n) {
+    if (getprop("/systems/electrical/outputs/fg1000") > 5.0) {
+      setprop("/instrumentation/FG1000/Lightmap", n.getValue());
+    } else {
+      setprop("/instrumentation/FG1000/Lightmap", 0.0);
     }
 }, 0, 0);

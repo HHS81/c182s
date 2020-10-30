@@ -280,8 +280,10 @@ var updateMagnetos = func() {
         tgt_value = keypos;
     }
     
-    setprop("controls/engines/engine/magnetos", tgt_value); # value for internal engine state
-    #setprop("/engines/engine/magnetos", keypos); # this property seems not to be used!
+    if (tgt_value != nil) {
+        setprop("controls/engines/engine/magnetos", tgt_value); # value for internal engine state
+        #setprop("/engines/engine/magnetos", keypos); # this property seems not to be used!
+    }
 }
 setlistener("/controls/switches/magnetos", updateMagnetos, 1, 1);
 setlistener("/controls/engines/engine/faults/left-magneto-serviceable", updateMagnetos, 0, 1);

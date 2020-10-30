@@ -1465,6 +1465,44 @@
     </hovered>
   </animation>
 
+<animation>
+    <type>knob</type>
+    <object-name>AvionicsLigthKnob</object-name> <!-- not a typo -->
+    <property>controls/lighting/avionics-lights-norm</property>
+    <factor>-180</factor>
+    <drag-direction>horizontal</drag-direction>
+    <offset-deg>0</offset-deg>
+		<center>
+			<x-m>0.36454</x-m>
+			<y-m>-0.44203</y-m>
+			<z-m>0.18703</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>controls/lighting/avionics-lights-norm</property>
+        <factor>0.1</factor>
+        <min>0</min>
+        <max>1</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+    <hovered>
+        <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>pedestal-Light-tip</tooltip-id>
+            <mapping>percent</mapping>
+            <label>Avionics Lights: %2d%%</label>
+            <property>controls/lighting/avionics-lights-norm</property>
+        </binding>
+    </hovered>
+  </animation>
+
   <!-- Cabin heat and Air / defrost-->
     <animation>
         <type>slider</type>

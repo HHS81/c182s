@@ -18,6 +18,7 @@
   <test type="int">0</test>
 </marker-beacon>
 
+<!--
 <nav n="0">
   <frequencies>
     <display-sel-khz type="int">0</display-sel-khz>
@@ -61,6 +62,41 @@
   </frequencies>
   <volume-selected type="double">0</volume-selected>
 </comm>
+-->
+<comm n="0">
+    <power-btn type="bool">1</power-btn>
+    <frequencies>
+        <dial-khz type="int">0</dial-khz>
+        <dial-mhz type="int">0</dial-mhz>
+    </frequencies>
+    <volume-selected type="double">0.7</volume-selected>
+    <channel-mode-selector type="bool">1</channel-mode-selector>
+</comm>
+<comm n="1">
+    <power-btn type="bool">1</power-btn>
+    <frequencies>
+        <dial-khz type="int">0</dial-khz>
+        <dial-mhz type="int">0</dial-mhz>
+    </frequencies>
+    <volume-selected type="double">0.7</volume-selected>
+    <channel-mode-selector type="bool">1</channel-mode-selector>
+</comm>
+<nav n="0">
+    <volume type="double">0.7</volume>
+    <frequencies>
+        <dial-khz type="int">0</dial-khz>
+        <dial-mhz type="int">0</dial-mhz>
+    </frequencies>
+    <ident-audible type="bool">false</ident-audible>
+</nav>
+<nav n="1">
+    <volume type="double">0.7</volume>
+    <frequencies>
+        <dial-khz type="int">0</dial-khz>
+        <dial-mhz type="int">0</dial-mhz>
+    </frequencies>
+    <ident-audible type="bool">false</ident-audible>
+</nav>
 
 <transponder>
   <id-code type="int">0</id-code>

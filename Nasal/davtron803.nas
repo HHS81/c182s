@@ -83,6 +83,7 @@ var lcd_modes2 = lcdgroup.createChild("text", "davtron.bot.lcd.modes2_canvas")
                 .setScale(1, 1.02);
 
 # Underlining of selected item
+# TODO: Should be little arrows instead of just lines...
 var lcd_modesel = [
     lcdgroup.createChild("path", "davtron.bot.lcd.modesel_ut_canvas")
         .setStrokeLineWidth(8).set("stroke", "rgba(0,0,0,1)")
@@ -137,9 +138,9 @@ var davtron_updateTopMode = func(){
     if        (mode == "E") {
         value = sprintf("%5.1fE", getprop("/systems/electrical/volts"));
     } else if (mode == "F") {
-        value = sprintf("%5.1fF", getprop("/environment/temperature-degf"));
+        value = sprintf("%7.0fF", getprop("/environment/temperature-degf"));
     } else if (mode == "C") {
-        value = sprintf("%5.1fC", getprop("/environment/temperature-degc"));
+        value = sprintf("%7.0fC", getprop("/environment/temperature-degc"));
     } else {
         # should not happen. Check XML config
     }

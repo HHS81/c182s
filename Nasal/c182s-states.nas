@@ -47,9 +47,9 @@ var secureAircraftOnGround = func(state) {
         return;
     }
     
-    setprop("/sim/chocks001/enable", state);
-    setprop("/sim/chocks002/enable", state);
-    setprop("/sim/chocks003/enable", state);
+    if (getprop("/sim/chocks001/enable") != state) setprop("/sim/chocks001/enable", state);
+    if (getprop("/sim/chocks002/enable") != state) setprop("/sim/chocks002/enable", state);
+    if (getprop("/sim/chocks003/enable") != state) setprop("/sim/chocks003/enable", state);
     setprop("/sim/model/c182s/securing/pitot-cover-visible", state);
     setprop("/sim/model/c182s/securing/tiedownL-visible", state);
     setprop("/sim/model/c182s/securing/tiedownR-visible", state);

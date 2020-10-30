@@ -474,7 +474,9 @@ else {
     # Flaps Power
     if ( getprop("/controls/circuit-breakers/Flap") and getprop("/sim/failure-manager/controls/flight/flaps/serviceable") ) {
         setprop("/systems/electrical/outputs/flaps", bus_volts);
-        load += bus_volts / 2;
+        if (getprop("/systems/electrical/flaps/actuator-moving") ) {
+            load += bus_volts / 2;
+        }
     } else {
         setprop("/systems/electrical/outputs/flaps", 0.0);
     }

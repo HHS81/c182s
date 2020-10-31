@@ -26,7 +26,7 @@
   <flight-model>jsb</flight-model>
   <aero>c182s</aero>
 
-  <checklists include="c182s-checklists.xml"/>
+  <checklists include="c182t-checklists.xml"/>
 
   <!-- Overlays (called with "state" command line option) -->
   <state include="states/auto-overlay.xml"     n="0" />

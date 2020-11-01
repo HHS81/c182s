@@ -77,7 +77,7 @@
   <aircraft-class type="string">ga</aircraft-class>
   <aircraft-operator type="string">NONE</aircraft-operator>
 
-  <checklists include="c182s-checklists.xml"/>
+  <checklists include="c182t-checklists.xml"/>
 
   <!-- Overlays (called with "state" command line option) -->
   <state include="states/auto-overlay.xml"     n="0" />

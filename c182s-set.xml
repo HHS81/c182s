@@ -15,7 +15,7 @@
             <tag>single-engine</tag>
             <tag>fixed-gear</tag>
         </tags>
-    <minimum-fg-version>2017.3.1</minimum-fg-version>
+    <minimum-fg-version>2018.3.0</minimum-fg-version>
     <rating>
       <FDM type="int">5</FDM>
       <systems type="int">4</systems>

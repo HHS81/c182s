@@ -195,7 +195,7 @@
             <value type="bool">true</value>
         </enable>
         <input>
-            <property>/systems/static[0]/pressure-inhg[0]</property>
+            <property>/systems/static-pressure-inhg-selected</property>
         </input>
         <reference>
             <property>/autopilot/KAP140/settings/target-alt-pressure</property>
@@ -251,7 +251,7 @@
         <debug>false</debug>
         <type>derivative</type>
         <input>
-            <property>systems/static[0]/pressure-inhg</property>
+            <property>/systems/static-pressure-inhg-selected</property>
         </input>
         <output>
             <property>autopilot/internal/pressure-rate</property>

@@ -1394,5 +1394,6 @@
     <system file="propulsion"/>
     <system file="indicated-airspeed"/>   
    <system file="c182s-ground-effects"/>    
+   <system file="static-sources"/> <!-- integrate alternate static source simulation -->
 
 </fdm_config>

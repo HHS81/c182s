@@ -1,0 +1,44 @@
+<?xml version="1.0"?>  
+<!--
+    c182s static system (POH p. 7-42)
+    Copyright (c) 2020 B. Hallinger
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<system name="static">
+
+    <!-- initialize some properties -->
+    <property type="bool"   value="1">/systems/static[0]/serviceable</property>
+    <property type="bool"   value="1">/systems/static[1]/serviceable</property>
+    <property type="double" value="0">/systems/static-pressure-inhg-selected</property>
+    <property type="int"    value="0">/systems/static-selected-source</property>
+
+    <channel name="static_sources">
+
+        <switch name="altStaticPortSwitch">
+            <output>/systems/static-pressure-inhg-selected</output>   
+            <default value="/systems/static-pressure-inhg-selected"/>
+            <test logic="AND" value="/systems/static[0]/pressure-inhg">
+                /systems/static-selected-source EQ 0
+                /systems/static[0]/serviceable EQ 1
+            </test>
+            <test logic="AND" value="/systems/static[1]/pressure-inhg">
+                /systems/static-selected-source EQ 1
+                /systems/static[1]/serviceable EQ 1
+            </test>
+        </switch>
+
+    </channel>
+</system>

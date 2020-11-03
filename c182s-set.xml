@@ -1114,7 +1114,7 @@
    <script><![CDATA[
                     headingNeedleDeflection = "/instrumentation/nav/heading-needle-deflection";
                     gsNeedleDeflection = "/instrumentation/nav/gs-needle-deflection-norm";
-                    staticPressure = "systems/static/pressure-inhg-selected";
+                    staticPressure = "systems/static-pressure-inhg-selected";
     ]]>
 </script>
 </kap140>

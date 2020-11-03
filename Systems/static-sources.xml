@@ -20,7 +20,7 @@
 <system name="static">
 
     <!-- initialize some properties -->
-    <property type="bool"   value="1">/systems/static[0]/serviceable</property>
+    <!-- defined by default: <property type="bool"   value="1">/systems/static[0]/serviceable</property>-->
     <property type="bool"   value="1">/systems/static[1]/serviceable</property>
     <property type="double" value="0">/systems/static-pressure-inhg-selected</property>
     <property type="int"    value="0">/systems/static-selected-source</property>

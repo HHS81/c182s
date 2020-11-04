@@ -604,7 +604,8 @@ item("Airplane Weight and Balance") {
 }
 
 item("Static Pressure Alternate Source Valve") {
-    state("OFF");
+    p = "/systems/static-selected-source";
+    state("OFF", p==0) p=0;
     marker(0.3592, -0.0433, 0.1300, 2.5);
 }
 

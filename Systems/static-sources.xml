@@ -25,6 +25,7 @@
     <property type="double" value="0">/systems/static-pressure-inhg-selected</property>
     <property type="double" value="0">/systems/static[1]/pressure-inhg-venturi</property>
     <property type="int"    value="0">/systems/static-selected-source</property>
+    <property type="double" value="0">/systems/static-selected-source-norm</property> <!-- knob position / degree of openness of alt source -->
 
     <channel name="static_sources">
         <!-- Venturi effect: the airflow around the plane creates a slight underpressure in the cabin.
@@ -71,19 +72,41 @@
           <output>/systems/static[1]/pressure-inhg-venturi</output>   
         </fcs_function>
 
-        <!-- The swith in the cockpit selects which source to use. If the selected
-             source is blocked, the static presssure won't change anymore -->
-        <switch name="altStaticPortSwitch">
-            <output>/systems/static-pressure-inhg-selected</output>   
-            <default value="/systems/static-pressure-inhg-selected"/>
-            <test logic="AND" value="/systems/static[0]/pressure-inhg">
-                /systems/static-selected-source EQ 0
-                /systems/static[0]/serviceable EQ 1
-            </test>
-            <test logic="AND" value="/systems/static[1]/pressure-inhg-venturi">
-                /systems/static-selected-source EQ 1
-                /systems/static[1]/serviceable EQ 1
-            </test>
-        </switch>
+        <!-- The kinematic simulates a smoother transition between the two sources
+             and is used for displaying the knob position -->
+        <kinematic name="/systems/static-selected-source-norm">
+            <input>/systems/static-selected-source</input>
+            <traverse>
+                <setting>
+                    <position>0</position>
+                    <time>0</time>
+                </setting>
+                <setting>
+                    <position>1</position>
+                    <time>0.35</time>
+                </setting>
+            </traverse>
+            <output>/systems/static-selected-source-norm</output>
+        </kinematic>
+
+        <!-- Caluclate the selected sources pressure -->
+        <!-- That is expressed as the knob-adjusted difference between sources 1+2, so we get a smooth transition beween the two -->
+        <fcs_function name="/systems/static-pressure-inhg-selected">
+          <function>
+            <sum>
+                <property>/systems/static[0]/pressure-inhg</property>
+
+                <product> <!-- applied difference between the primary and alt sources -->
+                    <property>/systems/static-selected-source-norm</property>
+                    <difference>
+                        <property>/systems/static[1]/pressure-inhg-venturi</property>
+                        <property>/systems/static[0]/pressure-inhg</property>
+                    </difference>
+                </product>
+            </sum>
+          </function>
+          <output>/systems/static-pressure-inhg-selected</output>
+        </fcs_function>
+
     </channel>
 </system>

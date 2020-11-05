@@ -26,6 +26,9 @@ props.globals.initNode("/systems/electrical/landing-light-serviceable", 1, "BOOL
 props.globals.initNode("/systems/electrical/instrument-light-serviceable", 1, "BOOL");
 props.globals.initNode("/systems/electrical/cabin-light-serviceable", 1, "BOOL");
 props.globals.initNode("/systems/pitot/pitot-heat-serviceable", 1, "BOOL");
+props.globals.initNode("/systems/electrical/strobe-source", 0, "DOUBLE");
+props.globals.initNode("/systems/electrical/beacon-source", 0, "DOUBLE");
+
 
 var ammeter_ave = 0.0;
 
@@ -448,19 +451,22 @@ electrical_bus_1 = func() {
 
 
     # Beacon Power
-    
+    # controls/lighting/beacon is the cockpit switch; beacon-source if the beacon has power
+    if (getprop("/controls/lighting/beacon" ) and (bus_volts > 22) ) {
+        setprop("/systems/electrical/beacon-source", bus_volts);
+    } else {
+        setprop("/systems/electrical/beacon-source", 0);
+    }
 
-    if ( getprop("controls/lighting/beacon-state/state" ) and (bus_volts > 22) ) {
-     interpolate ("/systems/electrical/outputs/beacon", bus_volts, 0.5);
-	interpolate ("/systems/electrical/outputs/beacon-norm", (bus_volts/24), 0.5);
-       
+    if ( getprop("/controls/lighting/beacon-state/state" ) and getprop("/systems/electrical/beacon-source") ) {
+        interpolate ("/systems/electrical/outputs/beacon", bus_volts, 0.5);
+        interpolate ("/systems/electrical/outputs/beacon-norm", (bus_volts/24), 0.5);
+
         load += bus_volts / 20;
-    } 
-else {
-       
-	 interpolate ("/systems/electrical/outputs/beacon", 0.0, 0.5);
-	 interpolate ("/systems/electrical/outputs/beacon-norm", 0.0, 0.5);
-	}
+    } else {
+        interpolate ("/systems/electrical/outputs/beacon", 0.0, 0.5);
+        interpolate ("/systems/electrical/outputs/beacon-norm", 0.0, 0.5);
+    }
 
 	if (getprop("/systems/electrical/outputs/beacon-norm") >1.0){
 	setprop("/systems/electrical/outputs/beacon-norm", 1.0)};
@@ -510,14 +516,19 @@ electrical_bus_2 = func() {
  
      
     # Strobe Lights Power
-    if ( getprop("controls/lighting/strobe-state/state" ) and (bus_volts > 22) ) {
-            setprop("/systems/electrical/outputs/strobe", bus_volts);
-	 setprop("/systems/electrical/outputs/strobe-norm", (bus_volts/24));
-        load += bus_volts / 20;
+    # controls/lighting/strobe is the cockpit switch; strobe-source if the beacon has power
+    if (getprop("/controls/lighting/strobe" ) and (bus_volts > 22) ) {
+        setprop("/systems/electrical/strobe-source", bus_volts);
+    } else {
+        setprop("/systems/electrical/strobe-source", 0);
     }
-    else {
+    if ( getprop("/controls/lighting/strobe-state/state") and getprop("/systems/electrical/strobe-source") ) {
+        setprop("/systems/electrical/outputs/strobe", bus_volts);
+        setprop("/systems/electrical/outputs/strobe-norm", (bus_volts/24));
+        load += bus_volts / 20;
+    } else {
         setprop("/systems/electrical/outputs/strobe", 0.0);
-	setprop("/systems/electrical/outputs/strobe-norm", 0.0);
+        setprop("/systems/electrical/outputs/strobe-norm", 0.0);
     }
 
     

@@ -81,10 +81,17 @@
         var strobe_switch = rplayer.getNode("systems/electrical/strobe-switch");
         var lighting_strobes_state = rplayer.getNode("systems/electrical/strobe-state",1).getPath();
         var strobe_light = aircraft.light.new( lighting_strobes_state, [0.05, 0.05, 0.05, 1.7 ], strobe_switch );
-        rplayer.getNode("systems/electrical/outputs/strobe", 1).alias(lighting_strobes_state ~ "/state");
         setlistener(rplayer.getNode("sim/multiplay/generic/float[7]").getPath(), func (node) {
             if (node.getValue() > 12) strobe_light.switch(1);
             if (node.getValue() <= 0) strobe_light.switch(0);
+        }, 1, 0);
+        var strobe_node      = rplayer.getNode("systems/electrical/outputs/strobe",1).getPath();
+        var strobe_node_norm = rplayer.getNode("systems/electrical/outputs/strobe-norm",1).getPath();
+        setlistener(lighting_strobes_state ~ "/state", func (node) {
+            var bus_volts = 0;
+            if (node.getValue()) bus_volts = 24;
+            setprop(strobe_node, bus_volts);
+            setprop(strobe_node_norm, bus_volts/24);
         }, 1, 0);
         
         # ALS light effect derived from the state of the lights
@@ -259,14 +266,6 @@
     <!-- Registration number -->
     <model>
         <path>Immat/immat.xml</path>
-        <offsets>
-            <x-m> 0.0 </x-m>
-            <y-m> 0.0 </y-m>
-            <z-m> 0.0 </z-m>
-            <roll-deg>    0.0 </roll-deg>
-            <pitch-deg>   0.0 </pitch-deg>
-            <heading-deg> 0.0 </heading-deg>
-        </offsets>
     </model>
     
  <animation>

@@ -24,11 +24,115 @@
   </model>
 
   <nasal>
-   <load>
-       var livery_update = aircraft.livery_update.new(
-     "Aircraft/c182s/Models/Liveries", 10,
-     func { print("c182t livery update") });
-   </load>
+   <load><![CDATA[
+        # Note: This nasal code is loaded just for remote multiplayer models
+
+        var rplayer = cmdarg();
+
+        # Set up property aliases for animations.
+        rplayer.getNode("sim/model/door-positions/DoorL/position-norm-effective", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
+        rplayer.getNode("sim/model/door-positions/DoorR/position-norm-effective", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[1]"));
+        rplayer.getNode("sim/model/door-positions/WindowL/position-norm", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[2]"));
+        rplayer.getNode("sim/model/door-positions/WindowR/position-norm", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[3]"));
+        rplayer.getNode("sim/model/door-positions/BaggageDoor/position-norm-effective", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[4]"));
+        rplayer.getNode("systems/electrical/outputs/landing-lights", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[5]"));
+        rplayer.getNode("systems/electrical/outputs/taxi-light", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[6]"));
+        # float[7]=strobe power source; float[8]=beacon power source: both are not aliased but used directly below
+        rplayer.getNode("systems/electrical/outputs/nav-lights", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[9]"));
+        rplayer.getNode("fdm/jsbsim/propulsion/engine[0]/cowl-flaps-norm", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[10]"));
+
+        rplayer.getNode("sim/model/c182s/nw_fairing_lcl", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/bool[0]"));
+        rplayer.getNode("sim/model/c182s/mw_fairing_lcl", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/bool[1]"));
+
+        rplayer.getNode("sim/model/immat", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/string[0]"));
+
+
+        # Beacon and strobes lighting
+        # We create a local strobe/beacon instance that is only active, if the remote aircrafts strobe/beacon is active (power+functional+switched on)
+        # This saves bandwith and the animation is smoother, but has de disadvantage of the strobe/beacon patterns being not in sync.
+        var beacon_switch = rplayer.getNode("systems/electrical/beacon-switch");
+        var lighting_beacon_state = rplayer.getNode("systems/electrical/beacon-state",1).getPath();
+        var beacon_light = aircraft.light.new(lighting_beacon_state, [1.0, 1.0], beacon_switch);
+        setlistener(rplayer.getNode("sim/multiplay/generic/float[8]").getPath(), func (node) {
+            if (node.getValue() > 0) beacon_light.switch(1);
+            if (node.getValue() <= 0) beacon_light.switch(0);
+        }, 1, 0);
+        var beacon_node      = rplayer.getNode("systems/electrical/outputs/beacon",1).getPath();
+        var beacon_node_norm = rplayer.getNode("systems/electrical/outputs/beacon-norm",1).getPath();
+        setlistener(lighting_beacon_state ~ "/state", func (node) {
+            var bus_volts = 0;
+            if (node.getValue()) bus_volts = 24;
+            interpolate (beacon_node, bus_volts, 1);
+            interpolate (beacon_node_norm, (bus_volts/24), 1);
+        }, 1,0);
+
+        var strobe_switch = rplayer.getNode("systems/electrical/strobe-switch");
+        var lighting_strobes_state = rplayer.getNode("systems/electrical/strobe-state",1).getPath();
+        var strobe_light = aircraft.light.new( lighting_strobes_state, [0.05, 0.05, 0.05, 1.7 ], strobe_switch );
+        setlistener(rplayer.getNode("sim/multiplay/generic/float[7]").getPath(), func (node) {
+            if (node.getValue() > 12) strobe_light.switch(1);
+            if (node.getValue() <= 0) strobe_light.switch(0);
+        }, 1, 0);
+        var strobe_node      = rplayer.getNode("systems/electrical/outputs/strobe",1).getPath();
+        var strobe_node_norm = rplayer.getNode("systems/electrical/outputs/strobe-norm",1).getPath();
+        setlistener(lighting_strobes_state ~ "/state", func (node) {
+            var bus_volts = 0;
+            if (node.getValue()) bus_volts = 24;
+            setprop(strobe_node, bus_volts);
+            setprop(strobe_node_norm, bus_volts/24);
+        }, 1, 0);
+        
+        # ALS light effect derived from the state of the lights
+        props.globals.getNode("/sim/model/c182s/procedural-lights",1).setBoolValue(1);
+        var nav_lights_norm = rplayer.getNode("systems/electrical/outputs/nav-lights-norm",1).getPath();
+        setlistener(rplayer.getNode("sim/multiplay/generic/float[9]").getPath(), func (node) {
+            if (node.getValue() > 12) setprop(nav_lights_norm, 1);
+            if (node.getValue() <= 0) setprop(nav_lights_norm, 0);
+        }, 1, 0);
+        
+        
+        # Small helper function to update the wheel fairings etc.
+        # They may change with livery change which doesn't get detectd using the normal MP protocol
+        var updateLivery = func() {
+            rplayer.getNode("sim/model/c182s/mw_fairing", 1).setBoolValue(rplayer.getNode("sim/model/c182s/mw_fairing_lcl").getBoolValue());
+            rplayer.getNode("sim/model/c182s/nw_fairing", 1).setBoolValue(rplayer.getNode("sim/model/c182s/nw_fairing_lcl").getBoolValue());
+        }
+        
+        # Wheel fairings change: in case new properties get supplied, change the fairings
+        setlistener(rplayer.getNode("sim/multiplay/generic/bool[0]").getPath(), updateLivery, 1, 0);
+        setlistener(rplayer.getNode("sim/multiplay/generic/bool[1]").getPath(), updateLivery, 1, 0);
+        
+        
+        # Update the selected livery
+        var livery_update = aircraft.livery_update.new(
+            "Aircraft/c182s/Models/Liveries", 10,
+            func {
+                print("c182s livery update");
+                
+                updateLivery();
+            });
+
+
+        # Show Registration
+        io.include("Aircraft/c182s/Nasal/registration_number.nas");
+        var regnum_path = rplayer.getNode("sim/multiplay/generic/string[0]").getPath();
+        setlistener(regnum_path, func (node) {
+            set_registration_number(rplayer, node.getValue());
+        }, 1, 0);
+
+   ]]></load>
 </nasal>
 
 <!-- Engine smoke -->
@@ -1257,14 +1361,14 @@
 	<type>select</type>
         <object-name>PlaneX</object-name>
 	<condition>
-	<property>/systems/electrical/outputs/beacon</property>
+	<property>systems/electrical/outputs/beacon</property>
 	</condition>
 </animation>-->
 
 <animation>
    <type>blend</type>
    <object-name>PlaneX</object-name>
-   <property>/systems/electrical/outputs/beacon-norm</property>
+   <property>systems/electrical/outputs/beacon-norm</property>
    <factor>1</factor>
    <max>1.0</max>
    <min>0.0</min>
@@ -1284,7 +1388,7 @@
 	</not>
 	</or>
 	<greater-than>
-	<property>/systems/electrical/outputs/beacon-norm</property>
+	<property>systems/electrical/outputs/beacon-norm</property>
 	<value>0.01</value>
 	</greater-than>
 	</and>
@@ -1362,7 +1466,7 @@
 	<property>/sim/model/c182s/procedural-lights</property>
 	</not>
 	</or>
-	<property>/systems/electrical/outputs/strobe</property>
+	<property>systems/electrical/outputs/strobe</property>
 	</and>
 	</condition>
 </animation>
@@ -1436,7 +1540,7 @@
 	<property>/sim/model/c182s/procedural-lights</property>
 	</not>
 	</or>
-	<property>/systems/electrical/outputs/strobe</property>
+	<property>systems/electrical/outputs/strobe</property>
 	</and>
 	</condition>
 </animation>
@@ -1468,7 +1572,7 @@
 	<type>select</type>
         <object-name>LandingLight</object-name>
 	<condition>
-	<property>/systems/electrical/outputs/landing-lights</property>
+	<property>systems/electrical/outputs/landing-lights</property>
 	</condition>
 </animation>
 
@@ -1477,7 +1581,7 @@
         <object-name>llglas</object-name>
 	<condition>
 	<not>
-	<property>/systems/electrical/outputs/landing-lights</property>
+	<property>systems/electrical/outputs/landing-lights</property>
 	</not>
 	</condition>
 </animation>
@@ -1509,7 +1613,7 @@
 	<type>select</type>
         <object-name>TaxiLight</object-name>
 	<condition>
-	<property>/systems/electrical/outputs/taxi-light</property>
+	<property>systems/electrical/outputs/taxi-light</property>
 	</condition>
 </animation>
 
@@ -1518,7 +1622,7 @@
         <object-name>llglas</object-name>
 	<condition>
 	<not>
-	<property>/systems/electrical/outputs/taxi-light</property>
+	<property>systems/electrical/outputs/taxi-light</property>
 	</not>
 	</condition>
 </animation>
@@ -1559,7 +1663,7 @@
 	<property>/sim/model/c182s/procedural-lights</property>
 	</not>
 	</or>
-	<property>/systems/electrical/outputs/nav-lights</property>
+	<property>systems/electrical/outputs/nav-lights</property>
 	</and>
 	</condition>
 </animation>
@@ -1600,7 +1704,7 @@
 	<property>/sim/model/c182s/procedural-lights</property>
 	</not>
 	</or>
-	<property>/systems/electrical/outputs/nav-lights</property>
+	<property>systems/electrical/outputs/nav-lights</property>
 	</and>
 	</condition>
 </animation>
@@ -1640,7 +1744,7 @@
 	<property>/sim/model/c182s/procedural-lights</property>
 	</not>
 	</or>
-	<property>/systems/electrical/outputs/nav-lights</property>
+	<property>systems/electrical/outputs/nav-lights</property>
 	</and>
 	</condition>
 </animation>

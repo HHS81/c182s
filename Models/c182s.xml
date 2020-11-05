@@ -50,6 +50,21 @@
         rplayer.getNode("fdm/jsbsim/propulsion/engine[0]/cowl-flaps-norm", 1).
             alias(rplayer.getNode("sim/multiplay/generic/float[10]"));
 
+        # Damage animations
+        rplayer.getNode("fdm/jsbsim/gear/unit[0]/z-position", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[11]"));
+        rplayer.getNode("fdm/jsbsim/gear/unit[1]/z-position", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[12]"));
+        rplayer.getNode("fdm/jsbsim/gear/unit[2]/z-position", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[13]"));
+        rplayer.getNode("engines/engine/crashed", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[14]"));
+# Wing damage animation not yet implemented: poperties not known
+#        rplayer.getNode("fdm/jsbsim/wing-damage/left-wing", 1).
+#            alias(rplayer.getNode("sim/multiplay/generic/float[xx]"));
+#        rplayer.getNode("fdm/jsbsim/wing-damage/right-wing", 1).
+#            alias(rplayer.getNode("sim/multiplay/generic/float[xx]"));
+
         rplayer.getNode("sim/model/c182s/nw_fairing_lcl", 1).
             alias(rplayer.getNode("sim/multiplay/generic/bool[0]"));
         rplayer.getNode("sim/model/c182s/mw_fairing_lcl", 1).

@@ -132,6 +132,16 @@
 
       <float n="10" alias="/fdm/jsbsim/propulsion/engine[0]/cowl-flaps-norm"/>
 
+      <!-- Damage -->
+      <float n="11" alias="/fdm/jsbsim/gear/unit[0]/z-position"/>
+      <float n="12" alias="/fdm/jsbsim/gear/unit[1]/z-position"/>
+      <float n="13" alias="/fdm/jsbsim/gear/unit[2]/z-position"/>
+      <float n="14" alias="/engines/engine/crashed"/>
+      <!-- Not animated yet
+      <float n="xx" alias="/fdm/jsbsim/wing-damage/left-wing"/>
+      <float n="xx" alias="/fdm/jsbsim/wing-damage/right-wing"/>
+      -->
+
       <float n="30" alias="/sim/rendering/refl_correction"/>
       <float n="31" alias="/sim/rendering/fresnel-factor"/>
       <float n="32" alias="/sim/rendering/refl-type"/>

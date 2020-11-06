@@ -22,6 +22,60 @@
       <model type="int">5</model>
       <cockpit type="int">4</cockpit>
     </rating>
+    
+    <authors>
+        <author n="0">
+            <name>Heiko Schulz</name>
+            <nick>HHS81</nick>
+            <description>3D model, fdm, programming, textures, bug tracking, testing</description>
+        </author>
+        <author n="1">
+            <name>Gilberto Agostinho</name>
+            <description>textures, xml, bug tracking, testing</description>
+            <nick>gsagostinho</nick>
+        </author>
+        <author n="2">
+            <nick>onox</nick>
+            <description>advice, nasal-scripts, testing</description>
+        </author>
+        <author n="3">
+            <name>Wayne Bragg</name>
+            <description>rain effect, advice</description>
+            <nick>wlbragg</nick>
+        </author>
+        <author n="4">
+            <name>Ron Jensen</name>
+            <nick>jentron</nick>
+        </author>
+        <author n="5">
+            <name>Stuart Buchanan</name>
+            <description>Glass Cockpit</description>
+        </author>
+        <author n="6">
+            <name>David Megginson</name>
+        </author>
+        <author n="7">
+            <name>Benedikt Hallinger</name>
+            <description>fuel/oil system, custom registration livery, checklists, save-state, failures, cockpit/avionics improvements and many more small additions</description>
+            <nick>Beni</nick>
+        </author>
+    </authors>
+
+    <maintainers>
+        <maintainer n="0">
+            <name>Heiko Schulz</name>
+        </maintainer>
+        <maintainer n="0">
+            <name>Stuart Buchanan</name>
+        </maintainer>
+    </maintainers>
+    
+    <urls>
+        <home-page>http://wiki.flightgear.org/Cessna_182T</home-page>
+        <support>https://forum.flightgear.org/viewtopic.php?f=4&amp;t=34571&amp;</support>
+        <wikipedia>https://en.wikipedia.org/wiki/Cessna_182_Skylane</wikipedia>
+        <code-repository>https://github.com/HHS81/c182s</code-repository>
+    </urls>
 
   <flight-model>jsb</flight-model>
   <aero>c182s</aero>

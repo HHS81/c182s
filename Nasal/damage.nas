@@ -34,6 +34,25 @@ var registerDamageListener = func(id, name) {
             # store the value in a -saved property so we can reinitialize it in the next session
             setprop(id ~ "-saved", node.getValue());
             
+            
+            # Wing breakage has further consequences to:
+            # - the fuel system (values comefrom Systems/damage.xml)
+            # - nav/strobe lighting mounted on the wings
+            var wingNode = -1;
+            if (id == "/fdm/jsbsim/wing-damage/left-wing")  wingNode = 0;
+            if (id == "/fdm/jsbsim/wing-damage/right-wing") wingNode = 1;
+            if (wingNode > -1 and node.getValue() >= 0.25) {
+                # wing structurally damaged: leak fuel
+                setprop("/systems/fuel/tank["~wingNode~"]/leak-flow-rate-pps", node.getValue() * 5);
+            }
+            if (wingNode > -1 and node.getValue() > 0.8) {
+                # wing ripped off
+                setprop("/consumables/fuel/tank["~wingNode~"]/level-gal_us", 0);
+                setprop("/sim/failure-manager/instrumentation/fuelIndicator["~wingNode~"]/serviceable", 0);
+                setprop("/sim/failure-manager/lighting/nav-light/serviceable", 0);
+                setprop("/sim/failure-manager/lighting/strobe-light/serviceable", 0);
+            }
+            
         }, 0, 0);
 };
 
@@ -113,6 +132,9 @@ var repair_damage = func() {
     setprop("/engines/engine[0]/crashed", 0.0);
     electrical.reset_battery_and_circuit_breakers();
     FailureMgr.repair_all();
+    for (var tankID=0; tankID <= 5; tankID = tankID+1) {
+        setprop("/systems/fuel/tank["~tankID~"]/leak-flow-rate-pps", 0);
+    }
     settimer(func(){
         setprop("fdm/jsbsim/settings/damage", damagesetting_prev);
         setprop("/fdm/jsbsim/damage/repairing", 0);

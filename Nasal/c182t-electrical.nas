@@ -498,7 +498,7 @@ electrical_bus_2 = func() {
 
     # Nav Lights Power
 
-    if ( getprop("/controls/lighting/nav-lights" )and (bus_volts > 22) ) {
+    if ( getprop("/controls/lighting/nav-lights" ) and (bus_volts > 22) and getprop("/systems/electrical/nav-light-serviceable") ) {
         setprop("/systems/electrical/outputs/nav-lights", bus_volts);
 	  setprop("/systems/electrical/outputs/nav-lights-norm", (bus_volts/24));
         load += bus_volts / 20;
@@ -513,7 +513,7 @@ electrical_bus_2 = func() {
  
      
     # Strobe Lights Power
-    if ( getprop("controls/lighting/strobe-state/state" ) and (bus_volts > 22) ) {
+    if ( getprop("controls/lighting/strobe-state/state" ) and (bus_volts > 22) and getprop("/systems/electrical/strobe-light-serviceable") ) {
             setprop("/systems/electrical/outputs/strobe", bus_volts);
 	 setprop("/systems/electrical/outputs/strobe-norm", (bus_volts/24));
         load += bus_volts / 20;

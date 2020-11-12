@@ -43,7 +43,8 @@ var registerDamageListener = func(id, name) {
             if (id == "/fdm/jsbsim/wing-damage/right-wing") wingNode = 1;
             if (wingNode > -1 and node.getValue() >= 0.25) {
                 # wing structurally damaged: leak fuel
-                setprop("/systems/fuel/tank["~wingNode~"]/leak-flow-rate-pps", node.getValue() * 5);
+                # NOTE: the C182S has fuel bladders that should not be subject to this type of damage
+                #setprop("/systems/fuel/tank["~wingNode~"]/leak-flow-rate-pps", node.getValue() * 5);
             }
             if (wingNode > -1 and node.getValue() > 0.8) {
                 # wing ripped off

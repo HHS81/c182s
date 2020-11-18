@@ -1,4 +1,9 @@
+# Immatriculation via Canvas
+#
+# This file is included from the local model and initializes everything for the local instance
+
 io.include("Aircraft/c182s/Nasal/registration_number.nas");
+initC182ImmatCanvas();
 
 var refresh_immat = func {
     var immat = props.globals.getNode("sim/model/immat",1).getValue();
@@ -19,4 +24,5 @@ setlistener("/sim/signals/fdm-initialized", func {
         immat.setValue("");
 
     setlistener("sim/model/immat", refresh_immat, 1, 0);
+    setlistener("sim/model/livery/name", refresh_immat, 0, 0);
 });

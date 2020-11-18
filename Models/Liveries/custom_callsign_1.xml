@@ -7,6 +7,14 @@
                 <name type="string">Custom callsign 1</name>
                 <index type="int">1</index>
                 <texture>Liveries/custom_callsign_1.png</texture>
+                
+                <immat>
+                    <font_name>LiberationFonts/LiberationSans-Bold.ttf</font_name>
+                    <font_size>575</font_size>
+                    <colour_r>0</colour_r>
+                    <colour_g>0</colour_g>
+                    <colour_b>0</colour_b>
+                </immat>
             </livery>
             <c182s>
                 <material>

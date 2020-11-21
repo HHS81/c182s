@@ -478,9 +478,11 @@ electrical_bus_1 = func() {
 
 
     # Flaps Power
-    if ( getprop("/controls/circuit-breakers/Flap") ) {
+    if ( getprop("/controls/circuit-breakers/Flap") and getprop("/sim/failure-manager/controls/flight/flaps/serviceable") ) {
         setprop("/systems/electrical/outputs/flaps", bus_volts);
-        load += bus_volts / 2;
+        if (getprop("/systems/electrical/flaps/actuator-moving") ) {
+            load += bus_volts / 2;
+        }
     } else {
         setprop("/systems/electrical/outputs/flaps", 0.0);
     }
@@ -635,6 +637,7 @@ var IL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("contro
 	if (getprop ("/controls/lighting/instrument-lights-norm") >0.05 and (bus_volts > 22) and getprop("/systems/electrical/instrument-light-serviceable") ){
 	setprop("/systems/electrical/outputs/instrument-lights",IL_DIMMER);
 	setprop("/systems/electrical/outputs/instrument-lights-norm",IL_DIMMER/24);
+	load += IL_DIMMER/24;
 	}else{
 	setprop("/systems/electrical/outputs/instrument-lights",0);
 	setprop("/systems/electrical/outputs/instrument-lights-norm",0);
@@ -647,6 +650,7 @@ var GL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("contro
 	if (getprop ("/controls/lighting/glareshield-lights-norm") >0.05 and (bus_volts > 22) and getprop("/systems/electrical/cabin-light-serviceable")){
 	setprop("/systems/electrical/outputs/glareshield-lights",GL_DIMMER);
 	setprop("/systems/electrical/outputs/glareshield-lights-norm",GL_DIMMER/28);
+	load += GL_DIMMER/28
 	}else{
 	setprop("/systems/electrical/outputs/glareshield-lights",0);
 	setprop("/systems/electrical/outputs/glareshield-lights-norm",0);
@@ -659,6 +663,7 @@ var PL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("contro
 	if (getprop ("/controls/lighting/pedestal-lights-norm") >0.05 and (bus_volts > 22) and getprop("/systems/electrical/cabin-light-serviceable")){
 	setprop("/systems/electrical/outputs/pedestal-lights",PL_DIMMER);
 	setprop("/systems/electrical/outputs/pedestal-lights-norm",PL_DIMMER/28);
+	load += PL_DIMMER/28
 	}else{
 	setprop("/systems/electrical/outputs/pedestal-lights",0);
 	setprop("/systems/electrical/outputs/pedestal-lights-norm",0);
@@ -673,6 +678,7 @@ var RL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("contro
 	if (getprop ("/controls/lighting/radio-lights-norm") >0.05 and (bus_volts > 22) and getprop("/systems/electrical/instrument-light-serviceable")){
 	setprop("/systems/electrical/outputs/radio-lights",RL_DIMMER);
 	setprop("/systems/electrical/outputs/radio-lights-norm",RL_DIMMER/24);
+	load += RL_DIMMER/24
 	}else{
 	setprop("/systems/electrical/outputs/radio-lights",0);
 	setprop("/systems/electrical/outputs/radio-lights-norm",0);

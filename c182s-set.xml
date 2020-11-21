@@ -66,7 +66,7 @@
     <minimum-fg-version>2017.3.1</minimum-fg-version>
     <rating>
       <FDM type="int">5</FDM>
-      <systems type="int">4</systems>
+      <systems type="int">5</systems>
       <model type="int">5</model>
       <cockpit type="int">5</cockpit>
     </rating>
@@ -206,6 +206,11 @@
           <sensitivity type="double">1</sensitivity>
           <salvage-control>/systems/pitot/salvage</salvage-control>
           <output-property>/systems/pitot/icing</output-property>
+        </iceable>
+        <iceable>
+          <name>Static</name>
+          <sensitivity type="double">0.3</sensitivity>
+          <output-property>/systems/static[0]/icing</output-property>
         </iceable>
       </icing>
 
@@ -835,6 +840,8 @@
             <path>/controls/circuit-breakers/ADF</path>
             <path>/controls/circuit-breakers/AutoPilot</path>
 
+            <path>/systems/static-selected-source</path>
+
             <path>/sim/failure-manager/display-on-screen</path>
             <path>/sim/failure-manager/restore-on-start</path>
         </aircraft-data>
@@ -1158,7 +1165,7 @@
    <script><![CDATA[
                     headingNeedleDeflection = "/instrumentation/nav/heading-needle-deflection";
                     gsNeedleDeflection = "/instrumentation/nav/gs-needle-deflection-norm";
-                    staticPressure = "systems/static/pressure-inhg";
+                    staticPressure = "systems/static-pressure-inhg-selected";
     ]]>
 </script>
 </kap140>
@@ -1172,6 +1179,7 @@
 <icing>
       <file>Aircraft/c182s/Nasal/icing.nas</file>
       <file>Aircraft/c182s/Nasal/PitotIcing.nas</file>
+      <file>Aircraft/c182s/Nasal/StaticIcing.nas</file>
 </icing>
 
  </nasal>

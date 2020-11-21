@@ -1503,6 +1503,35 @@
     </hovered>
   </animation>
 
+  <!-- Alt static knob -->
+  <animation>
+        <type>slider</type>
+        <object-name>AltStaticAir</object-name>
+        <property>/systems/static-selected-source-norm</property>
+        <factor>0.010</factor>
+        <offset-m>-0.008</offset-m>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+        <action>
+            <binding>
+                <command>property-toggle</command>
+                <property>/systems/static-selected-source</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>alt-static-air-tooltip</tooltip-id>
+                <mapping>on-off</mapping>
+                <label>Alternate static air: %s</label>
+                <property>/systems/static-selected-source</property>
+            </binding>
+        </hovered>
+  </animation>
+
   <!-- Cabin heat and Air / defrost-->
     <animation>
         <type>slider</type>

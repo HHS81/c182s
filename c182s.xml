@@ -484,6 +484,8 @@
     <system file="cabin-heat_and_air"/> <!-- cabin heat and air -->
     
     <system file="damage"/> <!-- integrate damage detection -->
+
+    <system file="static-sources"/> <!-- integrate alternate static source simulation -->
     
     <flight_control name="FCS: c182s">
 <!--Cessna 182S POH Page 7-12: nose gear steer deg=11deg, by applying left or right brake increasing steer deg up to 29deg-->

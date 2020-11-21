@@ -459,6 +459,11 @@
   <property>/fdm/jsbsim/ice/windshield</property>
   <value>0</value>
                 </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/systems/static[0]/icing</property>
+                    <value>0</value>
+                </binding>
             </button>
         </group>
 

@@ -192,6 +192,7 @@ var checklist_preflight = func() {
     
     setprop("/sim/model/c182s/cockpit/control-lock-placed", 0);
     setprop("/controls/gear/brake-parking", 1);
+    setprop("/systems/static-selected-source", 0);
     secureAircraftOnGround(0);
 }
 

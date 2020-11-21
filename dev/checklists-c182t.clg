@@ -9,7 +9,7 @@
 # The project definition provides a title for XML, DOT and PDF outputs.
 # Defining an author adds a GPL2 copyright notice at the top of each file.
 #
-project("Cessna 182S Checklists") {
+project("Cessna 182T Checklists") {
     author("Benedikt Hallinger");
 }
 
@@ -24,7 +24,7 @@ item("Auxiliary Fuel Pump") {
     s = "controls/engines/engine[0]/fuel-pump";
     state("OFF", p < 1.0) s = false;
     state("ON", p >= 1.0) s = true;
-    marker(0.3433, -0.4000, 0.0700, 1.35);
+    marker(0.3600, -0.4053, 0.1870, 1.3500);
 }
 
 item("Pitot Heat") {
@@ -32,7 +32,7 @@ item("Pitot Heat") {
     s = "controls/anti-ice/pitot-heat";
     state("OFF", p < 1.0) s = false;
     state("ON", p >= 1.0) s = true;
-    marker(0.3433, -0.2725, 0.0700, 1.35);
+    marker(0.36, -0.386, 0.187, 1.35);
 }
 
 item("Pitot Tube Cover") {
@@ -49,7 +49,7 @@ item("Master Switch") {
     v = "systems/electrical/volts";
     state("OFF", (!m && !a) ) { m = false; a = false;}
     state("ON",  (m && a) )   { m = true; a = true;}
-    marker(0.3467, -0.4233, 0.0908, 2);
+    marker(0.3607, -0.4688, 0.2792, 2.3);
 }
 
 item("Battery") {
@@ -57,7 +57,7 @@ item("Battery") {
     v = "systems/electrical/volts";
     state("OFF", (!m) ) m = false;
     state("ON",  m ) m = true;
-    marker(0.3467, -0.4200, 0.0908, 2);
+    marker(0.3607, -0.4688, 0.2792, 2.3);
 }
 
 item("Alternator") {
@@ -65,7 +65,7 @@ item("Alternator") {
     v = "systems/electrical/volts";
     state("OFF", (!a) ) a = false;
     state("ON",  a ) a = true;
-    marker(0.3467, -0.4283, 0.0908, 2);
+    marker(0.3607, -0.4688, 0.2792, 2.3);
 }
 
 # Avionics master switch is both switches
@@ -76,7 +76,7 @@ item("Avionics Master Switch") {
 #   avm2_v  = "??? no power property available right now ???";
     state("OFF", (!avm1_sw && !avm2_sw) ) { avm1_sw = false; avm2_sw = false;}
     state("ON",  (avm1_sw && avm2_sw) ) { avm1_sw = true;  avm2_sw = true;}
-    marker(0.3467, -0.2500, 0.0908, 2);
+    marker(0.3607, -0.4277, 0.2792, 2.3);
 }
 
 item("Beacon") {
@@ -84,7 +84,7 @@ item("Beacon") {
     s = "controls/lighting/beacon";
     state("OFF", p < 1.0) s = false;
     state("ON", p >= 1.0) s = true;
-    marker(0.3433, -0.3792, 0.0700, 1.35);
+    marker(0.3656, -0.4048, 0.2320, 1.35);
 }
 
 item("Landing Lights") {
@@ -92,7 +92,7 @@ item("Landing Lights") {
     s = "controls/lighting/landing-lights";
     state("OFF", p < 1.0) s = false;
     state("ON", p >= 1.0) s = true;
-    marker(0.3433, -0.3567, 0.0700, 1.35);
+    marker(0.3656, -0.3850, 0.2320, 1.35);
 }
 
 item("Taxi Lights") {
@@ -100,7 +100,7 @@ item("Taxi Lights") {
     s = "controls/lighting/taxi-light";
     state("OFF", p < 1.0) s = false;
     state("ON", p >= 1.0) s = true;
-    marker(0.3433, -0.3358, 0.0700, 1.35);
+    marker(0.3656, -0.3660, 0.2320, 1.35);
 }
 
 item("Navigation Lights") {
@@ -108,7 +108,7 @@ item("Navigation Lights") {
     s = "controls/lighting/nav-lights";
     state("OFF", p < 1.0) s = false;
     state("ON", p >= 1.0) s = true;
-    marker(0.3433, -0.3142, 0.0700, 1.35);
+    marker(0.3656, -0.3470, 0.2320, 1.35);
 }
 
 item("Strobe Lights") {
@@ -116,14 +116,7 @@ item("Strobe Lights") {
     s = "controls/lighting/strobe";
     state("OFF", s < 1.0) s = 0;
     state("ON",  s >= 1.0) s = 1;
-    marker(0.3433, -0.2925, 0.0700, 1.35);
-}
-
-item("Annunciator Panel Switch") {
-    s = "instrumentation/annunciator/testswitch";
-    state("PLACE AND HOLD IN TST POSITION", s == 2) s=2;
-    state("RELEASE", s==1||s==0) s=1;
-    marker(0.3600, 0.0717, 0.4283, 1.35);
+    marker(0.3656, -0.3271, 0.2320, 1.35);
 }
 
 item("Fuel Selector Valve") {
@@ -237,7 +230,7 @@ item("Power") {
 
 item("Oil Pressure") {
     state("CHECK");
-    marker(0.3517, -0.4900, 0.2550, 2.6);
+    marker(0.355, -0.0191, 0.3608, 2.6);
 }
 
 item("Vacuum Gauge") {
@@ -301,7 +294,7 @@ item("Radios") {
         r2v=0.8;
     }
     state("SET");
-    marker(0.3600, 0.0400, 0.2867, 5.5);
+    marker(0.3600,-0.1674, 0.4437, 3.5);
 }
 item("Radio") {
     r1p  = "/instrumentation/comm[0]/power-btn";
@@ -318,22 +311,17 @@ item("Radio") {
         ts   = "4";
         tf   = "7700";
     }
-    marker(0.3600, 0.0400, 0.2867, 5.5);
+    marker(0.3600,-0.1674, 0.4437, 3.5);
 }
 
 item("Avionics") {
-    r1c = "/instrumentation/comm[0]/power-btn";
-    r1p = "/instrumentation/nav[0]/power-btn";
-    r2c = "/instrumentation/comm[0]/power-btn";
-    r2p = "/instrumentation/nav[1]/power-btn";
-    state("ON", (r1p==true && r2p==true)) {
-        r1c=true;
-        r2c=true;
-        r1p=true;
-        r2p=true;
-    }
     state("SET");
-    marker(0.3600, 0.1208, 0.2867, 5.5);
+    marker(0.3600,-0.1674, 0.4437, 3.5);
+}
+
+item("Autopilot") {
+    state("OFF");
+    marker(0.3600,-0.1674, 0.4437, 3.5);
 }
 
 
@@ -387,8 +375,16 @@ item("Circuit Brakers") {
     cb6 = "controls/circuit-breakers/InstLts";
     cb7 = "controls/circuit-breakers/AltFLD";
     cb8 = "controls/circuit-breakers/Warn";
+    ab1 = "controls/circuit-breakers/AvionicsFan";
+    ab2 = "controls/circuit-breakers/GPS";
+    ab3 = "controls/circuit-breakers/NavCom1";
+    ab4 = "controls/circuit-breakers/NavCom2";
+    ab5 = "controls/circuit-breakers/Transponder";
+    ab6 = "controls/circuit-breakers/ADF";
+    ab7 = "controls/circuit-breakers/AutoPilot";
     
-    state("CHECK IN", cb1 && cb2 && cb3 && cb4 && cb5 && cb6 && cb7 && cb8) {
+    state("CHECK IN", cb1 && cb2 && cb3 && cb4 && cb5 && cb6 && cb7 && cb8
+                        && ab1 && ab2 && ab3 && ab4 && ab5 && ab6 && ab7) {
         cb1=true;
         cb2=true;
         cb3=true;
@@ -397,20 +393,6 @@ item("Circuit Brakers") {
         cb6=true; 
         cb7=true; 
         cb8=true;
-    }
-    marker(0.2942, -0.3383, 0.1150, 9);
-}
-
-item("Avionics Circuit Brakers") {
-    ab1 = "controls/circuit-breakers/AvionicsFan";
-    ab2 = "controls/circuit-breakers/GPS";
-    ab3 = "controls/circuit-breakers/NavCom1";
-    ab4 = "controls/circuit-breakers/NavCom2";
-    ab5 = "controls/circuit-breakers/Transponder";
-    ab6 = "controls/circuit-breakers/ADF";
-    ab7 = "controls/circuit-breakers/AutoPilot";
-
-    state("CHECK IN", ab1 && ab2 && ab3 && ab4 && ab5 && ab6 && ab7) {
         ab1=true;
         ab2=true;
         ab3=true;
@@ -419,17 +401,7 @@ item("Avionics Circuit Brakers") {
         ab6=true; 
         ab7=true; 
     }
-    marker(0.2942, 0.3808, 0.1692, 9);
-}
-
-item("Electrical Equipment") {
-    state("OFF");
-    marker(0.2942, 0.0808, 0.2592, 13);
-}
-
-item("Autopilot") {
-    state("OFF");
-    marker(0.3567, 0.0133, 0.1658, 1.6000);
+    marker(0.35, -0.3449, 0.0919, 7);
 }
 
 item("Avionics Cooling Fan") {
@@ -476,21 +448,16 @@ item("Flight Instruments") {
 
 item("Engine Instruments and Ammeter") {
     state("CHECK");
-    marker(0.3467, -0.3767, 0.2267, 7.1);
+    marker(0.3541, 0.0233, 0.3300, 5.1);
 }
 
 item("Fuel Quantity") {
     state("CHECK");
-    marker(0.3425, -0.4950, 0.3217, 3.5);
+    marker(0.3557, 0.0174, 0.33, 2.3);
 }
 
 item("Fuel Quantity ") {  # for both wing checklist items
     state("CHECK VISUALLY for desired Level");
-}
-
-item("Annunciator Panel") {
-    state("CHECK");
-    marker(0.3475, 0.0675, 0.4367, 7.5);
 }
 
 item("Elevator Trim") {
@@ -503,7 +470,7 @@ item("Elevator Trim") {
 }
 
 item("Rudder Trim") {
-    trim = "/controls/flight/rudder-trim";
+    trim = "/controls/flight/r  udder-trim";
     state("SET for takeoff", trim >= -0.01 && trim <= 0.01) {
         fgcommand("property-interpolate", property=trim, value=0.0, rate=0.5);
     }
@@ -528,7 +495,7 @@ item("Climb Speed") {
     state("58 KIAS",            vs >=53 && vs<=63);
     state("70 KIAS (Flaps 20)", vs >=65 && vs<=75);
     state("80 KIAS (Flaps 0)",  vs >=75 && vs<=85);
-    marker(0.3542, -0.3458, 0.3967, 5);
+    marker(0.3608, -0.3127, 0.3893, 1.5455);
 }
 
 item("Airspeed") {
@@ -542,7 +509,6 @@ item("Airspeed") {
     state("70 KIAS", vs>=65 && vs<=75);
     state("60-70 KIAS (Flaps FULL)", vs>=58 && vs<=75);
     state("60 KIAS (until Flare)", vs>=58 && vs<=62);
-    marker(0.3542, -0.3458, 0.3967, 5);
 }
 
 item("Touchdown") {
@@ -584,7 +550,7 @@ item("Face") {
 item("ELT") {
     s = "/instrumentation/elt/on";
     state("Activate", s) s=true;
-    marker(0.3550, 0.4217, 0.4100, 3.2);
+    marker(0.3583, 0.2886, 0.4340, 1.7289);
 }
 
 item("Airplane") {
@@ -757,13 +723,11 @@ checklist("Preflight Inspection") {
         check("Ignition Switch", "OFF");
         check("Avionics Master Switch", "OFF");
         check("Master Switch", "ON");
-        check("Fuel Quantity", "CHECK", "AND ENSURE LOW FUEL ANNUNCIATORS", "(L LOW FUEL R) are EXTINGUISHED");
+        check("Fuel Quantity", "CHECK");
         check("Avionics Master Switch", "ON");
         check("Avionics Cooling Fan", "CHECK AUDIBLY FOR OPERATION");
         check("Avionics Master Switch", "OFF");
         check("Static Pressure Alternate Source Valve", "OFF");
-        check("Annunciator Panel Switch", "PLACE AND HOLD IN TST POSITION", "and ensure all annunciators illuminate");
-        check("Annunciator Panel Switch", "RELEASE", "check that appropriate annunciators remain on");
         check("Fuel Selector Valve", "BOTH");
         check("Wing Flaps", "EXTEND");
         check("Pitot Heat", "ON", "(Carefully check that pitot tube is", "warm to the touch within 30 seconds)");
@@ -847,16 +811,13 @@ checklist("Before Starting Engine") {
     check("Seats, Seat Belts, Shoulder Hanrsesses", "ADJUST and LOCK");
     check("Brakes", "TEST and SET");
     check("Circuit Brakers", "CHECK IN");
-    check("Electrical Equipment", "OFF");
-    text("WARNING");
-    text("The Avionics Master Switch Switch must be OFF during Engine");
-    text("start to prevent possible damage to avionics");
     check("Avionics Master Switch", "OFF");
-    check("Autopilot", "OFF");
+    text("WARNING");
+    text("The Avionics Master Switch must be OFF during engine");
+    text("start to prevent possible damage to avionics");
     check("Cowl Flaps", "OPEN");
     check("Fuel Selector Valve", "BOTH");
-    check("Avionics Circuit Brakers", "CHECK IN");
-    
+
     # The following note is not present in the POH checklist, but helpful for the user
     text("NOTE:");
     text("When air temperatures are below 20F (-6C), the use of an");
@@ -894,7 +855,6 @@ checklist("Starting Engine (With Battery)") {
         check("Beacon", "ON", "as required");
         check("Navigation Lights", "ON", "as required");
         check("Avionics Master Switch", "ON");
-        check("Radios", "ON");
         check("Wing Flaps", "RETRACT");
     }
 }
@@ -931,7 +891,6 @@ checklist("Starting Engine (With External Power)") {
         check("Beacon", "ON", "as required");
         check("Navigation Lights", "ON", "as required");
         check("Avionics Master Switch", "ON");
-        check("Radios", "ON");
         check("Wing Flaps", "RETRACT");
     }
 }
@@ -955,7 +914,6 @@ checklist("Before Takeoff") {
         check("Propeller", "CYCLE", "from high to low RPM; return to high RPM (full in)");
         check("Vacuum Gauge", "CHECK");
         check("Engine Instruments and Ammeter", "CHECK");
-        check("Annunciator Panel", "CHECK", "Ensure no annunciators are illuminated");
         check("Throttle", "CHECK IDLE");
         check("Throttle Friction Lock", "ADJUST");
     }
@@ -1069,9 +1027,7 @@ checklist("After Landing") {
 checklist("Securing Airplane") {
     check("Parking Brake", "SET");
     check("Throttle", "IDLE");
-    check("Electrical Equipment", "OFF");
     check("Avionics Master Switch", "OFF");
-    check("Autopilot", "OFF");
     check("Mixture", "IDLE CUT-OFF");
     check("Ignition Switch", "OFF");
     check("Master Switch", "OFF");
@@ -1134,14 +1090,12 @@ checklist("EMERGENCY: Precautionary Landing with Power") {
     check("Airspeed", "75 KIAS");
     check("Wing Flaps", "20");
     check("Selected Field", "FLY OVER, noting terrain and obstructions", "then retract flaps upon reaching", "a safe altitude and airspeed");
-    check("Avionics Master Switch", "OFF");
-    check("Electrical Equipment", "OFF");
     check("Wing Flaps", "FULL", "(on final approach)");
     check("Airspeed", "70 KIAS");
-    check("Master Switch", "OFF");
     check("Cabin Doors", "UNLATCH PRIOR TO TOUCHDOWN");
     check("Touchdown", "SLIGHTLY TAIL LOW");
     check("Ignition Switch", "OFF");
+    check("Master Switch", "OFF");
     check("Brakes", "APPLY HEAVILY");
 }
 

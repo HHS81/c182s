@@ -8,6 +8,8 @@
     <property type="double" value="0">/systems/electrical/outputs/pitot-heat</property>
     <property type="double" value="0">/systems/electrical/outputs/comm[0]</property>
     <property type="double" value="0">/systems/electrical/outputs/comm[1]</property>
+    <property type="double" value="0">/systems/electrical/flaps/actuator-cmd-diff</property>
+    <property type="bool"   value="0">/systems/electrical/flaps/actuator-moving</property>
 
     <!-- the electrical system is implemented in electrical.nas! -->
 
@@ -58,4 +60,30 @@
             </test>
         </switch>
     </channel>
+
+    <!-- Detect flap actuators moving (or commanded to move) -->
+    <channel name="flaps_actuator">
+        <fcs_function name="/systems/electrical/flaps/actuator-cmd-diff">
+            <!-- we calculate the difference of the commanded and the actual value
+                to see if there is movement neccessary -->
+            <function>
+                <abs>
+                    <difference>
+                        <property>/fdm/jsbsim/fcs/flap-cmd-norm</property>
+                        <property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+                    </difference>
+                </abs>
+            </function>
+            <output>/systems/electrical/flaps/actuator-cmd-diff</output>
+        </fcs_function>
+
+        <switch name="flaps_actuator_moving">
+            <output>/systems/electrical/flaps/actuator-moving</output>
+            <default value="0"/>
+            <test value="1">
+                /systems/electrical/flaps/actuator-cmd-diff > 0.005
+            </test>
+        </switch>
+    </channel>
+
 </system>

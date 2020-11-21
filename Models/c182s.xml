@@ -27,6 +27,77 @@
    </load>
 </nasal>
 
+  <!-- Tyre rain spray -->
+  <model>
+  <!--<path>Effects/tyrespray/rain-nose.xml</path>-->
+  <!--<path>Aircraft/Generic/Effects/rain-nose.xml</path>-->
+  <path>Effects/rain-nose.xml</path>
+  <name>tyre-rain-n</name>
+  <offsets>
+    <x-m>-0.2392</x-m>
+    <y-m>0.0000</y-m>
+    <z-m>-1.1000</z-m>
+  </offsets>
+ </model>
+
+ <model>
+  <!--<path>Effects/tyrespray/rain-port.xml</path>-->
+  <!--<path>Aircraft/Generic/Effects/rain-port.xml</path>-->
+  <path>Effects/rain-port.xml</path>
+  <name>tyre-rain-p</name>
+  <offsets>
+    <x-m>1.3608</x-m>
+    <y-m>-1.3000</y-m>
+    <z-m>-0.9433</z-m>
+  </offsets>
+ </model>
+
+ <model>
+  <!--<path>Effects/tyrespray/rain-stbd.xml</path>-->
+  <!--<path>Aircraft/Generic/Effects/rain-stbd.xml</path>-->
+  <path>Effects/rain-stbd.xml</path>
+  <name>tyre-rain-s</name>
+  <offsets>
+   <x-m>1.3608</x-m>
+   <y-m>1.3000</y-m>
+   <z-m>-0.9433</z-m>
+  </offsets>
+ </model>
+ 
+  <model>
+  <path>Effects/prop_dust.xml</path>
+  <name>prop-dust</name>
+  <offsets>
+<pitch-deg>-4</pitch-deg>
+    <x-m>0</x-m><!-- translated below-->
+    <y-m>0.0000</y-m>
+    <z-m>0.00</z-m><!-- translated below-->
+  </offsets>
+ </model>
+ 
+ 	<animation>
+		<type>translate</type>
+		<object-name>prop-dust</object-name>
+		<property>position/altitude-agl-m</property>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+	</animation>
+	
+ 	<animation>
+		<type>translate</type>
+		<object-name>prop-dust</object-name>
+		<property>position/altitude-agl-m</property>
+	<factor>6</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
 <!-- Engine smoke -->
 <model>
   <path>Aircraft/c182s/Models/Effects/c182_enginesmoke.xml</path>

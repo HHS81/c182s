@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<particlesystem>
+		<name>rain-t</name>
+		<texture>smoke.png</texture>
+		<emissive>false</emissive>
+		<lighting>false</lighting>
+
+		<offsets>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</offsets>
+
+		<condition>
+			<and>
+				<less-than>
+					<property>position/altitude-agl-ft</property>
+					<value>20</value>
+				</less-than>
+				<greater-than>
+					<property>orientation/pitch-deg</property>
+					<value>2.5</value>
+				</greater-than>
+				<equals>
+					<property>engines/engine[0]/running</property>
+					<value>1</value>
+				</equals>
+			</and>
+		</condition>
+
+		<attach>world</attach>
+
+		<placer>
+			<type>segments</type>
+			<vertex>
+				<x-m>0</x-m>
+				<y-m>0</y-m>
+				<z-m>0</z-m>
+			</vertex>
+			<vertex>
+				<x-m>2.5</x-m>
+				<y-m>0</y-m>
+				<z-m>0</z-m>
+			</vertex>
+			<vertex>
+				<x-m>5</x-m>
+				<y-m>0</y-m>
+				<z-m>0</z-m>
+			</vertex>
+		</placer>
+
+		<shooter>
+			<theta-min-deg>50</theta-min-deg>
+			<theta-max-deg>80</theta-max-deg>
+			<phi-min-deg>-15</phi-min-deg>
+			<phi-max-deg>15</phi-max-deg>
+			<speed-mps>
+				<property>engines/engine[0]/n1</property>
+				<spread>50</spread>
+				<factor>5</factor>
+			</speed-mps>
+			<rotation-speed>
+				<x-max-deg-sec>15</x-max-deg-sec>
+				<x-min-deg-sec>-15</x-min-deg-sec>
+				<y-max-deg-sec>15</y-max-deg-sec>
+				<y-min-deg-sec>-15</y-min-deg-sec>
+				<z-max-deg-sec>15</z-max-deg-sec>
+				<z-min-deg-sec>-15</z-min-deg-sec>
+			</rotation-speed>
+		</shooter>
+
+		<counter>
+			<particles-per-sec>
+				<property>environment/metar/rain-norm</property>
+				<factor>250</factor>
+				<offset>0</offset>
+				<!--<value>250</value>-->
+				<spread>50</spread>
+			</particles-per-sec>
+		</counter>
+
+		<align>billboard</align>
+
+		<particle>
+			<start>
+				<color>
+					<red>
+						<value>0.95</value>
+					</red>
+					<green>
+						<value>0.95</value>
+					</green>
+					<blue>
+						<value>0.95</value>
+					</blue>
+					<alpha>
+						<value>0.05</value>
+					</alpha>
+				</color>
+				<size>
+					<value>0.5</value>
+				</size>
+			</start>
+			<end>
+				<color>
+					<red>
+						<value>1</value>
+					</red>
+					<green>
+						<value>1</value>
+					</green>
+					<blue>
+						<value>1</value>
+					</blue>
+					<alpha>
+						<value>0.020</value>
+					</alpha>
+				</color>
+				<size>
+					<value>10</value>
+				</size>
+			</end>
+			<life-sec>
+				<value>1.5</value>
+			</life-sec>
+			<mass-kg>0.025</mass-kg>
+			<radius-m>0.125</radius-m>
+		</particle>
+
+		<program>
+			<fluid>air</fluid>
+			<gravity>true</gravity>
+			<wind>true</wind>
+		</program>
+
+	</particlesystem>
+
+</PropertyList>

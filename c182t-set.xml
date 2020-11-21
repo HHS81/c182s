@@ -243,6 +243,11 @@
           <salvage-control>/systems/pitot/salvage</salvage-control>
           <output-property>/systems/pitot/icing</output-property>
         </iceable>
+        <iceable>
+          <name>Static</name>
+          <sensitivity type="double">0.3</sensitivity>
+          <output-property>/systems/static[0]/icing</output-property>
+        </iceable>
       </icing>
 
 
@@ -903,6 +908,8 @@
             <path>/controls/circuit-breakers/ADF</path>
             <path>/controls/circuit-breakers/AutoPilot</path>
 
+            <path>/systems/static-selected-source</path>
+
             <path>/sim/failure-manager/display-on-screen</path>
             <path>/sim/failure-manager/restore-on-start</path>
         </aircraft-data>
@@ -1207,6 +1214,13 @@
   <file>Aircraft/Generic/limits.nas</file>
   <file>Aircraft/c182s/Nasal/custom-failures.nas</file>
 </failures>
+
+<icing>
+      <file>Aircraft/c182s/Nasal/icing.nas</file>
+      <file>Aircraft/c182s/Nasal/PitotIcing.nas</file>
+      <file>Aircraft/c182s/Nasal/StaticIcing.nas</file>
+</icing>
+
 </nasal>
 
  <fdm>

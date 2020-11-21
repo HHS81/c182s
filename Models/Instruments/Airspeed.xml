@@ -97,9 +97,9 @@
             <z>0</z>
         </axis>
         <center>
-          <x-m>0</x-m>
-          <y-m>0.0289782</y-m>
-          <z-m>-0.0293967</z-m>
+          <x-m>0.02158</x-m>
+          <y-m>-0.0294</y-m>
+          <z-m>-0.03047</z-m>
         </center>
     </animation>
     <animation>
@@ -113,79 +113,79 @@
             </entry>
             <entry>
                 <ind> 40</ind>
-                <dep> 31</dep>
+                <dep> 30</dep>
             </entry>
             <entry>
                 <ind> 50</ind>
-                <dep> 52</dep>
+                <dep> 50.3</dep>
             </entry>
             <entry>
                 <ind> 60</ind>
-                <dep> 75</dep>
+                <dep> 69.6</dep>
             </entry>
             <entry>
                 <ind> 70</ind>
-                <dep> 95</dep>
+                <dep> 89</dep>
             </entry>
             <entry>
                 <ind> 80</ind>
-                <dep>115</dep>
+                <dep>113</dep>
             </entry>
             <entry>
                 <ind> 90</ind>
-                <dep>135</dep>
+                <dep>137</dep>
             </entry>
             <entry>
                 <ind>100</ind>
-                <dep>153</dep>
+                <dep>160</dep>
             </entry>
             <entry>
                 <ind> 110</ind>
-                <dep>172</dep>
+                <dep>179</dep>
             </entry>
             <entry>
                 <ind> 120</ind>
-                <dep>191</dep>
+                <dep>198</dep>
             </entry>
             <entry>
                 <ind> 130</ind>
-                <dep>207</dep>
+                <dep>216</dep>
             </entry>
             <entry>
                 <ind> 140</ind>
-                <dep>223</dep>
+                <dep>235</dep>
             </entry>
             <entry>
                 <ind> 150</ind>
-                <dep>237</dep>
+                <dep>253</dep>
             </entry>
             <entry>
                 <ind> 160</ind>
-                <dep> 250</dep>
+                <dep> 269</dep>
             </entry>
             <entry>
                 <ind>170</ind>
-                <dep> 267</dep>
+                <dep> 281</dep>
             </entry>
             <entry>
                 <ind> 180</ind>
-                <dep> 280</dep>
+                <dep> 294</dep>
             </entry>
             <entry>
                 <ind>190</ind>
-                <dep>293</dep>
+                <dep>306</dep>
             </entry>
             <entry>
                 <ind> 200</ind>
-                <dep> 307</dep>
+                <dep> 319</dep>
             </entry>
             <entry>
                 <ind> 210</ind>
-                <dep> 314</dep>
+                <dep> 330</dep>
             </entry>
             <entry>
-                <ind> 280</ind>
-                <dep> 355</dep>
+                <ind> 230</ind>
+                <dep> 340</dep>
             </entry>
         </interpolation>
         <axis>

@@ -710,12 +710,13 @@ avionics_bus_1 = func() {
     setprop("/systems/electrical/outputs/avionics-fan", 0);
     }
     
-    # FG1000 Power.  Should probably be split so the PFD and MFD are on different buses and with difference CBs
-    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/GPS")) {
-    setprop("/systems/electrical/outputs/fg1000", bus_volts);
-     }else{ 
-    setprop("/systems/electrical/outputs/fg1000", 0);
-     }
+    # FG1000 PFD Power.
+    if ( bus_volts > 22 ) {
+        setprop("/systems/electrical/outputs/fg1000-pfd", bus_volts);
+        load += bus_volts / 28;
+    }else{ 
+        setprop("/systems/electrical/outputs/fg1000-pfd", 0);
+    }
      
     # HSI Power
     if ( bus_volts > 22 ) {
@@ -775,6 +776,14 @@ avionics_bus_2 = func() {
     }
     
     var load = bus_volts / 20.0;
+
+    # FG1000 PFD Power.
+    if ( bus_volts > 22 ) {
+        setprop("/systems/electrical/outputs/fg1000-mfd", bus_volts);
+        load += bus_volts / 28;
+    }else{ 
+        setprop("/systems/electrical/outputs/fg1000-mfd", 0);
+    }
 
     # NavCom 2 Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom2")) {

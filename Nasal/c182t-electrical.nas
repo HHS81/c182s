@@ -711,7 +711,7 @@ avionics_bus_1 = func() {
     }
     
     # FG1000 PFD Power.
-    if ( bus_volts > 22 ) {
+    if ( bus_volts > 22 and getprop("/instrumentation/fg1000/screen1/serviceable") ) {
         setprop("/systems/electrical/outputs/fg1000-pfd", bus_volts);
         load += bus_volts / 28;
     }else{ 
@@ -778,7 +778,7 @@ avionics_bus_2 = func() {
     var load = bus_volts / 20.0;
 
     # FG1000 PFD Power.
-    if ( bus_volts > 22 ) {
+    if ( bus_volts > 22 and getprop("/instrumentation/fg1000/screen2/serviceable") ) {
         setprop("/systems/electrical/outputs/fg1000-mfd", bus_volts);
         load += bus_volts / 28;
     }else{ 

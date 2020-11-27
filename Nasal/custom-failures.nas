@@ -138,6 +138,23 @@ var fail_random_magnetos = func() {
     }
 }
 
+# Simple actuator that disables the GFC700 Autopilot
+var set_unserviceable_gfc700 = func(path) {
+    var prop = path;
+    if (props.globals.getNode(prop) == nil) props.globals.initNode(prop, 1, "BOOL");
+    return {
+        parents: [FailureMgr.FailureActuator],
+        set_failure_level: func(level) {
+            if (level > 0) {
+                setprop("/autopilot/GFC700/FSM/AP-off/current-index", 0);
+                fg1000.GenericInterfaceController.getOrCreateInstance().GFC700InterfaceInstance.stop();
+            }
+            if (level == 0) fg1000.GenericInterfaceController.getOrCreateInstance().GFC700InterfaceInstance.start();
+        },
+        get_failure_level: func { getprop(prop) ? 0 : 1 }
+    }
+}
+
 
 # Simple handling of random breaker failure.
 # It consists of a specialized generic actuator, that selects some random breaker and sets a special propert "failed" there;
@@ -227,12 +244,10 @@ var pop_breakerActuator = func() {
 # Define all custom failures here. they get picked up by the init and handling code below.
 # Don't forget to enhance the gui too!
 #
-customFailures = [
-    {id:"instrumentation/clock",    name:"Davtron 803 clock",
-        actuator: set_unserviceable_abs("/instrumentation/clock/serviceable"),
-        trigger:  MtbfTrigger.new(0),
-    },
-    
+
+# common systems to all C182 variants
+customFailures_c182common = [
+
     {id:"instrumentation/fuelIndicator[0]",    name:"Left fuel indicator",
         actuator: set_unserviceable("/instruments/fuelIndicator[0]"),
         trigger:  MtbfTrigger.new(0),
@@ -307,12 +322,6 @@ customFailures = [
     },
     
     
-    
-    {id:"instrumentation/annunciator",    name:"Annunciator panel",
-        actuator: set_unserviceable("instrumentation/annunciator"),
-        trigger:  MtbfTrigger.new(0),
-    },
-    
     {id:"instrumentation/marker-beacon",    name:"Marker beacon",
         actuator: set_unserviceable("instrumentation/marker-beacon"),
         trigger:  MtbfTrigger.new(0),
@@ -328,26 +337,12 @@ customFailures = [
         trigger:  MtbfTrigger.new(0),
     },
     
-    {id:"instrumentation/avionics/comm[0]",    name:"NAV1/COMM1",
-        actuator: set_unserviceable("instrumentation/comm[0]"),
-        trigger:  MtbfTrigger.new(0),
-    },
-    
-    {id:"instrumentation/avionics/comm[1]",    name:"NAV2/COMM2",
-        actuator: set_unserviceable("instrumentation/comm[1]"),
-        trigger:  MtbfTrigger.new(0),
-    },
     
     # ADF is already in standards module (there is currently no distinction between radio and gauge)
     #{id:"instrumentation/avionics/adf",    name:"ADF",
     #    actuator: set_unserviceable("instrumentation/adf"),
     #    trigger:  MtbfTrigger.new(0),
     #},
-    
-    {id:"instrumentation/avionics/autopilot",    name:"Autopilot",
-        actuator: set_unserviceable("autopilot/KAP140"),
-        trigger:  MtbfTrigger.new(0),
-    },
     
     {id:"instrumentation/avionics/transponder",    name:"Transponder",
         actuator: set_unserviceable("instrumentation/transponder"),
@@ -405,7 +400,94 @@ customFailures = [
     },
 ];
 
+# Airplane variant specific failures
+var customFailures_special = {
+    c182s:[
+        {id:"instrumentation/clock",    name:"Davtron 803 clock",
+            actuator: set_unserviceable_abs("/instrumentation/clock/serviceable"),
+            trigger:  MtbfTrigger.new(0),
+        },
+        {id:"instrumentation/annunciator",    name:"Annunciator panel",
+            actuator: set_unserviceable("instrumentation/annunciator"),
+            trigger:  MtbfTrigger.new(0),
+        },
+        {id:"instrumentation/avionics/autopilot",    name:"KAP140 Autopilot",
+            actuator: set_unserviceable("autopilot/KAP140"),
+            trigger:  MtbfTrigger.new(0),
+        },
+        
+        {id:"instrumentation/avionics/comm[0]",    name:"NAV1/COMM1",
+            actuator: set_unserviceable("instrumentation/comm[0]"),
+            trigger:  MtbfTrigger.new(0),
+        },
+        
+        {id:"instrumentation/avionics/comm[1]",    name:"NAV2/COMM2",
+            actuator: set_unserviceable("instrumentation/comm[1]"),
+            trigger:  MtbfTrigger.new(0),
+        },
+        
+    ],
+    c182t:[
+        # STNDBY-Battery not implemented yet!
+        #{id:"systems/electrical/battery-stndby", name:"STNDBY Battery",
+        #actuator: set_unserviceable_abs("/systems/electrical/battery-stndby-serviceable"),
+        #trigger:  MtbfTrigger.new(0)
+        #},
+        
+        # Clock failure is not implemented ion FG1000 yet
+        {id:"instrumentation/clock",    name:"FG1000 clock",
+            actuator: set_unserviceable_abs("/instrumentation/clock/serviceable"),
+            trigger:  MtbfTrigger.new(0),
+        },
+        {id:"instrumentation/gps", name:"GPS receiver",
+            actuator: set_unserviceable_abs("/instrumentation/gps/serviceable"),
+            trigger:  MtbfTrigger.new(0)
+        },
+        
+        {id:"instrumentation/fg1000/screen1", name:"FG1000 PFD",
+            actuator: set_unserviceable_abs("instrumentation/fg1000/screen1/serviceable"),
+            trigger:  MtbfTrigger.new(0)
+        },
+        {id:"instrumentation/fg1000/screen2", name:"FG1000 MFD",
+            actuator: set_unserviceable_abs("instrumentation/fg1000/screen2/serviceable"),
+            trigger:  MtbfTrigger.new(0)
+        },
+        
+        {id:"autopilot/GFC700",    name:"GFC700 Autopilot",
+            actuator: set_unserviceable_gfc700("autopilot/GFC700/serviceable"),
+            trigger:  MtbfTrigger.new(0),
+        },
+        
+        {id:"instrumentation/avionics/comm[0]",    name:"COMM1",
+            actuator: set_unserviceable("instrumentation/comm[0]"),
+            trigger:  MtbfTrigger.new(0),
+        },
+        
+        {id:"instrumentation/avionics/comm[1]",    name:"COMM2",
+            actuator: set_unserviceable("instrumentation/comm[1]"),
+            trigger:  MtbfTrigger.new(0),
+        },
+        
+        {id:"instrumentation/avionics/nav[0]",    name:"NAV1",
+            actuator: set_unserviceable("instrumentation/nav[0]"),
+            trigger:  MtbfTrigger.new(0),
+        },
+        
+        {id:"instrumentation/avionics/nav[1]",    name:"NAV2",
+            actuator: set_unserviceable("instrumentation/nav[1]"),
+            trigger:  MtbfTrigger.new(0),
+        },
+    ]
+};
 
+
+#
+# choose failure set according to aircraft type
+#
+customFailures = customFailures_c182common;
+foreach (failureToAdd; customFailures_special[getprop("/sim/aircraft")]) {
+    append(customFailures, failureToAdd);
+}
 
 
 #----------------------------------------------------------------------------

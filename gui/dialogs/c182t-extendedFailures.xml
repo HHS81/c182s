@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-  <name>extended-failure-dialog</name>
+  <name>extended-failure-dialog-c182t</name>
   <modal>false</modal>
   <layout>vbox</layout>
   
@@ -378,7 +378,7 @@
         <row>2</row>
         <col>0</col>
         <halign>right</halign>
-        <label>Davtron 803 clock</label>
+        <label>FG1000 clock</label>
       </text>
       <checkbox>
         <row>2</row>
@@ -607,17 +607,17 @@
         <row>1</row>
         <col>0</col>
         <halign>right</halign>
-        <label>Annunciator panel</label>
+        <label>GPS Receiver</label>
       </text>
       <checkbox>
         <row>1</row>
         <col>1</col>
-        <property>/sim/failure-manager/instrumentation/annunciator/serviceable</property>
+        <property>/sim/failure-manager/instrumentation/gps/serviceable</property>
       </checkbox>
       <input>
         <row>1</row>
         <col>2</col>
-        <property>/sim/failure-manager/instrumentation/annunciator/mtbf</property>
+        <property>/sim/failure-manager/instrumentation/gps/mtbf</property>
       </input>
       
       <text>
@@ -675,7 +675,7 @@
         <row>5</row>
         <col>0</col>
         <halign>right</halign>
-        <label>NAV1/COMM1</label>
+        <label>COMM1</label>
       </text>
       <checkbox>
         <row>5</row>
@@ -692,7 +692,7 @@
         <row>6</row>
         <col>0</col>
         <halign>right</halign>
-        <label>NAV2/COMM2</label>
+        <label>COMM2</label>
       </text>
       <checkbox>
         <row>6</row>
@@ -705,57 +705,125 @@
         <property>/sim/failure-manager/instrumentation/avionics/comm[1]/mtbf</property>
       </input>
       
+      <text>
+        <row>7</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>NAV1</label>
+      </text>
+      <checkbox>
+        <row>7</row>
+        <col>1</col>
+        <property>/sim/failure-manager/instrumentation/avionics/nav[0]/serviceable</property>
+      </checkbox>
+      <input>
+        <row>7</row>
+        <col>2</col>
+        <property>/sim/failure-manager/instrumentation/avionics/nav[0]/mtbf</property>
+      </input>
+      
+      <text>
+        <row>8</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>NAV2</label>
+      </text>
+      <checkbox>
+        <row>8</row>
+        <col>1</col>
+        <property>/sim/failure-manager/instrumentation/avionics/nav[1]/serviceable</property>
+      </checkbox>
+      <input>
+        <row>8</row>
+        <col>2</col>
+        <property>/sim/failure-manager/instrumentation/avionics/nav[1]/mtbf</property>
+      </input>
+      
       <!-- keep ADF also here for better usability; but it is already included in the compat module. -->
       <!-- TODO: Probably we should distinguish between ADF radio and ADF gauge, as we do with other instruments too! -->
       <text>
-        <row>7</row>
+        <row>9</row>
         <col>0</col>
         <halign>right</halign>
         <label>ADF</label>
       </text>
       <checkbox>
-        <row>7</row>
+        <row>9</row>
         <col>1</col>
         <property>/sim/failure-manager/instrumentation/adf/serviceable</property>
       </checkbox>
       <input>
-        <row>7</row>
+        <row>9</row>
         <col>2</col>
         <property>/sim/failure-manager/instrumentation/adf/mtbf</property>
       </input>
       
       <text>
-        <row>8</row>
+        <row>10</row>
         <col>0</col>
         <halign>right</halign>
         <label>Autopilot</label>
       </text>
       <checkbox>
-        <row>8</row>
+        <row>10</row>
         <col>1</col>
-        <property>/sim/failure-manager/instrumentation/avionics/autopilot/serviceable</property>
+        <property>/sim/failure-manager/autopilot/GFC700/serviceable</property>
       </checkbox>
       <input>
-        <row>8</row>
+        <row>10</row>
         <col>2</col>
-        <property>/sim/failure-manager/instrumentation/avionics/autopilot/mtbf</property>
+        <property>/sim/failure-manager/autopilot/GFC700/mtbf</property>
       </input>
       
       <text>
-        <row>9</row>
+        <row>11</row>
         <col>0</col>
         <halign>right</halign>
         <label>Transponder</label>
       </text>
       <checkbox>
-        <row>9</row>
+        <row>11</row>
         <col>1</col>
         <property>/sim/failure-manager/instrumentation/avionics/transponder/serviceable</property>
       </checkbox>
       <input>
-        <row>9</row>
+        <row>11</row>
         <col>2</col>
         <property>/sim/failure-manager/instrumentation/avionics/transponder/mtbf</property>
+      </input>
+      
+      <text>
+        <row>12</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>FG1000 PFD</label>
+      </text>
+      <checkbox>
+        <row>12</row>
+        <col>1</col>
+        <property>/sim/failure-manager/instrumentation/fg1000/screen1/serviceable</property>
+      </checkbox>
+      <input>
+        <row>12</row>
+        <col>2</col>
+        <property>/sim/failure-manager/instrumentation/fg1000/screen1/mtbf</property>
+      </input>
+      
+      <text>
+        <row>13</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>FG1000 MFD</label>
+      </text>
+      <checkbox>
+        <row>13</row>
+        <col>1</col>
+        <property>/sim/failure-manager/instrumentation/fg1000/screen2/serviceable</property>
+      </checkbox>
+      <input>
+        <row>13</row>
+        <col>2</col>
+        <property>/sim/failure-manager/instrumentation/fg1000/screen2/mtbf</property>
       </input>
 
       <!--

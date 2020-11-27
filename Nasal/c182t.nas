@@ -1,6 +1,8 @@
 var nasal_dir = getprop("/sim/fg-root") ~ "/Aircraft/Instruments-3d/FG1000/Nasal/";
+var aircraft_dir = getprop("/sim/aircraft-dir");
 io.load_nasal(nasal_dir ~ 'FG1000.nas', "fg1000");
-io.load_nasal(nasal_dir ~ 'Interfaces/GenericInterfaceController.nas', "fg1000");
+#io.load_nasal(nasal_dir ~ 'Interfaces/GenericInterfaceController.nas', "fg1000");
+io.load_nasal(aircraft_dir ~ '/Nasal/c182t-InterfaceController.nas', "fg1000");  # use custom controller
 
 var interfaceController = fg1000.GenericInterfaceController.getOrCreateInstance();
 interfaceController.start();

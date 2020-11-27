@@ -138,7 +138,7 @@
 
 <!-- Doors-->
 
-
+   
  <animation>
    <type>rotate</type>
 <object-name>IntDoor.L</object-name>
@@ -146,7 +146,7 @@
 <object-name>doorhandleint_left</object-name>
 <object-name>FrameLock1.L</object-name>
 <object-name>FrameLock2.L</object-name>
-   <property>sim/model/door-positions/DoorL/position-norm</property>
+   <property>sim/model/door-positions/DoorL/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>
@@ -172,8 +172,8 @@
 			<z>-0.508674</z>
 		</axis>
  </animation>
-
-
+ 
+  
  <animation>
    <type>rotate</type>
 <object-name>IntDoor.R</object-name>
@@ -181,7 +181,7 @@
 <object-name>doorhandleint_right</object-name>
 <object-name>FrameLock1.R</object-name>
 <object-name>FrameLock2.R</object-name>
-   <property>sim/model/door-positions/DoorR/position-norm</property>
+   <property>sim/model/door-positions/DoorR/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>
@@ -207,7 +207,7 @@
 			<z>-0.508674</z>
 		</axis>
  </animation>
-
+ 
 
     <animation>
         <type>pick</type>
@@ -251,27 +251,55 @@
             </binding>
         </hovered>
     </animation>
-
+    
     <animation>
         <type>rotate</type>
         <object-name>doorhandleint_right</object-name>
-   <property>sim/model/door-positions/DoorR/position-norm</property>
+        <property>sim/model/door-positions/DoorR/position-norm-effective</property>
+        <condition>
+            <equals>
+                <property>/sim/model/door-positions/DoorR/opened</property>
+                <value>0.0</value>
+            </equals>
+        </condition>
+        <condition>
+            <equals>
+                <property>/sim/model/door-positions/leftDoor/opened</property>
+                <value>0.0</value>
+            </equals>
+        </condition>
         <interpolation>
             <entry>
                 <ind>0.0</ind>
                 <dep>0.0</dep>
             </entry>
             <entry>
+                <ind>0.18</ind>
+                <dep>70.0</dep>
+            </entry>
+            <entry>
+                <ind>0.26</ind>
+                <dep>70.0</dep>
+            </entry>
+            <entry>
+                <ind>0.35</ind>
+                <dep>110.0</dep>
+            </entry>
+            <entry>
+                <ind>0.43</ind>
+                <dep>110.0</dep>
+            </entry>
+            <entry>
                 <ind>0.5</ind>
-                <dep>50.0</dep>
+                <dep>0.0</dep>
             </entry>
             <entry>
                 <ind>1</ind>
-                <dep>50.0</dep>
+                <dep>0.0</dep>
             </entry>
         </interpolation>
 		<center>
-			<x-m>0.969679</x-m>
+			<x-m>0.903840</x-m>
 			<y-m>0.569469</y-m>
 			<z-m>0.143912</z-m>
 		</center>
@@ -281,7 +309,7 @@
 			<z>0</z>
 		</axis>
     </animation>
-
+    
  <animation>
         <type>pick</type>
         <object-name>FrameInt.R</object-name>
@@ -303,7 +331,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
 <animation>
    <type>rotate</type>
         <object-name>FrameInt.R</object-name>
@@ -335,7 +363,7 @@
 			<z>-0.01543</z>
 		</axis>
  </animation>
-
+ 
 <animation>
    <type>rotate</type>
         <object-name>FrameLock2.R</object-name>
@@ -365,7 +393,7 @@
 			<z>0</z>
 		</axis>
  </animation>
-
+    
     <animation>
         <type>pick</type>
         <object-name>leftdoor</object-name>
@@ -387,27 +415,49 @@
             </binding>
         </hovered>
     </animation>
-
+    
     <animation>
         <type>rotate</type>
         <object-name>doorhandleint_left</object-name>
-   <property>sim/model/door-positions/DoorL/position-norm</property>
+        <property>sim/model/door-positions/DoorL/position-norm-effective</property>
+        <condition>
+            <equals>
+                <property>/sim/model/door-positions/DoorL/opened</property>
+                <value>0.0</value>
+            </equals>
+        </condition>
         <interpolation>
             <entry>
                 <ind>0.0</ind>
                 <dep>0.0</dep>
             </entry>
             <entry>
+                <ind>0.18</ind>
+                <dep>70.0</dep>
+            </entry>
+            <entry>
+                <ind>0.26</ind>
+                <dep>70.0</dep>
+            </entry>
+            <entry>
+                <ind>0.35</ind>
+                <dep>110.0</dep>
+            </entry>
+            <entry>
+                <ind>0.43</ind>
+                <dep>110.0</dep>
+            </entry>
+            <entry>
                 <ind>0.5</ind>
-                <dep>50.0</dep>
+                <dep>0.0</dep>
             </entry>
             <entry>
                 <ind>1</ind>
-                <dep>50.0</dep>
+                <dep>0.0</dep>
             </entry>
         </interpolation>
 		<center>
-			<x-m>0.969679</x-m>
+			<x-m>0.903840</x-m>
 			<y-m>-0.569469</y-m>
 			<z-m>0.143912</z-m>
 		</center>
@@ -438,7 +488,7 @@
             </binding>
         </hovered>
     </animation>
-
+    
 <animation>
    <type>rotate</type>
         <object-name>FrameInt.L</object-name>
@@ -470,7 +520,7 @@
 			<z>-0.01543</z>
 		</axis>
  </animation>
-
+ 
 <animation>
    <type>rotate</type>
         <object-name>FrameLock2.L</object-name>
@@ -500,11 +550,11 @@
 			<z>0</z>
 		</axis>
  </animation>
-
+ 
  <animation>
    <type>rotate</type>
 <object-name>BaggageIntDoor</object-name>
-   <property>sim/model/door-positions/BaggageDoor/position-norm</property>
+   <property>sim/model/door-positions/BaggageDoor/position-norm-effective</property>
    <interpolation>
      <entry>
        <ind>0.0</ind>

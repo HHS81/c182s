@@ -173,8 +173,9 @@
 
     <icing>
        <iceable>
-         <name>Wing</name>          <sensitivity type="double">1.0</sensitivity>
-          <output-property>/fdm/jsbsim/ice/wing</output-property>
+         <name>Wing</name>
+         <sensitivity type="double">1.0</sensitivity>
+         <output-property>/fdm/jsbsim/ice/wing</output-property>
         </iceable>
         <iceable>
          <name>Stabilizer</name>
@@ -260,7 +261,8 @@
 </securing>
 
 <procedural-lights type="bool">true</procedural-lights>
-<enable-fog-frost type="bool">true</enable-fog-frost>
+<enable-fog-frost type="bool">false</enable-fog-frost>
+<enable-fog-frost-msgs type="bool">true</enable-fog-frost-msgs>
 
 
 	<material>
@@ -873,6 +875,7 @@
             <path>/sim/failure-manager/restore-on-start</path>
         </aircraft-data>
 
+        <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>
  </sim>
 
  <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
@@ -979,6 +982,7 @@
    <kt-76c type="double">0</kt-76c>
    <kn-62a type="double">0</kn-62a>
    <fuel_tank_selector type="double">2</fuel_tank_selector> <!-- 0=off, 1=right, 2=both, 3=left -->
+   <magnetos type="int">3</magnetos>
   </switches>
   <circuit-breakers>
     <Flap type="bool">1</Flap>

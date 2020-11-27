@@ -22,12 +22,21 @@ fg1000system.display(2);
 #fg1000system.displayGUI(1, 0.5);
 
 # Switch the FG1000 on/off depending on power.
-setlistener("/systems/electrical/outputs/fg1000", func(n) {
+setlistener("/systems/electrical/outputs/fg1000-pfd", func(n) {
     if (n.getValue() > 0) {
-      fg1000system.show();
+      fg1000system.show(1);
       setprop("/instrumentation/FG1000/Lightmap", getprop("/controls/lighting/avionics-lights-norm"));
     } else {
-      fg1000system.hide();
+      fg1000system.hide(1);
+      setprop("/instrumentation/FG1000/Lightmap", 0.0);
+    }
+}, 0, 0);
+setlistener("/systems/electrical/outputs/fg1000-mfd", func(n) {
+    if (n.getValue() > 0) {
+      fg1000system.show(2);
+      setprop("/instrumentation/FG1000/Lightmap", getprop("/controls/lighting/avionics-lights-norm"));
+    } else {
+      fg1000system.hide(2);
       setprop("/instrumentation/FG1000/Lightmap", 0.0);
     }
 }, 0, 0);

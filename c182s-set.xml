@@ -718,7 +718,19 @@
 
 
 
-        <menubar include="gui/dialogs/c182s-menu.xml"/>
+        <menubar include="gui/dialogs/c182s-menu.xml">
+          <default n="0">
+            <menu n="10">
+              <item n="99">
+                <label>Aircraft Failure Management</label>
+                <binding>
+                    <command>dialog-show</command>
+                    <dialog-name>extended-failure-dialog-c182t</dialog-name>
+                </binding>
+              </item>
+            </menu>
+          </default>
+        </menubar>
 
        <!-- Splash screens. One is randomly chosen when FlightGear starts -->
         <previews>

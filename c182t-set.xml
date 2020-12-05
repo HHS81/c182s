@@ -670,7 +670,7 @@
 
 
   <help>
-   <title>Cessna 182S</title>
+   <title>Cessna 182T</title>
    <line>Velocities</line>
    <line>  Va1 (maneuvering)   : 110 KIAS</line>
    <line>  Vno (max cruise)    : 140 KIAS</line>
@@ -794,6 +794,13 @@
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>
             <path>/engines/engine/winter-kit-installed</path>
+
+            <path>/fdm/jsbsim/settings/damage</path>
+            <path>/fdm/jsbsim/gear/unit[0]/broken-saved</path> <!-- nose gear -->
+            <path>/fdm/jsbsim/gear/unit[1]/broken-saved</path> <!-- left main gear -->
+            <path>/fdm/jsbsim/gear/unit[2]/broken-saved</path> <!-- right main gear -->
+            <path>/fdm/jsbsim/wing-damage/left-wing-saved</path>
+            <path>/fdm/jsbsim/wing-damage/right-wing-saved</path>
 
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
@@ -1253,8 +1260,13 @@
     <file>Aircraft/c182s/Nasal/c182s-states.nas</file>
     <file>Aircraft/c182s/Nasal/flashlight.nas</file>
     <file>Aircraft/c182s/Nasal/annunciator_panel.nas</file>
+    <file>Aircraft/c182s/Nasal/damage.nas</file>
     <file>Aircraft/c182s/Nasal/c182t.nas</file>
 </c182s>
+
+    <terrain>
+        <file>Aircraft/c182s/Nasal/terrain.nas</file>
+    </terrain>
 
 <davtron803>
     <file>Aircraft/c182s/Nasal/davtron803.nas</file>

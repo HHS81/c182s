@@ -139,6 +139,7 @@
             </location>
             <static_friction> 0.5 </static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
+            <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 5400 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">200 </damping_coeff>
             <max_steer unit="DEG"> 0.0 </max_steer>
@@ -166,11 +167,56 @@
                 <y> 0 </y>
                 <z> 4.15 </z>
             </location>
-            <static_friction> 0.2 </static_friction>
-            <dynamic_friction> 0.2 </dynamic_friction>
-            <rolling_friction> 0.2 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 2900 </spring_coeff>
+            <static_friction> 1.0 </static_friction>
+            <dynamic_friction> 1.0 </dynamic_friction>
+            <rolling_friction> 1.0 </rolling_friction>
+            <spring_coeff unit="LBS/FT"> 1900 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 540 </damping_coeff>
+            <max_steer unit="DEG"> 0.0 </max_steer>
+            <brake_group> NONE </brake_group>
+            <retractable>0</retractable>
+        </contact>
+        <contact type="STRUCTURE" name="belly_front">
+            <location unit="IN">
+                <x>0.021 </x>
+                <y>0.0 </y>
+                <z> -25.29 </z>
+            </location>
+            <static_friction> 1.0 </static_friction>
+            <dynamic_friction> 1.0 </dynamic_friction>
+            <rolling_friction> 1.0 </rolling_friction>
+            <spring_coeff unit="LBS/FT">100 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC">100 </damping_coeff>
+            <max_steer unit="DEG"> 0.0 </max_steer>
+            <brake_group> NONE </brake_group>
+            <retractable>0</retractable>
+        </contact>
+        <contact type="STRUCTURE" name="belly_aft_left">
+            <location unit="IN">
+                <x>62 </x>
+                <y>-10.36 </y>
+                <z> -21.31 </z>
+            </location>
+            <static_friction> 1.0 </static_friction>
+            <dynamic_friction> 1.0 </dynamic_friction>
+            <rolling_friction> 1.0 </rolling_friction>
+            <spring_coeff unit="LBS/FT">100 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC">100 </damping_coeff>
+            <max_steer unit="DEG"> 0.0 </max_steer>
+            <brake_group> NONE </brake_group>
+            <retractable>0</retractable>
+        </contact>
+        <contact type="STRUCTURE" name="belly_aft_right">
+            <location unit="IN">
+                <x>62 </x>
+                <y>10.36 </y>
+                <z> -21.31 </z>
+            </location>
+            <static_friction> 1.0 </static_friction>
+            <dynamic_friction> 1.0 </dynamic_friction>
+            <rolling_friction> 1.0 </rolling_friction>
+            <spring_coeff unit="LBS/FT">100 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC">100 </damping_coeff>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
@@ -181,11 +227,11 @@
                 <y>-212.86 </y>
                 <z> 33.37 </z>
             </location>
-            <static_friction> 0.2 </static_friction>
-            <dynamic_friction> 0.2 </dynamic_friction>
-            <rolling_friction> 0.2 </rolling_friction>
-            <spring_coeff unit="LBS/FT">2900 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 540 </damping_coeff>
+            <static_friction> 1.0 </static_friction>
+            <dynamic_friction> 1.0 </dynamic_friction>
+            <rolling_friction> 1.0 </rolling_friction>
+            <spring_coeff unit="LBS/FT">1000 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC">1000 </damping_coeff>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
@@ -196,11 +242,11 @@
                 <y> 212.86 </y>
                 <z> 33.37 </z>
             </location>
-            <static_friction> 0.2 </static_friction>
-            <dynamic_friction> 0.2 </dynamic_friction>
-            <rolling_friction> 0.2 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 2900 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 540 </damping_coeff>
+            <static_friction> 1.0 </static_friction>
+            <dynamic_friction> 1.0 </dynamic_friction>
+            <rolling_friction> 1.0 </rolling_friction>
+            <spring_coeff unit="LBS/FT">1000 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC">1000 </damping_coeff>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
@@ -211,10 +257,10 @@
                 <y> 0</y>
                 <z> 0 </z>
             </location>
-            <static_friction> 0.2 </static_friction>
-            <dynamic_friction> 0.2 </dynamic_friction>
-            <rolling_friction> 0.2 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 2900 </spring_coeff>
+            <static_friction> 1.0 </static_friction>
+            <dynamic_friction> 1.0 </dynamic_friction>
+            <rolling_friction> 1.0 </rolling_friction>
+            <spring_coeff unit="LBS/FT"> 1900 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 540 </damping_coeff>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> NONE </brake_group>
@@ -226,11 +272,11 @@
                 <y> 0</y>
                 <z> 31.37 </z>
             </location>
-            <static_friction> 0.2 </static_friction>
-            <dynamic_friction> 0.2 </dynamic_friction>
-            <rolling_friction> 0.2 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 2900 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 540 </damping_coeff>
+            <static_friction> 1.0 </static_friction>
+            <dynamic_friction> 1.0 </dynamic_friction>
+            <rolling_friction> 1.0 </rolling_friction>
+            <spring_coeff unit="LBS/FT">1000 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC">1000 </damping_coeff>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
@@ -241,11 +287,11 @@
                 <y> 0</y>
                 <z>30.62 </z>
             </location>
-            <static_friction> 0.2 </static_friction>
-            <dynamic_friction> 0.2 </dynamic_friction>
-            <rolling_friction> 0.2 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 2900 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 540 </damping_coeff>
+            <static_friction> 1.0 </static_friction>
+            <dynamic_friction> 1.0 </dynamic_friction>
+            <rolling_friction> 1.0 </rolling_friction>
+            <spring_coeff unit="LBS/FT">1000 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC">1000 </damping_coeff>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
@@ -256,11 +302,11 @@
                 <y> 0</y>
                 <z>79.41 </z>
             </location>
-            <static_friction> 0.2 </static_friction>
-            <dynamic_friction> 0.2 </dynamic_friction>
-            <rolling_friction> 0.2 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 1900 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 540 </damping_coeff>
+            <static_friction> 1.0 </static_friction>
+            <dynamic_friction> 1.0 </dynamic_friction>
+            <rolling_friction> 1.0 </rolling_friction>
+            <spring_coeff unit="LBS/FT">1000 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC">1000 </damping_coeff>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
@@ -437,6 +483,8 @@
     
     <system file="cabin-heat_and_air"/> <!-- cabin heat and air -->
     
+    <system file="damage"/> <!-- integrate damage detection -->
+
     <system file="static-sources"/> <!-- integrate alternate static source simulation -->
     
     <flight_control name="FCS: c182s">
@@ -875,7 +923,18 @@
             </product>
         </function>
 	
-
+        
+        <function name="aero/function/total-wing-damage">
+            <description>Total damage on wings</description>
+            <product>
+                <sum>
+                    <property>wing-damage/left-wing</property>
+                    <property>wing-damage/right-wing</property>
+                </sum>
+                <value>0.5</value>
+            </product>
+        </function>
+        
         <function name="aero/function/velocity-induced-fps">
             <description> velocity including the propulsion induced velocity.</description>
             <sum>
@@ -933,7 +992,14 @@
                               1.57    0.01    0.01
                           </tableData>
                     </table>
-		</product>
+                    <table>
+                        <independentVar>aero/function/total-wing-damage</independentVar>
+                        <tableData>
+                              0.0000    1
+                              1.0000    0
+                        </tableData>
+                    </table>
+                </product>
             </function>
 
             <function name="aero/coefficient/CLDf">
@@ -1177,7 +1243,7 @@
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>aero/beta-rad</property>
-	<table>
+            <table>
                           <independentVar>aero/alpha-rad</independentVar>
                           <tableData>
                               0.0000	 -0.393
@@ -1192,9 +1258,9 @@
         <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
-	<property>aero/bi2vel</property>
-	<property>velocities/p-aero-rad_sec</property>
-	<table>
+          <property>aero/bi2vel</property>
+          <property>velocities/p-aero-rad_sec</property>
+          <table>
                           <independentVar>aero/alpha-rad</independentVar>
                           <tableData>
                               0.0000	-0.0750
@@ -1213,7 +1279,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>aero/bi2vel</property>
                     <property>velocities/r-rad_sec</property>
-		<table>
+                    <table>
                           <independentVar>aero/alpha-rad</independentVar>
                           <tableData>
                               0.0000	0.201
@@ -1246,7 +1312,7 @@
            <property>metrics/Sw-sqft</property>
            <property>metrics/bw-ft</property>
            <property>aero/beta-rad</property>
-	<table>
+           <table>
                           <independentVar>aero/alpha-rad</independentVar>
                           <tableData>
                               0.0000	 -0.0923
@@ -1277,8 +1343,8 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
-                        <property>velocities/p-aero-rad_sec</property>
-		<table>
+                    <property>velocities/p-aero-rad_sec</property>
+                    <table>
                         <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                               107.1	-0.494 <!--Approach-->
@@ -1359,6 +1425,13 @@
                             0.611   -0.1  -0.1
                         </tableData>
                     </table>
+                    <table>
+                        <independentVar>aero/function/total-wing-damage</independentVar>
+                        <tableData>
+                            0.0000  1
+                            1.0000  0
+                        </tableData>
+                    </table>
                 </product>
             </function>
 
@@ -1373,6 +1446,28 @@
                     <value>-0.0147</value>
                 </product>
             </function>
+            
+            <function name="aero/coefficient/Cllwdmg">
+                <description>Roll_moment_due_to_damaged_left_wing</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/bw-ft</property>
+                    <property>wing-damage/left-wing</property>
+                    <value>-0.3</value>
+                </product>
+            </function>
+            
+            <function name="aero/coefficient/Clrwdmg">
+                <description>Roll_moment_due_to_damaged_right_wing</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/bw-ft</property>
+                    <property>wing-damage/right-wing</property>
+                    <value>0.3</value>
+                </product>
+            </function>
 
   </axis>
 
@@ -1383,7 +1478,7 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
-		<table>
+                    <table>
                         <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                               107.1	0.090 <!--Approach-->
@@ -1431,7 +1526,7 @@
                     <property>metrics/cbarw-ft</property>
                     <property>aero/ci2vel</property>
                     <property>velocities/q-aero-rad_sec</property>
-		<table>
+                    <table>
                         <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                               107.1	-11.40 <!--Approach-->
@@ -1618,22 +1713,28 @@
                 <!--
                     stall and spin (8):
                     adverse yaw: can induce a adverse turn and spin when stalled
-		    David Megginson's values are negative, but positive values in cruise seems to match the real aircraft behavior much better 
+                    David Megginson's values are negative, but positive values in cruise seems to match the real aircraft behavior much better 
                 -->
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
-		<table>
+                    <table>
                         <independentVar>velocities/u-fps</independentVar>
                         <tableData>
-                              107.1	-0.0786 <!--Approach-->
-                              133.5	-0.0504 <!--climb-->
-                              220.1	 0.0216<!--cruise-->
+                              107.1  -0.0786 <!--Approach-->
+                              133.5  -0.0504 <!--climb-->
+                              220.1   0.0216 <!--cruise-->
                         </tableData>
                     </table>
-<value>1</value>
+                    <table>
+                        <independentVar>aero/function/total-wing-damage</independentVar>
+                        <tableData>
+                            0.0000  1
+                            1.0000  0
+                        </tableData>
+                    </table>
                 </product>
             </function>
 
@@ -1644,7 +1745,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
-		<table>
+                    <table>
                           <independentVar>aero/alpha-rad</independentVar>
                           <tableData>
                               0.0000	-0.0645

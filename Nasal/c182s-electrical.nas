@@ -339,6 +339,9 @@ update_virtual_bus = func( dt ) {
     # key 's' calls to this function when it is pressed DOWN even if I overwrite the binding in the -set.xml file!
     # fun fact: the key UP event can be overwriten!
     controls.startEngine = func(v = 1) {
+        # Bail out if engine is crashed
+        if (getprop("/engines/engine[0]/crashed") == 1) return;
+        
         # only operate in non-walker mode ('s' is also bound to walk-backward)
         if (getprop("/sim/current-view/name") == getprop("/sim/view[110]/name") or
             getprop("/sim/current-view/name") == getprop("/sim/view[111]/name") )  return;
@@ -503,7 +506,7 @@ electrical_bus_2 = func() {
 
     # Nav Lights Power
 
-    if ( getprop("/controls/lighting/nav-lights" )and (bus_volts > 22) ) {
+    if ( getprop("/controls/lighting/nav-lights" ) and (bus_volts > 22) and getprop("/systems/electrical/nav-light-serviceable") ) {
         setprop("/systems/electrical/outputs/nav-lights", bus_volts);
 	  setprop("/systems/electrical/outputs/nav-lights-norm", (bus_volts/24));
         load += bus_volts / 20;
@@ -517,20 +520,15 @@ electrical_bus_2 = func() {
 	setprop("/systems/electrical/outputs/nav-lights-norm", 1.0)};
  
      
-    # Strobe Lights Power
-    # controls/lighting/strobe is the cockpit switch; strobe-source if the beacon has power
-    if (getprop("/controls/lighting/strobe" ) and (bus_volts > 22) ) {
-        setprop("/systems/electrical/strobe-source", bus_volts);
-    } else {
-        setprop("/systems/electrical/strobe-source", 0);
-    }
-    if ( getprop("/controls/lighting/strobe-state/state") and getprop("/systems/electrical/strobe-source") ) {
-        setprop("/systems/electrical/outputs/strobe", bus_volts);
-        setprop("/systems/electrical/outputs/strobe-norm", (bus_volts/24));
+   # Strobe Lights Power
+    if ( getprop("controls/lighting/strobe-state/state" ) and (bus_volts > 22) and getprop("/systems/electrical/strobe-light-serviceable") ) {
+            setprop("/systems/electrical/outputs/strobe", bus_volts);
+	 setprop("/systems/electrical/outputs/strobe-norm", (bus_volts/24));
         load += bus_volts / 20;
-    } else {
+    }
+    else {
         setprop("/systems/electrical/outputs/strobe", 0.0);
-        setprop("/systems/electrical/outputs/strobe-norm", 0.0);
+	setprop("/systems/electrical/outputs/strobe-norm", 0.0);
     }
 
     

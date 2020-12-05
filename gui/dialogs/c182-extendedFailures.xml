@@ -306,15 +306,49 @@
         <row>13</row>
         <col>0</col>
         <halign>right</halign>
-        <label>Cabin lights</label>
+        <label>Nav lights</label>
       </text>
       <checkbox>
         <row>13</row>
         <col>1</col>
-        <property>/sim/failure-manager/lighting/cabin/serviceable</property>
+        <property>/sim/failure-manager/lighting/nav-light/serviceable</property>
       </checkbox>
       <input>
         <row>13</row>
+        <col>2</col>
+        <property>/sim/failure-manager/lighting/nav-light/mtbf</property>
+      </input>
+      
+      <text>
+        <row>14</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Strobe lights</label>
+      </text>
+      <checkbox>
+        <row>14</row>
+        <col>1</col>
+        <property>/sim/failure-manager/lighting/strobe-light/serviceable</property>
+      </checkbox>
+      <input>
+        <row>14</row>
+        <col>2</col>
+        <property>/sim/failure-manager/lighting/strobe-light/mtbf</property>
+      </input>
+      
+      <text>
+        <row>15</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Cabin lights</label>
+      </text>
+      <checkbox>
+        <row>15</row>
+        <col>1</col>
+        <property>/sim/failure-manager/lighting/cabin/serviceable</property>
+      </checkbox>
+      <input>
+        <row>15</row>
         <col>2</col>
         <property>/sim/failure-manager/lighting/cabin/mtbf</property>
       </input>

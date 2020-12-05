@@ -63,13 +63,63 @@
             <tag>ifr</tag>
             <tag>high-wing</tag>
         </tags>
-    <minimum-fg-version>2017.3.1</minimum-fg-version>
+    <minimum-fg-version>2018.3.0</minimum-fg-version>
     <rating>
       <FDM type="int">5</FDM>
       <systems type="int">5</systems>
       <model type="int">5</model>
       <cockpit type="int">5</cockpit>
     </rating>
+    
+    <authors>
+        <author n="0">
+            <name>Heiko Schulz</name>
+            <nick>HHS81</nick>
+            <description>3D model, fdm, programming, textures, bug tracking, testing</description>
+        </author>
+        <author n="1">
+            <name>Gilberto Agostinho</name>
+            <description>textures, xml, bug tracking, testing</description>
+            <nick>gsagostinho</nick>
+        </author>
+        <author n="2">
+            <nick>onox</nick>
+            <description>advice, nasal-scripts, testing</description>
+        </author>
+        <author n="3">
+            <name>Wayne Bragg</name>
+            <description>rain effect, advice</description>
+            <nick>wlbragg</nick>
+        </author>
+        <author n="4">
+            <name>Ron Jensen</name>
+            <nick>jentron</nick>
+        </author>
+        <author n="5">
+            <name>Stuart Buchanan</name>
+        </author>
+        <author n="6">
+            <name>David Megginson</name>
+        </author>
+        <author n="7">
+            <name>Benedikt Hallinger</name>
+            <description>fuel/oil system, custom registration livery, checklists, save-state, failures, cockpit/avionics improvements and many more small additions</description>
+            <nick>Beni</nick>
+        </author>
+    </authors>
+
+    <maintainers>
+        <maintainer n="0">
+            <name>Heiko Schulz</name>
+        </maintainer>
+    </maintainers>
+    
+    <urls>
+        <home-page>http://wiki.flightgear.org/Cessna_182S</home-page>
+        <support>https://forum.flightgear.org/viewtopic.php?f=4&amp;t=28475</support>
+        <wikipedia>https://en.wikipedia.org/wiki/Cessna_182_Skylane</wikipedia>
+        <code-repository>https://github.com/HHS81/c182s</code-repository>
+    </urls>
 
   <flight-model>jsb</flight-model>
   <aero>c182s</aero>
@@ -670,18 +720,69 @@
 
         <menubar include="gui/dialogs/c182s-menu.xml"/>
 
-        <!-- Splash screens. One is randomly chosen when FlightGear starts -->
-        <startup>
-            <splash-texture>Aircraft/c182s/splash1.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash2.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash3.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash4.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash5.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash6.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash7.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash8.png</splash-texture>
-            <splash-texture>Aircraft/c182s/splash9.png</splash-texture>
-        </startup>
+       <!-- Splash screens. One is randomly chosen when FlightGear starts -->
+        <previews>
+            <preview>
+                <type>cockpit</type>
+                <path>Previews/cockpit_c182s-1.png</path>
+                <splash type="bool">true</splash>
+            </preview>
+            <preview>
+                <type>cockpit</type>
+                <path>Previews/cockpit_c182s-2.png</path>
+                <splash type="bool">true</splash>
+            </preview>
+            <preview>
+                <type>exterior</type>
+                <path>Previews/exterior1.jpg</path>
+                <splash type="bool">true</splash>
+            </preview>
+            <preview>
+                <type>exterior</type>
+                <path>Previews/exterior2.jpg</path>
+                <splash type="bool">true</splash>
+            </preview>
+            <preview>
+                <type>exterior</type>
+                <path>Previews/splash1.png</path>
+                <splash type="bool">true</splash>
+            </preview>
+            <preview>
+                <type>exterior</type>
+                <path>Previews/splash2.png</path>
+                <splash type="bool">true</splash>
+            </preview>
+            <preview>
+                <type>exterior</type>
+                <path>Previews/splash3.png</path>
+                <splash type="bool">true</splash>
+            </preview>
+            <preview>
+                <type>exterior</type>
+                <path>Previews/splash4.png</path>
+                <splash type="bool">true</splash>
+            </preview>
+            <preview>
+                <type>exterior</type>
+                <path>Previews/splash5.png</path>
+                <splash type="bool">true</splash>
+            </preview>
+            <preview>
+                <type>exterior</type>
+                <path>Previews/splash6.png</path>
+                <splash type="bool">true</splash>
+            </preview>
+            <preview>
+                <type>exterior</type>
+                <path>Previews/splash7.png</path>
+                <splash type="bool">true</splash>
+            </preview>
+            <preview>
+                <type>exterior</type>
+                <path>Previews/splash8.png</path>
+                <splash type="bool">true</splash>
+            </preview>
+        </previews>
 
         <!-- Fix scrolling direction of knobs -->
         <mouse>

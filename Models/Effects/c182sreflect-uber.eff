@@ -35,11 +35,11 @@
 		
 			<reflection-enabled type="int">1</reflection-enabled>
 			<reflect-map-enabled type="int">1</reflect-map-enabled>
-			<reflection-correction type="float"><use>/sim/rendering/refl_correction</use></reflection-correction>
-			<reflection-fresnel-factor type="float"><use>/sim/rendering/fresnel-factor</use></reflection-fresnel-factor>
-			<reflection-type type="int"><use>/sim/rendering/refl-type</use></reflection-type>
+			<reflection-correction type="float"><use>sim/multiplay/generic/float[30]</use></reflection-correction>
+			<reflection-fresnel-factor type="float"><use>sim/multiplay/generic/float[31]</use></reflection-fresnel-factor>
+			<reflection-type type="int"><use>sim/multiplay/generic/float[32]</use></reflection-type>
 			<reflection-dynamic type="int">1</reflection-dynamic>
-			<ambient-correction type="float"><use>/sim/rendering/ambient_correction</use></ambient-correction>
+			<ambient-correction type="float"><use>sim/multiplay/generic/float[33]</use></ambient-correction>
 			<texture n="4">
         <image>Aircraft/c182s/Models/Effects/greymap.png</image>
         <filter>linear-mipmap-linear</filter>

@@ -780,4 +780,11 @@ setlistener("/sim/signals/fdm-initialized", func {
         settimer(func(){ setprop("/sim/chocks003/enable", 1);}, 0.25);
     }
 
+    # Reapply pitot cover so jsbsim has a chance to set the ASI to 0 when parked
+    # (jsbsim needs a brief time to stabilize the values)
+    if (getprop("/sim/model/c182s/securing/pitot-cover-visible")) {
+        setprop("/sim/model/c182s/securing/pitot-cover-visible", 0);
+        settimer(func(){ setprop("/sim/model/c182s/securing/pitot-cover-visible", 1);}, 0.25);
+    }
+
 });

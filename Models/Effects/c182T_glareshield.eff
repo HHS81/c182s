@@ -23,12 +23,12 @@
     <texture n="4">
       <type>cubemap</type>
       <images>
-        <positive-x>Models/Effects/004.png</positive-x>
-        <negative-x>Models/Effects/002.png</negative-x>
-        <positive-y>Models/Effects/001.png</positive-y>
-        <negative-y>Models/Effects/003.png</negative-y>
-        <positive-z>Models/Effects/006.png</positive-z>
-        <negative-z>Models/Effects/005.png</negative-z>
+        <positive-x>Aircraft/c182s/Models/Effects/004.png</positive-x>
+        <negative-x>Aircraft/c182s/Models/Effects/002.png</negative-x>
+        <positive-y>Aircraft/c182s/Models/Effects/001.png</positive-y>
+        <negative-y>Aircraft/c182s/Models/Effects/003.png</negative-y>
+        <positive-z>Aircraft/c182s/Models/Effects/006.png</positive-z>
+        <negative-z>Aircraft/c182s/Models/Effects/005.png</negative-z>
       </images>
     </texture> 
     <opacity-cube-center type="vec3d" n="0"> 0.5 0.0 0.3</opacity-cube-center>

@@ -2,7 +2,7 @@
 
 <PropertyList>
 
- <path>Models/interior-model-c182t.ac</path>
+ <path>Aircraft/c182s/Models/interior-model-c182t.ac</path>
  <offsets>
    <pitch-deg>0.0</pitch-deg>
    <z-m> -0.0 </z-m>

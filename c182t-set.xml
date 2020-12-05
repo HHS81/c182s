@@ -70,13 +70,67 @@
       <model type="int">5</model>
       <cockpit type="int">4</cockpit>
     </rating>
+    
+    <authors>
+        <author n="0">
+            <name>Heiko Schulz</name>
+            <nick>HHS81</nick>
+            <description>3D model, fdm, programming, textures, bug tracking, testing</description>
+        </author>
+        <author n="1">
+            <name>Gilberto Agostinho</name>
+            <description>textures, xml, bug tracking, testing</description>
+            <nick>gsagostinho</nick>
+        </author>
+        <author n="2">
+            <nick>onox</nick>
+            <description>advice, nasal-scripts, testing</description>
+        </author>
+        <author n="3">
+            <name>Wayne Bragg</name>
+            <description>rain effect, advice</description>
+            <nick>wlbragg</nick>
+        </author>
+        <author n="4">
+            <name>Ron Jensen</name>
+            <nick>jentron</nick>
+        </author>
+        <author n="5">
+            <name>Stuart Buchanan</name>
+            <description>Glass Cockpit</description>
+        </author>
+        <author n="6">
+            <name>David Megginson</name>
+        </author>
+        <author n="7">
+            <name>Benedikt Hallinger</name>
+            <description>fuel/oil system, custom registration livery, checklists, save-state, failures, cockpit/avionics improvements and many more small additions</description>
+            <nick>Beni</nick>
+        </author>
+    </authors>
+
+    <maintainers>
+        <maintainer n="0">
+            <name>Heiko Schulz</name>
+        </maintainer>
+        <maintainer n="0">
+            <name>Stuart Buchanan</name>
+        </maintainer>
+    </maintainers>
+    
+    <urls>
+        <home-page>http://wiki.flightgear.org/Cessna_182T</home-page>
+        <support>https://forum.flightgear.org/viewtopic.php?f=4&amp;t=34571&amp;</support>
+        <wikipedia>https://en.wikipedia.org/wiki/Cessna_182_Skylane</wikipedia>
+        <code-repository>https://github.com/HHS81/c182s</code-repository>
+    </urls>
 
   <flight-model>jsb</flight-model>
   <aero>c182s</aero>
 
   <aircraft-class type="string">ga</aircraft-class>
   <aircraft-operator type="string">NONE</aircraft-operator>
-
+  
   <checklists include="c182t-checklists.xml"/>
 
   <!-- Overlays (called with "state" command line option) -->
@@ -167,9 +221,50 @@
    <visibility archive="y">false</visibility>
   </panel>
 
+  <multiplay>
+    <generic>
+      <float n="0" alias="/sim/model/door-positions/DoorL/position-norm-effective"/>
+      <float n="1" alias="/sim/model/door-positions/DoorR/position-norm-effective"/>
+      <float n="2" alias="/sim/model/door-positions/WindowL/position-norm"/>
+      <float n="3" alias="/sim/model/door-positions/WindowR/position-norm"/>
+      <float n="4" alias="/sim/model/door-positions/BaggageDoor/position-norm-effective"/>
+
+      <float n="5" alias="/systems/electrical/outputs/landing-lights"/>
+      <float n="6" alias="/systems/electrical/outputs/taxi-light"/>
+      <float n="7" alias="/systems/electrical/strobe-source"/>
+      <float n="8" alias="/systems/electrical/beacon-source"/>
+      <float n="9" alias="/systems/electrical/outputs/nav-lights"/>
+
+      <float n="10" alias="/fdm/jsbsim/propulsion/engine[0]/cowl-flaps-norm"/>
+
+      <!-- Damage -->
+      <float n="11" alias="/fdm/jsbsim/gear/unit[0]/z-position"/>
+      <float n="12" alias="/fdm/jsbsim/gear/unit[1]/z-position"/>
+      <float n="13" alias="/fdm/jsbsim/gear/unit[2]/z-position"/>
+      <float n="14" alias="/engines/engine/crashed"/>
+      <!-- Not animated yet
+      <float n="xx" alias="/fdm/jsbsim/wing-damage/left-wing"/>
+      <float n="xx" alias="/fdm/jsbsim/wing-damage/right-wing"/>
+      -->
+
+      <float n="30" alias="/sim/rendering/refl_correction"/>
+      <float n="31" alias="/sim/rendering/fresnel-factor"/>
+      <float n="32" alias="/sim/rendering/refl-type"/>
+      <float n="33" alias="/sim/rendering/ambient_correction"/>
+
+      <!-- Registration number over MP -->
+      <string n="0" alias="/sim/model/immat"/>
+
+      <bool n="0" alias="/sim/model/c182s/nw_fairing"/>
+      <bool n="1" alias="/sim/model/c182s/mw_fairing"/>
+
+    </generic>
+  </multiplay>
+
   <model>
    <path archive="y">Aircraft/c182s/Models/c182t.xml</path>
-    <hide-yoke>false</hide-yoke>
+   <fallback-model-index>3</fallback-model-index>
+   <hide-yoke>false</hide-yoke>
 
     <icing>
        <iceable>
@@ -577,7 +672,7 @@
 
 
   <help>
-   <title>Cessna 182S</title>
+   <title>Cessna 182T</title>
    <line>Velocities</line>
    <line>  Va1 (maneuvering)   : 110 KIAS</line>
    <line>  Vno (max cruise)    : 140 KIAS</line>
@@ -708,6 +803,13 @@
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>
             <path>/engines/engine/winter-kit-installed</path>
+
+            <path>/fdm/jsbsim/settings/damage</path>
+            <path>/fdm/jsbsim/gear/unit[0]/broken-saved</path> <!-- nose gear -->
+            <path>/fdm/jsbsim/gear/unit[1]/broken-saved</path> <!-- left main gear -->
+            <path>/fdm/jsbsim/gear/unit[2]/broken-saved</path> <!-- right main gear -->
+            <path>/fdm/jsbsim/wing-damage/left-wing-saved</path>
+            <path>/fdm/jsbsim/wing-damage/right-wing-saved</path>
 
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
@@ -1169,8 +1271,13 @@
     <file>Aircraft/c182s/Nasal/c182s-states.nas</file>
     <file>Aircraft/c182s/Nasal/flashlight.nas</file>
     <file>Aircraft/c182s/Nasal/annunciator_panel.nas</file>
+    <file>Aircraft/c182s/Nasal/damage.nas</file>
     <file>Aircraft/c182s/Nasal/c182t.nas</file>
 </c182s>
+
+    <terrain>
+        <file>Aircraft/c182s/Nasal/terrain.nas</file>
+    </terrain>
 
 <davtron803>
     <file>Aircraft/c182s/Nasal/davtron803.nas</file>

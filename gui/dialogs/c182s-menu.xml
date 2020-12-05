@@ -5,7 +5,7 @@
     <default>
 
         <menu n="10">
-            <label>Cessna C182S</label>
+            <label>Cessna C182</label>
             <enabled type="bool">true</enabled>
 
 <item>

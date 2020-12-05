@@ -311,6 +311,16 @@ customFailures_c182common = [
         trigger:  MtbfTrigger.new(0),
     },
     
+    {id:"lighting/nav-light",    name:"Nav lights",
+        actuator: set_unserviceable_abs("/systems/electrical/nav-light-serviceable"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"lighting/strobe-light",    name:"Strobe lights",
+        actuator: set_unserviceable_abs("/systems/electrical/strobe-light-serviceable"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
     {id:"lighting/instruments",    name:"instruments/radio light",
         actuator: set_unserviceable_abs("/systems/electrical/instrument-light-serviceable"),
         trigger:  MtbfTrigger.new(0),

@@ -250,6 +250,10 @@ var checklist_beforeEngineStart = func() {
 # State settings   #
 ####################
 
+var state_saved = func() {
+    # Basically: do nothing, flightgear already has initialized everything from the savefile
+};
+
 var state_coldAndDark = func() {
     repair_damage();
     checklist_afterLanding();
@@ -334,8 +338,9 @@ var applyAircraftState = func() {
         }
     }
     if (selected_state == "saved") {
-        # do nothing, flightgear already has initialized everything
+        # saved state
         print("Apply state: saved");
+        state_saved();
     }
     if (selected_state == "cold-and-dark") {
         print("Apply state: Cold-and-Dark");

@@ -192,7 +192,7 @@
             <volume>
                 <property>velocities/groundspeed-kt</property>
                 <type>log</type>
-                <factor>0.25</factor>
+                <factor>0.5</factor>
             </volume>
             <volume>
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
@@ -200,6 +200,78 @@
             <reference-dist>2.5</reference-dist>
             <max-dist>200.0</max-dist>
         </rumble-scratch>
+        
+           <wing-collapse-left>
+            <name>wing-collapse-left</name>
+            <mode>once</mode>
+            <path>Sounds/damage.wav</path>
+            <condition>
+                    <property>/fdm/jsbsim/wing-damage/left-wing</property>
+            </condition>
+            <position>
+                <x>0.5</x>
+                <y>6.0</y>
+                <z>1</z>
+            </position>
+            <volume>
+                <property>velocities/groundspeed-kt</property>
+                <type>log</type>
+                <factor>0.5</factor>
+            </volume>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <reference-dist>2.5</reference-dist>
+            <max-dist>200.0</max-dist>
+        </wing-collapse-left>
+        
+          <wing-collapse-right>
+            <name>wing-collapse-right</name>
+            <mode>once</mode>
+            <path>Sounds/damage.wav</path>
+            <condition>
+                    <property>/fdm/jsbsim/wing-damage/right-wing</property>
+            </condition>
+            <position>
+                <x>0.5</x>
+                <y>-6.0</y>
+                <z>1</z>
+            </position>
+            <volume>
+                <property>velocities/groundspeed-kt</property>
+                <type>log</type>
+                <factor>0.5</factor>
+            </volume>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <reference-dist>2.5</reference-dist>
+            <max-dist>200.0</max-dist>
+        </wing-collapse-right>
+        
+                  <crash>
+            <name>crash</name>
+            <mode>once</mode>
+            <path>Sounds/crash.wav</path>
+            <condition>
+                    <property>/fdm/jsbsim/crash</property>
+            </condition>
+            <position>
+                <x>0.0</x>
+                <y>0</y>
+                <z>0</z>
+            </position>
+            <volume>
+                <property>velocities/groundspeed-kt</property>
+                <type>log</type>
+                <factor>0.5</factor>
+            </volume>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <reference-dist>2.5</reference-dist>
+            <max-dist>200.0</max-dist>
+        </crash>
 
 
 

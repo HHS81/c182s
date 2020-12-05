@@ -92,3 +92,19 @@ setlistener("/instrumentation/comm[0]/volume", func(node) {
 setlistener("/instrumentation/comm[1]/volume", func(node) {
     if (node.getValue() > 0) setprop(node.getPath() ~ "-selected", node.getValue());
 }, 1, 0);
+
+# Enable exclusive use of COM1Mic or COM2Mic (manual p. 98)
+setlistener("/instrumentation/audio-panel/com-mic[0]", func(node) {
+    if (node.getValue()) {
+        setprop("/instrumentation/audio-panel/com[0]", 1);
+        setprop("/instrumentation/audio-panel/com[1]", 0);
+        setprop("/instrumentation/audio-panel/com-mic[1]", 0);
+    }
+}, 1, 0);
+setlistener("/instrumentation/audio-panel/com-mic[1]", func(node) {
+    if (node.getValue()) {
+        setprop("/instrumentation/audio-panel/com[1]", 1);
+        setprop("/instrumentation/audio-panel/com[0]", 0);
+        setprop("/instrumentation/audio-panel/com-mic[0]", 0);
+    }
+}, 1, 0);

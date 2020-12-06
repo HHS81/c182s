@@ -679,6 +679,25 @@ var RL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("contro
 	if (getprop("/systems/electrical/outputs/radio-lights-norm") >1.0){
 	setprop("/systems/electrical/outputs/radio-lights-norm", 1.0)};
 
+# Control the backlighting of the bezel based on the avionics light knob
+var FG1000_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("/controls/lighting/avionics-lights-norm"));
+    if (getprop("/systems/electrical/outputs/ecrf") > 5.0) {
+      setprop("/instrumentation/FG1000/Lightmap", FG1000_DIMMER/28);
+      
+      # Used from GMA audio panel
+      # TODO: The panel does not support proper lighting right now.
+      #setprop("/controls/lighting/floods-lights", FG1000_DIMMER/28);
+      #setprop("/controls/lighting/instrument-lights", FG1000_DIMMER/28);
+      
+      load += FG1000_DIMMER/28
+    } else {
+      setprop("/instrumentation/FG1000/Lightmap", 0.0);
+      
+      # Used from GMA audio panel
+      # TODO: The panel does not support proper lighting right now.
+      #setprop("/controls/lighting/floods-lights", 0);
+      #setprop("/controls/lighting/instrument-lights", 0);
+    }
     
 
     # return cumulative load

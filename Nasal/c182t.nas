@@ -25,30 +25,18 @@ fg1000system.display(2);
 setlistener("/systems/electrical/outputs/fg1000-pfd", func(n) {
     if (n.getValue() > 0) {
       fg1000system.show(1);
-      setprop("/instrumentation/FG1000/Lightmap", getprop("/controls/lighting/avionics-lights-norm"));
     } else {
       fg1000system.hide(1);
-      setprop("/instrumentation/FG1000/Lightmap", 0.0);
     }
 }, 0, 0);
 setlistener("/systems/electrical/outputs/fg1000-mfd", func(n) {
     if (n.getValue() > 0) {
       fg1000system.show(2);
-      setprop("/instrumentation/FG1000/Lightmap", getprop("/controls/lighting/avionics-lights-norm"));
     } else {
       fg1000system.hide(2);
-      setprop("/instrumentation/FG1000/Lightmap", 0.0);
     }
 }, 0, 0);
 
-# Control the backlighting of the bezel based on the avionics light knob
-setlistener("/controls/lighting/avionics-lights-norm", func(n) {
-    if (getprop("/systems/electrical/outputs/fg1000") > 5.0) {
-      setprop("/instrumentation/FG1000/Lightmap", n.getValue());
-    } else {
-      setprop("/instrumentation/FG1000/Lightmap", 0.0);
-    }
-}, 0, 0);
 
 
 #---------------------------------------------------------

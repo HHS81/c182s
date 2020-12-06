@@ -104,18 +104,40 @@
   
   <!-- OAT button -->
   <animation>
+    <type>translate</type>
+    <object-name>OAT.swt</object-name>
+    <property>/instrumentation/davtron803/oat-btn</property>
+    <factor>-0.003</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+  </animation>
+  <animation>
     <type>pick</type>
     <object-name>OAT.swt</object-name>
-    <condition>
-        <property>/instrumentation/clock/serviceable</property>
-        <greater-than>
-            <property>/systems/electrical/volts</property>
-            <value>0</value>
-        </greater-than>
-    </condition>
+    <object-name>OAT.swt.cs</object-name>
     <action>
         <button>0</button>
         <binding>
+            <command>property-toggle</command>
+            <property>/instrumentation/davtron803/oat-btn</property>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>property-toggle</command>
+            <property>/instrumentation/davtron803/oat-btn</property>
+            </binding>
+        </mod-up>
+        <binding>
+            <condition>
+                <property>/instrumentation/clock/serviceable</property>
+                <greater-than>
+                    <property>/systems/electrical/volts</property>
+                    <value>0</value>
+                </greater-than>
+            </condition>
             <command>property-cycle</command>
             <property>/instrumentation/davtron803/top-mode</property>
             <value type="string">E</value>
@@ -129,40 +151,44 @@
     <object-name>OAT.swt.cs</object-name>
     <visible>false</visible>
     <nopreview/>
-    <condition>
-        <property>/instrumentation/clock/serviceable</property>
-        <greater-than>
-            <property>/systems/electrical/volts</property>
-            <value>0</value>
-        </greater-than>
-    </condition>
-    <action>
-        <button>0</button>
-        <binding>
-            <command>property-cycle</command>
-            <property>/instrumentation/davtron803/top-mode</property>
-            <value type="string">E</value>
-            <value type="string">F</value>
-            <value type="string">C</value>
-        </binding>
-    </action>
   </animation>
   
   <!-- Select button -->
   <animation>
+    <type>translate</type>
+    <object-name>Select.btn</object-name>
+    <property>/instrumentation/davtron803/select-btn</property>
+    <factor>-0.003</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+  </animation>
+  <animation>
     <type>pick</type>
     <object-name>Select.btn</object-name>
     <object-name>Select.btn.cs</object-name>
-    <condition>
-        <property>/instrumentation/clock/serviceable</property>
-        <greater-than>
-            <property>/systems/electrical/volts</property>
-            <value>0</value>
-        </greater-than>
-    </condition>
     <action>
         <button>0</button>
         <binding>
+            <command>property-toggle</command>
+            <property>/instrumentation/davtron803/select-btn</property>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>property-toggle</command>
+            <property>/instrumentation/davtron803/select-btn</property>
+            </binding>
+        </mod-up>
+        <binding>
+            <condition>
+                <property>/instrumentation/clock/serviceable</property>
+                <greater-than>
+                    <property>/systems/electrical/volts</property>
+                    <value>0</value>
+                </greater-than>
+            </condition>
             <command>property-cycle</command>
             <property>/instrumentation/davtron803/bot-mode</property>
             <value type="string">UT</value>
@@ -177,37 +203,39 @@
     <object-name>Select.btn.cs</object-name>
     <visible>false</visible>
     <nopreview/>
-    <condition>
-        <property>/instrumentation/clock/serviceable</property>
-        <greater-than>
-            <property>/systems/electrical/volts</property>
-            <value>0</value>
-        </greater-than>
-    </condition>
-    <action>
-        <button>0</button>
-        <binding>
-            <command>property-cycle</command>
-            <property>/instrumentation/davtron803/bot-mode</property>
-            <value type="string">UT</value>
-            <value type="string">LT</value>
-            <value type="string">FT</value>
-            <value type="string">ET</value>
-        </binding>
-    </action>
   </animation>
   
   <!-- Control button -->
   <animation>
+    <type>translate</type>
+    <object-name>Control.btn</object-name>
+    <property>/instrumentation/davtron803/control-btn</property>
+    <factor>-0.003</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+  </animation>
+  <animation>
     <type>pick</type>
     <object-name>Control.btn</object-name>
+    <object-name>Control.btn.cs</object-name>
     <action>
         <button>0</button>
+        <binding>
+            <command>property-toggle</command>
+            <property>/instrumentation/davtron803/control-btn</property>
+        </binding>
         <binding>
             <command>nasal</command>
             <script>davtron803.controlButtonPressed()</script>
         </binding>
         <mod-up>
+            <binding>
+                <command>property-toggle</command>
+                <property>/instrumentation/davtron803/control-btn</property>
+            </binding>
             <binding>
                 <command>nasal</command>
                 <script>davtron803.controlButtonReleased()</script>
@@ -215,25 +243,11 @@
         </mod-up>
     </action>
   </animation>
-  
   <animation>
     <type>pick</type>
     <object-name>Control.btn.cs</object-name>
     <visible>false</visible>
     <nopreview/>
-    <action>
-        <button>0</button>
-        <binding>
-            <command>nasal</command>
-            <script>davtron803.controlButtonPressed()</script>
-        </binding>
-        <mod-up>
-            <binding>
-                <command>nasal</command>
-                <script>davtron803.controlButtonReleased()</script>
-            </binding>
-        </mod-up>
-    </action>
   </animation>
   
   

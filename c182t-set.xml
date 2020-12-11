@@ -953,6 +953,8 @@
             <path>/sim/model/door-positions/WindowL/position-norm</path>
             <path>/sim/model/door-positions/WindowR/position-norm</path>
 
+            <path>/sim/model/c182s/cockpit/FrontSeatL-setting-m</path>
+
             <path>/controls/circuit-breakers/Flap</path>
             <path>/controls/circuit-breakers/Inst</path>
             <path>/controls/circuit-breakers/AVNBus1</path>

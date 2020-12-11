@@ -3213,4 +3213,49 @@
     </animation>
     <!-- MODEND -->
 
+    <!-- Adjust pilot seat position -->
+    <animation>
+        <type>translate</type>
+        <object-name>FrontSeat.L</object-name>
+        <property>/sim/model/c182s/cockpit/FrontSeatL-setting-m</property>
+        <factor>1</factor>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>slider</type>
+        <object-name>FrontSeat.L</object-name>
+        <visible>true</visible>
+        <drag-direction>vertical</drag-direction>
+        <condition>
+            <equals>
+                <property>/sim/current-view/view-number</property>
+                <value>0</value>
+            </equals>
+        </condition>
+        <increase>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.updateSeatPosition(0.05);</script>
+           </binding>
+        </increase>
+        <decrease>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.updateSeatPosition(-0.05);</script>
+           </binding>
+        </decrease>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Seat position: %s cm</label>
+                <tooltip-id>throttle</tooltip-id>
+                <property>sim/model/c182s/cockpit/FrontSeatL-setting-m</property>
+            </binding>
+        </hovered>
+    </animation>
+
 </PropertyList>

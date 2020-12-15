@@ -1,8 +1,8 @@
 
 var min_carrier_alt = 2;
 
-# Do terrain modelling ourselves.
-setprop("sim/fdm/surface/override-level", 1);
+# Do just enhance terrain modelling for detecting woods.
+setprop("sim/fdm/surface/override-level", 0);
 
 terrain_survol = func {
 

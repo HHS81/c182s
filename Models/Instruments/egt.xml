@@ -10,6 +10,7 @@
     <object-name>EGTNeedle</object-name>
     <object-name>CHTNeedle</object-name>
     <object-name>Bug</object-name>
+    <object-name>Knob</object-name>
   </effect>
     
     <animation>
@@ -147,6 +148,41 @@
   </animation>
 
   <animation>
+        <type>knob</type>
+        <object-name>Knob</object-name>
+        <property>engines/engine[0]/egt-bug-norm</property>
+        <factor>100.0</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+       <center>
+            <x-m>0.0056</x-m>
+            <y-m>-0.015521</y-m>
+            <z-m>0</z-m>
+        </center>
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>engines/engine[0]/egt-bug-norm</property>
+                <factor>0.01</factor>
+                <min>0.0</min>
+                <max>1.0</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>egt-bug-norm</tooltip-id>
+                <label>EGT Bug: %.2f</label>
+                <property>engines/engine[0]/egt-bug-norm</property>
+            </binding>
+        </hovered>
+    </animation>
+  
+  <animation>
     <type>knob</type>
     <object-name>Knob.Pick.L</object-name>
     <object-name>Knob.Pick.R</object-name>
@@ -155,7 +191,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-  <property>engines/engine[0]/egt-bug-norm</property>
+        <property>engines/engine[0]/egt-bug-norm</property>
         <factor>0.01</factor>
         <min>0.0</min>
         <max>1.0</max>
@@ -174,7 +210,7 @@
             <command>set-tooltip</command>
             <tooltip-id>egt-bug-norm</tooltip-id>
             <label>EGT Bug: %.2f</label>
-  <property>engines/engine[0]/egt-bug-norm</property>
+            <property>engines/engine[0]/egt-bug-norm</property>
         </binding>
     </hovered>
   </animation>

@@ -725,7 +725,7 @@
                 <label>Aircraft Failure Management</label>
                 <binding>
                     <command>dialog-show</command>
-                    <dialog-name>extended-failure-dialog-c182t</dialog-name>
+                    <dialog-name>extended-failure-dialog-c182s</dialog-name>
                 </binding>
               </item>
             </menu>

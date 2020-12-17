@@ -133,6 +133,29 @@
         </fcs_function>
 
  </channel>
+ 
+
+<channel name="sparkPlugs">
+    <!-- Calculates an approximated spark plug temperature -->
+    <!-- this is currently not really close, but we need it just for the spark plug icing for now.
+        the reasoning is: CHT is directly exposed to the combustion, thus heats very quickly.
+        We need however the temperature at the spark plug, which gets cooled indicrectly from the oil and
+        engine block, thus reacts slower to temperature changes (but quicker than the oil).
+    -->
+    <fcs_function name="/engines/engine/sparkplugs-temperature-degf">
+        <description>Simulates Spark plug temperature</description>
+        <function>
+            <quotient>
+                <sum>
+                    <property>/engines/engine/oil-final-temperature-degf</property>
+                    <property>/engines/engine/cht-compensated-temperature-degf</property>
+                </sum>
+                <value>2</value>
+            </quotient>
+        </function>
+    </fcs_function>
+
+</channel>
     
     <!-- Engine friction depending on Oil parameters
          with credits and many thanks to Ron Jensen: https://sourceforge.net/p/jsbsim/mailman/message/30264774/

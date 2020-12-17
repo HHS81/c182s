@@ -18,5 +18,6 @@
     <light-filter-one type="vec3d">0.5 0.5 0.5</light-filter-one>
     <light-filter-two type="vec3d">0.9 0.2 0.2</light-filter-two>
     <light-radius type="float">13</light-radius>
+    <shadow-mapping-enabled>true</shadow-mapping-enabled>
   </parameters>
 </PropertyList>

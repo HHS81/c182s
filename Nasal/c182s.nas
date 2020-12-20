@@ -813,3 +813,17 @@ setlistener("/sim/signals/fdm-initialized", func {
     }
 
 });
+
+# generate legacy author property (used by the about dialog)
+var authors = [];
+foreach (var author; props.globals.getNode("/sim/authors").getChildren()) {
+    var name = author.getNode("name");
+    var nick = author.getNode("description");
+    var desc = author.getNode("description");
+    if (name != nil) {
+        append(authors, name.getValue());
+    } else if (nick != nil) {
+       append(authors, nick.getValue());
+    }
+}
+setprop("/sim/author",string.join(", ", authors));

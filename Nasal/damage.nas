@@ -131,6 +131,7 @@ var repair_damage = func() {
 
     setprop("/engines/engine[0]/kill-engine", 0.0);
     setprop("/engines/engine[0]/crashed", 0.0);
+    setprop("/systems/fuel/engine-sparkplugs-iced", 0.0);
     electrical.reset_battery_and_circuit_breakers();
     FailureMgr.repair_all();
     for (var tankID=0; tankID <= 5; tankID = tankID+1) {

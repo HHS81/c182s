@@ -78,96 +78,62 @@
     <!-- Roll Axis Modes                                                 -->
     <!-- =============================================================== -->
 
-    <!-- Nav hold (NAV) Mode -->
-    <pid-controller>
+     <!-- Nav hold (NAV) Mode -->
+        
+    <filter>
         <name>Nav hold (NAV) Mode</name>
         <debug>false</debug>
-        <enable>
+                <enable>
             <property>/autopilot/KAP140/locks/nav-hold</property>
             <value type="bool">true</value>
         </enable>
+        <type>gain</type>
         <input>
-            <property>/instrumentation/nav/heading-needle-deflection</property>
+             <property>/instrumentation/nav/heading-needle-deflection</property>
         </input>
-        <reference>
-            <value>0.0</value>
-        </reference>
-        <output>
-            <property>/autopilot/KAP140/settings/target-intercept-angle</property>
-        </output>
-        <config>
-            <Kp>2.0</Kp> <!-- proportional gain -->
-            <beta>1.0</beta> <!-- input value weighing factor -->
-            <alpha>0.1</alpha> <!-- low pass filter weighing factor -->
-            <gamma>0.0</gamma> <!-- input value weighing factor for -->
-            <!-- unfiltered derivative error -->
-            <Ti>15.0</Ti> <!-- integrator time -->
-            <Td>0.0</Td> <!-- derivator time -->
-            <u_min>-45.0</u_min> <!-- minimum output clamp -->
-            <u_max>45.0</u_max> <!-- maximum output clamp -->
-        </config>
-    </pid-controller>
+        <output>/autopilot/KAP140/settings/target-intercept-angle</output>
+            <min>-45</min>
+            <max>45</max>
+        <gain>-18</gain>
+    </filter> 
 
     <!-- Approach hold (APR) Mode -->
-    <pid-controller>
+      
+<filter>
         <name>Approach hold (APR) Mode</name>
         <debug>false</debug>
         <enable>
             <property>/autopilot/KAP140/locks/apr-hold</property>
             <value type="bool">true</value>
         </enable>
+        <type>gain</type>
         <input>
-            <property>/instrumentation/nav/heading-needle-deflection</property>
+             <property>/instrumentation/nav/heading-needle-deflection</property>
         </input>
-        <reference>
-            <value>0.0</value>
-        </reference>
-        <output>
-            <property>/autopilot/KAP140/settings/target-intercept-angle</property>
-        </output>
-        <config>
-            <Kp>2.0</Kp> <!-- proportional gain -->
-            <beta>1.0</beta> <!-- input value weighing factor -->
-            <alpha>0.1</alpha> <!-- low pass filter weighing factor -->
-            <gamma>0.0</gamma> <!-- input value weighing factor for -->
-            <!-- unfiltered derivative error -->
-            <Ti>15.0</Ti> <!-- integrator time -->
-            <Td>0.001</Td> <!-- derivator time -->
-            <u_min>-45.0</u_min> <!-- minimum output clamp -->
-            <u_max>45.0</u_max> <!-- maximum output clamp -->
-        </config>
-    </pid-controller>
+        <output>/autopilot/KAP140/settings/target-intercept-angle</output>
+            <min>-45</min>
+            <max>45</max>
+        <gain>-18</gain>
+    </filter> 
 
     <!-- Backcourse hold (REV) Mode -->
-    <pid-controller>
+   
+<filter>
         <name>Backcourse hold (REV) Mode</name>
         <debug>false</debug>
         <enable>
             <property>/autopilot/KAP140/locks/rev-hold</property>
             <value type="bool">true</value>
         </enable>
+        <type>gain</type>
         <input>
-            <property>/instrumentation/nav/heading-needle-deflection</property>
-            <scale>-1.0</scale>
+             <property>/instrumentation/nav/heading-needle-deflection</property>
         </input>
-        <reference>
-            <value>0.0</value>
-        </reference>
-        <output>
-            <property>/autopilot/KAP140/settings/target-intercept-angle</property>
-        </output>
-        <config>
-            <Kp>2.0</Kp> <!-- proportional gain -->
-            <beta>1.0</beta> <!-- input value weighing factor -->
-            <alpha>0.1</alpha> <!-- low pass filter weighing factor -->
-            <gamma>0.0</gamma> <!-- input value weighing factor for -->
-            <!-- unfiltered derivative error -->
-            <Ti>15.0</Ti> <!-- integrator time -->
-            <Td>0.0</Td> <!-- derivator time -->
-            <u_min>-45.0</u_min> <!-- minimum output clamp -->
-            <u_max>45.0</u_max> <!-- maximum output clamp -->
-        </config>
-    </pid-controller>
+        <output>/autopilot/KAP140/settings/target-intercept-angle</output>
+            <min>-45</min>
+            <max>45</max>
+        <gain>18</gain>
+    </filter> 
 
     <!-- Heading Select (HDG) Mode -->
     <pid-controller>

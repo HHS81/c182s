@@ -12,7 +12,7 @@
 
   <path>hi.ac</path>
 
-  <effect>
+ <!-- <effect>
     <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
     <object-name>fond</object-name>
     <object-name>face</object-name>
@@ -24,7 +24,7 @@
     <object-name>Hdg-Knob</object-name>
     <object-name>clic-bug-L</object-name>
     <object-name>clic-bug-R</object-name>
-  </effect>
+  </effect>-->
 
   <animation>
     <object-name>fond</object-name>

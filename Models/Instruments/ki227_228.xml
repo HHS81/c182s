@@ -15,13 +15,13 @@
     <indicated-heading>instrumentation/heading-indicator/indicated-heading-deg</indicated-heading>
   </params>
 
-  <effect>
+  <!--<effect>
     <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
     <object-name>CompassRose</object-name>
     <object-name>KI227.ADFNeedle</object-name>
     <object-name>Marker</object-name>
     <object-name>HDGSelector</object-name>
-  </effect>
+  </effect>-->
 
   <animation>
     <type>noshadow</type>

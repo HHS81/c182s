@@ -26,7 +26,7 @@
 <PropertyList>
   <path>gma340.ac</path>
 
-  <effect>
+  <!--<effect>
     <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
     <object-name>gma340.Chassis</object-name>
     <object-name>gma340.Knob.Left</object-name>
@@ -34,7 +34,7 @@
     <object-name>gma340.Marker.O</object-name>
     <object-name>gma340.Marker.M</object-name>
     <object-name>gma340.Marker.I</object-name>
-  </effect>
+  </effect>-->
 
   <animation>
     <type>noshadow</type>

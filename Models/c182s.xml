@@ -2336,6 +2336,7 @@
         <object-name>beaconlight</object-name>
 	<condition>
 	<property>controls/lighting/beacon-state/state</property>
+	<property>systems/electrical/outputs/beacon</property>
 	</condition>
 </animation>
  

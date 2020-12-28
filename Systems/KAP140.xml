@@ -7,6 +7,13 @@
 
 <PropertyList>
 
+<filter>
+  <type>moving-average</type>
+  <samples>120</samples>
+  <input>/instrumentation/nav/heading-needle-deflection</input>
+  <output>/instrumentation/nav/heading-needle-deflection-filter</output>
+</filter>
+
     <filter>
         <name>heading bug backcourse</name>
         <debug>false</debug>
@@ -80,7 +87,7 @@
 
      <!-- Nav hold (NAV) Mode -->
         
-    <filter>
+  <filter>
         <name>Nav hold (NAV) Mode</name>
         <debug>false</debug>
                 <enable>
@@ -89,13 +96,16 @@
         </enable>
         <type>gain</type>
         <input>
-             <property>/instrumentation/nav/heading-needle-deflection</property>
+             <property>/instrumentation/nav/heading-needle-deflection-filter</property>
         </input>
         <output>/autopilot/KAP140/settings/target-intercept-angle</output>
             <min>-45</min>
             <max>45</max>
         <gain>-18</gain>
-    </filter> 
+    </filter>
+    
+
+	
 
     <!-- Approach hold (APR) Mode -->
       
@@ -108,7 +118,7 @@
         </enable>
         <type>gain</type>
         <input>
-             <property>/instrumentation/nav/heading-needle-deflection</property>
+             <property>/instrumentation/nav/heading-needle-deflection-filter</property>
         </input>
         <output>/autopilot/KAP140/settings/target-intercept-angle</output>
             <min>-45</min>
@@ -127,7 +137,7 @@
         </enable>
         <type>gain</type>
         <input>
-             <property>/instrumentation/nav/heading-needle-deflection</property>
+             <property>/instrumentation/nav/heading-needle-deflection-filter</property>
         </input>
         <output>/autopilot/KAP140/settings/target-intercept-angle</output>
             <min>-45</min>
@@ -181,7 +191,7 @@
             <property>/autopilot/KAP140/settings/target-turn-rate</property>
         </reference>
         <output>
-            <property>/controls/flight/aileron</property>
+            <property>/controls/flight/aileron-cmd</property>
         </output>
         <config>
             <Kp>0.15</Kp> <!-- proportional gain -->
@@ -195,6 +205,23 @@
             <u_max>0.25</u_max> <!-- maximum output clamp -->
         </config>
     </pid-controller>
+    
+ <filter>
+    <name>SERVO-DRIVER:aileron</name>
+    <debug>false</debug>
+    <feedback-if-disabled>true</feedback-if-disabled>
+    <initialize-to>output</initialize-to>
+        <enable>
+            <property>/autopilot/KAP140/locks/roll-axis</property>
+            <value type="bool">true</value>
+        </enable>
+        <input>
+            <property>/controls/flight/aileron-cmd</property>
+        </input>
+    <output>controls/flight/aileron</output>
+    <type>noise-spike</type>
+    <max-rate-of-change>0.167</max-rate-of-change> <!-- 12 seconds for full travel -->
+  </filter>
 
     <!-- =============================================================== -->
     <!-- Pitch Axis Modes                                                -->
@@ -314,7 +341,7 @@
             <property>/autopilot/KAP140/settings/target-pressure-rate</property>
         </reference>
         <output>
-            <property>/controls/flight/elevator</property>
+            <property>/controls/flight/elevator-cmd</property>
         </output>
         <config>
             <Kp>5.0</Kp> <!-- proportional gain -->
@@ -328,5 +355,22 @@
             <u_max>0.5</u_max> <!-- maximum output clamp -->
         </config>
     </pid-controller>
+    
+ <filter>
+    <name>SERVO-DRIVER:elevator</name>
+    <debug>false</debug>
+    <feedback-if-disabled>true</feedback-if-disabled>
+    <initialize-to>output</initialize-to>
+        <enable>
+            <property>/autopilot/KAP140/locks/pitch-axis</property>
+            <value type="bool">true</value>
+        </enable>
+        <input>
+            <property>/controls/flight/elevator-cmd</property>
+        </input>
+    <output>controls/flight/elevator</output>
+    <type>noise-spike</type>
+    <max-rate-of-change>0.0769</max-rate-of-change> <!-- 26 seconds for full travel ??-->
+  </filter>
 
 </PropertyList>

@@ -326,7 +326,36 @@
                 <empty><stretch>true</stretch></empty> <!-- force group to the left -->
             </group>
             
+            <group>
+                <layout>hbox</layout>
+                <!-- Small left padding -->
+                <group>
+                    <layout>vbox</layout>
+                    <padding>6</padding>
+                </group>
+
+                <group>
+                    <layout>hbox</layout>
+                    <checkbox>
+                        <halign>left</halign>
+                        <label>  Allow Spark plug icing</label>
+                        <property>/engines/engine/allow-sparkplug-icing</property>
+                        <live>true</live>
+                        <enable>
+                            <and>
+                                <property>/engines/engine/complex-engine-procedures</property>
+                            </and>
+                        </enable>
+                        <binding>
+                            <command>dialog-apply</command>
+                        </binding>
+                    </checkbox>
+                </group>
                 
+                <empty><stretch>true</stretch></empty> <!-- force group to the left -->
+            </group>
+            
+            
         </group>
         
         <checkbox>

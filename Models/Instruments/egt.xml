@@ -10,14 +10,15 @@
     <object-name>EGTNeedle</object-name>
     <object-name>CHTNeedle</object-name>
     <object-name>Bug</object-name>
-  </effect>-->
+    <object-name>Knob</object-name>
+  </effect>
+-->
     
     <animation>
         <type>material</type>
         <object-name>Face</object-name>
         <object-name>EGTNeedle</object-name>
         <object-name>CHTNeedle</object-name>
-        <object-name>Bug</object-name>
   <emission>
    <red>1.0</red>
    <green>0.8</green>
@@ -45,7 +46,36 @@
             <blue>  0 </blue>
         </shininess>
     </animation>
-    
+    <animation>
+        <type>material</type>
+        <object-name>Bug</object-name>
+        <emission>
+            <red>1.0</red>
+            <green>0.8</green>
+            <blue>0.4</blue>
+            <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
+        </emission>
+        <specular>
+            <red>   0.0 </red>
+            <green> 0.0 </green>
+            <blue>  0.0 </blue>
+        </specular>
+        <ambient>
+            <red>   1 </red>
+            <green> 1 </green>
+            <blue>  0 </blue>
+        </ambient>
+        <diffuse>
+            <red>   0.3 </red>
+            <green> 0.3 </green>
+            <blue>  0.3 </blue>
+        </diffuse>
+        <shininess>
+            <red>   0 </red>
+            <green> 0 </green>
+            <blue>  0 </blue>
+        </shininess>
+    </animation>
     
 
     <animation>
@@ -53,13 +83,14 @@
   <object-name>EGTNeedle</object-name>
   <property>engines/engine/indicated-egt-degf</property>
   <interpolation>
-   <entry><ind>  0.0</ind><dep>0 </dep></entry>     
-   <entry><ind>1250</ind><dep> -11.0 </dep></entry>     
-   <entry><ind> 1300</ind><dep> -33.40 </dep></entry>     
-   <entry><ind> 1400</ind><dep>  -56.41</dep></entry>     
-   <entry><ind> 1500</ind><dep>  -79.50 </dep></entry>     
-   <entry><ind> 1600</ind><dep> -102.50 </dep></entry> 
-   <entry><ind> 1650</ind><dep> -113.94 </dep></entry>       
+    <entry><ind>  0.0 </ind><dep>    0.00 </dep></entry>
+    <entry><ind> 1250 </ind><dep>  -11.50 </dep></entry> <!-- start of scale -->
+    <entry><ind> 1300 </ind><dep>  -25.50 </dep></entry>
+    <entry><ind> 1400 </ind><dep>  -54.70 </dep></entry>
+    <entry><ind> 1500 </ind><dep>  -84.30 </dep></entry>
+    <entry><ind> 1600 </ind><dep> -113.00 </dep></entry>
+    <entry><ind> 1650 </ind><dep> -127.50 </dep></entry> <!-- end of scale -->
+    <entry><ind> 1700 </ind><dep> -136.00 </dep></entry>
   </interpolation>
   <axis>
    <x>-1</x>
@@ -77,14 +108,14 @@
         <type>rotate</type>
         <object-name>CHTNeedle</object-name>
   <property>engines/engine/indicated-cht-degf</property>
- <interpolation>
+    <interpolation>
       <entry><ind>0</ind><dep> 0</dep></entry>
-      <entry><ind>200</ind><dep>9.83</dep></entry>
-      <entry><ind>250</ind><dep>29.12 </dep></entry>
-      <entry><ind>300</ind><dep>48.50</dep></entry>
-      <entry><ind>350</ind><dep>67.76 </dep></entry>
-      <entry><ind>400</ind><dep>88.76</dep></entry>
-      <entry><ind>450</ind><dep>105.5</dep></entry>
+      <entry><ind>200</ind><dep>10.0</dep></entry>
+      <entry><ind>250</ind><dep>28.91 </dep></entry>
+      <entry><ind>300</ind><dep>49.00</dep></entry>
+      <entry><ind>350</ind><dep>68.00 </dep></entry>
+      <entry><ind>400</ind><dep>87.12</dep></entry>
+      <entry><ind>450</ind><dep>106.10</dep></entry>
       <entry><ind>500</ind><dep>124.79</dep></entry>
       <entry><ind>600</ind><dep>139</dep></entry>
     </interpolation>
@@ -118,6 +149,41 @@
   </animation>
 
   <animation>
+        <type>knob</type>
+        <object-name>Knob</object-name>
+        <property>engines/engine[0]/egt-bug-norm</property>
+        <factor>100.0</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+       <center>
+            <x-m>0.0056</x-m>
+            <y-m>-0.015521</y-m>
+            <z-m>0</z-m>
+        </center>
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>engines/engine[0]/egt-bug-norm</property>
+                <factor>0.01</factor>
+                <min>0.0</min>
+                <max>1.0</max>
+                <wrap>0</wrap>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>egt-bug-norm</tooltip-id>
+                <label>EGT Bug: %.2f</label>
+                <property>engines/engine[0]/egt-bug-norm</property>
+            </binding>
+        </hovered>
+    </animation>
+  
+  <animation>
     <type>knob</type>
     <object-name>Knob.Pick.L</object-name>
     <object-name>Knob.Pick.R</object-name>
@@ -126,7 +192,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-  <property>engines/engine[0]/egt-bug-norm</property>
+        <property>engines/engine[0]/egt-bug-norm</property>
         <factor>0.01</factor>
         <min>0.0</min>
         <max>1.0</max>
@@ -145,7 +211,7 @@
             <command>set-tooltip</command>
             <tooltip-id>egt-bug-norm</tooltip-id>
             <label>EGT Bug: %.2f</label>
-  <property>engines/engine[0]/egt-bug-norm</property>
+            <property>engines/engine[0]/egt-bug-norm</property>
         </binding>
     </hovered>
   </animation>

@@ -800,6 +800,7 @@
             <path>/engines/engine/complex-engine-procedures</path>
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>
+            <path>/engines/engine/allow-sparkplug-icing</path>
             <path>/engines/engine/winter-kit-installed</path>
             
             <path>/fdm/jsbsim/settings/damage</path>
@@ -1156,6 +1157,7 @@
    <allow-oil-management type="bool">false</allow-oil-management>
    <winter-kit-installed type="bool">false</winter-kit-installed>
    <oil-temperature-env-diff type="double">0</oil-temperature-env-diff>
+   <allow-sparkplug-icing type="bool">false</allow-sparkplug-icing>
    <oil-compensated-temperature-degf type="double">60</oil-compensated-temperature-degf>
    <external-heat>
        <enabled type="bool">false</enabled>

@@ -46,6 +46,8 @@ Author: 09/2017  Benedikt Hallinger
     <property type="double" value="1">/controls/engines/engine/mixture-maxaltitude</property>
     <property type="bool" value="0">/systems/fuel/engine-primed</property>
     <property type="bool" value="0">/systems/fuel/engine-flooded</property>
+    
+    <property type="double" value="0">/systems/fuel/engine-sparkplugs-iced</property>
 
     <!-- now defined in instruments.xml filter: <property type="double" value="0">/systems/fuel/indicated-manfold-fuel-flow-gph</property>-->
 
@@ -463,6 +465,7 @@ Author: 09/2017  Benedikt Hallinger
                     <!-- engine flooded or not primed correctly: manifold closed -->
                     /systems/fuel/engine-flooded  EQ  1
                     /systems/fuel/engine-primed  EQ  0
+                    /systems/fuel/engine-sparkplugs-iced  GT 0.1
                 </test>
             </test>
             <output>/fdm/jsbsim/propulsion/tank[5]/priority</output>

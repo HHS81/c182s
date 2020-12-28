@@ -7,12 +7,7 @@
 
 <PropertyList>
 
-<filter>
-  <type>moving-average</type>
-  <samples>120</samples>
-  <input>/instrumentation/nav/heading-needle-deflection</input>
-  <output>/instrumentation/nav/heading-needle-deflection-filter</output>
-</filter>
+
 
     <filter>
         <name>heading bug backcourse</name>
@@ -96,7 +91,7 @@
         </enable>
         <type>gain</type>
         <input>
-             <property>/instrumentation/nav/heading-needle-deflection-filter</property>
+             <property>/instrumentation/nav/heading-needle-deflection</property>
         </input>
         <output>/autopilot/KAP140/settings/target-intercept-angle</output>
             <min>-45</min>
@@ -118,7 +113,7 @@
         </enable>
         <type>gain</type>
         <input>
-             <property>/instrumentation/nav/heading-needle-deflection-filter</property>
+             <property>/instrumentation/nav/heading-needle-deflection</property>
         </input>
         <output>/autopilot/KAP140/settings/target-intercept-angle</output>
             <min>-45</min>
@@ -137,7 +132,7 @@
         </enable>
         <type>gain</type>
         <input>
-             <property>/instrumentation/nav/heading-needle-deflection-filter</property>
+             <property>/instrumentation/nav/heading-needle-deflection</property>
         </input>
         <output>/autopilot/KAP140/settings/target-intercept-angle</output>
             <min>-45</min>

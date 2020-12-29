@@ -1955,12 +1955,12 @@
   </specular>
   <attenuation>
     <c>1.0</c>
-    <l>0.022</l>
-    <q>0.0019</q>
+    <l>0.014</l>
+    <q>0.0007</q>
   </attenuation>
-  <spot-exponent>25</spot-exponent>
+  <spot-exponent>15</spot-exponent>
   <spot-cutoff>60</spot-cutoff>
-  <range-m>200</range-m>
+  <range-m>325</range-m>
 </light>
 
 <!--TaxiLight-->
@@ -2038,12 +2038,12 @@
   </specular>
   <attenuation>
     <c>1.0</c>
-    <l>0.09</l>
-    <q>0.032</q>
+    <l>0.07</l>
+    <q>0.017</q>
   </attenuation>
-  <spot-exponent>25</spot-exponent>
+  <spot-exponent>15</spot-exponent>
   <spot-cutoff>60</spot-cutoff>
-  <range-m>50</range-m>
+  <range-m>65</range-m>
 </light>
 
 <!--NavLightTail-->

@@ -436,7 +436,6 @@ setlistener("/sim/signals/fdm-initialized", func {
         # init the first time
         refresh_com_volumes();
         gma340_refresh_spkr_volume();
-        gma340_toggleMarkerMute();
 
         
         print("GMA340 audio panel initialized");

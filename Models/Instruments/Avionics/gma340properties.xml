@@ -19,7 +19,7 @@
   <serviceable   archive="n" type="bool">true</serviceable>
   <power-btn     archive="y" type="bool">true</power-btn>
   <dme           archive="y" type="bool">true</dme>
-  <mkr           archive="y" type="bool">true</mkr>
+  <mkr           archive="y" type="bool">false</mkr>
   <hi            archive="y" type="bool">true</hi>
   <lo            archive="y" type="bool">false</lo>
   <com     n="0" archive="y" type="bool">true</com>

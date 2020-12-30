@@ -847,6 +847,7 @@
             <path>/instrumentation/audio-panel/com-mic[0]</path>
             <path>/instrumentation/audio-panel/com-mic[1]</path>
             <path>/instrumentation/audio-panel/com-mic[2]</path>
+            <path>/instrumentation/audio-panel/mkr</path>
             <path>/instrumentation/audio-panel/spkr</path>
             <path>/instrumentation/audio-panel/pa</path>
             <path>/instrumentation/audio-panel/crew</path>

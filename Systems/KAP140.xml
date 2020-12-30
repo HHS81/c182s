@@ -159,7 +159,7 @@
             <property>/autopilot/KAP140/settings/target-turn-rate</property>
         </output>
         <config>
-            <Kp>-0.05</Kp> <!-- proportional gain -->
+            <Kp>-0.075</Kp> <!-- proportional gain -->
             <beta>1.0</beta> <!-- input value weighing factor -->
             <alpha>0.1</alpha> <!-- low pass filter weighing factor -->
             <gamma>0.0</gamma> <!-- input value weighing factor for -->
@@ -172,7 +172,7 @@
     </pid-controller>
 
     <!-- Wing leveler (ROL) Mode -->
-    <pid-controller>
+  <pi-simple-controller>
         <name>Wing Leveler (ROL) Mode</name>
         <debug>false</debug>
         <enable>
@@ -189,17 +189,12 @@
             <property>/controls/flight/aileron-cmd</property>
         </output>
         <config>
-            <Kp>0.3</Kp> <!-- proportional gain -->
-            <beta>1.0</beta> <!-- input value weighing factor -->
-            <alpha>0.1</alpha> <!-- low pass filter weighing factor -->
-            <gamma>0.0</gamma> <!-- input value weighing factor for -->
-            <!-- unfiltered derivative error -->
-            <Ti>15.0</Ti> <!-- integrator time -->
-            <Td>0.0</Td> <!-- derivator time -->
+      <Kp>0.25</Kp>          <!-- proportional gain -->
+      <Ki>0.00 </Ki>          <!-- integral gain -->
             <u_min>-0.25</u_min> <!-- minimum output clamp -->
             <u_max>0.25</u_max> <!-- maximum output clamp -->
         </config>
-    </pid-controller>
+  </pi-simple-controller>
     
  <filter>
     <name>SERVO-DRIVER:aileron</name>

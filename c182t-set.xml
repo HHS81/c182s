@@ -778,9 +778,11 @@
         </previews>
 
         <!-- Fix scrolling direction of knobs -->
+        <!-- This was an old fix from 2018, but it's not necessary anymore.
+             Instead the aircraft should not overwrite a global user setting...
         <mouse>
             <invert-mouse-wheel type="bool">true</invert-mouse-wheel>
-        </mouse>
+        </mouse>-->
 
 
         <!-- Save these properties between sessions -->

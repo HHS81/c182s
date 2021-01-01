@@ -2335,7 +2335,7 @@
 	<type>select</type>
         <object-name>beaconlight</object-name>
 	<condition>
-	<property>controls/lighting/beacon-state/state</property>
+	<!--<property>controls/lighting/beacon-state/state</property>-->
 	<property>systems/electrical/outputs/beacon</property>
 	</condition>
 </animation>
@@ -2371,6 +2371,7 @@
     <l>1.4</l>
     <q>3.62</q>
   </attenuation>
+  <dim-factor><property>systems/electrical/outputs/beacon-norm</property></dim-factor>
   <spot-exponent>5</spot-exponent>
   <spot-cutoff>89</spot-cutoff>
   <range-m>6</range-m>

@@ -1485,14 +1485,14 @@
     <b>1</b>
     <a>1</a>
   </specular>
-  <attenuation>
-    <c>1.0</c>
-    <l>0.7</l>
-    <q>1.8</q>
-  </attenuation>
-  <spot-exponent>10</spot-exponent>
-  <spot-cutoff>50</spot-cutoff>
-  <range-m>7</range-m>
+    <attenuation>
+        <c>1.0</c>
+        <l>0.7</l>
+        <q>1.8</q>
+    </attenuation>
+    <spot-exponent>3</spot-exponent>
+    <spot-cutoff>80</spot-cutoff>
+    <range-m>10</range-m>
 </light>
 
 <light>
@@ -1526,14 +1526,14 @@
     <b>1</b>
     <a>1</a>
   </specular>
-  <attenuation>
-    <c>1.0</c>
-    <l>0.7</l>
-    <q>1.8</q>
-  </attenuation>
-  <spot-exponent>10</spot-exponent>
-  <spot-cutoff>50</spot-cutoff>
-  <range-m>7</range-m>
+    <attenuation>
+        <c>1.0</c>
+        <l>0.7</l>
+        <q>1.8</q>
+    </attenuation>
+    <spot-exponent>3</spot-exponent>
+    <spot-cutoff>80</spot-cutoff>
+    <range-m>10</range-m>
 </light>
  
  
@@ -1749,12 +1749,12 @@
   </specular>
   <attenuation>
     <c>1.0</c>
-    <l>0.14</l>
-    <q>0.07</q>
+    <l>0.35</l>
+    <q>0.44</q>
   </attenuation>
-  <spot-exponent>2</spot-exponent>
+  <spot-exponent>1</spot-exponent>
   <spot-cutoff>89</spot-cutoff>
-  <range-m>32</range-m>
+  <range-m>20</range-m>
 </light>
 	
 <!-- right strobe-->
@@ -1872,12 +1872,12 @@
   </specular>
   <attenuation>
     <c>1.0</c>
-    <l>0.14</l>
-    <q>0.07</q>
+    <l>0.35</l>
+    <q>0.44</q>
   </attenuation>
-  <spot-exponent>2</spot-exponent>
+  <spot-exponent>1</spot-exponent>
   <spot-cutoff>89</spot-cutoff>
-  <range-m>32</range-m>
+  <range-m>20</range-m>
 </light>
 
 <!--LandingLight-->
@@ -1953,14 +1953,14 @@
     <b>0.95</b>
     <a>1</a>
   </specular>
-  <attenuation>
+<attenuation>
     <c>1.0</c>
     <l>0.014</l>
     <q>0.0007</q>
-  </attenuation>
-  <spot-exponent>15</spot-exponent>
-  <spot-cutoff>60</spot-cutoff>
-  <range-m>325</range-m>
+    </attenuation>
+    <spot-exponent>15</spot-exponent>
+    <spot-cutoff>60</spot-cutoff>
+    <range-m>325</range-m>
 </light>
 
 <!--TaxiLight-->
@@ -2036,14 +2036,14 @@
     <b>0.95</b>
     <a>1</a>
   </specular>
-  <attenuation>
+    <attenuation>
     <c>1.0</c>
     <l>0.07</l>
     <q>0.017</q>
-  </attenuation>
-  <spot-exponent>15</spot-exponent>
-  <spot-cutoff>60</spot-cutoff>
-  <range-m>65</range-m>
+</attenuation>
+<spot-exponent>15</spot-exponent>
+<spot-cutoff>60</spot-cutoff>
+<range-m>65</range-m>
 </light>
 
 <!--NavLightTail-->
@@ -2128,12 +2128,12 @@
   </specular>
   <attenuation>
     <c>1.0</c>
-    <l>0.14</l>
-    <q>0.07</q>
+    <l>0.22</l>
+    <q>0.20</q>
   </attenuation>
-  <spot-exponent>7</spot-exponent>
-  <spot-cutoff>55</spot-cutoff>
-  <range-m>32</range-m>
+  <spot-exponent>5</spot-exponent>
+  <spot-cutoff>70</spot-cutoff>
+  <range-m>20</range-m>
 </light>
 
 <!--NavLightWings-->
@@ -2218,12 +2218,12 @@
   </specular>
   <attenuation>
     <c>1.0</c>
-    <l>0.14</l>
-    <q>0.07</q>
+    <l>0.22</l>
+    <q>0.20</q>
   </attenuation>
-  <spot-exponent>5</spot-exponent>
-  <spot-cutoff>70</spot-cutoff>
-  <range-m>32</range-m>
+  <spot-exponent>8</spot-exponent>
+  <spot-cutoff>55</spot-cutoff>
+  <range-m>20</range-m>
 </light>
 
  <animation>
@@ -2307,12 +2307,12 @@
   </specular>
   <attenuation>
     <c>1.0</c>
-    <l>0.14</l>
-    <q>0.07</q>
+    <l>0.22</l>
+    <q>0.20</q>
   </attenuation>
-  <spot-exponent>5</spot-exponent>
-  <spot-cutoff>70</spot-cutoff>
-  <range-m>32</range-m>
+  <spot-exponent>8</spot-exponent>
+  <spot-cutoff>55</spot-cutoff>
+  <range-m>20</range-m>
 </light>
 
 <!--procedural lights - ALS only-->
@@ -2368,8 +2368,8 @@
   </specular>
   <attenuation>
     <c>1.0</c>
-    <l>1.4</l>
-    <q>3.62</q>
+    <l>0.7</l>
+    <q>1.8</q>
   </attenuation>
   <dim-factor><property>systems/electrical/outputs/beacon-norm</property></dim-factor>
   <spot-exponent>5</spot-exponent>

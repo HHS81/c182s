@@ -257,6 +257,12 @@
       <bool n="0" alias="/sim/model/c182s/nw_fairing"/>
       <bool n="1" alias="/sim/model/c182s/mw_fairing"/>
 
+      <!-- passengers/crew -->
+      <bool n="2" alias="/sim/model/crew/pilot[1]/enabled"/>
+      <bool n="3" alias="/sim/model/pax/pax[0]/enabled"/>
+      <bool n="4" alias="/sim/model/pax/pax[1]/enabled"/>
+      
+
     </generic>
   </multiplay>
 

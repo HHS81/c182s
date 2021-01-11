@@ -1899,6 +1899,7 @@
 <and>
 	<property>/sim/rendering/shaders/skydome</property>
 	<property>/sim/model/c182s/procedural-lights</property>
+	<property>systems/electrical/outputs/beacon</property>
 </and>
 </condition>
   <path>Aircraft/c182s/Models/Effects/beacon.xml</path>
@@ -1914,6 +1915,7 @@
 <and>
 	<property>/sim/rendering/shaders/skydome</property>
 	<property>/sim/model/c182s/procedural-lights</property>
+	<property>systems/electrical/outputs/nav-lights</property>
 </and>
 </condition>
   <path>Aircraft/c182s/Models/Effects/green-navlight.xml</path>
@@ -1929,6 +1931,7 @@
 <and>
 	<property>/sim/rendering/shaders/skydome</property>
 	<property>/sim/model/c182s/procedural-lights</property>
+	<property>systems/electrical/outputs/nav-lights</property>
 </and>
 </condition>
   <path>Aircraft/c182s/Models/Effects/red-navlight.xml</path>
@@ -1944,6 +1947,7 @@
 <and>
 	<property>/sim/rendering/shaders/skydome</property>
 	<property>/sim/model/c182s/procedural-lights</property>
+	<property>systems/electrical/outputs/nav-lights</property>
 </and>
 </condition>
   <path>Aircraft/c182s/Models/Effects/tail-navlight.xml</path>
@@ -1959,6 +1963,7 @@
 <and>
 	<property>/sim/rendering/shaders/skydome</property>
 	<property>/sim/model/c182s/procedural-lights</property>
+	<property>systems/electrical/outputs/strobe</property>
 </and>
 </condition>
   <path>Aircraft/c182s/Models/Effects/left-strobe.xml</path>
@@ -1975,6 +1980,7 @@
 <and>
 	<property>/sim/rendering/shaders/skydome</property>
 	<property>/sim/model/c182s/procedural-lights</property>
+	<property>systems/electrical/outputs/strobe</property>
 </and>
 </condition>
   <path>Aircraft/c182s/Models/Effects/right-strobe.xml</path>

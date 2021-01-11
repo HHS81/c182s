@@ -261,7 +261,7 @@
     </generic>
   </multiplay>
 
-  <model>
+  <model include="Models/Human/humans.xml">
    <path archive="y">Aircraft/c182s/Models/c182t.xml</path>
    <fallback-model-index>3</fallback-model-index>
    <hide-yoke>false</hide-yoke>

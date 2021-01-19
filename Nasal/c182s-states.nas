@@ -163,6 +163,9 @@ var checklist_secureAircraft = func() {
     setprop("/controls/lighting/nav-lights", 0);
     setprop("/controls/lighting/strobe", 0);
     setprop("/controls/lighting/beacon", 0);
+    setprop("/controls/lighting/taxi-light", 0);
+    setprop("/controls/lighting/landing-light", 0);
+    setprop("/controls/lighting/beacon", 0);
     setAvionics(0);
     setprop("/controls/engines/engine[0]/mixture", 0.0);
     setprop("/controls/switches/starter", 0);

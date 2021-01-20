@@ -51,7 +51,7 @@
    <red>1.0</red>
    <green>0.8</green>
    <blue>0.4</blue>
-   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
+   <factor-prop>systems/electrical/outputs/instrument-lights-norm</factor-prop>
   </emission>
         <specular>
             <red>   0.0 </red>
@@ -78,7 +78,7 @@
   <animation>
     <type>rotate</type>
     <object-name>face</object-name>
-    <property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+    <property>instrumentation/heading-indicator/indicated-heading-deg</property>
     <factor>-1</factor>
     <axis>
       <x> -1 </x>
@@ -90,7 +90,7 @@
   <animation>
     <type>rotate</type>
     <object-name>HdgBug</object-name>
-    <property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+    <property>instrumentation/heading-indicator/indicated-heading-deg</property>
     <factor>-1</factor>
     <axis>
       <x> -1 </x>
@@ -102,7 +102,7 @@
   <animation>
     <type>rotate</type>
     <object-name>HdgBug</object-name>
-     <property>/autopilot/settings/heading-bug-deg</property>
+     <property>autopilot/settings/heading-bug-deg</property>
     <axis>
       <x> -1 </x>
       <y>  0 </y>
@@ -113,7 +113,7 @@
   <animation>
     <type>rotate</type>
     <object-name>Hdg-Knob</object-name>
-     <property>/autopilot/settings/heading-bug-deg</property>
+     <property>autopilot/settings/heading-bug-deg</property>
 <factor>10</factor>
 		<center>
 			<x-m>0.012891</x-m>
@@ -130,7 +130,7 @@
   <animation>
     <type>rotate</type>
     <object-name>OBS-Knob</object-name>
-     <property>/instrumentation/heading-indicator/offset-deg</property>
+     <property>instrumentation/heading-indicator/offset-deg</property>
 <factor>10</factor>
 		<center>
 			<x-m>0.012842</x-m>

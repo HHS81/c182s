@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+This file is needed so the dual-control implementation can find the matching copilot via restricting copilot-model.xml's
+-->
+<PropertyList>
+
+ <path>Models/Geometry/null.ac</path>
+ 
+ <!-- nasal>
+  <load>
+  </load>
+  <unload>
+  </unload>
+ </nasal -->
+
+</PropertyList>

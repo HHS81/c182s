@@ -120,6 +120,16 @@ Additionally to the default ones, the c182 knows the following:
 - `/engines/engine/kill-engine` immediately kills the engine if set to `1`.
 
 
+Dual Control feature
+-------------------------
+You can join a remote pilot as copilot! The pilot just uses the normal C182S Aircraft while the copilot must start the special "CoPilot" aircraft variant (select from the launcher).
+
+Once connected to the multiplayer server, both select each other trough the multiplayer menu entry *Select dual-control MP-pilot*:
+- Upon selection, the CoPilot instance will switch into the copilot seat.
+- Once the pilot selected the copilot too, he will send its full state to the copilot, so he sees most instruments etc.
+
+
+
 FAQ
 ---
 Most of the [C172p's FAQ](http://wiki.flightgear.org/Cessna_172P#FAQ) also applies to the 182, so also read those.

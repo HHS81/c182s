@@ -3,13 +3,13 @@
 <PropertyList>
 
  <params>
-  <nav-to-flag>/instrumentation/nav[1]/to-flag</nav-to-flag>
-  <nav-from-flag>/instrumentation/nav[1]/from-flag</nav-from-flag>
-  <nav-radial-selected>/instrumentation/nav[1]/radials/selected-deg</nav-radial-selected>
-  <nav-gs-needle-deflection>/instrumentation/nav[1]/filtered-gsNAV1-deflection</nav-gs-needle-deflection>
-  <nav-heading-needle-deflection>/instrumentation/nav[1]/filtered-cdiNAV1-deflection</nav-heading-needle-deflection>
-  <nav-in-range>/instrumentation/nav[1]/in-range</nav-in-range>
-  <gs-in-range>/instrumentation/nav[1]/gs-in-range</gs-in-range>
+  <nav-to-flag>instrumentation/nav[1]/to-flag</nav-to-flag>
+  <nav-from-flag>instrumentation/nav[1]/from-flag</nav-from-flag>
+  <nav-radial-selected>instrumentation/nav[1]/radials/selected-deg</nav-radial-selected>
+  <nav-gs-needle-deflection>instrumentation/nav[1]/filtered-gsNAV1-deflection</nav-gs-needle-deflection>
+  <nav-heading-needle-deflection>instrumentation/nav[1]/filtered-cdiNAV1-deflection</nav-heading-needle-deflection>
+  <nav-in-range>instrumentation/nav[1]/in-range</nav-in-range>
+  <gs-in-range>instrumentation/nav[1]/gs-in-range</gs-in-range>
  </params>
 
  <path>vor.ac</path>
@@ -44,7 +44,7 @@
    <red>1.0</red>
    <green>0.8</green>
    <blue>0.4</blue>
-   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
+   <factor-prop>systems/electrical/outputs/instrument-lights-norm</factor-prop>
   </emission>
     <specular>
         <red>   0.0 </red>

@@ -81,8 +81,7 @@
     <!-- =============================================================== -->
 
      <!-- Nav hold (NAV) Mode -->
-        
-  <filter>
+    <filter>
         <name>Nav hold (NAV) Mode</name>
         <debug>false</debug>
                 <enable>
@@ -100,11 +99,9 @@
     </filter>
     
 
-	
 
     <!-- Approach hold (APR) Mode -->
-      
-<filter>
+    <filter>
         <name>Approach hold (APR) Mode</name>
         <debug>false</debug>
         <enable>
@@ -123,7 +120,7 @@
 
     <!-- Backcourse hold (REV) Mode -->
    
-<filter>
+    <filter>
         <name>Backcourse hold (REV) Mode</name>
         <debug>false</debug>
         <enable>
@@ -141,37 +138,35 @@
     </filter> 
 
     <!-- Heading Select (HDG) Mode -->
-    <pid-controller>
-        <name>Heading Select (HDG) Mode</name>
+    <!-- Caluclates the needed bank angle to get to the desired hdg bug -->
+    <filter>
+        <name>Heading Select (HDG) Mode - tgt turn angle</name>
         <debug>false</debug>
         <enable>
             <property>/autopilot/KAP140/locks/hdg-hold</property>
             <value type="bool">true</value>
         </enable>
+        <type>gain</type>
         <input>
-            <property>/autopilot/internal/heading-bug-error-deg</property>
-            <!--      <property>/instrumentation/gps/true-bug-error-deg</property> -->
+            <expression>
+                <difference>
+                    <property>autopilot/KAP140/settings/target-intercept-angle</property>
+                    <property>autopilot/internal/heading-bug-error-deg</property>
+                </difference>
+            </expression>
         </input>
-        <reference>
-            <property>/autopilot/KAP140/settings/target-intercept-angle</property>
-        </reference>
         <output>
             <property>/autopilot/KAP140/settings/target-turn-rate</property>
         </output>
-        <config>
-            <Kp>-0.075</Kp> <!-- proportional gain -->
-            <beta>1.0</beta> <!-- input value weighing factor -->
-            <alpha>0.1</alpha> <!-- low pass filter weighing factor -->
-            <gamma>0.0</gamma> <!-- input value weighing factor for -->
-            <!-- unfiltered derivative error -->
-            <Ti>15.0</Ti> <!-- integrator time -->
-            <Td>0.0</Td> <!-- derivator time -->
-            <u_min>-1.0</u_min> <!-- minimum output clamp -->
-            <u_max>1.0</u_max> <!-- maximum output clamp -->
-        </config>
-    </pid-controller>
+        <gain>-0.045</gain>
+        <min>-1</min>
+        <max>1</max>
+    </filter>
+    
 
     <!-- Wing leveler (ROL) Mode -->
+    <!-- Actually this maintains the attitude indicator to a target roll rate.
+         With ROL its always zero, but with HDG its the computed turn rate to reach the hdg-bugs heading -->
   <pi-simple-controller>
         <name>Wing Leveler (ROL) Mode</name>
         <debug>false</debug>
@@ -189,10 +184,10 @@
             <property>/controls/flight/aileron-cmd</property>
         </output>
         <config>
-      <Kp>0.25</Kp>          <!-- proportional gain -->
-      <Ki>0.10 </Ki>          <!-- integral gain -->
-            <u_min>-0.25</u_min> <!-- minimum output clamp -->
-            <u_max>0.25</u_max> <!-- maximum output clamp -->
+            <Kp>0.25</Kp>          <!-- proportional gain -->
+            <Ki>0.010 </Ki>        <!-- integral gain -->
+            <u_min>-0.25</u_min>   <!-- minimum output clamp -->
+            <u_max>0.25</u_max>    <!-- maximum output clamp -->
         </config>
   </pi-simple-controller>
     
@@ -210,7 +205,7 @@
         </input>
     <output>controls/flight/aileron</output>
     <type>noise-spike</type>
-    <max-rate-of-change>0.334</max-rate-of-change> <!-- 6 seconds for full travel -->
+    <max-rate-of-change>0.2</max-rate-of-change> <!-- 10 seconds for full travel -->
   </filter>
 
     <!-- =============================================================== -->

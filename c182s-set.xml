@@ -1139,6 +1139,12 @@
     <auto-pitch-trim type="bool">true</auto-pitch-trim>
    </settings>
    <serviceable type="bool">true</serviceable>
+   <roll-servo>
+       <serviceable type="bool">true</serviceable>
+   </roll-servo>
+   <pitch-servo>
+       <serviceable type="bool">true</serviceable>
+   </pitch-servo>
   </KAP140>
  </autopilot>
 

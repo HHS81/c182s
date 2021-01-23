@@ -7,7 +7,29 @@
 
 <PropertyList>
 
-
+    <logic>
+        <name>Roll servo failure annunciator</name>
+        <debug>true</debug>
+        <input>
+            <greater-than>
+                <property>/systems/electrical/outputs/autopilot</property>
+                <value>12</value>
+            </greater-than>
+            <not><property>/autopilot/KAP140/roll-servo/serviceable</property></not>
+        </input>
+        <output>/autopilot/KAP140/annunciators/rollfail</output>
+    </logic>
+    <logic>
+        <name>Pitch servo failure annunciator</name>
+        <input>
+            <greater-than>
+                <property>/systems/electrical/outputs/autopilot</property>
+                <value>12</value>
+            </greater-than>
+            <not><property>/autopilot/KAP140/pitch-servo/serviceable</property></not>
+        </input>
+        <output>/autopilot/KAP140/annunciators/pitchfail</output>
+    </logic>
 
     <filter>
         <name>heading bug backcourse</name>
@@ -197,8 +219,16 @@
     <feedback-if-disabled>true</feedback-if-disabled>
     <initialize-to>output</initialize-to>
         <enable>
-            <property>/autopilot/KAP140/locks/roll-axis</property>
-            <value type="bool">true</value>
+            <condition>
+                <equals>
+                    <property>/autopilot/KAP140/roll-servo/serviceable</property>
+                    <value type="bool">true</value>
+                </equals>
+                <equals>
+                    <property>/autopilot/KAP140/locks/roll-axis</property>
+                    <value type="bool">true</value>
+                </equals>
+            </condition>
         </enable>
         <input>
             <property>/controls/flight/aileron-cmd</property>
@@ -347,8 +377,16 @@
     <feedback-if-disabled>true</feedback-if-disabled>
     <initialize-to>output</initialize-to>
         <enable>
-            <property>/autopilot/KAP140/locks/pitch-axis</property>
-            <value type="bool">true</value>
+            <condition>
+                <equals>
+                    <property>/autopilot/KAP140/pitch-servo/serviceable</property>
+                    <value type="bool">true</value>
+                </equals>
+                <equals>
+                    <property>/autopilot/KAP140/locks/pitch-axis</property>
+                    <value type="bool">true</value>
+                </equals>
+            </condition>
         </enable>
         <input>
             <property>/controls/flight/elevator-cmd</property>

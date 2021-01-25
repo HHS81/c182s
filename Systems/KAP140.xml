@@ -235,7 +235,7 @@
         </input>
     <output>controls/flight/aileron</output>
     <type>noise-spike</type>
-    <max-rate-of-change>0.2</max-rate-of-change> <!-- 10 seconds for full travel -->
+    <max-rate-of-change>0.085</max-rate-of-change> <!-- ~23 seconds for full travel -->
   </filter>
 
     <!-- =============================================================== -->
@@ -393,7 +393,7 @@
         </input>
     <output>controls/flight/elevator</output>
     <type>noise-spike</type>
-    <max-rate-of-change>0.1538</max-rate-of-change> <!-- 14 seconds for full travel ??-->
+    <max-rate-of-change>0.0769</max-rate-of-change> <!-- 26 seconds for full travel ??-->
   </filter>
 
 </PropertyList>

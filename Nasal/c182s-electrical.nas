@@ -824,7 +824,7 @@ if ( bus_volts > 22 ) {
     }
 
     # Autopilot Power
-    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/AutoPilot") and getprop("/autopilot/KAP140/serviceable")) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/AutoPilot")  ){   #and getprop("/autopilot/kap140/serviceable")) {
     setprop("/systems/electrical/outputs/autopilot", bus_volts);
      }else{ 
     setprop("/systems/electrical/outputs/autopilot", 0);

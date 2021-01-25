@@ -355,15 +355,15 @@ customFailures = [
     #},
     
     {id:"instrumentation/avionics/autopilot",    name:"Autopilot",
-        actuator: set_unserviceable("autopilot/KAP140"),
+        actuator: set_unserviceable("autopilot/kap140"),
         trigger:  MtbfTrigger.new(0),
     },
     {id:"instrumentation/avionics/autopilot-roll-servo",    name:"Autopilot (Roll servo)",
-        actuator: set_unserviceable("/autopilot/KAP140/roll-servo"),
+        actuator: set_unserviceable("autopilot/kap140/servo/roll-servo"),
         trigger:  MtbfTrigger.new(0),
     },
     {id:"instrumentation/avionics/autopilot-pitch-servo",    name:"Autopilot (Pitch servo)",
-        actuator: set_unserviceable("autopilot/KAP140/pitch-servo"),
+        actuator: set_unserviceable("autopilot/kap140/servo/pitch-servo"),
         trigger:  MtbfTrigger.new(0),
     },
     

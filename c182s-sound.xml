@@ -523,15 +523,6 @@
   </click>
 -->
 
-        <kap140beep>
-            <name>KAP140Beep</name>
-            <type>avionics</type>
-            <mode>looped</mode>
-            <path>Sounds/stall.wav</path>
-            <condition>
-                <property>autopilot/KAP140/annunciators/beep/state</property>
-            </condition>
-        </kap140beep>
         
         <engine-repair>
             <name>engine-repair</name>
@@ -799,21 +790,6 @@
             </volume>
         </switch>
         
-        <switch>
-            <name>click-kap140-switch</name>
-            <mode>once</mode>
-            <path>Sounds/double-click2.wav</path>
-            <condition>
-                <property>/sim/model/c182s/sound/click-kap140</property>
-            </condition>
-            <position>
-                <x>-0.3660</x>
-                <y>-0.1200</y>
-                <z>-0.2100</z>
-            </position>
-            <reference-dist>0.2</reference-dist>
-            <max-dist>5.0</max-dist>
-        </switch>
 
         <switch>
             <name>click-kt76c-mode-switch</name>
@@ -934,25 +910,6 @@
                 <x>-0.3660</x>
                 <y>-0.1200</y>
                 <z>-0.1300</z>
-            </position>
-            <reference-dist>0.2</reference-dist>
-            <max-dist>5.0</max-dist>
-            <volume>
-                <factor>0.2</factor>
-            </volume>
-        </dial>
-
-        <dial>
-            <name>dial-kap140</name>
-            <mode>once</mode>
-            <path>Sounds/scroll.wav</path>
-            <condition>
-                <property>/sim/model/c182s/sound/click-kap140-dial</property>
-            </condition>
-            <position>
-                <x>-0.3660</x>
-                <y>-0.1200</y>
-                <z>-0.2100</z>
             </position>
             <reference-dist>0.2</reference-dist>
             <max-dist>5.0</max-dist>
@@ -1470,6 +1427,86 @@
         </volume>
     </ExternalHeater>
      
+    
+    <kap140-disengage>
+        <name>KAP140 disengage</name>
+        <path>Sounds/kap140-disengage.wav</path>
+        <condition>
+        <or>
+            <equals>
+            <property>autopilot/kap140/panel/state</property>
+            <value>3</value>
+            </equals>
+            <property>autopilot/kap140/panel/ap-timer</property>
+        </or>
+        </condition>
+        <volume><factor>0.2</factor></volume>
+        <position>
+        <x>-0.34054 </x>
+        <y> 0.180076</y>
+        <z>-0.104289</z>
+        </position>
+    </kap140-disengage>
+
+    <kap140-alert>
+        <name>KAP140 altitude alerter</name>
+        <path>Sounds/kap140-alert.wav</path>
+        <condition>
+        <property>autopilot/kap140/panel/alt-alert-sound</property>
+        </condition>
+        <volume><factor>0.2</factor></volume>
+        <position>
+        <x>-0.34054 </x>
+        <y> 0.180076</y>
+        <z>-0.104289</z>
+        </position>
+    </kap140-alert>
+        
+    <kap140beep>
+        <name>KAP140Beep</name>
+        <type>avionics</type>
+        <mode>looped</mode>
+        <path>Sounds/stall.wav</path>
+        <condition>
+            <property>autopilot/kap140/annunciators/beep/state</property>
+        </condition>
+    </kap140beep>
+    
+    <switch>
+        <name>click-kap140-switch</name>
+        <mode>once</mode>
+        <path>Sounds/double-click2.wav</path>
+        <condition>
+            <property>/sim/model/c182s/sound/click-kap140</property>
+        </condition>
+        <position>
+            <x>-0.3660</x>
+            <y>-0.1200</y>
+            <z>-0.2100</z>
+        </position>
+        <reference-dist>0.2</reference-dist>
+        <max-dist>5.0</max-dist>
+    </switch>
+    
+    <dial>
+        <name>dial-kap140</name>
+        <mode>once</mode>
+        <path>Sounds/scroll.wav</path>
+        <condition>
+            <property>/sim/model/c182s/sound/click-kap140-dial</property>
+        </condition>
+        <position>
+            <x>-0.3660</x>
+            <y>-0.1200</y>
+            <z>-0.2100</z>
+        </position>
+        <reference-dist>0.2</reference-dist>
+        <max-dist>5.0</max-dist>
+        <volume>
+            <factor>0.2</factor>
+        </volume>
+    </dial>
+        
 </fx>
  
 </PropertyList>

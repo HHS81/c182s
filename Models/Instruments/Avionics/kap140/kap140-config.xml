@@ -40,9 +40,9 @@
       otherwise set 'baro-tied' to 0
 -->
     <baro-tied>autopilot/kap140/config/baro-tied</baro-tied>
-    <baro-inhg>instrumentation/altimeter[0]/setting-inhg</baro-inhg>
-    <baro-hpa>instrumentation/altimeter[0]/setting-hpa</baro-hpa>
-    <indicated-altitude-ft>instrumentation/altimeter[1]/indicated-altitude-ft</indicated-altitude-ft>
+    <baro-inhg>instrumentation/altimeter-kap140-internal/setting-inhg</baro-inhg>
+    <baro-hpa>instrumentation/altimeter-kap140-internal/setting-hpa</baro-hpa>
+    <indicated-altitude-ft>instrumentation/altimeter-kap140-internal/indicated-altitude-ft</indicated-altitude-ft>
   </params>
 
 </PropertyList>

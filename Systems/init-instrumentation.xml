@@ -141,5 +141,9 @@
     <elapsed-time type="string">00:00</elapsed-time>
 </davtron803>
 
+<!-- KAP140 internal pressure sensor -->
+<altimeter-kap140-internal>
+    <serviceable type="bool">true</serviceable>
+</altimeter-kap140-internal>
 
 </PropertyList>

@@ -1432,13 +1432,16 @@
         <name>KAP140 disengage</name>
         <path>Sounds/kap140-disengage.wav</path>
         <condition>
-        <or>
-            <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>3</value>
-            </equals>
-            <property>autopilot/kap140/panel/ap-timer</property>
-        </or>
+            <and>
+                <property>controls/circuit-breakers/Warn</property>
+                <or>
+                    <equals>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>3</value>
+                    </equals>
+                    <property>autopilot/kap140/panel/ap-timer</property>
+                </or>
+            </and>
         </condition>
         <volume><factor>0.2</factor></volume>
         <position>
@@ -1452,7 +1455,10 @@
         <name>KAP140 altitude alerter</name>
         <path>Sounds/kap140-alert.wav</path>
         <condition>
-        <property>autopilot/kap140/panel/alt-alert-sound</property>
+            <and>
+                <property>controls/circuit-breakers/Warn</property>
+                <property>autopilot/kap140/panel/alt-alert-sound</property>
+            </and>
         </condition>
         <volume><factor>0.2</factor></volume>
         <position>
@@ -1461,16 +1467,6 @@
         <z>-0.104289</z>
         </position>
     </kap140-alert>
-        
-    <kap140beep>
-        <name>KAP140Beep</name>
-        <type>avionics</type>
-        <mode>looped</mode>
-        <path>Sounds/stall.wav</path>
-        <condition>
-            <property>autopilot/kap140/annunciators/beep/state</property>
-        </condition>
-    </kap140beep>
     
     <switch>
         <name>click-kap140-switch</name>

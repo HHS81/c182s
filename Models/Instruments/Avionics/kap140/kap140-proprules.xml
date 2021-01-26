@@ -4,16 +4,26 @@
 
 <!-- Servos failure mapping for failure-manager-->
     <logic>
-        <inverted>true</inverted>
         <input>
-            <property>autopilot/kap140/servo/roll-servo/serviceable</property>
+            <and>
+                <not><property>autopilot/kap140/servo/roll-servo/serviceable</property></not>
+                <greater-than>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>2</value>
+                </greater-than>
+            </and>
         </input>
         <output>autopilot/kap140/roll-axis-fail</output>
     </logic>
     <logic>
-        <inverted>true</inverted>
         <input>
-            <property>autopilot/kap140/servo/pitch-servo/serviceable</property>
+            <and>
+                <not><property>autopilot/kap140/servo/pitch-servo/serviceable</property></not>
+                <greater-than>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>2</value>
+                </greater-than>
+            </and>
         </input>
         <output>autopilot/kap140/pitch-axis-fail</output>
     </logic>
@@ -191,6 +201,7 @@
                 <or>
                     <property>autopilot/kap140/roll-axis-fail</property>
                     <property>autopilot/kap140/pitch-axis-fail</property>
+                    <not><property>instrumentation/turn-indicator/serviceable</property></not>
                 </or>
             </condition>
             <value>1</value>
@@ -838,6 +849,7 @@
                 <or>
                     <property>autopilot/kap140/pitch-axis-fail</property>
                     <property>autopilot/kap140/roll-axis-fail</property>
+                    <not><property>instrumentation/turn-indicator/serviceable</property></not>
                     <and>
                         <equals>
                             <property>autopilot/kap140/panel/state</property>

@@ -120,6 +120,31 @@ var AnnunciatorMin = {
     
 };
 
+# Annunciator class that triggers if a property value is higher than x
+# Extends Annunciator base class
+var AnnunciatorMax = {
+    new: func(tgt_prop, src_prop, v_max) {
+        var m = Annunciator.new(tgt_prop);  # call parent constructor
+        append(m.parents, AnnunciatorMax);
+        m.src = src_prop;
+        m.max = v_max;
+
+        return m;
+    },
+    
+    # Expected from Annunciator base class: tests if this annunciator was triggered
+    isTriggered: func() {
+        if (getprop(me.src) > me.max ) {
+            var r = 1;
+        } else {
+            var r = 0;
+        }
+        #print("  DBG: check annunciator: "~me.tgt~"    ["~me.src~"] < ["~me.max~"]? => "~r);
+        return r;
+    },
+    
+};
+
 
 
 
@@ -132,8 +157,7 @@ annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"vac-low-r",   
 annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"oilpress-low", "/engines/engine/indicated-oil-pressure-psi", 21.0) );
 annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"fuel-low-r",   "/consumables/fuel/tank[1]/indicated-level-gal_us", 8) );
 annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"fuel-low-l",   "/consumables/fuel/tank[0]/indicated-level-gal_us", 8) );
-annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"pitch-trim",   "/systems/electrical/volts", -999) );
-# ^^ TODO: Pitch Trim Property currently unknown, so always false currently, so at least the test switch works
+annunciator_panel.add( AnnunciatorMax.new(annunciator_panel.node~"pitch-trim",   "/autopilot/kap140/pitch-axis-fail", 0) );
 
 #TODO: for mor realism... the fuel detection should probably be modelled finer using a custom class: The POH says, that the annunciator nly fires if the low-condition is met for at least 60 seconds
 

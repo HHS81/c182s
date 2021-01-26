@@ -705,8 +705,12 @@
    <line>  Takeoff ground roll: 795ft  over 50ft obstacle: 1,514ft</line>
    <line>  Landing ground roll: 590ft  over 50ft obstacle: 1,390ft</line>
    <key>
-    <name>C</name>
+    <name>c</name>
     <desc>KAP140 Autopilot CWS</desc>
+   </key>
+   <key>
+    <name>C</name>
+    <desc>KAP140 Autopilot Disconnect</desc>
    </key>
    <key>
     <name>n/N</name>
@@ -1223,6 +1227,7 @@
         </servo>
         <settings>
           <cws type="bool">false</cws>
+          <ap-disc type="bool">false</ap-disc>
           <lateral-mode type="int">0</lateral-mode>
           <lateral-arm type="int">0</lateral-arm>
           <vertical-mode type="int">0</vertical-mode>
@@ -1448,6 +1453,22 @@
             <binding>
                 <command>property-assign</command>
                 <property>autopilot/kap140/settings/cws</property>
+                <value>0</value>
+            </binding>
+        </mod-up>
+      </key>
+      <key n="67">
+        <name>C</name>
+        <desc>AP-DISC Button KAP 140</desc>
+        <binding>
+            <command>property-assign</command>
+            <property>autopilot/kap140/settings/ap-disc</property>
+            <value>1</value>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>property-assign</command>
+                <property>autopilot/kap140/settings/ap-disc</property>
                 <value>0</value>
             </binding>
         </mod-up>

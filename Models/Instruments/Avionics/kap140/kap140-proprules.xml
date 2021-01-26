@@ -849,6 +849,7 @@
                 <or>
                     <property>autopilot/kap140/pitch-axis-fail</property>
                     <property>autopilot/kap140/roll-axis-fail</property>
+                    <property>autopilot/kap140/settings/ap-disc</property>
                     <not><property>instrumentation/turn-indicator/serviceable</property></not>
                     <and>
                         <equals>

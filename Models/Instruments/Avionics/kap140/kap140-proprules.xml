@@ -18,6 +18,40 @@
         <output>autopilot/kap140/pitch-axis-fail</output>
     </logic>
 
+<!-- Detect servo movement -->
+    <filter>
+        <type>derivative</type>
+        <gain>100</gain>
+        <input>
+            <condition>
+                <greater-than>
+                    <property>autopilot/kap140/settings/lateral-mode</property>
+                    <value>0</value>
+                </greater-than>
+            </condition>
+            <property>controls/flight/aileron</property>
+        </input>
+        <input>0</input>
+        <output>autopilot/kap140/servo/roll-servo/moverate</output>
+        <filter-time>0.5</filter-time>
+    </filter>
+    <filter>
+        <type>derivative</type>
+        <gain>100</gain>
+        <input>
+            <condition>
+                <greater-than>
+                    <property>autopilot/kap140/settings/vertical-mode</property>
+                    <value>0</value>
+                </greater-than>
+            </condition>
+            <property>controls/flight/elevator</property>
+        </input>
+        <input>0</input>
+        <output>autopilot/kap140/servo/pitch-servo/moverate</output>
+        <filter-time>0.5</filter-time>
+    </filter>
+
 
 <!-- reset all if the AP has no power -->
     <filter>

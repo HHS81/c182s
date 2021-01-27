@@ -5,7 +5,7 @@
 <!-- component. -->
 
 
-<PropertyList include="Aircraft/c172p/Models/Interior/Panel/Instruments/kap140/kap140-config.xml">
+<PropertyList include="Aircraft/c182s/Models/Instruments/Avionics/kap140/kap140-config.xml">
 
 	<filter>
         <name>heading bug backcourse</name>

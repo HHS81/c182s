@@ -675,12 +675,136 @@
 		<output>controls/flight/elevator</output>
 	</filter>
 
-  <filter>
-    <name>vertical speed fpm</name>
-    <debug>false</debug>
-    <type>gain</type>
-    <input>instrumentation/vertical-speed-indicator/indicated-speed-fpm</input>
-    <output>autopilot/internal/vert-speed-fpm</output>
-  </filter>
+    <filter>
+        <name>vertical speed fpm</name>
+        <debug>false</debug>
+        <type>gain</type>
+        <input>instrumentation/vertical-speed-indicator/indicated-speed-fpm</input>
+        <output>autopilot/internal/vert-speed-fpm</output>
+    </filter>
 
+  <!-- Elevator-trim servo -->
+  <!-- The pitch trimming aims to center the yoke, as to release pressure from it (autotrim) -->
+    <filter>
+        <name>elevator-trim demand value</name>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <greater-than>
+                    <property>autopilot/kap140/config/model</property>
+                    <value>1</value>
+                </greater-than>
+                <equals>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>6</value>
+                </equals>
+                <greater-than>
+                    <property>autopilot/kap140/settings/vertical-mode</property>
+                    <value>0</value>
+                </greater-than>
+            </condition>
+        </enable>
+        <type>gain</type>
+        <input>
+            <!-- when to-trim difference is too big: create big trim demand
+                 (this causes the trim wheel to move until clamped or demand lowered) -->
+            <condition>
+                <or>
+                    <greater-than>
+                        <property>controls/flight/elevator</property>
+                        <value>0.15</value>
+                    </greater-than>
+                    <less-than>
+                        <property>controls/flight/elevator</property>
+                        <value>-0.15</value>
+                    </less-than>
+                </or>
+            </condition>
+            <expression>
+                <product>
+                    <property>controls/flight/elevator</property>
+                    <value>-100</value>
+                </product>
+            </expression>
+        </input>
+        <input>
+            <!-- calculate normal trim demand -->
+            <expression>
+                <difference>
+                    <value>0</value>
+                    <property>controls/flight/elevator</property>
+                </difference>
+            </expression>
+        </input>
+        <output>
+            <property>autopilot/kap140/servo/target-elevator-trim</property>
+        </output>
+        <gain>-1.0</gain>
+        <min>-1.0</min>
+        <max>1.0</max>
+    </filter>
+
+    <filter>
+        <name>elevator-trim-servo change rate</name>
+        <debug>false</debug>
+        <type>gain</type>
+        <input>
+            <condition>
+                <equals>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>6</value>
+                </equals>
+                <not><property>autopilot/kap140/pitch-axis-fail</property></not>
+                <not><property>autopilot/kap140/settings/cws</property></not>
+            </condition>
+            <value>0.020</value>
+        </input>
+        <input>100.0</input>
+        <output>autopilot/kap140/servo/elevator-trim-rate</output>
+    </filter>
+
+    <filter>
+        <name>elevator-trim-servo</name>
+        <debug>false</debug>
+        <type>noise-spike</type>
+        <max-rate-of-change>
+            <property>autopilot/kap140/servo/elevator-trim-rate</property>
+        </max-rate-of-change>
+        <input>
+            <condition>
+                <property>autopilot/kap140/config/autotrim-pitch</property>
+                <greater-than>
+                    <property>autopilot/kap140/config/model</property>
+                    <value>1</value>
+                </greater-than>
+                <equals>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>6</value>
+                </equals>
+                <not><property>autopilot/kap140/pitch-axis-fail</property></not>
+                <not><property>autopilot/kap140/settings/cws</property></not>
+            </condition>
+            <property>autopilot/kap140/servo/target-elevator-trim</property>
+        </input>
+
+        <!-- normal/manual operation:
+             use the input value; but if really close to 0 snap to 0 (to allow reset of uneven values from the AP -->
+        <input>
+            <condition>
+                <and>
+                    <less-than>
+                        <property>controls/flight/elevator-trim</property>
+                        <value>0.01</value>
+                    </less-than>
+                    <greater-than>
+                        <property>controls/flight/elevator-trim</property>
+                        <value>-0.01</value>
+                    </greater-than>
+                </and>
+            </condition>
+            <value>0.00</value>
+        </input>
+        <input>controls/flight/elevator-trim</input>
+        <output>controls/flight/elevator-trim</output>
+    </filter>
 </PropertyList>

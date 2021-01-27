@@ -1170,6 +1170,7 @@
           <hsi-installed type="bool">false</hsi-installed>
           <default-altitude type="int">4500</default-altitude>
           <baro-tied type="bool">false</baro-tied>
+          <autotrim-pitch type="bool">true</autotrim-pitch>
         </config>
         <panel>
           <state type="int">0</state>

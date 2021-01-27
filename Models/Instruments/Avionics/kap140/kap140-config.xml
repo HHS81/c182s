@@ -43,6 +43,14 @@
     <baro-inhg>instrumentation/altimeter-kap140-internal/setting-inhg</baro-inhg>
     <baro-hpa>instrumentation/altimeter-kap140-internal/setting-hpa</baro-hpa>
     <indicated-altitude-ft>instrumentation/altimeter-kap140-internal/indicated-altitude-ft</indicated-altitude-ft>
+
+<!--
+    Autotrim enabled
+    If set to true, the autopilot will engange the elevator-trim servo, otherwise it just shows
+    the trimming need and trimming must be done manually.
+-->
+    <baro-tied>autopilot/kap140/config/autotrim-pitch</baro-tied>
+    
   </params>
 
 </PropertyList>

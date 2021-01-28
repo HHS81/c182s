@@ -49,7 +49,7 @@
     If set to true, the autopilot will engange the elevator-trim servo, otherwise it just shows
     the trimming need and trimming must be done manually.
 -->
-    <baro-tied>autopilot/kap140/config/autotrim-pitch</baro-tied>
+    <autotrim-pitch>autopilot/kap140/config/autotrim-pitch</autotrim-pitch>
     
   </params>
 

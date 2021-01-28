@@ -757,9 +757,9 @@
                 <not><property>autopilot/kap140/pitch-axis-fail</property></not>
                 <not><property>autopilot/kap140/settings/cws</property></not>
             </condition>
-            <value>0.020</value>
+            <value>0.050</value> <!-- ~20s for 0-1; ie 40s for -1->0->1; https://assets.publishing.service.gov.uk/media/5422ec04e5274a13170000d5/dft_avsafety_pdf_501522.pdf -->
         </input>
-        <input>100.0</input>
+        <input>120.0</input>
         <output>autopilot/kap140/servo/elevator-trim-rate</output>
     </filter>
 

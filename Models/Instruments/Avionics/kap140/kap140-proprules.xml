@@ -62,16 +62,17 @@
         <filter-time>0.5</filter-time>
     </filter>
 
-<!-- Detect excess g forces (c182s POH p. S15-6) -->
+<!-- Detect excess g forces (c182s POH p. S15-6); disconnect AP. -->
+<!-- (Note: we want to filter short bursts that can occur during turbolences) -->
     <logic>
         <input>
             <or>
                 <greater-than>
-                    <property>accelerations/pilot-g[0]</property>
+                    <property>accelerations/pilot-gdamped</property>
                     <value>1.4</value>
                 </greater-than>
                 <less-than>
-                    <property>accelerations/pilot-g[0]</property>
+                    <property>accelerations/pilot-gdamped</property>
                     <value>0.6</value>
                 </less-than>
             </or>
@@ -1295,6 +1296,35 @@
         <output>autopilot/internal/target-climb-rate</output>
     </filter>
 
+<!-- reset target climb rate if UP/DN buttons are not pressed and we are in ALT-HOLD mode -->
+    <filter>
+        <name>ALT reset climb rate</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <equals>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>6</value>
+                </equals>
+                <equals>
+                    <property>autopilot/kap140/settings/vertical-mode</property>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property>autopilot/kap140/panel/button-up</property>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property>autopilot/kap140/panel/button-down</property>
+                    <value>0</value>
+                </equals>
+            </condition>
+        </enable>
+        <input><value>0</value></input>
+        <output>autopilot/internal/target-climb-rate</output>
+    </filter>
+
 <!-- set rounded FPM to next 100 ft -->
     <filter>
         <name>round target-climb-rate</name>
@@ -1362,7 +1392,8 @@
             </condition>
         </enable>
         <!--<input>systems/static/pressure-inhg</input>-->
-        <input>/systems/static-pressure-inhg-selected</input>
+        <!--<input>/systems/static-pressure-inhg-selected</input>-->
+        <input>/systems/static[1]/pressure-inhg-venturi</input> <!-- use internal cockpit pressure port with venturi effect applied -->
         <output>autopilot/internal/target-pressure</output>
     </filter>
 
@@ -1762,7 +1793,8 @@
             </condition>
         </enable>
         <!--<input>systems/static/pressure-inhg</input>-->
-        <input>/systems/static-pressure-inhg-selected</input>
+        <!--<input>/systems/static-pressure-inhg-selected</input>-->
+        <input>/systems/static[1]/pressure-inhg-venturi</input> <!-- use internal cockpit pressure port with venturi effect applied -->
         <output>autopilot/internal/target-pressure</output>
     </filter>
 

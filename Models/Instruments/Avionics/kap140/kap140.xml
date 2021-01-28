@@ -1930,7 +1930,8 @@
         </condition>
         <command>property-assign</command>
         <property>autopilot/internal/target-pressure</property>
-        <property>environment/pressure-inhg</property>
+        <!--<property>environment/pressure-inhg</property>-->
+        <property>/systems/static[1]/pressure-inhg-venturi</property> <!-- use internal cockpit pressure port with venturi effect applied -->
       </binding>
 
       <mod-up>
@@ -2025,7 +2026,8 @@
           </condition>
           <command>property-assign</command>
           <property>autopilot/internal/target-pressure</property>
-          <property>environment/pressure-inhg</property>
+          <!--<property>environment/pressure-inhg</property>-->
+          <property>/systems/static[1]/pressure-inhg-venturi</property> <!-- use internal cockpit pressure port with venturi effect applied -->
         </binding>
         <binding>
           <command>property-assign</command>
@@ -2117,7 +2119,8 @@
           </condition>
           <command>property-assign</command>
           <property>autopilot/internal/target-pressure</property>
-          <property>environment/pressure-inhg</property>
+          <!--<property>environment/pressure-inhg</property>-->
+          <property>/systems/static[1]/pressure-inhg-venturi</property> <!-- use internal cockpit pressure port with venturi effect applied -->
         </binding>
         <binding>
           <command>property-assign</command>

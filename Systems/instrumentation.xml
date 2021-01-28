@@ -49,7 +49,7 @@ file, these values will be used (they are hardcoded).
     <name>altimeter-kap140-internal</name>
     <number>0</number>
     <!--<static-pressure>/systems/static-pressure-inhg-selected</static-pressure>-->
-    <static-pressure>/systems/static[1]/pressure-inhg</static-pressure> <!-- always use the port in the cockpit with venturi effect applied -->
+    <static-pressure>/systems/static[1]/pressure-inhg-venturi</static-pressure> <!-- always use the port in the cockpit with venturi effect applied -->
     <quantum>0</quantum>
     <tau>0</tau>
   </altimeter>

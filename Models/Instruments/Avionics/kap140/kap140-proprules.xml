@@ -62,6 +62,23 @@
         <filter-time>0.5</filter-time>
     </filter>
 
+<!-- Detect excess g forces (c182s POH p. S15-6) -->
+    <logic>
+        <input>
+            <or>
+                <greater-than>
+                    <property>accelerations/pilot-g[0]</property>
+                    <value>1.4</value>
+                </greater-than>
+                <less-than>
+                    <property>accelerations/pilot-g[0]</property>
+                    <value>0.6</value>
+                </less-than>
+            </or>
+        </input>
+        <output>autopilot/kap140/sensors/excess-g</output>
+    </logic>
+
 
 <!-- reset all if the AP has no power -->
     <filter>
@@ -851,6 +868,10 @@
                     <property>autopilot/kap140/roll-axis-fail</property>
                     <property>autopilot/kap140/settings/ap-disc</property>
                     <not><property>instrumentation/turn-indicator/serviceable</property></not>
+                    <and>
+                        <not><property>autopilot/kap140/settings/cws</property></not>
+                        <property>autopilot/kap140/sensors/excess-g</property>
+                    </and>
                     <and>
                         <equals>
                             <property>autopilot/kap140/panel/state</property>

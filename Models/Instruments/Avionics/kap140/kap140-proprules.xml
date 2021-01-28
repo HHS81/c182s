@@ -79,6 +79,19 @@
         <output>autopilot/kap140/sensors/excess-g</output>
     </logic>
 
+<!-- Detect inoperable turn-indicator -->
+    <logic>
+        <input>
+            <and>
+                <property>instrumentation/turn-indicator/serviceable</property>
+                <greater-than>
+                    <property>systems/electrical/outputs/turn-coordinator</property>
+                    <value>12</value>
+                </greater-than>
+            </and>
+        </input>
+        <output>autopilot/kap140/sensors/turn-indicator-operable</output>
+    </logic>
 
 <!-- reset all if the AP has no power -->
     <filter>
@@ -218,7 +231,7 @@
                 <or>
                     <property>autopilot/kap140/roll-axis-fail</property>
                     <property>autopilot/kap140/pitch-axis-fail</property>
-                    <not><property>instrumentation/turn-indicator/serviceable</property></not>
+                    <not><property>autopilot/kap140/sensors/turn-indicator-operable</property></not>
                 </or>
             </condition>
             <value>1</value>
@@ -867,7 +880,7 @@
                     <property>autopilot/kap140/pitch-axis-fail</property>
                     <property>autopilot/kap140/roll-axis-fail</property>
                     <property>autopilot/kap140/settings/ap-disc</property>
-                    <not><property>instrumentation/turn-indicator/serviceable</property></not>
+                    <not><property>autopilot/kap140/sensors/turn-indicator-operable</property></not>
                     <and>
                         <not><property>autopilot/kap140/settings/cws</property></not>
                         <property>autopilot/kap140/sensors/excess-g</property>

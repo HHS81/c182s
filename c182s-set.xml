@@ -141,7 +141,7 @@
  <path>Aircraft/c182s/Systems/systems.xml</path>
 
     <autopilot>
-        <path>Systems/KAP140.xml</path>
+        <path>Systems/kap140-autopilot.xml</path>
     </autopilot>
     <autopilot>
         <path>Systems/glass-rain.xml</path>

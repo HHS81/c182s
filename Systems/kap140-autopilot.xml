@@ -644,19 +644,6 @@
         </output>
         <filter-time>1.0</filter-time>
     </filter>
-
-    <filter>
-        <name>pressure-rate-filter</name>
-        <debug>false</debug>
-        <type>double-exponential</type>
-        <input>
-            <property>/autopilot/internal/pressure-rate</property>
-        </input>
-        <output>
-            <property>/autopilot/internal/filtered-pressure-rate</property>
-        </output>
-        <filter-time>0.1</filter-time>
-    </filter>
 	
 	<filter>
   <name>target-pressure-rate sample and hold</name>
@@ -671,7 +658,7 @@
         </enable>
     <type>gain</type>
   <gain>1.0</gain>
-  <input>/autopilot/internal/filtered-pressure-rate</input>
+  <input>/autopilot/internal/pressure-rate</input>
   <output>autopilot/internal/target-pressure-rate</output>
  </filter>
 
@@ -690,7 +677,7 @@
             </condition>
         </enable>
         <input>
-            <property>/autopilot/internal/filtered-pressure-rate</property>
+            <property>/autopilot/internal/pressure-rate</property>
         </input>
         <reference>
             <property>autopilot/internal/target-pressure-rate</property>

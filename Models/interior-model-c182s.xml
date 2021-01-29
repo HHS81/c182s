@@ -3638,7 +3638,14 @@
                     <value>12</value>
                 </greater-than>
                 <property>instrumentation/annunciator/serviceable</property>
-                <property>instrumentation/annunciator/pitch-trim-indicated</property>
+                <or>
+                    <property>instrumentation/annunciator/pitch-trim-indicated</property>
+                    <equals>
+                        <!-- KAP140 AP self test PFT-3 highlights the annunciator -->
+                        <property>autopilot/kap140/panel/state</property>
+                        <value>3</value>
+                    </equals>
+                </or>
             </and>
         </condition>
     </animation>

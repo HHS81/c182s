@@ -362,10 +362,12 @@
         <name>Wing Leveler (ROL) Mode</name>
         <debug>false</debug>
         <enable>
-            <greater-than>
-                <property>autopilot/kap140/settings/lateral-mode</property>
-                <value>0</value>
-            </greater-than>
+            <condition>
+                <greater-than>
+                    <property>autopilot/kap140/settings/lateral-mode</property>
+                    <value>0</value>
+                </greater-than>
+            </condition>
         </enable>
         <input>
             <property>/instrumentation/turn-indicator/indicated-turn-rate</property>
@@ -378,7 +380,7 @@
         </output>
         <config>
             <Kp>0.25</Kp>          <!-- proportional gain -->
-            <Ki>0.010 </Ki>        <!-- integral gain -->
+            <Ki>0.012 </Ki>        <!-- integral gain -->
             <u_min>-0.25</u_min>   <!-- minimum output clamp -->
             <u_max>0.25</u_max>    <!-- maximum output clamp -->
         </config>
@@ -461,12 +463,93 @@
 		<output>autopilot/internal/target-climb-rate</output>
 	</filter>
 
-<!-- Altitude Hold (ALT) Mode -->
-	<filter>
-		<name>Altitude Hold (ALT) Mode</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<enable>
+
+    <!-- Vertical Speed (VS) Mode -->
+    <filter>
+        <name>Vertical Speed (VS) Mode</name>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <or>
+                    <and>
+                        <equals>
+                            <property>autopilot/kap140/settings/vertical-mode</property>
+                            <value>1</value>
+                        </equals>
+                        <equals>
+                            <property>autopilot/kap140/panel/button-up</property>
+                            <value>0</value>
+                        </equals>
+                        <equals>
+                            <property>autopilot/kap140/panel/button-down</property>
+                            <value>0</value>
+                        </equals>
+                    </and>
+                    <and>
+                        <!-- ALT-HOLD adjustment by holding UP/DN buttons -->
+                        <equals>
+                            <property>autopilot/kap140/settings/vertical-mode</property>
+                            <value>2</value>
+                        </equals>
+                        <or>
+                            <greater-than>
+                                <property>sim/time/elapsed-sec</property>
+                                <expression>
+                                    <sum>
+                                        <property>autopilot/kap140/panel/button-up</property>
+                                        <value>1</value>
+                                    </sum>
+                                </expression>
+                            </greater-than>
+                            <greater-than>
+                                <property>sim/time/elapsed-sec</property>
+                                <expression>
+                                    <sum>
+                                        <property>autopilot/kap140/panel/button-down</property>
+                                        <value>1</value>
+                                    </sum>
+                                </expression>
+                            </greater-than>
+                        </or>
+                    </and>
+                </or>
+            </condition>
+        </enable>
+        <type>gain</type>
+        <input>
+            <expression>
+                <div>
+                    <product>
+                        <value>-1</value>
+                        <product>
+                            <floor>
+                                <sum>
+                                    <div>
+                                        <property>autopilot/internal/target-climb-rate</property>
+                                        <value>100</value>
+                                    </div>
+                                    <value>0.5</value>
+                                </sum>
+                            </floor>
+                            <value>100</value>
+                        </product>
+                    </product>
+
+                    <value>58000</value>
+                </div>
+            </expression>
+        </input>
+        <output>
+            <property>autopilot/internal/target-pressure-rate</property>
+        </output>
+    </filter>
+
+    
+    <!-- Altitude Hold (ALT) Mode -->
+    <pid-controller>
+        <name>Altitude Hold (ALT) Mode</name>
+        <debug>false</debug>
+        <enable>
 			<condition>
 				<equals>
 					<property>autopilot/kap140/settings/vertical-mode</property>
@@ -482,107 +565,130 @@
 				</equals>
 			</condition>
 		</enable>
-		<input>
-			<expression>
-				<product>
-					<dif>
-                        <property>/systems/static-pressure-inhg-selected</property>
-						<property>autopilot/internal/target-pressure</property>
-					</dif>
-					<value>5000</value>
-				</product>
-			</expression>
-		</input>
-		<output>autopilot/internal/target-climb-rate</output>
-		<min>-500</min>
-		<max>500</max>
-	</filter>
+        <input>
+            <!--<property>/systems/static[1]/pressure-inhg</property>-->
+            <property>/systems/static[1]/pressure-inhg-venturi</property> <!-- use internal cockpit pressure port with venturi effect applied -->
+        </input>
+        <reference>
+            <property>/autopilot/internal/target-pressure</property>
+        </reference>
+        <output>
+            <property>/autopilot/internal/target-pressure-rate</property>
+        </output>
+        <config>
+            <Kp>0.125</Kp> <!-- proportional gain -->
+            <beta>1.0</beta> <!-- input value weighing factor -->
+            <alpha>0.1</alpha> <!-- low pass filter weighing factor -->
+            <gamma>0.0</gamma> <!-- input value weighing factor for -->
+            <!-- unfiltered derivative error -->
+            <Ti>12.0</Ti> <!-- integrator time -->
+            <Td>0.0</Td> <!-- derivator time -->
+            <u_min>-0.007</u_min> <!-- minimum output clamp -->
+            <u_max>0.007</u_max> <!-- maximum output clamp -->
+        </config>
+    </pid-controller>
 
-<!-- Glideslope Hold (GS) Mode -->
-	<filter>
-		<name>Glideslope Hold (GS) Mode</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<enable>
-			<condition>
-				<equals>
-					<property>autopilot/kap140/settings/vertical-mode</property>
-					<value>3</value>
-				</equals>
-				<property>instrumentation/nav-source/in-range</property>
-				<property>instrumentation/nav-source/nav-loc</property>
-				<property>instrumentation/nav-source/gs-in-range</property>
-			</condition>
-		</enable>
-		<input>
-			<expression>
-				<product>
-					<property>instrumentation/nav-source/gs-rate-of-climb-fpm</property>
-					<value>1.2</value>
-				</product>
-			</expression>
-		</input>
-		<output>autopilot/internal/target-climb-rate</output>
-	</filter>
+    <!-- Glideslope Hold (GS) Mode -->
+    <pid-controller>
+        <name>Glideslope Hold (GS) Mode</name>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <equals>
+                    <property>autopilot/kap140/settings/vertical-mode</property>
+                    <value>3</value>
+                </equals>
+                <property>instrumentation/nav-source/in-range</property>
+                <property>instrumentation/nav-source/nav-loc</property>
+                <property>instrumentation/nav-source/gs-in-range</property>
+            </condition>
+        </enable>
+        <input>
+            <property>/instrumentation/nav/gs-needle-deflection-norm</property>
+        </input>
+        <reference>
+            <value>0.0</value>
+        </reference>
+        <output>
+            <property>/autopilot/internal/target-pressure-rate</property>
+        </output>
+        <config>
+            <Kp>0.025</Kp> <!-- proportional gain -->
+            <beta>1.0</beta> <!-- input value weighing factor -->
+            <alpha>0.1</alpha> <!-- low pass filter weighing factor -->
+            <gamma>0.0</gamma> <!-- input value weighing factor for -->
+            <!-- unfiltered derivative error -->
+            <Ti>15.0</Ti> <!-- integrator time -->
+            <Td>0.0</Td> <!-- derivator time -->
+            <u_min>-0.001</u_min> <!-- minimum output clamp -->
+            <u_max>0.017</u_max> <!-- maximum output clamp -->
+        </config>
+    </pid-controller>
 
-<!-- vertical reference to avoid jerking -->
-	<filter>
-		<name>ref-vertical</name>
-		<debug>false</debug>
-		<type>noise-spike</type>
-		<max-rate-of-change>100</max-rate-of-change>
-		<input>
-			<condition>
-				<greater-than>
-					<property>autopilot/kap140/settings/vertical-mode</property>
-					<value>0</value>
-				</greater-than>
-				<not><property>autopilot/kap140/settings/cws</property></not>
-			</condition>
-			<property>autopilot/internal/target-climb-rate</property>
-		</input>
-		<input>
-			<property>autopilot/internal/vert-speed-fpm</property>
-		</input>
-		<output>
-			<property>autopilot/internal/ref-vertical</property>
-		</output>
-	</filter>
 
-<!-- Vertical Speed (VS) Mode -->
-	<pid-controller>
-		<name>Vertical Speed (VS) Mode</name>
-		<debug>false</debug>
-		<input>
-			<property>autopilot/internal/vert-speed-fpm</property>
-		</input>
-		<reference>
-			<property>autopilot/internal/ref-vertical</property>
-		</reference>
-		<output>
-			<property>autopilot/kap140/servo/elevator</property>
-		</output>
-		<config>
-			<Kp>-0.0002</Kp>
-			<!-- proportional gain -->
-			<beta>1.0</beta>
-			<!-- input value weighing factor -->
-			<alpha>0.1</alpha>
-			<!-- low pass filter weighing factor -->
-			<gamma>0.0</gamma>
-			<!-- input value weighing factor for -->
-			<!-- unfiltered derivative error -->
-			<Ti>10.0</Ti>
-			<!-- integrator time -->
-			<Td>0.5</Td>
-			<!-- derivator time -->
-			<u_min>-0.5</u_min>
-			<!-- minimum output clamp -->
-			<u_max>0.5</u_max>
-			<!-- maximum output clamp -->
-		</config>
-	</pid-controller>
+    <filter>
+        <name>KAP140 internal static port pressure rate computer</name>
+        <debug>false</debug>
+        <type>derivative</type>
+        <input>
+            <!--<property>/systems/static-pressure-inhg-selected</property>-->
+            <property>/systems/static[1]/pressure-inhg-venturi</property> <!-- use cockpit pressure source with venturi effect applied -->
+        </input>
+        <output>
+            <property>autopilot/internal/pressure-rate</property>
+        </output>
+        <filter-time>1.0</filter-time>
+    </filter>
 
+    <filter>
+        <name>pressure-rate-filter</name>
+        <debug>false</debug>
+        <type>double-exponential</type>
+        <input>
+            <property>/autopilot/internal/pressure-rate</property>
+        </input>
+        <output>
+            <property>/autopilot/internal/filtered-pressure-rate</property>
+        </output>
+        <filter-time>0.1</filter-time>
+    </filter>
+
+
+    <!-- VS PID controller controls the climb/descend rate in pressure change terms -->
+    <!-- This is used from the VS, ALT and GS modes, which calculate the target pressure change rate -->
+    <pid-controller>
+        <name>Vertical Speed PID-Controller</name>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <greater-than>
+                    <property>autopilot/kap140/settings/vertical-mode</property>
+                    <value>0</value>
+                </greater-than>
+            </condition>
+        </enable>
+        <input>
+            <property>/autopilot/internal/filtered-pressure-rate</property>
+        </input>
+        <reference>
+            <property>autopilot/internal/target-pressure-rate</property>
+        </reference>
+        <output>
+            <property>autopilot/kap140/servo/elevator</property>
+        </output>
+        <config>
+            <Kp>5.0</Kp> <!-- proportional gain -->
+            <beta>1.0</beta> <!-- input value weighing factor -->
+            <alpha>0.1</alpha> <!-- low pass filter weighing factor -->
+            <gamma>0.0</gamma> <!-- input value weighing factor for -->
+            <!-- unfiltered derivative error -->
+            <Ti>4.0</Ti> <!-- integrator time -->
+            <Td>0.0</Td> <!-- derivator time -->
+            <u_min>-0.5</u_min> <!-- minimum output clamp -->
+            <u_max>0.5</u_max> <!-- maximum output clamp -->
+        </config>
+    </pid-controller>
+    
 <!--
     ===============================================================
     Servos
@@ -683,6 +789,7 @@
         <output>autopilot/internal/vert-speed-fpm</output>
     </filter>
 
+
   <!-- Elevator-trim servo -->
   <!-- The pitch trimming aims to center the yoke, as to release pressure from it (autotrim) -->
     <filter>
@@ -706,72 +813,67 @@
         </enable>
         <type>gain</type>
         <input>
-            <!-- when to-trim difference is too big: create big trim demand
-                 (this causes the trim wheel to move until clamped or demand lowered) -->
             <condition>
-                <or>
                     <greater-than>
                         <property>controls/flight/elevator</property>
-                        <value>0.15</value>
+                        <value>0.10</value>
                     </greater-than>
-                    <less-than>
-                        <property>controls/flight/elevator</property>
-                        <value>-0.15</value>
-                    </less-than>
-                </or>
             </condition>
-            <expression>
-                <product>
-                    <property>controls/flight/elevator</property>
-                    <value>-100</value>
-                </product>
-            </expression>
+            <value>1</value>
         </input>
         <input>
-            <!-- calculate normal trim demand -->
-            <expression>
-                <difference>
-                    <value>0</value>
+            <condition>
+                <less-than>
                     <property>controls/flight/elevator</property>
-                </difference>
-            </expression>
+                    <value>-0.10</value>
+                </less-than>
+            </condition>
+            <value>-1</value>
+        </input>
+        <input><value>0</value></input> <!-- default: no trim demand -->
+        <output>autopilot/kap140/sensors/elevator-trim-demand</output>
+    </filter>
+
+    <logic>
+        <name>Elevator-trim low demand</name>
+        <input>
+            <or>
+                <greater-than>
+                    <property>autopilot/kap140/sensors/elevator-trim-demand</property>
+                    <value>0.1</value>
+                </greater-than>
+                <less-than>
+                    <property>autopilot/kap140/sensors/elevator-trim-demand</property>
+                    <value>-0.1</value>
+                </less-than>
+            </or>
         </input>
         <output>
-            <property>autopilot/kap140/servo/target-elevator-trim</property>
+            <property>autopilot/kap140/sensors/elevator-trim-demand-low</property>
         </output>
-        <gain>-1.0</gain>
-        <min>-1.0</min>
-        <max>1.0</max>
-    </filter>
+    </logic>
+    <flipflop>
+        <!-- signify high demand after 10 secs (POH p. S15-11) -->
+        <name>Elevator-trim high demand</name>
+        <type>monostable</type>
+        <inverted type="bool">true</inverted>
+        <S>
+            <not>
+                <property>autopilot/kap140/sensors/elevator-trim-demand</property>
+            </not>
+        </S>
+        <time>
+            <value>10.0</value>
+        </time>
+        <output>
+            <property>autopilot/kap140/sensors/elevator-trim-demand-high</property>
+        </output>
+    </flipflop>
 
-    <filter>
-        <name>elevator-trim-servo change rate</name>
-        <debug>false</debug>
-        <type>gain</type>
+    <logic>
+        <name>Elevator-trim clutch engaged</name>
         <input>
-            <condition>
-                <equals>
-                    <property>autopilot/kap140/panel/state</property>
-                    <value>6</value>
-                </equals>
-                <not><property>autopilot/kap140/pitch-axis-fail</property></not>
-                <not><property>autopilot/kap140/settings/cws</property></not>
-            </condition>
-            <value>0.020</value>
-        </input>
-        <input>100.0</input>
-        <output>autopilot/kap140/servo/elevator-trim-rate</output>
-    </filter>
-
-    <filter>
-        <name>elevator-trim-servo</name>
-        <debug>false</debug>
-        <type>noise-spike</type>
-        <max-rate-of-change>
-            <property>autopilot/kap140/servo/elevator-trim-rate</property>
-        </max-rate-of-change>
-        <input>
-            <condition>
+            <and>
                 <property>autopilot/kap140/config/autotrim-pitch</property>
                 <greater-than>
                     <property>autopilot/kap140/config/model</property>
@@ -783,15 +885,66 @@
                 </equals>
                 <not><property>autopilot/kap140/pitch-axis-fail</property></not>
                 <not><property>autopilot/kap140/settings/cws</property></not>
-            </condition>
-            <property>autopilot/kap140/servo/target-elevator-trim</property>
+                <or>
+                    <greater-than>
+                        <property>autopilot/kap140/sensors/elevator-trim-demand</property>
+                        <value>0.1</value>
+                    </greater-than>
+                    <less-than>
+                        <property>autopilot/kap140/sensors/elevator-trim-demand</property>
+                        <value>-0.1</value>
+                    </less-than>
+                </or>
+            </and>
         </input>
+        <output>autopilot/kap140/servo/elevator-trim-servo/clutch-engaged</output>
+    </logic>
 
-        <!-- normal/manual operation:
-             use the input value; but if really close to 0 snap to 0 (to allow reset of uneven values from the AP -->
+    <filter>
+        <name>Elevator-trim servo change rate</name>
+        <debug>false</debug>
+        <type>gain</type>
         <input>
             <condition>
+                <property>autopilot/kap140/servo/elevator-trim-servo/clutch-engaged</property>
+            </condition>
+            <value> 0.050 </value> <!-- ~20s for 0-1; ie 40s for -1->0->1; https://assets.publishing.service.gov.uk/media/5422ec04e5274a13170000d5/dft_avsafety_pdf_501522.pdf -->
+        </input>
+        <input>100.0</input>
+        <output>autopilot/kap140/servo/elevator-trim-servo/moverate</output>
+    </filter>
+
+    <filter>
+        <name>Elevator-trim servo</name>
+        <debug>false</debug>
+        <type>noise-spike</type>
+        <max-rate-of-change>
+            <property>autopilot/kap140/servo/elevator-trim-servo/moverate</property>
+        </max-rate-of-change>
+        <input>
+            <condition>
+                <property>autopilot/kap140/servo/elevator-trim-servo/clutch-engaged</property>
+                <not><property>autopilot/kap140/settings/cws</property></not>
+            </condition>
+            <property>autopilot/kap140/sensors/elevator-trim-demand</property>
+        </input>
+        <input>controls/flight/elevator-trim</input>
+        <output>controls/flight/elevator-trim</output>
+        <output>autopilot/kap140/servo/elevator-trim</output>
+        <min>-1</min>
+        <max>1</max>
+    </filter>
+
+
+    <!-- manual operation: if really close to 0 snap to 0
+             (to allow reset of uneven values from the AP) -->
+    <filter>
+        <name>Correct manual trim center</name>
+        <type>gain</type>
+        <enable>
+            <condition>
                 <and>
+                    <not> <property>autopilot/kap140/servo/elevator-trim-servo/clutch-engaged</property> </not>
                     <less-than>
                         <property>controls/flight/elevator-trim</property>
                         <value>0.01</value>
@@ -802,9 +955,11 @@
                     </greater-than>
                 </and>
             </condition>
+        </enable>
+        <input>
             <value>0.00</value>
         </input>
-        <input>controls/flight/elevator-trim</input>
         <output>controls/flight/elevator-trim</output>
     </filter>
+
 </PropertyList>

@@ -1063,6 +1063,24 @@
   <animation>
     <type>select</type>
     <object-name>ann-pt</object-name>
+    <name>Pitch trim up annunciator</name>
+    <condition>
+        <or>
+            <greater-than-equals>
+                <property>autopilot/kap140/sensors/pitch-up</property>
+                <value>1</value>
+            </greater-than-equals>
+            <greater-than-equals>
+                <property>autopilot/kap140/sensors/pitch-down</property>
+                <value>1</value>
+            </greater-than-equals>
+        </or>
+    </condition>
+  </animation>
+
+  <!--<animation>
+    <type>select</type>
+    <object-name>ann-pt</object-name>
     <name>Pitch trim annunciator</name>
     <condition>
       <or>
@@ -1085,21 +1103,24 @@
             <property>sim/time/elapsed-sec</property>
             <property>autopilot/kap140/sensors/pitch-up</property>
           </greater-than>
-          <less-than>
-            <expression>
-              <mod>
-                <product>
-                  <dif>
-                    <property>sim/time/elapsed-sec</property>
-                    <property>autopilot/kap140/sensors/pitch-up</property>
-                  </dif>
-                  <value>2</value>
-                </product>
-                <value>2</value>
-              </mod>
-            </expression>
-            <value>1</value>
-          </less-than>
+          <or>
+            <not><property>autopilot/kap140/sensors/elevator-trim-demand-high</property></not>
+            <less-than>
+                <expression>
+                <mod>
+                    <product>
+                    <dif>
+                        <property>sim/time/elapsed-sec</property>
+                        <property>autopilot/kap140/sensors/pitch-up</property>
+                    </dif>
+                    <value>2</value>
+                    </product>
+                    <value>2</value>
+                </mod>
+                </expression>
+                <value>1</value>
+            </less-than>
+          </or>
         </and>
         <and>
           <greater-than>
@@ -1110,68 +1131,54 @@
             <property>sim/time/elapsed-sec</property>
             <property>autopilot/kap140/sensors/pitch-down</property>
           </greater-than>
-          <less-than>
-            <expression>
-              <mod>
-                <product>
-                  <dif>
-                    <property>sim/time/elapsed-sec</property>
-                    <property>autopilot/kap140/sensors/pitch-down</property>
-                  </dif>
-                  <value>2</value>
-                </product>
-                <value>2</value>
-              </mod>
-            </expression>
-            <value>1</value>
-          </less-than>
+          <or>
+            <not><property>autopilot/kap140/sensors/elevator-trim-demand-high</property></not>
+            <less-than>
+                <expression>
+                <mod>
+                    <product>
+                    <dif>
+                        <property>sim/time/elapsed-sec</property>
+                        <property>autopilot/kap140/sensors/pitch-down</property>
+                    </dif>
+                    <value>2</value>
+                    </product>
+                    <value>2</value>
+                </mod>
+                </expression>
+                <value>1</value>
+            </less-than>
+          </or>
         </and>
       </or>
     </condition>
-  </animation>
+    </animation>-->
 
   <animation>
     <type>select</type>
     <object-name>ann-pt-up</object-name>
     <name>Pitch trim up annunciator</name>
     <condition>
-      <or>
-        <less-than>
-          <property>autopilot/kap140/sensors/pitch-trim</property>
-          <value>1.0</value>
-        </less-than>
-        <less-than>
-          <property>sim/time/elapsed-sec</property>
-          <property>autopilot/kap140/sensors/pitch-trim</property>
-        </less-than>
-      </or>
-      <greater-than>
-        <property>autopilot/kap140/sensors/pitch-up</property>
-        <value>1.0</value>
-      </greater-than>
-      <greater-than>
-        <property>sim/time/elapsed-sec</property>
-        <property>autopilot/kap140/sensors/pitch-up</property>
-      </greater-than>
-      <less-than>
-        <expression>
-          <mod>
-            <product>
-              <dif>
-                <property>sim/time/elapsed-sec</property>
-                <property>autopilot/kap140/sensors/pitch-up</property>
-              </dif>
-              <value>2</value>
-            </product>
-            <value>2</value>
-          </mod>
-        </expression>
-        <value>1</value>
-      </less-than>
+        <greater-than-equals>
+            <property>autopilot/kap140/sensors/pitch-up</property>
+            <value>1</value>
+        </greater-than-equals>
+    </condition>
+  </animation>
+  
+  <animation>
+    <type>select</type>
+    <object-name>ann-pt-down</object-name>
+    <name>Pitch trim down annunciator</name>
+    <condition>
+        <greater-than-equals>
+            <property>autopilot/kap140/sensors/pitch-down</property>
+            <value>1</value>
+        </greater-than-equals>
     </condition>
   </animation>
 
-  <animation>
+  <!--<animation>
     <type>select</type>
     <object-name>ann-pt-down</object-name>
     <name>Pitch trim down annunciator</name>
@@ -1194,23 +1201,26 @@
         <property>sim/time/elapsed-sec</property>
         <property>autopilot/kap140/sensors/pitch-down</property>
       </greater-than>
-      <less-than>
-        <expression>
-          <mod>
-            <product>
-              <dif>
-                <property>sim/time/elapsed-sec</property>
-                <property>autopilot/kap140/sensors/pitch-down</property>
-              </dif>
-              <value>2</value>
-            </product>
-            <value>2</value>
-          </mod>
-        </expression>
-        <value>1</value>
-      </less-than>
+      <or>
+        <not><property>autopilot/kap140/sensors/elevator-trim-demand-high</property></not>
+        <less-than>
+            <expression>
+            <mod>
+                <product>
+                <dif>
+                    <property>sim/time/elapsed-sec</property>
+                    <property>autopilot/kap140/sensors/pitch-down</property>
+                </dif>
+                <value>2</value>
+                </product>
+                <value>2</value>
+            </mod>
+            </expression>
+            <value>1</value>
+        </less-than>
+      </or>
     </condition>
-  </animation>
+  </animation>-->
 
   <!-- alt alerter -->
   <animation>
@@ -1930,7 +1940,8 @@
         </condition>
         <command>property-assign</command>
         <property>autopilot/internal/target-pressure</property>
-        <property>environment/pressure-inhg</property>
+        <!--<property>environment/pressure-inhg</property>-->
+        <property>/systems/static[1]/pressure-inhg-venturi</property> <!-- use internal cockpit pressure port with venturi effect applied -->
       </binding>
 
       <mod-up>
@@ -2025,7 +2036,8 @@
           </condition>
           <command>property-assign</command>
           <property>autopilot/internal/target-pressure</property>
-          <property>environment/pressure-inhg</property>
+          <!--<property>environment/pressure-inhg</property>-->
+          <property>/systems/static[1]/pressure-inhg-venturi</property> <!-- use internal cockpit pressure port with venturi effect applied -->
         </binding>
         <binding>
           <command>property-assign</command>
@@ -2117,7 +2129,8 @@
           </condition>
           <command>property-assign</command>
           <property>autopilot/internal/target-pressure</property>
-          <property>environment/pressure-inhg</property>
+          <!--<property>environment/pressure-inhg</property>-->
+          <property>/systems/static[1]/pressure-inhg-venturi</property> <!-- use internal cockpit pressure port with venturi effect applied -->
         </binding>
         <binding>
           <command>property-assign</command>

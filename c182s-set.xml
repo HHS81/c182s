@@ -1152,6 +1152,7 @@
         <target-climb-rate type="int">0</target-climb-rate>
         <target-altitude type="int">0</target-altitude>
         <target-pressure type="double">0.0</target-pressure>
+        <target-pressure-rate type="double">0.0</target-pressure-rate>
         <target-turn-rate type="double">0.0</target-turn-rate>
         <max-rate-of-change type="double">100.0</max-rate-of-change>
         <ref-lateral type="double">0.0</ref-lateral>
@@ -1207,6 +1208,7 @@
           <pt-down type="bool">false</pt-down>
         </panel>
         <sensors>
+          <elevator-trim-demand type="double">0.0</elevator-trim-demand>
           <elevator-trim type="double">0.0</elevator-trim>
           <pitch-up type="double">0.0</pitch-up>
           <pitch-down type="double">0.0</pitch-down>
@@ -1225,6 +1227,9 @@
           <pitch-servo>
             <serviceable type="bool">true</serviceable>
           </pitch-servo>
+          <elevator-trim-servo>
+            <serviceable type="bool">true</serviceable>
+          </elevator-trim-servo>
         </servo>
         <settings>
           <cws type="bool">false</cws>

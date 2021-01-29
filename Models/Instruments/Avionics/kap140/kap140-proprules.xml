@@ -2103,7 +2103,7 @@
 <!-- Pitch Trim (PT) -->
     <filter>
         <name>set pitch up</name>
-        <debug>true</debug>
+        <debug>false</debug>
         <type>gain</type>
         <input>
             <condition>
@@ -2169,7 +2169,7 @@
 
     <filter>
         <name>set pitch down</name>
-        <debug>true</debug>
+        <debug>false</debug>
         <type>gain</type>
         <input>
             <condition>

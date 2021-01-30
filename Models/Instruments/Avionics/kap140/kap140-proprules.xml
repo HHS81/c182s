@@ -142,6 +142,8 @@
         <output>autopilot/kap140/panel/baro-mode</output>
         <output>autopilot/kap140/panel/baro-timer</output>
         <output>autopilot/kap140/panel/nav-timer</output>
+        <output>autopilot/kap140/settings/cws</output>
+        <output>autopilot/kap140/settings/ap-disc</output>
     </filter>
 
 
@@ -963,6 +965,8 @@
         <output>autopilot/kap140/panel/nav-timer</output>
         <output>autopilot/kap140/panel/baro-timer</output>
         <output>autopilot/kap140/panel/digit-timer</output>
+        <output>autopilot/kap140/settings/cws</output>
+        <output>autopilot/kap140/settings/ap-disc</output>
     </filter>
 
 <!-- set default lateral mode at AP activation -->

@@ -1745,11 +1745,11 @@
                 <property>instrumentation/nav-source/gs-in-range</property>
                 <less-than>
                     <property>instrumentation/nav-source/gs-needle-deflection</property>
-                    <value>0</value>
+                    <value>0.0</value>
                 </less-than>
                 <greater-than>
                     <property>instrumentation/nav-source/gs-needle-deflection</property>
-                    <value>-1</value>
+                    <value>-0.5</value>
                 </greater-than>
             </condition>
         </enable>

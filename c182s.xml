@@ -1449,7 +1449,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
-                    <value>-0.0147</value>
+                    <value>0.0147</value>
                 </product>
             </function>
             
@@ -1735,8 +1735,8 @@
                     <table>
                         <independentVar>velocities/u-fps</independentVar>
                         <tableData>
-                              107.1  -0.0393 <!--Approach-->
-                              133.5  -0.0252 <!--climb-->
+                              107.1  0.0393 <!--Approach-->
+                              133.5  0.0252 <!--climb-->
                               220.1   0.0108 <!--cruise-->
                         </tableData>
                     </table>

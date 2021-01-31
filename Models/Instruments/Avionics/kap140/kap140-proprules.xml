@@ -1659,6 +1659,10 @@
                     <property>autopilot/kap140/settings/lateral-mode</property>
                     <value>4</value>
                 </equals>
+                <not-equals>
+                    <property>autopilot/kap140/settings/vertical-mode</property>
+                    <value>3</value>
+                </not-equals>
                 <less-than>
                     <property>autopilot/kap140/panel/nav-timer</property>
                     <value>1</value>
@@ -1666,15 +1670,8 @@
             </condition>
         </enable>
         <input>
-            <condition>
-                <equals>
-                    <property>instrumentation/nav-source/has-gs</property>
-                    <value>1</value>
-                </equals>
-            </condition>
             <value>4</value>
         </input>
-        <input>0</input>
         <output>autopilot/kap140/settings/lateral-arm</output>
     </filter>
 
@@ -1742,7 +1739,7 @@
         <enable>
             <condition>
                 <equals>
-                    <property>autopilot/kap140/settings/lateral-arm</property>
+                    <property>autopilot/kap140/settings/lateral-mode</property>
                     <value>4</value>
                 </equals>
                 <less-than>
@@ -1766,18 +1763,25 @@
         <debug>false</debug>
         <enable>
             <condition>
-                <equals>
-                    <property>autopilot/kap140/settings/lateral-arm</property>
-                    <value>4</value>
-                </equals>
-                <equals>
-                    <property>autopilot/kap140/settings/vertical-mode</property>
-                    <value>3</value>
-                </equals>
+                <and>
+                    <equals>
+                        <property>autopilot/kap140/settings/lateral-arm</property>
+                        <value>4</value>
+                    </equals>
+                    <equals>
+                        <property>autopilot/kap140/settings/lateral-mode</property>
+                        <value>4</value>
+                    </equals>
+                    <equals>
+                        <property>autopilot/kap140/settings/vertical-mode</property>
+                        <value>3</value>
+                    </equals>
+                </and>
             </condition>
         </enable>
         <input>0</input>
         <output>autopilot/kap140/settings/lateral-arm</output>
+        <output>autopilot/kap140/settings/vertical-arm</output>
         <output>autopilot/internal/target-pressure</output>
     </filter>
 

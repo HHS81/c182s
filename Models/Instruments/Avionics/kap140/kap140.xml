@@ -936,10 +936,28 @@
     <object-name>ann-arm1</object-name>
     <name>ARM1 Anunciator</name>
     <condition>
-      <greater-than>
-        <property>autopilot/kap140/settings/lateral-arm</property>
-        <value>0</value>
-      </greater-than>
+      <or>
+          <and>
+            <greater-than>
+                <property>autopilot/kap140/settings/lateral-arm</property>
+                <value>0</value>
+            </greater-than>
+            <not-equals>
+                    <property>autopilot/kap140/settings/lateral-mode</property>
+                    <value>4</value>
+            </not-equals>
+          </and>
+        <and>
+            <equals>
+                <property>autopilot/kap140/settings/lateral-mode</property>
+                <value>4</value>
+            </equals>
+            <not-equals>
+                <property>autopilot/kap140/settings/vertical-mode</property>
+                <value>3</value>
+            </not-equals>
+        </and>
+      </or>
     </condition>
   </animation>
 
@@ -985,9 +1003,13 @@
     <name>GS-ARM Anunciator</name>
     <condition>
       <equals>
-        <property>autopilot/kap140/settings/lateral-arm</property>
+        <property>autopilot/kap140/settings/lateral-mode</property>
         <value>4</value>
       </equals>
+      <not-equals>
+        <property>autopilot/kap140/settings/vertical-mode</property>
+        <value>3</value>
+      </not-equals>
     </condition>
   </animation>
 

@@ -950,17 +950,17 @@
                     <not> <property>autopilot/kap140/servo/elevator-trim-servo/clutch-engaged</property> </not>
                     <less-than>
                         <property>controls/flight/elevator-trim</property>
-                        <value>0.01</value>
+                        <value>0.001</value>
                     </less-than>
                     <greater-than>
                         <property>controls/flight/elevator-trim</property>
-                        <value>-0.01</value>
+                        <value>-0.001</value>
                     </greater-than>
                 </and>
             </condition>
         </enable>
         <input>
-            <value>0.00</value>
+            <value>0.000</value>
         </input>
         <output>controls/flight/elevator-trim</output>
     </filter>

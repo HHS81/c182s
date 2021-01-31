@@ -1409,8 +1409,14 @@
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/bw-ft</property>
-          <property>fcs/left-aileron-pos-rad</property>
-          <value>0.2290</value>
+            <product>
+                <difference>
+                    <property>fcs/left-aileron-pos-rad</property>
+                    <property>fcs/right-aileron-pos-rad</property>
+                </difference>
+                <value>0.5</value>
+            </product>
+          <value>0.1145</value>
                     <!--
                         stall and spin (4):
                         less efficient ailerons
@@ -1719,13 +1725,19 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
+            <product>
+                <difference>
                     <property>fcs/left-aileron-pos-rad</property>
+                    <property>fcs/right-aileron-pos-rad</property>
+                </difference>
+                <value>0.5</value>
+            </product>
                     <table>
                         <independentVar>velocities/u-fps</independentVar>
                         <tableData>
-                              107.1  -0.0786 <!--Approach-->
-                              133.5  -0.0504 <!--climb-->
-                              220.1   0.0216 <!--cruise-->
+                              107.1  -0.0393 <!--Approach-->
+                              133.5  -0.0252 <!--climb-->
+                              220.1   0.0108 <!--cruise-->
                         </tableData>
                     </table>
                     <table>

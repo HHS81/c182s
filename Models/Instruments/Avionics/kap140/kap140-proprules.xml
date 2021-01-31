@@ -1742,6 +1742,7 @@
                     <property>autopilot/kap140/settings/lateral-mode</property>
                     <value>4</value>
                 </equals>
+                <property>instrumentation/nav-source/gs-in-range</property>
                 <less-than>
                     <property>instrumentation/nav-source/gs-needle-deflection</property>
                     <value>0</value>

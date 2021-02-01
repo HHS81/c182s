@@ -792,6 +792,12 @@
             <property>autopilot/kap140/settings/lateral-mode</property>
             <value>2</value>
           </equals>
+          <not>
+            <greater-than>
+                <property>autopilot/kap140/settings/lateral-arm</property>
+                <value>0</value>
+            </greater-than>
+          </not>
         </and>
         <and>
           <greater-than>

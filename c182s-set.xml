@@ -106,6 +106,15 @@
             <description>fuel/oil system, custom registration livery, checklists, save-state, failures, cockpit/avionics improvements and many more small additions</description>
             <nick>Beni</nick>
         </author>
+        <author n="8">
+            <name>Sascha Reißner</name>
+            <description>KAP140 Autopilot Model</description>
+        </author>
+        <author n="9">
+            <name>Josh Davidson</name>
+            <description>KAP140 Autopilot internas/controllers</description>
+            <nick>Octal450</nick>
+        </author>
     </authors>
 
     <maintainers>
@@ -1172,6 +1181,8 @@
           <default-altitude type="int">4500</default-altitude>
           <baro-tied type="bool">false</baro-tied>
           <autotrim-pitch type="bool">true</autotrim-pitch>
+          <gain-pitch type="double">0.7</gain-pitch> <!-- Elevators very sensitive -->
+          <gain-roll type="double">1.4</gain-roll>   <!-- Ailerons are a little slow -->
         </config>
         <panel>
           <state type="int">0</state>

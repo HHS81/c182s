@@ -1,968 +1,762 @@
 <?xml version="1.0"?>
-<!-- KAP 140 Autopilot Configuration -->
-<!-- Each component is evaluated in the order specified.  You can make up -->
-<!-- property names to pass the result of one component on to a subsequent -->
-<!-- component. -->
 
+<!-- KAP 140 Autopilot -->
 
 <PropertyList include="Aircraft/c182s/Models/Instruments/Avionics/kap140/kap140-config.xml">
-
+	
+	<!-- Begin Rework 2021 by Josh Davidson (Octal450) -->
+	<!-- Roll Axis -->
 	<filter>
-        <name>heading bug backcourse</name>
-        <debug>false</debug>
-        <type>gain</type>
-        <input>
-            <condition>
-                <less-than>
-                    <property>autopilot/settings/heading-bug-deg</property>
-                    <value>180</value>
-                </less-than>
-            </condition>
-            <expression>
-                <sum>
-                    <property>autopilot/settings/heading-bug-deg</property>
-                    <value>180</value>
-                </sum>
-            </expression>
-        </input>
-        <input>
-            <expression>
-                <sum>
-                    <value>-180</value>
-                    <property>autopilot/settings/heading-bug-deg</property>
-                </sum>
-            </expression>
-        </input>
-        <output>
-            <property>autopilot/settings/heading-bug-deg-backcourse</property>
-        </output>
-    </filter>
-
+		<name>Nav Course</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<property>/autopilot/kap140/config/hsi-installed</property>
+			</condition>
+			<property>/instrumentation/nav-source/selected-radial-deg</property>
+		</input>
+		<input>/autopilot/settings/heading-bug-deg</input>
+		<output>/autopilot/internal/nav-course</output>
+	</filter>
+	
 	<filter>
-		<name>heading bug error computer/normalizer</name>
+		<name>Nav Course Reciprocal Stage 1</name>
 		<debug>false</debug>
 		<type>gain</type>
-
-		<!-- REV mode -->
-        <input>
-            <condition>
-                <less-than>
-                    <property>autopilot/kap140/panel/hdg-timer</property>
-                    <value>1</value>
-                </less-than>
-                <or>
-                    <equals>
-                        <property>/autopilot/kap140/settings/lateral-arm</property>
-                        <value type="int">3</value>
-                    </equals>
-                    <equals>
-                        <property>/autopilot/kap140/settings/lateral-mode</property>
-                        <value type="int">5</value>
-                    </equals>
-                </or>
-            </condition>
-            <property>autopilot/settings/heading-bug-deg-backcourse</property>
-            <offset>
-                <property>instrumentation/heading-indicator/indicated-heading-deg</property>
-                <scale>-1.0</scale>
-            </offset>
-        </input>
-
+		<gain>1.0</gain>
 		<input>
-			<property>autopilot/settings/heading-bug-deg</property>
+			<expression>
+				<sum>
+					<property>/autopilot/internal/nav-course</property>
+					<value>180</value>
+				</sum>
+			</expression>
+		</input>
+		<output>/autopilot/internal/nav-course-reciprocal-cmd</output>
+	</filter>
+	
+	<filter>
+		<name>Nav Course Reciprocal State 2</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<greater-than-equals>
+					<property>/autopilot/internal/nav-course-reciprocal-cmd</property>
+					<value>360.5</value>
+				</greater-than-equals>
+			</condition>
+			<expression>
+				<dif>
+					<property>/autopilot/internal/nav-course-reciprocal-cmd</property>
+					<value>360</value>
+				</dif>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<less-than>
+					<property>/autopilot/internal/nav-course-reciprocal-cmd</property>
+					<value>0.5</value>
+				</less-than>
+			</condition>
+			<expression>
+				<sum>
+					<property>/autopilot/internal/nav-course-reciprocal-cmd</property>
+					<value>360</value>
+				</sum>
+			</expression>
+		</input>
+		<input>/autopilot/internal/nav-course-reciprocal-cmd</input>
+		<output>/autopilot/internal/nav-course-reciprocal</output>
+	</filter>
+	
+	<filter>
+		<name>Nav Course Error</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<property>/autopilot/internal/logic/rev-active</property>
+			</condition>
+			<property>/autopilot/internal/nav-course-reciprocal</property>
 			<offset>
-				<property>instrumentation/heading-indicator/indicated-heading-deg</property>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
 				<scale>-1.0</scale>
 			</offset>
 		</input>
-		<output>autopilot/internal/heading-bug-error-deg</output>
+		<input>
+			<condition>
+				<or>
+					<property>/autopilot/internal/logic/nav-active</property>
+					<property>/autopilot/internal/logic/apr-active</property>
+				</or>
+			</condition>
+			<property>/autopilot/internal/nav-course</property>
+			<offset>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>0</input>
+		<output>/autopilot/internal/nav-course-error</output>
 		<period>
 			<min>-180</min>
 			<max>180</max>
 		</period>
-		<gain>1.0</gain>
 	</filter>
-
-<!-- =============================================================== -->
-<!-- Roll Axis Modes                                                 -->
-<!-- =============================================================== -->
-
-<!-- Nav hold (NAV) Mode -->
-    <filter>
-        <name>Nav hold (NAV) Mode</name>
-        <debug>false</debug>
-        <enable>
-			<condition>
-				<property>instrumentation/nav-source/in-range</property>
-				<equals>
-					<property>autopilot/kap140/settings/lateral-mode</property>
-					<value>3</value>
-				</equals>
-				<less-than>
-					<property>autopilot/kap140/panel/nav-timer</property>
-					<value>1</value>
-				</less-than>
-			</condition>
-		</enable>
-        <type>gain</type>
-        <input>
-             <property>instrumentation/nav-source/heading-needle-deflection</property>
-        </input>
-        <output>
-			<property>autopilot/internal/target-intercept-angle</property>
-		</output>
-            <min>-45</min>
-            <max>45</max>
-        <gain>-18</gain>
-    </filter>
-
-<!-- Approach hold (APR) Mode -->
-    <filter>
-        <name>Approach hold (APR) Mode</name>
-        <debug>false</debug>
-        <enable>
-            <condition>
-				<property>instrumentation/nav-source/in-range</property>
-				<equals>
-					<property>autopilot/kap140/settings/lateral-mode</property>
-					<value>4</value>
-				</equals>
-				<less-than>
-					<property>autopilot/kap140/panel/nav-timer</property>
-					<value>1</value>
-				</less-than>
-			</condition>
-        </enable>
-        <type>gain</type>
-        <input>
-			<property>instrumentation/nav-source/heading-needle-deflection</property>
-		</input>
-        <output>
-			<property>autopilot/internal/target-intercept-angle</property>
-		</output>
-            <min>-45</min>
-            <max>45</max>
-        <gain>-18</gain>
-    </filter>
-
-<!-- Backcourse hold (REV) Mode -->
-    <filter>
-        <name>Backcourse hold (REV) Mode</name>
-        <debug>false</debug>
-        <enable>
-			<condition>
-				<property>instrumentation/nav-source/in-range</property>
-				<equals>
-					<property>autopilot/kap140/settings/lateral-mode</property>
-					<value>5</value>
-				</equals>
-				<less-than>
-					<property>autopilot/kap140/panel/nav-timer</property>
-					<value>1</value>
-				</less-than>
-			</condition>
-		</enable>
-        <type>gain</type>
-        <input>
-			<property>instrumentation/nav-source/heading-needle-deflection</property>
-			<scale>1.0</scale>
-		</input>
-        <output>
-			<property>autopilot/internal/target-intercept-angle</property>
-		</output>
-            <min>-45</min>
-            <max>45</max>
-        <gain>18</gain>
-    </filter> 
-
-<!-- Intercept Angle for HDG mode -->
-	<filter>
-		<name>target intercept angle</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<enable>
-			<condition>
-				<greater-than>
-					<property>autopilot/kap140/settings/lateral-mode</property>
-					<value>0</value>
-				</greater-than>
-				<less-than>
-					<property>autopilot/kap140/settings/lateral-mode</property>
-					<value>3</value>
-				</less-than>
-				<greater-than>
-					<property>autopilot/kap140/settings/lateral-arm</property>
-					<value>0</value>
-				</greater-than>
-			</condition>
-		</enable>
-        <input>
-			<condition><!-- REV left side -->
-                <equals>
-					<property>autopilot/kap140/settings/lateral-arm</property>
-					<value>3</value>
-				</equals>
-				<not><property>autopilot/kap140/config/hsi-installed</property></not>
-				<less-than>
-					<property>autopilot/kap140/panel/hdg-timer</property>
-					<value>1</value>
-				</less-than>
-				<property>instrumentation/nav-source/in-range</property>
-				<greater-than>
-					<property>instrumentation/nav-source/heading-needle-deflection</property>
-					<value>0.0</value>
-				</greater-than>
-			</condition>
-			<value>45.0</value>
-		</input>
-        <input>
-			<condition><!-- REV right side -->
-                <equals>
-					<property>autopilot/kap140/settings/lateral-arm</property>
-					<value>3</value>
-				</equals>
-				<not><property>autopilot/kap140/config/hsi-installed</property></not>
-				<less-than>
-					<property>autopilot/kap140/panel/hdg-timer</property>
-					<value>1</value>
-				</less-than>
-				<property>instrumentation/nav-source/in-range</property>
-				<less-than>
-					<property>instrumentation/nav-source/heading-needle-deflection</property>
-					<value>0.0</value>
-				</less-than>
-			</condition>
-			<value>-45.0</value>
-		</input>
-        
-		<input>
-            <condition> <!-- NAV/APR left side -->
-				<equals>
-					<property>autopilot/kap140/settings/lateral-mode</property>
-					<value>2</value>
-				</equals>
-				<not><property>autopilot/kap140/config/hsi-installed</property></not>
-				<less-than>
-					<property>autopilot/kap140/panel/hdg-timer</property>
-					<value>1</value>
-				</less-than>
-				<property>instrumentation/nav-source/in-range</property>
-				<less-than>
-					<property>instrumentation/nav-source/heading-needle-deflection</property>
-					<value>0.0</value>
-				</less-than>
-			</condition>
-			<value>45.0</value>
-		</input>
-		<input>
-			<condition><!-- NAV/APR right side -->
-				<equals>
-					<property>autopilot/kap140/settings/lateral-mode</property>
-					<value>2</value>
-				</equals>
-				<not><property>autopilot/kap140/config/hsi-installed</property></not>
-				<less-than>
-					<property>autopilot/kap140/panel/hdg-timer</property>
-					<value>1</value>
-				</less-than>
-				<property>instrumentation/nav-source/in-range</property>
-				<greater-than>
-					<property>instrumentation/nav-source/heading-needle-deflection</property>
-					<value>0.0</value>
-				</greater-than>
-			</condition>
-			<value>-45.0</value>
-		</input>
-        <input>
-			<value>0.0</value>
-		</input>
-		<output>
-			<property>autopilot/internal/target-intercept-angle</property>
-		</output>
-	</filter>
-
-<!-- Intercept Angle for ROL mode -->
-	<filter>
-		<name>target-turn-rate</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<enable>
-			<condition>
-				<or>
-					<equals>
-						<property>autopilot/kap140/settings/lateral-mode</property>
-						<value>1</value>
-					</equals>
-					<and>
-						<greater-than>
-							<property>autopilot/kap140/settings/lateral-mode</property>
-							<value>2</value>
-						</greater-than>
-						<greater-than>
-							<property>autopilot/kap140/panel/nav-timer</property>
-							<value>1</value>
-						</greater-than>
-					</and>
-				</or>
-			</condition>
-		</enable>
-		<input>
-			<value>0.0</value>
-		</input>
-		<output>
-			<property>autopilot/internal/target-turn-rate</property>
-		</output>
-	</filter>
-
-<!-- Heading Select (HDG) Mode -->
-    <filter>
-        <name>Heading Select (HDG) Mode - tgt turn angle</name>
-        <debug>false</debug>
-        <enable>
-            <condition>
-				<or>
-					<equals>
-						<property>autopilot/kap140/settings/lateral-mode</property>
-						<value>2</value>
-					</equals>
-					<and>
-						<greater-than>
-							<property>autopilot/kap140/settings/lateral-mode</property>
-							<value>2</value>
-						</greater-than>
-						<less-than>
-							<property>autopilot/kap140/panel/nav-timer</property>
-							<value>1</value>
-						</less-than>
-					</and>
-				</or>
-			</condition>
-        </enable>
-        <type>gain</type>
-        <input>
-            <expression>
-                <difference>
-                    <property>autopilot/internal/target-intercept-angle</property>
-                    <property>autopilot/internal/heading-bug-error-deg</property>
-                </difference>
-            </expression>
-        </input>
-        <output>
-            <property>autopilot/internal/target-turn-rate</property>
-        </output>
-        <gain>-0.045</gain>
-        <min>-1</min>
-        <max>1</max>
-    </filter>
-
-
-<!-- Actually this maintains the attitude indicator to a target roll rate.
-         With ROL its always zero, but with HDG its the computed turn rate to reach the hdg-bugs heading -->
-  <pi-simple-controller>
-        <name>Wing Leveler (ROL) Mode</name>
-        <debug>false</debug>
-        <enable>
-            <condition>
-                <greater-than>
-                    <property>autopilot/kap140/settings/lateral-mode</property>
-                    <value>0</value>
-                </greater-than>
-            </condition>
-        </enable>
-        <input>
-            <property>/instrumentation/turn-indicator/indicated-turn-rate</property>
-        </input>
-        <reference>
-            <property>autopilot/internal/target-turn-rate</property>
-        </reference>
-        <output>
-            <property>autopilot/kap140/servo/aileron</property>
-        </output>
-        <config>
-            <Kp>0.25</Kp>          <!-- proportional gain -->
-            <Ki>0.012 </Ki>        <!-- integral gain -->
-            <u_min>-0.25</u_min>   <!-- minimum output clamp -->
-            <u_max>0.25</u_max>    <!-- maximum output clamp -->
-        </config>
-  </pi-simple-controller>
-
-<!-- =============================================================== -->
-<!-- Pitch Axis Modes                                                -->
-<!-- =============================================================== -->
-
-<!-- Altitude Capture (ALT ARM) -->
-	<filter>
-		<name>slow down FPM while approaching ALT</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<enable>
-			<condition>
-				<equals>
-					<property>autopilot/kap140/settings/vertical-arm</property>
-					<value>1</value>
-				</equals>
-				<greater-than>
-					<expression>
-						<product>
-							<abs>
-								<property>autopilot/internal/vert-speed-fpm</property>
-							</abs>
-							<value>0.1</value>
-						</product>
-					</expression>
-					<expression>
-						<abs>
-							<dif>
-								<property>autopilot/internal/target-altitude</property>
-								<property alias="../../../../../../../../params/indicated-altitude-ft" />
-							</dif>
-						</abs>
-					</expression>
-				</greater-than>
-			</condition>
-		</enable>
-		<input>
-			<condition>
-				<less-than>
-					<property alias="../../../../../params/indicated-altitude-ft" />
-					<property>autopilot/internal/target-altitude</property>
-				</less-than>
-			</condition>
-			<expression>
-				<product>
-					<ceil>
-						<product>
-							<dif>
-								<property>autopilot/internal/target-altitude</property>
-								<property alias="../../../../../../../../params/indicated-altitude-ft" />
-							</dif>
-							<value>0.1</value>
-						</product>
-					</ceil>
-					<value>100</value>
-				</product>
-			</expression>
-		</input>
-		<input>
-			<expression>
-				<product>
-					<floor>
-						<product>
-							<dif>
-								<property>autopilot/internal/target-altitude</property>
-								<property alias="../../../../../../../../params/indicated-altitude-ft" />
-							</dif>
-							<value>0.1</value>
-						</product>
-					</floor>
-					<value>100</value>
-				</product>
-			</expression>
-		</input>
-		<output>autopilot/internal/target-climb-rate</output>
-	</filter>
-
-
-    <!-- Vertical Speed (VS) Mode -->
-    <filter>
-        <name>Vertical Speed (VS) Mode</name>
-        <debug>false</debug>
-        <enable>
-            <condition>
-                <or>
-                    <and>
-                        <equals>
-                            <property>autopilot/kap140/settings/vertical-mode</property>
-                            <value>1</value>
-                        </equals>
-                        <equals>
-                            <property>autopilot/kap140/panel/button-up</property>
-                            <value>0</value>
-                        </equals>
-                        <equals>
-                            <property>autopilot/kap140/panel/button-down</property>
-                            <value>0</value>
-                        </equals>
-                    </and>
-                    <and>
-                        <!-- ALT-HOLD adjustment by holding UP/DN buttons -->
-                        <equals>
-                            <property>autopilot/kap140/settings/vertical-mode</property>
-                            <value>2</value>
-                        </equals>
-                        <or>
-                            <greater-than>
-                                <property>sim/time/elapsed-sec</property>
-                                <expression>
-                                    <sum>
-                                        <property>autopilot/kap140/panel/button-up</property>
-                                        <value>1</value>
-                                    </sum>
-                                </expression>
-                            </greater-than>
-                            <greater-than>
-                                <property>sim/time/elapsed-sec</property>
-                                <expression>
-                                    <sum>
-                                        <property>autopilot/kap140/panel/button-down</property>
-                                        <value>1</value>
-                                    </sum>
-                                </expression>
-                            </greater-than>
-                        </or>
-                    </and>
-                </or>
-            </condition>
-        </enable>
-        <type>gain</type>
-        <input>
-            <expression>
-                <div>
-                    <product>
-                        <value>-1</value>
-                        <product>
-                            <floor>
-                                <sum>
-                                    <div>
-                                        <property>autopilot/internal/target-climb-rate</property>
-                                        <value>100</value>
-                                    </div>
-                                    <value>0.5</value>
-                                </sum>
-                            </floor>
-                            <value>100</value>
-                        </product>
-                    </product>
-
-                    <value>58000</value>
-                </div>
-            </expression>
-        </input>
-        <output>
-            <property>autopilot/internal/target-pressure-rate</property>
-        </output>
-    </filter>
-
-    
-    <!-- Altitude Hold (ALT) Mode -->
-    <pid-controller>
-        <name>Altitude Hold (ALT) Mode</name>
-        <debug>false</debug>
-        <enable>
-			<condition>
-				<equals>
-					<property>autopilot/kap140/settings/vertical-mode</property>
-					<value>2</value>
-				</equals>
-				<equals>
-					<property>autopilot/kap140/panel/button-up</property>
-					<value>0</value>
-				</equals>
-				<equals>
-					<property>autopilot/kap140/panel/button-down</property>
-					<value>0</value>
-				</equals>
-			</condition>
-		</enable>
-        <input>
-            <!--<property>/systems/static[1]/pressure-inhg</property>-->
-            <property>/systems/static[1]/pressure-inhg-venturi</property> <!-- use internal cockpit pressure port with venturi effect applied -->
-        </input>
-        <reference>
-            <property>/autopilot/internal/target-pressure</property>
-        </reference>
-        <output>
-            <property>/autopilot/internal/target-pressure-rate</property>
-        </output>
-        <config>
-            <Kp>0.125</Kp> <!-- proportional gain -->
-            <beta>1.0</beta> <!-- input value weighing factor -->
-            <alpha>0.1</alpha> <!-- low pass filter weighing factor -->
-            <gamma>0.0</gamma> <!-- input value weighing factor for -->
-            <!-- unfiltered derivative error -->
-            <Ti>12.0</Ti> <!-- integrator time -->
-            <Td>0.0</Td> <!-- derivator time -->
-            <u_min>-0.007</u_min> <!-- minimum output clamp -->
-            <u_max>0.007</u_max> <!-- maximum output clamp -->
-        </config>
-    </pid-controller>
-
-    <!-- Glideslope Hold (GS) Mode -->
-    <pid-controller>
-        <name>Glideslope Hold (GS) Mode</name>
-        <debug>false</debug>
-        <enable>
-            <condition>
-                <equals>
-                    <property>autopilot/kap140/settings/vertical-mode</property>
-                    <value>3</value>
-                </equals>
-                <property>instrumentation/nav-source/in-range</property>
-                <property>instrumentation/nav-source/nav-loc</property>
-                <property>instrumentation/nav-source/gs-in-range</property>
-            </condition>
-        </enable>
-        <input>
-            <property>/instrumentation/nav/gs-needle-deflection-norm</property>
-        </input>
-        <reference>
-            <value>0.0</value>
-        </reference>
-        <output>
-            <property>/autopilot/internal/target-pressure-rate</property>
-        </output>
-        <config>
-            <Kp>0.025</Kp> <!-- proportional gain -->
-            <beta>1.0</beta> <!-- input value weighing factor -->
-            <alpha>0.1</alpha> <!-- low pass filter weighing factor -->
-            <gamma>0.0</gamma> <!-- input value weighing factor for -->
-            <!-- unfiltered derivative error -->
-            <Ti>15.0</Ti> <!-- integrator time -->
-            <Td>0.0</Td> <!-- derivator time -->
-            <u_min>-0.001</u_min> <!-- minimum output clamp -->
-            <u_max>0.017</u_max> <!-- maximum output clamp -->
-        </config>
-    </pid-controller>
-
-
-    <filter>
-        <name>KAP140 internal static port pressure rate computer</name>
-        <debug>false</debug>
-        <type>derivative</type>
-        <input>
-            <!--<property>/systems/static-pressure-inhg-selected</property>-->
-            <property>/systems/static[1]/pressure-inhg-venturi</property> <!-- use cockpit pressure source with venturi effect applied -->
-        </input>
-        <output>
-            <property>autopilot/internal/pressure-rate</property>
-        </output>
-        <filter-time>1.0</filter-time>
-    </filter>
 	
 	<filter>
-  <name>target-pressure-rate sample and hold</name>
-  <debug>false</debug>
-        <enable>
-            <condition>
-                <less-than>
-                    <property>autopilot/kap140/settings/vertical-mode</property>
-                    <value>1</value>
-                </less-than>
-            </condition>
-        </enable>
-    <type>gain</type>
-  <gain>1.0</gain>
-  <input>/autopilot/internal/pressure-rate</input>
-  <output>autopilot/internal/target-pressure-rate</output>
- </filter>
-
-
-    <!-- VS PID controller controls the climb/descend rate in pressure change terms -->
-    <!-- This is used from the VS, ALT and GS modes, which calculate the target pressure change rate -->
-    <pid-controller>
-        <name>Vertical Speed PID-Controller</name>
-        <debug>false</debug>
-        <enable>
-            <condition>
-                <greater-than>
-                    <property>autopilot/kap140/settings/vertical-mode</property>
-                    <value>0</value>
-                </greater-than>
-            </condition>
-        </enable>
-        <input>
-            <property>/autopilot/internal/pressure-rate</property>
-        </input>
-        <reference>
-            <property>autopilot/internal/target-pressure-rate</property>
-        </reference>
-        <output>
-            <property>autopilot/kap140/servo/elevator</property>
-        </output>
-        <config>
-            <Kp>5</Kp> <!-- proportional gain -->
-            <beta>1.0</beta> <!-- input value weighing factor -->
-            <alpha>0.1</alpha> <!-- low pass filter weighing factor -->
-            <gamma>0.0</gamma> <!-- input value weighing factor for -->
-            <!-- unfiltered derivative error -->
-            <Ti>10.0</Ti> <!-- integrator time -->
-            <Td>0.0</Td> <!-- derivator time -->
-            <u_min>-0.5</u_min> <!-- minimum output clamp -->
-            <u_max>0.5</u_max> <!-- maximum output clamp -->
-        </config>
-    </pid-controller>
-    
-<!--
-    ===============================================================
-    Servos
-    ===============================================================
--->
-
+		<name>Target Intercept Angle P</name>
+		<type>gain</type>
+		<gain>12.5</gain>
+		<input>
+			<expression>
+				<product>
+					<property>/instrumentation/nav-source/heading-needle-deflection</property>
+					<value>0.8</value>
+				</product>
+			</expression>
+		</input>
+		<output>/autopilot/internal/intercept-angle-p</output>
+		<min>-45</min>
+		<max>45</max>
+	</filter>
+	
 	<filter>
-		<name>roll-servo change rate</name>
+		<name>Target Intercept Angle I</name> <!-- Integrate to cancel steady state error only if stabilized and captured -->
+		<type>integrator</type>
+		<gain>0.05</gain>
+		<input>
+			<condition>
+				<and>
+					<or>
+						<property>/autopilot/internal/logic/nav-active</property>
+						<property>/autopilot/internal/logic/apr-active</property>
+						<property>/autopilot/internal/logic/rev-active</property>
+					</or>
+					<less-than-equals>
+						<property>/autopilot/internal/nav-course-error</property>
+						<value>10</value>
+					</less-than-equals>
+					<greater-than-equals>
+						<property>/autopilot/internal/nav-course-error</property>
+						<value>-10</value>
+					</greater-than-equals>
+					<less-than-equals>
+						<property>/instrumentation/nav-source/heading-needle-deflection</property>
+						<value>1</value>
+					</less-than-equals>
+					<greater-than-equals>
+						<property>/instrumentation/nav-source/heading-needle-deflection</property>
+						<value>-1</value>
+					</greater-than-equals>
+				</and>
+			</condition>
+			<expression>
+				<product>
+					<property>/instrumentation/nav-source/heading-needle-deflection</property>
+					<value>0.8</value>
+				</product>
+			</expression>
+		</input>
+		<input>
+			<expression>
+				<product>
+					<value>-75.0</value>
+					<property>/autopilot/internal/intercept-angle-i</property>
+				</product>
+			</expression>
+		</input>
+		<output>/autopilot/internal/intercept-angle-i</output>
+		<u_min>-5</u_min>
+		<u_max>5</u_max>
+	</filter>
+	
+	<filter>
+		<name>Target Intercept Angle D</name>
+		<type>derivative</type>
+		<input>
+			<expression>
+				<product>
+					<property>/instrumentation/nav-source/heading-needle-deflection</property>
+					<value>0.8</value>
+				</product>
+			</expression>
+		</input>
+		<reference>0</reference>
+		<output>/autopilot/internal/intercept-angle-d</output>
+		<filter-time>45</filter-time>
+		<min>-45</min>
+		<max>45</max>
+	</filter>
+	
+	<filter>
+		<name>Target Intercept Angle</name> <!-- Sum the above 3 controllers to make a manual PID controller -->
 		<debug>false</debug>
 		<type>gain</type>
+		<gain>1.0</gain>
 		<input>
-			<condition>
-				<equals>
-					<property>autopilot/kap140/panel/state</property>
-					<value>6</value>
-				</equals>
-				<not><property>autopilot/kap140/roll-axis-fail</property></not>
-				<not><property>autopilot/kap140/settings/cws</property></not>
-			</condition>
-			<value>0.085</value>
+			<expression>
+				<sum>
+					<property>/autopilot/internal/intercept-angle-p</property>
+					<property>/autopilot/internal/intercept-angle-i</property>
+					<property>/autopilot/internal/intercept-angle-d</property>
+				</sum>
+			</expression>
 		</input>
-		<input>100.0</input>
-		<output>autopilot/kap140/servo/aileron-rate</output>
+		<output>/autopilot/internal/intercept-angle</output>
+		<min>-45</min>
+		<max>45</max>
 	</filter>
-
+	
 	<filter>
-		<name>roll-servo</name>
-		<debug>false</debug>
-		<type>noise-spike</type>
-		<max-rate-of-change>
-			<property>autopilot/kap140/servo/aileron-rate</property>
-		</max-rate-of-change>
-		<input>
-			<condition>
-				<equals>
-					<property>autopilot/kap140/panel/state</property>
-					<value>6</value>
-				</equals>
-				<not><property>autopilot/kap140/roll-axis-fail</property></not>
-				<not><property>autopilot/kap140/settings/cws</property></not>
-			</condition>
-			<property>autopilot/kap140/servo/aileron</property>
-		</input>
-		<input>controls/flight/aileron</input>
-		<output>controls/flight/aileron</output>
-	</filter>
-
-	<filter>
-		<name>pitch-servo change rate</name>
-		<debug>false</debug>
+		<name>Heading Bug Latch</name>
 		<type>gain</type>
-		<input>
-			<condition>
-				<equals>
-					<property>autopilot/kap140/panel/state</property>
-					<value>6</value>
-				</equals>
-				<not><property>autopilot/kap140/pitch-axis-fail</property></not>
-				<not><property>autopilot/kap140/settings/cws</property></not>
-			</condition>
-			<value>0.0769</value>
-		</input>
-		<input>100.0</input>
-		<output>autopilot/kap140/servo/elevator-rate</output>
-	</filter>
-
-	<filter>
-		<name>pitch-servo</name>
-		<debug>false</debug>
-		<type>noise-spike</type>
-		<max-rate-of-change>
-			<property>autopilot/kap140/servo/elevator-rate</property>
-		</max-rate-of-change>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<greater-than>
-					<property>autopilot/kap140/config/model</property>
+					<property>/autopilot/kap140/panel/hdg-timer</property>
 					<value>1</value>
 				</greater-than>
-				<equals>
-					<property>autopilot/kap140/panel/state</property>
-					<value>6</value>
-				</equals>
-				<not><property>autopilot/kap140/pitch-axis-fail</property></not>
-				<not><property>autopilot/kap140/settings/cws</property></not>
 			</condition>
-			<property>autopilot/kap140/servo/elevator</property>
+			<property>/autopilot/settings/heading-bug-latch</property>
 		</input>
-		<input>controls/flight/elevator</input>
-		<output>controls/flight/elevator</output>
+		<input>/autopilot/settings/heading-bug-deg</input>
+		<output>/autopilot/settings/heading-bug-latch</output>
+	</filter>
+	
+	<filter>
+		<name>Heading/Nav Error Deg</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<property>/autopilot/internal/logic/rev-active</property>
+			</condition>
+			<expression>
+				<sum>
+					<property>/autopilot/internal/nav-course-reciprocal</property>
+					<product>
+						<property>/autopilot/internal/intercept-angle</property>
+						<value>-1.0</value>
+					</product>
+				</sum>
+			</expression>
+			<offset>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>
+			<condition>
+				<or>
+					<property>/autopilot/internal/logic/nav-active</property>
+					<property>/autopilot/internal/logic/apr-active</property>
+				</or>
+			</condition>
+			<expression>
+				<sum>
+					<property>/autopilot/internal/nav-course</property>
+					<property>/autopilot/internal/intercept-angle</property>
+				</sum>
+			</expression>
+			<offset>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>
+			<condition>
+				<property>/autopilot/internal/logic/hdg-active</property>
+			</condition>
+			<property>/autopilot/settings/heading-bug-latch</property>
+			<offset>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>0</input>
+		<output>/autopilot/internal/heading-error-deg</output>
+		<period>
+			<min>-180</min>
+			<max>180</max>
+		</period>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: Target Turn Rate</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<or>
+					<property>/autopilot/internal/logic/hdg-active</property>
+					<property>/autopilot/internal/logic/nav-active</property>
+					<property>/autopilot/internal/logic/apr-active</property>
+					<property>/autopilot/internal/logic/rev-active</property>
+				</or>
+			</condition>
+			<expression>
+				<table>
+					<property>/autopilot/internal/heading-error-deg</property>
+					<entry><ind>-30</ind><dep>-1.0</dep></entry>
+					<entry><ind> -5</ind><dep>-0.2</dep></entry>
+					<entry><ind>  5</ind><dep> 0.2</dep></entry>
+					<entry><ind> 30</ind><dep> 1.0</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>0</input>
+		<output>/autopilot/internal/target-turn-rate</output>
+	</filter>
+	
+	<predict-simple>
+		<name>Turn Rate Predictor</name>
+		<debug>false</debug>
+		<input>/instrumentation/turn-indicator/indicated-turn-rate</input>
+		<output>/autopilot/internal/predicted-turn-rate</output>
+		<seconds>2.0</seconds>
+		<filter-gain>0.0</filter-gain>
+	</predict-simple>
+	
+	<filter>
+		<name>System Command: Target Turn Rate Filter</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>
+			<condition>
+				<property>/autopilot/internal/logic/roll-active</property>
+			</condition>
+			<property>/autopilot/internal/target-turn-rate</property>
+		</input>
+		<input>/autopilot/internal/predicted-turn-rate</input>
+		<output>/autopilot/internal/turn-rate-cmd</output>
+		<max-rate-of-change>
+			<condition>
+				<property>/autopilot/internal/logic/roll-active</property>
+			</condition>
+			<value>0.2</value>
+		</max-rate-of-change>
+		<max-rate-of-change>10</max-rate-of-change>
+	</filter>
+	
+	<pi-simple-controller>
+		<name>System Command: Roll PI</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<property>/autopilot/internal/logic/roll-active</property>
+			</condition>
+		</enable>
+		<input>/autopilot/internal/turn-rate-cmd</input>
+		<reference>/autopilot/internal/predicted-turn-rate</reference>
+		<output>/autopilot/internal/aileron-pi</output>
+		<config>
+			<Kp>-0.07</Kp>
+			<Ki>-0.021</Ki>
+			<min>-0.25</min>
+			<max>0.25</max>
+		</config>
+	</pi-simple-controller>
+	
+	<filter>
+		<name>System Command: Roll D</name>
+		<type>derivative</type>
+		<input>/autopilot/internal/predicted-turn-rate</input>
+		<reference>/autopilot/internal/turn-rate-cmd</reference>
+		<output>/autopilot/internal/aileron-d</output>
+		<filter-time>-0.0196</filter-time>
+		<min>-0.25</min>
+		<max>0.25</max>
+	</filter>
+	
+	<filter>
+		<name>System Command: Roll Output</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<initialize-to>output</initialize-to>
+		<enable>
+			<condition>
+				<property>/autopilot/internal/logic/roll-active</property>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<product>
+					<sum>
+						<property>/autopilot/internal/aileron-pi</property>
+						<property>/autopilot/internal/aileron-d</property>
+					</sum>
+					<property>/autopilot/kap140/config/gain-roll</property>
+				</product>
+			</expression>
+		</input>
+		<output>/controls/flight/aileron</output>
+		<max-rate-of-change>0.085</max-rate-of-change>
+	</filter>
+	
+	<!-- Pitch Axis -->
+	<filter>
+		<name>Pressure Rate Computer</name>
+		<debug>false</debug>
+		<type>derivative</type>
+		<input>/systems/static[1]/pressure-inhg</input> <!-- Don't use venturi, or the math breaks -->
+		<output>/autopilot/internal/pressure-rate-raw</output>
+		<filter-time>1.0</filter-time>
 	</filter>
 
-    <filter>
-        <name>vertical speed fpm</name>
-        <debug>false</debug>
-        <type>gain</type>
-        <input>instrumentation/vertical-speed-indicator/indicated-speed-fpm</input>
-        <output>autopilot/internal/vert-speed-fpm</output>
-    </filter>
+	<filter>
+		<name>Pressure Rate Lag</name>
+		<debug>false</debug>
+		<type>double-exponential</type>
+		<input>/autopilot/internal/pressure-rate-raw</input>
+		<output>/autopilot/internal/pressure-rate</output>
+		<filter-time>0.08</filter-time>
+	</filter>
+	
+	<predict-simple>
+		<name>Vertical Speed Predictor</name>
+		<debug>false</debug>
+		<input>
+			<expression> <!-- Pressure Rate to Vertical Speed FPM -->
+				<product>
+					<property>/autopilot/internal/pressure-rate</property>
+					<value>-58000</value>
+				</product>
+			</expression>
+		</input>
+		<output>/autopilot/internal/predicted-vertical-speed</output>
+		<seconds>2.0</seconds>
+		<filter-gain>0.1</filter-gain>
+	</predict-simple>
+	
+	<filter>
+		<name>IT-CONTROLLER: Altitude Capture/Hold</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>3625</gain>
+		<input>/systems/static[1]/pressure-inhg-venturi</input>
+		<reference>/autopilot/internal/target-pressure</reference>
+		<output>/autopilot/internal/alt-vs</output>
+		<min>-400</min>
+		<max>400</max>
+	</filter>
+	
+	<filter>
+		<name>Vertical Speed G/S Sync</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<not><property>/autopilot/internal/logic/gs-active</property></not>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<product>
+					<property>/autopilot/internal/pressure-rate</property>
+					<value>-58000</value>
+				</product>
+			</expression>
+		</input>
+		<output>/autopilot/internal/gs-vs</output>
+		<min>-1200</min>
+		<max>50</max>
+	</filter>
+	
+	<predict-simple>
+		<name>G/S Needle Predictor</name>
+		<debug>false</debug>
+		<input>/instrumentation/nav-source/gs-needle-deflection</input>
+		<output>/autopilot/internal/predicted-gs-needle</output>
+		<seconds>1.0</seconds>
+		<filter-gain>0.1</filter-gain>
+	</predict-simple>
+	
+	<pid-controller>
+		<name>IT-CONTROLLER: G/S</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<property>/autopilot/internal/logic/gs-active</property>
+			</condition>
+		</enable>
+		<input>/autopilot/internal/predicted-gs-needle</input>
+		<reference>0</reference>
+		<output>/autopilot/internal/gs-vs</output>
+		<config>
+			<Kp>-400</Kp>
+			<Ti>20.0</Ti>
+			<Td>0.001</Td>
+			<u_min>-1200</u_min>
+			<u_max>50</u_max>
+		</config>
+	</pid-controller>
+	
+	<filter>
+		<name>IT-CONTROLLER: Vertical Speed Switch</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<property>/autopilot/internal/logic/gs-active</property>
+			</condition>
+			<property>/autopilot/internal/gs-vs</property>
+		</input>
+		<input>
+			<condition>
+				<property>/autopilot/internal/logic/alt-active</property>
+			</condition>
+			<property>/autopilot/internal/alt-vs</property>
+		</input>
+		<input>/autopilot/internal/target-climb-rate</input>
+		<output>/autopilot/internal/vs</output>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: Vertical Speed Filter</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>/autopilot/internal/vs</input>
+		<output>/autopilot/internal/vs-slow</output>
+		<max-rate-of-change>
+			<condition>
+				<property>/autopilot/internal/logic/pitch-active</property>
+			</condition>
+			<value>200</value>
+		</max-rate-of-change>
+		<max-rate-of-change>2000</max-rate-of-change>
+	</filter>
+	
+	<pi-simple-controller>
+		<name>IT-CONTROLLER: Acceleration PI</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<property>/autopilot/internal/logic/pitch-active</property>
+			</condition>
+		</enable>
+		<input>/autopilot/internal/vs-slow</input>
+		<reference>/autopilot/internal/predicted-vertical-speed</reference>
+		<output>/autopilot/internal/target-accel</output>
+		<config>
+			<Kp>-0.00015</Kp>
+			<Ki>-0.000011</Ki>
+			<min>-0.3</min>
+			<max>0.3</max>
+		</config>
+	</pi-simple-controller>
+	
+	<filter>
+		<name>System Command: Internal G Acceleration</name>
+		<type>double-exponential</type>
+		<input>
+			<expression>
+				<difference>
+					<property>/accelerations/pilot-g</property>
+					<product>
+						<abs><property>/instrumentation/turn-indicator/indicated-turn-rate</property></abs>
+						<value>0.05</value>
+					</product>
+				</difference>
+			</expression>
+		</input>
+		<output>/autopilot/internal/g-damped</output>
+		<filter-time>0.02</filter-time>
+	</filter>
+	
+	<filter>
+		<name>System Command: Target Acceleration</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<property>/autopilot/internal/logic/pitch-active</property>
+			</condition>
+			<expression>
+				<sum>
+					<property>/autopilot/internal/target-accel</property>
+					<value>1</value>
+				</sum>
+			</expression>
+		</input>
+		<input>/autopilot/internal/g-damped</input>
+		<output>/autopilot/internal/accel-cmd</output>
+	</filter>
+	
+	<pi-simple-controller>
+		<name>System Command: Elevator PI</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<property>/autopilot/internal/logic/pitch-active</property>
+			</condition>
+		</enable>
+		<input>/autopilot/internal/accel-cmd</input>
+		<reference>/autopilot/internal/g-damped</reference>
+		<output>/autopilot/internal/elevator-pi</output>
+		<config>
+			<Kp>0.16</Kp>
+			<Ki>0.42</Ki>
+			<min>-0.25</min>
+			<max>0.25</max>
+		</config>
+	</pi-simple-controller>
+	
+	<filter>
+		<name>System Command: Pitch Output</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<initialize-to>output</initialize-to>
+		<enable>
+			<condition>
+				<property>/autopilot/internal/logic/pitch-active</property>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<product>
+					<property>/autopilot/internal/elevator-pi</property>
+					<property>/autopilot/kap140/config/gain-pitch</property>
+				</product>
+			</expression>
+		</input>
+		<output>/controls/flight/elevator</output>
+		<max-rate-of-change>0.0769</max-rate-of-change>
+	</filter>
+	<!-- End Rework 2021 by Josh Davidson (Octal450) -->
+	
+	<filter>
+		<name>vertical speed fpm</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>-58000</gain>
+		<input>/autopilot/internal/pressure-rate</input>
+		<output>/autopilot/internal/vert-speed-fpm</output>
+	</filter>
+	
+	<!-- Elevator-trim servo -->
+	<!-- The pitch trimming aims to center the yoke, as to release pressure from it (autotrim) -->
+	<filter>
+		<name>elevator-trim demand value</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<property>/autopilot/internal/logic/pitch-active</property>
+			</condition>
+		</enable>
+		<type>gain</type>
+		<input>
+			<condition>
+				<greater-than>
+					<property>controls/flight/elevator</property>
+					<value>0.025</value>
+				</greater-than>
+			</condition>
+			<value>1</value>
+		</input>
+		<input>
+			<condition>
+				<less-than>
+					<property>controls/flight/elevator</property>
+					<value>-0.025</value>
+				</less-than>
+			</condition>
+			<value>-1</value>
+		</input>
+		<input>0</input> <!-- default: no trim demand -->
+		<output>autopilot/kap140/sensors/elevator-trim-demand</output>
+	</filter>
 
+	<logic>
+		<name>Elevator-trim low demand</name>
+		<input>
+			<or>
+				<greater-than>
+					<property>autopilot/kap140/sensors/elevator-trim-demand</property>
+					<value>0.1</value>
+				</greater-than>
+				<less-than>
+					<property>autopilot/kap140/sensors/elevator-trim-demand</property>
+					<value>-0.1</value>
+				</less-than>
+			</or>
+		</input>
+		<output>
+			<property>autopilot/kap140/sensors/elevator-trim-demand-low</property>
+		</output>
+	</logic>
+	<flipflop>
+		<!-- signify high demand after 10 secs (POH p. S15-11) -->
+		<name>Elevator-trim high demand</name>
+		<type>monostable</type>
+		<inverted type="bool">true</inverted>
+		<S>
+			<not>
+				<property>autopilot/kap140/sensors/elevator-trim-demand</property>
+			</not>
+		</S>
+		<time>
+			<value>10.0</value>
+		</time>
+		<output>
+			<property>autopilot/kap140/sensors/elevator-trim-demand-high</property>
+		</output>
+	</flipflop>
 
-  <!-- Elevator-trim servo -->
-  <!-- The pitch trimming aims to center the yoke, as to release pressure from it (autotrim) -->
-    <filter>
-        <name>elevator-trim demand value</name>
-        <debug>false</debug>
-        <enable>
-            <condition>
-                <greater-than>
-                    <property>autopilot/kap140/config/model</property>
-                    <value>1</value>
-                </greater-than>
-                <equals>
-                    <property>autopilot/kap140/panel/state</property>
-                    <value>6</value>
-                </equals>
-                <greater-than>
-                    <property>autopilot/kap140/settings/vertical-mode</property>
-                    <value>0</value>
-                </greater-than>
-            </condition>
-        </enable>
-        <type>gain</type>
-        <input>
-            <condition>
-                    <greater-than>
-                        <property>controls/flight/elevator</property>
-                        <value>0.10</value>
-                    </greater-than>
-            </condition>
-            <value>1</value>
-        </input>
-        <input>
-            <condition>
-                <less-than>
-                    <property>controls/flight/elevator</property>
-                    <value>-0.10</value>
-                </less-than>
-            </condition>
-            <value>-1</value>
-        </input>
-        <input><value>0</value></input> <!-- default: no trim demand -->
-        <output>autopilot/kap140/sensors/elevator-trim-demand</output>
-    </filter>
+	<logic>
+		<name>Elevator-trim clutch engaged</name>
+		<input>
+			<and>
+				<property>autopilot/kap140/config/autotrim-pitch</property>
+				<property>/autopilot/internal/logic/pitch-active</property>
+				<or>
+					<greater-than>
+						<property>autopilot/kap140/sensors/elevator-trim-demand</property>
+						<value>0.1</value>
+					</greater-than>
+					<less-than>
+						<property>autopilot/kap140/sensors/elevator-trim-demand</property>
+						<value>-0.1</value>
+					</less-than>
+				</or>
+			</and>
+		</input>
+		<output>autopilot/kap140/servo/elevator-trim-servo/clutch-engaged</output>
+	</logic>
 
-    <logic>
-        <name>Elevator-trim low demand</name>
-        <input>
-            <or>
-                <greater-than>
-                    <property>autopilot/kap140/sensors/elevator-trim-demand</property>
-                    <value>0.1</value>
-                </greater-than>
-                <less-than>
-                    <property>autopilot/kap140/sensors/elevator-trim-demand</property>
-                    <value>-0.1</value>
-                </less-than>
-            </or>
-        </input>
-        <output>
-            <property>autopilot/kap140/sensors/elevator-trim-demand-low</property>
-        </output>
-    </logic>
-    <flipflop>
-        <!-- signify high demand after 10 secs (POH p. S15-11) -->
-        <name>Elevator-trim high demand</name>
-        <type>monostable</type>
-        <inverted type="bool">true</inverted>
-        <S>
-            <not>
-                <property>autopilot/kap140/sensors/elevator-trim-demand</property>
-            </not>
-        </S>
-        <time>
-            <value>10.0</value>
-        </time>
-        <output>
-            <property>autopilot/kap140/sensors/elevator-trim-demand-high</property>
-        </output>
-    </flipflop>
-
-    <logic>
-        <name>Elevator-trim clutch engaged</name>
-        <input>
-            <and>
-                <property>autopilot/kap140/config/autotrim-pitch</property>
-                <greater-than>
-                    <property>autopilot/kap140/config/model</property>
-                    <value>1</value>
-                </greater-than>
-                <equals>
-                    <property>autopilot/kap140/panel/state</property>
-                    <value>6</value>
-                </equals>
-                <not><property>autopilot/kap140/pitch-axis-fail</property></not>
-                <not><property>autopilot/kap140/settings/cws</property></not>
-                <or>
-                    <greater-than>
-                        <property>autopilot/kap140/sensors/elevator-trim-demand</property>
-                        <value>0.1</value>
-                    </greater-than>
-                    <less-than>
-                        <property>autopilot/kap140/sensors/elevator-trim-demand</property>
-                        <value>-0.1</value>
-                    </less-than>
-                </or>
-            </and>
-        </input>
-        <output>autopilot/kap140/servo/elevator-trim-servo/clutch-engaged</output>
-    </logic>
-
-    <filter>
-        <name>Elevator-trim servo change rate</name>
-        <debug>false</debug>
-        <type>gain</type>
-        <input>
-            <condition>
-                <property>autopilot/kap140/servo/elevator-trim-servo/clutch-engaged</property>
-            </condition>
-            <value> 0.050 </value> <!-- ~20s for 0-1; ie 40s for -1->0->1; https://assets.publishing.service.gov.uk/media/5422ec04e5274a13170000d5/dft_avsafety_pdf_501522.pdf -->
-        </input>
-        <input>100.0</input>
-        <output>autopilot/kap140/servo/elevator-trim-servo/moverate</output>
-    </filter>
-
-    <filter>
-        <name>Elevator-trim servo</name>
-        <debug>false</debug>
-        <type>noise-spike</type>
-        <max-rate-of-change>
-            <property>autopilot/kap140/servo/elevator-trim-servo/moverate</property>
-        </max-rate-of-change>
-        <input>
-            <condition>
-                <property>autopilot/kap140/servo/elevator-trim-servo/clutch-engaged</property>
-                <not><property>autopilot/kap140/settings/cws</property></not>
-            </condition>
-            <property>autopilot/kap140/sensors/elevator-trim-demand</property>
-        </input>
-        <input>controls/flight/elevator-trim</input>
-        <output>controls/flight/elevator-trim</output>
-        <output>autopilot/kap140/servo/elevator-trim</output>
-        <min>-1</min>
-        <max>1</max>
-    </filter>
-
-
-    <!-- manual operation: if really close to 0 snap to 0
-             (to allow reset of uneven values from the AP) -->
-    <filter>
-        <name>Correct manual trim center</name>
-        <type>gain</type>
-        <enable>
-            <condition>
-                <and>
-                    <not> <property>autopilot/kap140/servo/elevator-trim-servo/clutch-engaged</property> </not>
-                    <less-than>
-                        <property>controls/flight/elevator-trim</property>
-                        <value>0.001</value>
-                    </less-than>
-                    <greater-than>
-                        <property>controls/flight/elevator-trim</property>
-                        <value>-0.001</value>
-                    </greater-than>
-                </and>
-            </condition>
-        </enable>
-        <input>
-            <value>0.000</value>
-        </input>
-        <output>controls/flight/elevator-trim</output>
-    </filter>
+	<filter>
+		<name>Elevator-trim servo</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<enable>
+			<condition>
+				<property>autopilot/kap140/servo/elevator-trim-servo/clutch-engaged</property>
+			</condition>
+		</enable>
+		<input>autopilot/kap140/sensors/elevator-trim-demand</input>
+		<output>controls/flight/elevator-trim</output>
+		<output>autopilot/kap140/servo/elevator-trim</output>
+		<min>-1</min>
+		<max>1</max>
+		<max-rate-of-change>
+			<expression>
+				<table>
+					<abs><property>/controls/flight/elevator</property></abs>
+					<entry><ind>0.025</ind><dep>0.005</dep></entry>
+					<entry><ind>0.100</ind><dep>0.050</dep></entry>
+				</table>
+			</expression>
+		</max-rate-of-change> <!-- ~20s for 0-1; ie 40s for -1->0->1; https://assets.publishing.service.gov.uk/media/5422ec04e5274a13170000d5/dft_avsafety_pdf_501522.pdf -->
+	</filter>
 
 </PropertyList>

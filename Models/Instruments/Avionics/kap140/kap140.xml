@@ -85,7 +85,6 @@
     <object-name>btn-up</object-name>
     <object-name>btn-arm</object-name>
     <object-name>btn-baro</object-name>
-    <object-name>knob-axis</object-name>
   </animation>
 
   <effect>
@@ -1067,103 +1066,106 @@
     <name>Pitch trim up annunciator</name>
     <condition>
         <or>
-            <greater-than-equals>
+            <equals>
                 <property>autopilot/kap140/sensors/pitch-up</property>
                 <value>1</value>
-            </greater-than-equals>
-            <greater-than-equals>
+            </equals>
+            <and>
+                <greater-than>
+                    <property>autopilot/kap140/sensors/pitch-up</property>
+                    <value>1</value>
+                </greater-than>
+                <less-than>
+                    <expression>
+                        <mod>
+                            <product>
+                                <dif>
+                                    <property>sim/time/elapsed-sec</property>
+                                    <property>autopilot/kap140/sensors/pitch-up</property>
+                                </dif>
+                            <value>2</value>
+                            </product>
+                            <value>2</value>
+                        </mod>
+                    </expression>
+                    <value>1</value>
+                </less-than>
+            </and>
+            <equals>
                 <property>autopilot/kap140/sensors/pitch-down</property>
                 <value>1</value>
-            </greater-than-equals>
+            </equals>
+            <and>
+                <greater-than>
+                    <property>autopilot/kap140/sensors/pitch-down</property>
+                    <value>1</value>
+                </greater-than>
+                <less-than>
+                    <expression>
+                        <mod>
+                            <product>
+                                <dif>
+                                    <property>sim/time/elapsed-sec</property>
+                                    <property>autopilot/kap140/sensors/pitch-down</property>
+                                </dif>
+                            <value>2</value>
+                            </product>
+                            <value>2</value>
+                        </mod>
+                    </expression>
+                    <value>1</value>
+                </less-than>
+            </and>
+            <and>
+                <equals>
+                    <property>autopilot/kap140/sensors/pitch-trim</property>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property>autopilot/kap140/sensors/pitch-up</property>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property>autopilot/kap140/sensors/pitch-down</property>
+                    <value>0</value>
+                </equals>
+            </and>
         </or>
     </condition>
   </animation>
-
-  <!--<animation>
-    <type>select</type>
-    <object-name>ann-pt</object-name>
-    <name>Pitch trim annunciator</name>
-    <condition>
-      <or>
-        <and>
-          <greater-than>
-            <property>autopilot/kap140/sensors/pitch-trim</property>
-            <value>1.0</value>
-          </greater-than>
-          <greater-than>
-            <property>sim/time/elapsed-sec</property>
-            <property>autopilot/kap140/sensors/pitch-trim</property>
-          </greater-than>
-        </and>
-        <and>
-          <greater-than>
-            <property>autopilot/kap140/sensors/pitch-up</property>
-            <value>1.0</value>
-          </greater-than>
-          <greater-than>
-            <property>sim/time/elapsed-sec</property>
-            <property>autopilot/kap140/sensors/pitch-up</property>
-          </greater-than>
-          <or>
-            <not><property>autopilot/kap140/sensors/elevator-trim-demand-high</property></not>
-            <less-than>
-                <expression>
-                <mod>
-                    <product>
-                    <dif>
-                        <property>sim/time/elapsed-sec</property>
-                        <property>autopilot/kap140/sensors/pitch-up</property>
-                    </dif>
-                    <value>2</value>
-                    </product>
-                    <value>2</value>
-                </mod>
-                </expression>
-                <value>1</value>
-            </less-than>
-          </or>
-        </and>
-        <and>
-          <greater-than>
-            <property>autopilot/kap140/sensors/pitch-down</property>
-            <value>1.0</value>
-          </greater-than>
-          <greater-than>
-            <property>sim/time/elapsed-sec</property>
-            <property>autopilot/kap140/sensors/pitch-down</property>
-          </greater-than>
-          <or>
-            <not><property>autopilot/kap140/sensors/elevator-trim-demand-high</property></not>
-            <less-than>
-                <expression>
-                <mod>
-                    <product>
-                    <dif>
-                        <property>sim/time/elapsed-sec</property>
-                        <property>autopilot/kap140/sensors/pitch-down</property>
-                    </dif>
-                    <value>2</value>
-                    </product>
-                    <value>2</value>
-                </mod>
-                </expression>
-                <value>1</value>
-            </less-than>
-          </or>
-        </and>
-      </or>
-    </condition>
-    </animation>-->
 
   <animation>
     <type>select</type>
     <object-name>ann-pt-up</object-name>
     <name>Pitch trim up annunciator</name>
     <condition>
-        <greater-than-equals>
-            <property>autopilot/kap140/sensors/pitch-up</property>
-            <value>1</value>
-        </greater-than-equals>
+        <or>
+            <equals>
+                <property>autopilot/kap140/sensors/pitch-up</property>
+                <value>1</value>
+            </equals>
+            <and>
+                <greater-than>
+                    <property>autopilot/kap140/sensors/pitch-up</property>
+                    <value>2</value>
+                </greater-than>
+                <less-than>
+                    <expression>
+                        <mod>
+                            <product>
+                                <dif>
+                                    <property>sim/time/elapsed-sec</property>
+                                    <property>autopilot/kap140/sensors/pitch-up</property>
+                                </dif>
+                            <value>2</value>
+                            </product>
+                            <value>2</value>
+                        </mod>
+                    </expression>
+                    <value>1</value>
+                </less-than>
+            </and>
+        </or>
     </condition>
   </animation>
 
@@ -1172,58 +1174,38 @@
     <object-name>ann-pt-down</object-name>
     <name>Pitch trim down annunciator</name>
     <condition>
-        <greater-than-equals>
-            <property>autopilot/kap140/sensors/pitch-down</property>
-            <value>1</value>
-        </greater-than-equals>
+        <or>
+            <equals>
+                <property>autopilot/kap140/sensors/pitch-down</property>
+                <value>1</value>
+            </equals>
+            <and>
+                <greater-than>
+                    <property>autopilot/kap140/sensors/pitch-down</property>
+                    <value>2</value>
+                </greater-than>
+                <less-than>
+                    <expression>
+                        <mod>
+                            <product>
+                                <dif>
+                                    <property>sim/time/elapsed-sec</property>
+                                    <property>autopilot/kap140/sensors/pitch-down</property>
+                                </dif>
+                            <value>2</value>
+                            </product>
+                            <value>2</value>
+                        </mod>
+                    </expression>
+                    <value>1</value>
+                </less-than>
+            </and>
+        </or>
     </condition>
   </animation>
 
-  <!--<animation>
-    <type>select</type>
-    <object-name>ann-pt-down</object-name>
-    <name>Pitch trim down annunciator</name>
-    <condition>
-      <or>
-        <less-than>
-          <property>autopilot/kap140/sensors/pitch-trim</property>
-          <value>1.0</value>
-        </less-than>
-        <less-than>
-          <property>sim/time/elapsed-sec</property>
-          <property>autopilot/kap140/sensors/pitch-trim</property>
-        </less-than>
-      </or>
-      <greater-than>
-        <property>autopilot/kap140/sensors/pitch-down</property>
-        <value>1.0</value>
-      </greater-than>
-      <greater-than>
-        <property>sim/time/elapsed-sec</property>
-        <property>autopilot/kap140/sensors/pitch-down</property>
-      </greater-than>
-      <or>
-        <not><property>autopilot/kap140/sensors/elevator-trim-demand-high</property></not>
-        <less-than>
-            <expression>
-            <mod>
-                <product>
-                <dif>
-                    <property>sim/time/elapsed-sec</property>
-                    <property>autopilot/kap140/sensors/pitch-down</property>
-                </dif>
-                <value>2</value>
-                </product>
-                <value>2</value>
-            </mod>
-            </expression>
-            <value>1</value>
-        </less-than>
-      </or>
-    </condition>
-  </animation>-->
-
   <!-- alt alerter -->
+
   <animation>
     <type>select</type>
     <object-name>ann-alt-alert</object-name>
@@ -1443,6 +1425,10 @@
             <property>autopilot/kap140/settings/lateral-mode</property>
             <value>2</value>
           </equals>
+          <less-than>
+            <property>autopilot/kap140/settings/lateral-arm</property>
+            <value>3</value>
+          </less-than>
         </condition>
         <command>property-assign</command>
         <property>autopilot/kap140/settings/lateral-mode</property>
@@ -1458,6 +1444,10 @@
             <property>autopilot/kap140/settings/lateral-mode</property>
             <value>1</value>
           </equals>
+          <less-than>
+            <property>autopilot/kap140/settings/lateral-arm</property>
+            <value>3</value>
+          </less-than>
         </condition>
         <command>property-assign</command>
         <property>autopilot/kap140/settings/lateral-mode</property>
@@ -1509,10 +1499,10 @@
             <property>autopilot/kap140/panel/state</property>
             <value>6</value>
           </equals>
-          <equals>
+          <less-than>
             <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>-1</value>
-          </equals>
+            <value>0</value>
+          </less-than>
         </condition>
         <command>property-assign</command>
         <property>autopilot/kap140/settings/lateral-mode</property>
@@ -1627,10 +1617,10 @@
             <property>autopilot/kap140/settings/lateral-mode</property>
             <value>3</value>
           </not-equals>
-          <equals>
+          <less-than>
             <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>-1</value>
-          </equals>
+            <value>0</value>
+          </less-than>
         </condition>
         <command>property-assign</command>
         <property>autopilot/kap140/settings/lateral-arm</property>
@@ -1655,6 +1645,22 @@
         <command>property-assign</command>
         <property>autopilot/kap140/settings/from-hdg</property>
         <value>1</value>
+      </binding>
+      <binding>
+        <condition>
+          <equals>
+            <property>autopilot/kap140/panel/state</property>
+            <value>6</value>
+          </equals>
+          <equals>
+            <property>autopilot/kap140/settings/lateral-arm</property>
+            <value>0</value>
+          </equals>
+          <not><property alias="../../../../../../params/hsi-installed"/></not>
+        </condition>
+        <command>property-assign</command>
+        <property>autopilot/kap140/settings/from-hdg</property>
+        <value>0</value>
       </binding>
       <binding>
         <condition>
@@ -1761,10 +1767,10 @@
             <property>autopilot/kap140/settings/lateral-mode</property>
             <value>4</value>
           </not-equals>
-          <equals>
+          <less-than>
             <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>-1</value>
-          </equals>
+            <value>0</value>
+          </less-than>
         </condition>
         <command>property-assign</command>
         <property>autopilot/kap140/settings/lateral-arm</property>
@@ -1789,6 +1795,22 @@
         <command>property-assign</command>
         <property>autopilot/kap140/settings/from-hdg</property>
         <value>1</value>
+      </binding>
+      <binding>
+        <condition>
+          <equals>
+            <property>autopilot/kap140/panel/state</property>
+            <value>6</value>
+          </equals>
+          <equals>
+            <property>autopilot/kap140/settings/lateral-arm</property>
+            <value>0</value>
+          </equals>
+          <not><property alias="../../../../../../params/hsi-installed"/></not>
+        </condition>
+        <command>property-assign</command>
+        <property>autopilot/kap140/settings/from-hdg</property>
+        <value>0</value>
       </binding>
       <binding>
         <condition>
@@ -1895,10 +1917,10 @@
             <property>autopilot/kap140/settings/lateral-mode</property>
             <value>5</value>
           </not-equals>
-          <equals>
+          <less-than>
             <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>-1</value>
-          </equals>
+            <value>0</value>
+          </less-than>
         </condition>
         <command>property-assign</command>
         <property>autopilot/kap140/settings/lateral-arm</property>
@@ -1923,6 +1945,22 @@
         <command>property-assign</command>
         <property>autopilot/kap140/settings/from-hdg</property>
         <value>1</value>
+      </binding>
+      <binding>
+        <condition>
+          <equals>
+            <property>autopilot/kap140/panel/state</property>
+            <value>6</value>
+          </equals>
+          <equals>
+            <property>autopilot/kap140/settings/lateral-arm</property>
+            <value>0</value>
+          </equals>
+          <not><property alias="../../../../../../params/hsi-installed"/></not>
+        </condition>
+        <command>property-assign</command>
+        <property>autopilot/kap140/settings/from-hdg</property>
+        <value>0</value>
       </binding>
       <binding>
         <condition>

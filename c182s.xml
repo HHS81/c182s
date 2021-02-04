@@ -1308,7 +1308,7 @@
 <function name="aero/coefficient/Clb">
        <description>Roll moment due to beta</description>
        <product>
-           <property>aero/qbar-psf</property>
+           <property>aero/function/qbar-induced-psf</property>
            <property>metrics/Sw-sqft</property>
            <property>metrics/bw-ft</property>
            <property>aero/beta-rad</property>
@@ -1416,7 +1416,7 @@
                 </difference>
                 <value>0.5</value>
             </product>
-          <value>0.1145</value>
+          <value>0.2290</value><!-- not known, so guessed-->
                     <!--
                         stall and spin (4):
                         less efficient ailerons
@@ -1445,11 +1445,11 @@
            <function name="aero/coefficient/ClDr">
                 <description>Roll_moment_due_to_rudder</description>
                 <product>
-                    <property>aero/qbar-psf</property>
+                    <property>aero/function/qbar-induced-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
-                    <value>0.0147</value>
+                    <value>-0.0147</value><!-- it is positive in the original source, but should be negative-->
                 </product>
             </function>
             
@@ -1546,7 +1546,7 @@
             <function name="aero/coefficient/Cmadot">
                 <description>Pitch_moment_due_to_alpha_rate</description>
                 <product>
-                    <property>aero/qbar-psf</property>
+                    <property>aero/qbarUW-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
                     <property>aero/ci2vel</property>

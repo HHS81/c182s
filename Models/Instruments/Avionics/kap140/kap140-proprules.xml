@@ -1593,10 +1593,6 @@ We have captured the localizer and the GS.
                     </expression>
                     <value>0.6</value>
                 </less-than>
-                <less-than>
-                    <property>autopilot/kap140/panel/hdg-timer</property>
-                    <value>1</value>
-                </less-than>
             </condition>
         </enable>
         <input>
@@ -1695,6 +1691,10 @@ We have captured the localizer and the GS.
                     <property>autopilot/kap140/settings/lateral-arm</property>
                     <value>0</value>
                 </less-than>
+                <less-than>
+                    <property>autopilot/kap140/panel/hdg-timer</property>
+                    <value>1</value>
+                </less-than>
             </condition>
         </enable>
         <input>
@@ -1785,6 +1785,13 @@ We have captured the localizer and the GS.
                     <property>autopilot/kap140/settings/lateral-arm</property>
                     <value>0</value>
                 </less-than>
+                <equals>
+                    <property>autopilot/kap140/settings/lateral-mode</property>
+                    <expression>
+                        <abs><property>autopilot/kap140/settings/lateral-arm</property></abs>
+                    </expression>
+                </equals>
+
             </condition>
         </enable>
         <input>0</input>
@@ -2418,25 +2425,6 @@ We have captured the localizer and the GS.
                     </less-than>
                     <equals>
                         <property>/autopilot/kap140/settings/lateral-mode</property>
-                        <value>1</value>
-                    </equals>
-                    <less-than>
-                        <property>/autopilot/kap140/panel/hdg-timer</property>
-                        <value>1</value>
-                    </less-than>
-                </and>
-                <and>
-                    <not><property alias="../../../../../../params/hsi-installed" /></not>
-                    <equals>
-                        <property>/autopilot/kap140/settings/lateral-arm</property>
-                        <value>3</value>
-                    </equals>
-                    <less-than>
-                        <property>/autopilot/kap140/panel/nav-timer</property>
-                        <value>1</value>
-                    </less-than>
-                    <equals>
-                        <property>/autopilot/kap140/settings/lateral-mode</property>
                         <value>2</value>
                     </equals>
                     <less-than>
@@ -2474,25 +2462,6 @@ We have captured the localizer and the GS.
                     </less-than>
                     <equals>
                         <property>/autopilot/kap140/settings/lateral-mode</property>
-                        <value>1</value>
-                    </equals>
-                    <less-than>
-                        <property>/autopilot/kap140/panel/hdg-timer</property>
-                        <value>1</value>
-                    </less-than>
-                </and>
-                <and>
-                    <not><property alias="../../../../../../params/hsi-installed" /></not>
-                    <equals>
-                        <property>/autopilot/kap140/settings/lateral-arm</property>
-                        <value>4</value>
-                    </equals>
-                    <less-than>
-                        <property>/autopilot/kap140/panel/nav-timer</property>
-                        <value>1</value>
-                    </less-than>
-                    <equals>
-                        <property>/autopilot/kap140/settings/lateral-mode</property>
                         <value>2</value>
                     </equals>
                     <less-than>
@@ -2515,25 +2484,6 @@ We have captured the localizer and the GS.
                     </equals>
                     <less-than>
                         <property>/autopilot/kap140/panel/nav-timer</property>
-                        <value>1</value>
-                    </less-than>
-                </and>
-                <and>
-                    <not><property alias="../../../../../../params/hsi-installed" /></not>
-                    <equals>
-                        <property>/autopilot/kap140/settings/lateral-arm</property>
-                        <value>5</value>
-                    </equals>
-                    <less-than>
-                        <property>/autopilot/kap140/panel/nav-timer</property>
-                        <value>1</value>
-                    </less-than>
-                    <equals>
-                        <property>/autopilot/kap140/settings/lateral-mode</property>
-                        <value>1</value>
-                    </equals>
-                    <less-than>
-                        <property>/autopilot/kap140/panel/hdg-timer</property>
                         <value>1</value>
                     </less-than>
                 </and>

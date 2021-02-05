@@ -1622,7 +1622,7 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
-		<property>aero/beta-rad</property>
+                    <property>aero/beta-rad</property>
                       <table>
                           <independentVar>aero/alpha-rad</independentVar>
                           <tableData>

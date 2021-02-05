@@ -126,7 +126,9 @@
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">3600 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">900 </damping_coeff>
+            <damping_coeff unit="LBS/FT/SEC">900</damping_coeff>
+            <damping_coeff_rebound unit="LBS/FT/SEC">1800</damping_coeff_rebound>
+            <wheel_slip_filter> 120.0 </wheel_slip_filter>
             <max_steer unit="DEG"> 11 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
@@ -141,7 +143,9 @@
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 5400 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">200 </damping_coeff>
+            <damping_coeff unit="LBS/FT/SEC">50</damping_coeff>
+            <damping_coeff_rebound unit="LBS/FT/SEC">100</damping_coeff_rebound>
+            <wheel_slip_filter> 120.0 </wheel_slip_filter>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> LEFT </brake_group>
             <retractable>0</retractable>
@@ -156,7 +160,9 @@
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">5400 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">200 </damping_coeff>
+            <damping_coeff unit="LBS/FT/SEC">50 </damping_coeff>
+            <damping_coeff_rebound unit="LBS/FT/SEC">100</damping_coeff_rebound>
+            <wheel_slip_filter> 120.0 </wheel_slip_filter>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> RIGHT </brake_group>
             <retractable>0</retractable>
@@ -1449,7 +1455,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
-                    <value>-0.0147</value><!-- it is positive in the original source, but should be negative-->
+                    <value>0.0147</value>
                 </product>
             </function>
             

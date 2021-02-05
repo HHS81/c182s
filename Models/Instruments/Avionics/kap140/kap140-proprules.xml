@@ -52,11 +52,25 @@ We have captured the localizer and the GS.
     <logic>
         <input>
             <and>
-                <not><property>autopilot/kap140/servo/roll-servo/serviceable</property></not>
                 <greater-than>
                     <property>autopilot/kap140/panel/state</property>
                     <value>2</value>
                 </greater-than>
+                <or>
+                    <not><property>autopilot/kap140/servo/roll-servo/serviceable</property></not>
+                    <greater-than>
+                        <property>autopilot/kap140/servo/roll-servo/check-timer</property>
+                        <value>0</value>
+                    </greater-than>
+                    <and>
+                        <greater-than>
+                            <expression>
+                                <abs><property>autopilot/kap140/servo/roll-servo/force</property></abs>
+                            </expression>
+                            <value>5</value> <!-- TODO: meaningfull force -->
+                        </greater-than>
+                    </and>
+                </or>
             </and>
         </input>
         <output>autopilot/kap140/roll-axis-fail</output>
@@ -64,14 +78,26 @@ We have captured the localizer and the GS.
     <logic>
         <input>
             <and>
-                <or>
-                    <not><property>autopilot/kap140/servo/pitch-servo/serviceable</property></not>
-                    <not><property>autopilot/kap140/servo/elevator-trim-servo/serviceable</property></not>
-                </or>
                 <greater-than>
                     <property>autopilot/kap140/panel/state</property>
                     <value>2</value>
                 </greater-than>
+                <or>
+                    <not><property>autopilot/kap140/servo/pitch-servo/serviceable</property></not>
+                    <not><property>autopilot/kap140/servo/elevator-trim-servo/serviceable</property></not>
+                    <greater-than>
+                        <property>autopilot/kap140/servo/pitch-servo/check-timer</property>
+                        <value>0</value>
+                    </greater-than>
+                    <and>
+                        <greater-than>
+                            <expression>
+                                <abs><property>autopilot/kap140/servo/pitch-servo/force</property></abs>
+                            </expression>
+                            <value>5</value> <!-- TODO: meaningfull force -->
+                        </greater-than>
+                    </and>
+                </or>
             </and>
         </input>
         <output>autopilot/kap140/pitch-axis-fail</output>
@@ -153,6 +179,136 @@ We have captured the localizer and the GS.
         <output>autopilot/kap140/sensors/turn-indicator-operable</output>
     </logic>
 
+<!-- servo check -->
+
+    <filter>
+        <name>set roll servo check</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <property>autopilot/kap140/powered</property>
+                <equals>
+                    <property>autopilot/kap140/servo/roll-servo/check-timer</property>
+                    <value>0.0</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>
+            <expression>
+                <sum>
+                    <property>autopilot/kap140/panel/pft-1</property>
+                    <value>5.0</value>
+                    <product>
+                        <mod>
+                            <product>
+                                <property>sim/time/elapsed-sec</property>
+                                <value>1.61803398875</value>
+                            </product>
+                            <value>1.0</value>
+                        </mod>
+                        <value>5.0</value>
+                    </product>
+                </sum>
+            </expression>
+        </input>
+        <output>autopilot/kap140/servo/roll-servo/check-timer</output>
+    </filter>
+
+    <filter>
+        <name>clear roll servo check</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <property>autopilot/kap140/powered</property>
+                <greater-than>
+                    <property>autopilot/kap140/servo/roll-servo/check-timer</property>
+                    <value>1.0</value>
+                </greater-than>
+                <greater-than>
+                    <property>sim/time/elapsed-sec</property>
+                    <property>autopilot/kap140/servo/roll-servo/check-timer</property>
+                </greater-than>
+            </condition>
+        </enable>
+        <input>-1.0</input>
+        <output>autopilot/kap140/servo/roll-servo/check-timer</output>
+    </filter>
+
+    <filter>
+        <name>set pitch servo check</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <property>autopilot/kap140/powered</property>
+                <equals>
+                    <property>autopilot/kap140/servo/pitch-servo/check-timer</property>
+                    <value>0.0</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>
+            <expression>
+                <sum>
+                    <property>autopilot/kap140/panel/pft-1</property>
+                    <value>15.0</value>
+                    <product>
+                        <mod>
+                            <product>
+                                <property>sim/time/elapsed-sec</property>
+                                <value>1.61803398875</value>
+                            </product>
+                            <value>1.0</value>
+                        </mod>
+                        <value>15.0</value>
+                    </product>
+                </sum>
+            </expression>
+        </input>
+        <output>autopilot/kap140/servo/pitch-servo/check-timer</output>
+    </filter>
+
+    <filter>
+        <name>clear pitch servo check</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <property>autopilot/kap140/powered</property>
+                <greater-than>
+                    <property>autopilot/kap140/servo/pitch-servo/check-timer</property>
+                    <value>1.0</value>
+                </greater-than>
+                <greater-than>
+                    <property>sim/time/elapsed-sec</property>
+                    <property>autopilot/kap140/servo/pitch-servo/check-timer</property>
+                </greater-than>
+            </condition>
+        </enable>
+        <input>-1.0</input>
+        <output>autopilot/kap140/servo/pitch-servo/check-timer</output>
+    </filter>
+
+    <!--filter>
+        <name>teeest</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <input>
+            <expression>
+                <mod>
+                    <product>
+                        <property>sim/time/elapsed-sec</property>
+                        <value>1.61803398875</value>
+                    </product>
+                    <value>1.0</value>
+                </mod>
+            </expression>
+        </input>
+        <output>autopilot/kap140/random</output>
+    </filter-->
+
 <!-- reset all if the AP has no power -->
     <filter>
         <name>unpowered</name>
@@ -205,6 +361,8 @@ We have captured the localizer and the GS.
         <output>autopilot/kap140/panel/nav-timer</output>
         <output>autopilot/kap140/settings/cws</output>
         <output>autopilot/kap140/settings/ap-disc</output>
+        <output>autopilot/kap140/servo/roll-servo/check-timer</output>
+        <output>autopilot/kap140/servo/pitch-servo/check-timer</output>
     </filter>
 
 <!-- reset default altitude if the AP has no power -->
@@ -899,6 +1057,8 @@ We have captured the localizer and the GS.
                     <property>autopilot/kap140/panel/state</property>
                     <value>5</value>
                 </equals>
+                <not><property>autopilot/kap140/pitch-axis-fail</property></not>
+                <not><property>autopilot/kap140/roll-axis-fail</property></not>
                 <equals>
                     <property>autopilot/kap140/panel/state</property>
                     <property>autopilot/kap140/panel/state-old</property>
@@ -2295,7 +2455,16 @@ We have captured the localizer and the GS.
         <name>store pitch trim</name>
         <debug>false</debug>
         <type>noise-spike</type>
-        <max-rate-of-change>0.025</max-rate-of-change>
+        <max-rate-of-change>
+            <condition>
+                <equals>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>6</value>
+                </equals>
+            </condition>
+            <value>0.025</value>
+        </max-rate-of-change>
+        <max-rate-of-change>1.0</max-rate-of-change>
         <input>controls/flight/elevator-trim</input>
         <output>autopilot/kap140/sensors/elevator-trim</output>
     </filter>

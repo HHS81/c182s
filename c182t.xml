@@ -122,13 +122,12 @@
                 <y> 0 </y>
                 <z>-47.09</z><!--includes offset due to gear compression animation, should be -47.17-->
             </location>
-            <static_friction> 0.8 </static_friction>
-            <dynamic_friction> 0.7 </dynamic_friction>
+            <static_friction> 0.5 </static_friction>
+            <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">3600 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">900</damping_coeff>
             <damping_coeff_rebound unit="LBS/FT/SEC">1800</damping_coeff_rebound>
-            <wheel_slip_filter> 120.0 </wheel_slip_filter>
             <max_steer unit="DEG"> 11 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
@@ -145,7 +144,6 @@
             <spring_coeff unit="LBS/FT"> 5400 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">50</damping_coeff>
             <damping_coeff_rebound unit="LBS/FT/SEC">100</damping_coeff_rebound>
-            <wheel_slip_filter> 120.0 </wheel_slip_filter>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> LEFT </brake_group>
             <retractable>0</retractable>
@@ -162,7 +160,6 @@
             <spring_coeff unit="LBS/FT">5400 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">50 </damping_coeff>
             <damping_coeff_rebound unit="LBS/FT/SEC">100</damping_coeff_rebound>
-            <wheel_slip_filter> 120.0 </wheel_slip_filter>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> RIGHT </brake_group>
             <retractable>0</retractable>

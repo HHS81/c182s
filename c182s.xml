@@ -122,8 +122,8 @@
                 <y> 0 </y>
                 <z>-47.09</z><!--includes offset due to gear compression animation, should be -47.17-->
             </location>
-            <static_friction> 0.5 </static_friction>
-            <dynamic_friction> 0.4 </dynamic_friction>
+            <static_friction> 0.8 </static_friction>
+            <dynamic_friction> 0.7 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">3600 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC">900</damping_coeff>

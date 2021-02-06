@@ -126,7 +126,8 @@
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">3600 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">900 </damping_coeff>
+            <damping_coeff unit="LBS/FT/SEC">675</damping_coeff>
+            <damping_coeff_rebound unit="LBS/FT/SEC">1800</damping_coeff_rebound>
             <max_steer unit="DEG"> 11 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
@@ -141,7 +142,8 @@
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 5400 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">200 </damping_coeff>
+            <damping_coeff unit="LBS/FT/SEC">100</damping_coeff>
+            <damping_coeff_rebound unit="LBS/FT/SEC">100</damping_coeff_rebound>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> LEFT </brake_group>
             <retractable>0</retractable>
@@ -156,7 +158,8 @@
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">5400 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">200 </damping_coeff>
+            <damping_coeff unit="LBS/FT/SEC">100 </damping_coeff>
+            <damping_coeff_rebound unit="LBS/FT/SEC">100</damping_coeff_rebound>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> RIGHT </brake_group>
             <retractable>0</retractable>
@@ -337,7 +340,7 @@
                     <yaw> 0.0 </yaw>
                 </orient>
                 <sense> 1 </sense>
-                <p_factor>5 </p_factor>
+                <p_factor>15 </p_factor>
             </thruster>
         </engine>
         
@@ -1308,7 +1311,7 @@
 <function name="aero/coefficient/Clb">
        <description>Roll moment due to beta</description>
        <product>
-           <property>aero/qbar-psf</property>
+           <property>aero/function/qbar-induced-psf</property>
            <property>metrics/Sw-sqft</property>
            <property>metrics/bw-ft</property>
            <property>aero/beta-rad</property>
@@ -1409,8 +1412,14 @@
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/bw-ft</property>
-          <property>fcs/left-aileron-pos-rad</property>
-          <value>0.2290</value>
+            <product>
+                <difference>
+                    <property>fcs/left-aileron-pos-rad</property>
+                    <property>fcs/right-aileron-pos-rad</property>
+                </difference>
+                <value>0.5</value>
+            </product>
+          <value>0.2290</value><!-- not known, so guessed-->
                     <!--
                         stall and spin (4):
                         less efficient ailerons
@@ -1439,11 +1448,11 @@
            <function name="aero/coefficient/ClDr">
                 <description>Roll_moment_due_to_rudder</description>
                 <product>
-                    <property>aero/qbar-psf</property>
+                    <property>aero/function/qbar-induced-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
-                    <value>-0.0147</value>
+                    <value>0.0147</value>
                 </product>
             </function>
             
@@ -1540,7 +1549,7 @@
             <function name="aero/coefficient/Cmadot">
                 <description>Pitch_moment_due_to_alpha_rate</description>
                 <product>
-                    <property>aero/qbar-psf</property>
+                    <property>aero/qbarUW-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
                     <property>aero/ci2vel</property>
@@ -1616,7 +1625,7 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
-		<property>aero/beta-rad</property>
+                    <property>aero/beta-rad</property>
                       <table>
                           <independentVar>aero/alpha-rad</independentVar>
                           <tableData>
@@ -1719,13 +1728,19 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
+            <product>
+                <difference>
                     <property>fcs/left-aileron-pos-rad</property>
+                    <property>fcs/right-aileron-pos-rad</property>
+                </difference>
+                <value>0.5</value>
+            </product>
                     <table>
                         <independentVar>velocities/u-fps</independentVar>
                         <tableData>
-                              107.1  -0.0786 <!--Approach-->
-                              133.5  -0.0504 <!--climb-->
-                              220.1   0.0216 <!--cruise-->
+                              107.1  0.0393 <!--Approach-->
+                              133.5  0.0252 <!--climb-->
+                              220.1   0.0108 <!--cruise-->
                         </tableData>
                     </table>
                     <table>

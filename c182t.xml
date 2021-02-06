@@ -105,18 +105,19 @@
         </pointmass>
     </mass_balance>
 
-    <ground_reactions>
+ <ground_reactions>
         <contact type="BOGEY" name="NOSE">
             <location unit="IN">
                 <x>-10.31 </x>
                 <y> 0 </y>
-                <z>-48.09</z><!--includes offset due to gear compression animation, should be -47.17-->
+                <z>-47.09</z><!--includes offset due to gear compression animation, should be -47.17-->
             </location>
-            <static_friction> 0.99 </static_friction>
-            <dynamic_friction> 0.8 </dynamic_friction>
+            <static_friction> 0.5 </static_friction>
+            <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">3600 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">1800 </damping_coeff>
+            <damping_coeff  unit="LBS/FT/SEC">450 </damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2">450 </damping_coeff_rebound>
             <max_steer unit="DEG"> 11 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
@@ -125,12 +126,14 @@
             <location unit="IN">
                 <x>54.43 </x>
                 <y>-51.56 </y>
-                <z>-44.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
+                <z>-43.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
-            <static_friction> 0.99 </static_friction>
+            <static_friction> 0.5 </static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
+            <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 5400 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">400 </damping_coeff>
+            <damping_coeff  unit="LBS/FT/SEC">50 </damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2">12 </damping_coeff_rebound>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> LEFT </brake_group>
             <retractable>0</retractable>
@@ -139,13 +142,14 @@
             <location unit="IN">
                 <x>54.43 </x>
                 <y>51.56 </y>
-                <z>-44.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
+                <z>-43.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
-            <static_friction> 0.99 </static_friction>
+            <static_friction> 0.5</static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">5400 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">400 </damping_coeff>
+            <damping_coeff  unit="LBS/FT/SEC">50</damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2">12</damping_coeff_rebound>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> RIGHT </brake_group>
             <retractable>0</retractable>

@@ -85,6 +85,7 @@ We have captured the localizer and the GS.
                 <or>
                     <not><property>autopilot/kap140/servo/pitch-servo/serviceable</property></not>
                     <not><property>autopilot/kap140/servo/elevator-trim-servo/serviceable</property></not>
+                    <property>autopilot/kap140/sensors/excess-g</property>
                     <greater-than>
                         <property>autopilot/kap140/servo/pitch-servo/check-timer</property>
                         <value>0</value>

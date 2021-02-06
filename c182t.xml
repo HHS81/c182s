@@ -115,7 +115,7 @@
         
     </mass_balance>
 
-    <ground_reactions>
+  <ground_reactions>
         <contact type="BOGEY" name="NOSE">
             <location unit="IN">
                 <x>-10.31 </x>
@@ -126,8 +126,8 @@
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">3600 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">675</damping_coeff>
-            <damping_coeff_rebound unit="LBS/FT/SEC">1800</damping_coeff_rebound>
+            <damping_coeff  unit="LBS/FT/SEC">450 </damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2">450 </damping_coeff_rebound>
             <max_steer unit="DEG"> 11 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
@@ -142,8 +142,8 @@
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 5400 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">100</damping_coeff>
-            <damping_coeff_rebound unit="LBS/FT/SEC">100</damping_coeff_rebound>
+            <damping_coeff  unit="LBS/FT/SEC">50 </damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2">12 </damping_coeff_rebound>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> LEFT </brake_group>
             <retractable>0</retractable>
@@ -158,8 +158,8 @@
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT">5400 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC">100 </damping_coeff>
-            <damping_coeff_rebound unit="LBS/FT/SEC">100</damping_coeff_rebound>
+            <damping_coeff  unit="LBS/FT/SEC">50</damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2">12</damping_coeff_rebound>
             <max_steer unit="DEG"> 0.0 </max_steer>
             <brake_group> RIGHT </brake_group>
             <retractable>0</retractable>

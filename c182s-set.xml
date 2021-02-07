@@ -131,7 +131,7 @@
     </urls>
 
   <flight-model>jsb</flight-model>
-  <aero>c182t</aero>
+  <aero>c182s</aero>
 
   <aircraft-class type="string">ga</aircraft-class>
   <aircraft-operator type="string">NONE</aircraft-operator>

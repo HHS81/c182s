@@ -157,7 +157,7 @@ annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"vac-low-r",   
 annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"oilpress-low", "/engines/engine/indicated-oil-pressure-psi", 21.0) );
 annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"fuel-low-r",   "/consumables/fuel/tank[1]/indicated-level-gal_us", 8) );
 annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"fuel-low-l",   "/consumables/fuel/tank[0]/indicated-level-gal_us", 8) );
-annunciator_panel.add( AnnunciatorMax.new(annunciator_panel.node~"pitch-trim",   "/autopilot/kap140/pitch-axis-fail", 0) );
+annunciator_panel.add( AnnunciatorMax.new(annunciator_panel.node~"pitch-trim",   "/instrumentation/annunciator/pitch-trim-trigger", 0) );
 
 #TODO: for mor realism... the fuel detection should probably be modelled finer using a custom class: The POH says, that the annunciator nly fires if the low-condition is met for at least 60 seconds
 
@@ -170,4 +170,18 @@ annunciator_panel.add( AnnunciatorMax.new(annunciator_panel.node~"pitch-trim",  
 
 setlistener("/sim/signals/fdm-initialized", func {
     annunciator_panel.init();
+
+
+    # The PITCH-TRIM annunciator needs the previuos AP state.
+    setprop("/autopilot/kap140/panel/state-previous", 0);
+    setprop("/autopilot/kap140/panel/state-previous-memory", 0);
+    setlistener("/autopilot/kap140/panel/state", func(n) {
+        var mem = getprop("/autopilot/kap140/panel/state-previous-memory");
+        if (getprop("autopilot/kap140/panel/button-ap") and n.getValue() == 5 and mem == 6) {
+            setprop("/autopilot/kap140/panel/state-previous", n.getValue());
+        } else {
+            setprop("/autopilot/kap140/panel/state-previous", mem);
+        }
+        setprop("/autopilot/kap140/panel/state-previous-memory", n.getValue());
+    }, 1, 0);
 });

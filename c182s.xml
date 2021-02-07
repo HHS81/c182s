@@ -158,7 +158,7 @@
                                 </tableData>
                             </product>
                             <product>
-                                <property> fcs/gear-compression-velocity-dep-nose</property>
+                                <property> fcs/gear-compression-velocity-dep-nose</property><!-- dynamic value, depending on speed-->
                                 <property> gear/unit[0]/compression-velocity-fps </property>
                             </product>
                         </ifthen>
@@ -213,7 +213,7 @@
                                 </tableData>
                             </product>
                             <product>
-                                <property> fcs/gear-compression-velocity-dep</property>
+                                <property> fcs/gear-compression-velocity-dep</property><!-- dynamic value, depending on speed-->
                                 <property> gear/unit[1]/compression-velocity-fps </property>
                             </product>
                         </ifthen>
@@ -268,7 +268,7 @@
                                 </tableData>
                             </product>
                             <product>
-                                <property> fcs/gear-compression-velocity-dep</property>
+                                <property> fcs/gear-compression-velocity-dep</property><!-- dynamic value, depending on speed-->
                                 <property> gear/unit[2]/compression-velocity-fps </property>
                             </product>
                         </ifthen>

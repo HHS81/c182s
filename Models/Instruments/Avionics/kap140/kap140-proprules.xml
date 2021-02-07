@@ -142,6 +142,10 @@ We have captured the localizer and the GS.
 <!-- (Note: we want to filter short bursts that can occur during turbolences) -->
     <logic>
         <input>
+            <greater-than>
+                <property>position/altitude-agl-ft</property>
+                <value>1</value>
+            </greater-than>
             <or>
                 <greater-than>
                     <property>accelerations/pilot-gdamped</property>
@@ -161,7 +165,7 @@ We have captured the localizer and the GS.
         <inverted type="bool">true</inverted>
         <S> <not> <property>autopilot/kap140/sensors/excess-g-raw</property> </not> </S>
         <time>
-            <value> 2.0 </value>
+            <value> 1.0 </value>
         </time>
         <output> <property>autopilot/kap140/sensors/excess-g</property> </output>
     </flipflop>

@@ -161,7 +161,7 @@ We have captured the localizer and the GS.
         <inverted type="bool">true</inverted>
         <S> <not> <property>autopilot/kap140/sensors/excess-g-raw</property> </not> </S>
         <time>
-            <value> 2.0 </value>
+            <value> 1.0 </value>
         </time>
         <output> <property>autopilot/kap140/sensors/excess-g</property> </output>
     </flipflop>

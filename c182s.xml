@@ -1397,7 +1397,7 @@
             <function name="aero/coefficient/CYdr">
                 <description>Side_force_due_to_rudder</description>
                 <product>
-                    <property>aero/qbar-psf</property>
+                    <property>aero/function/qbar-induced-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>fcs/rudder-pos-rad</property>
                     <value>0.187</value>

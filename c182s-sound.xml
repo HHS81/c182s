@@ -279,7 +279,13 @@
    <name>squeal1</name>
       <path>Sounds/squeal.wav</path>
    <condition>
+   <and>
      <property>/gear/gear[0]/wow</property>
+    <less-than>
+     <property>/fdm/jsbsim/gear/unit[0]/wheel-speed-fps</property>
+    <value>100</value>
+    </less-than>
+   </and>
    </condition>
       <volume>
         <property>/gear/gear[0]/compression-norm</property>
@@ -305,8 +311,14 @@
 <squeal2>
    <name>squeal2</name>
    <path>Sounds/squeal.wav</path>
-   <condition>
+    <condition>
+   <and>
      <property>/gear/gear[1]/wow</property>
+    <less-than>
+     <property>/fdm/jsbsim/gear/unit[1]/wheel-speed-fps</property>
+    <value>100</value>
+    </less-than>
+   </and>
    </condition>
       <volume>
         <property>/gear/gear[1]/compression-norm</property>
@@ -333,7 +345,13 @@
    <name>squeal3</name>
    <path>Sounds/squeal.wav</path>
    <condition>
+   <and>
      <property>/gear/gear[2]/wow</property>
+    <less-than>
+     <property>/fdm/jsbsim/gear/unit[2]/wheel-speed-fps</property>
+    <value>100</value>
+    </less-than>
+   </and>
    </condition>
       <volume>
         <property>/gear/gear[2]/compression-norm</property>

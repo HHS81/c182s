@@ -1012,6 +1012,12 @@
                 <max>1</max>
                 <wrap>0</wrap>
             </binding>
+            <binding>
+                <!-- This binding lets the AP know we are not using the MET (manual electric trim) -->
+                <command>property-assign</command>
+                <property>autopilot/kap140/sensors/manual-trim</property>
+                <value>1</value>
+            </binding>
         </action>
         <hovered>
             <binding>

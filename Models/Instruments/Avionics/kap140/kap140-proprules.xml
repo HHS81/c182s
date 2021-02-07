@@ -2422,7 +2422,7 @@ We have captured the localizer and the GS.
     </filter>
 
     <filter>
-        <name>reset pitch up</name>
+        <name>reset pitch down</name>
         <debug>false</debug>
         <type>gain</type>
         <enable>
@@ -2458,17 +2458,19 @@ We have captured the localizer and the GS.
         <type>noise-spike</type>
         <max-rate-of-change>
             <condition>
-                <equals>
+                <greater-than>
                     <property>autopilot/kap140/panel/state</property>
-                    <value>6</value>
-                </equals>
+                    <value>4</value>
+                </greater-than>
+                <not><property>autopilot/kap140/sensors/manual-trim</property></not>
             </condition>
-            <value>0.025</value>
+            <value>0.020</value>
         </max-rate-of-change>
-        <max-rate-of-change>1.0</max-rate-of-change>
+        <max-rate-of-change>10.0</max-rate-of-change>
         <input>controls/flight/elevator-trim</input>
         <output>autopilot/kap140/sensors/elevator-trim</output>
     </filter>
+
 
 <!-- pitch trim run-away -->
 
@@ -2536,6 +2538,19 @@ We have captured the localizer and the GS.
         </input>
         <input>0</input>
         <output>autopilot/kap140/sensors/pitch-trim</output>
+    </filter>
+
+    <filter>
+        <name>reset manual trim flag</name>
+        <debug>false</debug>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <property>autopilot/kap140/sensors/manual-trim</property>
+            </condition>
+        </enable>
+        <input>0</input>
+        <output>autopilot/kap140/sensors/manual-trim</output>
     </filter>
 
     <!-- Logic by Josh Davidson (Octal450) 2021 -->

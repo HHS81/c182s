@@ -313,6 +313,9 @@
 		</input>
 		<input>0</input>
 		<output>/autopilot/internal/target-turn-rate</output>
+		<!-- Make dynamic later -->
+		<min>-0.9</min>
+		<max>0.9</max>
 	</filter>
 	
 	<predict-simple>
@@ -345,7 +348,7 @@
 		<max-rate-of-change>10</max-rate-of-change>
 	</filter>
 	
-	<pi-simple-controller>
+	<pid-controller>
 		<name>System Command: Roll PI</name>
 		<debug>false</debug>
 		<enable>
@@ -355,25 +358,15 @@
 		</enable>
 		<input>/autopilot/internal/turn-rate-cmd</input>
 		<reference>/autopilot/internal/predicted-turn-rate</reference>
-		<output>/autopilot/internal/aileron-pi</output>
+		<output>/autopilot/internal/aileron-pid</output>
 		<config>
-			<Kp>-0.07</Kp>
-			<Ki>-0.021</Ki>
-			<min>-0.25</min>
-			<max>0.25</max>
+			<Kp>-0.08</Kp>
+			<Ti>3.5</Ti>
+			<Td>0.15</Td>
+			<u_min>-0.25</u_min>
+			<u_max>0.25</u_max>
 		</config>
-	</pi-simple-controller>
-	
-	<filter>
-		<name>System Command: Roll D</name>
-		<type>derivative</type>
-		<input>/autopilot/internal/predicted-turn-rate</input>
-		<reference>/autopilot/internal/turn-rate-cmd</reference>
-		<output>/autopilot/internal/aileron-d</output>
-		<filter-time>-0.0196</filter-time>
-		<min>-0.25</min>
-		<max>0.25</max>
-	</filter>
+	</pid-controller>
 	
 	<filter>
 		<name>System Command: Roll Output</name>
@@ -388,16 +381,35 @@
 		<input>
 			<expression>
 				<product>
-					<sum>
-						<property>/autopilot/internal/aileron-pi</property>
-						<property>/autopilot/internal/aileron-d</property>
-					</sum>
+					<property>/autopilot/internal/aileron-pid</property>
 					<property>/autopilot/kap140/config/gain-roll</property>
 				</product>
 			</expression>
 		</input>
 		<output>/controls/flight/aileron</output>
 		<max-rate-of-change>0.085</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>System Command: Aileron Inactive Sync</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<not><property>/autopilot/internal/logic/roll-active</property></not>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<div>
+					<property>/controls/flight/aileron</property>
+					<property>/autopilot/kap140/config/gain-roll</property>
+				</div>
+			</expression>
+		</input>
+		<output>/autopilot/internal/aileron-pid</output>
+		<min>-0.25</min>
+		<max>0.25</max>
 	</filter>
 	
 	<!-- Pitch Axis -->
@@ -549,8 +561,8 @@
 		<config>
 			<Kp>-0.00015</Kp>
 			<Ki>-0.000011</Ki>
-			<min>-0.3</min>
-			<max>0.3</max>
+			<min>-0.1</min>
+			<max>0.1</max>
 		</config>
 	</pi-simple-controller>
 	
@@ -591,7 +603,7 @@
 		<output>/autopilot/internal/accel-cmd</output>
 	</filter>
 	
-	<pi-simple-controller>
+	<pid-controller>
 		<name>System Command: Elevator PI</name>
 		<debug>false</debug>
 		<enable>
@@ -604,11 +616,12 @@
 		<output>/autopilot/internal/elevator-pi</output>
 		<config>
 			<Kp>0.16</Kp>
-			<Ki>0.42</Ki>
-			<min>-0.25</min>
-			<max>0.25</max>
+			<Ti>0.5</Ti>
+			<Td>0.0</Td> <!-- No -->
+			<u_min>-0.25</u_min>
+			<u_max>0.25</u_max>
 		</config>
-	</pi-simple-controller>
+	</pid-controller>
 	
 	<filter>
 		<name>System Command: Pitch Output</name>
@@ -630,6 +643,28 @@
 		</input>
 		<output>/controls/flight/elevator</output>
 		<max-rate-of-change>0.0769</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>System Command: Elevator Inactive Sync</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<not><property>/autopilot/internal/logic/pitch-active</property></not>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<div>
+					<property>/controls/flight/elevator</property>
+					<property>/autopilot/kap140/config/gain-pitch</property>
+				</div>
+			</expression>
+		</input>
+		<output>/autopilot/internal/elevator-pi</output>
+		<min>-0.25</min>
+		<max>0.25</max>
 	</filter>
 	<!-- End Rework 2021 by Josh Davidson (Octal450) -->
 	

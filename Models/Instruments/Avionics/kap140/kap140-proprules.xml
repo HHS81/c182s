@@ -144,7 +144,7 @@ We have captured the localizer and the GS.
         <input>
             <greater-than>
                 <property>position/altitude-agl-ft</property>
-                <value>1</value>
+                <value>5</value>
             </greater-than>
             <or>
                 <greater-than>

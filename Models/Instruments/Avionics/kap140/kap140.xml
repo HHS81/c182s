@@ -837,19 +837,19 @@
           <value>1</value>
         </less-than>
         <less-than>
-          <expression>
-            <mod>
-              <product>
-                <dif>
-                  <property>sim/time/elapsed-sec</property>
-                  <property>autopilot/kap140/panel/nav-timer</property>
-                </dif>
-                <value>10</value>
-              </product>
-              <value>15</value>
-            </mod>
-          </expression>
-          <value>2</value>
+            <expression>
+              <mod>
+                <product>
+                  <dif>
+                    <property>sim/time/elapsed-sec</property>
+                    <property>autopilot/kap140/panel/nav-timer</property>
+                  </dif>
+                  <value>2</value>
+                </product>
+                <value>2</value>
+              </mod>
+            </expression>
+          <value>1</value>
         </less-than>
       </or>
     </condition>
@@ -875,18 +875,18 @@
         </less-than>
         <less-than>
           <expression>
-            <mod>
-              <product>
-                <dif>
-                  <property>sim/time/elapsed-sec</property>
-                  <property>autopilot/kap140/panel/nav-timer</property>
-                </dif>
-                <value>10</value>
-              </product>
-              <value>15</value>
-            </mod>
-          </expression>
-          <value>2</value>
+              <mod>
+                <product>
+                  <dif>
+                    <property>sim/time/elapsed-sec</property>
+                    <property>autopilot/kap140/panel/nav-timer</property>
+                  </dif>
+                  <value>2</value>
+                </product>
+                <value>2</value>
+              </mod>
+            </expression>
+          <value>1</value>
         </less-than>
       </or>
     </condition>
@@ -912,18 +912,18 @@
         </less-than>
         <less-than>
           <expression>
-            <mod>
-              <product>
-                <dif>
-                  <property>sim/time/elapsed-sec</property>
-                  <property>autopilot/kap140/panel/nav-timer</property>
-                </dif>
-                <value>10</value>
-              </product>
-              <value>15</value>
-            </mod>
-          </expression>
-          <value>2</value>
+              <mod>
+                <product>
+                  <dif>
+                    <property>sim/time/elapsed-sec</property>
+                    <property>autopilot/kap140/panel/rev-timer</property>
+                  </dif>
+                  <value>2</value>
+                </product>
+                <value>2</value>
+              </mod>
+            </expression>
+          <value>1</value>
         </less-than>
       </or>
     </condition>

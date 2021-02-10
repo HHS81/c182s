@@ -51,7 +51,7 @@
         <iyz unit="SLUG*FT2"> -0 </iyz>
         <emptywt unit="LBS"> 1925 </emptywt>
         <location name="CG" unit="IN">
-            <x>40.37</x><!--according to POH-->
+            <x>37.31</x><!--according to POH and W&B calculator http://www.freechecklists.net/Resources/Cessna/182S+Skylane/-->
             <y> 0 </y>
             <z> 0 </z>
         </location>
@@ -125,7 +125,7 @@
             </location>
             <static_friction> 0.9 </static_friction>
             <dynamic_friction> 0.8 </dynamic_friction>
-            <rolling_friction> 0.02 </rolling_friction>
+            <rolling_friction> 0.03 </rolling_friction>
                 <strut_force>
                 <function>
                     <sum>
@@ -158,6 +158,7 @@
                                 </tableData>
                             </product>
                             <product>
+                                <value>1</value>
                                 <property> fcs/gear-compression-velocity-dep-nose</property><!-- dynamic value, depending on speed-->
                                 <property> gear/unit[0]/compression-velocity-fps </property>
                             </product>
@@ -178,9 +179,9 @@
                 <y>-51.56 </y>
                 <z>-43.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
-            <static_friction> 0.6 </static_friction>
-            <dynamic_friction> 0.5</dynamic_friction>
-            <rolling_friction> 0.02 </rolling_friction>
+            <static_friction> 0.5 </static_friction>
+            <dynamic_friction> 0.4</dynamic_friction>
+            <rolling_friction> 0.03 </rolling_friction>
             <strut_force>
                 <function>
                     <sum>
@@ -200,6 +201,7 @@
                                 <value> 0.0 </value>
                             </ge>
                             <product>
+                                <value>1</value>
                                 <property> gear/unit[1]/compression-velocity-fps </property>
                                  <tableData>
                                 -6.50      -4500
@@ -208,6 +210,7 @@
                                 </tableData>
                             </product>
                             <product>
+                                <value>1</value>
                                 <property> fcs/gear-compression-velocity-dep</property><!-- dynamic value, depending on speed-->
                                 <property> gear/unit[1]/compression-velocity-fps </property>
                             </product>
@@ -228,9 +231,9 @@
                 <y>51.56 </y>
                 <z>-43.67 </z><!--includes offset due to gear compression animation, should be -41.56-->
             </location>
-            <static_friction> 0.6</static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
-            <rolling_friction> 0.02 </rolling_friction>
+            <static_friction> 0.5</static_friction>
+            <dynamic_friction> 0.4 </dynamic_friction>
+            <rolling_friction> 0.03 </rolling_friction>
             <strut_force>
                 <function>
                     <sum>
@@ -250,6 +253,7 @@
                                 <value> 0.0 </value>
                             </ge>
                             <product>
+                                    <value>1</value>
                                 <property> gear/unit[2]/compression-velocity-fps </property>
                                  <tableData>
                                 -6.50   -4500
@@ -258,6 +262,7 @@
                                 </tableData>
                             </product>
                             <product>
+                                <value>1</value>
                                 <property> fcs/gear-compression-velocity-dep</property><!-- dynamic value, depending on speed-->
                                 <property> gear/unit[2]/compression-velocity-fps </property>
                             </product>
@@ -606,7 +611,7 @@
          <fcs_function name="fcs/gear-compression-velocity-dep-nose"> 
                 <function>
                 <table>
-                    <independentVar>velocities/u-aero-fps</independentVar>
+                    <independentVar>velocities/u-fps</independentVar>
                     <tableData>
                           0.0	-490
                           110  -490
@@ -618,7 +623,7 @@
          <fcs_function name="fcs/gear-compression-velocity-dep"> 
                 <function>
                 <table>
-                    <independentVar>velocities/u-aero-fps</independentVar>
+                    <independentVar>velocities/u-fps</independentVar>
                     <tableData>
                           0.0	-590
                           110	-590
@@ -772,7 +777,7 @@
    <aerosurface_scale name="Left Aileron Control">
       <input>fcs/roll-trim-sum</input>
       <range>
-        <min>-0.349066</min>
+        <min>-0.366519</min>
         <max>0.261799</max>
       </range>
       <output>fcs/left-aileron-pos-rad</output>
@@ -791,7 +796,7 @@
       <input>fcs/roll-trim-sum</input>
       <range>
         <min>0.261799 </min>
-        <max>-0.349066</max>
+        <max>-0.366519</max>
       </range>
       <output>fcs/right-aileron-pos-rad</output>
    </aerosurface_scale>
@@ -812,8 +817,8 @@
                 <input>fcs/yaw-trim-sum</input>
                 <gain>0.01745</gain>
                 <range>
-                    <min>-27</min>
-                    <max>27</max>
+                    <min>-24</min>
+                    <max>24</max>
                 </range>
                 <output>fcs/rudder-pos-rad</output>
             </aerosurface_scale>
@@ -821,8 +826,8 @@
             <aerosurface_scale name="Rudder Position Normalized">
                 <input>fcs/rudder-pos-deg</input><!-- Perpendicular to hinge line-->
                 <domain>
-                    <min>-27</min>
-                    <max>27</max>
+                    <min>-24</min>
+                    <max>24</max>
                 </domain>
                 <range>
                     <min>-1</min>
@@ -1078,7 +1083,7 @@
         <function name="aero/function/velocity-induced-fps">
             <description> velocity including the propulsion induced velocity.</description>
             <sum>
-                <property>velocities/u-aero-fps</property>
+                <property>velocities/u-fps</property>
                 <property>propulsion/engine/prop-induced-velocity_fps</property>
             </sum>
         </function>
@@ -1100,7 +1105,7 @@
             <function name="aero/coefficient/CLwbh">
                 <description>Lift_due_to_alpha</description>
                 <product>
-                    <property>aero/qbar-psf</property>
+                    <property>aero/qbarUW-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCLge</property>
                     <table>
@@ -1240,7 +1245,7 @@
              <function name="aero/coefficient/CDwbh">
                 <description>Drag_due_to_alpha</description>
                 <product>
-                    <property>aero/qbar-psf</property>
+                    <property>aero/qbarUW-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCDge</property>
                       <table>
@@ -1292,7 +1297,7 @@
             <function name="aero/coefficient/CDbeta">
                 <description>Drag_due_to_sideslip</description>
                 <product>
-                    <property>aero/qbar-psf</property>
+                    <property>aero/qbarUV-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>aero/mag-beta-rad</property>
                     <value>0.1500</value>
@@ -1380,7 +1385,7 @@
           <function name="aero/coefficient/CYb">
                 <description>Side_force_due_to_beta</description>
         <product>
-          <property>aero/qbar-psf</property>
+            <property>aero/qbarUV-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>aero/beta-rad</property>
             <table>
@@ -1432,7 +1437,7 @@
 
 
             <function name="aero/coefficient/CYdr">
-                <description>Side_force_due_to_rudder</description><!-- without thrust- makes it easier in high wind-->
+                <description>Side_force_due_to_rudder</description>
                 <product>
                     <property>aero/function/qbar-induced-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -1450,12 +1455,12 @@
 <function name="aero/coefficient/Clb">
        <description>Roll moment due to beta</description>
        <product>
-           <property>aero/function/qbar-induced-psf</property>
+            <property>aero/qbarUV-psf</property>
            <property>metrics/Sw-sqft</property>
            <property>metrics/bw-ft</property>
            <property>aero/beta-rad</property>
            <table>
-                                   <independentVar lookup="column">velocities/u-aero-fps</independentVar>
+                                   <independentVar lookup="column">velocities/u-fps</independentVar>
                           <independentVar lookup="row">aero/alpha-rad</independentVar>
                           <tableData>
                                             0.000   107.1
@@ -1489,7 +1494,7 @@
                     <property>aero/bi2vel</property>
                     <property>velocities/p-aero-rad_sec</property>
                     <table>
-                        <independentVar lookup="column">velocities/u-aero-fps</independentVar>
+                        <independentVar lookup="column">velocities/u-fps</independentVar>
                           <independentVar lookup="row">aero/alpha-rad</independentVar>
                           <tableData>
                                             0.000   107.1
@@ -1521,7 +1526,7 @@
                     <property>velocities/r-aero-rad_sec</property>
                     
                     <table>
-                            <independentVar lookup="column">velocities/u-aero-fps</independentVar>
+                            <independentVar lookup="column">velocities/u-fps</independentVar>
                           <independentVar lookup="row">aero/alpha-rad</independentVar>
                           <tableData>
                                             0.000   107.1
@@ -1636,7 +1641,7 @@
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
                     <table>
-                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                             0.0000	    0.0000
                               107.1	0.090 <!--Approach-->
@@ -1650,13 +1655,13 @@
             <function name="aero/coefficient/Cmalpha">
                 <description>Pitch_moment_due_to_alpha</description>
                 <product>
-                    <property>aero/qbar-psf</property>
+                    <property>aero/qbarUW-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
 
                         <property>aero/alpha-rad</property>
 
-                    <value>-2</value> 
+                    <value>-1.8</value> 
                     <!-- 
                         stall and spin (5):
                         horizontal tail stall (for flat spin)
@@ -1685,7 +1690,7 @@
                     <property>aero/ci2vel</property>
                     <property>velocities/q-aero-rad_sec</property>
                     <table>
-                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                             0.0000	    0.0000
                               107.1	-11.40 <!--Approach-->
@@ -1705,7 +1710,7 @@
                     <property>aero/ci2vel</property>
                     <property>aero/alphadot-rad_sec</property>
 		<table>
-                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                             0.0000	    0.0000           
                               107.1	-5.40 <!--Approach-->
@@ -1719,12 +1724,13 @@
             <function name="aero/coefficient/Cmde">
                 <description>Pitch_moment_due_to_elevator_deflection</description>
                 <product>
+                    <!--<property>aero/qbar-psf</property>-->
                     <property>aero/function/qbar-induced-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
                     <property>fcs/elevator-pos-rad</property>
                    <table>
-                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                               107.1	-1.029 <!--Approach-->
                               133.5	-1.369 <!--climb-->
@@ -1762,7 +1768,7 @@
                             0.0000	    0.0000
                             10.0000	   -0.0654
                             20.0000	   -0.0981
-                            38.0000  	-0.1140
+                            38.0000      -0.1140
                         </tableData>
                     </table>
                 </product>
@@ -1773,12 +1779,12 @@
 <function name="aero/coefficient/Cnb">
                 <description>Yaw_moment_due_to_beta</description>
                 <product>
-                    <property>aero/qbar-psf</property>
+                    <property>aero/qbarUV-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>aero/beta-rad</property>
                     <table>
-                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                               0.000     0.000
                               107.1	0.0701 <!--Approach-->
@@ -1798,7 +1804,7 @@
                     <property>aero/bi2vel</property>
                     <property>velocities/p-aero-rad_sec</property>
                    <table>
-                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                               0.000     0.000
                               107.1	-0.0960 	  <!--Approach-->
@@ -1828,7 +1834,7 @@
                     <property>aero/bi2vel</property>
                     <property>velocities/r-aero-rad_sec</property>
                    <table>
-                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                               0.000     0.000
                               107.1	-0.1151 	 <!--Approach-->
@@ -1893,7 +1899,7 @@
                 <value>0.5</value>
             </product>
                     <table>
-                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                             0.0000	    0.0000
                               107.1  0.0786 <!--Approach-->
@@ -1919,7 +1925,7 @@
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
                     <table>
-                        <independentVar>velocities/u-aero-fps</independentVar>
+                        <independentVar>velocities/u-fps</independentVar>
                         <tableData>
                               107.1  -0.0604 	 <!--Approach-->
                               133.5  -0.0645 <!--climb-->

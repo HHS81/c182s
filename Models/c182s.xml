@@ -641,7 +641,7 @@
    </entry>
    <entry>
     <ind>1.0</ind>
-    <dep>23</dep>
+    <dep>21</dep>
    </entry>
   </interpolation>
 		<center>
@@ -662,7 +662,7 @@
   <type>rotate</type>
   <object-name>Rudder</object-name>
   <property>surface-positions/rudder-pos-norm</property>
-  <factor>17.5</factor>
+  <factor>24</factor>
 		<center>
 			<x-m>6.015226</x-m>
 			<y-m>0.00263</y-m>

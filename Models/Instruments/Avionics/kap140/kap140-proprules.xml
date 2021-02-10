@@ -142,10 +142,6 @@ We have captured the localizer and the GS.
 <!-- (Note: we want to filter short bursts that can occur during turbolences) -->
     <logic>
         <input>
-            <greater-than>
-                <property>position/altitude-agl-ft</property>
-                <value>1</value>
-            </greater-than>
             <or>
                 <greater-than>
                     <property>accelerations/pilot-gdamped</property>
@@ -1785,11 +1781,15 @@ We have captured the localizer and the GS.
                     <property>autopilot/kap140/settings/lateral-mode</property>
                     <value>6</value>
                 </less-than>
+                <less-than>
+                    <property>autopilot/kap140/panel/nav-timer</property>
+                    <value>1</value>
+                </less-than>
                 <not><property>instrumentation/nav-source/in-range</property></not>
             </condition>
         </enable>
-        <input>1</input>
-        <output>autopilot/kap140/settings/lateral-mode</output>
+        <input>sim/time/elapsed-sec</input>
+        <output>autopilot/kap140/panel/nav-timer</output>
     </filter>
 
     <filter>
@@ -2475,7 +2475,6 @@ We have captured the localizer and the GS.
         <output>autopilot/kap140/sensors/elevator-trim</output>
     </filter>
 
-
 <!-- pitch trim run-away -->
 
     <filter>
@@ -2601,6 +2600,7 @@ We have captured the localizer and the GS.
                         <property>/autopilot/kap140/panel/nav-timer</property>
                         <value>1</value>
                     </less-than>
+                    <property>instrumentation/nav-source/in-range</property>
                 </and>
                 <and>
                     <not><property alias="../../../../../../params/hsi-installed" /></not>
@@ -2620,6 +2620,7 @@ We have captured the localizer and the GS.
                         <property>/autopilot/kap140/panel/hdg-timer</property>
                         <value>1</value>
                     </less-than>
+                    <property>instrumentation/nav-source/in-range</property>
                 </and>
             </or>
         </input>
@@ -2638,6 +2639,7 @@ We have captured the localizer and the GS.
                         <property>/autopilot/kap140/panel/nav-timer</property>
                         <value>1</value>
                     </less-than>
+                    <property>instrumentation/nav-source/in-range</property>
                 </and>
                 <and>
                     <not><property alias="../../../../../../params/hsi-installed" /></not>
@@ -2657,6 +2659,7 @@ We have captured the localizer and the GS.
                         <property>/autopilot/kap140/panel/hdg-timer</property>
                         <value>1</value>
                     </less-than>
+                    <property>instrumentation/nav-source/in-range</property>
                 </and>
             </or>
         </input>
@@ -2675,6 +2678,7 @@ We have captured the localizer and the GS.
                         <property>/autopilot/kap140/panel/nav-timer</property>
                         <value>1</value>
                     </less-than>
+                    <property>instrumentation/nav-source/in-range</property>
                 </and>
                 <and>
                     <not><property alias="../../../../../../params/hsi-installed" /></not>
@@ -2694,6 +2698,7 @@ We have captured the localizer and the GS.
                         <property>/autopilot/kap140/panel/hdg-timer</property>
                         <value>1</value>
                     </less-than>
+                    <property>instrumentation/nav-source/in-range</property>
                 </and>
             </or>
         </input>

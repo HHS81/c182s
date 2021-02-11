@@ -26,7 +26,7 @@
         <vtailarea unit="FT2"> 16.5 </vtailarea>
         <vtailarm unit="FT">17.7 </vtailarm>
         <location name="AERORP" unit="IN">
-            <x>37.37 </x>
+            <x>40.37 </x>
             <y> 0 </y>
             <z>32.94 </z>
         </location>
@@ -123,8 +123,8 @@
                 <y> 0 </y>
                 <z>-47.09</z><!--includes offset due to gear compression animation, should be -47.17-->
             </location>
-            <static_friction> 0.9 </static_friction>
-            <dynamic_friction> 0.8 </dynamic_friction>
+            <static_friction> 1.4 </static_friction>
+            <dynamic_friction> 0.6 </dynamic_friction>
             <rolling_friction> 0.03 </rolling_friction>
                 <strut_force>
                 <function>
@@ -169,7 +169,48 @@
                <!--<spring_coeff unit="LBS/FT">3600 </spring_coeff>
             <damping_coeff  unit="LBS/FT/SEC">200 </damping_coeff>-->
             <!--<damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2">450 </damping_coeff_rebound>-->
-            <max_steer unit="DEG"> 11 </max_steer>
+            <max_steer unit="DEG"> 29 </max_steer><!-- limited to 10 deg NWS, but can turn up to 30 with side force -->
+		<table name="CORNERING_COEFF" type="internal">
+			<tableData> <!-- jsbsim-pacejka.py 5.0 0.03 2.85 1.4 1.03 1.4    https://github.com/JSBSim-Team/jsbsim/issues/127  https://github.com/JSBSim-Team/jsbsim/issues/127-->
+-90.0   -0.6276256632207626
+-85.0   -0.6417393571173159
+-80.0   -0.6578124074897472
+-75.0   -0.6761339658692869
+-70.0   -0.6970340668693019
+-65.0   -0.7208796953965572
+-60.0   -0.7480586200367123
+-55.0   -0.7789376993218241
+-50.0   -0.8137693871814174
+-45.0   -0.852494972166421
+-40.0   -0.8943455737614107
+-35.0   -0.9370583530652546
+-30.0   -0.9754028875043508
+-25.0   -0.9986292585314367
+-20.0   -0.9867956894252938
+-15.0   -0.9078708239414398
+-10.0   -0.722622440415344
+-5.0    -0.4088092889390962
+0.0     0.0
+5.0     0.4088092889390962
+10.0    0.722622440415344
+15.0    0.9078708239414398
+20.0    0.9867956894252938
+25.0    0.9986292585314367
+30.0    0.9754028875043508
+35.0    0.9370583530652546
+40.0    0.8943455737614107
+45.0    0.852494972166421
+50.0    0.8137693871814174
+55.0    0.7789376993218241
+60.0    0.7480586200367123
+65.0    0.7208796953965572
+70.0    0.6970340668693019
+75.0    0.6761339658692869
+80.0    0.6578124074897472
+85.0    0.6417393571173159
+90.0    0.6276256632207626
+			</tableData>
+		</table>
             <brake_group> NONE </brake_group>
             <retractable>0</retractable>
         </contact>
@@ -222,6 +263,47 @@
             <damping_coeff  unit="LBS/FT/SEC">100 </damping_coeff>
          <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2">13 </damping_coeff_rebound>-->
             <max_steer unit="DEG"> 0.0 </max_steer>
+		<table name="CORNERING_COEFF" type="internal">
+			<tableData> <!-- jsbsim-pacejka.py 5.0 0.06 2.8 0.5 1.03 0.5 -->
+-90.0   -0.5760395836174765
+-85.0   -0.5776440181093163
+-80.0   -0.5803918992801416
+-75.0   -0.584501031700121
+-70.0   -0.5902476568617109
+-65.0   -0.5979865464058901
+-60.0   -0.6081793463286825
+-55.0   -0.6214348494943271
+-50.0   -0.6385661913510731
+-45.0   -0.6606706311692149
+-40.0   -0.6892340269266315
+-35.0   -0.726240829612553
+-30.0   -0.7741813043425955
+-25.0   -0.8355026710967953
+-20.0   -0.9097416834082445
+-15.0   -0.9818532434458513
+-10.0   -0.9824937511496707
+-5.0    -0.7127565569007203
+0.0     0.0
+5.0     0.7127565569007203
+10.0    0.9824937511496707
+15.0    0.9818532434458513
+20.0    0.9097416834082445
+25.0    0.8355026710967953
+30.0    0.7741813043425955
+35.0    0.726240829612553
+40.0    0.6892340269266315
+45.0    0.6606706311692149
+50.0    0.6385661913510731
+55.0    0.6214348494943271
+60.0    0.6081793463286825
+65.0    0.5979865464058901
+70.0    0.5902476568617109
+75.0    0.584501031700121
+80.0    0.5803918992801416
+85.0    0.5776440181093163
+90.0    0.5760395836174765
+			</tableData>
+		</table>
             <brake_group> LEFT </brake_group>
             <retractable>0</retractable>
         </contact>
@@ -274,6 +356,47 @@
             <damping_coeff  unit="LBS/FT/SEC">100</damping_coeff>
          <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2">13 </damping_coeff_rebound>-->
             <max_steer unit="DEG"> 0.0 </max_steer>
+		<table name="CORNERING_COEFF" type="internal">
+			<tableData> <!-- jsbsim-pacejka.py 5.0 0.06 2.8 0.5 1.03 0.5 -->
+-90.0   -0.5760395836174765
+-85.0   -0.5776440181093163
+-80.0   -0.5803918992801416
+-75.0   -0.584501031700121
+-70.0   -0.5902476568617109
+-65.0   -0.5979865464058901
+-60.0   -0.6081793463286825
+-55.0   -0.6214348494943271
+-50.0   -0.6385661913510731
+-45.0   -0.6606706311692149
+-40.0   -0.6892340269266315
+-35.0   -0.726240829612553
+-30.0   -0.7741813043425955
+-25.0   -0.8355026710967953
+-20.0   -0.9097416834082445
+-15.0   -0.9818532434458513
+-10.0   -0.9824937511496707
+-5.0    -0.7127565569007203
+0.0     0.0
+5.0     0.7127565569007203
+10.0    0.9824937511496707
+15.0    0.9818532434458513
+20.0    0.9097416834082445
+25.0    0.8355026710967953
+30.0    0.7741813043425955
+35.0    0.726240829612553
+40.0    0.6892340269266315
+45.0    0.6606706311692149
+50.0    0.6385661913510731
+55.0    0.6214348494943271
+60.0    0.6081793463286825
+65.0    0.5979865464058901
+70.0    0.5902476568617109
+75.0    0.584501031700121
+80.0    0.5803918992801416
+85.0    0.5776440181093163
+90.0    0.5760395836174765
+			</tableData>
+		</table>
             <brake_group> RIGHT </brake_group>
             <retractable>0</retractable>
         </contact>
@@ -817,8 +940,8 @@
                 <input>fcs/yaw-trim-sum</input>
                 <gain>0.01745</gain>
                 <range>
-                    <min>-24</min>
-                    <max>24</max>
+                    <min>-27</min>
+                    <max>27</max>
                 </range>
                 <output>fcs/rudder-pos-rad</output>
             </aerosurface_scale>
@@ -826,8 +949,8 @@
             <aerosurface_scale name="Rudder Position Normalized">
                 <input>fcs/rudder-pos-deg</input><!-- Perpendicular to hinge line-->
                 <domain>
-                    <min>-24</min>
-                    <max>24</max>
+                    <min>-27</min>
+                    <max>27</max>
                 </domain>
                 <range>
                     <min>-1</min>
@@ -1821,7 +1944,7 @@
                     <property>aero/function/qbar-propwash-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
-                    <value>-0.05</value>
+                    <value>-0.04</value>
                 </product>
             </function> 
 

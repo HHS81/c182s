@@ -1002,6 +1002,10 @@
         <property>autopilot/kap140/settings/vertical-mode</property>
         <value>1</value>
       </equals>
+      <less-than>
+        <property>autopilot/kap140/panel/gs-timer</property>
+        <value>1</value>
+      </less-than>
     </condition>
   </animation>
 
@@ -1014,6 +1018,10 @@
         <property>autopilot/kap140/settings/vertical-mode</property>
         <value>2</value>
       </equals>
+      <less-than>
+        <property>autopilot/kap140/panel/gs-timer</property>
+        <value>1</value>
+      </less-than>
     </condition>
   </animation>
 
@@ -1022,10 +1030,39 @@
     <object-name>ann-mode2-gs</object-name>
     <name>GS Anunciator</name>
     <condition>
-      <equals>
-        <property>autopilot/kap140/settings/vertical-mode</property>
-        <value>3</value>
-      </equals>
+      <or>
+        <and>
+          <equals>
+            <property>autopilot/kap140/settings/vertical-mode</property>
+            <value>3</value>
+          </equals>
+          <less-than>
+            <property>autopilot/kap140/panel/gs-timer</property>
+            <value>1</value>
+          </less-than>
+        </and>
+        <and>
+          <greater-than>
+            <property>autopilot/kap140/panel/gs-timer</property>
+            <value>1</value>
+          </greater-than>
+          <less-than>
+            <expression>
+              <mod>
+                <product>
+                  <dif>
+                    <property>sim/time/elapsed-sec</property>
+                    <property>autopilot/kap140/panel/gs-timer</property>
+                  </dif>
+                  <value>10</value>
+                </product>
+                <value>15</value>
+              </mod>
+            </expression>
+            <value>2</value>
+          </less-than>
+        </and>
+      </or>
     </condition>
   </animation>
 
@@ -2064,6 +2101,18 @@
         <command>property-assign</command>
         <property>autopilot/kap140/settings/vertical-mode</property>
         <value>1</value>
+      </binding>
+
+      <binding>
+        <condition>
+          <equals>
+            <property>autopilot/kap140/panel/state</property>
+            <value>6</value>
+          </equals>
+        </condition>
+        <command>property-assign</command>
+        <property>autopilot/kap140/panel/gs-timer</property>
+        <value>0</value>
       </binding>
 
       <binding>

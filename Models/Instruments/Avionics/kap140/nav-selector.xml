@@ -3,6 +3,71 @@
 <PropertyList include="nav-selector-config.xml">
 
     <filter>
+        <name>watchdog</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <or>
+                    <and>
+                        <property>instrumentation/nav-source/in-range</property>
+                        <less-than>
+                            <property>instrumentation/nav-source/watchdog</property>
+                            <value>1.0</value>
+                        </less-than>
+                    </and>
+                    <and>
+                        <not><property>instrumentation/nav-source/in-range</property></not>
+                        <greater-than>
+                            <property>instrumentation/nav-source/watchdog</property>
+                            <value>1.0</value>
+                        </greater-than>
+                    </and>
+                </or>
+            </condition>
+        </enable>
+        <input>
+            <condition>
+                <property>instrumentation/nav-source/in-range</property>
+            </condition>
+            <property>sim/time/elapsed-sec</property>
+            <offset>1.0</offset>
+        </input>
+        <input>0.0</input>
+        <output>instrumentation/nav-source/watchdog</output>
+    </filter>
+
+    <filter>
+        <name>signal valid</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <not-equals>
+                    <property>instrumentation/nav-source/in-range</property>
+                    <property>instrumentation/nav-source/signal-valid</property>
+                </not-equals>
+            </condition>
+        </enable>
+        <input>
+            <condition>
+                <property>instrumentation/nav-source/in-range</property>
+                <greater-than>
+                    <property>instrumentation/nav-source/watchdog</property>
+                    <value>1.0</value>
+                </greater-than>
+                <greater-than>
+                    <property>sim/time/elapsed-sec</property>
+                    <property>instrumentation/nav-source/watchdog</property>
+                </greater-than>
+            </condition>
+            <value>1</value>
+        </input>
+        <input>0</input>
+        <output>instrumentation/nav-source/signal-valid</output>
+    </filter>
+
+    <filter>
         <name>in-range</name>
         <type>gain</type>
         <debug>false</debug>

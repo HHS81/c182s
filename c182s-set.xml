@@ -1182,7 +1182,7 @@
           <baro-tied type="bool">false</baro-tied>
           <autotrim-pitch type="bool">true</autotrim-pitch>
           <gain-pitch type="double">0.7</gain-pitch> <!-- Elevators very sensitive -->
-          <gain-roll type="double">1.4</gain-roll>   <!-- Ailerons are a little slow -->
+          <gain-roll type="double">1.3</gain-roll>   <!-- Ailerons are a little slow -->
         </config>
         <panel>
           <state type="int">0</state>

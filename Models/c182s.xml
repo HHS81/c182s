@@ -148,16 +148,6 @@
             set_registration_number(rplayer, node.getValue());
         }, 1, 0);
 
-
-        # Show the passengers in multiplayer models
-        rplayer.getNode("pax/co-pilot/present", 1).
-            alias(rplayer.getNode("sim/multiplay/generic/bool[2]"));
-        rplayer.getNode("pax/left-passenger/present", 1).
-            alias(rplayer.getNode("sim/multiplay/generic/bool[3]"));
-        rplayer.getNode("pax/right-passenger/present", 1).
-            alias(rplayer.getNode("sim/multiplay/generic/bool[4]"));
-        io.read_properties ("Aircraft/c182s/Models/Human/humans.xml", rplayer.getNode ("sim/model"));
-
    ]]></load>
 </nasal>
 
@@ -439,7 +429,7 @@
  
  <animation>
    <type>spin</type>
-  <object-name>FastProp</object-name>
+   <object-name>FastProp</object-name>
    <property>engines/engine[0]/rpm</property>
    <factor>-0.005</factor>
 		<center>
@@ -456,7 +446,7 @@
  
  <animation>
    <type>spin</type>
-  <object-name>SlowProp</object-name>
+   <object-name>SlowProp</object-name>
    <property>engines/engine[0]/rpm</property>
    <factor>-1</factor>
 		<center>
@@ -473,7 +463,7 @@
  
  <animation>
    <type>spin</type>
-  <object-name>Prop</object-name>
+   <object-name>Prop</object-name>
    <property>engines/engine[0]/rpm</property>
    <factor>-1</factor>
 		<center>
@@ -684,21 +674,21 @@
 			<z>0.284685</z>
 		</axis>
  </animation>
- 
- <animation>
-   <type>rotate</type>
-   <object-name>WheelFairingNose</object-name>
-   <object-name>FrontWheel</object-name>
-   <object-name>NoseWheelFork</object-name>
-   <object-name>Damp</object-name>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>WheelFairingNose</object-name>
+    <object-name>FrontWheel</object-name>
+    <object-name>NoseWheelFork</object-name>
+    <object-name>Damp</object-name>
+    <object-name>TrenDEL_01_TrenDEL_01</object-name>
+    <object-name>TrenDEL_04_TrenDEL_04</object-name>
     <object-name>TrenDEL_05_TrenDEL_05</object-name>
-   <object-name>TrenDEL_01_TrenDEL_01</object-name>
-   <object-name>TrenDEL_04_TrenDEL_04</object-name>
-   <property>/gear/gear/steering-norm</property>
-   <factor>-11</factor>
+    <property>/gear/gear/steering-norm</property>
+    <factor>-11</factor>
 		<center>
 			<x-m>-0.160396</x-m>
-			<y-m>0.000524</y-m>
+			<y-m> 0.000000</y-m>
 			<z-m>-0.660746</z-m>
 		</center>
 		<axis>
@@ -706,24 +696,87 @@
 			<y>0</y>
 			<z>0.138826</z>
 		</axis>
- </animation> 
- 
-<!--compression--> 
- <animation>
-   <type>translate</type>
-   <object-name>WheelFairingNose</object-name>
-   <object-name>FrontWheel</object-name>
-<object-name>NoseWheelFork</object-name>
-   <object-name>Damp</object-name>
-   <property>gear/gear[0]/compression-norm</property>
-   <factor>0.18</factor>
-   <axis>
-     <x>0.27</x>
-     <y>0</y>
-     <z>1.0</z>
-   </axis>
- </animation>
- 
+  </animation> 
+
+<!--compression-->
+  <animation>
+    <type>translate</type>
+    <object-name>WheelFairingNose</object-name>
+    <object-name>FrontWheel</object-name>
+    <object-name>NoseWheelFork</object-name>
+    <object-name>TrenDEL_05_TrenDEL_05</object-name>
+    <object-name>Damp</object-name>
+    <property>gear/gear[0]/compression-norm</property>
+    <factor>0.18</factor>
+    <axis>
+      <x>0.27</x>
+      <y>0</y>
+      <z>1.0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>locked-track</type>
+    <object-name>TrenDEL_04_TrenDEL_04</object-name>
+    <center>
+      <x-m>-0.121957</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.663133</z-m>
+    </center>
+    <lock-axis>
+      <x>0</x>
+      <y>-1</y>
+      <z>0</z>
+    </lock-axis>
+    <track-axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </track-axis>
+    <target-name>TrenDEL_05_TrenDEL_05</target-name>
+    <target-center>
+      <x-m>-0.142173</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.738732</z-m>
+    </target-center>
+    <slave-center>
+      <x-m>-0.029016</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.719470</z-m>
+    </slave-center>
+  </animation>
+
+  <animation>
+    <type>locked-track</type>
+    <object-name>TrenDEL_05_TrenDEL_05</object-name>
+    <center>
+      <x-m>-0.142173</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.738732</z-m>
+    </center>
+    <lock-axis>
+      <x>0</x>
+      <y>1</y>
+      <z>0</z>
+    </lock-axis>
+    <track-axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </track-axis>
+    <target-name>TrenDEL_04_TrenDEL_04</target-name>
+    <target-center>
+      <x-m>-0.121957</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.663133</z-m>
+    </target-center>
+    <slave-center>
+      <x-m>-0.029016</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.719470</z-m>
+    </slave-center>
+  </animation>
+
 <animation><!-- damage animation-->
    <type>rotate</type>
    <object-name>WheelFairingNose</object-name>
@@ -2678,8 +2731,6 @@
         </condition>
     </animation>
     
-    
-    <!-- Humans (Pilot, Co-Pilot, Passengers) -->
     <model>
         <name>Pilot</name>
         <path>Aircraft/Generic/Pilot/General/pilot.xml</path>
@@ -2689,61 +2740,6 @@
             <z-m>0.155 </z-m>
         </offsets>
     </model>
-    
-    <model>
-        <name>CoPilot</name>
-        <path>Aircraft/c182s/Models/Human/copilot.xml</path>
-        <offsets>
-            <x-m> 1.220 </x-m>
-            <y-m> 0.250 </y-m>
-            <z-m>-1.000 </z-m>
-        </offsets>
-        <nopreview/>
-    </model>
-    <animation>
-        <type>select</type>
-        <object-name>CoPilot</object-name>
-        <condition>
-            <property>pax/co-pilot/present</property>
-        </condition>
-    </animation>
-
-    <model>
-        <name>Pax0</name>
-        <path>Aircraft/c182s/Models/Human/pax0.xml</path>
-        <offsets>
-            <x-m>1.900 </x-m>
-            <y-m>-0.250 </y-m>
-            <z-m>-1.00 </z-m>
-        </offsets>
-        <nopreview/>
-    </model>
-    <animation>
-        <type>select</type>
-        <object-name>Pax0</object-name>
-        <condition>
-            <property>pax/left-passenger/present</property>
-        </condition>
-    </animation>
-
-    <model>
-        <name>Pax1</name>
-        <path>Aircraft/c182s/Models/Human/pax1.xml</path>
-        <offsets>
-            <x-m>1.900 </x-m>
-            <y-m>0.250 </y-m>
-            <z-m>-1.00 </z-m>
-        </offsets>
-        <nopreview/>
-    </model>
-    <animation>
-        <type>select</type>
-        <object-name>Pax1</object-name>
-        <condition>
-            <property>pax/right-passenger/present</property>
-        </condition>
-    </animation>
-  
 
     <!-- Preflight surface checks -->
     <!-- elevator surface check -->

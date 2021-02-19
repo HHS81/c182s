@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+
+
+<PropertyList>
+
+ <animation>
+  <type>select</type>
+
+  <condition>
+   <not-equals>
+    <property>sim/model/pax/pax[1]/enabled</property>
+    <value>0</value>
+   </not-equals>
+  </condition>
+ </animation>
+ <animation>
+  <type>scale</type>
+  <object-name>male</object-name>
+  <x-offset>0.95</x-offset>
+  <y-offset>0.95</y-offset>
+  <z-offset>0.95</z-offset>
+ </animation>
+
+ <model>
+	<name>male</name>
+  <path>Aircraft/Generic/Human/Models/walker-inc.xml</path>
+	<overlay>
+
+	<appearence-props>
+			<character>sim/model/pax/pax[1]/character</character>
+			<outfit>sim/model/pax/pax[1]/outfit</outfit>
+			<headgear>sim/model/pax/pax[1]/headgear</headgear>
+			<no-head-view-name>Rearseat Right</no-head-view-name>
+	</appearence-props>
+
+	<pivot-props>
+		<hip-rotate>sim/model/pax/pax[1]/pose/position/limb[0]/y-deg</hip-rotate>
+		<hip-translate>sim/model/pax/pax[1]/pose/position/limb[0]/z-m</hip-translate>
+		<chest-y>sim/model/pax/pax[1]/pose/position/limb[1]/y-deg</chest-y>
+		<chest-z>sim/model/pax/pax[1]/pose/position/limb[1]/z-deg</chest-z>
+		<head-y>sim/model/pax/pax[1]/pose/position/limb[2]/y-deg</head-y>
+		<head-z>sim/model/pax/pax[1]/pose/position/limb[2]/z-deg</head-z>
+		<arm1R-x>sim/model/pax/pax[1]/pose/position/limb[3]/x-deg</arm1R-x>
+		<arm1R-y>sim/model/pax/pax[1]/pose/position/limb[3]/y-deg</arm1R-y>
+		<arm1R-z>sim/model/pax/pax[1]/pose/position/limb[3]/z-deg</arm1R-z>
+		<arm2R-y>sim/model/pax/pax[1]/pose/position/limb[4]/y-deg</arm2R-y>
+		<arm2R-z>sim/model/pax/pax[1]/pose/position/limb[4]/z-deg</arm2R-z>
+		<handR-x>sim/model/pax/pax[1]/pose/position/limb[5]/x-deg</handR-x>
+		<handR-y>sim/model/pax/pax[1]/pose/position/limb[5]/y-deg</handR-y>
+		<handR-num>sim/model/pax/pax[1]/pose/position/limb[5]/hand-pose</handR-num>
+		<arm1L-x>sim/model/pax/pax[1]/pose/position/limb[6]/x-deg</arm1L-x>
+		<arm1L-y>sim/model/pax/pax[1]/pose/position/limb[6]/y-deg</arm1L-y>
+		<arm1L-z>sim/model/pax/pax[1]/pose/position/limb[6]/z-deg</arm1L-z>
+		<arm2L-y>sim/model/pax/pax[1]/pose/position/limb[7]/y-deg</arm2L-y>
+		<arm2L-z>sim/model/pax/pax[1]/pose/position/limb[7]/z-deg</arm2L-z>
+		<handL-x>sim/model/pax/pax[1]/pose/position/limb[8]/x-deg</handL-x>
+		<handL-y>sim/model/pax/pax[1]/pose/position/limb[8]/y-deg</handL-y>
+		<handL-num>sim/model/pax/pax[1]/pose/position/limb[8]/hand-pose</handL-num>
+		<leg1R-x>sim/model/pax/pax[1]/pose/position/limb[9]/x-deg</leg1R-x>
+		<leg1R-y>sim/model/pax/pax[1]/pose/position/limb[9]/y-deg</leg1R-y>
+		<leg1R-z>sim/model/pax/pax[1]/pose/position/limb[9]/z-deg</leg1R-z>
+		<leg2R-y>sim/model/pax/pax[1]/pose/position/limb[10]/y-deg</leg2R-y>
+		<footR-y>sim/model/pax/pax[1]/pose/position/limb[11]/y-deg</footR-y>
+		<leg1L-x>sim/model/pax/pax[1]/pose/position/limb[12]/x-deg</leg1L-x>
+		<leg1L-y>sim/model/pax/pax[1]/pose/position/limb[12]/y-deg</leg1L-y>
+		<leg1L-z>sim/model/pax/pax[1]/pose/position/limb[12]/z-deg</leg1L-z>
+		<leg2L-y>sim/model/pax/pax[1]/pose/position/limb[13]/y-deg</leg2L-y>
+		<footL-y>sim/model/pax/pax[1]/pose/position/limb[14]/y-deg</footL-y>
+	</pivot-props>
+
+	</overlay>
+
+ </model>
+
+ <animation>
+  <type>select</type>
+  <object-name>male</object-name>
+  <condition>
+   <equals>
+    <property>sim/model/pax/pax[1]/gender</property>
+    <value>0</value>
+   </equals>
+  </condition>
+ </animation>
+
+ <model>
+	<name>female</name>
+  <path>Aircraft/Generic/Human/Models/walker-inc.xml</path>
+ <overlay>
+
+	<appearence-props>
+			<character>sim/model/pax/pax[1]/character</character>
+			<outfit>sim/model/pax/pax[1]/outfit</outfit>
+			<headgear>sim/model/pax/pax[1]/headgear</headgear>
+			<eyewear>sim/model/pax/pax[1]/eyewear</eyewear>
+			<no-head-view-name>Rearseat Right</no-head-view-name>
+			<hair>sim/model/pax/pax[1]/hair</hair>
+			<toolr>sim/model/pax/pax[1]/toolr</toolr>
+	</appearence-props>
+
+	<models>
+		<char0-path>Aircraft/Generic/Human/Models/amelia.xml</char0-path>
+		<char1-path>Aircraft/Generic/Human/Models/amelia.xml</char1-path>
+		<char2-path>Aircraft/Generic/Human/Models/amelia.xml</char2-path>
+		<outfit0>Aircraft/Generic/Human/Models/outfit/default-f.xml</outfit0>
+		<outfit1>Aircraft/Generic/Human/Models/outfit/flightsuit-f.xml</outfit1>
+		<outfit2>Aircraft/Generic/Human/Models/outfit/airliner-f.xml</outfit2>
+		<outfit3>Aircraft/Generic/Human/Models/outfit/airliner-f.xml</outfit3>
+	</models>
+
+	<limbs>
+		<chest-x>-0.0112992</chest-x>
+		<chest-y>0.0</chest-y>
+		<chest-z>0.1676192</chest-z>
+		<head-x>0.0250915</head-x>
+		<head-y>0.0</head-y>
+		<head-z>0.577579</head-z>
+		<shoulder-x>0.0322284</shoulder-x>
+		<shoulder-y-l>-0.152689</shoulder-y-l>
+		<shoulder-y-r>0.152689</shoulder-y-r>
+		<shoulder-z>0.496473</shoulder-z>
+		<elbow-x>0.0544844</elbow-x>
+		<elbow-y-l>-0.439449</elbow-y-l>
+		<elbow-y-r>0.439449</elbow-y-r>
+		<elbow-z>0.492835</elbow-z>
+		<hand-x>0.0327848</hand-x>
+		<hand-y-l>-0.685121</hand-y-l>
+		<hand-y-r>0.685121</hand-y-r>
+		<hand-z>0.487592</hand-z>
+		<leg-x>-0.0364763</leg-x>
+		<leg-y-l>-0.0527938</leg-y-l>
+		<leg-y-r>0.0527938</leg-y-r>
+		<leg-z>-0.0216712</leg-z>
+		<knee-x>0.00578977</knee-x>
+		<knee-y-r>0.0886923</knee-y-r>
+		<knee-y-l>-0.0886923</knee-y-l>
+		<knee-z>-0.377503</knee-z>
+		<foot-x>0.0806138</foot-x>
+		<foot-y-l>-0.110317</foot-y-l>
+		<foot-y-r>0.110317</foot-y-r>
+		<foot-z>-0.872164</foot-z>
+	</limbs>
+
+	<pivot-props>
+		<hip-rotate>sim/model/pax/pax[1]/pose/position/limb[0]/y-deg</hip-rotate>
+		<hip-translate>sim/model/pax/pax[1]/pose/position/limb[0]/z-m</hip-translate>
+		<chest-y>sim/model/pax/pax[1]/pose/position/limb[1]/y-deg</chest-y>
+		<chest-z>sim/model/pax/pax[1]/pose/position/limb[1]/z-deg</chest-z>
+		<head-y>sim/model/pax/pax[1]/pose/position/limb[2]/y-deg</head-y>
+		<head-z>sim/model/pax/pax[1]/pose/position/limb[2]/z-deg</head-z>
+		<arm1R-x>sim/model/pax/pax[1]/pose/position/limb[3]/x-deg</arm1R-x>
+		<arm1R-y>sim/model/pax/pax[1]/pose/position/limb[3]/y-deg</arm1R-y>
+		<arm1R-z>sim/model/pax/pax[1]/pose/position/limb[3]/z-deg</arm1R-z>
+		<arm2R-y>sim/model/pax/pax[1]/pose/position/limb[4]/y-deg</arm2R-y>
+		<arm2R-z>sim/model/pax/pax[1]/pose/position/limb[4]/z-deg</arm2R-z>
+		<handR-x>sim/model/pax/pax[1]/pose/position/limb[5]/x-deg</handR-x>
+		<handR-y>sim/model/pax/pax[1]/pose/position/limb[5]/y-deg</handR-y>
+		<handR-num>sim/model/pax/pax[1]/pose/position/limb[5]/hand-pose</handR-num>
+		<arm1L-x>sim/model/pax/pax[1]/pose/position/limb[6]/x-deg</arm1L-x>
+		<arm1L-y>sim/model/pax/pax[1]/pose/position/limb[6]/y-deg</arm1L-y>
+		<arm1L-z>sim/model/pax/pax[1]/pose/position/limb[6]/z-deg</arm1L-z>
+		<arm2L-y>sim/model/pax/pax[1]/pose/position/limb[7]/y-deg</arm2L-y>
+		<arm2L-z>sim/model/pax/pax[1]/pose/position/limb[7]/z-deg</arm2L-z>
+		<handL-x>sim/model/pax/pax[1]/pose/position/limb[8]/x-deg</handL-x>
+		<handL-y>sim/model/pax/pax[1]/pose/position/limb[8]/y-deg</handL-y>
+		<handL-num>sim/model/pax/pax[1]/pose/position/limb[8]/hand-pose</handL-num>
+		<leg1R-x>sim/model/pax/pax[1]/pose/position/limb[9]/x-deg</leg1R-x>
+		<leg1R-y>sim/model/pax/pax[1]/pose/position/limb[9]/y-deg</leg1R-y>
+		<leg1R-z>sim/model/pax/pax[1]/pose/position/limb[9]/z-deg</leg1R-z>
+		<leg2R-y>sim/model/pax/pax[1]/pose/position/limb[10]/y-deg</leg2R-y>
+		<footR-y>sim/model/pax/pax[1]/pose/position/limb[11]/y-deg</footR-y>
+		<leg1L-x>sim/model/pax/pax[1]/pose/position/limb[12]/x-deg</leg1L-x>
+		<leg1L-y>sim/model/pax/pax[1]/pose/position/limb[12]/y-deg</leg1L-y>
+		<leg1L-z>sim/model/pax/pax[1]/pose/position/limb[12]/z-deg</leg1L-z>
+		<leg2L-y>sim/model/pax/pax[1]/pose/position/limb[13]/y-deg</leg2L-y>
+		<footL-y>sim/model/pax/pax[1]/pose/position/limb[14]/y-deg</footL-y>
+	</pivot-props>
+
+ </overlay>
+ </model>
+ <animation>
+  <type>select</type>
+  <object-name>female</object-name>
+  <condition>
+   <equals>
+    <property>sim/model/pax/pax[1]/gender</property>
+    <value>1</value>
+   </equals>
+  </condition>
+ </animation>
+ <animation>
+  <type>scale</type>
+  <object-name>female</object-name>
+  <x-offset>0.95</x-offset>
+  <y-offset>0.95</y-offset>
+  <z-offset>0.95</z-offset>
+ </animation>
+
+
+</PropertyList>

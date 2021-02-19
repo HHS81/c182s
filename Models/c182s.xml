@@ -148,6 +148,16 @@
             set_registration_number(rplayer, node.getValue());
         }, 1, 0);
 
+
+        # Show the passengers in multiplayer models
+        rplayer.getNode("pax/co-pilot/present", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/bool[2]"));
+        rplayer.getNode("pax/left-passenger/present", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/bool[3]"));
+        rplayer.getNode("pax/right-passenger/present", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/bool[4]"));
+        io.read_properties ("Aircraft/c182s/Models/Human/humans.xml", rplayer.getNode ("sim/model"));
+
    ]]></load>
 </nasal>
 
@@ -2668,6 +2678,8 @@
         </condition>
     </animation>
     
+    
+    <!-- Humans (Pilot, Co-Pilot, Passengers) -->
     <model>
         <name>Pilot</name>
         <path>Aircraft/Generic/Pilot/General/pilot.xml</path>
@@ -2677,6 +2689,61 @@
             <z-m>0.155 </z-m>
         </offsets>
     </model>
+    
+    <model>
+        <name>CoPilot</name>
+        <path>Aircraft/c182s/Models/Human/copilot.xml</path>
+        <offsets>
+            <x-m> 1.220 </x-m>
+            <y-m> 0.250 </y-m>
+            <z-m>-1.000 </z-m>
+        </offsets>
+        <nopreview/>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>CoPilot</object-name>
+        <condition>
+            <property>pax/co-pilot/present</property>
+        </condition>
+    </animation>
+
+    <model>
+        <name>Pax0</name>
+        <path>Aircraft/c182s/Models/Human/pax0.xml</path>
+        <offsets>
+            <x-m>1.900 </x-m>
+            <y-m>-0.250 </y-m>
+            <z-m>-1.00 </z-m>
+        </offsets>
+        <nopreview/>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>Pax0</object-name>
+        <condition>
+            <property>pax/left-passenger/present</property>
+        </condition>
+    </animation>
+
+    <model>
+        <name>Pax1</name>
+        <path>Aircraft/c182s/Models/Human/pax1.xml</path>
+        <offsets>
+            <x-m>1.900 </x-m>
+            <y-m>0.250 </y-m>
+            <z-m>-1.00 </z-m>
+        </offsets>
+        <nopreview/>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>Pax1</object-name>
+        <condition>
+            <property>pax/right-passenger/present</property>
+        </condition>
+    </animation>
+  
 
     <!-- Preflight surface checks -->
     <!-- elevator surface check -->

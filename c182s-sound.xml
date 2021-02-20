@@ -21,7 +21,7 @@
                 <offset>0.4</offset>
             </volume>
             <reference-dist>5.0</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1000.0</max-dist>
         </crank>
 
         <crank>
@@ -47,7 +47,7 @@
                 <offset>0.5</offset>
             </volume>
             <reference-dist>5.0</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1000.0</max-dist>
         </crank>
         
        <crank>
@@ -67,7 +67,7 @@
                 <offset>0.3</offset>
             </volume>
             <reference-dist>5.0</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1000.0</max-dist>
         </crank>
         
         <crank>
@@ -87,7 +87,7 @@
                 <offset>0.3</offset>
             </volume>
             <reference-dist>5.0</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1000.0</max-dist>
         </crank>
 
         <engine>
@@ -110,7 +110,7 @@
                 <offset>0.01</offset>
             </pitch>
             <reference-dist>5.0</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1000.0</max-dist>
         </engine>
         
        <propeller>
@@ -138,7 +138,7 @@
                 <offset>0.01</offset>
             </pitch>
             <reference-dist>5.0</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1000.0</max-dist>
         </propeller>
 
         <rumble>
@@ -166,7 +166,7 @@
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
             </volume>
             <reference-dist>2.5</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1000.0</max-dist>
         </rumble>
 
         <rumble-scratch>
@@ -198,7 +198,7 @@
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
             </volume>
             <reference-dist>2.5</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1000.0</max-dist>
         </rumble-scratch>
         
            <wing-collapse-left>
@@ -222,7 +222,7 @@
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
             </volume>
             <reference-dist>2.5</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1000.0</max-dist>
         </wing-collapse-left>
         
           <wing-collapse-right>
@@ -246,7 +246,7 @@
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
             </volume>
             <reference-dist>2.5</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1000.0</max-dist>
         </wing-collapse-right>
         
                   <crash>
@@ -270,91 +270,94 @@
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
             </volume>
             <reference-dist>2.5</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1000.0</max-dist>
         </crash>
 
 
 
  <squeal1>
    <name>squeal1</name>
-      <path>Sounds/squeal.wav</path>
+      <path>Sounds/touchdown-screach2.wav</path>
    <condition>
+   <and>
      <property>/gear/gear[0]/wow</property>
+     <greater-than>
+     <property>/gear/gear[0]/rollspeed-ms</property>
+     <value>25</value>
+     </greater-than>
+   </and>
    </condition>
       <volume>
         <property>/gear/gear[0]/compression-norm</property>
-        <factor>3</factor>
-        <max>1.0</max>
+        <factor>6</factor>
+        <max>2.0</max>
       </volume>
       <volume>
         <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
-        <min>0.1</min>
-        <max>1.0</max>
+        <factor>0.2</factor>
+        <min>0.33</min>
+        <max>2.0</max>
       </volume>
       <volume>
           <property>/sim/model/c182s/sound/volume-boost-doors</property>
       </volume>
-      <pitch>
-        <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
-        <max>2</max>
-      </pitch>
-     </squeal1>
+           </squeal1>
      
 <squeal2>
    <name>squeal2</name>
-   <path>Sounds/squeal.wav</path>
+      <path>Sounds/touchdown-screach2.wav</path>
    <condition>
+   <and>
      <property>/gear/gear[1]/wow</property>
+     <greater-than>
+     <property>/gear/gear[1]/rollspeed-ms</property>
+     <value>25</value>
+     </greater-than>
+   </and>
    </condition>
       <volume>
         <property>/gear/gear[1]/compression-norm</property>
-        <factor>3</factor>
-        <max>1.0</max>
+        <factor>6</factor>
+        <max>2.0</max>
       </volume>
       <volume>
         <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
-        <min>0.1</min>
-        <max>1.0</max>
+        <factor>0.2</factor>
+        <min>0.33</min>
+        <max>2.0</max>
       </volume>
       <volume>
           <property>/sim/model/c182s/sound/volume-boost-doors</property>
       </volume>
-      <pitch>
-        <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
-        <max>2</max>
-      </pitch>
-     </squeal2>
+        </squeal2>
      
 <squeal3>
    <name>squeal3</name>
-   <path>Sounds/squeal.wav</path>
+      <path>Sounds/touchdown-screach2.wav</path>
    <condition>
+   <and>
      <property>/gear/gear[2]/wow</property>
+     <greater-than>
+     <property>/gear/gear[2]/rollspeed-ms</property>
+     <value>25</value>
+     </greater-than>
+   </and>
    </condition>
       <volume>
         <property>/gear/gear[2]/compression-norm</property>
-        <factor>3</factor>
-        <max>1.0</max>
+        <factor>6</factor>
+        <max>2.0</max>
       </volume>
       <volume>
         <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
-        <min>0.1</min>
-        <max>1.0</max>
+        <factor>0.2</factor>
+        <min>0.33</min>
+        <max>2.0</max>
       </volume>
       <volume>
           <property>/sim/model/c182s/sound/volume-boost-doors</property>
       </volume>
-      <pitch>
-        <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
-        <max>2</max>
-      </pitch>
-     </squeal3>
+      </squeal3>
  
   <flap>
    <name>flaps</name>

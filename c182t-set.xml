@@ -71,7 +71,7 @@
       <cockpit type="int">4</cockpit>
     </rating>
     
-    <authors>
+ <authors>
         <author n="0">
             <name>Heiko Schulz</name>
             <nick>HHS81</nick>
@@ -83,29 +83,31 @@
             <nick>gsagostinho</nick>
         </author>
         <author n="2">
+            <name>Benedikt Hallinger</name>
+            <description>fuel/oil system, custom registration livery, checklists, save-state, failures, cockpit/avionics improvements and many more great additions</description>
+            <nick>Beni</nick>
+        </author>
+        <author n="3">
             <nick>onox</nick>
             <description>advice, nasal-scripts, testing</description>
         </author>
-        <author n="3">
+        <author n="4">
             <name>Wayne Bragg</name>
             <description>rain effect, advice</description>
             <nick>wlbragg</nick>
         </author>
-        <author n="4">
+        <author n="5">
             <name>Ron Jensen</name>
             <nick>jentron</nick>
         </author>
-        <author n="5">
-            <name>Stuart Buchanan</name>
-            <description>Glass Cockpit</description>
-        </author>
         <author n="6">
-            <name>David Megginson</name>
+            <name>Stuart Buchanan</name>
         </author>
         <author n="7">
-            <name>Benedikt Hallinger</name>
-            <description>fuel/oil system, custom registration livery, checklists, save-state, failures, cockpit/avionics improvements and many more small additions</description>
-            <nick>Beni</nick>
+            <name>Sascha Reiszner</name>
+        </author>
+        <author n="8">
+            <name>David Megginson</name>
         </author>
     </authors>
 
@@ -126,7 +128,7 @@
     </urls>
 
   <flight-model>jsb</flight-model>
-  <aero>c182s</aero>
+  <aero>c182t</aero>
 
   <aircraft-class type="string">ga</aircraft-class>
   <aircraft-operator type="string">NONE</aircraft-operator>

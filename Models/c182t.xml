@@ -5,7 +5,7 @@
  <path>c182s.ac</path>
  <offsets>
    <pitch-deg>0.0</pitch-deg>
-   <z-m> -0.0 </z-m>
+   <z-m> -0.03 </z-m><!--simulates a flatter tyre due weight of aircraft on it -->
  </offsets>
 
    <!-- for checklist/tutorial markers -->
@@ -693,7 +693,109 @@
 		</axis>
  </animation>
 
- <animation>
+   <animation>
+    <type>rotate</type>
+    <object-name>WheelFairingNose</object-name>
+    <object-name>FrontWheel</object-name>
+    <object-name>NoseWheelFork</object-name>
+    <object-name>Damp</object-name>
+    <object-name>TrenDEL_01_TrenDEL_01</object-name>
+    <object-name>TrenDEL_04_TrenDEL_04</object-name>
+    <object-name>TrenDEL_05_TrenDEL_05</object-name>
+    <property>/gear/gear/steering-norm</property>
+    <factor>-11</factor>
+		<center>
+			<x-m>-0.160396</x-m>
+			<y-m> 0.000000</y-m>
+			<z-m>-0.660746</z-m>
+		</center>
+		<axis>
+			<x>0.037427</x>
+			<y>0</y>
+			<z>0.138826</z>
+		</axis>
+  </animation> 
+
+<!--compression-->
+  <animation>
+    <type>translate</type>
+    <object-name>WheelFairingNose</object-name>
+    <object-name>FrontWheel</object-name>
+    <object-name>NoseWheelFork</object-name>
+    <object-name>TrenDEL_05_TrenDEL_05</object-name>
+    <object-name>Damp</object-name>
+    <property>gear/gear[0]/compression-norm</property>
+    <factor>0.18</factor>
+    <axis>
+      <x>0.27</x>
+      <y>0</y>
+      <z>1.0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>locked-track</type>
+    <object-name>TrenDEL_04_TrenDEL_04</object-name>
+    <center>
+      <x-m>-0.121957</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.663133</z-m>
+    </center>
+    <lock-axis>
+      <x>0</x>
+      <y>-1</y>
+      <z>0</z>
+    </lock-axis>
+    <track-axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </track-axis>
+    <target-name>TrenDEL_05_TrenDEL_05</target-name>
+    <target-center>
+      <x-m>-0.142173</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.738732</z-m>
+    </target-center>
+    <slave-center>
+      <x-m>-0.029016</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.719470</z-m>
+    </slave-center>
+  </animation>
+
+  <animation>
+    <type>locked-track</type>
+    <object-name>TrenDEL_05_TrenDEL_05</object-name>
+    <center>
+      <x-m>-0.142173</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.738732</z-m>
+    </center>
+    <lock-axis>
+      <x>0</x>
+      <y>1</y>
+      <z>0</z>
+    </lock-axis>
+    <track-axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </track-axis>
+    <target-name>TrenDEL_04_TrenDEL_04</target-name>
+    <target-center>
+      <x-m>-0.121957</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.663133</z-m>
+    </target-center>
+    <slave-center>
+      <x-m>-0.029016</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.719470</z-m>
+    </slave-center>
+  </animation>
+
+<animation><!-- damage animation-->
    <type>rotate</type>
    <object-name>WheelFairingNose</object-name>
    <object-name>FrontWheel</object-name>
@@ -702,47 +804,8 @@
     <object-name>TrenDEL_05_TrenDEL_05</object-name>
    <object-name>TrenDEL_01_TrenDEL_01</object-name>
    <object-name>TrenDEL_04_TrenDEL_04</object-name>
-   <property>/gear/gear/steering-norm</property>
-   <factor>-11</factor>
-		<center>
-			<x-m>-0.160396</x-m>
-			<y-m>0.000524</y-m>
-			<z-m>-0.660746</z-m>
-		</center>
-		<axis>
-			<x>0.037427</x>
-			<y>0</y>
-			<z>0.138826</z>
-		</axis>
- </animation>
-
-<!--compression-->
- <animation>
-   <type>translate</type>
-   <object-name>WheelFairingNose</object-name>
-   <object-name>FrontWheel</object-name>
-<object-name>NoseWheelFork</object-name>
-   <object-name>Damp</object-name>
-   <property>gear/gear[0]/compression-norm</property>
-   <factor>0.18</factor>
-   <axis>
-     <x>0.27</x>
-     <y>0</y>
-     <z>1.0</z>
-   </axis>
- </animation>
-
-  <animation><!-- damage animation-->
-    <type>rotate</type>
-    <object-name>WheelFairingNose</object-name>
-    <object-name>FrontWheel</object-name>
-    <object-name>NoseWheelFork</object-name>
-    <object-name>Damp</object-name>
-    <object-name>TrenDEL_05_TrenDEL_05</object-name>
-    <object-name>TrenDEL_01_TrenDEL_01</object-name>
-    <object-name>TrenDEL_04_TrenDEL_04</object-name>
-    <property>fdm/jsbsim/gear/unit[0]/z-position</property>
-    <interpolation>
+   <property>fdm/jsbsim/gear/unit[0]/z-position</property>
+ <interpolation>
         <entry>
         <ind>-47.09</ind>
         <dep>0</dep>
@@ -752,44 +815,61 @@
         <dep>-72</dep>
       </entry>
     </interpolation>
-    <center>
-        <x-m>-0.11244</x-m>
-        <y-m>0.000524</y-m>
-        <z-m>-0.482892</z-m>
-    </center>
-    <axis>
-        <x>0</x>
-        <y>-0.058975</y>
-        <z>0</z>
-    </axis>
-   </animation>
+		<center>
+			<x-m>-0.11244</x-m>
+			<y-m>0.000524</y-m>
+			<z-m>-0.482892</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-0.058975</y>
+			<z>0</z>
+		</axis>
+ </animation>
 
-    <animation><!-- damage animation-->
-        <type>rotate</type>
-        <object-name>WheelFairingNose</object-name>
-        <property>fdm/jsbsim/gear/unit[0]/z-position</property>
-        <interpolation>
-            <entry>
-            <ind>-47.09</ind>
-            <dep>0</dep>
-        </entry>
+<animation><!-- damage animation-->
+   <type>rotate</type>
+   <object-name>WheelFairingNose</object-name>
+    <property>fdm/jsbsim/gear/unit[0]/z-position</property>
+ <interpolation>
         <entry>
-            <ind>-21.8</ind>
-            <dep>-72</dep>
-        </entry>
-        </interpolation>
-        <center>
-            <x-m>-0.11244</x-m>
-            <y-m>0.000524</y-m>
-            <z-m>-0.482892</z-m>
-        </center>
-        <axis>
-            <x>0</x>
-            <y>-0.058975</y>
-            <z>0</z>
-        </axis>
-    </animation> 
-
+        <ind>-47.09</ind>
+        <dep>0</dep>
+      </entry>
+      <entry>
+        <ind>-21.8</ind>
+        <dep>-72</dep>
+      </entry>
+    </interpolation>
+		<center>
+			<x-m>-0.11244</x-m>
+			<y-m>0.000524</y-m>
+			<z-m>-0.482892</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-0.058975</y>
+			<z>0</z>
+		</axis>
+ </animation> 
+ 
+  <animation>
+    <type>spin</type>
+     <object-name>FrontWheel</object-name>
+     <property>/gear/gear[0]/rollspeed-ms</property>
+    <factor>-53.98</factor>
+		<center>
+			<x-m>-0.25459</x-m>
+			<y-m>0.0608402</y-m>
+			<z-m>-1.00756</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+  </animation> 
+ 
  <!--gear scissors tracking animation
  <animation>
     <type>locked-track</type>
@@ -809,14 +889,14 @@
      <y>0</y>
      <z>1.0</z>
     </track-axis>
-
+ 
     <target-name>NoseWheelFork</target-name>
     <target-center>
       <x-m>-1.607</x-m>
       <y-m>0</y-m>
       <z-m>-0.806</z-m>
     </target-center>
-
+ 
     <slave-name>TrenDEL_05_TrenDEL_05</slave-name>
     <slave-center>
       <x-m>-1.480</x-m>
@@ -824,7 +904,7 @@
       <z-m>-0.781</z-m>
     </slave-center>
   </animation>-->
-
+ 
 <!-- gear compression-->
   <animation>
     <type>rotate</type>
@@ -865,19 +945,19 @@
         <ind>0.7</ind>
         <dep>11</dep>
       </entry>
-
+ 
     </interpolation>
-    <center>
-        <x-m>1.489661</x-m>
-        <y-m>-0.55715</y-m>
-        <z-m>-0.465515</z-m>
-    </center>
-    <axis>
-        <x>-0.206429</x>
-        <y>-0.000807</y>
-        <z>-0.002205</z>
-    </axis>
-</animation>
+		<center>
+			<x-m>1.489661</x-m>
+			<y-m>-0.55715</y-m>
+			<z-m>-0.465515</z-m>
+		</center>
+		<axis>
+			<x>-0.206429</x>
+			<y>-0.000807</y>
+			<z>-0.002205</z>
+		</axis>
+  </animation>
 
 <animation>
     <type>rotate</type>
@@ -895,18 +975,35 @@
         <dep>40</dep>
       </entry>
     </interpolation>
-    <center>
-        <x-m>1.493636</x-m>
-        <y-m>-0.570105</y-m>
-        <z-m>-0.469631</z-m>
-    </center>
-    <axis>
-        <x>-0.230576</x>
-        <y>0</y>
-        <z>0</z>
-    </axis>
-</animation>
-
+		<center>
+			<x-m>1.493636</x-m>
+			<y-m>-0.570105</y-m>
+			<z-m>-0.469631</z-m>
+		</center>
+		<axis>
+			<x>-0.230576</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+  </animation>
+  
+    <animation>
+    <type>spin</type>
+    <object-name>MainWheel.L</object-name>
+     <property>/gear/gear[1]/rollspeed-ms</property>
+    <factor>-44.67</factor>
+		<center>
+			<x-m>1.37306</x-m>
+			<y-m>1.23566</y-m>
+			<z-m>-0.83279</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+  </animation> 
+  
 <animation>
     <type>rotate</type>
     <object-name>WheelFairing.R</object-name>
@@ -958,7 +1055,7 @@
 			<z>-0.002205</z>
 		</axis>
   </animation>
-
+  
 <animation>
     <type>rotate</type>
     <object-name>WheelFairing.R</object-name>
@@ -966,26 +1063,43 @@
     <object-name>MainStrut.R</object-name>
     <property>fdm/jsbsim/gear/unit[2]/z-position</property>
     <interpolation>
-    <entry>
+  <entry>
         <ind>-43.67</ind>
         <dep>0</dep>
       </entry>
-    <entry>
+      <entry>
         <ind>-19.5</ind>
         <dep>90</dep>
       </entry>
     </interpolation>
-    <center>
-        <x-m>1.493636</x-m>
-        <y-m>0.456261</y-m>
-        <z-m>-0.464098</z-m>
-    </center>
-    <axis>
-        <x>0.003171</x>
-        <y>-0.115688</y>
-        <z>-0.049128</z>
-    </axis>
-</animation>
+		<center>
+			<x-m>1.493636</x-m>
+			<y-m>0.456261</y-m>
+			<z-m>-0.464098</z-m>
+		</center>
+		<axis>
+			<x>0.003171</x>
+			<y>-0.115688</y>
+			<z>-0.049128</z>
+		</axis>
+  </animation>
+  
+    <animation>
+    <type>spin</type>
+    <object-name>MainWheel.R</object-name>
+     <property>/gear/gear[2]/rollspeed-ms</property>
+    <factor>-44.67</factor>
+		<center>
+			<x-m>1.37306</x-m>
+			<y-m>-1.23566</y-m>
+			<z-m>-0.83279</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+  </animation> 
 
 <!-- Doors-->
 <animation>

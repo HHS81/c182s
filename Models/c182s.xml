@@ -5,7 +5,7 @@
  <path>c182s.ac</path>
  <offsets>
    <pitch-deg>0.0</pitch-deg>
-   <z-m> -0.0 </z-m>
+   <z-m> -0.03 </z-m><!--simulates a flatter tyre due weight of aircraft on it -->
  </offsets>
  
    <!-- for checklist/tutorial markers -->
@@ -674,7 +674,8 @@
 			<z>0.284685</z>
 		</axis>
  </animation>
-
+ 
+ 
   <animation>
     <type>rotate</type>
     <object-name>WheelFairingNose</object-name>
@@ -835,6 +836,23 @@
 		</axis>
  </animation> 
  
+  <animation>
+    <type>spin</type>
+     <object-name>FrontWheel</object-name>
+     <property>/gear/gear[0]/rollspeed-ms</property>
+    <factor>-53.98</factor>
+		<center>
+			<x-m>-0.25459</x-m>
+			<y-m>0.0608402</y-m>
+			<z-m>-1.00756</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+  </animation> 
+ 
  <!--gear scissors tracking animation
  <animation>
     <type>locked-track</type>
@@ -952,6 +970,23 @@
 		</axis>
   </animation>
   
+    <animation>
+    <type>spin</type>
+    <object-name>MainWheel.L</object-name>
+     <property>/gear/gear[1]/rollspeed-ms</property>
+    <factor>-44.67</factor>
+		<center>
+			<x-m>1.37306</x-m>
+			<y-m>1.23566</y-m>
+			<z-m>-0.83279</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+  </animation> 
+  
 <animation>
     <type>rotate</type>
     <object-name>WheelFairing.R</object-name>
@@ -1031,6 +1066,23 @@
 			<z>-0.049128</z>
 		</axis>
   </animation>
+  
+    <animation>
+    <type>spin</type>
+    <object-name>MainWheel.R</object-name>
+     <property>/gear/gear[2]/rollspeed-ms</property>
+    <factor>-44.67</factor>
+		<center>
+			<x-m>1.37306</x-m>
+			<y-m>-1.23566</y-m>
+			<z-m>-0.83279</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+  </animation> 
   
 <!-- Doors-->
 <animation>

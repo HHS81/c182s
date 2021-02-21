@@ -135,10 +135,10 @@
                                 <independentVar>gear/unit[0]/compression-ft</independentVar>
                                 <tableData>
                                    0.00   000
-                                    0.005   323
-                                    0.05    645
-                                    0.15    968
-                                    0.40    3000
+                                    0.005   258
+                                    0.05    516
+                                    0.15   774
+                                    0.40    2400
                                 </tableData>
                             </table>
                         </product>
@@ -152,11 +152,11 @@
                             <table>
                                 <independentVar> gear/unit[0]/compression-velocity-fps </independentVar>
                                  <tableData>
-                                -12.00    -13500
-                                -6.1      -4500
+                                -18.00    -13500
+                                -9.18      -4500
                                 0.00    0
-                                6.1    4500
-                                12.0    13500
+                                9.18    4500
+                                18.0    13500
                                 </tableData>
                             </table>
                             </product>
@@ -169,8 +169,8 @@
                     </sum>
                 </function>
             </strut_force>
-               <!--<spring_coeff unit="LBS/FT">5400 </spring_coeff>
-            <damping_coeff  unit="LBS/FT/SEC">368 </damping_coeff>
+               <!--<spring_coeff unit="LBS/FT">2400 </spring_coeff>
+            <damping_coeff  unit="LBS/FT/SEC">490 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2">0</damping_coeff_rebound>-->
             <max_steer unit="DEG"> 29 </max_steer><!-- limited to 10 deg NWS, but can turn up to 30 with side force -->
 		<table name="CORNERING_COEFF" type="internal">
@@ -226,7 +226,7 @@
             <static_friction> 0.5 </static_friction>
             <dynamic_friction> 0.4</dynamic_friction>
             <rolling_friction> 0.03 </rolling_friction>
-           <strut_force>
+           <!--<strut_force>
                 <function>
                     <sum>
                         <product>
@@ -235,7 +235,7 @@
                                 <independentVar>gear/unit[1]/compression-ft</independentVar>
                                 <tableData>
                                    0.00   000
-                                    0.4    4500
+                                    0.4    3600
                                 </tableData>
                             </table>
                         </product>
@@ -249,7 +249,7 @@
                             <table>
                                 <independentVar> gear/unit[1]/compression-velocity-fps </independentVar>
                                  <tableData>
-                                -1   -452
+                                -1   -442
                                 0.00    0
                                 1   442
                                 </tableData>
@@ -263,10 +263,10 @@
                         </ifthen>
                     </sum>
                 </function>
-            </strut_force>
-        <!--<spring_coeff unit="LBS/FT">3600 </spring_coeff>
+            </strut_force>-->
+        <spring_coeff unit="LBS/FT">3600 </spring_coeff>
             <damping_coeff  unit="LBS/FT/SEC">295</damping_coeff>
-         <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2">295 </damping_coeff_rebound>-->
+         <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2">295 </damping_coeff_rebound>
             <max_steer unit="DEG"> 0.0 </max_steer>
 		<table name="CORNERING_COEFF" type="internal">
 			<tableData> <!-- jsbsim-pacejka.py 5.0 0.06 2.8 0.5 1.03 0.5 -->
@@ -321,7 +321,7 @@
             <static_friction> 0.5</static_friction>
             <dynamic_friction> 0.4 </dynamic_friction>
             <rolling_friction> 0.03 </rolling_friction>
-           <strut_force>
+           <!--<strut_force>
                 <function>
                     <sum>
                         <product>
@@ -330,7 +330,7 @@
                                 <independentVar>gear/unit[2]/compression-ft</independentVar>
                                 <tableData>
                                    0.00   000
-                                    0.4   4500
+                                    0.4   3600
                                 </tableData>
                             </table>
                         </product>
@@ -358,10 +358,10 @@
                         </ifthen>
                     </sum>
                 </function>
-            </strut_force>
-          <!--<spring_coeff unit="LBS/FT"> 3600 </spring_coeff>
+            </strut_force>-->
+          <spring_coeff unit="LBS/FT">3600 </spring_coeff>
             <damping_coeff  unit="LBS/FT/SEC">295</damping_coeff>
-         <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2">295 </damping_coeff_rebound>-->
+         <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2">295</damping_coeff_rebound>
             <max_steer unit="DEG"> 0.0 </max_steer>
 		<table name="CORNERING_COEFF" type="internal">
 			<tableData> <!-- jsbsim-pacejka.py 5.0 0.06 2.8 0.5 1.03 0.5 -->
@@ -1892,10 +1892,11 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
+                    <value>0.5</value>
                     <table>
                         <independentVar>fcs/flap-pos-deg</independentVar>
                         <tableData>
-                            0.0000	    0.0000
+                            0.0000	    -0.0000
                             10.0000	   -0.0654
                             20.0000	   -0.0981
                             38.0000      -0.1140

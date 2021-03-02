@@ -24,7 +24,7 @@
         <input>
             <greater-than>
                 <property>payload/weight[0]/weight-lb</property>
-                <value>100.0</value>
+                <value>80.0</value>
             </greater-than>
         </input>
         <output>
@@ -37,7 +37,7 @@
         <input>
             <greater-than>
                 <property>payload/weight[1]/weight-lb</property>
-                <value>100.0</value>
+                <value>80.0</value>
             </greater-than>
         </input>
         <output>
@@ -50,7 +50,7 @@
         <input>
             <greater-than>
                 <property>payload/weight[2]/weight-lb</property>
-                <value>100.0</value>
+                <value>80.0</value>
             </greater-than>
         </input>
         <output>
@@ -63,11 +63,50 @@
         <input>
             <greater-than>
                 <property>payload/weight[3]/weight-lb</property>
-                <value>100.0</value>
+                <value>80.0</value>
             </greater-than>
         </input>
         <output>
             <property>pax/right-passenger/present</property>
+        </output>
+    </logic>
+    
+    
+    <!-- Model show logic -->
+    <logic>
+        <name>CoPilot shown</name>
+        <input>
+            <and>
+                <property>pax/co-pilot/present</property>
+                <property>/sim/rendering/pilot-model/enabled</property>
+            </and>
+        </input>
+        <output>
+            <property>sim/model/crew/pilot[1]/enabled</property>
+        </output>
+    </logic>
+    <logic>
+        <name>Left Passenger shown</name>
+        <input>
+            <and>
+                <property>pax/left-passenger/present</property>
+                <property>/sim/rendering/pilot-model/enabled</property>
+            </and>
+        </input>
+        <output>
+            <property>sim/model/pax/pax[0]/enabled</property>
+        </output>
+    </logic>
+    <logic>
+        <name>Right Passenger shown</name>
+        <input>
+            <and>
+                <property>pax/right-passenger/present</property>
+                <property>/sim/rendering/pilot-model/enabled</property>
+            </and>
+        </input>
+        <output>
+            <property>sim/model/pax/pax[1]/enabled</property>
         </output>
     </logic>
 

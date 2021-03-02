@@ -233,6 +233,76 @@ var calculate_real_oiltemp = maketimer(0.5, func {
     }
 });
 
+# ======= CHT temperature jsbsim compensator =======
+# Currently, jsbsim CHT temperature always initializes at 60°F.
+# We want an temperature that initialise to environment temperature until first start
+# and then gradually switch over to the real jsbsim value after some time.
+var calculate_real_chttemp = maketimer(0.5, func {
+    if (!getprop("/engines/engine/already-started-in-session")) {
+        # engine is still cold
+        var temp_env        = getprop("/environment/temperature-degf") or 60;
+        var temp_jsbsim_cht = getprop("/engines/engine/cht-degf") or 60;
+        current_temp_diff   = temp_jsbsim_cht - temp_env;
+        setprop("/engines/engine/cht-temperature-env-diff", current_temp_diff);
+    } else {
+        # engine has been startet at least one time:
+        # gradually remove the difference as jsbsim adapts to real environment temperature
+        calculate_real_chttemp.stop();
+        interpolate("/engines/engine/cht-temperature-env-diff", 0, 10); # hand over to jsbsim caluclation gradually
+    }
+});
+
+# ======== Spark plug icing simulation =========
+# When engine halts, checks if spark plug icing occurs
+# This can occur if the spark plug temp is below freezing temps and the engine stops.
+# Burnt fuel will produce small ammounts of water vapor which then freezes over
+# the still cold metal, shorting the elec and no spark will appear anymore.
+var sparkPlugIcingMeltingHandler = maketimer(1, func(){
+    # Simulate spark plug ice melting (like from resident or environment heat, or heater)
+    #print("spark plug ice melt handler called.");
+    var cht_temp = getprop("/engines/engine/cht-compensated-temperature-degf");
+    var icelevel = getprop("/systems/fuel/engine-sparkplugs-iced");
+    
+    # calculate melting
+    var tempAboveZero = cht_temp - 32.0;
+    if (tempAboveZero > 0.0) {
+        var meltRate = math.pow(tempAboveZero,2)/(250000); # decimal-percent per second
+                       # ^^ gives about 1,6min @50°F/26°C above zero
+                       # ^^ gives about 4min @30°F/13°C above zero
+                       # ^^ gives about 16min @15°F/6°C above zero
+        if (meltRate > 0.01) meltRate = 0.01;  # don't melt faster 
+
+        #print("spark plug ice melt rate pctpts/s =" ~ meltRate ~ "; level="~icelevel);
+        icelevel = icelevel - meltRate;
+        setprop("/systems/fuel/engine-sparkplugs-iced", icelevel);
+    }
+    
+    
+    # All ice is gone, or simulation is disabled at runtime
+    var allow_complex_engine_procs = getprop("/engines/engine/complex-engine-procedures");
+    var allow_sparkplugicing       = getprop("/engines/engine/allow-sparkplug-icing");
+    if (icelevel < 0.01 or !allow_complex_engine_procs or !allow_sparkplugicing ) {
+        setprop("/systems/fuel/engine-sparkplugs-iced", 0.0);
+        sparkPlugIcingMeltingHandler.stop();
+        #print("spark plug ice melt handler stopped.");
+    }
+});
+sparkPlugIcingMeltingHandler.simulatedTime = 1;
+
+var applySparkPlugicing = func() {
+    # called on engine halt to check if icing occurs.
+    # We need an approximation for the plugs temperature
+    var sparkPlugTemp = getprop("/engines/engine/sparkplugs-temperature-degf");
+    if (sparkPlugTemp <= 32.0) {
+        # If the plug is frosty, water from the combustion process will condense and freeze over.
+        setprop("/systems/fuel/engine-sparkplugs-iced", 1);
+        print("Spark plugs iced!");
+        sparkPlugIcingMeltingHandler.start();
+    }
+}
+
+
+
 # ======= OIL Pump handling =====
 setlistener("/engines/engine[0]/oil-pump/serviceable", func {
     svc = getprop("/engines/engine[0]/oil-pump/serviceable");
@@ -254,6 +324,7 @@ if (!getprop("/engines/engine[0]/oil-service-hours")) {
 oil_consumption.simulatedTime = 1;
 oil_consumption.start();
 calculate_real_oiltemp.start();
+calculate_real_chttemp.start();
 
 
 # ======= Magneto handling ======
@@ -288,3 +359,50 @@ var updateMagnetos = func() {
 setlistener("/controls/switches/magnetos", updateMagnetos, 1, 1);
 setlistener("/controls/engines/engine/faults/left-magneto-serviceable", updateMagnetos, 0, 1);
 setlistener("/controls/engines/engine/faults/right-magneto-serviceable", updateMagnetos, 0, 1);
+
+
+
+# ====== Engine starting actions ======
+var engine_starting = props.globals.initNode("/engines/engine/starting", 0, "BOOL");
+setlistener("/engines/engine/running", func(ngn){
+    if (ngn.getValue() and !getprop("/engines/engine[0]/coughing")) {
+        engine_starting.setValue(1);
+        var timer = maketimer(1, func(){
+            engine_starting.setValue(0);
+        });
+        timer.singleShot = 1; # timer will only be run once
+        timer.start();
+    } else {
+        engine_starting.setValue(0);
+    }
+    
+    # Engine stopped
+    if (!ngn.getValue()) {
+        applySparkPlugicing(); # Spark plug icing: check if it occurs if engine stops
+    }
+    
+},0,0);
+
+setlistener("/engines/engine/starting", func(ngn){
+    # Eye-candy: when engine starts, let the view shake a bit
+    if (ngn.getValue() and getprop("/sim/current-view/internal")) {
+        var curX = getprop("/sim/current-view/x-offset-m");
+        var xtimer = maketimer(0.05, func(){
+            interpolate("/sim/current-view/x-offset-m", curX-0.0015+rand()*0.003, 0.05);
+        });
+        xtimer.start();
+        var curY = getprop("/sim/current-view/y-offset-m");
+        var ytimer = maketimer(0.05, func(){
+            interpolate("/sim/current-view/y-offset-m", curY-0.0015+rand()*0.003, 0.05);
+        });
+        ytimer.start();
+        var stoptimer = maketimer(0.8, func(){
+           xtimer.stop();
+           ytimer.stop();
+           interpolate("/sim/current-view/x-offset-m", curX, 0.1);
+           interpolate("/sim/current-view/y-offset-m", curY, 0.1);
+        });
+        stoptimer.singleShot = 1;
+        stoptimer.start();
+    }
+}, 0, 0);

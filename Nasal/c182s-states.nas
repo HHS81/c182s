@@ -34,7 +34,7 @@ var setAvionics = func(state) {
     setprop("/instrumentation/nav[1]/power-btn", state);
     setprop("/instrumentation/comm[0]/volume-selected", state);
     setprop("/instrumentation/comm[1]/volume-selected", state);
-    setprop("/controls/switches/kn-62a-mode", state);
+    setprop("/controls/switches/kn-62a", state);
     setprop("/instrumentation/adf[0]/power-btn", state);
 }
 
@@ -163,10 +163,13 @@ var checklist_secureAircraft = func() {
     setprop("/controls/lighting/nav-lights", 0);
     setprop("/controls/lighting/strobe", 0);
     setprop("/controls/lighting/beacon", 0);
+    setprop("/controls/lighting/taxi-light", 0);
+    setprop("/controls/lighting/landing-light", 0);
+    setprop("/controls/lighting/beacon", 0);
     setAvionics(0);
     setprop("/controls/engines/engine[0]/mixture", 0.0);
     setprop("/controls/switches/starter", 0);
-    setprop("/controls/engines/engine[0]/magnetos", 0);
+    setprop("/controls/switches/magnetos", 0);
     setprop("/controls/engines/engine[0]/master-bat", 0);
     setprop("/controls/engines/engine[0]/master-alt", 0);
     setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
@@ -199,7 +202,7 @@ var checklist_preflight = func() {
 var checklist_beforeEngineStart = func() {
     # Setting levers and switches for startup
     setprop("/controls/switches/fuel_tank_selector", 2);
-    setprop("/controls/engines/engine[0]/magnetos", 3);
+    setprop("/controls/switches/magnetos", 3);
     setprop("/controls/engines/engine[0]/throttle", 0.2);
     setprop("/controls/engines/engine[0]/mixture", getprop("/controls/engines/engine/mixture-maxaltitude"));
     setprop("/controls/engines/engine[0]/propeller-pitch", 1);
@@ -273,6 +276,8 @@ var state_coldAndDark = func() {
     setprop("/controls/lighting/radio-lights-norm", 0);
     
     setprop("/sim/start-state-internal/oil-temp-override", 0);
+    
+    setprop("/controls/switches/magnetos", 0);
 };
 
 var state_readyForTakeoff = func() {
@@ -379,6 +384,7 @@ var autostart = func (msg=1, delay=1, setStates=0) {
         setprop("/controls/engines/engine[0]/throttle", 0.0);
         setprop("/controls/engines/engine[0]/mixture", 0.0);
         setprop("/controls/switches/starter", 0);
+        setprop("/controls/switches/magnetos", 0);
 
         #Securing Aircraft
         checklist_secureAircraft();

@@ -16,6 +16,7 @@
     <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
     <object-name>TURNneedle</object-name>
     <object-name>TURNgauge.001</object-name>
+    <object-name>TURNflag</object-name>
     <object-name>slipball</object-name>
   </effect>
 
@@ -23,6 +24,7 @@
     <type>material</type>
     <object-name>TURNneedle</object-name>
     <object-name>TURNgauge.001</object-name>
+    <object-name>TURNflag</object-name>
     <condition>
       <not><property>sim/rendering/rembrandt/enabled</property></not>
     </condition>
@@ -133,5 +135,15 @@
     </condition>
   </animation>
 
+  <animation>
+    <type>select</type>
+    <object-name>TURNflag</object-name>
+    <condition>
+        <or>
+            <not> <property>instrumentation/turn-indicator/serviceable</property> </not>
+            <not> <property>systems/electrical/outputs/turn-coordinator</property> </not>
+        </or>
+    </condition>
+  </animation>
 
 </PropertyList>

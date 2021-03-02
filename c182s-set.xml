@@ -83,34 +83,40 @@
             <nick>gsagostinho</nick>
         </author>
         <author n="2">
+            <name>Benedikt Hallinger</name>
+            <description>fuel/oil system, custom registration livery, checklists, save-state, failures, cockpit/avionics improvements and many more great additions</description>
+            <nick>Beni</nick>
+        </author>
+        <author n="3">
             <nick>onox</nick>
             <description>advice, nasal-scripts, testing</description>
         </author>
-        <author n="3">
+        <author n="4">
             <name>Wayne Bragg</name>
             <description>rain effect, advice</description>
             <nick>wlbragg</nick>
         </author>
-        <author n="4">
+        <author n="5">
             <name>Ron Jensen</name>
             <nick>jentron</nick>
         </author>
-        <author n="5">
+        <author n="6">
             <name>Stuart Buchanan</name>
         </author>
-        <author n="6">
-            <name>David Megginson</name>
-        </author>
         <author n="7">
-            <name>Benedikt Hallinger</name>
-            <description>fuel/oil system, custom registration livery, checklists, save-state, failures, cockpit/avionics improvements and many more small additions</description>
-            <nick>Beni</nick>
+            <name>Sascha Reiszner</name>
+        </author>
+        <author n="8">
+            <name>David Megginson</name>
         </author>
     </authors>
 
     <maintainers>
         <maintainer n="0">
             <name>Heiko Schulz</name>
+        </maintainer>
+        <maintainer n="1">
+            <name>Benedikt Hallinger</name>
         </maintainer>
     </maintainers>
     
@@ -257,10 +263,16 @@
       <bool n="0" alias="/sim/model/c182s/nw_fairing"/>
       <bool n="1" alias="/sim/model/c182s/mw_fairing"/>
 
+      <!-- passengers/crew -->
+      <bool n="2" alias="/sim/model/crew/pilot[1]/enabled"/>
+      <bool n="3" alias="/sim/model/pax/pax[0]/enabled"/>
+      <bool n="4" alias="/sim/model/pax/pax[1]/enabled"/>
+      
+
     </generic>
   </multiplay>
 
-  <model>
+  <model include="Models/Human/humans.xml">
     <fallback-model-index>3</fallback-model-index>
    <path archive="y">Aircraft/c182s/Models/c182s.xml</path>
     <hide-yoke>false</hide-yoke>
@@ -588,8 +600,36 @@
             <pitch-offset-deg>-15</pitch-offset-deg>
         </config>
     </view>
-
+    
 <view n="104">
+        <name>Bottom Camera</name>
+        <enabled type="bool">true</enabled>
+        <type>lookfrom</type>
+        <internal type="bool">false</internal>
+        <config>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+            <default-field-of-view-deg type="double">120</default-field-of-view-deg>
+            <default-pitch-deg type="double">-15</default-pitch-deg>
+            <default-heading-deg type="double">0</default-heading-deg>
+            <front-direction-deg type="double">0</front-direction-deg>
+            <front-left-direction-deg type="double">45</front-left-direction-deg>
+            <left-direction-deg type="double">90</left-direction-deg>
+            <back-left-direction-deg type="double">135</back-left-direction-deg>
+            <back-direction-deg type="double">180</back-direction-deg>
+            <back-right-direction-deg type="double">225</back-right-direction-deg>
+            <right-direction-deg type="double">270</right-direction-deg>
+            <front-right-direction-deg type="double">315</front-right-direction-deg>
+            <dynamic-view type="bool">true</dynamic-view>
+            <x-offset-m type="double"> 0</x-offset-m>
+            <y-offset-m type="double"> -0.4</y-offset-m>
+            <z-offset-m type="double"> 3.1</z-offset-m>
+            <pitch-offset-deg>-15</pitch-offset-deg>
+        </config>
+    </view>
+
+<view n="105">
         <name>Left Wing</name>
         <enabled type="bool">true</enabled>
         <type>lookfrom</type>
@@ -797,9 +837,11 @@
         </previews>
 
         <!-- Fix scrolling direction of knobs -->
+        <!-- This was an old fix from 2018, but it's not necessary anymore.
+             Instead the aircraft should not overwrite a global user setting...
         <mouse>
             <invert-mouse-wheel type="bool">true</invert-mouse-wheel>
-        </mouse>
+        </mouse>-->
 
 
         <!-- Save these properties between sessions -->
@@ -812,6 +854,7 @@
             <path>/engines/engine/complex-engine-procedures</path>
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>
+            <path>/engines/engine/allow-sparkplug-icing</path>
             <path>/engines/engine/winter-kit-installed</path>
             
             <path>/fdm/jsbsim/settings/damage</path>
@@ -865,6 +908,7 @@
             <path>/instrumentation/audio-panel/com-mic[0]</path>
             <path>/instrumentation/audio-panel/com-mic[1]</path>
             <path>/instrumentation/audio-panel/com-mic[2]</path>
+            <path>/instrumentation/audio-panel/mkr</path>
             <path>/instrumentation/audio-panel/spkr</path>
             <path>/instrumentation/audio-panel/pa</path>
             <path>/instrumentation/audio-panel/crew</path>
@@ -983,6 +1027,8 @@
             <path>/sim/model/door-positions/BaggageDoor/position-norm</path>
             <path>/sim/model/door-positions/WindowL/position-norm</path>
             <path>/sim/model/door-positions/WindowR/position-norm</path>
+            
+            <path>/sim/model/c182s/cockpit/FrontSeatL-setting-m</path>
 
             <path>/controls/circuit-breakers/Flap</path>
             <path>/controls/circuit-breakers/Inst</path>
@@ -1166,6 +1212,7 @@
    <allow-oil-management type="bool">false</allow-oil-management>
    <winter-kit-installed type="bool">false</winter-kit-installed>
    <oil-temperature-env-diff type="double">0</oil-temperature-env-diff>
+   <allow-sparkplug-icing type="bool">false</allow-sparkplug-icing>
    <oil-compensated-temperature-degf type="double">60</oil-compensated-temperature-degf>
    <external-heat>
        <enabled type="bool">false</enabled>

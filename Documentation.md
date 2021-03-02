@@ -44,6 +44,8 @@ Otherwise you need to pay attention to varios engine related things:
   the oil pump will not be able to supply enough pressure for good lubrication, leading to engine failure. Also monitor the oil service time as
   old oil does not perform so well (cycle it about every 50 hrs).
   Also some effects like additional friction with too hot oil and cold-start will be simulated.
+- `Allow Spark plug icing`  
+  If active, the spark plugs can freeze over, preventing engine start. This can occur in cold weather if the engine starts and quits shortly after, because then the engine is still cold, letting the water produced by the combustion process condensate on the plugs where they freeze over. This will prevent furter engine starts. To prevent this, preheat the engine properly, and if it happened, heat the engine so the ice melts (which can take considerable time!)
 - `Winter Kit`  
   The winter kit is needed in cold weather (<20°F/-6°C) to reduce cooling air flow. If not supplied, the engine will possibly not get warm enough to develop good power, but be sure to remove it in hot weather, otherwise you risk too high CHT temps.
 

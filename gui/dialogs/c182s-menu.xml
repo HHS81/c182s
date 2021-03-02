@@ -7,6 +7,14 @@
         <menu n="10">
             <label>Cessna C182</label>
             <enabled type="bool">true</enabled>
+            
+            <item>
+                <label>Auto Startup/Shutdown</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>c182s.autostart()</script>
+                </binding>
+            </item>
 
 <item>
                 <label>Aircraft Options</label>
@@ -51,6 +59,14 @@
                     <dialog-name>registration-dialog</dialog-name>
                 </binding>
             </item>
+            
+            <item>
+                <label>Flashlight</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>c182s.toggle_flashlight()</script>
+                </binding>
+            </item>
 
 	    <item>
                 <label>Fuel management</label>
@@ -60,22 +76,19 @@
                 </binding>
             </item>
 
-            <item>
-                <label>Flashlight</label>
+            <item n="150">
+                <label>------------------</label>
+                <enabled>false</enabled>
+            </item>
+            
+            <item n="151">
+                <label>About This Aircraft</label>
                 <binding>
-                    <command>nasal</command>
-                    <script>c182s.toggle_flashlight()</script>
+                    <command>dialog-show</command>
+                    <dialog-name>c182-about-dialog</dialog-name>
                 </binding>
             </item>
 
-
-            <item>
-                <label>Auto Startup/Shutdown</label>
-                <binding>
-                    <command>nasal</command>
-                    <script>c182s.autostart()</script>
-                </binding>
-            </item>
         </menu>
 
     </default>

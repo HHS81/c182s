@@ -393,17 +393,28 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
     </animation>
 
 <animation>
+    <type>translate</type>
+    <object-name>BtnIDT</object-name>
+    <property>/instrumentation/kt-70/buttons/id</property>
+    <factor>-0.0018</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+</animation>
+<animation>
     <type>pick</type>
     <object-name>BtnIDT</object-name>
     <visible>true</visible>
-    <condition>
-        <property>/systems/electrical/outputs/kt-76c</property>
-        <not>  <property>/instrumentation/transponder/testmode</property>   </not>
-    </condition>
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
         <binding>
+          <condition>
+            <property>/systems/electrical/outputs/kt-76c</property>
+            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+          </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_idt(0);</script>
         </binding>
@@ -411,21 +422,42 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
           <command>nasal</command>
           <script>c182s.click("kt76c-mode")</script>
         </binding>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/id</property>
+        </binding>
+      <mod-up>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/id</property>
+        </binding>
+      </mod-up>
     </action>
   </animation>
   
 <animation>
+    <type>translate</type>
+    <object-name>Btn0</object-name>
+    <property>/instrumentation/kt-70/buttons/num_zero</property>
+    <factor>-0.0018</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+</animation>
+<animation>
     <type>pick</type>
     <object-name>Btn0</object-name>
     <visible>true</visible>
-    <condition>
-        <property>/systems/electrical/outputs/kt-76c</property>
-        <not>  <property>/instrumentation/transponder/testmode</property>   </not>
-    </condition>
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
- <binding>
+      <binding>
+        <condition>
+            <property>/systems/electrical/outputs/kt-76c</property>
+            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+        </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(0);</script>
         </binding>
@@ -433,21 +465,42 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
           <command>nasal</command>
           <script>c182s.click("kt76c-mode")</script>
         </binding>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_zero</property>
+        </binding>
+      <mod-up>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_zero</property>
+        </binding>
+      </mod-up>
     </action>
   </animation>
   
 <animation>
+    <type>translate</type>
+    <object-name>Btn1</object-name>
+    <property>/instrumentation/kt-70/buttons/num_one</property>
+    <factor>-0.0018</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+</animation>
+<animation>
     <type>pick</type>
     <object-name>Btn1</object-name>
     <visible>true</visible>
-    <condition>
-        <property>/systems/electrical/outputs/kt-76c</property>
-        <not>  <property>/instrumentation/transponder/testmode</property>   </not>
-    </condition>
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
- <binding>
+      <binding>
+        <condition>
+          <property>/systems/electrical/outputs/kt-76c</property>
+          <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+        </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(1);</script>
         </binding>
@@ -455,21 +508,42 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
           <command>nasal</command>
           <script>c182s.click("kt76c-mode")</script>
         </binding>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_one</property>
+        </binding>
+      <mod-up>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_one</property>
+        </binding>
+      </mod-up>
     </action>
   </animation>
   
 <animation>
+    <type>translate</type>
+    <object-name>Btn2</object-name>
+    <property>/instrumentation/kt-70/buttons/num_two</property>
+    <factor>-0.0018</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+</animation>
+<animation>
     <type>pick</type>
     <object-name>Btn2</object-name>
     <visible>true</visible>
-    <condition>
-        <property>/systems/electrical/outputs/kt-76c</property>
-        <not>  <property>/instrumentation/transponder/testmode</property>   </not>
-    </condition>
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
- <binding>
+        <binding>
+         <condition>
+            <property>/systems/electrical/outputs/kt-76c</property>
+            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+         </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(2);</script>
         </binding>
@@ -477,21 +551,42 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
           <command>nasal</command>
           <script>c182s.click("kt76c-mode")</script>
         </binding>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_two</property>
+        </binding>
+      <mod-up>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_two</property>
+        </binding>
+      </mod-up>
     </action>
   </animation>
   
 <animation>
+    <type>translate</type>
+    <object-name>Btn3</object-name>
+    <property>/instrumentation/kt-70/buttons/num_three</property>
+    <factor>-0.0018</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+</animation>
+<animation>
     <type>pick</type>
     <object-name>Btn3</object-name>
     <visible>true</visible>
-    <condition>
-        <property>/systems/electrical/outputs/kt-76c</property>
-        <not>  <property>/instrumentation/transponder/testmode</property>   </not>
-    </condition>
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
- <binding>
+      <binding>
+         <condition>
+            <property>/systems/electrical/outputs/kt-76c</property>
+            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+          </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(3);</script>
         </binding>
@@ -499,21 +594,42 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
           <command>nasal</command>
           <script>c182s.click("kt76c-mode")</script>
         </binding>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_three</property>
+        </binding>
+      <mod-up>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_three</property>
+        </binding>
+      </mod-up>
     </action>
   </animation>
   
 <animation>
+    <type>translate</type>
+    <object-name>Btn4</object-name>
+    <property>/instrumentation/kt-70/buttons/num_four</property>
+    <factor>-0.0018</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+</animation>
+<animation>
     <type>pick</type>
     <object-name>Btn4</object-name>
     <visible>true</visible>
-    <condition>
-        <property>/systems/electrical/outputs/kt-76c</property>
-        <not>  <property>/instrumentation/transponder/testmode</property>   </not>
-    </condition>
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
- <binding>
+      <binding>
+          <condition>
+            <property>/systems/electrical/outputs/kt-76c</property>
+            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+          </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(4);</script>
         </binding>
@@ -521,21 +637,42 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
           <command>nasal</command>
           <script>c182s.click("kt76c-mode")</script>
         </binding>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_four</property>
+        </binding>
+      <mod-up>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_four</property>
+        </binding>
+      </mod-up>
     </action>
   </animation>
 
+  <animation>
+    <type>translate</type>
+    <object-name>Btn5</object-name>
+    <property>/instrumentation/kt-70/buttons/num_five</property>
+    <factor>-0.0018</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+</animation>
 <animation>
     <type>pick</type>
     <object-name>Btn5</object-name>
     <visible>true</visible>
-    <condition>
-        <property>/systems/electrical/outputs/kt-76c</property>
-        <not>  <property>/instrumentation/transponder/testmode</property>   </not>
-    </condition>
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
- <binding>
+        <binding>
+            <condition>
+            <property>/systems/electrical/outputs/kt-76c</property>
+            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+          </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(5);</script>
         </binding>
@@ -543,21 +680,42 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
           <command>nasal</command>
           <script>c182s.click("kt76c-mode")</script>
         </binding>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_five</property>
+        </binding>
+      <mod-up>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_five</property>
+        </binding>
+      </mod-up>
     </action>
   </animation>
   
 <animation>
+    <type>translate</type>
+    <object-name>Btn6</object-name>
+    <property>/instrumentation/kt-70/buttons/num_six</property>
+    <factor>-0.0018</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+</animation>
+<animation>
     <type>pick</type>
     <object-name>Btn6</object-name>
     <visible>true</visible>
-    <condition>
-        <property>/systems/electrical/outputs/kt-76c</property>
-        <not>  <property>/instrumentation/transponder/testmode</property>   </not>
-    </condition>
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
- <binding>
+        <binding>
+          <condition>
+            <property>/systems/electrical/outputs/kt-76c</property>
+            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+          </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(6);</script>
         </binding>
@@ -565,21 +723,42 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
           <command>nasal</command>
           <script>c182s.click("kt76c-mode")</script>
         </binding>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_six</property>
+        </binding>
+      <mod-up>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_six</property>
+        </binding>
+      </mod-up>
     </action>
   </animation>
 
 <animation>
+    <type>translate</type>
+    <object-name>Btn7</object-name>
+    <property>/instrumentation/kt-70/buttons/num_seven</property>
+    <factor>-0.0018</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+</animation>
+<animation>
     <type>pick</type>
     <object-name>Btn7</object-name>
     <visible>true</visible>
-    <condition>
-        <property>/systems/electrical/outputs/kt-76c</property>
-        <not>  <property>/instrumentation/transponder/testmode</property>   </not>
-    </condition>
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
- <binding>
+        <binding>
+          <condition>
+              <property>/systems/electrical/outputs/kt-76c</property>
+              <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+          </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(7);</script>
         </binding>
@@ -587,21 +766,42 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
           <command>nasal</command>
           <script>c182s.click("kt76c-mode")</script>
         </binding>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_seven</property>
+        </binding>
+      <mod-up>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/num_seven</property>
+        </binding>
+      </mod-up>
     </action>
   </animation>
   
 <animation>
+    <type>translate</type>
+    <object-name>BtnCLR</object-name>
+    <property>/instrumentation/kt-70/buttons/clr</property>
+    <factor>-0.0018</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+</animation>
+<animation>
     <type>pick</type>
     <object-name>BtnCLR</object-name>
     <visible>true</visible>
-    <condition>
-        <property>/systems/electrical/outputs/kt-76c</property>
-        <not>  <property>/instrumentation/transponder/testmode</property>   </not>
-    </condition>
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
- <binding>
+      <binding>
+        <condition>
+            <property>/systems/electrical/outputs/kt-76c</property>
+            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+        </condition>
         <command>nasal</command>
           <script>c182s.kt76c_button_clr();</script>
         </binding>
@@ -609,28 +809,59 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
           <command>nasal</command>
           <script>c182s.click("kt76c-mode")</script>
         </binding>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/clr</property>
+        </binding>
+      <mod-up>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/clr</property>
+        </binding>
+      </mod-up>
     </action>
   </animation>
   
 <animation>
+    <type>translate</type>
+    <object-name>BtnVFR</object-name>
+    <property>/instrumentation/kt-70/buttons/vfr</property>
+    <factor>-0.0018</factor>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+</animation>
+<animation>
     <type>pick</type>
     <object-name>BtnVFR</object-name>
     <visible>true</visible>
-    <condition>
-        <property>/systems/electrical/outputs/kt-76c</property>
-        <not>  <property>/instrumentation/transponder/testmode</property>   </not>
-    </condition>
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
- <binding>
-        <command>nasal</command>
-          <script>c182s.kt76c_button_vfr();</script>
+        <binding>
+            <condition>
+                <property>/systems/electrical/outputs/kt-76c</property>
+                <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+            </condition>
+            <command>nasal</command>
+            <script>c182s.kt76c_button_vfr();</script>
         </binding>
         <binding>
           <command>nasal</command>
           <script>c182s.click("kt76c-mode")</script>
         </binding>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/vfr</property>
+        </binding>
+      <mod-up>
+        <binding>
+          <command>property-toggle</command>
+          <property>/instrumentation/kt-70/buttons/vfr</property>
+        </binding>
+      </mod-up>
     </action>
   </animation>
   

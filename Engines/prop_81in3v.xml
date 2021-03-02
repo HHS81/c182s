@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<propeller name="79 inch, 3 blade variable-pitch propeller">
+<propeller name="79 inch, 3 blade variable-pitch propeller" version="1.1">
   <ixx> 1.67 </ixx>
   <diameter unit="IN"> 79.0 </diameter>
   <numblades> 3 </numblades>

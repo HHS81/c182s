@@ -69,6 +69,12 @@ Author: 12/2017  Benedikt Hallinger
             <input>-/engines/engine/oil-temperature-env-diff</input>
             <output>/engines/engine/oil-compensated-temperature-degf</output>
         </summer>
+        <summer name="CHT compensated environment Temperature">
+            <input>/engines/engine/cht-degf</input>
+            <input>-/engines/engine/cht-temperature-env-diff</input>
+            <input>/engines/engine/external-heat/applied-degF</input>
+            <output>/engines/engine/cht-compensated-temperature-degf</output>
+        </summer>
     </channel>
 
 </system>

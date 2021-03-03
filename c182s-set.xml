@@ -147,12 +147,14 @@
   <state include="states/approach-overlay.xml" n="5" />
 
   <systems>
- <path>Aircraft/c182s/Systems/systems.xml</path>
-
-    <autopilot>
+    <path>Aircraft/c182s/Systems/systems.xml</path>
+    <autopilot n="0"> <!-- Must be before KAP140 -JD -->
+        <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/nav-selector.xml</path>
+    </autopilot>
+    <autopilot n="1">
         <path>Systems/kap140-autopilot.xml</path>
     </autopilot>
-    <autopilot>
+    <autopilot n="2">
         <path>Systems/glass-rain.xml</path>
     </autopilot>
     <property-rule n="100">
@@ -180,9 +182,6 @@
     </property-rule>
     <property-rule n="107">
         <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/kap140-proprules.xml</path>
-    </property-rule>
-    <property-rule n="108">
-        <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/nav-selector.xml</path>
     </property-rule>
     <electrical>
       <!-- null electrical system path here so we can use a nasal based -->

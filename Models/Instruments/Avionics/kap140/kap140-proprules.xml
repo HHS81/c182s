@@ -756,7 +756,7 @@ We have captured the localizer and the GS.
             <condition>
                 <equals>
                     <property>autopilot/kap140/settings/vertical-arm</property>
-                    <value>1</value>
+                    <value>2</value>
                 </equals>
                 <or>
                     <greater-than>
@@ -772,7 +772,7 @@ We have captured the localizer and the GS.
                     <expression>
                         <product>
                             <abs><property>autopilot/internal/vert-speed-fpm</property></abs>
-                            <value>0.1</value>
+                            <value>0.2</value>
                         </product>
                     </expression>
                     <expression>
@@ -1444,6 +1444,78 @@ We have captured the localizer and the GS.
         <output>autopilot/internal/target-climb-rate</output>
         <min>-2000</min>
         <max>2000</max>
+    </filter>
+
+<!-- Altitude Capture (ALT ARM) -->
+    <filter>
+        <name>slow down FPM while approaching ALT</name>
+        <debug>false</debug>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <equals>
+                  <property>autopilot/kap140/settings/vertical-arm</property>
+                  <value>2</value>
+                </equals>
+                <greater-than>
+                    <expression>
+                        <product>
+                            <abs>
+                                <property>autopilot/internal/vert-speed-fpm</property>
+                            </abs>
+                            <value>0.2</value>
+                        </product>
+                    </expression>
+                    <expression>
+                        <abs>
+                            <dif>
+                                <property>autopilot/internal/target-altitude</property>
+                                <property alias="../../../../../../../../params/indicated-altitude-ft"/>
+                            </dif>
+                        </abs>
+                    </expression>
+                </greater-than>
+            </condition>
+        </enable>
+        <input>
+            <condition>
+                <less-than>
+                    <property alias="../../../../../params/indicated-altitude-ft"/>
+                    <property>autopilot/internal/target-altitude</property>
+                </less-than>
+            </condition>
+            <expression>
+                <product>
+                    <ceil>
+                        <product>
+                            <dif>
+                                <property>autopilot/internal/target-altitude</property>
+                                <property alias="../../../../../../../../params/indicated-altitude-ft"/>
+                            </dif>
+                            <value>0.05</value>
+                        </product>
+                    </ceil>
+                    <value>100</value>
+                </product>
+            </expression>
+        </input>
+        <input>
+            <expression>
+                <product>
+                    <floor>
+                        <product>
+                            <dif>
+                                <property>autopilot/internal/target-altitude</property>
+                                <property alias="../../../../../../../../params/indicated-altitude-ft"/>
+                            </dif>
+                            <value>0.05</value>
+                        </product>
+                    </floor>
+                    <value>100</value>
+                </product>
+            </expression>
+        </input>
+        <output>autopilot/internal/target-climb-rate</output>
     </filter>
 
 <!-- reference altitude -->

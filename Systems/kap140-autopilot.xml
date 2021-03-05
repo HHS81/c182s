@@ -417,7 +417,7 @@
 		<name>Pressure Rate Computer</name>
 		<debug>false</debug>
 		<type>derivative</type>
-		<input>/systems/static[1]/pressure-inhg</input> <!-- Don't use venturi, or the math breaks -->
+		<input><property alias="../../../params/pressure-source"/></input>
 		<output>/autopilot/internal/pressure-rate-raw</output>
 		<filter-time>1.0</filter-time>
 	</filter>
@@ -452,7 +452,7 @@
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>3625</gain>
-		<input>/systems/static[1]/pressure-inhg-venturi</input>
+		<input><property alias="../../../params/pressure-source"/></input>
 		<reference>/autopilot/internal/target-pressure</reference>
 		<output>/autopilot/internal/alt-vs</output>
 		<min>-400</min>

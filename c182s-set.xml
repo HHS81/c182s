@@ -152,7 +152,7 @@
         <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/nav-selector.xml</path>
     </autopilot>
     <autopilot n="1">
-        <path>Systems/kap140-autopilot.xml</path>
+        <path>Models/Instruments/Avionics/kap140/kap140-autopilot.xml</path>
     </autopilot>
     <autopilot n="2">
         <path>Systems/glass-rain.xml</path>

@@ -1348,6 +1348,9 @@
             <name>TurnIndicatorGyro</name>
             <mode>looped</mode>
             <path>Sounds/gyro.wav</path>
+            <condition>
+                    <property>/instrumentation/turn-indicator/spin</property>
+            </condition>
             <position>
                 <x>-0.3660</x>
                 <y>0.1400</y>

@@ -275,7 +275,8 @@
   <model include="Models/Human/humans.xml">
     <fallback-model-index>3</fallback-model-index>
    <path archive="y">Aircraft/c182s/Models/c182s.xml</path>
-    <hide-yoke>false</hide-yoke>
+    <hide-yoke type="bool">false</hide-yoke>
+    <hide-yoke-alpha-cmd>0.25</hide-yoke-alpha-cmd>
 
      <icing>
         <iceable>
@@ -1038,6 +1039,7 @@
 
             <path>/sim/failure-manager/display-on-screen</path>
             <path>/sim/failure-manager/restore-on-start</path>
+            <path>/sim/model/hide-yoke-alpha-cmd</path>
         </aircraft-data>
 
      <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>

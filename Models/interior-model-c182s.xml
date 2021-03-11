@@ -764,15 +764,13 @@
         </hovered>
     </animation>
     
- <animation>
-        <type>select</type>
+    <animation>
+        <type>material</type>
         <object-name>Yoke.L</object-name>
         <object-name>Yoke.R</object-name>
-        <condition>
-            <not>
-                <property>sim/model/hide-yoke</property>
-            </not>
-        </condition>
+        <transparency>
+            <alpha-prop>sim/model/hide-yoke-alpha</alpha-prop>
+        </transparency>
     </animation>
     
 <animation>

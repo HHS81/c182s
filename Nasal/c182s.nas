@@ -767,6 +767,24 @@ var updateSeatPosition = func(ammount_in_m=0) {
 }
 updateSeatPosition(); # init seat position
 
+
+##########
+# Handle Yoke transparency
+##########
+var updateYokeTransparency = func() {
+    var hide = getprop("/sim/model/hide-yoke") or 0;
+    if (hide == 1) {
+        alpha = getprop("sim/model/hide-yoke-alpha-cmd");
+    } else {
+        alpha = 1;
+    }
+    setprop("/sim/model/hide-yoke-alpha", alpha);
+}
+setlistener("/sim/model/hide-yoke", updateYokeTransparency, 1, 0);
+setlistener("/sim/model/hide-yoke-alpha-cmd", updateYokeTransparency, 1, 0);
+
+
+
 ###########
 # INIT of Aircraft
 # (states are initialized in separate nasal script!)

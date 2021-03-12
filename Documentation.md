@@ -119,6 +119,16 @@ Additionally to the default ones, the c182 knows the following:
 - `/fdm/jsbsim/systems/propulsion/manual-friction` (in horsepowers) to induce additional engine friction, which reduces power.
 - `/engines/engine/kill-engine` immediately kills the engine if set to `1`.
 
+### KAP 140 Autopilot
+The C182S features a highly detailed and realistic Bendix/Kind KAP 140 Autopilot. You can operate it like described in the manufacturers POH.  
+A [quick introduction is in the FGFS-wiki](https://wiki.flightgear.org/Bendix/King_KAP140_Autopilot).
+
+- The AP can be activated by pressing and holding the "AP" key on the instrument. Note that the AP only activates after the automatic preflight checks are complete (`PFT n` in display). During these checks, various annunciators will illuminate. The AP will only engage after those are vanished.
+- After the PFT, you are prompted to enter a barometric pressure by a flashing `29.92` setting in the top right corner. The AP will not allow to be engaged until it is initialized.
+- The autopilot features a disconnect knob which is accessible by pressing `SHIFT-C`; the AP will disconnect and stay off.
+- Temporarily disconnect can be activated by pressing the `C` key. After release the AP will continue with its program.
+- Severe turbolences may trigger the over-g disconnect safety.
+
 
 FAQ
 ---

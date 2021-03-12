@@ -1010,6 +1010,12 @@
                 <max>1</max>
                 <wrap>0</wrap>
             </binding>
+            <binding>
+                <!-- This binding lets the AP know we are not using the MET (manual electric trim) -->
+                <command>property-assign</command>
+                <property>autopilot/kap140/sensors/manual-trim</property>
+                <value>1</value>
+            </binding>
         </action>
         <hovered>
             <binding>
@@ -2731,12 +2737,12 @@
     </model>
     
     <model>
-        <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/KAP140TwoAxisAlt.xml</path>
+        <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/kap140.xml</path>
         <name>kap140</name>
         <offsets>
-            <x-m>0.3515</x-m>
-            <y-m>0.083</y-m>
-            <z-m>0.177</z-m>
+            <x-m>0.7075</x-m>
+            <y-m>-0.033</y-m>
+            <z-m>0.277</z-m>
         </offsets>
     </model>
     

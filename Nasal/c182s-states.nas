@@ -441,28 +441,51 @@ var autostart = func (msg=1, delay=1, setStates=0) {
 };
 
 
-# Updates GUI radio buttons and ensure valid selection
+# Translates GUI selection strings to /sim/start-state
 var updateStateSettingGUI = func() {
-    var default_state    = "auto";
-
-    var state_valid    = 0;
-    var state_selected = getprop(state_property) or "";
-    foreach(s; supported_states) {
-        var radio_propname = "/sim/start-state-internal/gui-radio-" ~ s;
-        if (s == state_selected) {
-            setprop(radio_propname, 1);
-            state_valid = 1;
-        } else {
-            setprop(radio_propname, 0);
-        }
+    var selection_prop    = "/sim/start-state-internal/gui-selection";
+    var selectionkey_prop = "/sim/start-state-internal/gui-selection-key";
+    var translations = {
+        "auto":     ["Automatic"],
+        "saved":    ["Saved state"],
+        "parking":  ["Cold and Dark"],
+        "take-off": ["Ready for Takeoff"],
+        "cruise":   ["Cruising"],
+        "approach": ["Approach"],
     };
     
-    if (!state_valid) {
-        # requested state did not map to a valid selection
-        print("INFO: wrong state '" ~ state_selected ~ "' requested, using '" ~ default_state ~ "'");
-        setprop("/sim/start-state-internal/gui-radio-" ~ default_state, 1);
-        setprop(state_property, default_state);
+    # init drop down if not set already
+    var state_current  = getprop(state_property);
+    var state_selected = getprop(selection_prop);
+    if (state_selected == nil or state_selected == "") {
+        state_selected     = "Automatic";
+        state_selected_key = "auto";
+        foreach(var trans_key; keys(translations)) {
+            if (trans_key == state_current) {
+                var trans_list = translations[trans_key];
+                state_selected     = trans_list[0];
+                state_selected_key = trans_key;
+                break;
+            }
+        }
+        setprop(selection_prop, state_selected);
+        setprop(selectionkey_prop, state_selected_key);
     }
+    
+    # Set start state property based on translation
+    var state_new = "";
+    foreach(var trans_key; keys(translations)) {
+        var trans_list = translations[trans_key];
+        foreach(var t; trans_list) {
+            if (t == state_selected) {
+                state_new = trans_key;
+                break;
+            }
+        }
+        if (state_new != "") break;
+    }
+    if (state_new == "") state_new = "auto";
+    setprop(state_property, state_new);
 }
 
 

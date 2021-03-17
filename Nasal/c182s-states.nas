@@ -147,6 +147,22 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
 };
 
 
+####################
+# Function fast-boots kap140
+# (skip PFT checks etc)
+####################
+var kap140_fastboot = func() {
+        print("Apply state: fast-booting autopilot");
+        setprop("/autopilot/kap140/panel/state", 5);
+        setprop("/autopilot/kap140/panel/old-state", 5);
+        setprop("/autopilot/kap140/panel/pft-1", getprop("sim/time/elapsed-sec"));
+        setprop("/autopilot/kap140/panel/pft-2", getprop("sim/time/elapsed-sec"));
+        setprop("/autopilot/kap140/panel/pft-3", getprop("sim/time/elapsed-sec"));
+        setprop("autopilot/kap140/servo/roll-servo/check-timer", -1);
+        setprop("autopilot/kap140/servo/pitch-servo/check-timer", -1);
+        setprop("/instrumentation/altimeter-kap140-internal/setting-inhg", getprop("instrumentation/altimeter/setting-inhg"));
+};
+
 
 ####################
 # Checklist states #
@@ -288,6 +304,9 @@ var state_readyForTakeoff = func() {
     setEngineRunning(1000, 0.1, getprop("/controls/engines/engine/mixture-maxaltitude"), 1);
     setprop("/controls/gear/brake-parking", 1);
     setprop("/controls/engines/engine/cowl-flaps-norm", 1);
+    
+    var ap_start_delay = 3.5;
+    settimer(kap140_fastboot, ap_start_delay);
 };
 
 var state_cruising = func() {
@@ -299,6 +318,9 @@ var state_cruising = func() {
     setEngineRunning(2000, 0.75, 0.7, 0.80);  # TODO: Mix should be calculated lean by altitude
     setprop("/controls/gear/brake-parking", 0);
     setprop("/controls/engines/engine/cowl-flaps-norm", 0);
+    
+    var ap_start_delay = 3.5;
+    settimer(kap140_fastboot, ap_start_delay);
 }
 
 var state_approach = func() {

@@ -15,9 +15,8 @@
 
 
 # The supported states in state property
-var supported_states = ["auto", "saved", "cold-and-dark", "ready-for-takeoff", "cruising"];
 var state_property   = "/sim/start-state"; #saved state
-var init_env_state   = "/sim/init-state"; #state from launcher/cmd-line
+var init_env_state   = "/sim/aircraft-state"; #state from launcher/cmd-line
 
 
 ####################
@@ -302,6 +301,10 @@ var state_cruising = func() {
     setprop("/controls/engines/engine/cowl-flaps-norm", 0);
 }
 
+var state_approach = func() {
+    # lower initial airspeed is set from state-overlay xml
+    state_cruising();
+}
 
 
 
@@ -347,17 +350,21 @@ var applyAircraftState = func() {
         print("Apply state: saved");
         state_saved();
     }
-    if (selected_state == "cold-and-dark") {
+    if (selected_state == "parking") {
         print("Apply state: Cold-and-Dark");
         state_coldAndDark();
     }
-    if (selected_state == "ready-for-takeoff") {
+    if (selected_state == "take-off") {
         print("Apply state: Ready-for-Takeoff");
         state_readyForTakeoff();
     }
-    if (selected_state == "cruising") {
+    if (selected_state == "cruise") {
         print("Apply state: cruise");
         state_cruising();
+    }
+    if (selected_state == "approach") {
+        print("Apply state: approach");
+        state_approach();
     }
 };
 

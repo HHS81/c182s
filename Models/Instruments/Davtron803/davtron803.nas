@@ -20,7 +20,7 @@
 var floor = func(v) v < 0.0 ? -int(-v) - 1 : int(v);
 
 # Time format function: Format time of property from secs to HH:MM format
-var timeFormat = func(timeValue, type){
+var timeFormat = func(timeValue, type, flash=1){
   if (timeValue > 359940) timeValue = 359940;  # clamp to 99:59 HH:MM
   hrs = floor(timeValue/3600);
   min = floor(timeValue/60);
@@ -32,6 +32,23 @@ var timeFormat = func(timeValue, type){
   } else {
     # Display MM:SS
     formattedTime = sprintf("%02d:%02d", min, sec-(60*min));
+  }
+  
+  # if we are in adjust mode, let the selected digit flash
+  if (flash) {
+    var adjust_digit = getprop("/instrumentation/davtron803/internal/bot-mode-set") or 0;
+    if (adjust_digit > 0 and adjust_digit < 5) {
+        #print("Davtron 803: timeFormat("~timeValue~", "~type~") flash digit "~adjust_digit);
+        var flasher = getprop("/instrumentation/davtron803/annunciators/flasher");
+        if (!flasher) {
+            #print("Davtron 803: timeFormat("~timeValue~", "~type~") flash formattedTime="~formattedTime);
+            if (adjust_digit >= 3) adjust_digit = adjust_digit + 1;  # to accomodate for the colon: "12:34"
+            var formattedTime_v = split("", formattedTime);
+            #print("Davtron 803: timeFormat("~timeValue~", "~type~") flash formattedTime_v="~string.join("|",formattedTime_v));
+            formattedTime_v[adjust_digit-1] = "    ";
+            formattedTime = string.join("",formattedTime_v);
+        }
+    }
   }
   
   #print("Davtron 803: timeFormat("~timeValue~", "~type~") returns: '"~formattedTime~"'");
@@ -187,7 +204,8 @@ var davtron_updateTopMode = func(){
 # Update the state of the selected bottom mode
 var davtron_updateBottomMode = func(){
     var value = davtron_lcd_test_bottom;
-    var mode = getprop("/instrumentation/davtron803/internal/bot-mode") or 0;
+    var mode    = getprop("/instrumentation/davtron803/internal/bot-mode") or 0;
+    var modeset = getprop("/instrumentation/davtron803/internal/bot-mode-set") or 0;
     if (mode == 0) {  #UT
         value = getprop("/instrumentation/clock/indicated-short-string") or 0;
         
@@ -195,7 +213,11 @@ var davtron_updateBottomMode = func(){
         value = getprop("/instrumentation/clock/local-short-string") or 0;
         
     } else if (mode == 2) { #FT
-        value = timeFormat(getprop("/instrumentation/davtron803/flight-time-secs") or 0, "ft");
+        if (modeset == 0) {
+            value = timeFormat(getprop("/instrumentation/davtron803/flight-time-secs") or 0, "ft");
+        } else {
+            value = timeFormat(getprop("/instrumentation/davtron803/internal/flight-timer-alarm-time") or 0, "ft");
+        }
         
     } else if (mode == 3) { #ET
         value = timeFormat(getprop("/instrumentation/davtron803/elapsed-time-secs") or 0, "et");
@@ -204,6 +226,11 @@ var davtron_updateBottomMode = func(){
         # should not happen. Check XML config
     }
     if (getprop("/instrumentation/davtron803/logic/test")) value = davtron_lcd_test_bottom;
+    
+    if (getprop("/instrumentation/davtron803/annunciators/alarm")) {
+        var flasher = getprop("/instrumentation/davtron803/annunciators/flasher");
+        if (!flasher) value = "";
+    }
     
     lcd_line_bot.setText(value);
     
@@ -282,6 +309,48 @@ setlistener("/instrumentation/davtron803/internal/elapsed-timer-step", func(p){
 
 
 
+######################
+# Model knob hooks
+######################
+
+# Called when in adjust mode the control button was pressed to change the digit
+var adjustDigit = func() {
+    var curDigit = getprop("/instrumentation/davtron803/internal/bot-mode-set");
+    var mode     = getprop("/instrumentation/davtron803/internal/bot-mode");
+    print("Davtron 803: adjustDigit() mode="~mode~"; curDigit="~curDigit);
+    
+    # mapping table for digit position to propname+seconds-factor for the given mode
+    var modemap = [{},{},   # indexes 0,1 unused
+        { #FT
+            name:    "ft",
+            prop:    "/instrumentation/davtron803/internal/flight-timer-alarm-time",
+            factors: [nil, 36000, 3600, 600, 60] #FT: HH:MM, first idx unused
+        },
+        { #ET
+            name:    "et",
+            prop:    "/instrumentation/davtron803/elapsed-time-secs",
+            factors: [nil,  600,  60, 10,  1]   #ET: MM:SS, first idx unused
+        },
+    ];
+    
+    # get current data
+    var oldValue  = getprop(modemap[mode].prop);
+    var time_fmt  = timeFormat(oldValue, modemap[mode].name, 0);
+    var position  = curDigit;
+    if (position >= 3) position = position + 1;  # to accomodate for the colon: "12:34"
+    var digit_val = substr(time_fmt, position-1, 1);
+    print("Davtron 803: adjustDigit() digit_val="~digit_val~" from: '"~time_fmt~"'");
+    
+    # calculate new value in seconds
+    var newValue = oldValue - digit_val * modemap[mode].factors[curDigit];
+    digit_val = digit_val + 1;
+    if (digit_val == 10) digit_val = 0;  # wrap around
+    newValue     = newValue + digit_val * modemap[mode].factors[curDigit];
+    setprop(modemap[mode].prop, newValue);
+};
+
+
+
 ###########
 # Init
 ###########
@@ -293,11 +362,6 @@ setlistener("/sim/signals/fdm-initialized", func {
     davtron_loop_top = maketimer(2, davtron_updateTopMode);
     davtron_loop_top.simulatedTime = 0;
     davtron_loop_top.start();
-    
-    # Update the BOT mode regularly
-    #davtron_loop_bot = maketimer(0.5, davtron_updateBottomMode);
-    #davtron_loop_bot.simulatedTime = 0;
-    #davtron_loop_bot.start();
 
 
     #print("Davtron 803 init: listeners");
@@ -307,6 +371,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     # Listen to changes in config so display responds timely
     setlistener("/instrumentation/davtron803/logic/test", davtron_update, 1, 0);
     setlistener("/instrumentation/davtron803/internal/top-mode", davtron_updateTopMode, 1, 0);
+    setlistener("/instrumentation/davtron803/internal/bot-mode", davtron_updateBottomMode, 1, 0);
     setlistener("/instrumentation/davtron803/annunciators/ut", func(){davtron_updateModeAnnunciators(0);}, 1, 0);
     setlistener("/instrumentation/davtron803/annunciators/lt", func(){davtron_updateModeAnnunciators(1);}, 1, 0);
     setlistener("/instrumentation/davtron803/annunciators/ft", func(){davtron_updateModeAnnunciators(2);}, 1, 0);
@@ -316,6 +381,12 @@ setlistener("/sim/signals/fdm-initialized", func {
     setlistener("/instrumentation/davtron803/flight-time-secs", davtron_updateBottomMode, 1, 0);
     setlistener("/instrumentation/davtron803/elapsed-time-secs", davtron_updateBottomMode, 1, 0);
 
+    # Listen to flasher and refresh bottom lcd in set mode
+    setlistener("/instrumentation/davtron803/annunciators/flasher", func(){
+        var adjust_digit = getprop("/instrumentation/davtron803/internal/bot-mode-set") or 0;
+        var alarm_active = getprop("/instrumentation/davtron803/annunciators/alarm") or 0;
+        if (alarm_active or adjust_digit > 0) davtron_updateBottomMode();
+    }, 1, 0);
     
     print("Davtron 803 initialized");
 });

@@ -172,7 +172,6 @@
             <binding>
                 <condition>
                     <property>/instrumentation/davtron803/operable</property>
-                    <not><property>/instrumentation/davtron803/internal/bot-mode-set</property></not>
                     <not><property>/instrumentation/davtron803/logic/test</property></not>
                     <not><property>/instrumentation/davtron803/internal/select-btn-timer</property></not>
                     <not><property>/instrumentation/davtron803/internal/both-btn-timer</property></not>
@@ -189,6 +188,7 @@
                     <not><property>/instrumentation/davtron803/internal/bot-mode-set</property></not>
                     <not><property>/instrumentation/davtron803/logic/test</property></not>
                     <not><property>/instrumentation/davtron803/internal/both-btn-timer</property></not>
+                    <not><property>/instrumentation/davtron803/annunciators/alarm</property></not>
                     <greater-than>
                         <property>/instrumentation/davtron803/internal/select-btn-timer</property>
                         <value>0</value>
@@ -208,6 +208,37 @@
                 <step>1</step>
                 <min>0</min>
                 <max>4</max>
+                <wrap>true</wrap>
+            </binding>
+            <binding>   <!-- Change selected digit in adjust mode -->
+                <condition>
+                    <property>/instrumentation/davtron803/operable</property>
+                    <not><property>/instrumentation/davtron803/annunciators/alarm</property></not>
+                    <greater-than>
+                        <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                        <value>0</value>
+                    </greater-than>
+                    <not><property>/instrumentation/davtron803/logic/test</property></not>
+                    <not><property>/instrumentation/davtron803/internal/both-btn-timer</property></not>
+                    <greater-than>
+                        <property>/instrumentation/davtron803/internal/select-btn-timer</property>
+                        <value>0</value>
+                    </greater-than>
+                    <less-than>
+                        <expression>
+                            <dif>
+                                <property>sim/time/elapsed-sec</property>
+                                <property>/instrumentation/davtron803/internal/select-btn-timer</property>
+                            </dif>
+                        </expression>
+                        <value>1.0</value>
+                    </less-than>
+                </condition>
+                <command>property-adjust</command>
+                <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                <step>1</step>
+                <min>0</min>
+                <max>6</max>
                 <wrap>true</wrap>
             </binding>
             <binding>
@@ -252,10 +283,26 @@
                     <not><property>/instrumentation/davtron803/internal/bot-mode-set</property></not>
                     <not><property>/instrumentation/davtron803/logic/test</property></not>
                     <not><property>/instrumentation/davtron803/internal/both-btn-timer</property></not>
+                    <not><property>/instrumentation/davtron803/annunciators/alarm</property></not>
                 </condition>
                 <command>property-assign</command>
                 <property>/instrumentation/davtron803/internal/both-btn-timer</property>
                 <property>sim/time/elapsed-sec</property>
+            </binding>
+            
+            <binding>  <!-- Enter adjust mode -->
+                <condition>
+                    <property>/instrumentation/davtron803/operable</property>
+                    <not><property>/instrumentation/davtron803/annunciators/alarm</property></not>
+                    <or>
+                        <property>/instrumentation/davtron803/logic/mode-ft</property>
+                        <property>/instrumentation/davtron803/logic/mode-et</property>
+                    </or>
+                    <not><property>/instrumentation/davtron803/internal/bot-mode-set</property></not>
+                </condition>
+                <command>property-assign</command>
+                <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                <value>-1</value>
             </binding>
         </shift-action>
   </animation>
@@ -288,7 +335,6 @@
             <binding>
                 <condition>
                     <property>/instrumentation/davtron803/operable</property>
-                    <not><property>/instrumentation/davtron803/internal/bot-mode-set</property></not>
                     <not><property>/instrumentation/davtron803/logic/test</property></not>
                     <not><property>/instrumentation/davtron803/internal/control-btn-timer</property></not>
                     <not><property>/instrumentation/davtron803/internal/both-btn-timer</property></not>
@@ -320,6 +366,7 @@
                 <condition>
                     <property>/instrumentation/davtron803/operable</property>
                     <property>/instrumentation/davtron803/logic/mode-et</property>
+                    <not><property>/instrumentation/davtron803/internal/bot-mode-set</property></not>
                     <greater-than>
                         <property>/instrumentation/davtron803/internal/control-btn-timer</property>
                         <value>0</value>
@@ -415,6 +462,32 @@
                 <value>0</value>
             </binding>
             
+            <binding>   <!-- Adjust selected digit in adjust mode -->
+                <condition>
+                    <property>/instrumentation/davtron803/operable</property>
+                    <greater-than>
+                        <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                        <value>0</value>
+                    </greater-than>
+                    <not><property>/instrumentation/davtron803/logic/test</property></not>
+                    <not><property>/instrumentation/davtron803/internal/both-btn-timer</property></not>
+                    <greater-than>
+                        <property>/instrumentation/davtron803/internal/control-btn-timer</property>
+                        <value>0</value>
+                    </greater-than>
+                    <less-than>
+                        <expression>
+                            <dif>
+                                <property>sim/time/elapsed-sec</property>
+                                <property>/instrumentation/davtron803/internal/control-btn-timer</property>
+                            </dif>
+                        </expression>
+                        <value>1.0</value>
+                    </less-than>
+                </condition>
+                <command>nasal</command>
+                <script>davtron803.adjustDigit()</script>
+            </binding>
             
             <binding>
                 <command>property-interpolate</command>
@@ -461,6 +534,20 @@
                 <command>property-assign</command>
                 <property>/instrumentation/davtron803/internal/both-btn-timer</property>
                 <property>sim/time/elapsed-sec</property>
+            </binding>
+            
+            <binding> <!-- Enter adjust mode -->
+                <condition>
+                    <property>/instrumentation/davtron803/operable</property>
+                    <or>
+                        <property>/instrumentation/davtron803/logic/mode-ft</property>
+                        <property>/instrumentation/davtron803/logic/mode-et</property>
+                    </or>
+                    <not><property>/instrumentation/davtron803/internal/bot-mode-set</property></not>
+                </condition>
+                <command>property-assign</command>
+                <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                <value>-1</value>
             </binding>
         </shift-action>
   </animation>

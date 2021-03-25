@@ -345,6 +345,8 @@ var adjustDigit = func() {
     var newValue = oldValue - digit_val * modemap[mode].factors[curDigit];
     digit_val = digit_val + 1;
     if (digit_val == 10) digit_val = 0;  # wrap around
+    if (position == 4 and digit_val == 6) digit_val = 0;  # wrap around ten-minutes at 5
+    if (position == 1 and mode == 3 and digit_val == 6) digit_val = 0;  # wrap around after 5 when ET and first digit (max 59:59 allowed)
     newValue     = newValue + digit_val * modemap[mode].factors[curDigit];
     setprop(modemap[mode].prop, newValue);
 };

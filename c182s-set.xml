@@ -144,6 +144,10 @@
 
   <checklists include="c182s-checklists.xml"/>
 
+  <tutorials>
+    <tutorial include="Tutorials/davtron803.xml"/>
+  </tutorials>
+
   <!-- Overlays (called with "state" command line option) -->
   <state include="states/auto-overlay.xml"     n="0" />
   <state include="states/saved-overlay.xml"    n="1" />

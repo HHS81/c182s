@@ -317,7 +317,7 @@ setlistener("/instrumentation/davtron803/internal/elapsed-timer-step", func(p){
 var adjustDigit = func() {
     var curDigit = getprop("/instrumentation/davtron803/internal/bot-mode-set");
     var mode     = getprop("/instrumentation/davtron803/internal/bot-mode");
-    print("Davtron 803: adjustDigit() mode="~mode~"; curDigit="~curDigit);
+    #print("Davtron 803: adjustDigit() mode="~mode~"; curDigit="~curDigit);
     
     # mapping table for digit position to propname+seconds-factor for the given mode
     var modemap = [{},{},   # indexes 0,1 unused
@@ -339,7 +339,7 @@ var adjustDigit = func() {
     var position  = curDigit;
     if (position >= 3) position = position + 1;  # to accomodate for the colon: "12:34"
     var digit_val = substr(time_fmt, position-1, 1);
-    print("Davtron 803: adjustDigit() digit_val="~digit_val~" from: '"~time_fmt~"'");
+    #print("Davtron 803: adjustDigit() digit_val="~digit_val~" from: '"~time_fmt~"'");
     
     # calculate new value in seconds
     var newValue = oldValue - digit_val * modemap[mode].factors[curDigit];

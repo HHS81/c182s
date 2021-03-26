@@ -129,24 +129,43 @@ var lcd_modes2 = lcdgroup.createChild("text", "davtron.bot.lcd.modes2_canvas")
                 .setScale(1, 1.02);
 
 # Underlining of selected item
-# TODO: Should be little arrows instead of just lines...
 var lcd_modesel = [
     lcdgroup.createChild("path", "davtron.bot.lcd.modesel_ut_canvas")
-        .setStrokeLineWidth(8).set("stroke", "rgba(0,0,0,1)")
-        .moveTo(130, 545)
-        .horizTo(235),
+        .setStrokeLineWidth(4).set("stroke", "rgba(0,0,0,1)")
+        .setStrokeLineJoin("bevel")
+        .setStrokeLineCap("butt")
+        .moveTo(130, 550)
+        .horizTo(235)
+        .lineTo(182.5, 540)
+        .lineTo(130, 550)
+        .setColorFill(0,0,0,1),
     lcdgroup.createChild("path", "davtron.bot.lcd.modesel_lt_canvas")
-        .setStrokeLineWidth(8).set("stroke", "rgba(0,0,0,1)")
-        .moveTo(260, 545)
-        .horizTo(355),
-    lcdgroup.createChild("path", "davtron.bot.lcd.modesel_ft_canvas")
-        .setStrokeLineWidth(8).set("stroke", "rgba(0,0,0,1)")
-        .moveTo(130, 645)
-        .horizTo(230),
-    lcdgroup.createChild("path", "davtron.bot.lcd.modesel_et_canvas")
-        .setStrokeLineWidth(8).set("stroke", "rgba(0,0,0,1)")
-        .moveTo(255, 645)
+        .setStrokeLineWidth(4).set("stroke", "rgba(0,0,0,1)")
+        .setStrokeLineJoin("bevel")
+        .setStrokeLineCap("butt")
+        .moveTo(260, 550)
         .horizTo(355)
+        .lineTo(307.5, 540)
+        .lineTo(260, 550)
+        .setColorFill(0,0,0,1),
+    lcdgroup.createChild("path", "davtron.bot.lcd.modesel_ft_canvas")
+        .setStrokeLineWidth(4).set("stroke", "rgba(0,0,0,1)")
+        .setStrokeLineJoin("bevel")
+        .setStrokeLineCap("butt")
+        .moveTo(130, 650)
+        .horizTo(230)
+        .lineTo(180, 640)
+        .lineTo(130, 650)
+        .setColorFill(0,0,0,1),
+    lcdgroup.createChild("path", "davtron.bot.lcd.modesel_et_canvas")
+        .setStrokeLineWidth(4).set("stroke", "rgba(0,0,0,1)")
+        .setStrokeLineJoin("bevel")
+        .setStrokeLineCap("butt")
+        .moveTo(255, 650)
+        .horizTo(355)
+        .lineTo(305, 640)
+        .lineTo(255, 650)
+        .setColorFill(0,0,0,1)
 ];
 lcd_modesel[0].srcProp = props.globals.getNode("/instrumentation/davtron803/annunciators/ut");
 lcd_modesel[1].srcProp = props.globals.getNode("/instrumentation/davtron803/annunciators/lt");

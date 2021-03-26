@@ -497,6 +497,7 @@ Important properties:
         </enable>
         <input>0</input>
         <output>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</output>
+        <output>/instrumentation/davtron803/internal/elapsed-timer-step</output>
     </filter>
     
     <filter>

@@ -779,15 +779,49 @@
         <row>9</row>
         <col>0</col>
         <halign>right</halign>
-        <label>Transponder</label>
+        <label>Autopilot (roll servo)</label>
       </text>
       <checkbox>
         <row>9</row>
         <col>1</col>
-        <property>/sim/failure-manager/instrumentation/avionics/transponder/serviceable</property>
+        <property>/sim/failure-manager/instrumentation/avionics/autopilot-roll-servo/serviceable</property>
       </checkbox>
       <input>
         <row>9</row>
+        <col>2</col>
+        <property>/sim/failure-manager/instrumentation/avionics/autopilot-roll-servo/mtbf</property>
+      </input>
+      
+      <text>
+        <row>10</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Autopilot (pitch servo)</label>
+      </text>
+      <checkbox>
+        <row>10</row>
+        <col>1</col>
+        <property>/sim/failure-manager/instrumentation/avionics/autopilot-pitch-servo/serviceable</property>
+      </checkbox>
+      <input>
+        <row>10</row>
+        <col>2</col>
+        <property>/sim/failure-manager/instrumentation/avionics/autopilot-pitch-servo/mtbf</property>
+      </input>
+      
+      <text>
+        <row>11</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Transponder</label>
+      </text>
+      <checkbox>
+        <row>11</row>
+        <col>1</col>
+        <property>/sim/failure-manager/instrumentation/avionics/transponder/serviceable</property>
+      </checkbox>
+      <input>
+        <row>11</row>
         <col>2</col>
         <property>/sim/failure-manager/instrumentation/avionics/transponder/mtbf</property>
       </input>

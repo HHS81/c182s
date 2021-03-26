@@ -109,6 +109,15 @@
         <author n="8">
             <name>David Megginson</name>
         </author>
+        <author n="8">
+            <name>Sascha Reißner</name>
+            <description>KAP140 Autopilot Model</description>
+        </author>
+        <author n="9">
+            <name>Josh Davidson</name>
+            <description>KAP140 Autopilot Control System</description>
+            <nick>Octal450</nick>
+        </author>
     </authors>
 
     <maintainers>
@@ -144,14 +153,16 @@
   <state include="states/approach-overlay.xml" n="5" />
 
   <systems>
- <path>Aircraft/c182s/Systems/systems.xml</path>
-
-	    <autopilot>
-        <path>Aircraft/c182s/Systems/KAP140.xml</path>
-	    </autopilot>
-            <autopilot>
-                <path>Systems/glass-rain.xml</path>
-            </autopilot>
+    <path>Aircraft/c182s/Systems/systems.xml</path>
+    <autopilot n="0"> <!-- Must be before KAP140 -JD -->
+        <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/nav-selector.xml</path>
+    </autopilot>
+    <autopilot n="1">
+        <path>Models/Instruments/Avionics/kap140/kap140-autopilot.xml</path>
+    </autopilot>
+    <autopilot n="2">
+        <path>Systems/glass-rain.xml</path>
+    </autopilot>
     <property-rule n="100">
         <name>FiltersOnly</name>
         <path>Aircraft/c182s/Systems/NAVandGSfilters.xml</path>
@@ -174,6 +185,9 @@
     <property-rule n="106">
         <name>FiltersOnly</name>
         <path>Systems/instruments.xml</path>
+    </property-rule>
+    <property-rule n="107">
+        <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/kap140-proprules.xml</path>
     </property-rule>
     <electrical>
       <!-- null electrical system path here so we can use a nasal based -->
@@ -275,7 +289,8 @@
   <model include="Models/Human/humans.xml">
     <fallback-model-index>3</fallback-model-index>
    <path archive="y">Aircraft/c182s/Models/c182s.xml</path>
-    <hide-yoke>false</hide-yoke>
+    <hide-yoke type="bool">false</hide-yoke>
+    <hide-yoke-alpha-cmd>0.25</hide-yoke-alpha-cmd>
 
      <icing>
         <iceable>
@@ -739,6 +754,14 @@
    <line>  Takeoff ground roll: 795ft  over 50ft obstacle: 1,514ft</line>
    <line>  Landing ground roll: 590ft  over 50ft obstacle: 1,390ft</line>
    <key>
+    <name>c</name>
+    <desc>KAP140 Autopilot CWS</desc>
+   </key>
+   <key>
+    <name>C</name>
+    <desc>KAP140 Autopilot Disconnect</desc>
+   </key>
+   <key>
     <name>n/N</name>
     <desc>Propeller finer/coarser</desc>
    </key>
@@ -747,7 +770,7 @@
     <desc>Mixture rich/lean</desc>
    </key>
    <key>
-    <name>Y</name>
+    <name>y/Y</name>
     <desc>Toggle yoke visibility</desc>
    </key>
    <key>
@@ -1050,6 +1073,7 @@
 
             <path>/sim/failure-manager/display-on-screen</path>
             <path>/sim/failure-manager/restore-on-start</path>
+            <path>/sim/model/hide-yoke-alpha-cmd</path>
         </aircraft-data>
 
      <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>
@@ -1186,12 +1210,100 @@
 
 
  <autopilot>
-  <KAP140>
-   <settings>
-    <auto-pitch-trim type="bool">true</auto-pitch-trim>
-   </settings>
-   <serviceable type="bool">true</serviceable>
-  </KAP140>
+    <internal>
+        <target-climb-rate type="int">0</target-climb-rate>
+        <target-altitude type="int">0</target-altitude>
+        <target-pressure type="double">0.0</target-pressure>
+        <target-pressure-rate type="double">0.0</target-pressure-rate>
+        <target-turn-rate type="double">0.0</target-turn-rate>
+        <max-rate-of-change type="double">100.0</max-rate-of-change>
+        <ref-lateral type="double">0.0</ref-lateral>
+        <ref-vertical type="double">0.0</ref-vertical>
+    </internal>
+    <kap140>
+        <serviceable type="bool">true</serviceable>
+        <powered type="bool">false</powered>
+        <programmed type="bool">true</programmed>
+        <roll-axis-fail type="bool">false</roll-axis-fail>
+        <pitch-axis-fail type="bool">false</pitch-axis-fail>
+        <bad-condition type="bool">false</bad-condition>
+        <config>
+          <model type="int">3</model>
+          <power type="double">24.0</power>
+          <hsi-installed type="bool">false</hsi-installed>
+          <default-altitude type="int">4500</default-altitude>
+          <baro-tied type="bool">false</baro-tied>
+          <autotrim-pitch type="bool">true</autotrim-pitch>
+          <gain-pitch type="double">0.7</gain-pitch> <!-- Elevators very sensitive -->
+          <gain-roll type="double">1.3</gain-roll>   <!-- Ailerons are a little slow -->
+        </config>
+        <panel>
+          <state type="int">0</state>
+          <state-old type="int">0</state-old>
+          <alt-alert type="double">0.0</alt-alert>
+          <alt-alert-arm type="double">0.0</alt-alert-arm>
+          <alt-alert-sound type="bool">false</alt-alert-sound>
+          <ap-timer type="double">0.0</ap-timer>
+          <button-ap type="double">0.0</button-ap>
+          <button-hdg type="double">0.0</button-hdg>
+          <button-nav type="double">0.0</button-nav>
+          <button-apr type="double">0.0</button-apr>
+          <button-rev type="double">0.0</button-rev>
+          <button-alt type="double">0.0</button-alt>
+          <button-up type="double">0.0</button-up>
+          <button-down type="double">0.0</button-down>
+          <button-arm type="double">0.0</button-arm>
+          <button-baro type="double">0.0</button-baro>
+          <knob-inner-pos type="int">0</knob-inner-pos>
+          <knob-outer-pos type="int">0</knob-outer-pos>
+          <baro-timer type="double">0.0</baro-timer>
+          <baro-mode type="int">0</baro-mode>
+          <baro-mode-old type="int">0</baro-mode-old>
+          <digit type="int">0</digit>
+          <digit-mode type="int">0</digit-mode>
+          <digit-timer type="double">0.0</digit-timer>
+          <fpm-timer type="double">0.0</fpm-timer>
+          <hdg-timer type="double">0.0</hdg-timer>
+          <nav-timer type="double">0.0</nav-timer>
+          <pft-1 type="double">0.0</pft-1>
+          <pft-2 type="double">0.0</pft-2>
+          <pft-3 type="double">0.0</pft-3>
+          <pt-up type="bool">false</pt-up>
+          <pt-down type="bool">false</pt-down>
+        </panel>
+        <sensors>
+          <elevator-trim-demand type="double">0.0</elevator-trim-demand>
+          <elevator-trim type="double">0.0</elevator-trim>
+          <pitch-up type="double">0.0</pitch-up>
+          <pitch-down type="double">0.0</pitch-down>
+          <pitch-trim type="double">0.0</pitch-trim>
+          <!--pitch-force type="double">0.0</pitch-force-->
+          <!--roll-force type="double">0.0</roll-force-->
+        </sensors>
+        <servo>
+          <aileron type="double">0.0</aileron>
+          <aileron-rate type="double">0.0</aileron-rate>
+          <elevator type="double">0.0</elevator>
+          <elevator-rate type="double">0.0</elevator-rate>
+          <roll-servo>
+            <serviceable type="bool">true</serviceable>
+          </roll-servo>
+          <pitch-servo>
+            <serviceable type="bool">true</serviceable>
+          </pitch-servo>
+          <elevator-trim-servo>
+            <serviceable type="bool">true</serviceable>
+          </elevator-trim-servo>
+        </servo>
+        <settings>
+          <cws type="bool">false</cws>
+          <ap-disc type="bool">false</ap-disc>
+          <lateral-mode type="int">0</lateral-mode>
+          <lateral-arm type="int">0</lateral-arm>
+          <vertical-mode type="int">0</vertical-mode>
+          <vertical-arm type="int">0</vertical-arm>
+        </settings>
+    </kap140>
  </autopilot>
 
 <instrumentation include="Systems/init-instrumentation.xml"/>
@@ -1369,20 +1481,8 @@
  <file>Aircraft/c182s/Nasal/c182s-electrical.nas</file>
 </electrical>
 
-<kap140>
-   <file>Aircraft/Generic/kap140.nas</file>
-   <!-- We can set some variables that might be
-        aircraft specific. We must do it after the file
-        to override the ones that are in the .nas file.-->
-   <script><![CDATA[
-                    headingNeedleDeflection = "/instrumentation/nav/heading-needle-deflection";
-                    gsNeedleDeflection = "/instrumentation/nav/gs-needle-deflection-norm";
-                    staticPressure = "systems/static-pressure-inhg-selected";
-    ]]>
-</script>
-</kap140>
 
-    <failures>
+  <failures>
     <file>Aircraft/Generic/limits.nas</file>
     <file>Aircraft/c182s/Nasal/custom-failures.nas</file>
   </failures>
@@ -1401,7 +1501,16 @@
     <keyboard>
 
 
-      <key n="89">
+      <key n="121">
+        <name>y</name>
+        <desc>Toggle yoke visibility.</desc>
+        <repeatable type="bool">false</repeatable>
+        <binding>
+          <command>property-toggle</command>
+          <property>sim/model/hide-yoke</property>
+        </binding>
+      </key>
+      <key n="89"> <!-- Y for backwards compatibility of old keybind-->
         <name>Y</name>
         <desc>Toggle yoke visibility.</desc>
         <repeatable type="bool">false</repeatable>
@@ -1411,6 +1520,38 @@
         </binding>
       </key>
 
+      <key n="99">
+        <name>c</name>
+        <desc>CWS Button KAP 140</desc>
+        <binding>
+            <command>property-assign</command>
+            <property>autopilot/kap140/settings/cws</property>
+            <value>1</value>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>property-assign</command>
+                <property>autopilot/kap140/settings/cws</property>
+                <value>0</value>
+            </binding>
+        </mod-up>
+      </key>
+      <key n="67">
+        <name>C</name>
+        <desc>AP-DISC Button KAP 140</desc>
+        <binding>
+            <command>property-assign</command>
+            <property>autopilot/kap140/settings/ap-disc</property>
+            <value>1</value>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>property-assign</command>
+                <property>autopilot/kap140/settings/ap-disc</property>
+                <value>0</value>
+            </binding>
+        </mod-up>
+      </key>
 
       <!-- overwriting { and } default aliases -->
       <key n="123">

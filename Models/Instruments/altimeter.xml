@@ -21,7 +21,6 @@
         <object-name>needle1000</object-name>
         <object-name>needle10000</object-name>
         <object-name>inhg</object-name>
-        <object-name>InhgKnob</object-name>
   <emission>
    <red>1.0</red>
    <green>0.8</green>

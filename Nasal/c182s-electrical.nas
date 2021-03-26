@@ -708,6 +708,7 @@ avionics_bus_1 = func() {
     # Turn Coordinator Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/TurnCoord")) {
     setprop("/systems/electrical/outputs/turn-coordinator", bus_volts);
+    load += bus_volts / 28;
     }else{
     setprop("/systems/electrical/outputs/turn-coordinator",0);    
     }
@@ -715,6 +716,7 @@ avionics_bus_1 = func() {
     # Avionics Fan Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/AvionicsFan")) {
     setprop("/systems/electrical/outputs/avionics-fan", bus_volts);
+    load += bus_volts / 28;
     }else{
     setprop("/systems/electrical/outputs/avionics-fan", 0);
     }
@@ -722,6 +724,7 @@ avionics_bus_1 = func() {
     # GPS Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/GPS")) {
     setprop("/systems/electrical/outputs/gps", bus_volts);
+    load += bus_volts / 28;
      }else{ 
     setprop("/systems/electrical/outputs/gps", 0);
      }
@@ -729,6 +732,7 @@ avionics_bus_1 = func() {
     # HSI Power
     if ( bus_volts > 22 ) {
     setprop("/systems/electrical/outputs/hsi", bus_volts);
+    load += bus_volts / 28;
      }else{ 
     setprop("/systems/electrical/outputs/hsi", 0);
      }
@@ -736,6 +740,7 @@ avionics_bus_1 = func() {
     # NavCom 1 Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom1")) {
     setprop("/systems/electrical/outputs/nav[0]", bus_volts);
+    load += bus_volts / 28;
      }else{   
     setprop("/systems/electrical/outputs/nav[0]", 0);
      } 
@@ -755,6 +760,7 @@ avionics_bus_1 = func() {
     setprop("/systems/electrical/outputs/audio-panel[0]", bus_volts);
  #setprop("/instrumentation/audio-panel[0]/serviceable", true);
     #setprop("/instrumentation/marker-beacon[0]/serviceable", true);
+    load += bus_volts / 28;
      }else{   
     setprop("/systems/electrical/outputs/audio-panel[0]", 0);
  #setprop("/instrumentation/audio-panel[0]/serviceable",0);
@@ -764,6 +770,7 @@ avionics_bus_1 = func() {
     # Com 1 Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom1")) {
     setprop("systems/electrical/outputs/comm[0]", bus_volts);
+    load += bus_volts / 28;
      }else{  
     setprop("systems/electrical/outputs/comm[0]", 0);
 }
@@ -788,6 +795,7 @@ avionics_bus_2 = func() {
     # NavCom 2 Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom2")) {
     setprop("/systems/electrical/outputs/nav[1]", bus_volts);
+    load += bus_volts / 28;
      }else{  
     setprop("/systems/electrical/outputs/nav[1]", 0);
      }
@@ -797,6 +805,7 @@ if ( bus_volts > 22 ) {
     setprop("/systems/electrical/outputs/audio-panel[0]", bus_volts);
 # setprop("/instrumentation/audio-panel[0]/serviceable, true");
    # setprop("/instrumentation/marker-beacon[0]/serviceable, true");
+    load += bus_volts / 28;
      }else{ 
     setprop("/systems/electrical/outputs/audio-panel[0]", 0);
  #setprop("/instrumentation/audio-panel[0]/serviceable, 0");
@@ -807,6 +816,7 @@ if ( bus_volts > 22 ) {
     # Com 2 Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom2")) {
     setprop("systems/electrical/outputs/comm[1]", bus_volts);
+    load += bus_volts / 28;
      }else{ 
     setprop("systems/electrical/outputs/comm[1]", 0);
      }
@@ -824,15 +834,21 @@ if ( bus_volts > 22 ) {
     }
 
     # Autopilot Power
-    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/AutoPilot") and getprop("/autopilot/KAP140/serviceable")) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/AutoPilot") and getprop("/autopilot/kap140/serviceable")) {
     setprop("/systems/electrical/outputs/autopilot", bus_volts);
+    load += bus_volts / 28;
+        if ( math.abs(getprop("/autopilot/kap140/servo/roll-servo/moverate") or 0)  > 0.1) load += 3;
+        if ( math.abs(getprop("/autopilot/kap140/servo/pitch-servo/moverate") or 0) > 0.1) load += 3;
      }else{ 
     setprop("/systems/electrical/outputs/autopilot", 0);
      }
+     
+     
 
     # ADF Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/ADF")) {
     setprop("/systems/electrical/outputs/adf", bus_volts);
+    load += bus_volts / 28;
      }else{ 
     setprop("/systems/electrical/outputs/adf", 0);
      }

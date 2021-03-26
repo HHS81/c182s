@@ -271,7 +271,8 @@
   <model include="Models/Human/humans.xml">
    <path archive="y">Aircraft/c182s/Models/c182t.xml</path>
    <fallback-model-index>3</fallback-model-index>
-   <hide-yoke>false</hide-yoke>
+   <hide-yoke type="bool">false</hide-yoke>
+   <hide-yoke-alpha-cmd>0.25</hide-yoke-alpha-cmd>
 
     <icing>
        <iceable>
@@ -716,7 +717,7 @@
     <desc>Mixture rich/lean</desc>
    </key>
    <key>
-    <name>Y</name>
+    <name>y/Y</name>
     <desc>Toggle yoke visibility</desc>
    </key>
    <key>
@@ -996,6 +997,7 @@
 
             <path>/sim/failure-manager/display-on-screen</path>
             <path>/sim/failure-manager/restore-on-start</path>
+            <path>/sim/model/hide-yoke-alpha-cmd</path>
         </aircraft-data>
 
         <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>
@@ -1329,7 +1331,16 @@
     <keyboard>
       <multikey include="Aircraft/Instruments-3d/FG1000/fg1000-multikey.xml"/>
 
-      <key n="89">
+      <key n="121">
+        <name>y</name>
+        <desc>Toggle yoke visibility.</desc>
+        <repeatable type="bool">false</repeatable>
+        <binding>
+          <command>property-toggle</command>
+          <property>sim/model/hide-yoke</property>
+        </binding>
+      </key>
+      <key n="89"> <!-- Y for backwards compatibility of old keybind-->
         <name>Y</name>
         <desc>Toggle yoke visibility.</desc>
         <repeatable type="bool">false</repeatable>

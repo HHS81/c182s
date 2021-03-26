@@ -40,7 +40,7 @@
                         <property>gear/unit[0]/compression-ft</property>
                     </product>
                     <product>
-                        <value>900</value><!-- damping coefficient -->
+                        <value>200</value><!-- damping coefficient -->
                         <property>gear/unit[0]/compression-velocity-fps</property>
                     </product>
                 </sum>
@@ -51,11 +51,11 @@
             <function>
                 <sum>
                     <product>
-                        <value>5400</value><!-- spring coefficient -->
+                        <value>3600</value><!-- spring coefficient -->
                         <property>gear/unit[1]/compression-ft</property>
                     </product>
                     <product>
-                        <value>200</value><!-- damping coefficient -->
+                        <value>100</value><!-- damping coefficient -->
                         <property>gear/unit[1]/compression-velocity-fps</property>
                     </product>
                 </sum>
@@ -66,11 +66,11 @@
             <function>
                 <sum>
                     <product>
-                        <value>5400</value><!-- spring coefficient -->
+                        <value>3600</value><!-- spring coefficient -->
                         <property>gear/unit[2]/compression-ft</property>
                     </product>
                     <product>
-                        <value>200</value><!-- damping coefficient -->
+                        <value>100</value><!-- damping coefficient -->
                         <property>gear/unit[2]/compression-velocity-fps</property>
                     </product>
                 </sum>

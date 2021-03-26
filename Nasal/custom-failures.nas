@@ -354,6 +354,7 @@ customFailures_c182common = [
     #    trigger:  MtbfTrigger.new(0),
     #},
     
+    
     {id:"instrumentation/avionics/transponder",    name:"Transponder",
         actuator: set_unserviceable("instrumentation/transponder"),
         trigger:  MtbfTrigger.new(0),
@@ -421,8 +422,17 @@ var customFailures_special = {
             actuator: set_unserviceable("instrumentation/annunciator"),
             trigger:  MtbfTrigger.new(0),
         },
-        {id:"instrumentation/avionics/autopilot",    name:"KAP140 Autopilot",
-            actuator: set_unserviceable("autopilot/KAP140"),
+        
+        {id:"instrumentation/avionics/autopilot",    name:"Autopilot",
+            actuator: set_unserviceable("autopilot/kap140"),
+            trigger:  MtbfTrigger.new(0),
+        },
+        {id:"instrumentation/avionics/autopilot-roll-servo",    name:"Autopilot (Roll servo)",
+            actuator: set_unserviceable("autopilot/kap140/servo/roll-servo"),
+            trigger:  MtbfTrigger.new(0),
+        },
+        {id:"instrumentation/avionics/autopilot-pitch-servo",    name:"Autopilot (Pitch servo)",
+            actuator: set_unserviceable("autopilot/kap140/servo/pitch-servo"),
             trigger:  MtbfTrigger.new(0),
         },
         

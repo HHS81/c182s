@@ -26,6 +26,7 @@
     <object-name>NAV</object-name>
     <object-name>GS_out_of_range</object-name>
     <object-name>GS_in_range</object-name>
+    <object-name>disk</object-name> <!-- disk=knob... -->
   </effect>
 
  <animation>
@@ -66,17 +67,6 @@
         <green> 0 </green>
         <blue>  0 </blue>
     </shininess>  
- </animation>
-
- <animation>
-  <type>material</type>
-  <object-name>disk</object-name>
-  <emission>
-   <red>1.0</red>
-   <green>0.8</green>
-   <blue>0.4</blue>
-   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
-  </emission>
  </animation>
 
  <animation>
@@ -175,6 +165,23 @@
  </animation>
 
 <!--	VOR 2 Radial adjust  -->
+<animation>
+    <type>rotate</type>
+    <object-name>disk</object-name>
+    <property alias="../../params/nav-radial-selected"/>
+    <factor>5</factor>
+    <offset-deg>-5</offset-deg>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+    <center>
+        <x-m>0.00484</x-m>
+        <y-m>-0.027219</y-m>
+        <z-m>-0.029242</z-m>
+    </center>
+</animation>
 
 <animation>
     <type>knob</type>

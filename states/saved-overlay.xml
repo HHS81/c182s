@@ -3,6 +3,7 @@
 <PropertyList>
 
   <name type="string">saved</name>
+  <readable-name type="string">Saved</readable-name>
 
   <description>
     The plane will be in the state you left it the last time.
@@ -16,9 +17,6 @@
     </environment>
 
     <sim>
-        <!-- actual init is done via nasal "c182s-states.nas";
-             this value indicates the preset to it. -->
-        <init-state type="string">saved</init-state>
 
     </sim>
 

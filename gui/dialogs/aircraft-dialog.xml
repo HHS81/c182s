@@ -43,23 +43,18 @@
 	<hrule/>
     
     <group>
-        <layout>vbox</layout>
+        <layout>hbox</layout>
         <text><halign>left</halign>
             <label>Start options:</label>
         </text>
-        <empty><stretch>true</stretch></empty>
-        <radio>
+
+        <combo>
             <halign>left</halign>
-            <label>Automatic</label>
-            <property>/sim/start-state-internal/gui-radio-auto</property>
-            <live>true</live>
+            <stretch>true</stretch>
+            <pref-width>300</pref-width>
+            <property>/sim/start-state-internal/gui-selection</property>
             <binding>
                 <command>dialog-apply</command>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state</property>
-                <value>auto</value>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -67,88 +62,14 @@
                     c182s.updateStateSettingGUI();
                 </script>
             </binding>
-        </radio>
-        <radio>
-            <halign>left</halign>
-            <label>Saved state</label>
-            <property>/sim/start-state-internal/gui-radio-saved</property>
-            <live>true</live>
-            <binding>
-                <command>dialog-apply</command>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state</property>
-                <value>saved</value>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>
-                    c182s.updateStateSettingGUI();
-                </script>
-            </binding>
-        </radio>
-        <radio>
-            <halign>left</halign>
-            <label>Cold and Dark</label>
-            <property>/sim/start-state-internal/gui-radio-cold-and-dark</property>
-            <live>true</live>
-            <binding>
-                <command>dialog-apply</command>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state</property>
-                <value>cold-and-dark</value>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>
-                    c182s.updateStateSettingGUI();
-                </script>
-            </binding>
-        </radio>
-        <radio>
-            <halign>left</halign>
-            <label>Ready for Takeoff</label>
-            <property>/sim/start-state-internal/gui-radio-ready-for-takeoff</property>
-            <live>true</live>
-            <binding>
-                <command>dialog-apply</command>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state</property>
-                <value>ready-for-takeoff</value>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>
-                    c182s.updateStateSettingGUI();
-                </script>
-            </binding>
-        </radio>
-        <radio>
-            <halign>left</halign>
-            <label>Cruising</label>
-            <property>/sim/start-state-internal/gui-radio-cruising</property>
-            <live>true</live>
-            <binding>
-                <command>dialog-apply</command>
-            </binding>
-            <binding>
-                <command>property-assign</command>
-                <property>/sim/start-state</property>
-                <value>cruising</value>
-            </binding>
-            <binding>
-                <command>nasal</command>
-                <script>
-                    c182s.updateStateSettingGUI();
-                </script>
-            </binding>
-        </radio>
-        
+            <value>Automatic</value>
+            <value>Saved state</value>
+            <value>Cold and Dark</value>
+            <value>Ready for Takeoff</value>
+            <value>Cruising</value>
+            <value>Approach</value>
+        </combo>
+
         <button>
             <halign>center</halign>
             <legend>Apply now</legend>
@@ -160,7 +81,10 @@
                         <property>/sim/freeze/replay-state</property>
                     </not>
                     <not>
-                        <property>/sim/start-state-internal/gui-radio-saved</property>
+                        <equals>
+                            <property>/sim/start-state-internal/gui-selection-key</property>
+                            <property>/sim/start-state</property>
+                        </equals>
                     </not>
                 </and>
             </enable>
@@ -170,7 +94,15 @@
                     c182s.applyAircraftState();
                 </script>
             </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state-internal/gui-selection-key</property>
+                <property>/sim/start-state</property>
+            </binding>
         </button>
+        
+        <empty><stretch>true</stretch></empty>
+        
     </group>
     
     <hrule/>

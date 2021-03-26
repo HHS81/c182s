@@ -9,6 +9,7 @@ Important properties:
   /instrumentation/davtron803/flight-time-secs         current stored flight timer value (in seconds)
   /instrumentation/davtron803/elapsed-time-secs        current stored elapsed timer value (in seconds)
   /instrumentation/davtron803/logic/                   Generic logic states
+  /instrumentation/davtron803/internal/top-mode        0=E, 1=F, 2=C
   /instrumentation/davtron803/internal/bot-mode        0=UT, 1=LT, 2=FT, 3=ET
   /instrumentation/davtron803/internal/bot-mode-set    if the currently selected mode is in adjust mode: 0=none, 1=first digit, 2=...; 5=finish; -1=init
   /instrumentation/davtron803/internal/flight-timer-alarm-time set time for the FT alarm timer
@@ -226,7 +227,8 @@ Important properties:
         <output>/instrumentation/davtron803/internal/elapsed-timer-step</output>
         <output>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</output>
         <output>/instrumentation/davtron803/internal/bot-mode-set</output>
-        <!-- neccessary? <output>/instrumentation/davtron803/internal/elapsed-timer-alarm-time</output>-->
+        <output>/instrumentation/davtron803/internal/top-mode</output>
+        <output>/instrumentation/davtron803/internal/bot-mode</output>
     </filter>
     
     <!-- start FT if powered on -->

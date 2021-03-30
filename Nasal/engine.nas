@@ -303,6 +303,17 @@ var applySparkPlugicing = func() {
 
 
 
+# ======= Propeller Governor handling =====
+setlistener("/engines/engine[0]/governor/serviceable", func {
+    svc = getprop("/engines/engine[0]/governor/serviceable");
+    if (svc) {
+        interpolate("/engines/engine[0]/governor/serviceable-norm", 1, 5);  # repair
+    } else {
+        interpolate("/engines/engine[0]/governor/serviceable-norm", 0, 5);
+    }
+}, 1, 0);
+
+
 # ======= OIL Pump handling =====
 setlistener("/engines/engine[0]/oil-pump/serviceable", func {
     svc = getprop("/engines/engine[0]/oil-pump/serviceable");

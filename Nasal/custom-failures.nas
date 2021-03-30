@@ -394,6 +394,11 @@ customFailures_c182common = [
     },
     
     
+    {id:"engine/governor", name:"Prop Governor",
+        actuator: set_unserviceable_abs("/engines/engine[0]/governor/serviceable"),
+        trigger:  MtbfTrigger.new(0)
+    },
+    
     
     {id:"engine/magnetos", name:"Magnetos",
         actuator: fail_random_magnetos(),

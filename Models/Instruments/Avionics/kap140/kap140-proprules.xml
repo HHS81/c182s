@@ -1823,6 +1823,37 @@ We have captured the localizer and the GS.
                     <value>6</value>
                 </less-than>
                 <property>instrumentation/nav-source/signal-valid</property>
+                
+                <or>
+                    <!-- with DG+ROL mode: capture once the calculated intercept course is smaller than the commanded ROL course difference -->
+                    <and>
+                        <not><property alias="../../../../../../params/hsi-installed" /></not>
+                        <equals>
+                            <property>autopilot/kap140/settings/lateral-mode</property>
+                            <value>1</value>
+                        </equals>
+                        
+                        <greater-than-equals>
+                            <expression>
+                                <difference>
+                                    <abs><property>/autopilot/internal/heading-bug-latch-error</property></abs>
+                                    <abs><property>/autopilot/internal/intercept-angle</property></abs>
+                                </difference>
+                            </expression>
+                            <value>0</value>
+                        </greater-than-equals>
+                    </and>
+                    
+                    <!-- with HSI or DG+HDG: capture just using the radial course error -->
+                    <property alias="../../../../../../params/hsi-installed" />
+                    <and>
+                        <not-equals>
+                            <property>autopilot/kap140/settings/lateral-mode</property>
+                            <value>1</value>
+                        </not-equals>
+                    </and>
+                </or>
+                
                 <less-than>
                     <expression>
                         <abs><property>instrumentation/nav-source/heading-needle-deflection-norm</property></abs>

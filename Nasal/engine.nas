@@ -46,26 +46,6 @@ var update_hobbs_meter = func {
 setlistener("/sim/time/hobbs/engine", update_hobbs_meter, 1, 0);
 
 
-# ========== engine selection =====================
-for (var i = 1; i <= 11; i = i + 1) {
-    # select just the first engine, ther are not more defined currently
-    setprop("/sim/input/selected/engine["~i~"]", 0);
-}
-
-
-# ========== Propeller pitch control ================
-# (overwrites default functions to use custom property)
-controls.adjPropeller = func(speed) {
-    controls.adjEngControl("propeller-pitch-cmd", speed);
-}
-controls.propellerAxis = controls.axisHandler("/controls/engines/engine[", "]/propeller-pitch-cmd");
-
-setlistener("/controls/engines/engine/propeller-pitch-cmd", func(p){
-    # clamp lever values
-    if (p.getValue() < 0.0) p.setValue(0);
-    if (p.getValue() > 1.0) p.setValue(1);
-},0,0);
-
 
 # ========== engine coughing ======================
 
@@ -321,17 +301,6 @@ var applySparkPlugicing = func() {
     }
 }
 
-
-
-# ======= Propeller Governor handling =====
-setlistener("/engines/engine[0]/governor/serviceable", func {
-    svc = getprop("/engines/engine[0]/governor/serviceable");
-    if (svc) {
-        interpolate("/engines/engine[0]/governor/serviceable-norm", 1, 5);  # repair
-    } else {
-        interpolate("/engines/engine[0]/governor/serviceable-norm", 0, 5);
-    }
-}, 1, 0);
 
 
 # ======= OIL Pump handling =====

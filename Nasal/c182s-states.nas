@@ -98,7 +98,7 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
     setprop("/controls/engines/engine/magnetos", 3);
     setprop("/controls/engines/engine[0]/throttle", 0.2);
     setprop("/controls/engines/engine[0]/mixture", getprop("/controls/engines/engine/mixture-maxaltitude"));
-    setprop("/controls/engines/engine[0]/propeller-pitch-cmd", 1);
+    setprop("/controls/engines/engine[0]/propeller-pitch", 1);
     
     
     
@@ -137,7 +137,7 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
         # apply desired after-start properties
         setprop("/controls/engines/engine[0]/throttle", throttle);
         setprop("/controls/engines/engine[0]/mixture", mix);
-        setprop("/controls/engines/engine[0]/propeller-pitch-cmd", prop);
+        setprop("/controls/engines/engine[0]/propeller-pitch", prop);
         
         # all done, go home
         setprop("/engines/engine/auto-start", 0);
@@ -220,7 +220,7 @@ var checklist_beforeEngineStart = func() {
     setprop("/controls/switches/magnetos", 3);
     setprop("/controls/engines/engine[0]/throttle", 0.2);
     setprop("/controls/engines/engine[0]/mixture", getprop("/controls/engines/engine/mixture-maxaltitude"));
-    setprop("/controls/engines/engine[0]/propeller-pitch-cmd", 1);
+    setprop("/controls/engines/engine[0]/propeller-pitch", 1);
     setprop("/controls/engines/engine/cowl-flaps-norm", 1);
     setprop("/controls/engines/engine[0]/fuel-pump", 0);
     setprop("/controls/flight/elevator-trim", 0.0);

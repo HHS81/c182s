@@ -406,35 +406,39 @@
             <property>/engines/engine[0]/oil-pressure-psi-final</property>
         </output>
     </filter>
-    
-    
+
+
     <!-- Propeller governor low oil condition fail forward-->
     <filter>
         <name>Propeller Governor oil press</name>
         <type>gain</type>
         <input>
-            <!-- No governor oil effect if not enabled in options -->
+            <!-- No governor oil effect if not enabled in options, but still failable -->
             <condition>
                 <or>
                     <not> <property>/engines/engine/complex-engine-procedures</property> </not>
                     <not> <property>/engines/engine/allow-oil-management</property> </not>
                 </or>
             </condition>
-            <value>1</value>
+            <property>/engines/engine[0]/governor/serviceable-norm</property>
         </input>
         <input>
             <expression>
-                <!--  -1 + (1/25 * x)  gives 0=25psi and good from 50psi and above -->
-                <sum>
-                    <value>-1</value>
-                    <product>
-                        <div>
-                            <value>1</value>
-                            <value>25</value>
-                        </div>
-                        <property>/engines/engine[0]/oil-pressure-psi-final</property>
-                    </product>
-                </sum>
+                <product>
+                    <property>/engines/engine[0]/governor/serviceable-norm</property> <!-- governor smooth serviceable result from engine.nas -->
+                    
+                    <!--  -1 + (1/25 * x)  gives 0=25psi and good from 50psi and above -->
+                    <sum>
+                        <value>-1</value>
+                        <product>
+                            <div>
+                                <value>1</value>
+                                <value>25</value>
+                            </div>
+                            <property>/engines/engine[0]/oil-pressure-psi-final</property>
+                        </product>
+                    </sum>
+                </product>
             </expression>
         </input>
         <output>
@@ -444,25 +448,11 @@
         <max>1.0</max>
     </filter>
     <filter>
-        <name>Propeller Governor</name>
-        <type>gain</type>
-        <input>
-            <expression>
-                <max>
-                    <difference>
-                        <value>1</value>
-                        <product>
-                            <property>/engines/engine[0]/governor/serviceable-norm</property>
-                            <property>/engines/engine[0]/governor/oil-pressure-norm</property>
-                        </product>
-                    </difference>
-                    <property>/controls/engines/engine[0]/propeller-pitch-cmd</property>
-                </max>
-            </expression>
-        </input>
-        <output>
-            <property>/controls/engines/engine[0]/propeller-pitch</property>
-        </output>
+        <name>Propeller Governor failure smooth change</name>
+        <type>noise-spike</type>
+        <max-rate-of-change> 0.08 </max-rate-of-change>
+        <input>/engines/engine[0]/governor/serviceable</input>
+        <output>/engines/engine[0]/governor/serviceable-norm</output>
     </filter>
 
 </PropertyList>

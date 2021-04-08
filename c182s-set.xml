@@ -895,7 +895,7 @@
             <!--<path>/consumables/fuel/tank[5]/level-gal_us</path> manifold should not be saved! -->
             <path>/controls/engines/engine[0]/mixture</path>
             <path>/controls/engines/engine[0]/throttle</path>
-            <path>/controls/engines/engine[0]/propeller-pitch-cmd</path>
+            <path>/controls/engines/engine[0]/propeller-pitch</path>
             <path>/engines/engine[0]/oil-level</path>
             <path>/engines/engine[0]/oil-service-hours</path>
             <path>/controls/gear/brake-parking</path>
@@ -1160,7 +1160,6 @@
     <magnetos type="int">3</magnetos>
     <master-bat type="bool">true</master-bat>
     <master-alt type="bool">true</master-alt>
-    <propeller-pitch-cmd type="double">1.0</propeller-pitch-cmd>
    </engine>
   </engines>
   <lighting>
@@ -1342,7 +1341,6 @@
    <cowling-air-temperature-degf>40</cowling-air-temperature-degf> <!-- OAT in the cowling -->
    <governor>
         <serviceable type="bool">true</serviceable>
-        <!--<serviceable-norm type="double">1.0</serviceable-norm>-->
     </governor>
   </engine>
  </engines>

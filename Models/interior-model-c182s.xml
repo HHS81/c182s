@@ -913,7 +913,7 @@
     <animation>
         <type>translate</type>
         <object-name>PropControl</object-name>
-        <property>controls/engines/engine[0]/propeller-pitch-cmd</property>
+        <property>controls/engines/engine[0]/propeller-pitch</property>
         <factor>-0.0825</factor>
         <axis>
             <x>1.0</x>
@@ -930,7 +930,7 @@
         <action>
             <binding>
                 <command>property-adjust</command>
-                <property>/controls/engines/engine[0]/propeller-pitch-cmd</property>
+                <property>/controls/engines/engine[0]/propeller-pitch</property>
                 <factor>0.05</factor>
                 <min>0</min>
                 <max>1</max>
@@ -944,7 +944,7 @@
                 <measure-text>Propeller Pitch: 100%</measure-text>
                 <tooltip-id>Propeller Pitch</tooltip-id>
                 <mapping>percent</mapping>
-                <property>/controls/engines/engine[0]/propeller-pitch-cmd</property>
+                <property>/controls/engines/engine[0]/propeller-pitch</property>
             </binding>
         </hovered>
     </animation>

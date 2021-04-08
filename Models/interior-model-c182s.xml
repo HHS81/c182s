@@ -3594,25 +3594,7 @@
                     <value>12</value>
                 </greater-than>
                 <property>instrumentation/annunciator/serviceable</property>
-                <or>
-                    <!-- take value of L or R if just one of them is 'on', otherwise both -->
-                    <and>
-                        <property>instrumentation/annunciator/fuel-low-l</property>
-                        <not><property>instrumentation/annunciator/fuel-low-r</property></not>
-                        <property>instrumentation/annunciator/fuel-low-l-indicated</property>
-                    </and>
-                    <and>
-                        <not><property>instrumentation/annunciator/fuel-low-l</property></not>
-                        <property>instrumentation/annunciator/fuel-low-r</property>
-                        <property>instrumentation/annunciator/fuel-low-r-indicated</property>
-                    </and>
-                    <and>
-                        <property>instrumentation/annunciator/fuel-low-r</property>
-                        <property>instrumentation/annunciator/fuel-low-l</property>
-                        <property>instrumentation/annunciator/fuel-low-r-indicated</property>
-                        <property>instrumentation/annunciator/fuel-low-l-indicated</property>
-                    </and>
-                </or>
+                <property>instrumentation/annunciator/fuel-low-indicated</property>
             </and>
         </condition>
     </animation>

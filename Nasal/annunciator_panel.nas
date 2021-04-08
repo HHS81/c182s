@@ -145,6 +145,32 @@ var AnnunciatorMax = {
     
 };
 
+# Annunciator class that triggers if one of the properties is true
+# Extends Annunciator base class
+var AnnunciatorOR = {
+    new: func(tgt_prop, src_prop_list) {
+        var m = Annunciator.new(tgt_prop);  # call parent constructor
+        append(m.parents, AnnunciatorOR);
+        m.src = src_prop_list;
+
+        return m;
+    },
+    
+    # Expected from Annunciator base class: tests if this annunciator was triggered
+    isTriggered: func() {
+        var r = 0;
+        foreach(var p; me.src) {
+            if (getprop(p) > 0) {
+                r = 1;
+                break;
+            }
+            #print("  DBG: check annunciator: "~me.tgt~"    ["~p~"] > 0? => "~r);
+        }
+        return r;
+    },
+    
+};
+
 
 
 
@@ -157,6 +183,7 @@ annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"vac-low-r",   
 annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"oilpress-low", "/engines/engine/indicated-oil-pressure-psi", 21.0) );
 annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"fuel-low-r",   "/consumables/fuel/tank[1]/indicated-level-gal_us", 8) );
 annunciator_panel.add( AnnunciatorMin.new(annunciator_panel.node~"fuel-low-l",   "/consumables/fuel/tank[0]/indicated-level-gal_us", 8) );
+annunciator_panel.add( AnnunciatorOR.new(annunciator_panel.node~"fuel-low",      ["/instrumentation/annunciator/fuel-low-l", "/instrumentation/annunciator/fuel-low-r"] ) );
 annunciator_panel.add( AnnunciatorMax.new(annunciator_panel.node~"pitch-trim",   "/instrumentation/annunciator/pitch-trim-trigger", 0) );
 
 #TODO: for mor realism... the fuel detection should probably be modelled finer using a custom class: The POH says, that the annunciator nly fires if the low-condition is met for at least 60 seconds

@@ -246,11 +246,6 @@
                         <property>/gear/gear[20]/wow</property>
                     </or>
                     <property>/velocities/groundspeed-kt</property>
-                    <greater-than>
-                        <property>/velocities/groundspeed-kt</property>
-                        <value>5</value>
-                    </greater-than>
-                    <property>/velocities/groundspeed-kt</property>
                     <property>ground/solid</property>
                     <product>
                         <or>
@@ -273,10 +268,6 @@
                         <property>/gear/gear[2]/wow</property>
                         <property>/gear/gear[22]/wow</property>
                     </or>
-                    <greater-than>
-                        <property>/velocities/groundspeed-kt</property>
-                        <value>5</value>
-                    </greater-than>
                     <property>/velocities/groundspeed-kt</property>
                     <property>ground/solid</property>
                     <product>

@@ -715,6 +715,10 @@
     <desc>Mixture rich/lean</desc>
    </key>
    <key>
+    <name>f/F</name>
+    <desc>Cowl flaps close/open</desc>
+   </key>
+   <key>
     <name>y/Y</name>
     <desc>Toggle yoke visibility</desc>
    </key>
@@ -1337,7 +1341,20 @@
           <property>sim/model/hide-yoke</property>
         </binding>
       </key>
-
+      <key n="102">
+        <name>f</name>
+        <desc>Cowl flaps close</desc>
+        <binding>
+            <command>c182_cowlflap_step_close</command>
+        </binding>
+      </key>
+      <key n="70">
+        <name>F</name>
+        <desc>Cowl flaps open</desc>
+        <binding>
+            <command>c182_cowlflap_step_open</command>
+        </binding>
+      </key>
 
       <!-- overwriting { and } default aliases -->
       <key n="123">

@@ -135,6 +135,9 @@
   
   <checklists include="c182t-checklists.xml"/>
 
+  <virtual-cockpit>true</virtual-cockpit>
+  <allow-toggle-cockpit>true</allow-toggle-cockpit>
+
   <!-- Overlays (called with "state" command line option) -->
   <state include="states/auto-overlay.xml"     n="0" />
   <state include="states/saved-overlay.xml"    n="1" />

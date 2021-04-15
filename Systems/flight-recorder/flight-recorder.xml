@@ -2,6 +2,7 @@
 
 <!--
     Copyright (c) 2015 onox
+    Copyright (c) 2021 B. Hallinger
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,6 +19,7 @@
 -->
 
 <PropertyList>
+    <name type="string">C182 Flight Recorder</name>
 
     <!-- Generic components -->
     
@@ -28,20 +30,186 @@
     <!-- Gear -->
     <signals include="/Aircraft/Generic/flightrecorder/components/gear-fixed.xml">
         <count type="int">3</count>
-</signals>
+    </signals>
 
     
-    <!-- Engine faults -->
+    <!-- Engine -->
+    <signals include="/Aircraft/Generic/flightrecorder/components/engine-piston-prop.xml">
+        <count type="int">1</count>
+    </signals>
     <signals include="/Aircraft/Generic/flightrecorder/components/faults-engines.xml">
         <count type="int">1</count>
     </signals>
+    <signal>
+        <type>float</type>
+        <property type="string">/engines/engine[0]/oil-level</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/controls/engines/engine/cowl-flaps-norm</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/engines/engine/thruster/rpm</property>
+    </signal>
+    
 
     <!-- Tanks -->
     <signals include="/Aircraft/Generic/flightrecorder/components/tanks.xml">
         <count type="int">3</count>
-</signals>
+    </signals>
+    
+    <!-- Systems -->
+    <signal>
+        <type>int8</type>
+        <property type="string">/systems/static-selected-source</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/systems/static-selected-source-norm</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/systems/electrical/battery-charge-percent</property>
+    </signal>
 
 
+    <!-- Instruments -->
+    <signals include="/Aircraft/Generic/flightrecorder/components/kx165.xml">
+        <count type="int">2</count>
+    </signals>
+    <signal>
+        <type>int16</type>
+        <property type="string">/instrumentation/nav[0]/radials/selected-deg</property>
+    </signal>
+    <signal>
+        <type>int16</type>
+        <property type="string">/instrumentation/nav[1]/radials/selected-deg</property>
+    </signal>
+    <signal>
+        <type>bool</type>
+        <property type="string">/controls/gear/gear-down</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/instrumentation/airspeed-indicator/tas-face-rotation</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/instrumentation/altimeter/indicated-altitude-ft</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/instrumentation/altimeter/setting-inhg</property>
+    </signal>
+    
+    
+    
+    <!-- Switches -->
+    <signal>
+        <type>int8</type>
+        <property type="string">/controls/switches/fuel_tank_selector</property>
+    </signal>
+    <signal>
+        <type>bool</type>
+        <property type="string">/controls/engines/engine[0]/master-bat</property>
+    </signal>
+    <signal>
+        <type>bool</type>
+        <property type="string">/controls/engines/engine[0]/master-alt</property>
+    </signal>
+    <signal>
+        <type>int8</type>
+        <property type="string">/controls/switches/magnetos</property>
+    </signal>
+    <signal>
+        <type>bool</type>
+        <property type="string">/controls/switches/AVMBus1</property>
+    </signal>
+    <signal>
+        <type>bool</type>
+        <property type="string">/controls/switches/AVMBus2</property>
+    </signal>
+    <signal>
+        <type>bool</type>
+        <property type="string">/controls/lighting/dome-light-r</property>
+    </signal>
+    <signal>
+        <type>bool</type>
+        <property type="string">/controls/lighting/dome-light-l</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/controls/lighting/instrument-lights-norm</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/controls/lighting/glareshield-lights-norm</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/controls/lighting/pedestal-lights-norm</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/controls/lighting/radio-lights-norm</property>
+    </signal>
+    
+    <signal>
+        <type>int8</type>
+        <property type="string">/controls/lighting/landing-lights</property>
+    </signal>
+    <signal>
+        <type>int8</type>
+        <property type="string">/controls/lighting/taxi-light</property>
+    </signal>
+    <signal>
+        <type>bool</type>
+        <property type="string">/controls/lighting/strobe</property>
+    </signal>
+    <signal>
+        <type>bool</type>
+        <property type="string">/controls/lighting/beacon</property>
+    </signal>
+    <signal>
+        <type>bool</type>
+        <property type="string">/controls/lighting/nav-lights</property>
+    </signal>
+    <signal>
+        <type>bool</type>
+        <property type="string">/controls/anti-ice/pitot-heat</property>
+    </signal>
+    <signal>
+        <type>bool</type>
+        <property type="string">/controls/engines/engine[0]/fuel-pump</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/environment/aircraft-effects/cabin-heat-set</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/environment/aircraft-effects/cabin-air-set</property>
+    </signal>
+    <signal>
+        <type>float</type>
+        <property type="string">/environment/aircraft-effects/defrost-set</property>
+    </signal>
+    
+    <!--
+    <signal>
+        <type>bool</type>
+        <property type="string">XXX</property>
+    </signal>
+    -->
 
 
 </PropertyList>

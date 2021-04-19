@@ -233,7 +233,7 @@
 
       <float n="5" alias="/systems/electrical/outputs/landing-lights"/>
       <float n="6" alias="/systems/electrical/outputs/taxi-light"/>
-      <float n="7" alias="/systems/electrical/strobe-source"/>
+      <float n="7" alias="/systems/electrical/outputs/strobe"/>
       <float n="8" alias="/systems/electrical/beacon-source"/>
       <float n="9" alias="/systems/electrical/outputs/nav-lights"/>
 

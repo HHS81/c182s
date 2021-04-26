@@ -146,6 +146,20 @@
   <state include="states/cruising-overlay.xml" n="4" />
   <state include="states/approach-overlay.xml" n="5" />
 
+  <hitches>
+    <aerotow>
+        <force_name_jsbsim type="string">hitch</force_name_jsbsim>
+        <force-is-calculated-by-other type="bool">true</force-is-calculated-by-other>
+        <mp-auto-connect-period type="float">1.0</mp-auto-connect-period>
+        <!-- OPTIONAL
+            <decoupled-force-and-rope-locations type="bool">true</decoupled-force-and-rope-locations>
+            <local-pos-x type="float">1.5</local-pos-x>
+            <local-pos-y type="float"> 0.00</local-pos-y>
+            <local-pos-z type="float">-0.3</local-pos-z>
+        -->
+    </aerotow>
+  </hitches>
+
   <systems>
     <path>Aircraft/c182s/Systems/systems.xml</path>
     <autopilot>
@@ -728,6 +742,10 @@
    <key>
     <name>s</name>
     <desc>Engine Starter</desc>
+   </key>
+   <key>
+       <name>O</name>
+       <desc>Open aerotow-hook</desc>
    </key>
    <key>
     <name>:p</name>
@@ -1325,7 +1343,14 @@
  <input>
     <keyboard>
       <multikey include="Aircraft/Instruments-3d/FG1000/fg1000-multikey.xml"/>
-
+      <key n="79">
+        <name>O</name>
+        <desc>Open aerotow-hook</desc>
+        <binding>
+          <command>nasal</command>
+          <script>towing.releaseHitch("aerotow")</script>
+        </binding>
+      </key>
       <key n="121">
         <name>y</name>
         <desc>Toggle yoke visibility.</desc>

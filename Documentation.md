@@ -130,6 +130,12 @@ A [quick introduction is in the FGFS-wiki](https://wiki.flightgear.org/Bendix/Ki
 - Severe turbolences may trigger the over-g disconnect safety.
 
 
+### Aerotowing gliders
+The C182S and C182T are equipped with an tow hook and can tow any JSBSim/YASIM glider compatible to FlightGears standard implementation.
+
+Once the glider pilot hooked into your Cessna, you can press `SHIFT-O` to release the hook. For connecting, get close infront of the glider. When accelerating, do it with caution, otherwise the rope my rip. Expect also other airplane behaviour when towing (longer takeoff roll, etc).
+
+
 FAQ
 ---
 Most of the [C172p's FAQ](http://wiki.flightgear.org/Cessna_172P#FAQ) also applies to the 182, so also read those.

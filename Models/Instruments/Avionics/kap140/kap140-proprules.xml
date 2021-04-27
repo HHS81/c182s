@@ -1114,7 +1114,6 @@ We have captured the localizer and the GS.
                 <or>
                     <property>autopilot/kap140/pitch-axis-fail</property>
                     <property>autopilot/kap140/roll-axis-fail</property>
-                    <property>autopilot/kap140/settings/ap-disc</property>
                     <not><property>autopilot/kap140/sensors/turn-indicator-operable</property></not>
                     <and>
                         <not><property>autopilot/kap140/settings/cws</property></not>
@@ -1185,10 +1184,73 @@ We have captured the localizer and the GS.
         <output>autopilot/kap140/panel/gs-timer</output>
         <output>autopilot/kap140/panel/baro-timer</output>
         <output>autopilot/kap140/panel/digit-timer</output>
+        <output>autopilot/kap140/panel/button-ap</output>
         <output>autopilot/kap140/settings/cws</output>
         <output>autopilot/kap140/settings/ap-disc</output>
         <output>autopilot/kap140/sensors/pitch-up</output>
         <output>autopilot/kap140/sensors/pitch-down</output>
+    </filter>
+
+<!-- disengage via ap-disc -->
+
+    <filter>
+        <name>clear ap-disc</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <property>autopilot/kap140/settings/ap-disc</property>
+                <less-than>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>6</value>
+                </less-than>
+            </condition>
+        </enable>
+        <input>0</input>
+        <output>autopilot/kap140/settings/ap-disc</output>
+    </filter>
+
+    <filter>
+        <name>ap-disc set state-old</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <property>autopilot/kap140/settings/ap-disc</property>
+                <equals>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>6</value>
+                </equals>
+                <equals>
+                    <property>autopilot/kap140/panel/state-old</property>
+                    <value>5</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>6</input>
+        <output>autopilot/kap140/panel/state-old</output>
+    </filter>
+
+    <filter>
+        <name>ap-disc set state</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <property>autopilot/kap140/settings/ap-disc</property>
+                <equals>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>6</value>
+                </equals>
+                <equals>
+                    <property>autopilot/kap140/panel/state-old</property>
+                    <value>6</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>5</input>
+        <output>autopilot/kap140/panel/state</output>
+        <output>autopilot/kap140/panel/ap-timer</output>
     </filter>
 
 <!-- set default lateral mode at AP activation -->

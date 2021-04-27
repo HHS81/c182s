@@ -14,7 +14,7 @@
         <!-- this file with comments for stall and spin to help -->
         <!-- from further modifications for c172p-detailed 2015 -->
 	<!--many coefficients from David Megginson: http://www.megginson.com/Aviation/roskam-coefficients.html#sec.data-->
-        <description> Cessna C-182T </description>
+        <description> Cessna C-182S </description>
     </fileheader>
 
     <metrics>
@@ -1183,10 +1183,11 @@
                 </table>
         </function>
 	
-	<function name="aero/function/vel-propwash-fps">
+	      <function name="aero/function/vel-propwash-fps">
             <description> propeller induced velocity </description>
                 <property>propulsion/engine/prop-induced-velocity_fps</property>
         </function>
+	
 
         <function name="aero/function/qbar-propwash-psf">
             <description> q bar due to the propeller induced velocity </description>

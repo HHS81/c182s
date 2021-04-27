@@ -778,7 +778,19 @@
 
 
 
-        <menubar include="gui/dialogs/c182s-menu.xml"/>
+        <menubar include="gui/dialogs/c182s-menu.xml">
+          <default n="0">
+            <menu n="10">
+              <item n="99">
+                <label>Aircraft Failure Management</label>
+                <binding>
+                    <command>dialog-show</command>
+                    <dialog-name>extended-failure-dialog-c182s</dialog-name>
+                </binding>
+              </item>
+            </menu>
+          </default>
+        </menubar>
 
        <!-- Splash screens. One is randomly chosen when FlightGear starts -->
         <previews>
@@ -1324,6 +1336,9 @@
    <oil-temperature-degf-indicated type="double">60</oil-temperature-degf-indicated> <!-- oil temp for the gauge (filtered) -->
    <oil-service-hours type="double">0</oil-service-hours>
    <cowling-air-temperature-degf>40</cowling-air-temperature-degf> <!-- OAT in the cowling -->
+   <governor>
+        <serviceable type="bool">true</serviceable>
+    </governor>
   </engine>
  </engines>
 

@@ -679,6 +679,25 @@ var RL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("contro
 	if (getprop("/systems/electrical/outputs/radio-lights-norm") >1.0){
 	setprop("/systems/electrical/outputs/radio-lights-norm", 1.0)};
 
+# Control the backlighting of the bezel based on the avionics light knob
+var FG1000_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("/controls/lighting/avionics-lights-norm"));
+    if (getprop("/systems/electrical/outputs/ecrf") > 5.0) {
+      setprop("/instrumentation/FG1000/Lightmap", FG1000_DIMMER/28);
+      
+      # Used from GMA audio panel
+      # TODO: The panel does not support proper lighting right now.
+      #setprop("/controls/lighting/floods-lights", FG1000_DIMMER/28);
+      #setprop("/controls/lighting/instrument-lights", FG1000_DIMMER/28);
+      
+      load += FG1000_DIMMER/28
+    } else {
+      setprop("/instrumentation/FG1000/Lightmap", 0.0);
+      
+      # Used from GMA audio panel
+      # TODO: The panel does not support proper lighting right now.
+      #setprop("/controls/lighting/floods-lights", 0);
+      #setprop("/controls/lighting/instrument-lights", 0);
+    }
     
 
     # return cumulative load
@@ -703,6 +722,7 @@ avionics_bus_1 = func() {
     # Turn Coordinator Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/TurnCoord")) {
     setprop("/systems/electrical/outputs/turn-coordinator", bus_volts);
+    load += bus_volts / 24;
     }else{
     setprop("/systems/electrical/outputs/turn-coordinator",0);    
     }
@@ -710,20 +730,23 @@ avionics_bus_1 = func() {
     # Avionics Fan Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/AvionicsFan")) {
     setprop("/systems/electrical/outputs/avionics-fan", bus_volts);
+    load += bus_volts / 24;
     }else{
     setprop("/systems/electrical/outputs/avionics-fan", 0);
     }
     
-    # FG1000 Power.  Should probably be split so the PFD and MFD are on different buses and with difference CBs
-    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/GPS")) {
-    setprop("/systems/electrical/outputs/fg1000", bus_volts);
-     }else{ 
-    setprop("/systems/electrical/outputs/fg1000", 0);
-     }
+    # FG1000 PFD Power.
+    if ( bus_volts > 22 and getprop("/instrumentation/fg1000/screen1/serviceable") ) {
+        setprop("/systems/electrical/outputs/fg1000-pfd", bus_volts);
+        load += bus_volts / 28;
+    }else{ 
+        setprop("/systems/electrical/outputs/fg1000-pfd", 0);
+    }
      
     # HSI Power
     if ( bus_volts > 22 ) {
     setprop("/systems/electrical/outputs/hsi", bus_volts);
+    load += bus_volts / 24;
      }else{ 
     setprop("/systems/electrical/outputs/hsi", 0);
      }
@@ -731,6 +754,7 @@ avionics_bus_1 = func() {
     # NavCom 1 Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom1")) {
     setprop("/systems/electrical/outputs/nav[0]", bus_volts);
+    load += bus_volts / 24;
      }else{   
     setprop("/systems/electrical/outputs/nav[0]", 0);
      } 
@@ -750,6 +774,7 @@ avionics_bus_1 = func() {
     setprop("/systems/electrical/outputs/audio-panel[0]", bus_volts);
  #setprop("/instrumentation/audio-panel[0]/serviceable", true);
     #setprop("/instrumentation/marker-beacon[0]/serviceable", true);
+    load += bus_volts / 24;
      }else{   
     setprop("/systems/electrical/outputs/audio-panel[0]", 0);
  #setprop("/instrumentation/audio-panel[0]/serviceable",0);
@@ -759,6 +784,7 @@ avionics_bus_1 = func() {
     # Com 1 Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom1")) {
     setprop("systems/electrical/outputs/comm[0]", bus_volts);
+    load += bus_volts / 24;
      }else{  
     setprop("systems/electrical/outputs/comm[0]", 0);
 }
@@ -780,9 +806,18 @@ avionics_bus_2 = func() {
     
     var load = bus_volts / 20.0;
 
+    # FG1000 PFD Power.
+    if ( bus_volts > 22 and getprop("/instrumentation/fg1000/screen2/serviceable") ) {
+        setprop("/systems/electrical/outputs/fg1000-mfd", bus_volts);
+        load += bus_volts / 28;
+    }else{ 
+        setprop("/systems/electrical/outputs/fg1000-mfd", 0);
+    }
+
     # NavCom 2 Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom2")) {
     setprop("/systems/electrical/outputs/nav[1]", bus_volts);
+    load += bus_volts / 24;
      }else{  
     setprop("/systems/electrical/outputs/nav[1]", 0);
      }
@@ -802,6 +837,7 @@ if ( bus_volts > 22 ) {
     # Com 2 Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom2")) {
     setprop("systems/electrical/outputs/comm[1]", bus_volts);
+    load += bus_volts / 24;
      }else{ 
     setprop("systems/electrical/outputs/comm[1]", 0);
      }
@@ -821,6 +857,7 @@ if ( bus_volts > 22 ) {
     # Autopilot Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/AutoPilot") and getprop("/autopilot/KAP140/serviceable")) {
     setprop("/systems/electrical/outputs/autopilot", bus_volts);
+    load += bus_volts / 24;
      }else{ 
     setprop("/systems/electrical/outputs/autopilot", 0);
      }
@@ -828,6 +865,7 @@ if ( bus_volts > 22 ) {
     # ADF Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/ADF")) {
     setprop("/systems/electrical/outputs/adf", bus_volts);
+    load += bus_volts / 24;
      }else{ 
     setprop("/systems/electrical/outputs/adf", 0);
      }

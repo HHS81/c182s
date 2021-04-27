@@ -276,8 +276,9 @@
 
     <icing>
        <iceable>
-         <name>Wing</name>          <sensitivity type="double">1.0</sensitivity>
-          <output-property>/fdm/jsbsim/ice/wing</output-property>
+         <name>Wing</name>
+         <sensitivity type="double">1.0</sensitivity>
+         <output-property>/fdm/jsbsim/ice/wing</output-property>
         </iceable>
         <iceable>
          <name>Stabilizer</name>
@@ -363,7 +364,8 @@
 </securing>
 
 <procedural-lights type="bool">true</procedural-lights>
-<enable-fog-frost type="bool">true</enable-fog-frost>
+<enable-fog-frost type="bool">false</enable-fog-frost>
+<enable-fog-frost-msgs type="bool">true</enable-fog-frost-msgs>
 
 
 	<material>
@@ -735,6 +737,13 @@
         <menubar include="gui/dialogs/c182s-menu.xml">
           <default n="0">
             <menu n="10">
+              <item n="97">
+                <label>Aircraft Failure Management</label>
+                <binding>
+                    <command>dialog-show</command>
+                    <dialog-name>extended-failure-dialog-c182t</dialog-name>
+                </binding>
+              </item>
               <item n="98">
                 <label>Display PFD</label>
                 <binding>
@@ -865,6 +874,7 @@
             <path>/instrumentation/audio-panel/hi</path>
             <path>/instrumentation/audio-panel/lo</path>
             <path>/instrumentation/audio-panel/volume-ics-pilot</path>
+            <path>/instrumentation/audio-panel/fgcom-integration</path>
             <path>/instrumentation/marker-beacon/audio-btn</path>
             <path>/instrumentation/marker-beacon/volume-default</path> <!-- hard wired in GMA340, but can be changed (in-sim just adjust the property) -->
             <path>/surface-positions/flap-pos-norm</path>
@@ -990,6 +1000,7 @@
             <path>/sim/model/hide-yoke-alpha-cmd</path>
         </aircraft-data>
 
+        <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>
  </sim>
 
  <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
@@ -1096,6 +1107,7 @@
    <kt-76c type="double">0</kt-76c>
    <kn-62a type="double">0</kn-62a>
    <fuel_tank_selector type="double">2</fuel_tank_selector> <!-- 0=off, 1=right, 2=both, 3=left -->
+   <magnetos type="int">3</magnetos>
   </switches>
   <circuit-breakers>
     <Flap type="bool">1</Flap>
@@ -1153,6 +1165,9 @@
    <oil-temperature-degf-indicated type="double">60</oil-temperature-degf-indicated> <!-- oil temp for the gauge (filtered) -->
    <oil-service-hours type="double">0</oil-service-hours>
    <cowling-air-temperature-degf>40</cowling-air-temperature-degf> <!-- OAT in the cowling -->
+   <governor>
+        <serviceable type="bool">true</serviceable>
+    </governor>
   </engine>
  </engines>
 
@@ -1275,7 +1290,7 @@
     <file>Aircraft/c182s/Nasal/gma340.nas</file>
     <file>Aircraft/c182s/Nasal/c182s-states.nas</file>
     <file>Aircraft/c182s/Nasal/flashlight.nas</file>
-    <file>Aircraft/c182s/Nasal/annunciator_panel.nas</file>
+    <!-- implemented in FG1000: <file>Aircraft/c182s/Nasal/annunciator_panel.nas</file>-->
     <file>Aircraft/c182s/Nasal/damage.nas</file>
     <file>Aircraft/c182s/Nasal/c182t.nas</file>
 </c182s>
@@ -1367,6 +1382,34 @@
                 <script>c182s.stepMagnetos(0)</script>
             </binding>
         </mod-up>
+      </key>
+      
+      <!-- Overwrite FGCom PTT (space) -->
+      <key n="32">
+        <name>SPACE</name>
+        <desc>PTT - Push To Talk (via FGCom) but select radio</desc>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.gma340_ptt(1, 0)</script>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.gma340_ptt(0, 0)</script>
+            </binding>
+        </mod-up>
+        <mod-shift>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.gma340_ptt(1, 1)</script>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>nasal</command>
+                    <script>c182s.gma340_ptt(0, 1)</script>
+                </binding>
+            </mod-up>
+        </mod-shift>
       </key>
 
     </keyboard>

@@ -1264,6 +1264,7 @@
 				<command>property-assign</command>
 				<property>autopilot/internal/target-pressure</property>
 				<property>environment/pressure-inhg</property>
+				<property alias="../../../../params/pressure-source"/>
 			</binding>
 		</button>
 		

@@ -614,6 +614,8 @@
 						<property>autopilot/kap140/panel/state</property>
 						<value>4</value>
 					</greater-than>
+					<not><property>autopilot/kap140/roll-axis-fail</property></not>
+					<not><property>autopilot/kap140/pitch-axis-fail</property></not>
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/kap140/panel/state-old</property>
@@ -625,6 +627,8 @@
 						<property>autopilot/kap140/panel/state</property>
 						<value>4</value>
 					</greater-than>
+					<not><property>autopilot/kap140/roll-axis-fail</property></not>
+					<not><property>autopilot/kap140/pitch-axis-fail</property></not>
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/internal/target-climb-rate</property>
@@ -1196,10 +1200,10 @@
 						<property>autopilot/kap140/panel/state</property>
 						<value>6</value>
 					</equals>
-					<equal>
+					<equals>
 						<property>autopilot/kap140/settings/vertical-mode</property>
 						<value>1</value>
-					</equal>
+					</equals>
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/kap140/settings/vertical-mode</property>
@@ -1211,10 +1215,10 @@
 						<property>autopilot/kap140/panel/state</property>
 						<value>6</value>
 					</equals>
-					<less-than>
+					<equals>
 						<property>autopilot/kap140/settings/vertical-mode</property>
-						<value>0</value>
-					</less-than>
+						<value>-1</value>
+					</equals>
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/kap140/settings/vertical-mode</property>
@@ -1222,6 +1226,21 @@
 			</binding>
 			<binding>
 				<condition>
+					<equals>
+						<property>autopilot/kap140/panel/state</property>
+						<value>6</value>
+					</equals>
+				</condition>
+				<command>property-assign</command>
+				<property>autopilot/kap140/panel/gs-timer</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<condition>
+					<equals>
+						<property>autopilot/kap140/panel/state</property>
+						<value>6</value>
+					</equals>
 					<equals>
 						<property>autopilot/kap140/settings/vertical-mode</property>
 						<value>1</value>
@@ -1234,6 +1253,10 @@
 			<binding>
 				<condition>
 					<equals>
+						<property>autopilot/kap140/panel/state</property>
+						<value>6</value>
+					</equals>
+					<equals>
 						<property>autopilot/kap140/settings/vertical-mode</property>
 						<value>2</value>
 					</equals>
@@ -1241,6 +1264,7 @@
 				<command>property-assign</command>
 				<property>autopilot/internal/target-pressure</property>
 				<property>environment/pressure-inhg</property>
+				<property alias="../../../../params/pressure-source"/>
 			</binding>
 		</button>
 		
@@ -1368,10 +1392,10 @@
 						<property>autopilot/kap140/panel/state</property>
 						<value>6</value>
 					</equals>
-					<greater-than>
+					<equals>
 						<property>autopilot/kap140/settings/vertical-arm</property>
 						<value>0</value>
-					</greater-than>
+					</equals>
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/kap140/settings/vertical-arm</property>
@@ -1689,7 +1713,7 @@
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/kap140/settings/vertical-arm</property>
-				<value>1</value>
+				<value>2</value>
 			</binding>
 		</button>
 		<button>
@@ -1722,7 +1746,7 @@
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/kap140/settings/vertical-arm</property>
-				<value>1</value>
+				<value>2</value>
 			</binding>
 		</button>
 		<group>
@@ -1764,7 +1788,7 @@
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/kap140/settings/vertical-arm</property>
-				<value>1</value>
+				<value>2</value>
 			</binding>
 		</button>
 		<button>
@@ -1797,7 +1821,7 @@
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/kap140/settings/vertical-arm</property>
-				<value>1</value>
+				<value>2</value>
 			</binding>
 		</button>
 	</group>

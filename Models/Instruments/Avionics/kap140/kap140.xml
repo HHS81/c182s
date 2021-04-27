@@ -1444,6 +1444,8 @@
             <property>autopilot/kap140/panel/state</property>
             <value>4</value>
           </greater-than>
+          <not><property>autopilot/kap140/roll-axis-fail</property></not>
+          <not><property>autopilot/kap140/pitch-axis-fail</property></not>
         </condition>
         <command>property-assign</command>
         <property>autopilot/kap140/panel/state-old</property>
@@ -1455,6 +1457,8 @@
             <property>autopilot/kap140/panel/state</property>
             <value>4</value>
           </greater-than>
+          <not><property>autopilot/kap140/roll-axis-fail</property></not>
+          <not><property>autopilot/kap140/pitch-axis-fail</property></not>
         </condition>
         <command>property-assign</command>
         <property>autopilot/internal/target-climb-rate</property>

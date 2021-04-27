@@ -145,6 +145,16 @@ The lower LCD row displays four different timing information, the active mode is
   - You can setup an countdown timer by by pressing the _select_ and _control_ buttons together (**shift-click one of the two buttons**). Enter the digits like just described at the FT alarm mode. After confirming the last digit, the countdown is armed and ready to be started by another press of _control_. The alarm will go off once the countdown reaches zero. You can confirm the the alarm by either pressing _select_ or _control_.
 
 
+Dual Control feature
+-------------------------
+You can join a remote pilot as copilot! The pilot just uses the normal C182S Aircraft while the copilot must start the special "CoPilot" aircraft variant (select from the launcher).
+
+Once connected to the multiplayer server, both select each other trough the multiplayer menu entry *Select dual-control MP-pilot*:
+- Upon selection, the CoPilot instance will switch into the copilot seat.
+- Once the pilot selected the copilot too, he will send its full state to the copilot, so he sees most instruments etc.
+
+
+
 FAQ
 ---
 Most of the [C172p's FAQ](http://wiki.flightgear.org/Cessna_172P#FAQ) also applies to the 182, so also read those.

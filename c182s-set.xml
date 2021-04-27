@@ -62,6 +62,7 @@
             <tag>tricycle</tag>
             <tag>ifr</tag>
             <tag>high-wing</tag>
+            <tag>dual-controls</tag>
         </tags>
     <minimum-fg-version>2018.3.0</minimum-fg-version>
     <rating>
@@ -245,6 +246,7 @@
   </panel>
 
   <multiplay>
+    <!-- NOTE: Look also into c182s-aircraft-dual-control.nas for reserved slots! -->
     <generic>
       <float n="0" alias="/sim/model/door-positions/DoorL/position-norm-effective"/>
       <float n="1" alias="/sim/model/door-positions/DoorR/position-norm-effective"/>
@@ -266,20 +268,30 @@
       <float n="13" alias="/fdm/jsbsim/gear/unit[2]/z-position"/>
       <float n="14" alias="/engines/engine/crashed"/>
       <!-- Not animated yet
-      <float n="xx" alias="/fdm/jsbsim/wing-damage/left-wing"/>
-      <float n="xx" alias="/fdm/jsbsim/wing-damage/right-wing"/>
+      <float n="15" alias="/fdm/jsbsim/wing-damage/left-wing"/>
+      <float n="16" alias="/fdm/jsbsim/wing-damage/right-wing"/>
       -->
+
+      <!-- Dual-Control: float 17 to 29 -->
 
       <float n="30" alias="/sim/rendering/refl_correction"/>
       <float n="31" alias="/sim/rendering/fresnel-factor"/>
       <float n="32" alias="/sim/rendering/refl-type"/>
       <float n="33" alias="/sim/rendering/ambient_correction"/>
+      
+      <!-- Dual-Control: float 34 to 39 -->
 
       <!-- Registration number over MP -->
       <string n="0" alias="/sim/model/immat"/>
+      
+      <!-- Dual-Control: string 1-5 -->
 
       <bool n="0" alias="/sim/model/c182s/nw_fairing"/>
       <bool n="1" alias="/sim/model/c182s/mw_fairing"/>
+      
+      <!-- Dual-Control: bool 1-5 -->
+      
+      <!-- Dual-Control: int 17-19 -->
 
       <!-- passengers/crew -->
       <bool n="2" alias="/sim/model/crew/pilot[1]/enabled"/>
@@ -786,17 +798,26 @@
 
 
         <menubar include="gui/dialogs/c182s-menu.xml">
-          <default n="0">
-            <menu n="10">
-              <item n="99">
-                <label>Aircraft Failure Management</label>
-                <binding>
-                    <command>dialog-show</command>
-                    <dialog-name>extended-failure-dialog-c182s</dialog-name>
-                </binding>
-              </item>
-            </menu>
-          </default>
+            <default n="0">
+                <menu n="7"> <!-- multiplayer -->
+                    <item n="50">
+                        <label>Select dual-control MP-pilot</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>dual_control_tools.copilot_dialog.show(aircraft_dual_control.copilot_type)</script>
+                        </binding>
+                    </item>
+                    </menu>
+                    <menu n="10">
+                        <item n="99">
+                        <label>Aircraft Failure Management</label>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>extended-failure-dialog-c182s</dialog-name>
+                        </binding>
+                    </item>
+                </menu>
+            </default>
         </menubar>
 
        <!-- Splash screens. One is randomly chosen when FlightGear starts -->
@@ -1498,6 +1519,18 @@
       <file>Aircraft/c182s/Nasal/PitotIcing.nas</file>
       <file>Aircraft/c182s/Nasal/StaticIcing.nas</file>
 </icing>
+
+
+    <!-- Dual control infrastructure. This is safe to load always as it just runs when connected -->
+    <dual_control_tools>
+        <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
+    </dual_control_tools>
+    <aircraft_dual_control>
+        <file>Nasal/c182s-aircraft-dual-control.nas</file>
+    </aircraft_dual_control>
+    <dual_control>
+        <file>Aircraft/Generic/DualControl/pilot-dual-control.nas</file>
+    </dual_control>
 
  </nasal>
 

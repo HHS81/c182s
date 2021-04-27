@@ -61,9 +61,50 @@
             alias(rplayer.getNode("sim/multiplay/generic/float[14]"));
 # Wing damage animation not yet implemented: poperties not known
 #        rplayer.getNode("fdm/jsbsim/wing-damage/left-wing", 1).
-#            alias(rplayer.getNode("sim/multiplay/generic/float[xx]"));
+#            alias(rplayer.getNode("sim/multiplay/generic/float[15]"));
 #        rplayer.getNode("fdm/jsbsim/wing-damage/right-wing", 1).
-#            alias(rplayer.getNode("sim/multiplay/generic/float[xx]"));
+#            alias(rplayer.getNode("sim/multiplay/generic/float[16]"));
+
+        # Flight controls (in dual-control, otherwise unset)
+        rplayer.getNode("controls/flight/aileron", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[17]"));
+        rplayer.getNode("controls/flight/elevator", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[18]"));
+
+        # Instruments (in dual-control, otherwise unset)
+        rplayer.getNode("fdm/jsbsim/velocities/vias-kts", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[19]"));
+        rplayer.getNode("instrumentation/attitude-indicator/indicated-pitch-deg", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[20]"));
+        rplayer.getNode("instrumentation/attitude-indicator/indicated-roll-deg", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[21]"));
+        rplayer.getNode("instrumentation/altimeter/indicated-altitude-ft", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[22]"));
+        rplayer.getNode("engines/engine/indicated-egt-degf", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[23]"));
+        rplayer.getNode("engines/engine/indicated-cht-degf", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[24]"));
+        rplayer.getNode("instrumentation/vertical-speed-indicator/indicated-speed-fpm", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[25]"));
+        rplayer.getNode("instrumentation/heading-indicator/indicated-heading-deg", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[26]"));
+        rplayer.getNode("instrumentation/turn-indicator/indicated-turn-rate", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[27]"));
+        rplayer.getNode("instrumentation/slip-skid-ball/indicated-slip-skid", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[28]"));
+        rplayer.getNode("engines/engine/mp-inhg", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[29]"));
+        rplayer.getNode("engines/engine/indicated-manfold-fuel-flow-gph", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[34]"));
+        rplayer.getNode("instrumentation/nav[0]/filtered-cdiNAV0-deflection", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[35]"));
+        rplayer.getNode("instrumentation/nav[0]/filtered-gsNAV0-deflection", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[36]"));
+        rplayer.getNode("instrumentation/nav[1]/filtered-cdiNAV0-deflection", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[37]"));
+        rplayer.getNode("instrumentation/nav[1]/filtered-gsNAV0-deflection", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[38]"));
+            
 
         rplayer.getNode("sim/model/c182s/nw_fairing_lcl", 1).
             alias(rplayer.getNode("sim/multiplay/generic/bool[0]"));
@@ -2118,7 +2159,7 @@
             <z-m>0.0</z-m>
         </offsets>
 	<condition>
-	<property>/sim/model/c182s/securing/pitot-cover-visible</property>
+	<property>sim/model/c182s/securing/pitot-cover-visible</property>
 	</condition>
 	</model>
 	
@@ -2185,7 +2226,7 @@
 	<type>select</type>
         <object-name>WinterKit</object-name>
 	<condition>
-	<property>/engines/engine/winter-kit-installed</property>
+	<property>engines/engine/winter-kit-installed</property>
 	</condition>	
 </animation>
 <animation>

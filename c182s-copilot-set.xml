@@ -1,0 +1,184 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+
+<PropertyList >
+
+    <sim>
+        <variant-of>c182s</variant-of>
+        <description>Cessna 182S (1996; Copilot for dual-control)</description>
+        <long-description>This is a multiplayer copilot view for the Cessna 182s.
+            You must specify the pilot using the dialog from the Multiplayer menu and the Pilot must do this too.
+        </long-description>
+        <tags>
+            <tag>ga</tag>
+            <tag>cessna</tag>
+            <tag>piston</tag>
+            <tag>1990s</tag>
+            <tag>single-engine</tag>
+            <tag>fixed-gear</tag>
+            <tag>tricycle</tag>
+            <tag>ifr</tag>
+            <tag>high-wing</tag>
+            <tag>dual-controls</tag>
+        </tags>
+        <minimum-fg-version>2018.3.0</minimum-fg-version>
+
+        <!-- no fdm, and no 3d model: we expect remote state -->
+        <flight-model archive="y">null</flight-model>
+        <model>
+            <path>Aircraft/c182s/Models/c182s-copilot.xml</path>
+        </model>
+
+        <checklists include="c182s-checklists.xml"/>
+
+        <view n="0">
+            <name>CoPilot View</name>
+            <enabled type="bool">true</enabled>
+            <type>lookfrom</type>
+            <internal type="bool">true</internal>
+            <config>
+                <from-model type="bool">true</from-model>
+                <from-model-idx type="int">0</from-model-idx>
+                <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+                <default-field-of-view-deg type="double">75</default-field-of-view-deg>
+                <default-pitch-deg type="double">-10</default-pitch-deg>
+                <default-heading-deg type="double">0</default-heading-deg>
+                <front-direction-deg type="double">0</front-direction-deg>
+                <front-left-direction-deg type="double">45</front-left-direction-deg>
+                <left-direction-deg type="double">90</left-direction-deg>
+                <back-left-direction-deg type="double">135</back-left-direction-deg>
+                <back-direction-deg type="double">180</back-direction-deg>
+                <back-right-direction-deg type="double">225</back-right-direction-deg>
+                <right-direction-deg type="double">270</right-direction-deg>
+                <front-right-direction-deg type="double">315</front-right-direction-deg>
+                <dynamic-view type="bool">true</dynamic-view>
+                <x-offset-m archive="y">0.25</x-offset-m>
+                <y-offset-m archive="y">0.59</y-offset-m>
+                <z-offset-m archive="y">1.26</z-offset-m>
+                <pitch-offset-deg>-10</pitch-offset-deg>
+                <limits>
+                    <enabled type="bool">true</enabled>
+                    <left>
+                        <heading-max-deg type="double">160</heading-max-deg>
+                        <x-offset-max-m type="double">0.25</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                    </left>
+                    <right>
+                        <heading-max-deg type="double">160</heading-max-deg>
+                        <x-offset-max-m type="double">0.15</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
+                    </right>
+                </limits>
+            </config>
+        </view>
+        
+        <view n="100">
+            <name>Pilot View</name>
+            <internal archive="y">true</internal>
+            <config>
+                <default-field-of-view-deg>75</default-field-of-view-deg>
+                <x-offset-m archive="y">-0.25</x-offset-m>
+                <y-offset-m archive="y">0.59</y-offset-m>
+                <z-offset-m archive="y">1.26</z-offset-m>
+                <pitch-offset-deg>-10</pitch-offset-deg>
+                <limits>
+                    <enabled type="bool">true</enabled>
+                    <left>
+                        <heading-max-deg type="double">160</heading-max-deg>
+                        <x-offset-max-m type="double">0.15</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">40</x-offset-threshold-deg>
+                    </left>
+                    <right>
+                        <heading-max-deg type="double">160</heading-max-deg>
+                        <x-offset-max-m type="double">0.22</x-offset-max-m>
+                        <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+                    </right>
+                </limits>
+            </config>
+        </view>
+        <view n="1">
+			<config>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
+        <view n="100">
+			<config>
+				<target-z-offset-m archive="y" type="double">1.5</target-z-offset-m>
+			</config>
+		</view>
+
+        <menubar>
+            <default>
+                <menu n="7"> <!-- multiplayer -->
+                    <item n="50">
+                        <label>Select dual-control MP-pilot</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>dual_control_tools.copilot_dialog.show(aircraft_dual_control.pilot_type)</script>
+                        </binding>
+                    </item>
+                </menu>
+            </default>
+        </menubar>
+        
+        <!-- Splash screens. One is randomly chosen when FlightGear starts -->
+        <previews>
+            <preview>
+                <type>cockpit</type>
+                <path>Previews/cockpit_c182s-1.png</path>
+                <splash type="bool">true</splash>
+            </preview>
+            <preview>
+                <type>cockpit</type>
+                <path>Previews/cockpit_c182s-2.png</path>
+                <splash type="bool">true</splash>
+            </preview>
+        </previews>
+    
+    </sim>
+    
+    <!-- Some instruments work OK locally -->
+    <instrumentation>
+        <magnetic-compass>
+            <number>0</number>
+        </magnetic-compass>
+        <clock>
+            <number>0</number>
+        </clock>
+        <marker-beacon>
+            <number>0</number>
+        </marker-beacon>
+    </instrumentation>
+    
+    
+    
+    <nasal>
+        <!-- Dual control infrastructure. This is safe to load always as it just runs when connected -->
+        <dual_control_tools>
+            <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
+        </dual_control_tools>
+        <aircraft_dual_control>
+            <file>Nasal/c182s-aircraft-dual-control.nas</file>
+        </aircraft_dual_control>
+        <dual_control>
+            <file>Aircraft/Generic/DualControl/copilot-dual-control.nas</file>
+        </dual_control>
+
+    </nasal>
+    
+    <!-- ================ map keyboard ================ -->
+    <input>
+        <keyboard>
+
+            <key n="89">
+                <name>Y</name>
+                <desc>Toggle yoke visibility.</desc>
+                <repeatable type="bool">false</repeatable>
+                <binding>
+                <command>property-toggle</command>
+                <property>sim/model/hide-yoke</property>
+                </binding>
+            </key>
+        </keyboard>
+    </input>
+    
+</PropertyList>

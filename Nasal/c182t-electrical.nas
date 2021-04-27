@@ -198,7 +198,8 @@ AlternatorClass.get_output_volts = func {
         factor = 1.0;
     }
     # print( "alternator volts = ", me.ideal_volts * factor );
-    if ( getprop("/controls/circuit-breakers/AltFLD") and getprop("/systems/electrical/alternator-serviceable") ) {
+    var starter = getprop("controls/switches/starter");
+    if ( !starter and getprop("/controls/circuit-breakers/AltFLD") and getprop("/systems/electrical/alternator-serviceable") ) {
         return me.ideal_volts * factor;
     } else {
         return 0.0;
@@ -220,7 +221,8 @@ AlternatorClass.get_output_amps = func {
         factor = 1.0;
     }
     # print( "alternator amps = ", ideal_amps * factor );
-    if ( getprop("/controls/circuit-breakers/AltFLD") ) {
+    var starter = getprop("controls/switches/starter");
+    if ( !starter and getprop("/controls/circuit-breakers/AltFLD") and getprop("/systems/electrical/alternator-serviceable") ) {
         return me.ideal_amps * factor;
     } else {
         return 0.0;
@@ -331,6 +333,7 @@ update_virtual_bus = func( dt ) {
     if (starter_volts > 22) {
         setprop("controls/engines/engine[0]/starter",1);
         setprop("controls/switches/magnetos",3);
+        load += 250;
     } else {
         setprop("controls/engines/engine[0]/starter",0);
     }
@@ -583,6 +586,7 @@ cross_feed_bus = func() {
     if ( getprop("/controls/circuit-breakers/Warn") ) {
         setprop("/systems/electrical/outputs/annunciators", bus_volts);
         setprop("/systems/electrical/outputs/stallhorn", bus_volts);
+        load += bus_volts / 12;
     } else {
         setprop("/systems/electrical/outputs/annunciators", 0.0);
         setprop("/systems/electrical/outputs/stallhorn", 0.0);

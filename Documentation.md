@@ -125,8 +125,8 @@ A [quick introduction is in the FGFS-wiki](https://wiki.flightgear.org/Bendix/Ki
 
 - The AP can be activated by pressing and holding the "AP" key on the instrument. Note that the AP only activates after the automatic preflight checks are complete (`PFT n` in display). During these checks, various annunciators will illuminate. The AP will only engage after those are vanished.
 - After the PFT, you are prompted to enter a barometric pressure by a flashing `29.92` setting in the top right corner. The AP will not allow to be engaged until it is initialized.
-- The autopilot features a disconnect knob which is accessible by pressing `SHIFT-C`; the AP will disconnect and stay off.
-- Temporarily disconnect can be activated by pressing the `C` key. After release the AP will continue with its program.
+- The autopilot features a disconnect knob which is accessible by pressing `SHIFT-D`; the AP will disconnect and stay off.
+- Temporarily disconnect ("CWS") can be activated by pressing the `d` key. After release the AP will continue with its program.
 - Severe turbolences may trigger the over-g disconnect safety.
 
 
@@ -153,6 +153,10 @@ Once connected to the multiplayer server, both select each other trough the mult
 - Upon selection, the CoPilot instance will switch into the copilot seat.
 - Once the pilot selected the copilot too, he will send its full state to the copilot, so he sees most instruments etc.
 
+### Aerotowing gliders
+The C182S and C182T are equipped with an tow hook and can tow any JSBSim/YASIM glider compatible to FlightGears standard implementation.
+
+Once the glider pilot hooked into your Cessna, you can press `SHIFT-O` to release the hook. For connecting, get close infront of the glider. When accelerating, do it with caution, otherwise the rope my rip. Expect also other airplane behaviour when towing (longer takeoff roll, etc).
 
 
 FAQ

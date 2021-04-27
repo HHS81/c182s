@@ -135,6 +135,9 @@
   
   <checklists include="c182t-checklists.xml"/>
 
+  <virtual-cockpit>true</virtual-cockpit>
+  <allow-toggle-cockpit>true</allow-toggle-cockpit>
+
   <!-- Overlays (called with "state" command line option) -->
   <state include="states/auto-overlay.xml"     n="0" />
   <state include="states/saved-overlay.xml"    n="1" />
@@ -142,6 +145,20 @@
   <state include="states/idling-overlay.xml"   n="3" />
   <state include="states/cruising-overlay.xml" n="4" />
   <state include="states/approach-overlay.xml" n="5" />
+
+  <hitches>
+    <aerotow>
+        <force_name_jsbsim type="string">hitch</force_name_jsbsim>
+        <force-is-calculated-by-other type="bool">true</force-is-calculated-by-other>
+        <mp-auto-connect-period type="float">1.0</mp-auto-connect-period>
+        <!-- OPTIONAL
+            <decoupled-force-and-rope-locations type="bool">true</decoupled-force-and-rope-locations>
+            <local-pos-x type="float">1.5</local-pos-x>
+            <local-pos-y type="float"> 0.00</local-pos-y>
+            <local-pos-z type="float">-0.3</local-pos-z>
+        -->
+    </aerotow>
+  </hitches>
 
   <systems>
     <path>Aircraft/c182s/Systems/systems.xml</path>
@@ -717,12 +734,20 @@
     <desc>Mixture rich/lean</desc>
    </key>
    <key>
+    <name>f/F</name>
+    <desc>Cowl flaps close/open</desc>
+   </key>
+   <key>
     <name>y/Y</name>
     <desc>Toggle yoke visibility</desc>
    </key>
    <key>
     <name>s</name>
     <desc>Engine Starter</desc>
+   </key>
+   <key>
+       <name>O</name>
+       <desc>Open aerotow-hook</desc>
    </key>
    <key>
     <name>:p</name>
@@ -1328,7 +1353,14 @@
  <input>
     <keyboard>
       <multikey include="Aircraft/Instruments-3d/FG1000/fg1000-multikey.xml"/>
-
+      <key n="79">
+        <name>O</name>
+        <desc>Open aerotow-hook</desc>
+        <binding>
+          <command>nasal</command>
+          <script>towing.releaseHitch("aerotow")</script>
+        </binding>
+      </key>
       <key n="121">
         <name>y</name>
         <desc>Toggle yoke visibility.</desc>
@@ -1347,7 +1379,20 @@
           <property>sim/model/hide-yoke</property>
         </binding>
       </key>
-
+      <key n="102">
+        <name>f</name>
+        <desc>Cowl flaps close</desc>
+        <binding>
+            <command>c182_cowlflap_step_close</command>
+        </binding>
+      </key>
+      <key n="70">
+        <name>F</name>
+        <desc>Cowl flaps open</desc>
+        <binding>
+            <command>c182_cowlflap_step_open</command>
+        </binding>
+      </key>
 
       <!-- overwriting { and } default aliases -->
       <key n="123">

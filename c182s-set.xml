@@ -154,6 +154,23 @@
   <state include="states/cruising-overlay.xml" n="4" />
   <state include="states/approach-overlay.xml" n="5" />
 
+  <virtual-cockpit>true</virtual-cockpit>
+  <allow-toggle-cockpit>true</allow-toggle-cockpit>
+
+  <hitches>
+    <aerotow>
+        <force_name_jsbsim type="string">hitch</force_name_jsbsim>
+        <force-is-calculated-by-other type="bool">true</force-is-calculated-by-other>
+        <mp-auto-connect-period type="float">1.0</mp-auto-connect-period>
+        <!-- OPTIONAL
+            <decoupled-force-and-rope-locations type="bool">true</decoupled-force-and-rope-locations>
+            <local-pos-x type="float">1.5</local-pos-x>
+            <local-pos-y type="float"> 0.00</local-pos-y>
+            <local-pos-z type="float">-0.3</local-pos-z>
+        -->
+    </aerotow>
+  </hitches>
+
   <systems>
     <path>Aircraft/c182s/Systems/systems.xml</path>
     <autopilot n="0"> <!-- Must be before KAP140 -JD -->
@@ -770,11 +787,11 @@
    <line>  Takeoff ground roll: 795ft  over 50ft obstacle: 1,514ft</line>
    <line>  Landing ground roll: 590ft  over 50ft obstacle: 1,390ft</line>
    <key>
-    <name>c</name>
+    <name>d</name>
     <desc>KAP140 Autopilot CWS</desc>
    </key>
    <key>
-    <name>C</name>
+    <name>D</name>
     <desc>KAP140 Autopilot Disconnect</desc>
    </key>
    <key>
@@ -786,12 +803,20 @@
     <desc>Mixture rich/lean</desc>
    </key>
    <key>
+    <name>f/F</name>
+    <desc>Cowl flaps close/open</desc>
+   </key>
+   <key>
     <name>y/Y</name>
     <desc>Toggle yoke visibility</desc>
    </key>
    <key>
     <name>s</name>
     <desc>Engine Starter</desc>
+   </key>
+   <key>
+       <name>O</name>
+       <desc>Open aerotow-hook</desc>
    </key>
   </help>
 
@@ -1538,7 +1563,14 @@
  <input>
     <keyboard>
 
-
+      <key n="79">
+        <name>O</name>
+        <desc>Open aerotow-hook</desc>
+        <binding>
+          <command>nasal</command>
+          <script>towing.releaseHitch("aerotow")</script>
+        </binding>
+      </key>
       <key n="121">
         <name>y</name>
         <desc>Toggle yoke visibility.</desc>
@@ -1558,37 +1590,51 @@
         </binding>
       </key>
 
-      <key n="99">
-        <name>c</name>
+      <key n="100">
+        <name>d</name>
         <desc>CWS Button KAP 140</desc>
-        <binding>
+        <binding n="20">
             <command>property-assign</command>
             <property>autopilot/kap140/settings/cws</property>
             <value>1</value>
         </binding>
         <mod-up>
-            <binding>
+            <binding n="20">
                 <command>property-assign</command>
                 <property>autopilot/kap140/settings/cws</property>
                 <value>0</value>
             </binding>
         </mod-up>
       </key>
-      <key n="67">
-        <name>C</name>
+      <key n="68">
+        <name>D</name>
         <desc>AP-DISC Button KAP 140</desc>
-        <binding>
+        <binding n="20">
             <command>property-assign</command>
             <property>autopilot/kap140/settings/ap-disc</property>
             <value>1</value>
         </binding>
         <mod-up>
-            <binding>
+            <binding n="20">
                 <command>property-assign</command>
                 <property>autopilot/kap140/settings/ap-disc</property>
                 <value>0</value>
             </binding>
         </mod-up>
+      </key>
+      <key n="102">
+        <name>f</name>
+        <desc>Cowl flaps close</desc>
+        <binding>
+            <command>c182_cowlflap_step_close</command>
+        </binding>
+      </key>
+      <key n="70">
+        <name>F</name>
+        <desc>Cowl flaps open</desc>
+        <binding>
+            <command>c182_cowlflap_step_open</command>
+        </binding>
       </key>
 
       <!-- overwriting { and } default aliases -->

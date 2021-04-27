@@ -130,6 +130,21 @@ A [quick introduction is in the FGFS-wiki](https://wiki.flightgear.org/Bendix/Ki
 - Severe turbolences may trigger the over-g disconnect safety.
 
 
+### Davtron 803 digital clock
+The Davtron M803 digital clock displays various information to the pilot. The clock is turned on automatically when the master battery switch is engaged.
+
+The LCD top row can show outside air temperature (OAT) in Fahrenheit and Celsius, and also the current battery voltage. Cycling between these is available by pushing the top button.
+
+The lower LCD row displays four different timing information, the active mode is currently highlighted left via a blinking annunciator: UTC-Time (UT), Local-Time (LT), Elapsed flight time (FT) and a elapsed time counter (ET).
+
+- Flight timer (FT):
+  - The flight timer starts counting as soon as power is applied. To reset the timer, push and hold the _control_ button for at least 3 seconds (display will show `99:59` and reset the flight timer once button is released).
+  - You can setup an alarm for reaching a future flight time (audible tone and flashing display) by pressing the _select_ and _control_ buttons together (**shift-click one of the two buttons**). This will enter the setup mode: the currently selected digit will blink, you can cycle it with the _control_ knob. If you are satisfied, the _select_ button will bring you to the next digit. When all four digits are confirmed, the alarm is armed automatically.
+- Elapsed timer (ET):
+  - The elapsed timer starts when you selected ET mode and then push the _control_ button. The next button press stops the timer. Another press resets it to zero.
+  - You can setup an countdown timer by by pressing the _select_ and _control_ buttons together (**shift-click one of the two buttons**). Enter the digits like just described at the FT alarm mode. After confirming the last digit, the countdown is armed and ready to be started by another press of _control_. The alarm will go off once the countdown reaches zero. You can confirm the the alarm by either pressing _select_ or _control_.
+
+
 FAQ
 ---
 Most of the [C172p's FAQ](http://wiki.flightgear.org/Cessna_172P#FAQ) also applies to the 182, so also read those.

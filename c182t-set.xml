@@ -919,8 +919,6 @@
             <path>/instrumentation/attitude-indicator/horizon-offset-deg</path>
             <path>/instrumentation/airspeed-indicator/tas-face-rotation</path>
             <path>/instrumentation/heading-indicator/offset-deg</path>
-            <path>/instrumentation/davtron803/top-mode</path>
-            <path>/instrumentation/davtron803/bot-mode</path>
             <path>/autopilot/settings/heading-bug-deg</path>
             <path>/instrumentation/transponder/id-code</path>
             <path>/instrumentation/transponder/factory-vfr-code</path>
@@ -1299,9 +1297,6 @@
         <file>Aircraft/c182s/Nasal/terrain.nas</file>
     </terrain>
 
-<davtron803>
-    <file>Aircraft/c182s/Nasal/davtron803.nas</file>
-</davtron803>
 
 <electrical>
  <file>Aircraft/c182s/Nasal/c182t-electrical.nas</file>

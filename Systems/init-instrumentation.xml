@@ -134,9 +134,10 @@
 </dme>
 
 <davtron803>
-    <serviceable type="bool">1</serviceable>
-    <top-mode type="string">F</top-mode>
-    <bot-mode type="string">LT</bot-mode>
+    <internal>
+        <top-mode type="int">0</top-mode>
+        <bot-mode type="int">0</bot-mode>
+    </internal>
     <flight-time type="string">00:00</flight-time>
     <elapsed-time type="string">00:00</elapsed-time>
 </davtron803>

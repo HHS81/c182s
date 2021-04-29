@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+DAVTRON M803 clock
+This file defines the control logic of the instrument.
+Actual instrument is a mix of nasal based and convas.
+
+Important properties:
+  /instrumentation/davtron803/flight-time-secs         current stored flight timer value (in seconds)
+  /instrumentation/davtron803/elapsed-time-secs        current stored elapsed timer value (in seconds)
+  /instrumentation/davtron803/logic/                   Generic logic states
+  /instrumentation/davtron803/internal/top-mode        0=E, 1=F, 2=C
+  /instrumentation/davtron803/internal/bot-mode        0=UT, 1=LT, 2=FT, 3=ET
+  /instrumentation/davtron803/internal/bot-mode-set    if the currently selected mode is in adjust mode: 0=none, 1=first digit, 2=...; 5=finish; -1=init
+  /instrumentation/davtron803/internal/flight-timer-alarm-time set time for the FT alarm timer
+
+
+-->
+
+<PropertyList>
+
+    <!-- where we get power from -->
+    <filter>
+        <name>Power source</name>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>
+            <property>/systems/electrical/volts</property>
+        </input>
+        <output>/instrumentation/davtron803/power-source-volts</output>
+    </filter>
+    
+    <!-- Logic flags -->
+    <logic>
+        <name>Power on state</name>
+        <input>
+            <property>/instrumentation/clock/serviceable</property>
+            <greater-than>
+                <property>/instrumentation/davtron803/power-source-volts</property>
+                <value>4.0</value>
+            </greater-than>
+        </input>
+        <output>/instrumentation/davtron803/operable</output>
+    </logic>
+    <logic>
+        <name>Enable test mode</name>
+        <input>
+            <and>
+                <property>/instrumentation/davtron803/operable</property>
+                <greater-than>
+                    <property>/instrumentation/davtron803/internal/select-btn-timer</property>
+                    <value>0.0</value>
+                </greater-than>
+                <greater-than>
+                    <property>sim/time/elapsed-sec</property>
+                    <expression>
+                        <sum>
+                            <property>/instrumentation/davtron803/internal/select-btn-timer</property>
+                            <value>3.0</value>
+                        </sum>
+                    </expression>
+                </greater-than>
+            </and>
+        </input>
+        <output>/instrumentation/davtron803/logic/test</output>
+    </logic>
+    <logic>
+        <name>UT mode active</name>
+        <input>
+            <property>/instrumentation/davtron803/operable</property>
+            <equals>
+                <property>/instrumentation/davtron803/internal/bot-mode</property>
+                <value>0</value>
+            </equals>
+        </input>
+        <output>/instrumentation/davtron803/logic/mode-ut</output>
+    </logic>
+    <logic>
+        <name>LT mode active</name>
+        <input>
+            <property>/instrumentation/davtron803/operable</property>
+            <equals>
+                <property>/instrumentation/davtron803/internal/bot-mode</property>
+                <value>1</value>
+            </equals>
+        </input>
+        <output>/instrumentation/davtron803/logic/mode-lt</output>
+    </logic>
+    <logic>
+        <name>FT mode active</name>
+        <input>
+            <property>/instrumentation/davtron803/operable</property>
+            <equals>
+                <property>/instrumentation/davtron803/internal/bot-mode</property>
+                <value>2</value>
+            </equals>
+        </input>
+        <output>/instrumentation/davtron803/logic/mode-ft</output>
+    </logic>
+    <logic>
+        <name>ET mode active</name>
+        <input>
+            <property>/instrumentation/davtron803/operable</property>
+            <equals>
+                <property>/instrumentation/davtron803/internal/bot-mode</property>
+                <value>3</value>
+            </equals>
+        </input>
+        <output>/instrumentation/davtron803/logic/mode-et</output>
+    </logic>
+
+
+    <!-- Annunciators show the mode we are in. Active mode is flashing when we set, it just shows -->
+    <filter>
+        <name>annunc-flasher</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <mod>
+                    <floor>
+                        <product>
+                            <property>sim/time/elapsed-sec</property>
+                            <value>2</value>
+                        </product>
+                    </floor>
+                    <value>2</value>
+                </mod>
+            </expression>
+        </input>
+        <output>/instrumentation/davtron803/annunciators/flasher</output>
+    </filter>
+            
+    <logic>
+        <name>Annunciator: UT</name>
+        <input>
+            <and>
+                <property>/instrumentation/davtron803/operable</property>
+                <or>
+                    <property>/instrumentation/davtron803/logic/test</property>
+                    <and>
+                        <property>/instrumentation/davtron803/logic/mode-ut</property>
+                        <or>
+                            <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                            <property>/instrumentation/davtron803/annunciators/flasher</property>
+                        </or>
+                    </and>
+                </or>
+            </and>
+        </input>
+        <output>/instrumentation/davtron803/annunciators/ut</output>
+    </logic>
+    <logic>
+        <name>Annunciator: LT</name>
+        <input>
+            <and>
+                <property>/instrumentation/davtron803/operable</property>
+                <or>
+                    <property>/instrumentation/davtron803/logic/test</property>
+                    <and>
+                        <property>/instrumentation/davtron803/logic/mode-lt</property>
+                        <or>
+                            <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                            <property>/instrumentation/davtron803/annunciators/flasher</property>
+                        </or>
+                    </and>
+                </or>
+            </and>
+        </input>
+        <output>/instrumentation/davtron803/annunciators/lt</output>
+    </logic>
+    <logic>
+        <name>Annunciator: FT</name>
+        <input>
+            <and>
+                <property>/instrumentation/davtron803/operable</property>
+                <or>
+                    <property>/instrumentation/davtron803/logic/test</property>
+                    <and>
+                        <property>/instrumentation/davtron803/logic/mode-ft</property>
+                        <or>
+                            <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                            <property>/instrumentation/davtron803/annunciators/flasher</property>
+                        </or>
+                    </and>
+                </or>
+            </and>
+        </input>
+        <output>/instrumentation/davtron803/annunciators/ft</output>
+    </logic>
+    <logic>
+        <name>Annunciator: ET</name>
+        <input>
+            <and>
+                <property>/instrumentation/davtron803/operable</property>
+                <or>
+                    <property>/instrumentation/davtron803/logic/test</property>
+                    <and>
+                        <property>/instrumentation/davtron803/logic/mode-et</property>
+                        <or>
+                            <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                            <property>/instrumentation/davtron803/annunciators/flasher</property>
+                        </or>
+                    </and>
+                </or>
+            </and>
+        </input>
+        <output>/instrumentation/davtron803/annunciators/et</output>
+    </logic>
+    
+
+    <!-- reset clock if it has no power -->
+    <filter>
+        <name>unpowered</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <not><property>/instrumentation/davtron803/operable</property></not>
+            </condition>
+        </enable>
+        <input>0</input>
+        <output>/instrumentation/davtron803/flight-time-secs</output>
+        <output>/instrumentation/davtron803/elapsed-time-secs</output>
+        <output>/instrumentation/davtron803/internal/flight-timer-alarm-armed</output>
+        <output>/instrumentation/davtron803/internal/flight-timer-alarm-time</output>
+        <output>/instrumentation/davtron803/internal/flight-timer-step</output>
+        <output>/instrumentation/davtron803/internal/elapsed-timer-step</output>
+        <output>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</output>
+        <output>/instrumentation/davtron803/internal/bot-mode-set</output>
+        <output>/instrumentation/davtron803/internal/top-mode</output>
+        <output>/instrumentation/davtron803/internal/bot-mode</output>
+    </filter>
+    
+    <!-- start FT if powered on -->
+    <filter>
+        <name>power on</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <property>/instrumentation/davtron803/operable</property>
+                <equals>
+                    <property>/instrumentation/davtron803/internal/flight-timer-step</property>
+                    <value>0</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>1</input>
+        <output>/instrumentation/davtron803/internal/flight-timer-step</output>
+    </filter>
+    
+    <filter>
+        <name>Reset FT timer: show reset value</name>
+        <type>gain</type>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <and>
+                    <property>/instrumentation/davtron803/operable</property>
+                    <equals>
+                        <property>/instrumentation/davtron803/internal/bot-mode</property>
+                        <value>2</value>
+                    </equals>
+                    <greater-than>
+                        <property>/instrumentation/davtron803/internal/control-btn-timer</property>
+                        <value>0.0</value>
+                    </greater-than>
+                    <greater-than>
+                        <property>sim/time/elapsed-sec</property>
+                        <expression>
+                            <sum>
+                                <property>/instrumentation/davtron803/internal/control-btn-timer</property>
+                                <value>3.0</value>
+                            </sum>
+                        </expression>
+                    </greater-than>
+                </and>
+            </condition>
+        </enable>
+        <input>999999</input> <!-- set 59:99 HH:MM, will wrap around to 00:00 upon reset -->
+        <output>/instrumentation/davtron803/flight-time-secs</output>
+    </filter>
+
+    <!-- If ET timer goes to zero, then count upwards. -->
+    <filter>
+        <name>ET counts upwards again after reaching zero</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <equals>
+                    <property>/instrumentation/davtron803/internal/elapsed-timer-step</property>
+                    <value>-1</value>
+                </equals>
+                <less-than-equals>
+                    <property>/instrumentation/davtron803/elapsed-time-secs</property>
+                    <value>0</value>
+                </less-than-equals>
+            </condition>
+        </enable>
+        <input>1</input>
+        <output>/instrumentation/davtron803/internal/elapsed-timer-step</output>
+    </filter>
+    
+    <!-- Initialize adjust mode -->
+    <filter>
+        <name>Init adjust mode: setup FT</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <property>/instrumentation/davtron803/logic/mode-ft</property>
+                <equals>
+                    <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                    <value>-1</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>0</input>
+        <output>/instrumentation/davtron803/internal/flight-timer-alarm-armed</output>
+        <output>/instrumentation/davtron803/internal/flight-timer-alarm-time</output>
+    </filter>
+    <filter>
+        <name>Init adjust mode: setup ET</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <property>/instrumentation/davtron803/logic/mode-et</property>
+                <equals>
+                    <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                    <value>-1</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>0</input>
+        <output>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</output>
+        <output>/instrumentation/davtron803/elapsed-time-secs</output>
+        <output>/instrumentation/davtron803/internal/elapsed-timer-step</output>
+    </filter>
+    <filter>
+        <name>Init adjust mode: generic</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <equals>
+                    <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                    <value>-1</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>1</input>
+        <output>/instrumentation/davtron803/internal/bot-mode-set</output>
+    </filter>
+
+    <!-- Arm FT alarm after finishing the pilot input -->
+    <filter>
+        <name>FT alarm: arm</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <property>/instrumentation/davtron803/operable</property>
+                <equals>
+                    <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                    <value>5</value>
+                </equals>
+                <not><property>/instrumentation/davtron803/internal/flight-timer-alarm-armed</property></not>
+                <less-than>
+                    <property>/instrumentation/davtron803/flight-time-secs</property>
+                    <property>/instrumentation/davtron803/internal/flight-timer-alarm-time</property>
+                </less-than>
+            </condition>
+        </enable>
+        <input>1</input>
+        <output>/instrumentation/davtron803/internal/flight-timer-alarm-armed</output>
+    </filter>
+    
+    <!-- Arm ET alarm after finishing the pilot input -->
+    <filter>
+        <name>ET alarm: arm</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <property>/instrumentation/davtron803/operable</property>
+                <equals>
+                    <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                    <value>5</value>
+                </equals>
+                <not><property>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</property></not>
+                <greater-than>
+                    <property>/instrumentation/davtron803/elapsed-time-secs</property>
+                    <value>0</value>
+                </greater-than>
+            </condition>
+        </enable>
+        <input>1</input>
+        <output>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</output>
+    </filter>
+    
+    <filter>
+        <name>Finish adjust mode</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <equals>
+                    <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                    <value>5</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>0</input>
+        <output>/instrumentation/davtron803/internal/bot-mode-set</output>
+    </filter>
+    
+    
+    <!-- Alarm triggers -->
+    <flipflop>
+        <name>FT Alarm triggered</name>
+        <type>monostable</type>
+        <inverted type="bool">true</inverted>
+        <S><not>
+            <and>
+                <property>/instrumentation/davtron803/operable</property>
+                <property>/instrumentation/davtron803/internal/flight-timer-alarm-armed</property>
+                <greater-than>
+                    <property>/instrumentation/davtron803/flight-time-secs</property>
+                    <property>/instrumentation/davtron803/internal/flight-timer-alarm-time</property>
+                </greater-than>
+            </and>
+        </not></S>
+        <time>
+            <value>0.1</value>
+        </time>
+        <output> <property>/instrumentation/davtron803/logic/alarm-ft</property> </output>
+    </flipflop>
+    <flipflop>
+        <name>ET Alarm triggered</name>
+        <type>monostable</type>
+        <inverted type="bool">true</inverted>
+        <S><not>
+            <or>
+                <and>
+                    <property>/instrumentation/davtron803/operable</property>
+                    <property>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</property>
+                    <less-than-equals>
+                        <property>/instrumentation/davtron803/elapsed-time-secs</property>
+                        <value>0</value>
+                    </less-than-equals>
+                </and>
+                <and>
+                    <property>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</property>
+                    <property>/instrumentation/davtron803/logic/alarm-et</property>
+                </and>
+            </or>
+        </not></S>
+        <time>
+            <value>0.1</value>
+        </time>
+        <output> <property>/instrumentation/davtron803/logic/alarm-et</property> </output>
+    </flipflop>
+    
+    <logic>
+        <name>Some alarm tripped</name>
+        <input>
+            <property>/instrumentation/davtron803/operable</property>
+            <or>
+                <property>/instrumentation/davtron803/logic/alarm-ft</property>
+                <property>/instrumentation/davtron803/logic/alarm-et</property>
+            </or>
+        </input>
+        <output>/instrumentation/davtron803/annunciators/alarm</output>
+    </logic>
+    
+    <filter>
+        <name>Reset FT alarm on SEL or CTL button press</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <property>/instrumentation/davtron803/operable</property>
+                <property>/instrumentation/davtron803/logic/alarm-ft</property>
+                <or>
+                    <property>/instrumentation/davtron803/select-btn</property>
+                    <property>/instrumentation/davtron803/control-btn</property>
+                </or>
+            </condition>
+        </enable>
+        <input>0</input>
+        <output>/instrumentation/davtron803/internal/flight-timer-alarm-armed</output>
+    </filter>
+    <filter>
+        <name>Reset ET alarm on SEL or CTL button press</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <property>/instrumentation/davtron803/operable</property>
+                <property>/instrumentation/davtron803/logic/alarm-et</property>
+                <or>
+                    <property>/instrumentation/davtron803/select-btn</property>
+                    <property>/instrumentation/davtron803/control-btn</property>
+                </or>
+            </condition>
+        </enable>
+        <input>0</input>
+        <output>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</output>
+        <output>/instrumentation/davtron803/internal/elapsed-timer-step</output>
+    </filter>
+    
+    <filter>
+        <name>Switch to FT mode when FT alarm sets off</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <not><property>/instrumentation/davtron803/logic/mode-ft</property></not>
+                <property>/instrumentation/davtron803/logic/alarm-ft</property>
+            </condition>
+        </enable>
+        <input>2</input>
+        <output>/instrumentation/davtron803/internal/bot-mode</output>
+    </filter>
+    <filter>
+        <name>Switch to ET mode when ET alarm sets off</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <not><property>/instrumentation/davtron803/logic/mode-et</property></not>
+                <property>/instrumentation/davtron803/logic/alarm-et</property>
+            </condition>
+        </enable>
+        <input>3</input>
+        <output>/instrumentation/davtron803/internal/bot-mode</output>
+    </filter>
+    
+</PropertyList>

@@ -2109,6 +2109,18 @@
                 <z>1.0</z>
             </direction>
         </force>
+        <force name="hitch" frame="BODY" unit="LBS" >
+            <location unit="M">
+                <x> 5.601</x>
+                <y> 0.0000</y>
+                <z>0.115</z>
+            </location>
+            <direction>
+                <x>0.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+            </direction>
+        </force>
     </external_reactions>
     
     <system file="c182s-stallhorn"/>

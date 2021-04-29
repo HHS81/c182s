@@ -115,23 +115,28 @@
           </function>
           <output>propulsion/engine/prop-ice-factor</output>   
         </fcs_function>
-        
-<fcs_function name="Prop Icing Drag">
-          <function name="fcs/prop-ice">
-            <description>faking drag of ice on prop</description>
-		<table>
-                   <independentVar lookup="row">fcs/advance-cmd-norm</independentVar>
-                   <independentVar lookup="column">propulsion/engine/prop-ice-factor</independentVar>
-                   <tableData>
-                        0   1
-                   0	1   0	
-                   1    0   1	
-                   </tableData>
-                </table>
-	</function>
-          <output>fcs/advance-pos-norm</output> 
-        </fcs_function>
+ </channel>
 
+
+ <channel name="Propeller Governor">
+    <fcs_function name="systems/propulsion/prop-governor">
+        <function>
+            <product>
+                <property>propulsion/engine/prop-ice-factor</property>   <!-- faking ice effect on propeller drag -->
+                
+                <!-- Lever command position, based on fail-forward for low governor oil press -->
+                <max>
+                    <difference>
+                        <value>1</value>
+                        <property>/engines/engine[0]/governor/oil-pressure-norm</property>
+                    </difference>
+                    <property>fcs/advance-cmd-norm</property> <!-- lever positional input: 1=full in/high RPM -->
+                </max>
+                
+            </product>
+        </function>
+        <output>fcs/advance-pos-norm</output> 
+    </fcs_function>
  </channel>
  
 

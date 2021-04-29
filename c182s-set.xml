@@ -62,6 +62,7 @@
             <tag>tricycle</tag>
             <tag>ifr</tag>
             <tag>high-wing</tag>
+            <tag>dual-controls</tag>
         </tags>
     <minimum-fg-version>2018.3.0</minimum-fg-version>
     <rating>
@@ -141,6 +142,10 @@
 
   <checklists include="c182s-checklists.xml"/>
 
+  <tutorials>
+    <tutorial include="Tutorials/davtron803.xml"/>
+  </tutorials>
+
   <!-- Overlays (called with "state" command line option) -->
   <state include="states/auto-overlay.xml"     n="0" />
   <state include="states/saved-overlay.xml"    n="1" />
@@ -148,6 +153,23 @@
   <state include="states/idling-overlay.xml"   n="3" />
   <state include="states/cruising-overlay.xml" n="4" />
   <state include="states/approach-overlay.xml" n="5" />
+
+  <virtual-cockpit>true</virtual-cockpit>
+  <allow-toggle-cockpit>true</allow-toggle-cockpit>
+
+  <hitches>
+    <aerotow>
+        <force_name_jsbsim type="string">hitch</force_name_jsbsim>
+        <force-is-calculated-by-other type="bool">true</force-is-calculated-by-other>
+        <mp-auto-connect-period type="float">1.0</mp-auto-connect-period>
+        <!-- OPTIONAL
+            <decoupled-force-and-rope-locations type="bool">true</decoupled-force-and-rope-locations>
+            <local-pos-x type="float">1.5</local-pos-x>
+            <local-pos-y type="float"> 0.00</local-pos-y>
+            <local-pos-z type="float">-0.3</local-pos-z>
+        -->
+    </aerotow>
+  </hitches>
 
   <systems>
     <path>Aircraft/c182s/Systems/systems.xml</path>
@@ -185,6 +207,9 @@
     </property-rule>
     <property-rule n="107">
         <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/kap140-proprules.xml</path>
+    </property-rule>
+    <property-rule n="108">
+        <path>Aircraft/c182s/Models/Instruments/Davtron803/Davtron803-proprules.xml</path>
     </property-rule>
     <electrical>
       <!-- null electrical system path here so we can use a nasal based -->
@@ -238,6 +263,7 @@
   </panel>
 
   <multiplay>
+    <!-- NOTE: Look also into c182s-aircraft-dual-control.nas for reserved slots! -->
     <generic>
       <float n="0" alias="/sim/model/door-positions/DoorL/position-norm-effective"/>
       <float n="1" alias="/sim/model/door-positions/DoorR/position-norm-effective"/>
@@ -259,20 +285,30 @@
       <float n="13" alias="/fdm/jsbsim/gear/unit[2]/z-position"/>
       <float n="14" alias="/engines/engine/crashed"/>
       <!-- Not animated yet
-      <float n="xx" alias="/fdm/jsbsim/wing-damage/left-wing"/>
-      <float n="xx" alias="/fdm/jsbsim/wing-damage/right-wing"/>
+      <float n="15" alias="/fdm/jsbsim/wing-damage/left-wing"/>
+      <float n="16" alias="/fdm/jsbsim/wing-damage/right-wing"/>
       -->
+
+      <!-- Dual-Control: float 17 to 29 -->
 
       <float n="30" alias="/sim/rendering/refl_correction"/>
       <float n="31" alias="/sim/rendering/fresnel-factor"/>
       <float n="32" alias="/sim/rendering/refl-type"/>
       <float n="33" alias="/sim/rendering/ambient_correction"/>
+      
+      <!-- Dual-Control: float 34 to 39 -->
 
       <!-- Registration number over MP -->
       <string n="0" alias="/sim/model/immat"/>
+      
+      <!-- Dual-Control: string 1-5 -->
 
       <bool n="0" alias="/sim/model/c182s/nw_fairing"/>
       <bool n="1" alias="/sim/model/c182s/mw_fairing"/>
+      
+      <!-- Dual-Control: bool 1-5 -->
+      
+      <!-- Dual-Control: int 17-19 -->
 
       <!-- passengers/crew -->
       <bool n="2" alias="/sim/model/crew/pilot[1]/enabled"/>
@@ -751,11 +787,11 @@
    <line>  Takeoff ground roll: 795ft  over 50ft obstacle: 1,514ft</line>
    <line>  Landing ground roll: 590ft  over 50ft obstacle: 1,390ft</line>
    <key>
-    <name>c</name>
+    <name>d</name>
     <desc>KAP140 Autopilot CWS</desc>
    </key>
    <key>
-    <name>C</name>
+    <name>D</name>
     <desc>KAP140 Autopilot Disconnect</desc>
    </key>
    <key>
@@ -767,6 +803,10 @@
     <desc>Mixture rich/lean</desc>
    </key>
    <key>
+    <name>f/F</name>
+    <desc>Cowl flaps close/open</desc>
+   </key>
+   <key>
     <name>y/Y</name>
     <desc>Toggle yoke visibility</desc>
    </key>
@@ -774,11 +814,36 @@
     <name>s</name>
     <desc>Engine Starter</desc>
    </key>
+   <key>
+       <name>O</name>
+       <desc>Open aerotow-hook</desc>
+   </key>
   </help>
 
 
 
-        <menubar include="gui/dialogs/c182s-menu.xml"/>
+        <menubar include="gui/dialogs/c182s-menu.xml">
+            <default n="0">
+                <menu n="7"> <!-- multiplayer -->
+                    <item n="50">
+                        <label>Select dual-control MP-pilot</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>dual_control_tools.copilot_dialog.show(aircraft_dual_control.copilot_type)</script>
+                        </binding>
+                    </item>
+                    </menu>
+                    <menu n="10">
+                        <item n="99">
+                        <label>Aircraft Failure Management</label>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>extended-failure-dialog-c182s</dialog-name>
+                        </binding>
+                    </item>
+                </menu>
+            </default>
+        </menubar>
 
        <!-- Splash screens. One is randomly chosen when FlightGear starts -->
         <previews>
@@ -981,8 +1046,6 @@
             <path>/instrumentation/attitude-indicator/horizon-offset-deg</path>
             <path>/instrumentation/airspeed-indicator/tas-face-rotation</path>
             <path>/instrumentation/heading-indicator/offset-deg</path>
-            <path>/instrumentation/davtron803/top-mode</path>
-            <path>/instrumentation/davtron803/bot-mode</path>
             <path>/autopilot/settings/heading-bug-deg</path>
             <path>/instrumentation/transponder/id-code</path>
             <path>/instrumentation/transponder/factory-vfr-code</path>
@@ -1324,6 +1387,9 @@
    <oil-temperature-degf-indicated type="double">60</oil-temperature-degf-indicated> <!-- oil temp for the gauge (filtered) -->
    <oil-service-hours type="double">0</oil-service-hours>
    <cowling-air-temperature-degf>40</cowling-air-temperature-degf> <!-- OAT in the cowling -->
+   <governor>
+        <serviceable type="bool">true</serviceable>
+    </governor>
   </engine>
  </engines>
 
@@ -1459,7 +1525,7 @@
         </terrain>
 
 <davtron803>
-    <file>Aircraft/c182s/Nasal/davtron803.nas</file>
+    <file>Aircraft/c182s/Models/Instruments/Davtron803/davtron803.nas</file>
 </davtron803>
 
 <electrical>
@@ -1479,13 +1545,32 @@
       <file>Aircraft/c182s/Nasal/StaticIcing.nas</file>
 </icing>
 
+
+    <!-- Dual control infrastructure. This is safe to load always as it just runs when connected -->
+    <dual_control_tools>
+        <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
+    </dual_control_tools>
+    <aircraft_dual_control>
+        <file>Nasal/c182s-aircraft-dual-control.nas</file>
+    </aircraft_dual_control>
+    <dual_control>
+        <file>Aircraft/Generic/DualControl/pilot-dual-control.nas</file>
+    </dual_control>
+
  </nasal>
 
  <!-- ================ map keyboard ================ -->
  <input>
     <keyboard>
 
-
+      <key n="79">
+        <name>O</name>
+        <desc>Open aerotow-hook</desc>
+        <binding>
+          <command>nasal</command>
+          <script>towing.releaseHitch("aerotow")</script>
+        </binding>
+      </key>
       <key n="121">
         <name>y</name>
         <desc>Toggle yoke visibility.</desc>
@@ -1505,37 +1590,51 @@
         </binding>
       </key>
 
-      <key n="99">
-        <name>c</name>
+      <key n="100">
+        <name>d</name>
         <desc>CWS Button KAP 140</desc>
-        <binding>
+        <binding n="20">
             <command>property-assign</command>
             <property>autopilot/kap140/settings/cws</property>
             <value>1</value>
         </binding>
         <mod-up>
-            <binding>
+            <binding n="20">
                 <command>property-assign</command>
                 <property>autopilot/kap140/settings/cws</property>
                 <value>0</value>
             </binding>
         </mod-up>
       </key>
-      <key n="67">
-        <name>C</name>
+      <key n="68">
+        <name>D</name>
         <desc>AP-DISC Button KAP 140</desc>
-        <binding>
+        <binding n="20">
             <command>property-assign</command>
             <property>autopilot/kap140/settings/ap-disc</property>
             <value>1</value>
         </binding>
         <mod-up>
-            <binding>
+            <binding n="20">
                 <command>property-assign</command>
                 <property>autopilot/kap140/settings/ap-disc</property>
                 <value>0</value>
             </binding>
         </mod-up>
+      </key>
+      <key n="102">
+        <name>f</name>
+        <desc>Cowl flaps close</desc>
+        <binding>
+            <command>c182_cowlflap_step_close</command>
+        </binding>
+      </key>
+      <key n="70">
+        <name>F</name>
+        <desc>Cowl flaps open</desc>
+        <binding>
+            <command>c182_cowlflap_step_open</command>
+        </binding>
       </key>
 
       <!-- overwriting { and } default aliases -->

@@ -125,9 +125,38 @@ A [quick introduction is in the FGFS-wiki](https://wiki.flightgear.org/Bendix/Ki
 
 - The AP can be activated by pressing and holding the "AP" key on the instrument. Note that the AP only activates after the automatic preflight checks are complete (`PFT n` in display). During these checks, various annunciators will illuminate. The AP will only engage after those are vanished.
 - After the PFT, you are prompted to enter a barometric pressure by a flashing `29.92` setting in the top right corner. The AP will not allow to be engaged until it is initialized.
-- The autopilot features a disconnect knob which is accessible by pressing `SHIFT-C`; the AP will disconnect and stay off.
-- Temporarily disconnect can be activated by pressing the `C` key. After release the AP will continue with its program.
+- The autopilot features a disconnect knob which is accessible by pressing `SHIFT-D`; the AP will disconnect and stay off.
+- Temporarily disconnect ("CWS") can be activated by pressing the `d` key. After release the AP will continue with its program.
 - Severe turbolences may trigger the over-g disconnect safety.
+
+
+### Davtron 803 digital clock
+The Davtron M803 digital clock displays various information to the pilot. The clock is turned on automatically when the master battery switch is engaged.
+
+The LCD top row can show outside air temperature (OAT) in Fahrenheit and Celsius, and also the current battery voltage. Cycling between these is available by pushing the top button.
+
+The lower LCD row displays four different timing information, the active mode is currently highlighted left via a blinking annunciator: UTC-Time (UT), Local-Time (LT), Elapsed flight time (FT) and a elapsed time counter (ET).
+
+- Flight timer (FT):
+  - The flight timer starts counting as soon as power is applied. To reset the timer, push and hold the _control_ button for at least 3 seconds (display will show `99:59` and reset the flight timer once button is released).
+  - You can setup an alarm for reaching a future flight time (audible tone and flashing display) by pressing the _select_ and _control_ buttons together (**shift-click one of the two buttons**). This will enter the setup mode: the currently selected digit will blink, you can cycle it with the _control_ knob. If you are satisfied, the _select_ button will bring you to the next digit. When all four digits are confirmed, the alarm is armed automatically.
+- Elapsed timer (ET):
+  - The elapsed timer starts when you selected ET mode and then push the _control_ button. The next button press stops the timer. Another press resets it to zero.
+  - You can setup an countdown timer by by pressing the _select_ and _control_ buttons together (**shift-click one of the two buttons**). Enter the digits like just described at the FT alarm mode. After confirming the last digit, the countdown is armed and ready to be started by another press of _control_. The alarm will go off once the countdown reaches zero. You can confirm the the alarm by either pressing _select_ or _control_.
+
+
+Dual Control feature
+-------------------------
+You can join a remote pilot as copilot! The pilot just uses the normal C182S Aircraft while the copilot must start the special "CoPilot" aircraft variant (select from the launcher).
+
+Once connected to the multiplayer server, both select each other trough the multiplayer menu entry *Select dual-control MP-pilot*:
+- Upon selection, the CoPilot instance will switch into the copilot seat.
+- Once the pilot selected the copilot too, he will send its full state to the copilot, so he sees most instruments etc.
+
+### Aerotowing gliders
+The C182S and C182T are equipped with an tow hook and can tow any JSBSim/YASIM glider compatible to FlightGears standard implementation.
+
+Once the glider pilot hooked into your Cessna, you can press `SHIFT-O` to release the hook. For connecting, get close infront of the glider. When accelerating, do it with caution, otherwise the rope my rip. Expect also other airplane behaviour when towing (longer takeoff roll, etc).
 
 
 FAQ

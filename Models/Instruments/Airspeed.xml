@@ -30,7 +30,12 @@
         <object-name>Airspeed.TAS</object-name>
         <object-name>Airspeed.IAS</object-name>
         <object-name>Airspeed.Needle</object-name>
+<<<<<<< HEAD
     </effect>-->
+=======
+        <object-name>Airspeed.Knob</object-name>
+    </effect>
+>>>>>>> c0f56e342718ce231687c3a0fbb4f294a003e7eb
     
     <animation>
         <type>noshadow</type>
@@ -50,7 +55,7 @@
    <red>1.0</red>
    <green>0.8</green>
    <blue>0.4</blue>
-   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
+   <factor-prop>systems/electrical/outputs/instrument-lights-norm</factor-prop>
   </emission>
         <specular>
             <red>   0.0 </red>

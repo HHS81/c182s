@@ -14,6 +14,19 @@
     <object-name>RollReference</object-name>
   </effect>-->
 
+  <!-- hide bezel ring because that's already in the cockpit model -->
+  <animation>
+    <object-name>Bezel</object-name>
+    <type>select</type>
+    <condition>
+        <equals>
+            <value>0</value>
+            <value>1</value>
+        </equals>
+    </condition>
+  </animation>
+
+
  <animation>
   <type>material</type>
   <object-name>Aircraft</object-name>
@@ -25,7 +38,7 @@
    <red>1.0</red>
    <green>0.8</green>
    <blue>0.4</blue>
-   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
+   <factor-prop>systems/electrical/outputs/instrument-lights-norm</factor-prop>
   </emission>
    <specular>
         <red>   0.0 </red>

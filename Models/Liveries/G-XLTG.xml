@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <sim>
+    <model>
+      
+      
+      
+      <livery>
+        <name type="string">G-XLTG</name>
+	 <index type="int">1</index>
+	 <texture>Liveries/GXLTG.png</texture>
+     <immat>
+                    <font_name>LiberationFonts/LiberationSans-Bold.ttf</font_name>
+                    <font_size>520</font_size>
+                    <colour_r>0</colour_r>
+                    <colour_g>0</colour_g>
+                    <colour_b>0</colour_b>
+                </immat>
+      </livery>
+<c182s>
+<material>
+			<fuselage>
+						<diffuse>
+							<red>1.0</red>
+							<green>1.0</green>
+							<blue>1.0</blue>
+						</diffuse>
+ 					         <specular>
+							<red>1.0</red>
+							<green>1.0</green>
+							<blue>1.0</blue>
+						</specular>
+						<ambient>
+							<red>1.0</red>
+							<green>1.0</green>
+							<blue>1.0</blue>
+						</ambient>
+				</fuselage>
+                               </material>
+			       
+<nw_fairing type="bool">true</nw_fairing>
+<mw_fairing type="bool">true</mw_fairing>
+<chrome_spinner>true</chrome_spinner>
+		<!-- show registration models -->
+                <immat>false</immat>
+                <immat-on-panel>false</immat-on-panel>
+</c182s>
+    </model>
+<rendering>
+    <refl_correction type="string">-0.6</refl_correction>
+<ambient_correction type="string">0.1</ambient_correction>
+<refl-type>1.0</refl-type>
+<fresnel-factor>0.7</fresnel-factor>
+    </rendering>
+   
+  </sim>
+</PropertyList>

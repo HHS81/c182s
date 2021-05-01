@@ -71,7 +71,7 @@
       <cockpit type="int">4</cockpit>
     </rating>
     
-    <authors>
+ <authors>
         <author n="0">
             <name>Heiko Schulz</name>
             <nick>HHS81</nick>
@@ -83,29 +83,31 @@
             <nick>gsagostinho</nick>
         </author>
         <author n="2">
+            <name>Benedikt Hallinger</name>
+            <description>fuel/oil system, custom registration livery, checklists, save-state, failures, cockpit/avionics improvements and many more great additions</description>
+            <nick>Beni</nick>
+        </author>
+        <author n="3">
             <nick>onox</nick>
             <description>advice, nasal-scripts, testing</description>
         </author>
-        <author n="3">
+        <author n="4">
             <name>Wayne Bragg</name>
             <description>rain effect, advice</description>
             <nick>wlbragg</nick>
         </author>
-        <author n="4">
+        <author n="5">
             <name>Ron Jensen</name>
             <nick>jentron</nick>
         </author>
-        <author n="5">
-            <name>Stuart Buchanan</name>
-            <description>Glass Cockpit</description>
-        </author>
         <author n="6">
-            <name>David Megginson</name>
+            <name>Stuart Buchanan</name>
         </author>
         <author n="7">
-            <name>Benedikt Hallinger</name>
-            <description>fuel/oil system, custom registration livery, checklists, save-state, failures, cockpit/avionics improvements and many more small additions</description>
-            <nick>Beni</nick>
+            <name>Sascha Reiszner</name>
+        </author>
+        <author n="8">
+            <name>David Megginson</name>
         </author>
     </authors>
 
@@ -126,12 +128,15 @@
     </urls>
 
   <flight-model>jsb</flight-model>
-  <aero>c182s</aero>
+  <aero>c182t</aero>
 
   <aircraft-class type="string">ga</aircraft-class>
   <aircraft-operator type="string">NONE</aircraft-operator>
   
   <checklists include="c182t-checklists.xml"/>
+
+  <virtual-cockpit>true</virtual-cockpit>
+  <allow-toggle-cockpit>true</allow-toggle-cockpit>
 
   <!-- Overlays (called with "state" command line option) -->
   <state include="states/auto-overlay.xml"     n="0" />
@@ -140,6 +145,20 @@
   <state include="states/idling-overlay.xml"   n="3" />
   <state include="states/cruising-overlay.xml" n="4" />
   <state include="states/approach-overlay.xml" n="5" />
+
+  <hitches>
+    <aerotow>
+        <force_name_jsbsim type="string">hitch</force_name_jsbsim>
+        <force-is-calculated-by-other type="bool">true</force-is-calculated-by-other>
+        <mp-auto-connect-period type="float">1.0</mp-auto-connect-period>
+        <!-- OPTIONAL
+            <decoupled-force-and-rope-locations type="bool">true</decoupled-force-and-rope-locations>
+            <local-pos-x type="float">1.5</local-pos-x>
+            <local-pos-y type="float"> 0.00</local-pos-y>
+            <local-pos-z type="float">-0.3</local-pos-z>
+        -->
+    </aerotow>
+  </hitches>
 
   <systems>
     <path>Aircraft/c182s/Systems/systems.xml</path>
@@ -231,7 +250,7 @@
 
       <float n="5" alias="/systems/electrical/outputs/landing-lights"/>
       <float n="6" alias="/systems/electrical/outputs/taxi-light"/>
-      <float n="7" alias="/systems/electrical/strobe-source"/>
+      <float n="7" alias="/systems/electrical/outputs/strobe"/>
       <float n="8" alias="/systems/electrical/beacon-source"/>
       <float n="9" alias="/systems/electrical/outputs/nav-lights"/>
 
@@ -258,18 +277,25 @@
       <bool n="0" alias="/sim/model/c182s/nw_fairing"/>
       <bool n="1" alias="/sim/model/c182s/mw_fairing"/>
 
+      <!-- passengers/crew -->
+      <bool n="2" alias="/sim/model/crew/pilot[1]/enabled"/>
+      <bool n="3" alias="/sim/model/pax/pax[0]/enabled"/>
+      <bool n="4" alias="/sim/model/pax/pax[1]/enabled"/>
+
     </generic>
   </multiplay>
 
-  <model>
+  <model include="Models/Human/humans.xml">
    <path archive="y">Aircraft/c182s/Models/c182t.xml</path>
    <fallback-model-index>3</fallback-model-index>
-   <hide-yoke>false</hide-yoke>
+   <hide-yoke type="bool">false</hide-yoke>
+   <hide-yoke-alpha-cmd>0.25</hide-yoke-alpha-cmd>
 
     <icing>
        <iceable>
-         <name>Wing</name>          <sensitivity type="double">1.0</sensitivity>
-          <output-property>/fdm/jsbsim/ice/wing</output-property>
+         <name>Wing</name>
+         <sensitivity type="double">1.0</sensitivity>
+         <output-property>/fdm/jsbsim/ice/wing</output-property>
         </iceable>
         <iceable>
          <name>Stabilizer</name>
@@ -355,7 +381,8 @@
 </securing>
 
 <procedural-lights type="bool">true</procedural-lights>
-<enable-fog-frost type="bool">true</enable-fog-frost>
+<enable-fog-frost type="bool">false</enable-fog-frost>
+<enable-fog-frost-msgs type="bool">true</enable-fog-frost-msgs>
 
 
 	<material>
@@ -707,12 +734,20 @@
     <desc>Mixture rich/lean</desc>
    </key>
    <key>
-    <name>Y</name>
+    <name>f/F</name>
+    <desc>Cowl flaps close/open</desc>
+   </key>
+   <key>
+    <name>y/Y</name>
     <desc>Toggle yoke visibility</desc>
    </key>
    <key>
     <name>s</name>
     <desc>Engine Starter</desc>
+   </key>
+   <key>
+       <name>O</name>
+       <desc>Open aerotow-hook</desc>
    </key>
    <key>
     <name>:p</name>
@@ -727,6 +762,13 @@
         <menubar include="gui/dialogs/c182s-menu.xml">
           <default n="0">
             <menu n="10">
+              <item n="97">
+                <label>Aircraft Failure Management</label>
+                <binding>
+                    <command>dialog-show</command>
+                    <dialog-name>extended-failure-dialog-c182t</dialog-name>
+                </binding>
+              </item>
               <item n="98">
                 <label>Display PFD</label>
                 <binding>
@@ -778,9 +820,11 @@
         </previews>
 
         <!-- Fix scrolling direction of knobs -->
+        <!-- This was an old fix from 2018, but it's not necessary anymore.
+             Instead the aircraft should not overwrite a global user setting...
         <mouse>
             <invert-mouse-wheel type="bool">true</invert-mouse-wheel>
-        </mouse>
+        </mouse>-->
 
 
         <!-- Save these properties between sessions -->
@@ -847,6 +891,7 @@
             <path>/instrumentation/audio-panel/com-mic[0]</path>
             <path>/instrumentation/audio-panel/com-mic[1]</path>
             <path>/instrumentation/audio-panel/com-mic[2]</path>
+            <path>/instrumentation/audio-panel/mkr</path>
             <path>/instrumentation/audio-panel/spkr</path>
             <path>/instrumentation/audio-panel/pa</path>
             <path>/instrumentation/audio-panel/crew</path>
@@ -854,6 +899,7 @@
             <path>/instrumentation/audio-panel/hi</path>
             <path>/instrumentation/audio-panel/lo</path>
             <path>/instrumentation/audio-panel/volume-ics-pilot</path>
+            <path>/instrumentation/audio-panel/fgcom-integration</path>
             <path>/instrumentation/marker-beacon/audio-btn</path>
             <path>/instrumentation/marker-beacon/volume-default</path> <!-- hard wired in GMA340, but can be changed (in-sim just adjust the property) -->
             <path>/surface-positions/flap-pos-norm</path>
@@ -898,8 +944,6 @@
             <path>/instrumentation/attitude-indicator/horizon-offset-deg</path>
             <path>/instrumentation/airspeed-indicator/tas-face-rotation</path>
             <path>/instrumentation/heading-indicator/offset-deg</path>
-            <path>/instrumentation/davtron803/top-mode</path>
-            <path>/instrumentation/davtron803/bot-mode</path>
             <path>/autopilot/settings/heading-bug-deg</path>
             <path>/instrumentation/transponder/id-code</path>
             <path>/instrumentation/transponder/factory-vfr-code</path>
@@ -976,8 +1020,10 @@
 
             <path>/sim/failure-manager/display-on-screen</path>
             <path>/sim/failure-manager/restore-on-start</path>
+            <path>/sim/model/hide-yoke-alpha-cmd</path>
         </aircraft-data>
 
+        <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>
  </sim>
 
  <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
@@ -1084,6 +1130,7 @@
    <kt-76c type="double">0</kt-76c>
    <kn-62a type="double">0</kn-62a>
    <fuel_tank_selector type="double">2</fuel_tank_selector> <!-- 0=off, 1=right, 2=both, 3=left -->
+   <magnetos type="int">3</magnetos>
   </switches>
   <circuit-breakers>
     <Flap type="bool">1</Flap>
@@ -1141,6 +1188,9 @@
    <oil-temperature-degf-indicated type="double">60</oil-temperature-degf-indicated> <!-- oil temp for the gauge (filtered) -->
    <oil-service-hours type="double">0</oil-service-hours>
    <cowling-air-temperature-degf>40</cowling-air-temperature-degf> <!-- OAT in the cowling -->
+   <governor>
+        <serviceable type="bool">true</serviceable>
+    </governor>
   </engine>
  </engines>
 
@@ -1263,7 +1313,7 @@
     <file>Aircraft/c182s/Nasal/gma340.nas</file>
     <file>Aircraft/c182s/Nasal/c182s-states.nas</file>
     <file>Aircraft/c182s/Nasal/flashlight.nas</file>
-    <file>Aircraft/c182s/Nasal/annunciator_panel.nas</file>
+    <!-- implemented in FG1000: <file>Aircraft/c182s/Nasal/annunciator_panel.nas</file>-->
     <file>Aircraft/c182s/Nasal/damage.nas</file>
     <file>Aircraft/c182s/Nasal/c182t.nas</file>
 </c182s>
@@ -1272,9 +1322,6 @@
         <file>Aircraft/c182s/Nasal/terrain.nas</file>
     </terrain>
 
-<davtron803>
-    <file>Aircraft/c182s/Nasal/davtron803.nas</file>
-</davtron803>
 
 <electrical>
  <file>Aircraft/c182s/Nasal/c182t-electrical.nas</file>
@@ -1306,8 +1353,24 @@
  <input>
     <keyboard>
       <multikey include="Aircraft/Instruments-3d/FG1000/fg1000-multikey.xml"/>
-
-      <key n="89">
+      <key n="79">
+        <name>O</name>
+        <desc>Open aerotow-hook</desc>
+        <binding>
+          <command>nasal</command>
+          <script>towing.releaseHitch("aerotow")</script>
+        </binding>
+      </key>
+      <key n="121">
+        <name>y</name>
+        <desc>Toggle yoke visibility.</desc>
+        <repeatable type="bool">false</repeatable>
+        <binding>
+          <command>property-toggle</command>
+          <property>sim/model/hide-yoke</property>
+        </binding>
+      </key>
+      <key n="89"> <!-- Y for backwards compatibility of old keybind-->
         <name>Y</name>
         <desc>Toggle yoke visibility.</desc>
         <repeatable type="bool">false</repeatable>
@@ -1316,7 +1379,20 @@
           <property>sim/model/hide-yoke</property>
         </binding>
       </key>
-
+      <key n="102">
+        <name>f</name>
+        <desc>Cowl flaps close</desc>
+        <binding>
+            <command>c182_cowlflap_step_close</command>
+        </binding>
+      </key>
+      <key n="70">
+        <name>F</name>
+        <desc>Cowl flaps open</desc>
+        <binding>
+            <command>c182_cowlflap_step_open</command>
+        </binding>
+      </key>
 
       <!-- overwriting { and } default aliases -->
       <key n="123">
@@ -1346,6 +1422,34 @@
                 <script>c182s.stepMagnetos(0)</script>
             </binding>
         </mod-up>
+      </key>
+      
+      <!-- Overwrite FGCom PTT (space) -->
+      <key n="32">
+        <name>SPACE</name>
+        <desc>PTT - Push To Talk (via FGCom) but select radio</desc>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.gma340_ptt(1, 0)</script>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.gma340_ptt(0, 0)</script>
+            </binding>
+        </mod-up>
+        <mod-shift>
+            <binding>
+                <command>nasal</command>
+                <script>c182s.gma340_ptt(1, 1)</script>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>nasal</command>
+                    <script>c182s.gma340_ptt(0, 1)</script>
+                </binding>
+            </mod-up>
+        </mod-shift>
       </key>
 
     </keyboard>

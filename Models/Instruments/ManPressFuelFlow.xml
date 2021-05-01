@@ -20,7 +20,7 @@
    <red>1.0</red>
    <green>0.8</green>
    <blue>0.4</blue>
-   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
+   <factor-prop>systems/electrical/outputs/instrument-lights-norm</factor-prop>
   </emission>
         <specular>
             <red>   0.0 </red>
@@ -74,7 +74,7 @@
    <animation>
         <type>rotate</type>
         <object-name>FuelFlowNeedle</object-name>
-        <property>/engines/engine/indicated-manfold-fuel-flow-gph</property>
+        <property>engines/engine/indicated-manfold-fuel-flow-gph</property>
  <interpolation>
       <entry><ind>0</ind><dep>0</dep></entry>
       <entry><ind>5</ind><dep> 5.27</dep></entry>

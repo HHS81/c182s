@@ -16,6 +16,7 @@
     <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
     <object-name>TURNneedle</object-name>
     <object-name>TURNgauge.001</object-name>
+    <object-name>TURNflag</object-name>
     <object-name>slipball</object-name>
   </effect>-->
 
@@ -23,6 +24,7 @@
     <type>material</type>
     <object-name>TURNneedle</object-name>
     <object-name>TURNgauge.001</object-name>
+    <object-name>TURNflag</object-name>
     <condition>
       <not><property>sim/rendering/rembrandt/enabled</property></not>
     </condition>
@@ -30,7 +32,7 @@
    <red>1.0</red>
    <green>0.8</green>
    <blue>0.4</blue>
-   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
+   <factor-prop>systems/electrical/outputs/instrument-lights-norm</factor-prop>
   </emission>
         <specular>
             <red>   0.0 </red>
@@ -57,7 +59,7 @@
   <animation>
     <type>rotate</type>
     <object-name>TURNneedle</object-name>
-    <property>/instrumentation/turn-indicator/indicated-turn-rate</property>
+    <property>instrumentation/turn-indicator/indicated-turn-rate</property>
     <factor>14.0</factor>
     <axis>
       <x>-1</x>
@@ -74,7 +76,7 @@
   <animation>
     <type>rotate</type>
     <object-name>slipball</object-name>
-    <property>/instrumentation/slip-skid-ball/indicated-slip-skid</property>
+    <property>instrumentation/slip-skid-ball/indicated-slip-skid</property>
     <factor>21</factor>
     <min-deg> -19 </min-deg>
     <max-deg>  19 </max-deg>
@@ -133,5 +135,15 @@
     </condition>
   </animation>
 
+  <animation>
+    <type>select</type>
+    <object-name>TURNflag</object-name>
+    <condition>
+        <or>
+            <not> <property>instrumentation/turn-indicator/serviceable</property> </not>
+            <not> <property>systems/electrical/outputs/turn-coordinator</property> </not>
+        </or>
+    </condition>
+  </animation>
 
 </PropertyList>

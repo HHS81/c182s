@@ -21,7 +21,7 @@
                 <offset>0.4</offset>
             </volume>
             <reference-dist>5.0</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1500.0</max-dist>
         </crank>
 
         <crank>
@@ -47,7 +47,7 @@
                 <offset>0.5</offset>
             </volume>
             <reference-dist>5.0</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1500.0</max-dist>
         </crank>
         
        <crank>
@@ -67,7 +67,7 @@
                 <offset>0.3</offset>
             </volume>
             <reference-dist>5.0</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1500.0</max-dist>
         </crank>
         
         <crank>
@@ -87,7 +87,7 @@
                 <offset>0.3</offset>
             </volume>
             <reference-dist>5.0</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1500.0</max-dist>
         </crank>
 
         <engine>
@@ -110,7 +110,7 @@
                 <offset>0.01</offset>
             </pitch>
             <reference-dist>5.0</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1500.0</max-dist>
         </engine>
         
        <propeller>
@@ -138,7 +138,7 @@
                 <offset>0.01</offset>
             </pitch>
             <reference-dist>5.0</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1500.0</max-dist>
         </propeller>
 
         <rumble>
@@ -166,7 +166,7 @@
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
             </volume>
             <reference-dist>2.5</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1500.0</max-dist>
         </rumble>
 
         <rumble-scratch>
@@ -198,7 +198,7 @@
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
             </volume>
             <reference-dist>2.5</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1500.0</max-dist>
         </rumble-scratch>
         
            <wing-collapse-left>
@@ -222,7 +222,7 @@
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
             </volume>
             <reference-dist>2.5</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1500.0</max-dist>
         </wing-collapse-left>
         
           <wing-collapse-right>
@@ -246,7 +246,7 @@
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
             </volume>
             <reference-dist>2.5</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1500.0</max-dist>
         </wing-collapse-right>
         
                   <crash>
@@ -270,91 +270,377 @@
                 <property>/sim/model/c182s/sound/volume-boost-doors</property>
             </volume>
             <reference-dist>2.5</reference-dist>
-            <max-dist>200.0</max-dist>
+            <max-dist>1500.0</max-dist>
         </crash>
 
 
 
  <squeal1>
    <name>squeal1</name>
-      <path>Sounds/squeal.wav</path>
+      <path>Sounds/touchdown-screach2.wav</path>
    <condition>
+   <and>
      <property>/gear/gear[0]/wow</property>
+     <greater-than>
+     <property>/gear/gear[0]/rollspeed-ms</property>
+     <value>25</value>
+     </greater-than>
+   </and>
    </condition>
       <volume>
         <property>/gear/gear[0]/compression-norm</property>
-        <factor>3</factor>
-        <max>1.0</max>
+        <factor>6</factor>
+        <max>2.0</max>
       </volume>
       <volume>
         <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
-        <min>0.1</min>
-        <max>1.0</max>
+        <factor>0.2</factor>
+        <min>0.33</min>
+        <max>2.0</max>
       </volume>
       <volume>
           <property>/sim/model/c182s/sound/volume-boost-doors</property>
       </volume>
-      <pitch>
-        <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
-        <max>2</max>
-      </pitch>
-     </squeal1>
+           </squeal1>
      
 <squeal2>
    <name>squeal2</name>
-   <path>Sounds/squeal.wav</path>
+      <path>Sounds/touchdown-screach2.wav</path>
    <condition>
+   <and>
      <property>/gear/gear[1]/wow</property>
+     <greater-than>
+     <property>/gear/gear[1]/rollspeed-ms</property>
+     <value>25</value>
+     </greater-than>
+   </and>
    </condition>
       <volume>
         <property>/gear/gear[1]/compression-norm</property>
-        <factor>3</factor>
-        <max>1.0</max>
+        <factor>6</factor>
+        <max>2.0</max>
       </volume>
       <volume>
         <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
-        <min>0.1</min>
-        <max>1.0</max>
+        <factor>0.2</factor>
+        <min>0.33</min>
+        <max>2.0</max>
       </volume>
       <volume>
           <property>/sim/model/c182s/sound/volume-boost-doors</property>
       </volume>
-      <pitch>
-        <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
-        <max>2</max>
-      </pitch>
-     </squeal2>
+        </squeal2>
      
 <squeal3>
    <name>squeal3</name>
-   <path>Sounds/squeal.wav</path>
+      <path>Sounds/touchdown-screach2.wav</path>
    <condition>
+   <and>
      <property>/gear/gear[2]/wow</property>
+     <greater-than>
+     <property>/gear/gear[2]/rollspeed-ms</property>
+     <value>25</value>
+     </greater-than>
+   </and>
    </condition>
       <volume>
         <property>/gear/gear[2]/compression-norm</property>
-        <factor>3</factor>
-        <max>1.0</max>
+        <factor>6</factor>
+        <max>2.0</max>
       </volume>
       <volume>
         <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
-        <min>0.1</min>
-        <max>1.0</max>
+        <factor>0.2</factor>
+        <min>0.33</min>
+        <max>2.0</max>
       </volume>
       <volume>
           <property>/sim/model/c182s/sound/volume-boost-doors</property>
       </volume>
-      <pitch>
-        <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
-        <max>2</max>
-      </pitch>
-     </squeal3>
+      </squeal3>
+      
+      
+      <rumble>
+            <name>rumble</name>
+            <mode>looped</mode>
+            <path>Sounds/rumble.wav</path>
+            <condition>
+                <or>
+                    <property>gear/gear[0]/wow</property>
+                    <property>gear/gear[1]/wow</property>
+                    <property>gear/gear[2]/wow</property>
+                </or>
+                <or>
+                    <greater-than>
+                        <property>/gear/gear[0]/rollspeed-ms</property>
+                        <value>5</value>
+                    </greater-than>
+                    <greater-than>
+                        <property>/gear/gear[1]/rollspeed-ms</property>
+                        <value>5</value>
+                    </greater-than>
+                    <greater-than>
+                        <property>/gear/gear[2]/rollspeed-ms</property>
+                        <value>5</value>
+                    </greater-than>
+                </or>
+            </condition>
+            <position>
+                <x>0.5</x>
+                <y>0.0</y>
+                <z>-1.15</z>
+            </position>
+            <volume>
+                <property>velocities/groundspeed-kt</property>
+                <type>log</type>
+                <factor>0.25</factor>
+            </volume>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <reference-dist>2.5</reference-dist>
+            <max-dist>200.0</max-dist>
+        </rumble>
+
+        <rumble-scratch>
+            <name>rumble-scratch</name>
+            <mode>looped</mode>
+            <path>Sounds/scratch.wav</path>
+            <condition>
+                <and>
+                    <or>
+                        <!-- Broken gear touching the ground -->
+                        <property>/fdm/jsbsim/contact/unit[6]/WOW</property>
+                        <property>/fdm/jsbsim/contact/unit[7]/WOW</property>
+                        <property>/fdm/jsbsim/contact/unit[8]/WOW</property>
+
+                        <!-- Tail strike -->
+                        <property>/fdm/jsbsim/contact/unit[3]/WOW</property>
+                    </or>
+                    <or>
+                        <greater-than>
+                            <property>/gear/gear[0]/rollspeed-ms</property>
+                            <value>5</value>
+                        </greater-than>
+                        <greater-than>
+                            <property>/gear/gear[1]/rollspeed-ms</property>
+                            <value>5</value>
+                        </greater-than>
+                        <greater-than>
+                            <property>/gear/gear[2]/rollspeed-ms</property>
+                            <value>5</value>
+                        </greater-than>
+                    </or>
+                </and>
+            </condition>
+            <position>
+                <x>0.5</x>
+                <y>0.0</y>
+                <z>-1.15</z>
+            </position>
+            <volume>
+                <property>velocities/groundspeed-kt</property>
+                <type>log</type>
+                <factor>0.25</factor>
+            </volume>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <reference-dist>2.5</reference-dist>
+            <max-dist>200.0</max-dist>
+        </rumble-scratch>
+
+        <squeal>
+            <name>squeal</name>
+            <path>Sounds/squeal.wav</path>
+            <condition>
+                <and>
+                    <or>
+                        <property>gear/gear[0]/wow</property>
+                        <property>gear/gear[1]/wow</property>
+                        <property>gear/gear[2]/wow</property>
+                        <property>gear/gear[19]/wow</property>
+                        <property>gear/gear[20]/wow</property>
+                        <property>gear/gear[21]/wow</property>
+                        <property>gear/gear[22]/wow</property>
+                    </or>
+                    <less-than>
+                        <property>velocities/vertical-speed-fps</property>
+                        <value>-0.05</value>
+                    </less-than>
+                </and>
+            </condition>
+            <position>
+                <x>1.0</x>
+                <y>0.0</y>
+                <z>-1.5</z>
+            </position>
+            <volume>
+                <property>velocities/groundspeed-kt</property>
+                <factor>0.01</factor>
+                <max>1.0</max>
+            </volume>
+            <volume>
+                <internal>dt_stop</internal>
+                <factor>0.1</factor>
+                <max>1.0</max>
+            </volume>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <pitch>
+                <property>velocities/groundspeed-kt</property>
+                <factor>0.0025</factor>
+                <offset>1.2</offset>
+            </pitch>
+            <reference-dist>2.5</reference-dist>
+            <max-dist>200.0</max-dist>
+        </squeal>
+
+        <pavement-roll>
+            <name>pavement-roll</name>
+            <mode>looped</mode>
+            <path>Sounds/tires-rolling-asphalt.wav</path>
+            <condition>
+                <and>
+                    <property>/fdm/jsbsim/gear/on-pavement</property>
+                    <or>
+                        <property>gear/gear[0]/wow</property>
+                        <property>gear/gear[1]/wow</property>
+                        <property>gear/gear[2]/wow</property>
+                        <property>gear/gear[19]/wow</property>
+                        <property>gear/gear[20]/wow</property>
+                        <property>gear/gear[21]/wow</property>
+                        <property>gear/gear[22]/wow</property>
+                    </or>
+                    <or>
+                        <greater-than>
+                            <property>/gear/gear[0]/rollspeed-ms</property>
+                            <value>5</value>
+                        </greater-than>
+                        <greater-than>
+                            <property>/gear/gear[1]/rollspeed-ms</property>
+                            <value>5</value>
+                        </greater-than>
+                        <greater-than>
+                            <property>/gear/gear[2]/rollspeed-ms</property>
+                            <value>5</value>
+                        </greater-than>
+                    </or>
+                </and>
+            </condition>
+            <position>
+                <x>0.5</x>
+                <y>0.0</y>
+                <z>-1.15</z>
+            </position>
+            <volume>
+                <property>velocities/groundspeed-kt</property>
+                <type>log</type>
+                <factor>0.25</factor>
+            </volume>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <reference-dist>2.5</reference-dist>
+            <max-dist>200.0</max-dist>
+        </pavement-roll>
+
+        <gravel-roll>
+            <name>gravel-roll</name>
+            <mode>looped</mode>
+            <path>Sounds/tires-rolling-gravel.wav</path>
+            <condition>
+                <and>
+                    <not>
+                        <property>/fdm/jsbsim/gear/on-pavement</property>
+                    </not>
+                    <or>
+                        <property>gear/gear[0]/wow</property>
+                        <property>gear/gear[1]/wow</property>
+                        <property>gear/gear[2]/wow</property>
+                        <property>gear/gear[19]/wow</property>
+                        <property>gear/gear[20]/wow</property>
+                        <property>gear/gear[21]/wow</property>
+                        <property>gear/gear[22]/wow</property>
+                    </or>
+                    <or>
+                        <greater-than>
+                            <property>/gear/gear[0]/rollspeed-ms</property>
+                            <value>5</value>
+                        </greater-than>
+                        <greater-than>
+                            <property>/gear/gear[1]/rollspeed-ms</property>
+                            <value>5</value>
+                        </greater-than>
+                        <greater-than>
+                            <property>/gear/gear[2]/rollspeed-ms</property>
+                            <value>5</value>
+                        </greater-than>
+                    </or>
+                </and>
+            </condition>
+            <position>
+                <x>0.5</x>
+                <y>0.0</y>
+                <z>-1.15</z>
+            </position>
+            <volume>
+                <property>velocities/groundspeed-kt</property>
+                <type>log</type>
+                <factor>0.25</factor>
+            </volume>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <reference-dist>2.5</reference-dist>
+            <max-dist>200.0</max-dist>
+        </gravel-roll>
+
+        <gear-screech>
+            <name>gear-screech</name>
+            <mode>looped</mode>
+            <path>Sounds/tires-screech-asphalt.wav</path>
+            <condition>
+                <greater-than>
+                    <property>/fdm/jsbsim/gear/gear-screech</property>
+                    <value>1</value>
+                </greater-than>
+            </condition>
+            <position>
+                <x>0.5</x>
+                <y>0.0</y>
+                <z>-1.15</z>
+            </position>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <reference-dist>2.5</reference-dist>
+            <max-dist>200.0</max-dist>
+        </gear-screech>
+
+        <gear-drag>
+            <name>gear-drag</name>
+            <mode>once</mode>
+            <path>Sounds/tires-screech-gravel-oneshot.wav</path>
+            <condition>
+                <greater-than>
+                    <property>/fdm/jsbsim/gear/gear-drag</property>
+                    <value>1</value>
+                </greater-than>
+            </condition>
+            <position>
+                <x>0.5</x>
+                <y>0.0</y>
+                <z>-1.15</z>
+            </position>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <reference-dist>2.5</reference-dist>
+            <max-dist>200.0</max-dist>
+        </gear-drag>
+
  
   <flap>
    <name>flaps</name>
@@ -523,15 +809,6 @@
   </click>
 -->
 
-        <kap140beep>
-            <name>KAP140Beep</name>
-            <type>avionics</type>
-            <mode>looped</mode>
-            <path>Sounds/stall.wav</path>
-            <condition>
-                <property>autopilot/KAP140/annunciators/beep/state</property>
-            </condition>
-        </kap140beep>
         
         <engine-repair>
             <name>engine-repair</name>
@@ -799,21 +1076,6 @@
             </volume>
         </switch>
         
-        <switch>
-            <name>click-kap140-switch</name>
-            <mode>once</mode>
-            <path>Sounds/double-click2.wav</path>
-            <condition>
-                <property>/sim/model/c182s/sound/click-kap140</property>
-            </condition>
-            <position>
-                <x>-0.3660</x>
-                <y>-0.1200</y>
-                <z>-0.2100</z>
-            </position>
-            <reference-dist>0.2</reference-dist>
-            <max-dist>5.0</max-dist>
-        </switch>
 
         <switch>
             <name>click-kt76c-mode-switch</name>
@@ -934,25 +1196,6 @@
                 <x>-0.3660</x>
                 <y>-0.1200</y>
                 <z>-0.1300</z>
-            </position>
-            <reference-dist>0.2</reference-dist>
-            <max-dist>5.0</max-dist>
-            <volume>
-                <factor>0.2</factor>
-            </volume>
-        </dial>
-
-        <dial>
-            <name>dial-kap140</name>
-            <mode>once</mode>
-            <path>Sounds/scroll.wav</path>
-            <condition>
-                <property>/sim/model/c182s/sound/click-kap140-dial</property>
-            </condition>
-            <position>
-                <x>-0.3660</x>
-                <y>-0.1200</y>
-                <z>-0.2100</z>
             </position>
             <reference-dist>0.2</reference-dist>
             <max-dist>5.0</max-dist>
@@ -1388,6 +1631,9 @@
             <name>TurnIndicatorGyro</name>
             <mode>looped</mode>
             <path>Sounds/gyro.wav</path>
+            <condition>
+                    <property>/instrumentation/turn-indicator/spin</property>
+            </condition>
             <position>
                 <x>-0.3660</x>
                 <y>0.1400</y>
@@ -1470,6 +1716,101 @@
         </volume>
     </ExternalHeater>
      
+    
+    <kap140-disengage>
+        <name>KAP140 disengage</name>
+        <path>Sounds/kap140-disengage.wav</path>
+        <condition>
+            <and>
+                <property>controls/circuit-breakers/Warn</property>
+                <or>
+                    <equals>
+                    <property>autopilot/kap140/panel/state</property>
+                    <value>3</value>
+                    </equals>
+                    <property>autopilot/kap140/panel/ap-timer</property>
+                </or>
+            </and>
+        </condition>
+        <volume><factor>0.2</factor></volume>
+        <position>
+        <x>-0.34054 </x>
+        <y> 0.180076</y>
+        <z>-0.104289</z>
+        </position>
+    </kap140-disengage>
+
+    <kap140-alert>
+        <name>KAP140 altitude alerter</name>
+        <path>Sounds/kap140-alert.wav</path>
+        <condition>
+            <and>
+                <property>controls/circuit-breakers/Warn</property>
+                <property>autopilot/kap140/panel/alt-alert-sound</property>
+            </and>
+        </condition>
+        <volume><factor>0.2</factor></volume>
+        <position>
+        <x>-0.34054 </x>
+        <y> 0.180076</y>
+        <z>-0.104289</z>
+        </position>
+    </kap140-alert>
+    
+    <switch>
+        <name>click-kap140-switch</name>
+        <mode>once</mode>
+        <path>Sounds/double-click2.wav</path>
+        <condition>
+            <property>/sim/model/c182s/sound/click-kap140</property>
+        </condition>
+        <position>
+            <x>-0.3660</x>
+            <y>-0.1200</y>
+            <z>-0.2100</z>
+        </position>
+        <reference-dist>0.2</reference-dist>
+        <max-dist>5.0</max-dist>
+    </switch>
+    
+    <dial>
+        <name>dial-kap140</name>
+        <mode>once</mode>
+        <path>Sounds/scroll.wav</path>
+        <condition>
+            <property>/sim/model/c182s/sound/click-kap140-dial</property>
+        </condition>
+        <position>
+            <x>-0.3660</x>
+            <y>-0.1200</y>
+            <z>-0.2100</z>
+        </position>
+        <reference-dist>0.2</reference-dist>
+        <max-dist>5.0</max-dist>
+        <volume>
+            <factor>0.2</factor>
+        </volume>
+    </dial>
+        
+    <davtron803-alert>
+        <name>Davtron 803M alarm</name>
+        <path>Sounds/davtron803-alarm.wav</path>
+        <mode>looped</mode>
+        <condition>
+            <and>
+                <property>/instrumentation/davtron803/operable</property>
+                <property>/instrumentation/davtron803/annunciators/alarm</property>
+            </and>
+        </condition>
+        <volume><factor>0.2</factor></volume>
+        <position>
+            <x-m>0.352</x-m>
+            <y-m>-0.433</y-m>
+            <z-m>0.402</z-m>
+        </position>
+        <reference-dist>0.4</reference-dist>
+        <max-dist>5.0</max-dist>
+    </davtron803-alert>
 </fx>
  
 </PropertyList>

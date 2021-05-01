@@ -14,13 +14,13 @@
     </texture>
     <lightmap-enabled type="int">1</lightmap-enabled>
     <lightmap-multi type="int">1</lightmap-multi>
-    <lightmap-factor type="float" n="0"><use>/systems/electrical/outputs/dome-light-l</use></lightmap-factor>
+    <lightmap-factor type="float" n="0"><use>systems/electrical/outputs/dome-light-l</use></lightmap-factor>
     <lightmap-color type="vec3d" n="0">1.0 1.0 0.99</lightmap-color>
-    <lightmap-factor type="float" n="1"><use>/systems/electrical/outputs/dome-light-r</use></lightmap-factor>
+    <lightmap-factor type="float" n="1"><use>systems/electrical/outputs/dome-light-r</use></lightmap-factor>
     <lightmap-color type="vec3d" n="1">1.0 1.0 0.99</lightmap-color>
-    <lightmap-factor type="float" n="2"><use>/systems/electrical/outputs/glareshield-lights-norm</use></lightmap-factor>
+    <lightmap-factor type="float" n="2"><use>systems/electrical/outputs/glareshield-lights-norm</use></lightmap-factor>
     <lightmap-color type="vec3d" n="2">0.99 0.99 1.0</lightmap-color>
-    <lightmap-factor type="float" n="3"><use>/systems/electrical/outputs/dome-exterior-light</use></lightmap-factor>
+    <lightmap-factor type="float" n="3"><use>systems/electrical/outputs/dome-exterior-light</use></lightmap-factor>
     <lightmap-color type="vec3d" n="3">1.0 1.0 0.99</lightmap-color>
     <texture n="4">
       <type>cubemap</type>
@@ -41,9 +41,9 @@
     <light-filter-two type="vec3d">0.9 0.2 0.2</light-filter-two>
     <light-radius type="float">13</light-radius>
 
-    <residual-ambience-r type="float"><use>/sim/model/c182s/lighting/rgb-ra-r-factor</use></residual-ambience-r>
-    <residual-ambience-g type="float"><use>/sim/model/c182s/lighting/rgb-ra-g-factor</use></residual-ambience-g>
-    <residual-ambience-b type="float"><use>/sim/model/c182s/lighting/rgb-ra-b-factor</use></residual-ambience-b>
+    <residual-ambience-r type="float"><use>sim/model/c182s/lighting/rgb-ra-r-factor</use></residual-ambience-r>
+    <residual-ambience-g type="float"><use>sim/model/c182s/lighting/rgb-ra-g-factor</use></residual-ambience-g>
+    <residual-ambience-b type="float"><use>sim/model/c182s/lighting/rgb-ra-b-factor</use></residual-ambience-b>
     <ra-irradiance-map-type type="int">0</ra-irradiance-map-type>
     <ra-irradiance-map-strength type="float">1</ra-irradiance-map-strength>
   </parameters>

@@ -75,14 +75,6 @@
                     <dialog-name>fuelmgmt-dialog</dialog-name>
                 </binding>
             </item>
-            
-            <item>
-                <label>Aircraft Failure Management</label>
-                <binding>
-                    <command>dialog-show</command>
-                    <dialog-name>extended-failure-dialog</dialog-name>
-                </binding>
-            </item>
 
             <item n="150">
                 <label>------------------</label>

@@ -37,13 +37,13 @@
     <type>material</type>
     <object-name>CompassRose</object-name>
     <object-name>KI227.ADFNeedle</object-name>
-     <object-name>Marker</object-name>
-    <object-name>HDGSelector</object-name>
+    <object-name>Marker</object-name>
+    <object-name>AircraftSymbol</object-name>
   <emission>
    <red>1.0</red>
    <green>0.8</green>
    <blue>0.4</blue>
-   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
+   <factor-prop>systems/electrical/outputs/instrument-lights-norm</factor-prop>
   </emission>
         <specular>
             <red>   0.0 </red>

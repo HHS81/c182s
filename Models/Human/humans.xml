@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+************************************************************************
+
+This files ties together all the components used by FGFS to represent
+the Cessna 550/551 Citation II and its aftermarket engine upgrade the
+Sierra Super-II. Components include the flight data model, instrument
+panel, and external 3D model.
+
+November 14 2004  Curtis L. Olson  http://www.flightgear.org/~curt
+Copyright (c) 2014-2018 Ludovic Brenta <ludovic@ludovic-brenta.org>
+2015-04-08 chris_blues <chris@musicchris.de>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+************************************************************************
+-->
+<PropertyList>
+  <!-- Settings for human models -->
+  <crew>
+    <pilot n="0">
+      <pose>
+        <name type="string">pilot</name>
+        <loop-enabled type="bool">true</loop-enabled>
+        <loop-to type="int">0</loop-to>
+        <trigger-upon type="string">Disabled</trigger-upon>
+        <position>
+          <name type="string">idle</name>
+          <rest-sec type="double">0</rest-sec>
+          <transit-sec type="double">1</transit-sec>
+          <limb> <!-- hip -->
+            <y-deg type="double">11.0959</y-deg>
+          </limb>
+          <limb n="1"> <!-- chest -->
+            <y-deg type="double">-7</y-deg>
+            <z-deg type="double">0</z-deg>
+          </limb>
+          <limb n="2"> <!-- head -->
+            <y-deg type="double">-8.7222</y-deg>
+            <z-deg type="double">0</z-deg>
+          </limb>
+          <limb n="3"> <!-- arm1.R -->
+            <x-deg type="double">-68</x-deg>
+            <y-deg type="double">-13</y-deg>
+            <z-deg type="double">-22</z-deg>
+          </limb>
+          <limb n="4"> <!-- arm2.R -->
+            <y-deg type="double">0</y-deg>
+            <z-deg type="double">67</z-deg>
+          </limb>
+          <limb n="5">  <!-- hand.R -->
+            <x-deg type="double">0</x-deg>
+            <y-deg type="double">0</y-deg>
+            <hand-pose type="double">1</hand-pose>  <!-- 1 == grip -->
+          </limb>
+          <limb n="6"> <!-- arm2.L -->
+            <x-deg type="double">-70</x-deg>
+            <y-deg type="double">15</y-deg>
+            <z-deg type="double">-26.2264</z-deg>
+          </limb>
+          <limb n="7"> <!-- arm2.L -->
+            <y-deg type="double">0</y-deg>
+            <z-deg type="double">55.5287</z-deg>
+          </limb>
+          <limb n="8"> <!-- hand.L -->
+            <x-deg type="double">0</x-deg>
+            <y-deg type="double">0</y-deg>
+            <hand-pose type="double">1</hand-pose> <!-- 1 == grip -->
+          </limb>
+          <limb n="9"> <!-- leg1.R -->
+            <x-deg type="double">0</x-deg>
+            <y-deg type="double">-105</y-deg>
+            <z-deg type="double">0</z-deg>
+          </limb>
+          <limb n="10"> <!-- leg2.R -->
+            <y-deg type="double">50</y-deg>
+          </limb>
+          <limb n="11"> <!-- foot.R -->
+            <y-deg type="double">30</y-deg>
+          </limb>
+          <limb n="12"> <!-- leg1.L -->
+            <x-deg type="double">0</x-deg>
+            <y-deg type="double">-105</y-deg>
+            <z-deg type="double">0</z-deg>
+          </limb>
+          <limb n="13"> <!-- leg2.L -->
+            <y-deg type="double">50</y-deg>
+          </limb>
+          <limb n="14"> <!-- foot.L -->
+            <y-deg type="double">30</y-deg>
+          </limb>
+        </position>
+      </pose>
+      <character>0</character>
+      <gender>1</gender>
+      <hair>1</hair>
+      <outfit>2</outfit>
+      <equipment>0</equipment>
+      <eyewear>1</eyewear>
+      <headgear>1</headgear>
+      <enabled type="bool">1</enabled>
+    </pilot>
+    <pilot n="1">
+      <pose>
+        <name type="string">copilot</name>
+        <loop-enabled type="bool">true</loop-enabled>
+        <loop-to type="int">0</loop-to>
+        <trigger-upon type="string">Disabled</trigger-upon>
+        <position>
+          <name type="string">idle</name>
+          <rest-sec type="double">0</rest-sec>
+          <transit-sec type="double">1</transit-sec>
+          <limb> <!-- hip -->
+            <y-deg type="double">11.0959</y-deg>
+          </limb>
+          <limb n="1"> <!-- chest -->
+            <y-deg type="double">-7</y-deg>
+            <z-deg type="double">0</z-deg>
+          </limb>
+          <limb n="2"> <!-- head -->
+            <y-deg type="double">-8.7222</y-deg>
+            <z-deg type="double">0</z-deg>
+          </limb>
+          <limb n="3"> <!-- arm1.R -->
+            <x-deg type="double">-90</x-deg>
+            <y-deg type="double">3</y-deg>
+            <z-deg type="double">-25</z-deg>
+          </limb>
+          <limb n="4"> <!-- arm2.R -->
+            <y-deg type="double">0</y-deg>
+            <z-deg type="double">31.5287</z-deg>
+          </limb>
+          <limb n="5">  <!-- hand.R -->
+            <x-deg type="double">-20</x-deg>
+            <y-deg type="double">-5</y-deg>
+            <hand-pose type="double">0</hand-pose>  <!-- 1 == grip -->
+          </limb>
+          <limb n="6"> <!-- arm1.L -->
+            <x-deg type="double">-80</x-deg>
+            <y-deg type="double">6.20689</y-deg>
+            <z-deg type="double">-17</z-deg>
+          </limb>
+          <limb n="7"> <!-- arm2.L -->
+            <y-deg type="double">0</y-deg>
+            <z-deg type="double">15</z-deg>
+          </limb>
+          <limb n="8"> <!-- hand.L -->
+            <x-deg type="double">0</x-deg>
+            <y-deg type="double">0</y-deg>
+            <hand-pose type="double">0</hand-pose> <!-- 1 == grip -->
+          </limb>
+          <limb n="9"> <!-- leg1.R -->
+            <x-deg type="double">0</x-deg>
+            <y-deg type="double">-95</y-deg>
+            <z-deg type="double">0</z-deg>
+          </limb>
+          <limb n="10"> <!-- leg2.R -->
+            <y-deg type="double">50</y-deg>
+          </limb>
+          <limb n="11"> <!-- foot.R -->
+            <y-deg type="double">0</y-deg>
+          </limb>
+          <limb n="12"> <!-- leg1.L -->
+            <x-deg type="double">0</x-deg>
+            <y-deg type="double">-95</y-deg>
+            <z-deg type="double">0</z-deg>
+          </limb>
+          <limb n="13"> <!-- leg2.L -->
+            <y-deg type="double">50</y-deg>
+          </limb>
+          <limb n="14"> <!-- foot.L -->
+            <y-deg type="double">0</y-deg>
+          </limb>
+        </position>
+      </pose>
+      <character>0</character>
+      <gender>1</gender>
+      <hair>1</hair>
+      <outfit>0</outfit>
+      <equipment>0</equipment>
+      <eyewear>1</eyewear>
+      <headgear>1</headgear>
+      <enabled type="bool">1</enabled>
+    </pilot>
+  </crew>
+  <pax>
+    <pax n="0">
+      <pose>
+        <name type="string">Passenger Left</name>
+        <loop-enabled type="bool">true</loop-enabled>
+        <loop-to type="int">0</loop-to>
+        <trigger-upon type="string">Disabled</trigger-upon>
+        <position>
+          <name type="string">idle</name>
+          <rest-sec type="double">0</rest-sec>
+          <transit-sec type="double">1</transit-sec>
+          <limb> <!-- hip -->
+            <y-deg type="double">11.0959</y-deg>
+          </limb>
+          <limb n="1"> <!-- chest -->
+            <y-deg type="double">-7</y-deg>
+            <z-deg type="double">0</z-deg>
+          </limb>
+          <limb n="2"> <!-- head -->
+            <y-deg type="double">-8.7222</y-deg>
+            <z-deg type="double">-25</z-deg>
+          </limb>
+          <limb n="3"> <!-- arm1.R -->
+            <x-deg type="double">-70</x-deg>
+            <y-deg type="double">0</y-deg>
+            <z-deg type="double">-8</z-deg>
+          </limb>
+          <limb n="4"> <!-- arm2.R -->
+            <y-deg type="double">-50</y-deg>
+            <z-deg type="double">70</z-deg>
+          </limb>
+          <limb n="5">  <!-- hand.R -->
+            <x-deg type="double">-5</x-deg>
+            <y-deg type="double">-90</y-deg>
+            <hand-pose type="double">0</hand-pose>  <!-- 1 == grip -->
+          </limb>
+          <limb n="6"> <!-- arm2.L -->
+            <x-deg type="double">-80</x-deg>
+            <y-deg type="double">10</y-deg>
+            <z-deg type="double">-30</z-deg>
+          </limb>
+          <limb n="7"> <!-- arm2.L -->
+            <y-deg type="double">0</y-deg>
+            <z-deg type="double">36.3057</z-deg>
+          </limb>
+          <limb n="8"> <!-- hand.L -->
+            <x-deg type="double">0</x-deg>
+            <y-deg type="double">14</y-deg>
+            <hand-pose type="double">0</hand-pose> <!-- 1 == grip -->
+          </limb>
+          <limb n="9"> <!-- leg1.R -->
+            <x-deg type="double">0</x-deg>
+            <y-deg type="double">-110</y-deg>
+            <z-deg type="double">0</z-deg>
+          </limb>
+          <limb n="10"> <!-- leg2.R -->
+            <y-deg type="double">80</y-deg>
+          </limb>
+          <limb n="11"> <!-- foot.R -->
+            <y-deg type="double">0</y-deg>
+          </limb>
+          <limb n="12"> <!-- leg1.L -->
+            <x-deg type="double">0</x-deg>
+            <y-deg type="double">-110</y-deg>
+            <z-deg type="double">0</z-deg>
+          </limb>
+          <limb n="13"> <!-- leg2.L -->
+            <y-deg type="double">80</y-deg>
+          </limb>
+          <limb n="14"> <!-- foot.L -->
+            <y-deg type="double">0</y-deg>
+          </limb>
+        </position>
+      </pose>
+      <character>0</character>
+      <gender>1</gender>
+      <hair>1</hair>
+      <outfit>2</outfit>
+      <equipment>0</equipment>
+      <eyewear>0</eyewear>
+      <headgear>0</headgear>
+      <enabled type="bool">1</enabled>
+    </pax>
+    <pax n="1">
+      <pose>
+        <name type="string">Passenger Right</name>
+        <loop-enabled type="bool">true</loop-enabled>
+        <loop-to type="int">0</loop-to>
+        <trigger-upon type="string">Disabled</trigger-upon>
+        <position>
+          <name type="string">idle</name>
+          <rest-sec type="double">0</rest-sec>
+          <transit-sec type="double">1</transit-sec>
+          <limb> <!-- hip -->
+            <y-deg type="double">11.0959</y-deg>
+          </limb>
+          <limb n="1"> <!-- chest -->
+            <y-deg type="double">-7</y-deg>
+            <z-deg type="double">0</z-deg>
+          </limb>
+          <limb n="2"> <!-- head -->
+            <y-deg type="double">-8.7222</y-deg>
+            <z-deg type="double">25</z-deg>
+          </limb>
+          <limb n="3"> <!-- arm1.R -->
+            <x-deg type="double">-90</x-deg>
+            <y-deg type="double">-7.37069</y-deg>
+            <z-deg type="double">-10</z-deg>
+          </limb>
+          <limb n="4"> <!-- arm2.R -->
+            <y-deg type="double">0</y-deg>
+            <z-deg type="double">65</z-deg>
+          </limb>
+          <limb n="5">  <!-- hand.R -->
+            <x-deg type="double">0</x-deg>
+            <y-deg type="double">-45</y-deg>
+            <hand-pose type="double">0</hand-pose>  <!-- 1 == grip -->
+          </limb>
+          <limb n="6"> <!-- arm1.L -->
+            <x-deg type="double">-65</x-deg>
+            <y-deg type="double">-5</y-deg>
+            <z-deg type="double">-85</z-deg>
+          </limb>
+          <limb n="7"> <!-- arm2.L -->
+            <y-deg type="double">0</y-deg>
+            <z-deg type="double">10</z-deg>
+          </limb>
+          <limb n="8"> <!-- hand.L -->
+            <x-deg type="double">0</x-deg>
+            <y-deg type="double">0</y-deg>
+            <hand-pose type="double">1</hand-pose> <!-- 1 == grip -->
+          </limb>
+          <limb n="9"> <!-- leg1.R -->
+            <x-deg type="double">0</x-deg>
+            <y-deg type="double">-110</y-deg>
+            <z-deg type="double">0</z-deg>
+          </limb>
+          <limb n="10"> <!-- leg2.R -->
+            <y-deg type="double">80</y-deg>
+          </limb>
+          <limb n="11"> <!-- foot.R -->
+            <y-deg type="double">0</y-deg>
+          </limb>
+          <limb n="12"> <!-- leg1.L -->
+            <x-deg type="double">0</x-deg>
+            <y-deg type="double">-110</y-deg>
+            <z-deg type="double">0</z-deg>
+          </limb>
+          <limb n="13"> <!-- leg2.L -->
+            <y-deg type="double">80</y-deg>
+          </limb>
+          <limb n="14"> <!-- foot.L -->
+            <y-deg type="double">0</y-deg>
+          </limb>
+        </position>
+      </pose>
+      <character>0</character>
+      <gender>0</gender>
+      <hair>1</hair>
+      <outfit>0</outfit>
+      <equipment>0</equipment>
+      <eyewear>0</eyewear>
+      <headgear>0</headgear>
+      <enabled type="bool">1</enabled>
+    </pax>
+  </pax>
+
+</PropertyList>

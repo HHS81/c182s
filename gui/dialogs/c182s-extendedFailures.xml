@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-  <name>extended-failure-dialog</name>
+  <name>extended-failure-dialog-c182s</name>
   <modal>false</modal>
   <layout>vbox</layout>
   
@@ -351,6 +351,23 @@
         <row>15</row>
         <col>2</col>
         <property>/sim/failure-manager/lighting/cabin/mtbf</property>
+      </input>
+      
+      <text>
+        <row>16</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Prop. Pitch Governor</label>
+      </text>
+      <checkbox>
+        <row>16</row>
+        <col>1</col>
+        <property>/sim/failure-manager/engine/governor/serviceable</property>
+      </checkbox>
+      <input>
+        <row>16</row>
+        <col>2</col>
+        <property>/sim/failure-manager/engine/governor/mtbf</property>
       </input>
 
       <!--
@@ -779,15 +796,49 @@
         <row>9</row>
         <col>0</col>
         <halign>right</halign>
-        <label>Transponder</label>
+        <label>Autopilot (roll servo)</label>
       </text>
       <checkbox>
         <row>9</row>
         <col>1</col>
-        <property>/sim/failure-manager/instrumentation/avionics/transponder/serviceable</property>
+        <property>/sim/failure-manager/instrumentation/avionics/autopilot-roll-servo/serviceable</property>
       </checkbox>
       <input>
         <row>9</row>
+        <col>2</col>
+        <property>/sim/failure-manager/instrumentation/avionics/autopilot-roll-servo/mtbf</property>
+      </input>
+      
+      <text>
+        <row>10</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Autopilot (pitch servo)</label>
+      </text>
+      <checkbox>
+        <row>10</row>
+        <col>1</col>
+        <property>/sim/failure-manager/instrumentation/avionics/autopilot-pitch-servo/serviceable</property>
+      </checkbox>
+      <input>
+        <row>10</row>
+        <col>2</col>
+        <property>/sim/failure-manager/instrumentation/avionics/autopilot-pitch-servo/mtbf</property>
+      </input>
+      
+      <text>
+        <row>11</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Transponder</label>
+      </text>
+      <checkbox>
+        <row>11</row>
+        <col>1</col>
+        <property>/sim/failure-manager/instrumentation/avionics/transponder/serviceable</property>
+      </checkbox>
+      <input>
+        <row>11</row>
         <col>2</col>
         <property>/sim/failure-manager/instrumentation/avionics/transponder/mtbf</property>
       </input>

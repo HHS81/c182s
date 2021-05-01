@@ -1,0 +1,474 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+    <name>Instruments: Using the Davtron 803M digital clock</name>
+
+    <description>
+    The Davtron 803M digital clock can not only display various information about temperature and time, it also has alarm timers.
+
+This short tutorial will work you trough the usage of the clock in about 8 minutes.
+
+In short:
+- The clock activates when power is applied. This also starts the FT timer.
+- The top row displays Temperature (dgF/degC) and voltage of the electrical bus.
+- The bottom row either displays UTC time (UT), local time (LT), the elapsed flight time (FT) or an elapsed timer (ET).
+- The flight timer can be reset by pushing the control button until 99:59 is displayed.
+- The ET timer starts counting upwards after pressing the control button, stops after another button-press and finally clears after the third press.
+- For the FT timer you can activate an alarm. Go to the set-mode by shift-clicking either SEL or CTL button.
+  The flashing digit can be adjusted by CTL, and confirmed by SEL (which switches also to the next digit).
+  As soon the elapsed time is reached, the display blinks and you hear an alarm. You can cancel that alarm by either SEL or CTL.
+-The ET timer has a countdown mode that is activated by the same method. It will alarm when the count down reaches zero.
+    </description>
+    
+    <nasal>
+        <script>
+            c182s.repair_damage();
+        </script>
+    </nasal>
+    
+    
+    <step> <!-- init -->
+        <!--
+        <set>
+            <property>/sim/model/c182s/brake-parking</property>
+            <value>1</value>
+        </set>
+        -->
+        
+        <message></message>
+    </step>
+    
+    <step>
+        <message>In this lesson, you'll learn how to use the Davtron digital clock located at the top left of the panel.</message>
+        <!--<wait>8</wait>-->
+        <view>
+            <heading-offset-deg>13.4</heading-offset-deg>
+            <pitch-offset-deg>-8.8</pitch-offset-deg>
+            <roll-offset-deg>0.0</roll-offset-deg>
+            <x-offset-m>-0.2</x-offset-m>
+            <y-offset-m>0.5</y-offset-m>
+            <z-offset-m>1.2</z-offset-m>
+            <field-of-view>44.0</field-of-view>
+        </view>
+
+        <marker>
+            <x-m>0.3317</x-m>
+            <y-m>-0.4242</y-m>
+            <z-m>0.3950</z-m>
+            <scale>4.0000</scale>
+        </marker>
+    </step>
+    
+    <step>
+        <message>The clock turns on automatically if power is applied to the electrical system main bus.</message>
+        <wait>5</wait>
+        <error>
+            <message>Apply electrical power to the main bus to turn on the clock!</message>
+            <condition>
+                <not><property>/instrumentation/davtron803/operable</property></not>
+            </condition>
+        </error>
+    </step>
+    
+    <step>
+        <message>To check if the clock is serviceable, you can use the test mode.
+            Press and hold the left blue {SELECT|select} button for at least three seconds to show all
+            elements of the display.</message>
+        <wait>1</wait>
+        <error>
+            <message>Press and hold the left blue {SELECT|select} button for at least three seconds.</message>
+            <condition>
+                <not><property>/instrumentation/davtron803/logic/test</property></not>
+            </condition>
+        </error>
+    </step>
+    
+    
+    
+    <step>
+        <message>The clock has two LCD lines. The top row can display {OAT|outside air temperature} in fahrenheit and celsius, and finally electrical bus voltage.
+        Electrical bus voltage is useful to test the battery loading state when the engine does not supply power {(disable alternator with running engine)|}.</message>
+        <wait>12</wait>
+    </step>
+    
+    <step>
+        <message>The top modes are cycled using the red top button {(OAT / volts)|}.</message>
+    </step>
+    <step>
+        <message>Try it out!</message>
+        <wait>16</wait>
+    </step>
+    
+    
+    
+    
+    <step>
+        <message>The bottom row of the clock shows various timing informations.
+            It has four modes: {UT|universal time}, {LT|local time}, {FT|flight time counter} and {ET|elapsed time counter}.
+            The currently active mode is indicated by a flashing annunciator to the left of the time value.</message>
+        <wait>8</wait>
+    </step>
+    
+    <step>
+        <message>The modes can be cycled using the left blue {SELECT|select} button.</message>
+        <wait>5</wait>
+        <error>
+            <message>Use the {SELECT|select} button to cycle to the {UT|universal time} mode.</message>
+            <condition>
+                <not><property>/instrumentation/davtron803/logic/mode-ut</property></not>
+            </condition>
+        </error>
+    </step>
+    
+    <step>
+        <message></message>
+        <wait>3</wait>
+    </step>
+    
+    <step>
+        <message>Now I will tell you more about the timer functions. Please cycle to the {FT|flight time counter} mode.</message>
+        <wait>6</wait>
+        <error>
+            <message>Use the {SELECT|select} button to cycle to the {FT|flight time counter} mode.</message>
+            <condition>
+                <not><property>/instrumentation/davtron803/logic/mode-ft</property></not>
+            </condition>
+        </error>
+    </step>
+    
+    <step>
+        <message>The FT mode displays flight time in hours and minutes. It starts to count from zero as soon as the clock receives power.</message>
+        <wait>10</wait>
+    </step>
+    <step>
+        <message>To reset the flight timer, press and hold the right blue {CONTROL|control} button until the display shows 59:99 while in FT mode. Upon release, the timer is reset to zero.</message>
+        <wait>1</wait>
+        <error>
+            <message>Press and hold the right blue {CONTROL|control} button until the display shows 99:59.</message>
+            <condition>
+                <greater-than>
+                    <property>/instrumentation/davtron803/flight-time-secs</property>
+                    <value>5</value>
+                </greater-than>
+            </condition>
+        </error>
+    </step>
+    <step>
+        <message>You can also set an alarm if an elapsed flight time was reached. This alarm will flash the display together with an alarm tone.
+            You need to press the {SELECT|select} and {CONTROL|control} together, which is done by shift-clicking one of the buttons.
+        </message>
+        <wait>1</wait>
+        <error>
+            <message>Use shift-click to press both buttons and enter the alarm set mode.</message>
+            <condition>
+                <not>
+                    <equals>
+                        <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                        <value>1</value>
+                    </equals>
+                </not>
+            </condition>
+        </error>
+    </step>
+    
+    <step>
+        <message>The clock is now in set-mode, which is indicated by the first digit flashing and the mode annunciator not flashing anymore.
+            You can use the {CONTROL|control} button to cycle trough the values and the {SELECT|select} button to acknowledge the flashing digit.
+            As soon as the last digit was acknowledged, the alarm arms automatically.
+            If something goes wrong, enter any time and start over with a fresh set-mode by again pressing both buttons together.
+            </message>
+        <wait>8</wait>
+    </step>
+    <step>
+        <message>
+            Please now enter the alarm time for 1 hour and {15|fifteen} minutes{ (01:15)|}.
+        </message>
+        <wait>8</wait>
+        <error>
+            <message>Enter {01:15|one fifteen} as flight timer alarm.</message>
+            <condition>
+                <not>
+                    <and>
+                        <property>/instrumentation/davtron803/internal/flight-timer-alarm-armed</property>
+                        <equals>
+                            <property>/instrumentation/davtron803/internal/flight-timer-alarm-time</property>
+                            <value>4500</value>
+                        </equals>
+                    </and>
+                </not>
+            </condition>
+        </error>
+    </step>
+    
+    <step>
+        <message>Great! The flight timer alarm is now armed!
+            I will fast forward now, so we can see the alarm going off in a few seconds.</message>
+        <wait>8</wait>
+    </step>
+    <step>
+        <message></message>
+        <set>
+            <property>/instrumentation/davtron803/flight-time-secs</property>
+            <value>500</value>
+        </set>
+        <wait>0.5</wait>
+    </step>
+    <step>
+        <message></message>
+        <set>
+            <property>/instrumentation/davtron803/flight-time-secs</property>
+            <value>1000</value>
+        </set>
+        <wait>0.5</wait>
+    </step>
+    <step>
+        <message></message>
+        <set>
+            <property>/instrumentation/davtron803/flight-time-secs</property>
+            <value>1500</value>
+        </set>
+        <wait>0.5</wait>
+    </step>
+    <step>
+        <message></message>
+        <set>
+            <property>/instrumentation/davtron803/flight-time-secs</property>
+            <value>2500</value>
+        </set>
+        <wait>0.5</wait>
+    </step>
+    <step>
+        <message></message>
+        <set>
+            <property>/instrumentation/davtron803/flight-time-secs</property>
+            <value>4000</value>
+        </set>
+        <wait>0.5</wait>
+    </step>
+    <step>
+        <message></message>
+        <set>
+            <property>/instrumentation/davtron803/flight-time-secs</property>
+            <value>4490</value>
+        </set>
+    </step>
+    <step>
+        <message></message>
+        <error>
+            <condition>
+                <not> <property>/instrumentation/davtron803/logic/alarm-ft</property> </not>
+            </condition>
+        </error>
+    </step>
+    
+    <step>
+        <message>The alarm set off! Note the flashing display and the aural annunciator.
+            You can acknowledge the alarm by pressing either of the two buttons.
+            The flight timer will count on in the background.</message>
+        <wait>3</wait>
+        <error>
+            <message>Press the {SELECT|select} or {CONTROL|control} button to disable the alarm.</message>
+            <condition>
+                <property>/instrumentation/davtron803/logic/alarm-ft</property>
+            </condition>
+        </error>
+    </step>
+    
+    
+    
+    <step>
+        <message>Now that you know everything about the flight timer, I will show you what the elapsed timer can do.</message>
+        <wait>5</wait>
+        <error>
+            <message>Please use the {SELECT|select} button to cycle to the {ET|elapsed timer} mode.</message>
+            <condition>
+                <not><property>/instrumentation/davtron803/logic/mode-et</property></not>
+            </condition>
+        </error>
+    </step>
+    
+    <step>
+        <message>The {ET|elapsed timer} mode features a count-up and count-down.
+            The displayed time value is minutes and seconds and after one hour switches to hours and minutes.</message>
+        <wait>8</wait>
+        <error>
+            <message>Press the {CONTROL|control} button to activate the count-up.</message>
+            <condition>
+                <not>
+                    <equals>
+                        <property>/instrumentation/davtron803/internal/elapsed-timer-step</property>
+                        <value>1</value>
+                    </equals>
+                </not>
+            </condition>
+        </error>
+    </step>
+    
+    <step>
+        <message>You can see the counter counting upwards now.
+            It will do so until reaching {99:59 HH:MM|ninetynine hours and fiftynine minutes}.</message>
+        <wait>8</wait>
+    </step>
+    
+    <step>
+        <message>To stop the timer, press the {CONTROL|control} button again.</message>
+        <wait>5</wait>
+        <error>
+            <message>Press the {CONTROL|control} button to stop the count-up.</message>
+            <condition>
+                <not>
+                    <equals>
+                        <property>/instrumentation/davtron803/internal/elapsed-timer-step</property>
+                        <value>0</value>
+                    </equals>
+                </not>
+            </condition>
+        </error>
+    </step>
+    <step>
+        <message>To clear the timer, press the {CONTROL|control} button a third time.</message>
+        <wait>5</wait>
+        <error>
+            <message>Press the {CONTROL|control} button to clear the timer.</message>
+            <condition>
+                <not>
+                    <and>
+                        <equals>
+                            <property>/instrumentation/davtron803/internal/elapsed-timer-step</property>
+                            <value>0</value>
+                        </equals>
+                        <equals>
+                            <property>/instrumentation/davtron803/elapsed-time-secs</property>
+                            <value>0</value>
+                        </equals>
+                    </and>
+                </not>
+            </condition>
+        </error>
+    </step>
+    
+    <step>
+        <message>The {ET|elapsed timer} mode also has a count-down mode with integrated alarm.
+            This will count down from a previously set minute and seconds time value and alarm once the count-down reaches zero.
+            Like you already did with the {FT|flight time counter}, enter the set-mode by pressing the {SELECT|select} and {CONTROL|control} together (shift-click one of the buttons).
+            You can also set an alarm if an elapsed flight time was reached. This alarm will flash the display together with an alarm tone.
+            You need to press the {SELECT|select} and {CONTROL|control} together, which is done by shift-clicking one of the buttons.
+        </message>
+        <wait>1</wait>
+        <error>
+            <message>Use shift-click to press both buttons and enter the count-down alarm set mode.</message>
+            <condition>
+                <not>
+                    <and>
+                        <property>/instrumentation/davtron803/logic/mode-et</property>
+                        <equals>
+                            <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                            <value>1</value>
+                        </equals>
+                    </and>
+                </not>
+            </condition>
+        </error>
+    </step>
+    
+    <step>
+        <message>The clock is now in set-mode, which is indicated by the first digit flashing and the mode annunciator not flashing anymore.
+            You can use the {CONTROL|control} button to cycle trough the values and the {SELECT|select} button to acknowledge the flashing digit.
+            As soon as the last digit was acknowledged, the clock is ready for the countdown to start.
+            If something goes wrong, enter any time and start over with a fresh set-mode by again pressing both buttons together.
+            </message>
+        <wait>8</wait>
+    </step>
+    
+    <step>
+        <message>
+            Please now enter the countdown alarm time for {00:05|5 seconds}.
+        </message>
+        <wait>8</wait>
+        <error>
+            <message>Enter {00:05|five seconds} as elapsed timer countdown alarm.</message>
+            <condition>
+                <not>
+                    <and>
+                        <property>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</property>
+                        <equals>
+                            <property>/instrumentation/davtron803/elapsed-time-secs</property>
+                            <value>5</value>
+                        </equals>
+                        <equals>
+                            <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                            <value>0</value>
+                        </equals>
+                    </and>
+                </not>
+            </condition>
+        </error>
+    </step>
+    <step>
+        <message>Great! The count down is now armed. Press {CONTROL|control} once more to start the countdown.</message>
+        <wait>3</wait>
+        <error>
+            <message>Press {CONTROL|control} to start the countdown.</message>
+            <condition>
+                <not>
+                    <equals>
+                        <property>/instrumentation/davtron803/internal/elapsed-timer-step</property>
+                        <value>-1</value>
+                    </equals>
+                </not>
+            </condition>
+        </error>
+    </step>
+    <step>
+        <message></message>
+        <error>
+            <condition>
+                <not> <property>/instrumentation/davtron803/logic/alarm-et</property> </not>
+            </condition>
+        </error>
+    </step>
+    
+    <step>
+        <message>The countdown alarm set off! Note the flashing display and the aural annunciator.
+            Also look what the timer did: reaching zero, it continues to count upwards.
+            You can acknowledge the alarm by pressing either of the two buttons.</message>
+        <wait>3</wait>
+        <error>
+            <message>Press the {SELECT|select} or {CONTROL|control} button to disable the alarm.</message>
+            <condition>
+                <property>/instrumentation/davtron803/logic/alarm-et</property>
+            </condition>
+        </error>
+    </step>
+    
+    <step>
+        <message>Another press of {CONTROL|control} will reset the timer to zero, ready for another count-up.</message>
+        <wait>5</wait>
+        <error>
+            <message>Press {CONTROL|control} to reset the elapsed timer.</message>
+            <condition>
+                <not>
+                    <and>
+                        <property>/instrumentation/davtron803/logic/mode-et</property>
+                        <equals>
+                            <property>/instrumentation/davtron803/elapsed-time-secs</property>
+                            <value>0</value>
+                        </equals>
+                        <equals>
+                            <property>/instrumentation/davtron803/internal/elapsed-timer-step</property>
+                            <value>0</value>
+                        </equals>
+                    </and>
+                </not>
+            </condition>
+        </error>
+    </step>
+    
+    
+    
+    <step>
+        <message>Tutorial complete.  You now know how to operate the Davtron 803 digital clock.</message>
+    </step>
+
+
+</PropertyList>

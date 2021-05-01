@@ -17,10 +17,6 @@
     </environment>
 
     <sim>
-        <!-- actual init is done via nasal "c182s-states.nas";
-             this value indicates the preset to it. -->
-        <init-state type="string">ready-for-takeoff</init-state>
-        <!--
       <presets>
         <airspeed-kt type="double">180</airspeed-kt>
         </presets>-->

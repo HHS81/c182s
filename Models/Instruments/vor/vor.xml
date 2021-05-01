@@ -3,13 +3,13 @@
 <PropertyList>
 
  <params>
-  <nav-to-flag>/instrumentation/nav[0]/to-flag</nav-to-flag>
-  <nav-from-flag>/instrumentation/nav[0]/from-flag</nav-from-flag>
-  <nav-radial-selected>/instrumentation/nav[0]/radials/selected-deg</nav-radial-selected>
-  <nav-gs-needle-deflection>/instrumentation/nav[0]/filtered-gsNAV0-deflection</nav-gs-needle-deflection>
-  <nav-heading-needle-deflection>/instrumentation/nav[0]/filtered-cdiNAV0-deflection</nav-heading-needle-deflection>
-  <nav-in-range>/instrumentation/nav[0]/in-range</nav-in-range>
-  <gs-in-range>/instrumentation/nav[0]/gs-in-range</gs-in-range>
+  <nav-to-flag>instrumentation/nav[0]/to-flag</nav-to-flag>
+  <nav-from-flag>instrumentation/nav[0]/from-flag</nav-from-flag>
+  <nav-radial-selected>instrumentation/nav[0]/radials/selected-deg</nav-radial-selected>
+  <nav-gs-needle-deflection>instrumentation/nav[0]/filtered-gsNAV0-deflection</nav-gs-needle-deflection>
+  <nav-heading-needle-deflection>instrumentation/nav[0]/filtered-cdiNAV0-deflection</nav-heading-needle-deflection>
+  <nav-in-range>instrumentation/nav[0]/in-range</nav-in-range>
+  <gs-in-range>instrumentation/nav[0]/gs-in-range</gs-in-range>
  </params>
 
  <path>vor.ac</path>
@@ -26,7 +26,12 @@
     <object-name>NAV</object-name>
     <object-name>GS_out_of_range</object-name>
     <object-name>GS_in_range</object-name>
+<<<<<<< HEAD
   </effect>-->
+=======
+    <object-name>disk</object-name> <!-- disk=knob... -->
+  </effect>
+>>>>>>> c0f56e342718ce231687c3a0fbb4f294a003e7eb
 
  <animation>
   <type>material</type>
@@ -44,7 +49,7 @@
    <red>1.0</red>
    <green>0.8</green>
    <blue>0.4</blue>
-   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
+   <factor-prop>systems/electrical/outputs/instrument-lights-norm</factor-prop>
   </emission>
     <specular>
         <red>   0.0 </red>
@@ -66,17 +71,6 @@
         <green> 0 </green>
         <blue>  0 </blue>
     </shininess>  
- </animation>
-
- <animation>
-  <type>material</type>
-  <object-name>disk</object-name>
-  <emission>
-   <red>1.0</red>
-   <green>0.8</green>
-   <blue>0.4</blue>
-   <factor-prop>/systems/electrical/outputs/instrument-lights-norm</factor-prop>
-  </emission>
  </animation>
 
  <animation>
@@ -175,6 +169,23 @@
  </animation>
 
 <!--	VOR 1 Radial adjust  -->
+<animation>
+    <type>rotate</type>
+    <object-name>disk</object-name>
+    <property alias="../../params/nav-radial-selected"/>
+    <factor>5</factor>
+    <offset-deg>15</offset-deg>
+    <axis>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
+    </axis>
+    <center>
+        <x-m>0.00484</x-m>
+        <y-m>-0.027219</y-m>
+        <z-m>-0.029242</z-m>
+    </center>
+</animation>
 
 <animation>
     <type>knob</type>

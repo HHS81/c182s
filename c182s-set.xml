@@ -62,6 +62,7 @@
             <tag>tricycle</tag>
             <tag>ifr</tag>
             <tag>high-wing</tag>
+            <tag>dual-controls</tag>
         </tags>
     <minimum-fg-version>2018.3.0</minimum-fg-version>
     <rating>
@@ -83,34 +84,46 @@
             <nick>gsagostinho</nick>
         </author>
         <author n="2">
+            <name>Benedikt Hallinger</name>
+            <description>fuel/oil system, custom registration livery, checklists, save-state, failures, cockpit/avionics improvements and many more great additions</description>
+            <nick>Beni</nick>
+        </author>
+        <author n="3">
             <nick>onox</nick>
             <description>advice, nasal-scripts, testing</description>
         </author>
-        <author n="3">
+        <author n="4">
             <name>Wayne Bragg</name>
             <description>rain effect, advice</description>
             <nick>wlbragg</nick>
         </author>
-        <author n="4">
+        <author n="5">
             <name>Ron Jensen</name>
             <nick>jentron</nick>
         </author>
-        <author n="5">
+        <author n="6">
             <name>Stuart Buchanan</name>
         </author>
-        <author n="6">
+        <author n="7">
             <name>David Megginson</name>
         </author>
-        <author n="7">
-            <name>Benedikt Hallinger</name>
-            <description>fuel/oil system, custom registration livery, checklists, save-state, failures, cockpit/avionics improvements and many more small additions</description>
-            <nick>Beni</nick>
+        <author n="8">
+            <name>Sascha Reißner</name>
+            <description>KAP140 Autopilot Model</description>
+        </author>
+        <author n="9">
+            <name>Josh Davidson</name>
+            <description>KAP140 Autopilot Control System</description>
+            <nick>Octal450</nick>
         </author>
     </authors>
 
     <maintainers>
         <maintainer n="0">
             <name>Heiko Schulz</name>
+        </maintainer>
+        <maintainer n="1">
+            <name>Benedikt Hallinger</name>
         </maintainer>
     </maintainers>
     
@@ -129,6 +142,10 @@
 
   <checklists include="c182s-checklists.xml"/>
 
+  <tutorials>
+    <tutorial include="Tutorials/davtron803.xml"/>
+  </tutorials>
+
   <!-- Overlays (called with "state" command line option) -->
   <state include="states/auto-overlay.xml"     n="0" />
   <state include="states/saved-overlay.xml"    n="1" />
@@ -137,15 +154,34 @@
   <state include="states/cruising-overlay.xml" n="4" />
   <state include="states/approach-overlay.xml" n="5" />
 
-  <systems>
- <path>Aircraft/c182s/Systems/systems.xml</path>
+  <virtual-cockpit>true</virtual-cockpit>
+  <allow-toggle-cockpit>true</allow-toggle-cockpit>
 
-	    <autopilot>
-        <path>Aircraft/c182s/Systems/KAP140.xml</path>
-	    </autopilot>
-            <autopilot>
-                <path>Systems/glass-rain.xml</path>
-            </autopilot>
+  <hitches>
+    <aerotow>
+        <force_name_jsbsim type="string">hitch</force_name_jsbsim>
+        <force-is-calculated-by-other type="bool">true</force-is-calculated-by-other>
+        <mp-auto-connect-period type="float">1.0</mp-auto-connect-period>
+        <!-- OPTIONAL
+            <decoupled-force-and-rope-locations type="bool">true</decoupled-force-and-rope-locations>
+            <local-pos-x type="float">1.5</local-pos-x>
+            <local-pos-y type="float"> 0.00</local-pos-y>
+            <local-pos-z type="float">-0.3</local-pos-z>
+        -->
+    </aerotow>
+  </hitches>
+
+  <systems>
+    <path>Aircraft/c182s/Systems/systems.xml</path>
+    <autopilot n="0"> <!-- Must be before KAP140 -JD -->
+        <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/nav-selector.xml</path>
+    </autopilot>
+    <autopilot n="1">
+        <path>Models/Instruments/Avionics/kap140/kap140-autopilot.xml</path>
+    </autopilot>
+    <autopilot n="2">
+        <path>Systems/glass-rain.xml</path>
+    </autopilot>
     <property-rule n="100">
         <name>FiltersOnly</name>
         <path>Aircraft/c182s/Systems/NAVandGSfilters.xml</path>
@@ -168,6 +204,12 @@
     <property-rule n="106">
         <name>FiltersOnly</name>
         <path>Systems/instruments.xml</path>
+    </property-rule>
+    <property-rule n="107">
+        <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/kap140-proprules.xml</path>
+    </property-rule>
+    <property-rule n="108">
+        <path>Aircraft/c182s/Models/Instruments/Davtron803/Davtron803-proprules.xml</path>
     </property-rule>
     <electrical>
       <!-- null electrical system path here so we can use a nasal based -->
@@ -221,6 +263,7 @@
   </panel>
 
   <multiplay>
+    <!-- NOTE: Look also into c182s-aircraft-dual-control.nas for reserved slots! -->
     <generic>
       <float n="0" alias="/sim/model/door-positions/DoorL/position-norm-effective"/>
       <float n="1" alias="/sim/model/door-positions/DoorR/position-norm-effective"/>
@@ -230,7 +273,7 @@
 
       <float n="5" alias="/systems/electrical/outputs/landing-lights"/>
       <float n="6" alias="/systems/electrical/outputs/taxi-light"/>
-      <float n="7" alias="/systems/electrical/strobe-source"/>
+      <float n="7" alias="/systems/electrical/outputs/strobe"/>
       <float n="8" alias="/systems/electrical/beacon-source"/>
       <float n="9" alias="/systems/electrical/outputs/nav-lights"/>
 
@@ -242,28 +285,45 @@
       <float n="13" alias="/fdm/jsbsim/gear/unit[2]/z-position"/>
       <float n="14" alias="/engines/engine/crashed"/>
       <!-- Not animated yet
-      <float n="xx" alias="/fdm/jsbsim/wing-damage/left-wing"/>
-      <float n="xx" alias="/fdm/jsbsim/wing-damage/right-wing"/>
+      <float n="15" alias="/fdm/jsbsim/wing-damage/left-wing"/>
+      <float n="16" alias="/fdm/jsbsim/wing-damage/right-wing"/>
       -->
+
+      <!-- Dual-Control: float 17 to 29 -->
 
       <float n="30" alias="/sim/rendering/refl_correction"/>
       <float n="31" alias="/sim/rendering/fresnel-factor"/>
       <float n="32" alias="/sim/rendering/refl-type"/>
       <float n="33" alias="/sim/rendering/ambient_correction"/>
+      
+      <!-- Dual-Control: float 34 to 39 -->
 
       <!-- Registration number over MP -->
       <string n="0" alias="/sim/model/immat"/>
+      
+      <!-- Dual-Control: string 1-5 -->
 
       <bool n="0" alias="/sim/model/c182s/nw_fairing"/>
       <bool n="1" alias="/sim/model/c182s/mw_fairing"/>
+      
+      <!-- Dual-Control: bool 1-5 -->
+      
+      <!-- Dual-Control: int 17-19 -->
+
+      <!-- passengers/crew -->
+      <bool n="2" alias="/sim/model/crew/pilot[1]/enabled"/>
+      <bool n="3" alias="/sim/model/pax/pax[0]/enabled"/>
+      <bool n="4" alias="/sim/model/pax/pax[1]/enabled"/>
+      
 
     </generic>
   </multiplay>
 
-  <model>
+  <model include="Models/Human/humans.xml">
     <fallback-model-index>3</fallback-model-index>
    <path archive="y">Aircraft/c182s/Models/c182s.xml</path>
-    <hide-yoke>false</hide-yoke>
+    <hide-yoke type="bool">false</hide-yoke>
+    <hide-yoke-alpha-cmd>0.25</hide-yoke-alpha-cmd>
 
      <icing>
         <iceable>
@@ -588,8 +648,36 @@
             <pitch-offset-deg>-15</pitch-offset-deg>
         </config>
     </view>
-
+    
 <view n="104">
+        <name>Bottom Camera</name>
+        <enabled type="bool">true</enabled>
+        <type>lookfrom</type>
+        <internal type="bool">false</internal>
+        <config>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+            <default-field-of-view-deg type="double">120</default-field-of-view-deg>
+            <default-pitch-deg type="double">-15</default-pitch-deg>
+            <default-heading-deg type="double">0</default-heading-deg>
+            <front-direction-deg type="double">0</front-direction-deg>
+            <front-left-direction-deg type="double">45</front-left-direction-deg>
+            <left-direction-deg type="double">90</left-direction-deg>
+            <back-left-direction-deg type="double">135</back-left-direction-deg>
+            <back-direction-deg type="double">180</back-direction-deg>
+            <back-right-direction-deg type="double">225</back-right-direction-deg>
+            <right-direction-deg type="double">270</right-direction-deg>
+            <front-right-direction-deg type="double">315</front-right-direction-deg>
+            <dynamic-view type="bool">true</dynamic-view>
+            <x-offset-m type="double"> 0</x-offset-m>
+            <y-offset-m type="double"> -0.4</y-offset-m>
+            <z-offset-m type="double"> 3.1</z-offset-m>
+            <pitch-offset-deg>-15</pitch-offset-deg>
+        </config>
+    </view>
+
+<view n="105">
         <name>Left Wing</name>
         <enabled type="bool">true</enabled>
         <type>lookfrom</type>
@@ -699,6 +787,14 @@
    <line>  Takeoff ground roll: 795ft  over 50ft obstacle: 1,514ft</line>
    <line>  Landing ground roll: 590ft  over 50ft obstacle: 1,390ft</line>
    <key>
+    <name>d</name>
+    <desc>KAP140 Autopilot CWS</desc>
+   </key>
+   <key>
+    <name>D</name>
+    <desc>KAP140 Autopilot Disconnect</desc>
+   </key>
+   <key>
     <name>n/N</name>
     <desc>Propeller finer/coarser</desc>
    </key>
@@ -707,18 +803,47 @@
     <desc>Mixture rich/lean</desc>
    </key>
    <key>
-    <name>Y</name>
+    <name>f/F</name>
+    <desc>Cowl flaps close/open</desc>
+   </key>
+   <key>
+    <name>y/Y</name>
     <desc>Toggle yoke visibility</desc>
    </key>
    <key>
     <name>s</name>
     <desc>Engine Starter</desc>
    </key>
+   <key>
+       <name>O</name>
+       <desc>Open aerotow-hook</desc>
+   </key>
   </help>
 
 
 
-        <menubar include="gui/dialogs/c182s-menu.xml"/>
+        <menubar include="gui/dialogs/c182s-menu.xml">
+            <default n="0">
+                <menu n="7"> <!-- multiplayer -->
+                    <item n="50">
+                        <label>Select dual-control MP-pilot</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>dual_control_tools.copilot_dialog.show(aircraft_dual_control.copilot_type)</script>
+                        </binding>
+                    </item>
+                    </menu>
+                    <menu n="10">
+                        <item n="99">
+                        <label>Aircraft Failure Management</label>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>extended-failure-dialog-c182s</dialog-name>
+                        </binding>
+                    </item>
+                </menu>
+            </default>
+        </menubar>
 
        <!-- Splash screens. One is randomly chosen when FlightGear starts -->
         <previews>
@@ -785,9 +910,11 @@
         </previews>
 
         <!-- Fix scrolling direction of knobs -->
+        <!-- This was an old fix from 2018, but it's not necessary anymore.
+             Instead the aircraft should not overwrite a global user setting...
         <mouse>
             <invert-mouse-wheel type="bool">true</invert-mouse-wheel>
-        </mouse>
+        </mouse>-->
 
 
         <!-- Save these properties between sessions -->
@@ -854,6 +981,7 @@
             <path>/instrumentation/audio-panel/com-mic[0]</path>
             <path>/instrumentation/audio-panel/com-mic[1]</path>
             <path>/instrumentation/audio-panel/com-mic[2]</path>
+            <path>/instrumentation/audio-panel/mkr</path>
             <path>/instrumentation/audio-panel/spkr</path>
             <path>/instrumentation/audio-panel/pa</path>
             <path>/instrumentation/audio-panel/crew</path>
@@ -918,8 +1046,6 @@
             <path>/instrumentation/attitude-indicator/horizon-offset-deg</path>
             <path>/instrumentation/airspeed-indicator/tas-face-rotation</path>
             <path>/instrumentation/heading-indicator/offset-deg</path>
-            <path>/instrumentation/davtron803/top-mode</path>
-            <path>/instrumentation/davtron803/bot-mode</path>
             <path>/autopilot/settings/heading-bug-deg</path>
             <path>/instrumentation/transponder/id-code</path>
             <path>/instrumentation/transponder/factory-vfr-code</path>
@@ -995,6 +1121,7 @@
 
             <path>/sim/failure-manager/display-on-screen</path>
             <path>/sim/failure-manager/restore-on-start</path>
+            <path>/sim/model/hide-yoke-alpha-cmd</path>
         </aircraft-data>
 
      <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>
@@ -1131,12 +1258,100 @@
 
 
  <autopilot>
-  <KAP140>
-   <settings>
-    <auto-pitch-trim type="bool">true</auto-pitch-trim>
-   </settings>
-   <serviceable type="bool">true</serviceable>
-  </KAP140>
+    <internal>
+        <target-climb-rate type="int">0</target-climb-rate>
+        <target-altitude type="int">0</target-altitude>
+        <target-pressure type="double">0.0</target-pressure>
+        <target-pressure-rate type="double">0.0</target-pressure-rate>
+        <target-turn-rate type="double">0.0</target-turn-rate>
+        <max-rate-of-change type="double">100.0</max-rate-of-change>
+        <ref-lateral type="double">0.0</ref-lateral>
+        <ref-vertical type="double">0.0</ref-vertical>
+    </internal>
+    <kap140>
+        <serviceable type="bool">true</serviceable>
+        <powered type="bool">false</powered>
+        <programmed type="bool">true</programmed>
+        <roll-axis-fail type="bool">false</roll-axis-fail>
+        <pitch-axis-fail type="bool">false</pitch-axis-fail>
+        <bad-condition type="bool">false</bad-condition>
+        <config>
+          <model type="int">3</model>
+          <power type="double">24.0</power>
+          <hsi-installed type="bool">false</hsi-installed>
+          <default-altitude type="int">4500</default-altitude>
+          <baro-tied type="bool">false</baro-tied>
+          <autotrim-pitch type="bool">true</autotrim-pitch>
+          <gain-pitch type="double">0.7</gain-pitch> <!-- Elevators very sensitive -->
+          <gain-roll type="double">1.3</gain-roll>   <!-- Ailerons are a little slow -->
+        </config>
+        <panel>
+          <state type="int">0</state>
+          <state-old type="int">0</state-old>
+          <alt-alert type="double">0.0</alt-alert>
+          <alt-alert-arm type="double">0.0</alt-alert-arm>
+          <alt-alert-sound type="bool">false</alt-alert-sound>
+          <ap-timer type="double">0.0</ap-timer>
+          <button-ap type="double">0.0</button-ap>
+          <button-hdg type="double">0.0</button-hdg>
+          <button-nav type="double">0.0</button-nav>
+          <button-apr type="double">0.0</button-apr>
+          <button-rev type="double">0.0</button-rev>
+          <button-alt type="double">0.0</button-alt>
+          <button-up type="double">0.0</button-up>
+          <button-down type="double">0.0</button-down>
+          <button-arm type="double">0.0</button-arm>
+          <button-baro type="double">0.0</button-baro>
+          <knob-inner-pos type="int">0</knob-inner-pos>
+          <knob-outer-pos type="int">0</knob-outer-pos>
+          <baro-timer type="double">0.0</baro-timer>
+          <baro-mode type="int">0</baro-mode>
+          <baro-mode-old type="int">0</baro-mode-old>
+          <digit type="int">0</digit>
+          <digit-mode type="int">0</digit-mode>
+          <digit-timer type="double">0.0</digit-timer>
+          <fpm-timer type="double">0.0</fpm-timer>
+          <hdg-timer type="double">0.0</hdg-timer>
+          <nav-timer type="double">0.0</nav-timer>
+          <pft-1 type="double">0.0</pft-1>
+          <pft-2 type="double">0.0</pft-2>
+          <pft-3 type="double">0.0</pft-3>
+          <pt-up type="bool">false</pt-up>
+          <pt-down type="bool">false</pt-down>
+        </panel>
+        <sensors>
+          <elevator-trim-demand type="double">0.0</elevator-trim-demand>
+          <elevator-trim type="double">0.0</elevator-trim>
+          <pitch-up type="double">0.0</pitch-up>
+          <pitch-down type="double">0.0</pitch-down>
+          <pitch-trim type="double">0.0</pitch-trim>
+          <!--pitch-force type="double">0.0</pitch-force-->
+          <!--roll-force type="double">0.0</roll-force-->
+        </sensors>
+        <servo>
+          <aileron type="double">0.0</aileron>
+          <aileron-rate type="double">0.0</aileron-rate>
+          <elevator type="double">0.0</elevator>
+          <elevator-rate type="double">0.0</elevator-rate>
+          <roll-servo>
+            <serviceable type="bool">true</serviceable>
+          </roll-servo>
+          <pitch-servo>
+            <serviceable type="bool">true</serviceable>
+          </pitch-servo>
+          <elevator-trim-servo>
+            <serviceable type="bool">true</serviceable>
+          </elevator-trim-servo>
+        </servo>
+        <settings>
+          <cws type="bool">false</cws>
+          <ap-disc type="bool">false</ap-disc>
+          <lateral-mode type="int">0</lateral-mode>
+          <lateral-arm type="int">0</lateral-arm>
+          <vertical-mode type="int">0</vertical-mode>
+          <vertical-arm type="int">0</vertical-arm>
+        </settings>
+    </kap140>
  </autopilot>
 
 <instrumentation include="Systems/init-instrumentation.xml"/>
@@ -1172,6 +1387,9 @@
    <oil-temperature-degf-indicated type="double">60</oil-temperature-degf-indicated> <!-- oil temp for the gauge (filtered) -->
    <oil-service-hours type="double">0</oil-service-hours>
    <cowling-air-temperature-degf>40</cowling-air-temperature-degf> <!-- OAT in the cowling -->
+   <governor>
+        <serviceable type="bool">true</serviceable>
+    </governor>
   </engine>
  </engines>
 
@@ -1307,27 +1525,15 @@
         </terrain>
 
 <davtron803>
-    <file>Aircraft/c182s/Nasal/davtron803.nas</file>
+    <file>Aircraft/c182s/Models/Instruments/Davtron803/davtron803.nas</file>
 </davtron803>
 
 <electrical>
  <file>Aircraft/c182s/Nasal/c182s-electrical.nas</file>
 </electrical>
 
-<kap140>
-   <file>Aircraft/Generic/kap140.nas</file>
-   <!-- We can set some variables that might be
-        aircraft specific. We must do it after the file
-        to override the ones that are in the .nas file.-->
-   <script><![CDATA[
-                    headingNeedleDeflection = "/instrumentation/nav/heading-needle-deflection";
-                    gsNeedleDeflection = "/instrumentation/nav/gs-needle-deflection-norm";
-                    staticPressure = "systems/static-pressure-inhg-selected";
-    ]]>
-</script>
-</kap140>
 
-    <failures>
+  <failures>
     <file>Aircraft/Generic/limits.nas</file>
     <file>Aircraft/c182s/Nasal/custom-failures.nas</file>
   </failures>
@@ -1339,14 +1545,42 @@
       <file>Aircraft/c182s/Nasal/StaticIcing.nas</file>
 </icing>
 
+
+    <!-- Dual control infrastructure. This is safe to load always as it just runs when connected -->
+    <dual_control_tools>
+        <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
+    </dual_control_tools>
+    <aircraft_dual_control>
+        <file>Nasal/c182s-aircraft-dual-control.nas</file>
+    </aircraft_dual_control>
+    <dual_control>
+        <file>Aircraft/Generic/DualControl/pilot-dual-control.nas</file>
+    </dual_control>
+
  </nasal>
 
  <!-- ================ map keyboard ================ -->
  <input>
     <keyboard>
 
-
-      <key n="89">
+      <key n="79">
+        <name>O</name>
+        <desc>Open aerotow-hook</desc>
+        <binding>
+          <command>nasal</command>
+          <script>towing.releaseHitch("aerotow")</script>
+        </binding>
+      </key>
+      <key n="121">
+        <name>y</name>
+        <desc>Toggle yoke visibility.</desc>
+        <repeatable type="bool">false</repeatable>
+        <binding>
+          <command>property-toggle</command>
+          <property>sim/model/hide-yoke</property>
+        </binding>
+      </key>
+      <key n="89"> <!-- Y for backwards compatibility of old keybind-->
         <name>Y</name>
         <desc>Toggle yoke visibility.</desc>
         <repeatable type="bool">false</repeatable>
@@ -1356,6 +1590,52 @@
         </binding>
       </key>
 
+      <key n="100">
+        <name>d</name>
+        <desc>CWS Button KAP 140</desc>
+        <binding n="20">
+            <command>property-assign</command>
+            <property>autopilot/kap140/settings/cws</property>
+            <value>1</value>
+        </binding>
+        <mod-up>
+            <binding n="20">
+                <command>property-assign</command>
+                <property>autopilot/kap140/settings/cws</property>
+                <value>0</value>
+            </binding>
+        </mod-up>
+      </key>
+      <key n="68">
+        <name>D</name>
+        <desc>AP-DISC Button KAP 140</desc>
+        <binding n="20">
+            <command>property-assign</command>
+            <property>autopilot/kap140/settings/ap-disc</property>
+            <value>1</value>
+        </binding>
+        <mod-up>
+            <binding n="20">
+                <command>property-assign</command>
+                <property>autopilot/kap140/settings/ap-disc</property>
+                <value>0</value>
+            </binding>
+        </mod-up>
+      </key>
+      <key n="102">
+        <name>f</name>
+        <desc>Cowl flaps close</desc>
+        <binding>
+            <command>c182_cowlflap_step_close</command>
+        </binding>
+      </key>
+      <key n="70">
+        <name>F</name>
+        <desc>Cowl flaps open</desc>
+        <binding>
+            <command>c182_cowlflap_step_open</command>
+        </binding>
+      </key>
 
       <!-- overwriting { and } default aliases -->
       <key n="123">

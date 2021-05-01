@@ -15,9 +15,8 @@
 
 
 # The supported states in state property
-var supported_states = ["auto", "saved", "cold-and-dark", "ready-for-takeoff", "cruising"];
 var state_property   = "/sim/start-state"; #saved state
-var init_env_state   = "/sim/init-state"; #state from launcher/cmd-line
+var init_env_state   = "/sim/aircraft-state"; #state from launcher/cmd-line
 
 
 ####################
@@ -34,7 +33,7 @@ var setAvionics = func(state) {
     setprop("/instrumentation/nav[1]/power-btn", state);
     setprop("/instrumentation/comm[0]/volume-selected", state);
     setprop("/instrumentation/comm[1]/volume-selected", state);
-    setprop("/controls/switches/kn-62a-mode", state);
+    setprop("/controls/switches/kn-62a", state);
     setprop("/instrumentation/adf[0]/power-btn", state);
 }
 
@@ -148,6 +147,22 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
 };
 
 
+####################
+# Function fast-boots kap140
+# (skip PFT checks etc)
+####################
+var kap140_fastboot = func() {
+        print("Apply state: fast-booting autopilot");
+        setprop("/autopilot/kap140/panel/state", 5);
+        setprop("/autopilot/kap140/panel/old-state", 5);
+        setprop("/autopilot/kap140/panel/pft-1", getprop("sim/time/elapsed-sec"));
+        setprop("/autopilot/kap140/panel/pft-2", getprop("sim/time/elapsed-sec"));
+        setprop("/autopilot/kap140/panel/pft-3", getprop("sim/time/elapsed-sec"));
+        setprop("autopilot/kap140/servo/roll-servo/check-timer", -1);
+        setprop("autopilot/kap140/servo/pitch-servo/check-timer", -1);
+        setprop("/instrumentation/altimeter-kap140-internal/setting-inhg", getprop("instrumentation/altimeter/setting-inhg"));
+};
+
 
 ####################
 # Checklist states #
@@ -163,10 +178,13 @@ var checklist_secureAircraft = func() {
     setprop("/controls/lighting/nav-lights", 0);
     setprop("/controls/lighting/strobe", 0);
     setprop("/controls/lighting/beacon", 0);
+    setprop("/controls/lighting/taxi-light", 0);
+    setprop("/controls/lighting/landing-light", 0);
+    setprop("/controls/lighting/beacon", 0);
     setAvionics(0);
     setprop("/controls/engines/engine[0]/mixture", 0.0);
     setprop("/controls/switches/starter", 0);
-    setprop("/controls/engines/engine[0]/magnetos", 0);
+    setprop("/controls/switches/magnetos", 0);
     setprop("/controls/engines/engine[0]/master-bat", 0);
     setprop("/controls/engines/engine[0]/master-alt", 0);
     setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
@@ -199,7 +217,7 @@ var checklist_preflight = func() {
 var checklist_beforeEngineStart = func() {
     # Setting levers and switches for startup
     setprop("/controls/switches/fuel_tank_selector", 2);
-    setprop("/controls/engines/engine[0]/magnetos", 3);
+    setprop("/controls/switches/magnetos", 3);
     setprop("/controls/engines/engine[0]/throttle", 0.2);
     setprop("/controls/engines/engine[0]/mixture", getprop("/controls/engines/engine/mixture-maxaltitude"));
     setprop("/controls/engines/engine[0]/propeller-pitch", 1);
@@ -273,6 +291,8 @@ var state_coldAndDark = func() {
     setprop("/controls/lighting/radio-lights-norm", 0);
     
     setprop("/sim/start-state-internal/oil-temp-override", 0);
+    
+    setprop("/controls/switches/magnetos", 0);
 };
 
 var state_readyForTakeoff = func() {
@@ -284,6 +304,9 @@ var state_readyForTakeoff = func() {
     setEngineRunning(1000, 0.1, getprop("/controls/engines/engine/mixture-maxaltitude"), 1);
     setprop("/controls/gear/brake-parking", 1);
     setprop("/controls/engines/engine/cowl-flaps-norm", 1);
+    
+    var ap_start_delay = 3.5;
+    settimer(kap140_fastboot, ap_start_delay);
 };
 
 var state_cruising = func() {
@@ -295,8 +318,15 @@ var state_cruising = func() {
     setEngineRunning(2000, 0.75, 0.7, 0.80);  # TODO: Mix should be calculated lean by altitude
     setprop("/controls/gear/brake-parking", 0);
     setprop("/controls/engines/engine/cowl-flaps-norm", 0);
+    
+    var ap_start_delay = 3.5;
+    settimer(kap140_fastboot, ap_start_delay);
 }
 
+var state_approach = func() {
+    # lower initial airspeed is set from state-overlay xml
+    state_cruising();
+}
 
 
 
@@ -342,17 +372,21 @@ var applyAircraftState = func() {
         print("Apply state: saved");
         state_saved();
     }
-    if (selected_state == "cold-and-dark") {
+    if (selected_state == "parking") {
         print("Apply state: Cold-and-Dark");
         state_coldAndDark();
     }
-    if (selected_state == "ready-for-takeoff") {
+    if (selected_state == "take-off") {
         print("Apply state: Ready-for-Takeoff");
         state_readyForTakeoff();
     }
-    if (selected_state == "cruising") {
+    if (selected_state == "cruise") {
         print("Apply state: cruise");
         state_cruising();
+    }
+    if (selected_state == "approach") {
+        print("Apply state: approach");
+        state_approach();
     }
 };
 
@@ -379,6 +413,7 @@ var autostart = func (msg=1, delay=1, setStates=0) {
         setprop("/controls/engines/engine[0]/throttle", 0.0);
         setprop("/controls/engines/engine[0]/mixture", 0.0);
         setprop("/controls/switches/starter", 0);
+        setprop("/controls/switches/magnetos", 0);
 
         #Securing Aircraft
         checklist_secureAircraft();
@@ -435,28 +470,51 @@ var autostart = func (msg=1, delay=1, setStates=0) {
 };
 
 
-# Updates GUI radio buttons and ensure valid selection
+# Translates GUI selection strings to /sim/start-state
 var updateStateSettingGUI = func() {
-    var default_state    = "auto";
-
-    var state_valid    = 0;
-    var state_selected = getprop(state_property) or "";
-    foreach(s; supported_states) {
-        var radio_propname = "/sim/start-state-internal/gui-radio-" ~ s;
-        if (s == state_selected) {
-            setprop(radio_propname, 1);
-            state_valid = 1;
-        } else {
-            setprop(radio_propname, 0);
-        }
+    var selection_prop    = "/sim/start-state-internal/gui-selection";
+    var selectionkey_prop = "/sim/start-state-internal/gui-selection-key";
+    var translations = {
+        "auto":     ["Automatic"],
+        "saved":    ["Saved state"],
+        "parking":  ["Cold and Dark"],
+        "take-off": ["Ready for Takeoff"],
+        "cruise":   ["Cruising"],
+        "approach": ["Approach"],
     };
     
-    if (!state_valid) {
-        # requested state did not map to a valid selection
-        print("INFO: wrong state '" ~ state_selected ~ "' requested, using '" ~ default_state ~ "'");
-        setprop("/sim/start-state-internal/gui-radio-" ~ default_state, 1);
-        setprop(state_property, default_state);
+    # init drop down if not set already
+    var state_current  = getprop(state_property);
+    var state_selected = getprop(selection_prop);
+    if (state_selected == nil or state_selected == "") {
+        state_selected     = "Automatic";
+        state_selected_key = "auto";
+        foreach(var trans_key; keys(translations)) {
+            if (trans_key == state_current) {
+                var trans_list = translations[trans_key];
+                state_selected     = trans_list[0];
+                state_selected_key = trans_key;
+                break;
+            }
+        }
+        setprop(selection_prop, state_selected);
+        setprop(selectionkey_prop, state_selected_key);
     }
+    
+    # Set start state property based on translation
+    var state_new = "";
+    foreach(var trans_key; keys(translations)) {
+        var trans_list = translations[trans_key];
+        foreach(var t; trans_list) {
+            if (t == state_selected) {
+                state_new = trans_key;
+                break;
+            }
+        }
+        if (state_new != "") break;
+    }
+    if (state_new == "") state_new = "auto";
+    setprop(state_property, state_new);
 }
 
 

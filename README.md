@@ -39,6 +39,8 @@ This aircraft was modified and updated in a joint effort by the following people
 
 * Benedikt Hallinger (fuel/oil system, custom registration livery, checklists, save-state, failures, cockpit/avionics improvements and many more small additions)
 
+* Sascha Reißner and Josh Davidson (KAP 140 Autopilot)
+
 ---
 
 Engine (from TCDS)

@@ -5,7 +5,7 @@
  <path>c182s.ac</path>
  <offsets>
    <pitch-deg>0.0</pitch-deg>
-   <z-m> -0.0 </z-m>
+   <z-m> -0.03 </z-m><!--simulates a flatter tyre due weight of aircraft on it -->
  </offsets>
  
    <!-- for checklist/tutorial markers -->
@@ -61,9 +61,50 @@
             alias(rplayer.getNode("sim/multiplay/generic/float[14]"));
 # Wing damage animation not yet implemented: poperties not known
 #        rplayer.getNode("fdm/jsbsim/wing-damage/left-wing", 1).
-#            alias(rplayer.getNode("sim/multiplay/generic/float[xx]"));
+#            alias(rplayer.getNode("sim/multiplay/generic/float[15]"));
 #        rplayer.getNode("fdm/jsbsim/wing-damage/right-wing", 1).
-#            alias(rplayer.getNode("sim/multiplay/generic/float[xx]"));
+#            alias(rplayer.getNode("sim/multiplay/generic/float[16]"));
+
+        # Flight controls (in dual-control, otherwise unset)
+        rplayer.getNode("controls/flight/aileron", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[17]"));
+        rplayer.getNode("controls/flight/elevator", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[18]"));
+
+        # Instruments (in dual-control, otherwise unset)
+        rplayer.getNode("fdm/jsbsim/velocities/vias-kts", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[19]"));
+        rplayer.getNode("instrumentation/attitude-indicator/indicated-pitch-deg", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[20]"));
+        rplayer.getNode("instrumentation/attitude-indicator/indicated-roll-deg", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[21]"));
+        rplayer.getNode("instrumentation/altimeter/indicated-altitude-ft", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[22]"));
+        rplayer.getNode("engines/engine/indicated-egt-degf", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[23]"));
+        rplayer.getNode("engines/engine/indicated-cht-degf", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[24]"));
+        rplayer.getNode("instrumentation/vertical-speed-indicator/indicated-speed-fpm", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[25]"));
+        rplayer.getNode("instrumentation/heading-indicator/indicated-heading-deg", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[26]"));
+        rplayer.getNode("instrumentation/turn-indicator/indicated-turn-rate", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[27]"));
+        rplayer.getNode("instrumentation/slip-skid-ball/indicated-slip-skid", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[28]"));
+        rplayer.getNode("engines/engine/mp-inhg", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[29]"));
+        rplayer.getNode("engines/engine/indicated-manfold-fuel-flow-gph", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[34]"));
+        rplayer.getNode("instrumentation/nav[0]/filtered-cdiNAV0-deflection", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[35]"));
+        rplayer.getNode("instrumentation/nav[0]/filtered-gsNAV0-deflection", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[36]"));
+        rplayer.getNode("instrumentation/nav[1]/filtered-cdiNAV0-deflection", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[37]"));
+        rplayer.getNode("instrumentation/nav[1]/filtered-gsNAV0-deflection", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/float[38]"));
+            
 
         rplayer.getNode("sim/model/c182s/nw_fairing_lcl", 1).
             alias(rplayer.getNode("sim/multiplay/generic/bool[0]"));
@@ -429,7 +470,7 @@
  
  <animation>
    <type>spin</type>
-  <object-name>FastProp</object-name>
+   <object-name>FastProp</object-name>
    <property>engines/engine[0]/rpm</property>
    <factor>-0.005</factor>
 		<center>
@@ -446,7 +487,7 @@
  
  <animation>
    <type>spin</type>
-  <object-name>SlowProp</object-name>
+   <object-name>SlowProp</object-name>
    <property>engines/engine[0]/rpm</property>
    <factor>-1</factor>
 		<center>
@@ -463,7 +504,7 @@
  
  <animation>
    <type>spin</type>
-  <object-name>Prop</object-name>
+   <object-name>Prop</object-name>
    <property>engines/engine[0]/rpm</property>
    <factor>-1</factor>
 		<center>
@@ -675,20 +716,21 @@
 		</axis>
  </animation>
  
- <animation>
-   <type>rotate</type>
-   <object-name>WheelFairingNose</object-name>
-   <object-name>FrontWheel</object-name>
-   <object-name>NoseWheelFork</object-name>
-   <object-name>Damp</object-name>
+ 
+  <animation>
+    <type>rotate</type>
+    <object-name>WheelFairingNose</object-name>
+    <object-name>FrontWheel</object-name>
+    <object-name>NoseWheelFork</object-name>
+    <object-name>Damp</object-name>
+    <object-name>TrenDEL_01_TrenDEL_01</object-name>
+    <object-name>TrenDEL_04_TrenDEL_04</object-name>
     <object-name>TrenDEL_05_TrenDEL_05</object-name>
-   <object-name>TrenDEL_01_TrenDEL_01</object-name>
-   <object-name>TrenDEL_04_TrenDEL_04</object-name>
-   <property>/gear/gear/steering-norm</property>
-   <factor>-11</factor>
+    <property>/gear/gear/steering-norm</property>
+    <factor>-11</factor>
 		<center>
 			<x-m>-0.160396</x-m>
-			<y-m>0.000524</y-m>
+			<y-m> 0.000000</y-m>
 			<z-m>-0.660746</z-m>
 		</center>
 		<axis>
@@ -696,24 +738,87 @@
 			<y>0</y>
 			<z>0.138826</z>
 		</axis>
- </animation> 
- 
-<!--compression--> 
- <animation>
-   <type>translate</type>
-   <object-name>WheelFairingNose</object-name>
-   <object-name>FrontWheel</object-name>
-<object-name>NoseWheelFork</object-name>
-   <object-name>Damp</object-name>
-   <property>gear/gear[0]/compression-norm</property>
-   <factor>0.18</factor>
-   <axis>
-     <x>0.27</x>
-     <y>0</y>
-     <z>1.0</z>
-   </axis>
- </animation>
- 
+  </animation> 
+
+<!--compression-->
+  <animation>
+    <type>translate</type>
+    <object-name>WheelFairingNose</object-name>
+    <object-name>FrontWheel</object-name>
+    <object-name>NoseWheelFork</object-name>
+    <object-name>TrenDEL_05_TrenDEL_05</object-name>
+    <object-name>Damp</object-name>
+    <property>gear/gear[0]/compression-norm</property>
+    <factor>0.18</factor>
+    <axis>
+      <x>0.27</x>
+      <y>0</y>
+      <z>1.0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>locked-track</type>
+    <object-name>TrenDEL_04_TrenDEL_04</object-name>
+    <center>
+      <x-m>-0.121957</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.663133</z-m>
+    </center>
+    <lock-axis>
+      <x>0</x>
+      <y>-1</y>
+      <z>0</z>
+    </lock-axis>
+    <track-axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </track-axis>
+    <target-name>TrenDEL_05_TrenDEL_05</target-name>
+    <target-center>
+      <x-m>-0.142173</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.738732</z-m>
+    </target-center>
+    <slave-center>
+      <x-m>-0.029016</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.719470</z-m>
+    </slave-center>
+  </animation>
+
+  <animation>
+    <type>locked-track</type>
+    <object-name>TrenDEL_05_TrenDEL_05</object-name>
+    <center>
+      <x-m>-0.142173</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.738732</z-m>
+    </center>
+    <lock-axis>
+      <x>0</x>
+      <y>1</y>
+      <z>0</z>
+    </lock-axis>
+    <track-axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </track-axis>
+    <target-name>TrenDEL_04_TrenDEL_04</target-name>
+    <target-center>
+      <x-m>-0.121957</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.663133</z-m>
+    </target-center>
+    <slave-center>
+      <x-m>-0.029016</x-m>
+      <y-m> 0.000000</y-m>
+      <z-m>-0.719470</z-m>
+    </slave-center>
+  </animation>
+
 <animation><!-- damage animation-->
    <type>rotate</type>
    <object-name>WheelFairingNose</object-name>
@@ -771,6 +876,23 @@
 			<z>0</z>
 		</axis>
  </animation> 
+ 
+  <animation>
+    <type>spin</type>
+     <object-name>FrontWheel</object-name>
+     <property>/gear/gear[0]/rollspeed-ms</property>
+    <factor>-53.98</factor>
+		<center>
+			<x-m>-0.25459</x-m>
+			<y-m>0.0608402</y-m>
+			<z-m>-1.00756</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+  </animation> 
  
  <!--gear scissors tracking animation
  <animation>
@@ -889,6 +1011,23 @@
 		</axis>
   </animation>
   
+    <animation>
+    <type>spin</type>
+    <object-name>MainWheel.L</object-name>
+     <property>/gear/gear[1]/rollspeed-ms</property>
+    <factor>-44.67</factor>
+		<center>
+			<x-m>1.37306</x-m>
+			<y-m>1.23566</y-m>
+			<z-m>-0.83279</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+  </animation> 
+  
 <animation>
     <type>rotate</type>
     <object-name>WheelFairing.R</object-name>
@@ -968,6 +1107,23 @@
 			<z>-0.049128</z>
 		</axis>
   </animation>
+  
+    <animation>
+    <type>spin</type>
+    <object-name>MainWheel.R</object-name>
+     <property>/gear/gear[2]/rollspeed-ms</property>
+    <factor>-44.67</factor>
+		<center>
+			<x-m>1.37306</x-m>
+			<y-m>-1.23566</y-m>
+			<z-m>-0.83279</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+  </animation> 
   
 <!-- Doors-->
 <animation>
@@ -2321,6 +2477,7 @@
 <and>
 	<property>/sim/rendering/shaders/skydome</property>
 	<property>/sim/model/c182s/procedural-lights</property>
+	<property>systems/electrical/outputs/beacon</property>
 </and>
 </condition>
   <path>Aircraft/c182s/Models/Effects/beacon.xml</path>
@@ -2384,6 +2541,7 @@
 <and>
 	<property>/sim/rendering/shaders/skydome</property>
 	<property>/sim/model/c182s/procedural-lights</property>
+	<property>systems/electrical/outputs/nav-lights</property>
 </and>
 </condition>
   <path>Aircraft/c182s/Models/Effects/green-navlight.xml</path>
@@ -2399,6 +2557,7 @@
 <and>
 	<property>/sim/rendering/shaders/skydome</property>
 	<property>/sim/model/c182s/procedural-lights</property>
+	<property>systems/electrical/outputs/nav-lights</property>
 </and>
 </condition>
   <path>Aircraft/c182s/Models/Effects/red-navlight.xml</path>
@@ -2414,6 +2573,7 @@
 <and>
 	<property>/sim/rendering/shaders/skydome</property>
 	<property>/sim/model/c182s/procedural-lights</property>
+	<property>systems/electrical/outputs/nav-lights</property>
 </and>
 </condition>
   <path>Aircraft/c182s/Models/Effects/tail-navlight.xml</path>
@@ -2429,6 +2589,7 @@
 <and>
 	<property>/sim/rendering/shaders/skydome</property>
 	<property>/sim/model/c182s/procedural-lights</property>
+	<property>systems/electrical/outputs/strobe</property>
 </and>
 </condition>
   <path>Aircraft/c182s/Models/Effects/left-strobe.xml</path>
@@ -2445,6 +2606,7 @@
 <and>
 	<property>/sim/rendering/shaders/skydome</property>
 	<property>/sim/model/c182s/procedural-lights</property>
+	<property>systems/electrical/outputs/strobe</property>
 </and>
 </condition>
   <path>Aircraft/c182s/Models/Effects/right-strobe.xml</path>
@@ -2467,7 +2629,7 @@
             <z-m>0.0</z-m>
         </offsets>
 	<condition>
-	<property>/sim/model/c182s/securing/pitot-cover-visible</property>
+	<property>sim/model/c182s/securing/pitot-cover-visible</property>
 	</condition>
 	</model>
 	
@@ -2534,7 +2696,7 @@
 	<type>select</type>
         <object-name>WinterKit</object-name>
 	<condition>
-	<property>/engines/engine/winter-kit-installed</property>
+	<property>engines/engine/winter-kit-installed</property>
 	</condition>	
 </animation>
 <animation>
@@ -3132,6 +3294,7 @@
         </condition>
     </animation>
     
+<!-- Humans (Pilot, Co-Pilot, Passengers) -->
     <model>
         <name>Pilot</name>
         <path>Aircraft/Generic/Pilot/General/pilot.xml</path>
@@ -3141,6 +3304,61 @@
             <z-m>0.155 </z-m>
         </offsets>
     </model>
+    
+    <model>
+        <name>CoPilot</name>
+        <path>Aircraft/c182s/Models/Human/copilot.xml</path>
+        <offsets>
+            <x-m> 1.220 </x-m>
+            <y-m> 0.250 </y-m>
+            <z-m>-1.000 </z-m>
+        </offsets>
+        <nopreview/>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>CoPilot</object-name>
+        <condition>
+            <property>pax/co-pilot/present</property>
+        </condition>
+    </animation>
+
+    <model>
+        <name>Pax0</name>
+        <path>Aircraft/c182s/Models/Human/pax0.xml</path>
+        <offsets>
+            <x-m>1.900 </x-m>
+            <y-m>-0.250 </y-m>
+            <z-m>-1.00 </z-m>
+        </offsets>
+        <nopreview/>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>Pax0</object-name>
+        <condition>
+            <property>pax/left-passenger/present</property>
+        </condition>
+    </animation>
+
+    <model>
+        <name>Pax1</name>
+        <path>Aircraft/c182s/Models/Human/pax1.xml</path>
+        <offsets>
+            <x-m>1.900 </x-m>
+            <y-m>0.250 </y-m>
+            <z-m>-1.00 </z-m>
+        </offsets>
+        <nopreview/>
+    </model>
+    <animation>
+        <type>select</type>
+        <object-name>Pax1</object-name>
+        <condition>
+            <property>pax/right-passenger/present</property>
+        </condition>
+    </animation>
+
 
     <!-- Preflight surface checks -->
     <!-- elevator surface check -->

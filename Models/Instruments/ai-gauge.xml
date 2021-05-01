@@ -4,7 +4,7 @@
 
  <path>AI.ac</path>
 
-  <effect>
+  <!--<effect>
     <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
     <object-name>Aircraft</object-name>
     <object-name>CagedIndicator</object-name>
@@ -12,7 +12,7 @@
     <object-name>Pitch</object-name>
     <object-name>Roll</object-name>
     <object-name>RollReference</object-name>
-  </effect>
+  </effect>-->
 
   <!-- hide bezel ring because that's already in the cockpit model -->
   <animation>

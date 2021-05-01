@@ -30,14 +30,14 @@
 
   <path>Davtron803.ac</path>
 
-  <effect>
+  <!--<effect>
       <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
       <object-name>face</object-name>
       <object-name>OAT.swt</object-name>
       <object-name>Select.btn</object-name>
       <object-name>Control.btn</object-name>
       <object-name>lcd</object-name>
-  </effect>
+  </effect>-->
 
   <animation>
     <!-- buttons and overall instrument -->

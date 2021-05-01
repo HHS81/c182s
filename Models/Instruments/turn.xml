@@ -12,13 +12,13 @@
 
   <path>turn-gauge.ac</path>
 
-  <effect>
+  <!--<effect>
     <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
     <object-name>TURNneedle</object-name>
     <object-name>TURNgauge.001</object-name>
     <object-name>TURNflag</object-name>
     <object-name>slipball</object-name>
-  </effect>
+  </effect>-->
 
   <animation>
     <type>material</type>

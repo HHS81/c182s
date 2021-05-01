@@ -4,14 +4,14 @@
 
     <path>egt.ac</path>
     
-  <effect>
+  <!--<effect>
     <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
     <object-name>Face</object-name>
     <object-name>EGTNeedle</object-name>
     <object-name>CHTNeedle</object-name>
     <object-name>Bug</object-name>
     <object-name>Knob</object-name>
-  </effect>
+  </effect>-->
     
     <animation>
         <type>material</type>

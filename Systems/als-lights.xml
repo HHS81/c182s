@@ -904,5 +904,43 @@
             <property>/sim/model/c182s/lighting/rgb-ra-b-factor</property>
         </output>
     </filter>
+    
+    <!-- sun dim factor for compositor lighting-->
+        <filter>
+        <name>sun red factor</name>
+        <type>gain</type>
+  <input>
+    <expression>
+      <table>
+          <property>/rendering/scene/diffuse/red</property>
+        <entry><ind>0.0</ind><dep>1</dep></entry>
+        <entry><ind>1</ind><dep>0.0</dep></entry>
+      </table>
+    </expression>
+  </input>
+        <output>
+            <property>sim/model/c182s/lighting/dim-factor</property>
+        </output>
+    </filter>
+    
+ <!-- sun dim factor for beacon compositor lighting-->
+        <filter>
+        <name>sun red factor</name>
+        <type>gain</type>
+          <gain>systems/electrical/outputs/beacon-norm</gain>
+  <input>
+    <expression>
+      <table>
+          <property>/rendering/scene/diffuse/red</property>
+        <entry><ind>0.0</ind><dep>1</dep></entry>
+        <entry><ind>1</ind><dep>0.0</dep></entry>
+      </table>
+    </expression>
+  </input>
+        <output>
+            <property>sim/model/c182s/lighting/beacon-dim-factor</property>
+        </output>
+    </filter>
+
 
 </PropertyList>

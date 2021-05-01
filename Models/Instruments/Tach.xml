@@ -4,7 +4,7 @@
 
     <path>Tach.ac</path>
 
-    <effect>
+    <!--<effect>
       <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
       <object-name>Face</object-name>
       <object-name>TachNeedle</object-name>
@@ -15,7 +15,7 @@
       <object-name>Drum.4</object-name>
       <object-name>Drum.4</object-name>
       <object-name>Drum.5</object-name>
-    </effect>
+    </effect>-->
 
     <animation>
         <type>material</type>

@@ -1646,6 +1646,7 @@
         <l>0.7</l>
         <q>1.8</q>
     </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
     <spot-exponent>3</spot-exponent>
     <spot-cutoff>80</spot-cutoff>
     <range-m>10</range-m>
@@ -1687,6 +1688,7 @@
         <l>0.7</l>
         <q>1.8</q>
     </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
     <spot-exponent>3</spot-exponent>
     <spot-cutoff>80</spot-cutoff>
     <range-m>10</range-m>
@@ -1908,6 +1910,7 @@
     <l>0.35</l>
     <q>0.44</q>
   </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
   <spot-exponent>1</spot-exponent>
   <spot-cutoff>89</spot-cutoff>
   <range-m>20</range-m>
@@ -2031,6 +2034,7 @@
     <l>0.35</l>
     <q>0.44</q>
   </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
   <spot-exponent>1</spot-exponent>
   <spot-cutoff>89</spot-cutoff>
   <range-m>20</range-m>
@@ -2092,21 +2096,21 @@
 <lookat-z-m>-0.920</lookat-z-m>
   </direction>
   <ambient>
-    <r>0.95</r>
-    <g>0.95</g>
-    <b>0.95</b>
+    <r>1</r>
+    <g>0.85</g>
+    <b>0.73</b>
     <a>1</a>
   </ambient>
   <diffuse>
-    <r>0.95</r>
-    <g>0.95</g>
-    <b>0.95</b>
+    <r>1</r>
+    <g>0.85</g>
+    <b>0.73</b>
     <a>1</a>
   </diffuse>
   <specular>
-    <r>0.95</r>
-    <g>0.95</g>
-    <b>0.95</b>
+    <r>1</r>
+    <g>0.85</g>
+    <b>0.73</b>
     <a>1</a>
   </specular>
 <attenuation>
@@ -2114,6 +2118,7 @@
     <l>0.014</l>
     <q>0.0007</q>
     </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
     <spot-exponent>15</spot-exponent>
     <spot-cutoff>60</spot-cutoff>
     <range-m>325</range-m>
@@ -2175,21 +2180,21 @@
 <lookat-z-m>-0.920</lookat-z-m>
   </direction>
   <ambient>
-    <r>0.95</r>
-    <g>0.95</g>
-    <b>0.95</b>
+    <r>1</r>
+    <g>0.85</g>
+    <b>0.73</b>
     <a>1</a>
   </ambient>
   <diffuse>
-    <r>0.95</r>
-    <g>0.95</g>
-    <b>0.95</b>
+    <r>1</r>
+    <g>0.85</g>
+    <b>0.73</b>
     <a>1</a>
   </diffuse>
   <specular>
-    <r>0.95</r>
-    <g>0.95</g>
-    <b>0.95</b>
+    <r>1</r>
+    <g>0.85</g>
+    <b>0.73</b>
     <a>1</a>
   </specular>
     <attenuation>
@@ -2197,6 +2202,7 @@
     <l>0.07</l>
     <q>0.017</q>
 </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
 <spot-exponent>15</spot-exponent>
 <spot-cutoff>60</spot-cutoff>
 <range-m>65</range-m>
@@ -2287,6 +2293,7 @@
     <l>0.22</l>
     <q>0.20</q>
   </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
   <spot-exponent>5</spot-exponent>
   <spot-cutoff>70</spot-cutoff>
   <range-m>20</range-m>
@@ -2377,6 +2384,7 @@
     <l>0.22</l>
     <q>0.20</q>
   </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
   <spot-exponent>8</spot-exponent>
   <spot-cutoff>55</spot-cutoff>
   <range-m>20</range-m>
@@ -2466,6 +2474,7 @@
     <l>0.22</l>
     <q>0.20</q>
   </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
   <spot-exponent>8</spot-exponent>
   <spot-cutoff>55</spot-cutoff>
   <range-m>20</range-m>
@@ -2528,7 +2537,7 @@
     <l>0.7</l>
     <q>1.8</q>
   </attenuation>
-  <dim-factor><property>systems/electrical/outputs/beacon-norm</property></dim-factor>
+  <dim-factor><property>sim/model/c182s/lighting/beacon-dim-factor</property></dim-factor>
   <spot-exponent>5</spot-exponent>
   <spot-cutoff>89</spot-cutoff>
   <range-m>6</range-m>

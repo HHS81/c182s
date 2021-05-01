@@ -1576,6 +1576,101 @@
    </greater-than>
   </condition>
  </animation>
+ 
+ <animation>
+	<type>select</type>
+        <object-name>extlightleft</object-name>
+        <object-name>extlightright</object-name>
+	<condition>
+	<property>systems/electrical/outputs/dome-exterior-light</property>
+	</condition>
+</animation>
+
+ <light>
+  <name>extlightleft</name>
+  <type>spot</type>
+  <position>
+    <x-m>1.462</x-m>
+    <y-m>-1.341</y-m>
+    <z-m>0.712</z-m>
+  </position>
+  <direction>
+<pitch-deg>0</pitch-deg>
+<roll-deg>0</roll-deg>
+<heading-deg>0</heading-deg>
+  </direction>
+  <ambient>
+    <r>1</r>
+    <g>1</g>
+    <b>1</b>
+    <a>1</a>
+  </ambient>
+  <diffuse>
+    <r>1</r>
+    <g>1</g>
+    <b>1</b>
+    <a>1</a>
+  </diffuse>
+  <specular>
+    <r>1</r>
+    <g>1</g>
+    <b>1</b>
+    <a>1</a>
+  </specular>
+    <attenuation>
+        <c>1.0</c>
+        <l>0.7</l>
+        <q>1.8</q>
+    </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
+    <spot-exponent>3</spot-exponent>
+    <spot-cutoff>80</spot-cutoff>
+    <range-m>10</range-m>
+</light>
+
+<light>
+  <name>extlightright</name>
+  <type>spot</type>
+  <position>
+    <x-m>1.462</x-m>
+    <y-m>1.341</y-m>
+    <z-m>0.712</z-m>
+  </position>
+  <direction>
+<pitch-deg>0</pitch-deg>
+<roll-deg>0</roll-deg>
+<heading-deg>0</heading-deg>
+  </direction>
+  <ambient>
+    <r>1</r>
+    <g>1</g>
+    <b>1</b>
+    <a>1</a>
+  </ambient>
+  <diffuse>
+    <r>1</r>
+    <g>1</g>
+    <b>1</b>
+    <a>1</a>
+  </diffuse>
+  <specular>
+    <r>1</r>
+    <g>1</g>
+    <b>1</b>
+    <a>1</a>
+  </specular>
+    <attenuation>
+        <c>1.0</c>
+        <l>0.7</l>
+        <q>1.8</q>
+    </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
+    <spot-exponent>3</spot-exponent>
+    <spot-cutoff>80</spot-cutoff>
+    <range-m>10</range-m>
+</light>
+ 
+ 
 <!--Beacon-->
 
 <animation>
@@ -1632,7 +1727,7 @@
 			</entry>
 		</interpolation>
 	</animation>
-
+	
 <!--<animation>
 	<type>select</type>
         <object-name>PlaneX</object-name>
@@ -1728,7 +1823,7 @@
 			</entry>
 		</interpolation>
 	</animation>
-
+	
 <animation>
 	<type>select</type>
         <object-name>Plane.002X</object-name>
@@ -1747,6 +1842,56 @@
 	</condition>
 </animation>
 
+ <animation>
+	<type>select</type>
+        <object-name>leftstrobe</object-name>
+	<condition>
+	<property>systems/electrical/outputs/strobe-norm</property>
+	</condition>
+</animation>
+
+ <light>
+  <name>leftstrobe</name>
+  <type>spot</type>
+  <position>
+    <x-m>0.899</x-m>
+    <y-m>-5.464</y-m>
+    <z-m>0.892</z-m>
+  </position>
+  <direction>
+<lookat-x-m>0</lookat-x-m>
+<lookat-y-m>-10</lookat-y-m>
+<lookat-z-m>0</lookat-z-m>
+  </direction>
+  <ambient>
+    <r>1</r>
+    <g>1</g>
+    <b>1</b>
+    <a>1</a>
+  </ambient>
+  <diffuse>
+    <r>1</r>
+    <g>1</g>
+    <b>1</b>
+    <a>1</a>
+  </diffuse>
+  <specular>
+    <r>1</r>
+    <g>1</g>
+    <b>1</b>
+    <a>1</a>
+  </specular>
+  <attenuation>
+    <c>1.0</c>
+    <l>0.35</l>
+    <q>0.44</q>
+  </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
+  <spot-exponent>1</spot-exponent>
+  <spot-cutoff>89</spot-cutoff>
+  <range-m>20</range-m>
+</light>
+	
 <!-- right strobe-->
 <animation>
 		<type>range</type>
@@ -1802,7 +1947,7 @@
 			</entry>
 		</interpolation>
 	</animation>
-
+	
 <animation>
 	<type>select</type>
         <object-name>Plane.003X</object-name>
@@ -1820,6 +1965,56 @@
 	</and>
 	</condition>
 </animation>
+
+<animation>
+	<type>select</type>
+        <object-name>rightstrobe</object-name>
+	<condition>
+	<property>systems/electrical/outputs/strobe-norm</property>
+	</condition>
+</animation>
+
+ <light>
+  <name>rightstrobe</name>
+  <type>spot</type>
+  <position>
+    <x-m>0.899</x-m>
+    <y-m>5.464</y-m>
+    <z-m>0.892</z-m>
+  </position>
+  <direction>
+<lookat-x-m>0</lookat-x-m>
+<lookat-y-m>10</lookat-y-m>
+<lookat-z-m>0</lookat-z-m>
+  </direction>
+  <ambient>
+    <r>1</r>
+    <g>1</g>
+    <b>1</b>
+    <a>1</a>
+  </ambient>
+  <diffuse>
+    <r>1</r>
+    <g>1</g>
+    <b>1</b>
+    <a>1</a>
+  </diffuse>
+  <specular>
+    <r>1</r>
+    <g>1</g>
+    <b>1</b>
+    <a>1</a>
+  </specular>
+  <attenuation>
+    <c>1.0</c>
+    <l>0.35</l>
+    <q>0.44</q>
+  </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
+  <spot-exponent>1</spot-exponent>
+  <spot-cutoff>89</spot-cutoff>
+  <range-m>20</range-m>
+</light>
 
 <!--LandingLight-->
  <animation>
@@ -1842,11 +2037,12 @@
         <min>0.5</min>
         <max>80</max>
     </animation>
-
-
+    
+    
 <animation>
 	<type>select</type>
         <object-name>LandingLight</object-name>
+        <object-name>landinglight</object-name>
 	<condition>
 	<property>systems/electrical/outputs/landing-lights</property>
 	</condition>
@@ -1861,6 +2057,48 @@
 	</not>
 	</condition>
 </animation>
+
+<light>
+  <name>landinglight</name>
+  <type>spot</type>
+  <position>
+    <x-m>0.596</x-m>
+    <y-m>-3.844</y-m>
+    <z-m>0.875</z-m>
+  </position>
+  <direction>
+<lookat-x-m>-19.222</lookat-x-m>
+<lookat-y-m>0</lookat-y-m>
+<lookat-z-m>-0.920</lookat-z-m>
+  </direction>
+  <ambient>
+    <r>1</r>
+    <g>0.85</g>
+    <b>0.73</b>
+    <a>1</a>
+  </ambient>
+  <diffuse>
+    <r>1</r>
+    <g>0.85</g>
+    <b>0.73</b>
+    <a>1</a>
+  </diffuse>
+  <specular>
+    <r>1</r>
+    <g>0.85</g>
+    <b>0.73</b>
+    <a>1</a>
+  </specular>
+<attenuation>
+    <c>1.0</c>
+    <l>0.014</l>
+    <q>0.0007</q>
+    </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
+    <spot-exponent>15</spot-exponent>
+    <spot-cutoff>60</spot-cutoff>
+    <range-m>325</range-m>
+</light>
 
 <!--TaxiLight-->
  <animation>
@@ -1883,11 +2121,12 @@
         <min>0.5</min>
         <max>80</max>
     </animation>
-
-
+    
+    
 <animation>
 	<type>select</type>
         <object-name>TaxiLight</object-name>
+        <object-name>taxilight</object-name>
 	<condition>
 	<property>systems/electrical/outputs/taxi-light</property>
 	</condition>
@@ -1902,6 +2141,48 @@
 	</not>
 	</condition>
 </animation>
+
+<light>
+  <name>taxilight</name>
+  <type>spot</type>
+  <position>
+    <x-m>0.587</x-m>
+    <y-m>-3.704</y-m>
+    <z-m>0.869</z-m>
+  </position>
+  <direction>
+<lookat-x-m>-19.222</lookat-x-m>
+<lookat-y-m>0</lookat-y-m>
+<lookat-z-m>-0.920</lookat-z-m>
+  </direction>
+  <ambient>
+    <r>1</r>
+    <g>0.85</g>
+    <b>0.73</b>
+    <a>1</a>
+  </ambient>
+  <diffuse>
+    <r>1</r>
+    <g>0.85</g>
+    <b>0.73</b>
+    <a>1</a>
+  </diffuse>
+  <specular>
+    <r>1</r>
+    <g>0.85</g>
+    <b>0.73</b>
+    <a>1</a>
+  </specular>
+    <attenuation>
+    <c>1.0</c>
+    <l>0.07</l>
+    <q>0.017</q>
+</attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
+<spot-exponent>15</spot-exponent>
+<spot-cutoff>60</spot-cutoff>
+<range-m>65</range-m>
+</light>
 
 <!--NavLightTail-->
  <animation>
@@ -1924,8 +2205,8 @@
         <min>0.5</min>
         <max>20</max>
     </animation>
-
-
+    
+    
 <animation>
 	<type>select</type>
         <object-name>PlaneTailLight</object-name>
@@ -1943,6 +2224,56 @@
 	</and>
 	</condition>
 </animation>
+
+<animation>
+	<type>select</type>
+        <object-name>taillight</object-name>
+	<condition>
+	<property>/systems/electrical/outputs/nav-lights-norm</property>
+	</condition>
+</animation>
+
+<light>
+  <name>taillight</name>
+  <type>spot</type>
+  <position>
+    <x-m>6.161</x-m>
+    <y-m>0</y-m>
+    <z-m>0.474</z-m>
+  </position>
+  <direction>
+<lookat-x-m>8</lookat-x-m>
+<lookat-y-m>0</lookat-y-m>
+<lookat-z-m>0</lookat-z-m>
+  </direction>
+  <ambient>
+    <r>0.95</r>
+    <g>0.95</g>
+    <b>0.95</b>
+    <a>1</a>
+  </ambient>
+  <diffuse>
+    <r>0.95</r>
+    <g>0.95</g>
+    <b>0.95</b>
+    <a>1</a>
+  </diffuse>
+  <specular>
+    <r>0.95</r>
+    <g>0.95</g>
+    <b>0.95</b>
+    <a>1</a>
+  </specular>
+  <attenuation>
+    <c>1.0</c>
+    <l>0.22</l>
+    <q>0.20</q>
+  </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
+  <spot-exponent>5</spot-exponent>
+  <spot-cutoff>70</spot-cutoff>
+  <range-m>20</range-m>
+</light>
 
 <!--NavLightWings-->
  <animation>
@@ -1965,8 +2296,8 @@
         <min>0.5</min>
         <max>20</max>
     </animation>
-
-
+    
+    
 <animation>
 	<type>select</type>
         <object-name>NavLightRed</object-name>
@@ -1982,8 +2313,58 @@
 	</or>
 	<property>systems/electrical/outputs/nav-lights</property>
 	</and>
+	</condition>	
+</animation>
+
+<animation>
+	<type>select</type>
+        <object-name>navlightred</object-name>
+	<condition>
+	<property>systems/electrical/outputs/nav-lights-norm</property>
 	</condition>
 </animation>
+
+<light>
+  <name>navlightred</name>
+  <type>spot</type>
+  <position>
+    <x-m>0.853</x-m>
+    <y-m>-5.451</y-m>
+    <z-m>0.897</z-m>
+  </position>
+  <direction>
+<lookat-x-m>0.232</lookat-x-m>
+<lookat-y-m>-5.987</lookat-y-m>
+<lookat-z-m>0.897</lookat-z-m>
+  </direction>
+  <ambient>
+    <r>1</r>
+    <g>0.1</g>
+    <b>0.1</b>
+    <a>1</a>
+  </ambient>
+  <diffuse>
+    <r>1</r>
+    <g>0.1</g>
+    <b>0.1</b>
+    <a>1</a>
+  </diffuse>
+  <specular>
+    <r>1</r>
+    <g>0.1</g>
+    <b>0.1</b>
+    <a>1</a>
+  </specular>
+  <attenuation>
+    <c>1.0</c>
+    <l>0.22</l>
+    <q>0.20</q>
+  </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
+  <spot-exponent>8</spot-exponent>
+  <spot-cutoff>55</spot-cutoff>
+  <range-m>20</range-m>
+</light>
 
  <animation>
         <type>flash</type>
@@ -2005,8 +2386,8 @@
         <min>0.5</min>
         <max>20</max>
     </animation>
-
-
+    
+    
 <animation>
 	<type>select</type>
         <object-name>NavLightGreen</object-name>
@@ -2022,8 +2403,58 @@
 	</or>
 	<property>systems/electrical/outputs/nav-lights</property>
 	</and>
+	</condition>	
+</animation>
+
+<animation>
+	<type>select</type>
+        <object-name>navlightgreen</object-name>
+	<condition>
+	<property>systems/electrical/outputs/nav-lights-norm</property>
 	</condition>
 </animation>
+
+<light>
+  <name>navlightgreen</name>
+  <type>spot</type>
+  <position>
+    <x-m>0.853</x-m>
+    <y-m>5.451</y-m>
+    <z-m>0.897</z-m>
+  </position>
+  <direction>
+<lookat-x-m>0.232</lookat-x-m>
+<lookat-y-m>5.987</lookat-y-m>
+<lookat-z-m>0.897</lookat-z-m>
+  </direction>
+  <ambient>
+    <r>.1</r>
+    <g>1</g>
+    <b>0.1</b>
+    <a>1</a>
+  </ambient>
+  <diffuse>
+    <r>0.1</r>
+    <g>1</g>
+    <b>0.1</b>
+    <a>1</a>
+  </diffuse>
+  <specular>
+    <r>.1</r>
+    <g>1</g>
+    <b>0.1</b>
+    <a>1</a>
+  </specular>
+  <attenuation>
+    <c>1.0</c>
+    <l>0.22</l>
+    <q>0.20</q>
+  </attenuation>
+    <dim-factor><property>sim/model/c182s/lighting/dim-factor</property></dim-factor>
+  <spot-exponent>8</spot-exponent>
+  <spot-cutoff>55</spot-cutoff>
+  <range-m>20</range-m>
+</light>
 
 <!--procedural lights - ALS only-->
 <model>
@@ -2041,7 +2472,55 @@
             <z-m> 2.062 </z-m>
         </offsets>
  </model>
-
+ 
+ <animation>
+	<type>select</type>
+        <object-name>beaconlight</object-name>
+	<condition>
+	<!--<property>controls/lighting/beacon-state/state</property>-->
+	<property>systems/electrical/outputs/beacon</property>
+	</condition>
+</animation>
+ 
+ <light>
+  <name>beaconlight</name>
+  <type>point</type>
+  <position>
+            <x-m> 6.165 </x-m>
+            <y-m> 0.003 </y-m>
+            <z-m> 2.062 </z-m>
+  </position>
+  <ambient>
+    <r>0.98</r>
+    <g>0.2</g>
+    <b>0.2</b>
+    <a>1</a>
+  </ambient>
+  <diffuse>
+    <r>0.98</r>
+    <g>0.2</g>
+    <b>0.2</b>
+    <a>1</a>
+  </diffuse>
+  <specular>
+    <r>0.98</r>
+    <g>0.2</g>
+    <b>0.2</b>
+    <a>1</a>
+  </specular>
+  <attenuation>
+    <c>1.0</c>
+    <l>0.7</l>
+    <q>1.8</q>
+  </attenuation>
+  <dim-factor><property>sim/model/c182s/lighting/beacon-dim-factor</property></dim-factor>
+  <spot-exponent>5</spot-exponent>
+  <spot-cutoff>89</spot-cutoff>
+  <range-m>6</range-m>
+</light>
+ 
+ 
+ 
 <model>
 <condition>
 <and>
@@ -2057,7 +2536,7 @@
 	<z-m>0.897</z-m>
         </offsets>
  </model>
-
+ 
  <model>
 <condition>
 <and>
@@ -2073,7 +2552,7 @@
 	<z-m>0.897</z-m>
         </offsets>
  </model>
-
+ 
  <model>
  <condition>
 <and>
@@ -2089,7 +2568,7 @@
             <z-m>0.474</z-m>
         </offsets>
  </model>
-
+ 
 <model>
 <condition>
 <and>
@@ -2106,7 +2585,7 @@
         </offsets>
  </model>
 
-
+ 
 <model>
 <condition>
 <and>

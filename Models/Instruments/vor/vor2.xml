@@ -14,7 +14,7 @@
 
  <path>vor.ac</path>
 
-  <effect>
+  <!--<effect>
     <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
     <object-name>Face</object-name>
     <object-name>GlideslopeNeedle</object-name>
@@ -26,8 +26,8 @@
     <object-name>NAV</object-name>
     <object-name>GS_out_of_range</object-name>
     <object-name>GS_in_range</object-name>
-    <object-name>disk</object-name> <!-- disk=knob... -->
-  </effect>
+    <object-name>disk</object-name>
+  </effect>-->
 
  <animation>
   <type>material</type>

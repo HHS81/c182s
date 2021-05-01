@@ -22,8 +22,8 @@
     <lightmap-color type="vec3d" n="2">0.99 0.99 1.0</lightmap-color>
     <lightmap-factor type="float" n="3"><use>systems/electrical/outputs/pedestal-lights-norm</use></lightmap-factor>
     <lightmap-color type="vec3d" n="3">1.0 1.0 0.98</lightmap-color>
-    <texture n="4">
-      <type>cubemap</type>
+<texture n="4">
+            <type>cubemap</type>
       <images>
         <positive-x>Aircraft/c182s/Models/Effects/004.png</positive-x>
         <negative-x>Aircraft/c182s/Models/Effects/002.png</negative-x>
@@ -32,10 +32,11 @@
         <positive-z>Aircraft/c182s/Models/Effects/006.png</positive-z>
         <negative-z>Aircraft/c182s/Models/Effects/005.png</negative-z>
       </images>
-    </texture>
+        </texture>
     <opacity-cube-center type="vec3d" n="0"> 0.5 0.0 0.3</opacity-cube-center>
     <opacity-cube-scale type="vec3d" n="0"> 1.5 0.5 0.7</opacity-cube-scale>
     <opacity-cube-angle type="float">0.0</opacity-cube-angle>
+    <shadow-mapping-enabled>true</shadow-mapping-enabled>
     <light-filter-one type="vec3d">0.5 0.5 0.5</light-filter-one>
     <light-filter-two type="vec3d">0.9 0.2 0.2</light-filter-two>
     <light-radius type="float">13</light-radius>

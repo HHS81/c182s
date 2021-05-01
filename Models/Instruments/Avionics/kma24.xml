@@ -10,7 +10,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
 
 <path>kma24.ac</path>
 
-<effect>
+<!--<effect>
     <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
     <object-name>Bezel</object-name>
     <object-name>Knob</object-name>
@@ -21,7 +21,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
     <object-name>BtnMkrMOn</object-name>
     <object-name>BtnMkrM</object-name>
     <object-name>BtnMkr</object-name>
-</effect>
+</effect>-->
 
 <animation>
   <type>material</type>

@@ -11,7 +11,7 @@
     
     <path>kr87.ac</path>
 
-    <!--<effect>
+    <effect>
         <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
         <object-name>indicator</object-name>
         <object-name>Chassis</object-name>
@@ -38,7 +38,7 @@
         <object-name>indicator.Stby.100</object-name>
         <object-name>indicator.Stby.10</object-name>
         <object-name>indicator.Stby.1</object-name>
-    </effect>-->
+    </effect>
 
     <animation>
         <type>select</type>

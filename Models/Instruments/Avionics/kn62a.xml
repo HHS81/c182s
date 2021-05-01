@@ -10,7 +10,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
 
 <path>kn62a.ac</path>
 
-<!--<effect>
+<effect>
   <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
   <object-name>Bezel</object-name>
   <object-name>Knob1</object-name>
@@ -40,7 +40,7 @@ Released under GNU GENERAL PUBLIC LICENSE Version 2
   <object-name>MinDigit1</object-name>
   <object-name>MinDigit2</object-name>
   <object-name>Min99</object-name>
-</effect>-->
+</effect>
 
 <animation>
   <type>material</type>

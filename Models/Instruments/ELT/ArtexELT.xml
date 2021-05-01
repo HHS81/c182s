@@ -27,7 +27,7 @@
 
   <path>ArtexELT.ac</path>
 
-  <!--<effect>
+  <effect>
       <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
       <object-name>Base</object-name>
       <object-name>Tornillos</object-name>
@@ -35,7 +35,7 @@
       <object-name>Light-OFF</object-name>
       <object-name>Switch</object-name>
       <object-name>BaseSwitch</object-name>
-  </effect>-->
+  </effect>
 
 	<animation>
           <type>material</type>

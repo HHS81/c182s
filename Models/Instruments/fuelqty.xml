@@ -4,12 +4,12 @@
 
     <path>fuelqty.ac</path>
     
-    <!--<effect>
+    <effect>
       <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
       <object-name>Face</object-name>
       <object-name>FuelLeftNeedle</object-name>
       <object-name>FuelRightNeedle</object-name>
-    </effect>-->
+    </effect>
 
     <animation>
         <type>material</type>

@@ -18,6 +18,7 @@ var kt76c_ready		= props.globals.getNode("/instrumentation/transponder/ready");
 var kt76c_replying	= props.globals.getNode("/instrumentation/transponder/replying");
 var kt76c_serviceable	= props.globals.getNode("/instrumentation/transponder/serviceable");
 var kt76c_vfr_default	= props.globals.getNode("/instrumentation/transponder/factory-vfr-code", 1);
+if (!kt76c_vfr_default.getValue()) kt76c_vfr_default.setIntValue(1200);  #set default factory VFR code unless already set
 
 var kt76c_alt        = props.globals.getNode("/instrumentation/transponder/altitude");
 var kt76c_alt_valid  = props.globals.getNode("/instrumentation/transponder/altitude-valid");
@@ -133,7 +134,6 @@ var kt76c_button_clr = func {
 # Standard VFR code is 1200
 var kt76c_button_vfr = func {
   if (!kt76c_pwr.getValue()) { return 0; }
-  if (!kt76c_vfr_default.getValue()) kt76c_vfr_default.setIntValue(1200);  #set default factory VFR code unless already set
   
   vfr = kt76c_vfr_default.getValue();
   vfr = vfr ~ ""; # convert to string so substr() can work

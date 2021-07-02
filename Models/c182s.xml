@@ -190,6 +190,16 @@
         }, 1, 0);
 
 
+        # Show the passengers in multiplayer models
+        rplayer.getNode("pax/co-pilot/present", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/bool[2]"));
+        rplayer.getNode("pax/left-passenger/present", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/bool[3]"));
+        rplayer.getNode("pax/right-passenger/present", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/bool[4]"));
+        io.read_properties ("Aircraft/c182s/Models/Human/humans.xml", rplayer.getNode ("sim/model"));
+
+
         # Slow MP properties
         var DCT = dual_control_tools;
         var c182_mp_slowprop_TDM1 = DCT.TDMDecoder.new( rplayer.getNode("sim/multiplay/generic/string[7]"), [

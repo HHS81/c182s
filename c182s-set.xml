@@ -295,7 +295,9 @@
       <!-- Registration number over MP -->
       <string n="0" alias="/sim/model/immat"/>
       
-      <!-- Dual-Control: string 1-5 -->
+      <!-- Dual-Control: string 1-6 -->
+      
+      <!-- Slow MP props via TDM: string 7 -->
 
       <bool n="0" alias="/sim/model/c182s/nw_fairing"/>
       <bool n="1" alias="/sim/model/c182s/mw_fairing"/>
@@ -1456,6 +1458,10 @@
         <file>Aircraft/Generic/DualControl/pilot-dual-control.nas</file>
     </dual_control>
 
+    <!-- Multiplayer nasal invocations -->
+    <multiplayer>
+        <file>Nasal/c182s-multiplay.nas</file>
+    </multiplayer>
  </nasal>
 
  <!-- ================ map keyboard ================ -->

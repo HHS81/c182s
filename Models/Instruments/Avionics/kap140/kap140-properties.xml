@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+    <internal>
+        <target-climb-rate type="int">0</target-climb-rate>
+        <target-altitude type="int">0</target-altitude>
+        <target-pressure type="double">0.0</target-pressure>
+        <target-turn-rate type="double">0.0</target-turn-rate>
+        <max-rate-of-change type="double">100.0</max-rate-of-change>
+        <ref-lateral type="double">0.0</ref-lateral>
+        <ref-vertical type="double">0.0</ref-vertical>
+    </internal>
+    <kap140>
+        <serviceable type="bool">true</serviceable>
+        <powered type="bool">false</powered>
+        <programmed type="bool">true</programmed>
+        <roll-axis-fail type="bool">false</roll-axis-fail>
+        <pitch-axis-fail type="bool">false</pitch-axis-fail>
+        <bad-condition type="bool">false</bad-condition>
+        <config>
+            <hsi-installed type="bool">true</hsi-installed>
+            <baro-tied type="bool">false</baro-tied>
+        </config>
+        <panel>
+            <state type="int">0</state>
+            <state-old type="int">0</state-old>
+            <alt-alert type="double">0.0</alt-alert>
+            <alt-alert-arm type="double">0.0</alt-alert-arm>
+            <alt-alert-sound type="bool">false</alt-alert-sound>
+            <ap-timer type="double">0.0</ap-timer>
+            <button-ap type="double">0.0</button-ap>
+            <button-hdg type="double">0.0</button-hdg>
+            <button-nav type="double">0.0</button-nav>
+            <button-apr type="double">0.0</button-apr>
+            <button-rev type="double">0.0</button-rev>
+            <button-alt type="double">0.0</button-alt>
+            <button-up type="double">0.0</button-up>
+            <button-down type="double">0.0</button-down>
+            <button-arm type="double">0.0</button-arm>
+            <button-baro type="double">0.0</button-baro>
+            <knob-inner-pos type="int">0</knob-inner-pos>
+            <knob-outer-pos type="int">0</knob-outer-pos>
+            <baro-timer type="double">0.0</baro-timer>
+            <baro-mode type="int">0</baro-mode>
+            <baro-mode-old type="int">0</baro-mode-old>
+            <digit type="int">0</digit>
+            <digit-mode type="int">0</digit-mode>
+            <digit-timer type="double">0.0</digit-timer>
+            <fpm-timer type="double">0.0</fpm-timer>
+            <fpm-old type="int">0</fpm-old>
+            <hdg-timer type="double">0.0</hdg-timer>
+            <nav-timer type="double">0.0</nav-timer>
+            <gs-timer type="double">0.0</gs-timer>
+            <pft-1 type="double">0.0</pft-1>
+            <pft-2 type="double">0.0</pft-2>
+            <pft-3 type="double">0.0</pft-3>
+        </panel>
+        <sensors>
+            <elevator-trim type="double">0.0</elevator-trim>
+            <elevator-trim-demand type="double">0.0</elevator-trim-demand>
+            <elevator-trim-demand-low type="double">0.0</elevator-trim-demand-low>
+            <elevator-trim-demand-high type="double">0.0</elevator-trim-demand-high>
+            <elevator-trim-transit type="double">0.0</elevator-trim-transit>
+            <pitch-up type="double">0.0</pitch-up>
+            <pitch-down type="double">0.0</pitch-down>
+            <pitch-trim type="double">0.0</pitch-trim>
+            <pitch-trim-run type="double">0.0</pitch-trim-run>
+            <manual-trim type="double">0.0</manual-trim>
+            <turn-indicator-operable type="bool">true</turn-indicator-operable>
+            <excess-g type="double">0.0</excess-g>
+            <excess-g-raw type="double">0.0</excess-g-raw>
+        </sensors>
+        <servo>
+            <aileron type="double">0.0</aileron>
+            <elevator type="double">0.0</elevator>
+            <elevator-trim type="double">0.0</elevator-trim>
+            <roll-servo>
+                <serviceable type="bool">true</serviceable>
+                <check-timer type="double">0.0</check-timer>
+                <force type="double">0.0</force>
+                <moverate type="double">0.0</moverate>
+            </roll-servo>
+            <pitch-servo>
+                <serviceable type="bool">true</serviceable>
+                <check-timer type="double">0.0</check-timer>
+                <force type="double">0.0</force>
+                <moverate type="double">0.0</moverate>
+            </pitch-servo>
+            <elevator-trim-servo>
+                <serviceable type="bool">true</serviceable>
+                <clutch-engaged type="double">0.0</clutch-engaged>
+            </elevator-trim-servo>
+        </servo>
+        <settings>
+            <ap-disc type="bool">false</ap-disc>
+            <cws type="bool">false</cws>
+            <from-hdg type="bool">false</from-hdg>
+            <lateral-mode type="int">0</lateral-mode>
+            <lateral-arm type="int">0</lateral-arm>
+            <vertical-mode type="int">0</vertical-mode>
+            <vertical-arm type="int">0</vertical-arm>
+        </settings>
+    </kap140>
+</PropertyList>

@@ -574,7 +574,7 @@
 			</visible>
 			<label>99.999</label>
 			<format>%-2.2f</format>
-			<property alias="../../../params/baro-inhg" />
+			<property alias="/params/baro-inhg" />
 			<live>1</live>
 		</text>
 		
@@ -590,7 +590,7 @@
 			</visible>
 			<label>99999</label>
 			<format>%-4.0f</format>
-			<property alias="../../../params/baro-hpa" />
+			<property alias="/params/baro-hpa" />
 			<live>1</live>
 		</text>
 	</group>
@@ -844,7 +844,7 @@
 						<property>autopilot/kap140/settings/lateral-arm</property>
 						<value>3</value>
 					</equals>
-					<not><property alias="../../../../../../params/hsi-installed"/></not>
+					<not><property alias="/params/hsi-installed"/></not>
 					<equals>
 						<property>autopilot/kap140/settings/lateral-mode</property>
 						<value>2</value>
@@ -864,7 +864,7 @@
 						<property>autopilot/kap140/settings/lateral-arm</property>
 						<value>0</value>
 					</equals>
-					<not><property alias="../../../../../../params/hsi-installed"/></not>
+					<not><property alias="/params/hsi-installed"/></not>
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/kap140/settings/from-hdg</property>
@@ -880,7 +880,7 @@
 						<property>autopilot/kap140/settings/lateral-arm</property>
 						<value>3</value>
 					</equals>
-					<not><property alias="../../../../../../params/hsi-installed"/></not>
+					<not><property alias="/params/hsi-installed"/></not>
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/kap140/panel/hdg-timer</property>
@@ -978,7 +978,7 @@
 						<property>autopilot/kap140/settings/lateral-arm</property>
 						<value>4</value>
 					</equals>
-					<not><property alias="../../../../../../params/hsi-installed"/></not>
+					<not><property alias="/params/hsi-installed"/></not>
 					<equals>
 						<property>autopilot/kap140/settings/lateral-mode</property>
 						<value>2</value>
@@ -998,7 +998,7 @@
 						<property>autopilot/kap140/settings/lateral-arm</property>
 						<value>0</value>
 					</equals>
-					<not><property alias="../../../../../../params/hsi-installed"/></not>
+					<not><property alias="/params/hsi-installed"/></not>
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/kap140/settings/from-hdg</property>
@@ -1014,7 +1014,7 @@
 						<property>autopilot/kap140/settings/lateral-arm</property>
 						<value>4</value>
 					</equals>
-					<not><property alias="../../../../../../params/hsi-installed"/></not>
+					<not><property alias="/params/hsi-installed"/></not>
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/kap140/panel/hdg-timer</property>
@@ -1112,7 +1112,7 @@
 						<property>autopilot/kap140/settings/lateral-arm</property>
 						<value>5</value>
 					</equals>
-					<not><property alias="../../../../../../params/hsi-installed"/></not>
+					<not><property alias="/params/hsi-installed"/></not>
 					<equals>
 						<property>autopilot/kap140/settings/lateral-mode</property>
 						<value>2</value>
@@ -1132,7 +1132,7 @@
 						<property>autopilot/kap140/settings/lateral-arm</property>
 						<value>0</value>
 					</equals>
-					<not><property alias="../../../../../../params/hsi-installed"/></not>
+					<not><property alias="/params/hsi-installed"/></not>
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/kap140/settings/from-hdg</property>
@@ -1148,7 +1148,7 @@
 						<property>autopilot/kap140/settings/lateral-arm</property>
 						<value>5</value>
 					</equals>
-					<not><property alias="../../../../../../params/hsi-installed"/></not>
+					<not><property alias="/params/hsi-installed"/></not>
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/kap140/panel/hdg-timer</property>
@@ -1263,8 +1263,7 @@
 				</condition>
 				<command>property-assign</command>
 				<property>autopilot/internal/target-pressure</property>
-				<property>environment/pressure-inhg</property>
-				<property alias="../../../../params/pressure-source"/>
+				<property alias="/params/pressure-source"/>
 			</binding>
 		</button>
 		
@@ -1433,7 +1432,7 @@
 			</binding>
 			<binding>
 				<condition>
-					<not><property alias="../../../../../../params/baro-tied"/></not>
+					<not><value alias="/params/baro-tied"/></not>
 					<equals>
 						<property>autopilot/kap140/panel/state</property>
 						<value>4</value>
@@ -1452,13 +1451,13 @@
 		<layout>hbox</layout>
 		<group>
 			<layout>hbox</layout>
-			<visible><not><property alias="../../../../../params/baro-tied"/></not></visible>
+			<visible><not><value alias="/params/baro-tied"/></not></visible>
 			<button>
 				<legend>&lt;&lt;</legend>
 				<pref-width>30</pref-width>
 				<binding>
 					<condition>
-						<not><property alias="../../../../../../../params/baro-tied"/></not>
+						<not><value alias="/params/baro-tied"/></not>
 						<greater-than>
 							<property>autopilot/kap140/panel/state</property>
 							<value>3</value>
@@ -1469,7 +1468,7 @@
 						</equals>
 					</condition>
 					<command>property-adjust</command>
-					<property alias="../../../../../params/baro-inhg"/>
+					<property alias="/params/baro-inhg"/>
 					<step>-0.10</step>
 					<min>26.0</min>
 					<max>33.0</max>
@@ -1477,7 +1476,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<not><property alias="../../../../../../../params/baro-tied"/></not>
+						<not><value alias="/params/baro-tied"/></not>
 						<greater-than>
 							<property>autopilot/kap140/panel/state</property>
 							<value>3</value>
@@ -1488,7 +1487,7 @@
 						</equals>
 					</condition>
 					<command>property-adjust</command>
-					<property alias="../../../../../params/baro-hpa"/>
+					<property alias="/params/baro-hpa"/>
 					<step>-10</step>
 					<min>880</min>
 					<max>1118</max>
@@ -1496,7 +1495,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<not><property alias="../../../../../../../params/baro-tied"/></not>
+						<not><value alias="/params/baro-tied"/></not>
 						<equals>
 							<property>autopilot/kap140/panel/state</property>
 							<value>4</value>
@@ -1512,7 +1511,7 @@
 				<pref-width>30</pref-width>
 				<binding>
 					<condition>
-						<not><property alias="../../../../../../../params/baro-tied"/></not>
+						<not><value alias="/params/baro-tied"/></not>
 						<greater-than>
 							<property>autopilot/kap140/panel/state</property>
 							<value>3</value>
@@ -1523,7 +1522,7 @@
 						</equals>
 					</condition>
 					<command>property-adjust</command>
-					<property alias="../../../../../params/baro-inhg"/>
+					<property alias="/params/baro-inhg"/>
 					<step>-0.01</step>
 					<min>26.0</min>
 					<max>33.0</max>
@@ -1531,7 +1530,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<not><property alias="../../../../../../../params/baro-tied"/></not>
+						<not><value alias="/params/baro-tied"/></not>
 						<greater-than>
 							<property>autopilot/kap140/panel/state</property>
 							<value>3</value>
@@ -1542,7 +1541,7 @@
 						</equals>
 					</condition>
 					<command>property-adjust</command>
-					<property alias="../../../../../params/baro-hpa"/>
+					<property alias="/params/baro-hpa"/>
 					<step>-1</step>
 					<min>880</min>
 					<max>1118</max>
@@ -1550,7 +1549,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<not><property alias="../../../../../../../params/baro-tied"/></not>
+						<not><value alias="/params/baro-tied"/></not>
 						<equals>
 							<property>autopilot/kap140/panel/state</property>
 							<value>4</value>
@@ -1575,7 +1574,7 @@
 				<pref-width>30</pref-width>
 				<binding>
 					<condition>
-						<not><property alias="../../../../../../../params/baro-tied"/></not>
+						<not><value alias="/params/baro-tied"/></not>
 						<greater-than>
 							<property>autopilot/kap140/panel/state</property>
 							<value>3</value>
@@ -1586,7 +1585,7 @@
 						</equals>
 					</condition>
 					<command>property-adjust</command>
-					<property alias="../../../../../params/baro-inhg"/>
+					<property alias="/params/baro-inhg"/>
 					<step>0.01</step>
 					<min>26.0</min>
 					<max>33.0</max>
@@ -1594,7 +1593,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<not><property alias="../../../../../../../params/baro-tied"/></not>
+						<not><value alias="/params/baro-tied"/></not>
 						<greater-than>
 							<property>autopilot/kap140/panel/state</property>
 							<value>3</value>
@@ -1605,7 +1604,7 @@
 						</equals>
 					</condition>
 					<command>property-adjust</command>
-					<property alias="../../../../../params/baro-hpa"/>
+					<property alias="/params/baro-hpa"/>
 					<step>1</step>
 					<min>880</min>
 					<max>1118</max>
@@ -1613,7 +1612,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<not><property alias="../../../../../../../params/baro-tied"/></not>
+						<not><value alias="/params/baro-tied"/></not>
 						<equals>
 							<property>autopilot/kap140/panel/state</property>
 							<value>4</value>
@@ -1629,7 +1628,7 @@
 				<pref-width>30</pref-width>
 				<binding>
 					<condition>
-						<not><property alias="../../../../../../../params/baro-tied"/></not>
+						<not><value alias="/params/baro-tied"/></not>
 						<greater-than>
 							<property>autopilot/kap140/panel/state</property>
 							<value>3</value>
@@ -1640,7 +1639,7 @@
 						</equals>
 					</condition>
 					<command>property-adjust</command>
-					<property alias="../../../../../params/baro-inhg"/>
+					<property alias="/params/baro-inhg"/>
 					<step>0.10</step>
 					<min>26.0</min>
 					<max>33.0</max>
@@ -1648,7 +1647,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<not><property alias="../../../../../../../params/baro-tied"/></not>
+						<not><value alias="/params/baro-tied"/></not>
 						<greater-than>
 							<property>autopilot/kap140/panel/state</property>
 							<value>3</value>
@@ -1659,7 +1658,7 @@
 						</equals>
 					</condition>
 					<command>property-adjust</command>
-					<property alias="../../../../../params/baro-hpa"/>
+					<property alias="/params/baro-hpa"/>
 					<step>10</step>
 					<min>880</min>
 					<max>1118</max>
@@ -1667,7 +1666,7 @@
 				</binding>
 				<binding>
 					<condition>
-						<not><property alias="../../../../../../../params/baro-tied"/></not>
+						<not><value alias="/params/baro-tied"/></not>
 						<equals>
 							<property>autopilot/kap140/panel/state</property>
 							<value>4</value>

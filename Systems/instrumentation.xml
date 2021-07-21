@@ -153,12 +153,14 @@ file, these values will be used (they are hardcoded).
     <name>comm</name>
     <number>0</number>
     <eight-point-three type="bool">true</eight-point-three>
+    <power-supply>systems/electrical/outputs/comm[0]</power-supply>
   </comm-radio>
 
   <comm-radio>
     <name>comm</name>
     <number>1</number>
     <eight-point-three type="bool">true</eight-point-three>
+    <power-supply>systems/electrical/outputs/comm[1]</power-supply>
   </comm-radio>
 
   <nav-radio>

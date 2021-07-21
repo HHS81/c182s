@@ -164,11 +164,13 @@ file, these values will be used (they are hardcoded).
   <nav-radio>
     <name>nav</name>
     <number>0</number>
+    <power-supply>systems/electrical/outputs/comm[0]</power-supply>
   </nav-radio>
 
   <nav-radio>
     <name>nav</name>
     <number>1</number>
+    <power-supply>systems/electrical/outputs/comm[1]</power-supply>
   </nav-radio>
 
   <slip-skid-ball>

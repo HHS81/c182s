@@ -189,6 +189,33 @@
             set_registration_number(rplayer, node.getValue());
         }, 1, 0);
 
+
+        # Show the passengers in multiplayer models
+        rplayer.getNode("pax/co-pilot/present", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/bool[2]"));
+        rplayer.getNode("pax/left-passenger/present", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/bool[3]"));
+        rplayer.getNode("pax/right-passenger/present", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/bool[4]"));
+        io.read_properties ("Aircraft/c182s/Models/Human/humans.xml", rplayer.getNode ("sim/model"));
+
+
+        # Slow MP properties
+        var DCT = dual_control_tools;
+        var c182_mp_slowprop_TDM1 = DCT.TDMDecoder.new( rplayer.getNode("sim/multiplay/generic/string[7]"), [
+            func (v) { rplayer.getNode("gear/gear[0]/rollspeed-ms",1).setValue(v)  },
+            func (v) { rplayer.getNode("gear/gear[1]/rollspeed-ms",1).setValue(v)  },
+            func (v) { rplayer.getNode("gear/gear[2]/rollspeed-ms",1).setValue(v)  },
+            func (v) { rplayer.getNode("gear/gear/steering-norm",1).setValue(v)  },
+            func (v) { rplayer.getNode("fdm/jsbsim/ice/graphic",1).setValue(v)  },
+        ]);
+        c182_mp_slowprop_TDM1_updater = maketimer(0.25, func{
+            #print("C182 MP extended slow properties TDM1 decoder update()");
+            c182_mp_slowprop_TDM1.update();
+        });
+        c182_mp_slowprop_TDM1_updater.start();
+
+
    ]]></load>
 </nasal>
 
@@ -726,7 +753,7 @@
     <object-name>TrenDEL_01_TrenDEL_01</object-name>
     <object-name>TrenDEL_04_TrenDEL_04</object-name>
     <object-name>TrenDEL_05_TrenDEL_05</object-name>
-    <property>/gear/gear/steering-norm</property>
+    <property>gear/gear/steering-norm</property>
     <factor>-11</factor>
 		<center>
 			<x-m>-0.160396</x-m>
@@ -880,7 +907,7 @@
   <animation>
     <type>spin</type>
      <object-name>FrontWheel</object-name>
-     <property>/gear/gear[0]/rollspeed-ms</property>
+     <property>gear/gear[0]/rollspeed-ms</property>
     <factor>-53.98</factor>
 		<center>
 			<x-m>-0.25459</x-m>
@@ -1014,7 +1041,7 @@
     <animation>
     <type>spin</type>
     <object-name>MainWheel.L</object-name>
-     <property>/gear/gear[1]/rollspeed-ms</property>
+     <property>gear/gear[1]/rollspeed-ms</property>
     <factor>-44.67</factor>
 		<center>
 			<x-m>1.37306</x-m>
@@ -1111,7 +1138,7 @@
     <animation>
     <type>spin</type>
     <object-name>MainWheel.R</object-name>
-     <property>/gear/gear[2]/rollspeed-ms</property>
+     <property>gear/gear[2]/rollspeed-ms</property>
     <factor>-44.67</factor>
 		<center>
 			<x-m>1.37306</x-m>

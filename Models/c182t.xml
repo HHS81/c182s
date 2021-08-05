@@ -160,6 +160,11 @@
 
 
         # Slow MP properties
+        if (!defined("dual_control_tools")) {
+            # Dual control tools library is not loaded by default, so load it now (from localy installed FGData)
+            #print("C182 MP extended slow properties: loading dual-control-tools.nas");
+            io.load_nasal(getprop("/sim/fg-root")~"/Aircraft/Generic/DualControl/dual-control-tools.nas", "dual_control_tools");
+        }
         var DCT = dual_control_tools;
         var c182_mp_slowprop_TDM1 = DCT.TDMDecoder.new( rplayer.getNode("sim/multiplay/generic/string[7]"), [
             func (v) { rplayer.getNode("gear/gear[0]/rollspeed-ms",1).setValue(v)  },

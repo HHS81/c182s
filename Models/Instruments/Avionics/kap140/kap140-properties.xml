@@ -18,7 +18,7 @@
         <pitch-axis-fail type="bool">false</pitch-axis-fail>
         <bad-condition type="bool">false</bad-condition>
         <config>
-            <hsi-installed type="bool">true</hsi-installed>
+            <hsi-installed type="bool">false</hsi-installed>
             <baro-tied type="bool">false</baro-tied>
         </config>
         <panel>

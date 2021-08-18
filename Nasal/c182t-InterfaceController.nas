@@ -30,6 +30,7 @@ io.load_nasal(nasal_dir ~ 'Interfaces/GenericFuelInterface.nas', "fg1000");
 io.load_nasal(nasal_dir ~ 'Interfaces/GenericFuelPublisher.nas', "fg1000");
 io.load_nasal(nasal_dir ~ 'Interfaces/GFC700Interface.nas', "fg1000");
 io.load_nasal(nasal_dir ~ 'Interfaces/GFC700Publisher.nas', "fg1000");
+io.load_nasal(nasal_dir ~ 'Interfaces/GMA1347Interface.nas', "fg1000");
 
 
 # C182T-specific interfaces loaded locally, replacing GenericEISPublisher implementation.
@@ -54,6 +55,7 @@ var GenericInterfaceController = {
     "GenericFuelPublisher",
     "GFC700Publisher",
     "GFC700Interface",
+    "GMA1347Interface",
   ],
 
   # Factory method

@@ -29,7 +29,9 @@ var GenericEISPublisher =
     obj.addPropMap("RPM", "/engines/engine[0]/rpm");
     obj.addPropMap("Man", "/engines/engine[0]/mp-osi");
     obj.addPropMap("MBusVolts", "/systems/electrical/volts");
+    obj.addPropMap("EBusVolts", "/systems/electrical/volts");
     obj.addPropMap("MBattAmps", "/systems/electrical/amps");
+    obj.addPropMap("SBattAmps", "/systems/electrical/amps");
     obj.addPropMap("EngineHours", "/sim/time/hobbs/engine");
     obj.addPropMap("FuelFlowGPH", "/systems/fuel/indicated-manfold-fuel-flow-gph");
     obj.addPropMap("OilPressurePSI", "/engines/engine[0]/indicated-oil-pressure-psi");

@@ -3307,21 +3307,27 @@
         <increase>
             <binding>
                 <command>nasal</command>
-                <script>c182s.updateSeatPosition(0.05);</script>
+                <script>c182s.updateSeatPosition(-0.05);</script>
            </binding>
         </increase>
         <decrease>
             <binding>
                 <command>nasal</command>
-                <script>c182s.updateSeatPosition(-0.05);</script>
+                <script>c182s.updateSeatPosition(0.05);</script>
            </binding>
         </decrease>
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <label>Seat position: %s cm</label>
+                <label>Seat position: %s</label>
                 <tooltip-id>throttle</tooltip-id>
                 <property>sim/model/c182s/cockpit/FrontSeatL-setting-m</property>
+                <mapping>nasal</mapping>
+                <script><![CDATA[
+                    if (arg[0] == 0) return "center";
+                    if (arg[0] > 0)  return arg[0]*100 ~ " cm back";
+                    if (arg[0] < 0)  return arg[0]*-100 ~ " cm front";
+                ]]></script>
             </binding>
         </hovered>
     </animation>

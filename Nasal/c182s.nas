@@ -853,7 +853,7 @@ setlistener("/sim/signals/fdm-initialized", func {
 var authors = [];
 foreach (var author; props.globals.getNode("/sim/authors").getChildren()) {
     var name = author.getNode("name");
-    var nick = author.getNode("description");
+    var nick = author.getNode("nick");
     var desc = author.getNode("description");
     if (name != nil) {
         append(authors, name.getValue());

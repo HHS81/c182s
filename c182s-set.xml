@@ -89,7 +89,8 @@
             <nick>Beni</nick>
         </author>
         <author n="3">
-            <nick>onox</nick>
+            <name>"onox"</name>
+            <!--<nick>onox</nick> using nick as rel name so it be shown in the credits-->
             <description>advice, nasal-scripts, testing</description>
         </author>
         <author n="4">

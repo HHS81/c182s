@@ -815,6 +815,14 @@
        <name>O</name>
        <desc>Open aerotow-hook</desc>
    </key>
+   <key>
+       <name>7/1</name>
+       <desc>Elevator trim</desc>
+   </key>
+    <key>
+       <name>CTRL+4/6</name>
+       <desc>Rudder trim</desc>
+    </key>
   </help>
 
 
@@ -1600,6 +1608,74 @@
             </mod-up>
         </mod-shift>
       </key>
+      
+      <!-- Rudder trim keybinds -->
+      <!-- (we reset the default aileron-trim, because the c182 has just rudder trim) -->
+      <key n="28">
+          <!-- for reasons unknown to me, CTRL+4 gives 28 as code -->
+          <name>CTRL+4</name>
+          <repeatable type="bool">true</repeatable>
+          <binding n="0">
+            <command>property-assign</command>
+            <property>/controls/flight/aileron-trim</property>
+            <value>0</value>
+          </binding>
+          <binding>
+            <command>property-adjust</command>
+            <property>/controls/flight/rudder-trim</property>
+            <step type="double">-0.001</step>
+            <repeatable type="bool">true</repeatable>
+          </binding>
+       </key>
+       <key n="52">
+          <name>4</name>
+          <repeatable type="bool">true</repeatable>
+          <mod-ctrl>
+            <binding n="0">
+                <!-- overwrite default binding -->
+                <command>property-assign</command>
+                <property>/controls/flight/aileron-trim</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-adjust</command>
+                <property>/controls/flight/rudder-trim</property>
+                <step type="double">-0.001</step>
+            </binding>
+          </mod-ctrl>
+       </key>
+       <key n="30">
+          <!-- for reasons unknown to me, the CTRL+6 gives 30 as code -->
+          <name>CTRL+6</name>
+          <repeatable type="bool">true</repeatable>
+          <binding n="0">
+            <command>property-assign</command>
+            <property>/controls/flight/aileron-trim</property>
+            <value>0</value>
+          </binding>
+          <binding>
+            <command>property-adjust</command>
+            <property>/controls/flight/rudder-trim</property>
+            <step type="double">+0.001</step>
+          </binding>
+       </key>
+       <key n="54">
+          <name>6</name>
+          <repeatable type="bool">true</repeatable>
+          <mod-ctrl>
+            <binding n="0">
+                <!-- overwrite default binding -->
+                <command>property-assign</command>
+                <property>/controls/flight/aileron-trim</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>property-adjust</command>
+                <property>/controls/flight/rudder-trim</property>
+                <step type="double">+0.001</step>
+            </binding>
+          </mod-ctrl>
+       </key>
 
     </keyboard>
     </input>

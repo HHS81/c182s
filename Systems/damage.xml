@@ -40,7 +40,7 @@
                         <property>gear/unit[0]/compression-ft</property>
                     </product>
                     <product>
-                        <value>200</value><!-- damping coefficient -->
+                        <value>490</value><!-- damping coefficient -->
                         <property>gear/unit[0]/compression-velocity-fps</property>
                     </product>
                 </sum>

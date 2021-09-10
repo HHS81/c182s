@@ -1476,6 +1476,28 @@
           <script>towing.releaseHitch("aerotow")</script>
         </binding>
       </key>
+<<<<<<< Updated upstream
+=======
+
+      <key n="81">
+        <name>Q</name>
+        <desc>Reset to default view</desc>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.reset_view(0)</script>
+        </binding>
+      </key>
+      
+      <key n="113">
+        <name>q</name>
+        <desc>Reset to saved seat view</desc>
+        <binding>
+          <command>nasal</command>
+          <script>c182s.reset_view(1)</script>
+        </binding>
+      </key>
+
+>>>>>>> Stashed changes
       <key n="121">
         <name>y</name>
         <desc>Toggle yoke visibility.</desc>

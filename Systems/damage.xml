@@ -27,11 +27,6 @@
                 [1] https://www.youtube.com/watch?v=O1yWkbJuqkE#t=420
         -->
 
-        <!--
-            Numbers MUST be the same coefficients as spring_coeff and
-            damping_coeff in the FDM for nose and main gear!
-        -->
-
         <fcs_function name="damage/force-nose-gear">
             <function>
                 <sum>

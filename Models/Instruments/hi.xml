@@ -202,14 +202,9 @@
       <binding>
         <command>set-tooltip</command>
         <tooltip-id>heading-offset</tooltip-id>
-        <label>Heading Offset: %3d</label>
-        <property>instrumentation/heading-indicator/offset-deg</property>
-        <mapping>nasal</mapping>
-        <script>
-            var r = arg[0];
-            if (r > 180) r = (360-r) *-1;
-            return r;
-        </script>
+        <label>Heading: %3d</label>
+        <property>instrumentation/heading-indicator/indicated-heading-deg</property>
+        <mapping>heading</mapping>
       </binding>
     </hovered>
    </animation>
@@ -426,14 +421,9 @@
       <binding>
         <command>set-tooltip</command>
         <tooltip-id>heading-offset</tooltip-id>
-        <label>Heading Offset: %3d</label>
-        <property>instrumentation/heading-indicator/offset-deg</property>
-        <mapping>nasal</mapping>
-        <script>
-            var r = arg[0];
-            if (r > 180) r = (360-r) *-1;
-            return r;
-        </script>
+        <label>Heading: %3d</label>
+        <property>instrumentation/heading-indicator/indicated-heading-deg</property>
+        <mapping>heading</mapping>
       </binding>
     </hovered>
   </animation>
@@ -514,14 +504,9 @@
       <binding>
         <command>set-tooltip</command>
         <tooltip-id>heading-offset</tooltip-id>
-        <label>Heading Offset: %3d</label>
-        <property>instrumentation/heading-indicator/offset-deg</property>
-        <mapping>nasal</mapping>
-        <script>
-            var r = arg[0];
-            if (r > 180) r = (360-r) *-1;
-            return r;
-        </script>
+        <label>Heading: %3d</label>
+        <property>instrumentation/heading-indicator/indicated-heading-deg</property>
+        <mapping>heading</mapping>
       </binding>
     </hovered>
   </animation>

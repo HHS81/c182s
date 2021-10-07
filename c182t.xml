@@ -1441,8 +1441,8 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCLge</property>
-                        <property>propulsion/engine[0]/cowl-flaps-norm</property>
-                    <value>0.028</value>
+                    <property>propulsion/engine[0]/cowl-flaps-norm</property>
+                    <value>0.005</value>
                 </product>
             </function>
             

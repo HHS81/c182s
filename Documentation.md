@@ -44,8 +44,17 @@ Otherwise you need to pay attention to varios engine related things:
   the oil pump will not be able to supply enough pressure for good lubrication, leading to engine failure. Also monitor the oil service time as
   old oil does not perform so well (cycle it about every 50 hrs).
   Also some effects like additional friction with too hot oil and cold-start will be simulated.
-- `Allow Spark plug icing`  
-  If active, the spark plugs can freeze over, preventing engine start. This can occur in cold weather if the engine starts and quits shortly after, because then the engine is still cold, letting the water produced by the combustion process condensate on the plugs where they freeze over. This will prevent furter engine starts. To prevent this, preheat the engine properly, and if it happened, heat the engine so the ice melts (which can take considerable time!)
+- `Allow Spark plug icing/fouling`  
+  If active, the spark plugs can freeze over, preventing engine start. This can occur in cold weather if the engine starts and quits shortly after,
+  because then the engine is still cold, letting the water produced by the combustion process condensate on the plugs where they freeze over. This
+  will prevent furter engine starts. To prevent this, preheat the engine properly, and if it happened, heat the engine so the ice melts (which can
+  take considerable time!)  
+  Also, if the combustion temperature is too low and/or or the mixture too rich, the spark plugs can slowly foul with lead and carbon deposits,
+  eventually shortening the electrical spark. Be sure to keep the engine (CHT) warm enough by proper leaning and run-up procedures. In short, keep
+  the combustion temperature above about 264°C/507°F and avoid idling too long at <1000 RPM. Also, lean to peak EGT on ground/taxi and warm-up the
+  engine at 1200 RPM. Should a magneto check reveal spark plug problems, its most of the time some fouled plugs. Put the engine to 1800 RPM and 50°
+  lean of peak EGT. Let it run for about 30 seconds, monitor CHT. This should clean the deposits which a second magneto check should verify.  
+When parking the plane after flight, you should go to 1800 RPM and lean mix for 20 secs, then reduce throttle to 1000 RPM and then stop the engine by pulling mixture to the cut-off position.
 - `Winter Kit`  
   The winter kit is needed in cold weather (<20°F/-6°C) to reduce cooling air flow. If not supplied, the engine will possibly not get warm enough to develop good power, but be sure to remove it in hot weather, otherwise you risk too high CHT temps.
 
@@ -117,6 +126,8 @@ The pitot tube and stall horn can ice too, so you might not get any warning of a
 Some properties can be set at runtime to adjust the simulators state. You may use this for example in a script or trough a telnet session.  
 Additionally to the default ones, the c182 knows the following:
 - `/fdm/jsbsim/systems/propulsion/manual-friction` (in horsepowers) to induce additional engine friction, which reduces power.
+- `/engines/engine/manual-roughness-factor` (`0.0` to `1.0`) to induce engine roughness
+- `/engines/engine/manual-power-reduction-pct` (`0.0` to `1.0`) to make the engine less efficient
 - `/engines/engine/kill-engine` immediately kills the engine if set to `1`.
 
 ### KAP 140 Autopilot
@@ -179,7 +190,10 @@ Most of the [C172p's FAQ](http://wiki.flightgear.org/Cessna_172P#FAQ) also appli
 4. Why does the Autostart fail to start the engine?  
    This should never happen. Please file a bug report at the github project site.
 5. Why does the engine die immediately after startup?  
-   Most probably the engine is too cold and you advanced the throttle too fast. Warm the engine at about 1000rpm for some more time. Other sources may
-   be contaminated fuel or a damaged engine.
+   Most probably the engine is too cold and you advanced the throttle too fast. Warm the engine at about 1200rpm for some more time. Other sources may
+   be contaminated fuel, a damaged engine or fouled spark plugs.
 6. The glareshield, pedestal and interior lights are not working. Is there a bug?
    Most probably you just need to enable ALS and move the model shader slider to the right (check extended settings!) in your graphic settings.
+7. Engine power is not so good, especially on one magneto. What should I do?  
+   Most probably you experience spark plug fouling. You let the engine get too cold by not leaning properly or excessive engine cooling. Better observe your mixture leaning, power and cowl flaps setting. On ground, don't let the plane idle on full rich, but set RPM to 1200 and lean to peak EGT. For Taxiing, reduce power unless paying extra for brakes is no issue :).  
+   To remove the deposits on the spark plugs: put the engine to 1800 rpm and lean to peak EGT; let it run for about half a minute and repeat the mag check; repeat procedure if needed.

@@ -144,6 +144,7 @@
   <checklists include="c182s-checklists.xml"/>
 
   <tutorials>
+    <tutorial include="Tutorials/sparkPlugFouling.xml"/>
     <tutorial include="Tutorials/davtron803.xml"/>
   </tutorials>
 
@@ -947,6 +948,9 @@
             <path>/fdm/jsbsim/wing-damage/left-wing-saved</path>
             <path>/fdm/jsbsim/wing-damage/right-wing-saved</path>
 
+            <path>/fdm/jsbsim/systems/propulsion/sparkplugs/left/fouling-savedrestore</path>
+            <path>/fdm/jsbsim/systems/propulsion/sparkplugs/right/fouling-savedrestore</path>
+
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
             <path>/consumables/fuel/tank[2]/level-gal_us</path>
@@ -1311,6 +1315,8 @@
    <governor>
         <serviceable type="bool">true</serviceable>
     </governor>
+    <manual-roughness-factor type="double">0</manual-roughness-factor>
+    <manual-power-reduction-pct type="double">0</manual-power-reduction-pct>
   </engine>
  </engines>
 

@@ -78,6 +78,14 @@ var engine_coughing = func(){
         delay = 3.0 * rand() + 17 - 41.25 * total_water_contamination;
     };
     
+    
+    # if coughing from rough engine operation, it depends on severity;
+    var roughness_factor = getprop("/engines/engine/roughness-factor") or 0;
+    if (roughness_factor > 0.8) delay = (roughness_factor*10 - 8) + (-0.25 + rand()*0.5);
+    
+    
+    # Schedule next cough check
+    if (delay < 0.2) delay = 0.2;
     coughing_timer.restart(delay);
     
 }
@@ -301,6 +309,22 @@ var applySparkPlugicing = func() {
     }
 }
 
+
+# ======== Spark plug fouling simulation =========
+# We just need a random number to randomize the affected magnetos a bit.
+# This way its not always the same magneto/plugs fouling.
+var spark_plug_fouling_affected = rand();
+if (spark_plug_fouling_affected <= 0.40) {
+    setprop("/fdm/jsbsim/systems/propulsion/sparkplugs/left/affected",  1 );
+    setprop("/fdm/jsbsim/systems/propulsion/sparkplugs/right/affected", 0 );
+} else if (spark_plug_fouling_affected <= 0.80) {
+    setprop("/fdm/jsbsim/systems/propulsion/sparkplugs/left/affected",  0);
+    setprop("/fdm/jsbsim/systems/propulsion/sparkplugs/right/affected", 1);
+} else {
+    # If both are affected make their rates a little different
+    setprop("/fdm/jsbsim/systems/propulsion/sparkplugs/left/affected",  1 + (-0.5 + rand())*0.20 );
+    setprop("/fdm/jsbsim/systems/propulsion/sparkplugs/right/affected", 1 + (-0.5 + rand())*0.20 );
+}
 
 
 # ======= OIL Pump handling =====

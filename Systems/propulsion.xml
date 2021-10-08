@@ -9,8 +9,7 @@
 
     
     <channel name="engine power">
-  	
-<fcs_function name="systems/engine/MP-alt-volumetric-efficiency-curve">
+        <fcs_function name="systems/engine/MP-alt-volumetric-efficiency-curve">
           <function>
                 <table>
                     <independentVar lookup="row">atmosphere/density-altitude</independentVar>
@@ -26,7 +25,7 @@
 		12000 0.22 0.82 0.83 0.835 0.85 0.79 0.79  0.79 0.79 0.89 0.89 0.89	0.89  0.89 0.89 0.89 
 		14000 0.25 0.84 0.835 0.84 0.77 0.77 0.77 0.77 0.87 0.87 0.87 0.87 0.87  0.87 0.87 0.87 
                    </tableData> 
-                </table>  
+                </table>
           </function>
           <output>propulsion/engine/volumetric-efficiency</output>   
         </fcs_function>
@@ -35,8 +34,8 @@
 	
 
 
-<!-- Power based on fuel flow-->
-<fcs_function name="systems/engine/MP-alt-bsfc-lbs_hphr-curve">
+        <!-- Power based on fuel flow-->
+        <fcs_function name="systems/engine/MP-alt-bsfc-lbs_hphr-curve">
           <function>
             <table>
                 <independentVar lookup="row">atmosphere/density-altitude</independentVar>
@@ -61,7 +60,7 @@
           <output>propulsion/engine/bsfc-lbs_hphr</output>   
         </fcs_function>
 	
- <fcs_function name="systems/engine/RAM-Air-Factor">
+        <fcs_function name="systems/engine/RAM-Air-Factor">
           <function>
                 <table>
                     <independentVar lookup="row">atmosphere/density-altitude</independentVar>
@@ -85,22 +84,53 @@
           <output>propulsion/engine/ram-air-factor</output>   
         </fcs_function>
 	
-	
-<!--<fcs_function name="systems/engine/Air-Intake-Impedance-Factor">
-          <function>
-                <table>
-                    <independentVar lookup="row">atmosphere/density-altitude</independentVar>
-                    <tableData breakPoint="0">
-                        0		0.2		
-		5000		0.2		
-		14000	-0.0	
-                   </tableData>
-                </table>  
-          </function>
-          <output>propulsion/engine/air-intake-impedance-factor</output>   
+        
+        
+        <!-- Hooks for dynamic power reduction -->
+        <summer name="systems/engine/power-reduction-pct">
+            <input>/engines/engine/manual-power-reduction-pct</input>   <!-- for fun with telnet, etc -->
+            <input>/engines/engine/roughness-rpm-reduction-pct</input>  <!-- see engine.xml -->
+            
+            <output>systems/engine/power-reduction-pct</output>
+            <clipto>
+                <min> 0.0 </min>
+                <max> 1.0 </max>
+            </clipto>
+        </summer>
+        
+        
+        <!-- Air impedance is fixed at 0.18; but adjusted for effects.
+            Power reduction is with a quick response implemented here,
+            however this is hacky as it is mixture dependent and MP pressure follows too.
+        -->
+        <!-- original base value from engIO540AB1A5.xml-->
+        <!--<fcs_function name="systems/engine/Air-Intake-Impedance-Factor">
+            <function>
+                <sum>
+                    <value>0.18</value>
+                    
+                    <table>
+                        <independentVar lookup="row">systems/engine/power-reduction-pct</independentVar>
+                        <tableData>
+                            0.00   0.00
+                            0.10   0.35
+                            0.20   0.55
+                            0.30   1.54
+                            0.40   2.03
+                            0.50   2.70
+                            0.60   3.65
+                            0.70   4.70
+                            0.80   5.55
+                            0.90   7.30
+                            1.00  15.00
+                        </tableData>
+                    </table>
+                </sum>
+            </function>
+            <output>propulsion/engine/air-intake-impedance-factor</output>   
         </fcs_function>-->
 	
-       </channel>
+    </channel>
 
 <channel name= "Prop Icing">
 <fcs_function name="systems/propulsion/prop-ice">
@@ -140,23 +170,445 @@
  </channel>
  
 
-<channel name="sparkPlugs">
-    <!-- Calculates an approximated spark plug temperature -->
-    <!-- this is currently not really close, but we need it just for the spark plug icing for now.
-        the reasoning is: CHT is directly exposed to the combustion, thus heats very quickly.
-        We need however the temperature at the spark plug, which gets cooled indicrectly from the oil and
-        engine block, thus reacts slower to temperature changes (but quicker than the oil).
+<channel name="sparkPlugs" execrate="8">
+    <!-- Calculates an approximated spark plug temperature.
+         NOTE: this is currently not based on real data but a guess.
+         EGT is a proxy for the combustion temperature. At stochiometric mixture (AFR 13.9) it is about 1560°F, maxPWR~1400°F.
+         We however add a bit temperature boost ~50°F LoP because of better combustion, afterwards the cooling effect of excessive air overtakes.
     -->
-    <fcs_function name="/engines/engine/sparkplugs-temperature-degf">
-        <description>Simulates Spark plug temperature</description>
+    <fcs_function name="systems/propulsion/sparkplugs/temperature-degf-tgt">
+        <description>Simulates combustion temperature</description>
         <function>
-            <quotient>
-                <sum>
+            <sum>
+                <product>
+                    <property>/engines/engine/running</property>
+                    
+                    <property>/engines/engine/egt-degf</property>
+                    <table>
+                        <independentVar>propulsion/engine/engine-rpm</independentVar>
+                        <tableData>
+                             800   0.20
+                            1000   0.35
+                            2400   0.60
+                        </tableData>
+                    </table>
+                    <table>
+                        <independentVar>propulsion/engine/AFR</independentVar>
+                        <tableData>
+                             13.90  1.0
+                             14.45  1.12
+                             15.50  1.0
+                        </tableData>
+                    </table>
+                </product>
+                
+                <product>
+                    <not><property>/engines/engine/running</property></not>
                     <property>/engines/engine/oil-final-temperature-degf</property>
-                    <property>/engines/engine/cht-compensated-temperature-degf</property>
+                </product>
+            </sum>
+        </function>
+    </fcs_function>
+    <fcs_function name="/fdm/jsbsim/systems/propulsion/sparkplugs/temperature-degf-tgt-ratelimit">
+        <!-- damping the initial heating at the start to give the icing implementation a chance to catch on -->
+        <function>
+            <table>
+                <independentVar>/engines/engine/sparkplugs-temperature-degf</independentVar>
+                <tableData>
+                    32   2.00
+                    100  20.00
+                    200  50.00
+                </tableData>
+            </table>
+        </function>
+    </fcs_function>
+    <actuator name="/engines/engine/sparkplugs-temperature-degf">
+        <input> /fdm/jsbsim/systems/propulsion/sparkplugs/temperature-degf-tgt </input>
+        <rate_limit> /fdm/jsbsim/systems/propulsion/sparkplugs/temperature-degf-tgt-ratelimit </rate_limit>
+    </actuator>
+    
+    
+    <!-- Booleans to see which magneto is selected -->
+    <switch name="systems/propulsion/sparkplugs/right/magneto-selected">
+        <default value="0"/>
+        <test logic="OR" value="1">
+            /controls/switches/magnetos EQ 1
+            /controls/switches/magnetos EQ 3
+        </test>
+    </switch>
+    <switch name="systems/propulsion/sparkplugs/left/magneto-selected">
+        <default value="0"/>
+        <test logic="OR" value="1">
+            /controls/switches/magnetos EQ 2
+            /controls/switches/magnetos EQ 3
+        </test>
+    </switch>
+    
+    <!-- Left Spark plug fouling -->
+    <!-- The following switches calculate the fouling conditions -->
+    <switch name="systems/propulsion/sparkplugs/left/carbon-fouling">
+        <!-- Carbon fouling occurs with overly rich mixture.
+             AFR:  8=no combustion; <8.15 severe RPM loss; <12=rich; ~12.0 is MaxPWR; 13.9 is Peak ~EGT; > 13.9=LoP; ~18.9 engine cutoff-->
+        <default value="0"/>
+        <test logic="AND" value="1">
+            /engines/engine/running  EQ 1
+            propulsion/engine/AFR    LT 11.0
+        </test>
+        <test logic="AND" value="-1">
+            /engines/engine/running    EQ 1
+            propulsion/engine/AFR GT   11.5
+        </test>
+    </switch>
+    <switch name="systems/propulsion/sparkplugs/left/lead-fouling">
+        <!-- Lead fouling occurs when the combustion temperature is not hot enough to activate
+             the EDB lead scavenge agent (temps < 264°C/507.2°F). -->
+        <default value="0"/>
+        <test logic="AND" value="1">
+            /engines/engine/running                     EQ 1
+            /engines/engine/sparkplugs-temperature-degf LT 507.2 
+        </test>
+        <test logic="AND" value="-1">
+            /engines/engine/running                     EQ 1
+            /engines/engine/sparkplugs-temperature-degf GT 507.2
+        </test>
+    </switch>
+    <switch name="systems/propulsion/sparkplugs/left/disabled-fouling">
+        <!-- The plug is not running but supplied with fuel. This will slowly foul (running on one magneto). -->
+        <!-- It will be removed if the plug is firing again in "cleaning" conditions. -->
+        <default value="0"/>
+        <test logic="AND" value="1">
+            <test logic="OR">
+                /engines/engine/running           EQ 1
+                /engines/engine/cranking          EQ 1
+            </test>
+            systems/propulsion/sparkplugs/left/magneto-selected EQ 0
+        </test>
+    </switch>
+    
+    <!-- This switch calculates the final decision if we should clean/foul the plugs -->
+    <switch name="systems/propulsion/sparkplugs/left/fouling-change">
+        <default value="0"/>
+        <test logic="AND" value="0">
+            <!-- Do not change the value if simulation is not activated -->
+            /engines/engine/allow-sparkplug-icing EQ 0
+        </test>
+        <test logic="OR" value="1">
+            systems/propulsion/sparkplugs/left/carbon-fouling   GT 0
+            systems/propulsion/sparkplugs/left/lead-fouling     GT 0
+            systems/propulsion/sparkplugs/left/disabled-fouling GT 0
+        </test>
+        <test logic="AND" value="-1">
+            systems/propulsion/sparkplugs/left/carbon-fouling LT 0
+            systems/propulsion/sparkplugs/left/lead-fouling   LE 0
+        </test>
+        <test logic="AND" value="-1">
+            systems/propulsion/sparkplugs/left/carbon-fouling LE 0
+            systems/propulsion/sparkplugs/left/lead-fouling   LT 0
+        </test>
+    </switch>
+    
+    <!-- Calculate decrease/stable/increase of plugs foul state
+         (the switch has three states: 0=stable; -1/+1=clean/foul;
+          and the increase/decrease rate is dynamic. Finally, the
+          actuator represents the current fouling-state in percent -->
+    <switch name="systems/propulsion/sparkplugs/left/fouling-tgt">
+        <default value="systems/propulsion/sparkplugs/left/fouling-norm"/>
+        <test logic="AND" value="0.0">
+            /fdm/jsbsim/damage/repairing EQ 1
+        </test>
+        <test logic="AND" value="systems/propulsion/sparkplugs/left/fouling-savedrestore">
+            /sim/time/elapsed-sec        LT 0.1
+        </test>
+        <test logic="AND" value="1.0"> <!-- Flooded engine makes plugs wet/fouled -->
+            /engines/engine/running      EQ 0
+            /systems/fuel/engine-flooded EQ 1
+        </test>
+        <test logic="AND" value="1.0">
+            /engines/engine/running EQ 1
+            systems/propulsion/sparkplugs/left/fouling-change GT 0
+        </test>
+        <test logic="AND" value="0.0">
+            /engines/engine/running EQ 1
+            systems/propulsion/sparkplugs/left/fouling-change LT 0
+        </test>
+    </switch>
+    <switch name="systems/propulsion/sparkplugs/left/fouling-norm-ratelimit-swtch">
+        <default value="0"/>
+        <test logic="OR" value="999"> <!-- insta repair/restore -->
+            /fdm/jsbsim/damage/repairing EQ 1
+            /sim/time/elapsed-sec        LT 0.1
+        </test>
+        <test logic="AND" value="0.50"> <!-- Flooded engine makes plugs fouled -->
+            /engines/engine/running      EQ 0
+            /systems/fuel/engine-flooded EQ 1
+        </test>
+        <test logic="AND" value="0.00166"> <!-- ~10min=600s to fully develop -->
+            systems/propulsion/sparkplugs/left/fouling-change GT 0
+        </test>
+        <test logic="AND" value="0.0005"> <!-- long to fully remedy with just above temps and lead fouling -->
+            systems/propulsion/sparkplugs/temperature-degf-tgt LT 730.0
+            systems/propulsion/sparkplugs/left/fouling-change  LT 0
+            systems/propulsion/sparkplugs/left/lead-fouling    LE 0
+        </test>
+        <test logic="AND" value="0.0008"> <!-- long to fully remedy with just above temps and lead fouling -->
+            systems/propulsion/sparkplugs/temperature-degf-tgt LT 650.0
+            systems/propulsion/sparkplugs/left/fouling-change  LT 0
+            systems/propulsion/sparkplugs/left/lead-fouling    LE 0
+        </test>
+        <test logic="AND" value="0.033"> <!-- ~30s to fully remedy -->
+            systems/propulsion/sparkplugs/left/fouling-change LT 0
+        </test>
+    </switch>
+    <switch name="systems/propulsion/sparkplugs/left/affected-switch">
+        <default value="systems/propulsion/sparkplugs/left/affected" />
+        <test logic="OR" value="1">  <!-- always affected if flooded, repairing or restoring -->
+            /systems/fuel/engine-flooded   EQ 1
+            /fdm/jsbsim/damage/repairing   EQ 1
+            /sim/time/elapsed-sec          LT 0.1
+        </test>
+        <test logic="AND" value="1">  <!-- always affected if cleaning and not affected otherwise -->
+            systems/propulsion/sparkplugs/left/affected        EQ 0
+            systems/propulsion/sparkplugs/left/fouling-change  LT 0
+        </test>
+    </switch>
+    <fcs_function name="systems/propulsion/sparkplugs/left/fouling-norm-ratelimit">
+        <function>
+            <product>
+                <property>systems/propulsion/sparkplugs/left/fouling-norm-ratelimit-swtch</property>
+                <property>systems/propulsion/sparkplugs/left/affected-switch</property>
+            </product>
+        </function>
+    </fcs_function>
+    <actuator name="systems/propulsion/sparkplugs/left/fouling-norm">
+        <input> systems/propulsion/sparkplugs/left/fouling-tgt </input>
+        <rate_limit>systems/propulsion/sparkplugs/left/fouling-norm-ratelimit</rate_limit> <!-- rate_limit defines change per second -->
+        <clipto>
+            <min> 0.00 </min>
+            <max> 1.00 </max>
+        </clipto>
+        <output>systems/propulsion/sparkplugs/left/fouling-savedrestore</output>
+    </actuator>
+    
+    
+    <!-- Right Spark plug fouling -->
+    <!-- The following switches calculate the fouling conditions -->
+    <switch name="systems/propulsion/sparkplugs/right/carbon-fouling">
+        <!-- Carbon fouling occurs with overly rich mixture.
+             AFR:  8=no combustion; <8.15 severe RPM loss; <12=rich; ~12.0 is MaxPWR; 13.9 is Peak ~EGT; > 13.9=LoP; ~18.9 engine cutoff-->
+        <default value="0"/>
+        <test logic="AND" value="1">
+            /engines/engine/running  EQ 1
+            propulsion/engine/AFR    LT 11.0
+        </test>
+        <test logic="AND" value="-1">
+            /engines/engine/running    EQ 1
+            propulsion/engine/AFR GT   11.5
+        </test>
+    </switch>
+    <switch name="systems/propulsion/sparkplugs/right/lead-fouling">
+        <!-- Lead fouling occurs when the combustion temperature is not hot enough to activate
+             the EDB lead scavenge agent (temps < 264°C/507°F). -->
+        <default value="0"/>
+        <test logic="AND" value="1">
+            /engines/engine/running                     EQ 1
+            /engines/engine/sparkplugs-temperature-degf LT 507.2
+        </test>
+        <test logic="AND" value="-1">
+            /engines/engine/running                     EQ 1
+            /engines/engine/sparkplugs-temperature-degf GT 507.2
+        </test>
+    </switch>
+    <switch name="systems/propulsion/sparkplugs/right/disabled-fouling">
+        <!-- The plug is not running but supplied with fuel. This will slowly foul (running on one magneto). -->
+        <!-- It will be removed if the plug is firing again in "cleaning" conditions. -->
+        <default value="0"/>
+        <test logic="AND" value="1">
+            <test logic="OR">
+                /engines/engine/running           EQ 1
+                /engines/engine/cranking          EQ 1
+            </test>
+            systems/propulsion/sparkplugs/right/magneto-selected EQ 0
+        </test>
+    </switch>
+    
+    <!-- This switch calculates the final decision if we should clean/foul the plugs -->
+    <switch name="systems/propulsion/sparkplugs/right/fouling-change">
+        <default value="0"/>
+        <test logic="AND" value="0">
+            <!-- Do not change the value if simulation is not activated -->
+            /engines/engine/allow-sparkplug-icing EQ 0
+        </test>
+        <test logic="OR" value="1">
+            systems/propulsion/sparkplugs/right/carbon-fouling   GT 0
+            systems/propulsion/sparkplugs/right/lead-fouling     GT 0
+            systems/propulsion/sparkplugs/right/disabled-fouling GT 0
+        </test>
+        <test logic="AND" value="-1">
+            systems/propulsion/sparkplugs/right/carbon-fouling LT 0
+            systems/propulsion/sparkplugs/right/lead-fouling   LE 0
+        </test>
+        <test logic="AND" value="-1">
+            systems/propulsion/sparkplugs/right/carbon-fouling LE 0
+            systems/propulsion/sparkplugs/right/lead-fouling   LT 0
+        </test>
+    </switch>
+    
+    <!-- Calculate decrease/stable/increase of plugs foul state
+         (the switch has three states: 0=stable; -1/+1=clean/foul;
+          and the increase/decrease rate is dynamic. Finally, the
+          actuator represents the current fouling-state in percent -->
+    <switch name="systems/propulsion/sparkplugs/right/fouling-tgt">
+        <default value="systems/propulsion/sparkplugs/right/fouling-norm"/>
+        <test logic="AND" value="0.0">
+            /fdm/jsbsim/damage/repairing EQ 1
+        </test>
+        <test logic="AND" value="systems/propulsion/sparkplugs/right/fouling-savedrestore">
+            /sim/time/elapsed-sec        LT 0.1
+        </test>
+        <test logic="AND" value="1.0"> <!-- Flooded engine makes plugs wet/fouled -->
+            /engines/engine/running      EQ 0
+            /systems/fuel/engine-flooded EQ 1
+        </test>
+        <test logic="AND" value="1.0">
+            /engines/engine/running EQ 1
+            systems/propulsion/sparkplugs/right/fouling-change GT 0
+        </test>
+        <test logic="AND" value="0.0">
+            /engines/engine/running EQ 1
+            systems/propulsion/sparkplugs/right/fouling-change LT 0
+        </test>
+    </switch>
+    <switch name="systems/propulsion/sparkplugs/right/fouling-norm-ratelimit-swtch">
+        <default value="0"/>
+        <test logic="OR" value="999"> <!-- insta repair/restore -->
+            /fdm/jsbsim/damage/repairing EQ 1
+            /sim/time/elapsed-sec        LT 0.1
+        </test>
+        <test logic="AND" value="0.50"> <!-- Flooded engine makes plugs fouled -->
+            /engines/engine/running      EQ 0
+            /systems/fuel/engine-flooded EQ 1
+        </test>
+        <test logic="AND" value="0.00166"> <!-- ~10min=600s to fully develop -->
+            systems/propulsion/sparkplugs/right/fouling-change GT 0
+        </test>
+        <test logic="AND" value="0.0005"> <!-- long to fully remedy with just above temps and lead fouling -->
+            systems/propulsion/sparkplugs/temperature-degf-tgt  LT 650.0
+            systems/propulsion/sparkplugs/right/fouling-change  LT 0
+            systems/propulsion/sparkplugs/right/lead-fouling    LE 0
+        </test>
+        <test logic="AND" value="0.0008"> <!-- long to fully remedy with just above temps and lead fouling -->
+            systems/propulsion/sparkplugs/temperature-degf-tgt  LT 730.0
+            systems/propulsion/sparkplugs/right/fouling-change  LT 0
+            systems/propulsion/sparkplugs/right/lead-fouling    LE 0
+        </test>
+        <test logic="AND" value="0.033"> <!-- ~30s to fully remedy -->
+            systems/propulsion/sparkplugs/right/fouling-change LT 0
+        </test>
+    </switch>
+    <switch name="systems/propulsion/sparkplugs/right/affected-switch">
+        <default value="systems/propulsion/sparkplugs/right/affected" />
+        <test logic="OR" value="1">  <!-- always affected if flooded, repairing or restoring -->
+            /systems/fuel/engine-flooded   EQ 1
+            /fdm/jsbsim/damage/repairing   EQ 1
+            /sim/time/elapsed-sec          LT 0.1
+        </test>
+        <test logic="AND" value="1">  <!-- always affected if cleaning and not affected otherwise -->
+            systems/propulsion/sparkplugs/right/affected        EQ 0
+            systems/propulsion/sparkplugs/right/fouling-change  LT 0
+        </test>
+    </switch>
+    <fcs_function name="systems/propulsion/sparkplugs/right/fouling-norm-ratelimit">
+        <function>
+            <product>
+                <property>systems/propulsion/sparkplugs/right/fouling-norm-ratelimit-swtch</property>
+                <property>systems/propulsion/sparkplugs/right/affected-switch</property>
+            </product>
+        </function>
+    </fcs_function>
+    <actuator name="systems/propulsion/sparkplugs/right/fouling-norm">
+        <input> systems/propulsion/sparkplugs/right/fouling-tgt </input>
+        <rate_limit>systems/propulsion/sparkplugs/right/fouling-norm-ratelimit</rate_limit> <!-- rate_limit defines change per second -->
+        <clipto>
+            <min> 0.00 </min>
+            <max> 1.00 </max>
+        </clipto>
+        <output>systems/propulsion/sparkplugs/right/fouling-savedrestore</output>
+    </actuator>
+
+
+    <!-- Calculate engine roughness factor
+         This is based on the fouling state, the magneto settings and also RPM.
+    NOTE: Fyling on BOTH should be better than on the good mag alone, unless the
+         engine runs rough in BOTH. This (probably?) happens, when the bad magneto hinders the good one
+         more than the good one can overcome; so switching to the better one in this case gives more power
+         and a less rough engine.
+    -->
+    <fcs_function name="systems/propulsion/sparkplugs/fouling-roughness-factor">
+        <description>made up data for spark plug fouling power loss/engine roughness </description>
+        <function>
+            <product>
+                <!-- Only add roughness if extended simulation is switched on -->
+                <property>/engines/engine/complex-engine-procedures</property>
+                <property>/engines/engine/allow-sparkplug-icing</property>
+                
+                <sum>
+                    <!-- LEFT magneto selected -->
+                    <product>
+                        <property>systems/propulsion/sparkplugs/left/magneto-selected</property>
+                        <not><property>systems/propulsion/sparkplugs/right/magneto-selected</property></not>
+                        
+                        <table>
+                            <independentVar>systems/propulsion/sparkplugs/left/fouling-norm</independentVar>
+                            <tableData>
+                                0.00   0.00
+                                0.33   0.00
+                                1.00   1.00
+                            </tableData>
+                        </table>
+                    </product>
+                    
+                    <!-- RIGHT magneto selected -->
+                    <product>
+                        <not><property>systems/propulsion/sparkplugs/left/magneto-selected</property></not>
+                        <property>systems/propulsion/sparkplugs/right/magneto-selected</property>
+                        
+                        <table>
+                            <independentVar>systems/propulsion/sparkplugs/right/fouling-norm</independentVar>
+                            <tableData>
+                                0.00   0.00
+                                0.33   0.00
+                                1.00   1.00
+                            </tableData>
+                        </table>
+                    </product>
+                    
+                    <!-- BOTH magnetos selected -->
+                    <product>
+                        <property>systems/propulsion/sparkplugs/left/magneto-selected</property>
+                        <property>systems/propulsion/sparkplugs/right/magneto-selected</property>
+                        
+                        <table>
+                            <independentVar lookup="row">systems/propulsion/sparkplugs/left/fouling-norm</independentVar>
+                            <independentVar lookup="column">systems/propulsion/sparkplugs/right/fouling-norm</independentVar>
+                            <tableData>
+                                      0.00   0.30   1.00
+                                0.00  0      0      0.30
+                                0.30  0      0      0.45
+                                1.00  0.30   0.45   0.60
+                            </tableData>
+                        </table>
+                    </product>
                 </sum>
-                <value>2</value>
-            </quotient>
+                
+                <table>
+                    <independentVar>propulsion/engine/engine-rpm</independentVar>
+                    <tableData>
+                        1300  0.0
+                        2400  1.0
+                    </tableData>
+                </table>
+            </product>
+            
         </function>
     </fcs_function>
 
@@ -174,7 +626,7 @@
                for a defined ammount of time, additional friction is applied that will kill the engine.
             
     -->
-    <channel name="Engine Friction">
+    <channel name="Engine Friction" execrate="8">
         <fcs_function name="systems/propulsion/expansion-friction">
             <description>made up data to simulate too hot CHT causing friction</description>
             <function>
@@ -327,6 +779,20 @@
         </fcs_function>
         
         
+        <!-- Power-loss friction -->
+        <!-- TODO: This currently seems to be the only reliable way to reduce power without other side effects... -->
+        <fcs_function name="systems/propulsion/friction-powerloss">
+            <function>
+                <table>
+                    <independentVar>systems/engine/power-reduction-pct</independentVar>
+                    <tableData>
+                        0.0     0.0
+                        1.0   230.0
+                    </tableData>
+                </table>
+            </function>
+        </fcs_function>
+        
         
         <!-- TODO: it is possible model existing stuff here, like fuel tanks contaminated and prop-strike; -->
         
@@ -334,16 +800,17 @@
         
         
 
-        <!-- sum up all friction variables and output to jsbsim, affecting engine RPM -->
+        <!-- sum up all friction variables and output to jsbsim, affecting engine RPM and heat generation-->
         <summer name="systems/propulsion/friction-summer">
             <!--<bias> 0.5 </bias>-->
+            <input> systems/propulsion/manual-friction </input>     <!-- we might have fun trough telnet/scripts... -->
             <input> systems/propulsion/oil-age-friction </input>
             <input> systems/propulsion/oil-temp-friction </input>
             <input> systems/propulsion/oil-press-friction </input>
             <input> systems/propulsion/expansion-friction </input>
             <input> systems/propulsion/friction-kill-engine </input>
-            <input> systems/propulsion/manual-friction </input>     <!-- we might have fun trough telnet/scripts... -->
             <input> systems/propulsion/friction-crashed-engine </input>
+            <input> systems/propulsion/friction-powerloss </input>
             <!-- TODO: <input> prop-strike </input> -->
             <!-- TODO: <input> fuel-contaminated </input> -->
             <output>propulsion/engine/friction-hp</output>

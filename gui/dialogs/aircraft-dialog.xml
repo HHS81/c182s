@@ -270,7 +270,7 @@
                     <layout>hbox</layout>
                     <checkbox>
                         <halign>left</halign>
-                        <label>  Allow Spark plug icing</label>
+                        <label>  Allow Spark plug icing/fouling</label>
                         <property>/engines/engine/allow-sparkplug-icing</property>
                         <live>true</live>
                         <enable>

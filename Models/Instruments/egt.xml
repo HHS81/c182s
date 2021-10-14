@@ -176,8 +176,7 @@
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>egt-bug-norm</tooltip-id>
-                <label>EGT Bug: %.2f</label>
-                <property>engines/engine[0]/egt-bug-norm</property>
+                <label>EGT Bug</label>
             </binding>
         </hovered>
     </animation>

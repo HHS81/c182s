@@ -34,31 +34,53 @@
 	
 
 
-        <!-- Power based on fuel flow-->
+        <!-- Power based on fuel flow -->
         <fcs_function name="systems/engine/MP-alt-bsfc-lbs_hphr-curve">
           <function>
             <table>
                 <independentVar lookup="row">atmosphere/density-altitude</independentVar>
                 <independentVar lookup="column">propulsion/engine/fuel-flow-rate-gph</independentVar>
                 <tableData breakPoint="0">
-				8.0	9.0	13.5	14.5	15.5	16.5	17.5	19.0	20.5	21.5
-		0		0.360	0.360	0.36	0.415	0.425	0.425	0.437	0.455	0.475 0.53
-		2000		0.355	0.355	0.355	0.415	0.425	0.425	0.457	0.475	0.53 0.53
-		4000		0.355	0.355	0.420	0.415	0.425	0.425	0.437	0.53	0.53 0.53
-		6000		0.345	0.355	0.367	0.415	0.425	0.425	0.53	0.53	0.53 0.53
-		8000		0.345	0.360	0.360	0.415	0.425	0.425	0.53	0.53	0.53 0.53
-		10000	0.370	0.310	0.415	0.415	0.437	0.53	0.53	0.53	0.53 0.53
-		12000	0.395	0.335	0.415	0.435	0.53	0.53	0.53	0.53	0.53 0.53
-		14000	0.360	0.332	0.445	0.53	0.53	0.53 0.53 0.53	0.53 0.53
+                             8.0      9.0     13.5    14.5    15.5    16.5    17.5    19.0    20.5    21.5
+                    0        0.360    0.360    0.36    0.415   0.425   0.425   0.437   0.455   0.475   0.53
+                    2000     0.355    0.355    0.355   0.415   0.425   0.425   0.457   0.475   0.53    0.53
+                    4000     0.355    0.355    0.420   0.415   0.425   0.425   0.437   0.53    0.53    0.53
+                    6000     0.345    0.355    0.367   0.415   0.425   0.425   0.53    0.53    0.53    0.53
+                    8000     0.345    0.360    0.360   0.415   0.425   0.425   0.53    0.53    0.53    0.53
+                    10000    0.370    0.310    0.415   0.415   0.437   0.53    0.53    0.53    0.53    0.53
+                    12000    0.395    0.335    0.415   0.435   0.53    0.53    0.53    0.53    0.53    0.53
+                    14000    0.360    0.332    0.445   0.53    0.53    0.53    0.53    0.53    0.53    0.53
                 </tableData>
-            </table>  
+            </table>
           </function>
           <clipto>
              <min> 0.0 </min>
              <max> 1.00 </max>
            </clipto>
-          <output>propulsion/engine/bsfc-lbs_hphr</output>   
         </fcs_function>
+        
+        <!-- Adjust bsfc for power-loss factors (the higher the value, the less power per unit of fuel) -->
+        <fcs_function name="systems/engine/BSFC">
+          <function>
+              <product>
+                  <property>systems/engine/MP-alt-bsfc-lbs_hphr-curve</property>
+                  <table>
+                    <independentVar>systems/engine/power-reduction-pct</independentVar>
+                    <tableData>
+                        0.00  1.00
+                        0.50  1.60
+                        0.75  3.20
+                        1.0   5.00
+                    </tableData>
+                </table>
+              </product>
+          </function>
+          <clipto>
+             <min> 0.0001 </min> <!-- <=0 breaks the fdm! -->
+           </clipto>
+           <output>propulsion/engine/bsfc-lbs_hphr</output>   <!-- consumed by jsbsim -->
+        </fcs_function>
+        
 	
         <fcs_function name="systems/engine/RAM-Air-Factor">
           <function>
@@ -603,8 +625,9 @@
                 <table>
                     <independentVar>propulsion/engine/engine-rpm</independentVar>
                     <tableData>
-                        1300  0.0
-                        2400  1.0
+                        1300  0.00
+                        1700  0.75
+                        2400  1.00
                     </tableData>
                 </table>
             </product>
@@ -779,21 +802,6 @@
         </fcs_function>
         
         
-        <!-- Power-loss friction -->
-        <!-- TODO: This currently seems to be the only reliable way to reduce power without other side effects... -->
-        <fcs_function name="systems/propulsion/friction-powerloss">
-            <function>
-                <table>
-                    <independentVar>systems/engine/power-reduction-pct</independentVar>
-                    <tableData>
-                        0.0     0.0
-                        1.0   230.0
-                    </tableData>
-                </table>
-            </function>
-        </fcs_function>
-        
-        
         <!-- TODO: it is possible model existing stuff here, like fuel tanks contaminated and prop-strike; -->
         
         
@@ -810,7 +818,6 @@
             <input> systems/propulsion/expansion-friction </input>
             <input> systems/propulsion/friction-kill-engine </input>
             <input> systems/propulsion/friction-crashed-engine </input>
-            <input> systems/propulsion/friction-powerloss </input>
             <!-- TODO: <input> prop-strike </input> -->
             <!-- TODO: <input> fuel-contaminated </input> -->
             <output>propulsion/engine/friction-hp</output>

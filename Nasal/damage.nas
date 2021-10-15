@@ -123,10 +123,14 @@ t();
 ##########################################
 # REPAIR DAMAGE
 ##########################################
+var repair_damage_running = 0;
 var repair_damage = func() {
+    if (repair_damage_running) return;
+    
     print("Repairing damage...");
-    setprop("/fdm/jsbsim/damage/repairing", 1);
+    repair_damage_running = 1;
     var damagesetting_prev = getprop("fdm/jsbsim/settings/damage");
+    setprop("/fdm/jsbsim/damage/repairing", 1);
     setprop("fdm/jsbsim/settings/damage", 0);
 
     setprop("/engines/engine[0]/kill-engine", 0.0);
@@ -140,5 +144,6 @@ var repair_damage = func() {
     settimer(func(){
         setprop("fdm/jsbsim/settings/damage", damagesetting_prev);
         setprop("/fdm/jsbsim/damage/repairing", 0);
+        repair_damage_running = 0;
     }, 5.0);
 };

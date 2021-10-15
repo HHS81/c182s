@@ -35,7 +35,7 @@ Otherwise you need to pay attention to varios engine related things:
   If the oil is too cold, you should apply the preheater first, making priming more easy.
 - Engine cooling and overheating  
   CHT and oil temps can lead to excessive friction (loss of power) and also engine failure. Watch CHTs and respect engine limits.
-  Be sure to warm the engine before attempting takeoff.
+  Be sure to properly warm the engine before attempting takeoff. After takeoff, reduce power to CLIMB checklist when obstacles are cleared.
 - `Allow Fuel Contamination`  
   This simulates water in the fuel, so be sure to follow the preflight checklist correctly. Otherwise the engine may
   not start or cough withoput developing full power.

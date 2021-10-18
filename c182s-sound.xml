@@ -725,6 +725,10 @@
                 <property>/sim/model/c182s/sound/volume-boost-right-door</property>
             </volume>
             <volume>
+                <factor>3.0</factor>
+                <property>/sim/model/c182s/parachuters/aircraft-mod-enabled</property>
+            </volume>
+            <volume>
                 <offset>-0.03</offset>
             </volume>
             <pitch>

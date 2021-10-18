@@ -322,6 +322,55 @@
             </binding>
         </checkbox>
         
+        <group>
+            <layout>hbox</layout>
+            <checkbox>
+                <halign>left</halign>
+                <label>Parachuter mod</label>
+                <property>/sim/model/c182s/parachuters/aircraft-mod-enabled</property>
+                <live>true</live>
+                <enable>
+                    <and>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>0.1</value>
+                        </less-than>
+                    </and>
+                </enable>
+                <binding>
+                    <command>dialog-apply</command>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>sim/model/door-positions/DoorR/position-norm</property>
+                    <value>0</value>
+                </binding>
+            </checkbox>
+            <button>
+                <enable>
+                    <and>
+                        <property>/sim/model/c182s/parachuters/aircraft-mod-enabled</property>
+                        <not><property>/sim/model/c182s/parachuters/trigger-running</property></not>
+                        <or>
+                            <property>sim/model/crew/pilot[1]/enabled</property>
+                            <property>/sim/model/pax/pax[0]/enabled</property>
+                            <property>/sim/model/pax/pax[1]/enabled</property>
+                        </or>
+                    </and>
+                </enable>
+                <legend>Jump!</legend>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        c182s.parajump_all();
+                    </script>
+                </binding>
+                <binding>
+                    <command>dialog-close</command>
+                </binding>
+            </button>
+        </group>
+        
 <hrule/>
 
         <group>

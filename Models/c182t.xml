@@ -156,7 +156,12 @@
             alias(rplayer.getNode("sim/multiplay/generic/bool[3]"));
         rplayer.getNode("pax/right-passenger/present", 1).
             alias(rplayer.getNode("sim/multiplay/generic/bool[4]"));
-        io.read_properties ("Aircraft/c182s/Models/Human/humans.xml", rplayer.getNode ("sim/model"));
+        rplayer.getNode("sim/model/c182s/parachuters/aircraft-mod-enabled", 1).
+            alias(rplayer.getNode("sim/multiplay/generic/bool[20]"));
+        setlistener(rplayer.getNode("sim/multiplay/generic/bool[20]").getPath(), func (node) {
+            var pax_modelcfg = node.getBoolValue()? "humans-pax-parachuters.xml" : "humans.xml";
+            io.read_properties ("Aircraft/c182s/Models/Human/"~pax_modelcfg, rplayer.getNode ("sim/model"));
+        }, 1, 0);
 
 
         # Slow MP properties
@@ -1172,6 +1177,17 @@
 		</axis>
  </animation>
 
+ <animation>
+    <type>select</type>
+    <object-name>Door.R</object-name>
+    <object-name>DoorHandle.R</object-name>
+    <object-name>WindowFrame.R</object-name>
+    <object-name>Window.R</object-name>
+    <object-name>Window.R.001</object-name>
+    <condition>
+        <not><property>sim/model/c182s/parachuters/aircraft-mod-enabled</property></not>
+    </condition>
+</animation>
 <animation>
    <type>pick</type>
    <object-name>Door.R</object-name>

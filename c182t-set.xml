@@ -279,11 +279,12 @@
       <bool n="2" alias="/sim/model/crew/pilot[1]/enabled"/>
       <bool n="3" alias="/sim/model/pax/pax[0]/enabled"/>
       <bool n="4" alias="/sim/model/pax/pax[1]/enabled"/>
+      <bool n="20" alias="/sim/model/c182s/parachuters/aircraft-mod-enabled"/>
 
     </generic>
   </multiplay>
 
-  <model include="Models/Human/humans.xml">
+  <model>
    <path archive="y">Aircraft/c182s/Models/c182t.xml</path>
    <fallback-model-index>3</fallback-model-index>
    <hide-yoke type="bool">false</hide-yoke>
@@ -415,6 +416,11 @@
           <ra-g type="double">0.025</ra-g>
           <ra-b type="double">0.025</ra-b>
       </lighting>
+      
+      <parachuters>
+          <aircraft-mod-enabled type="bool">false</aircraft-mod-enabled>
+      </parachuters>
+        
     </c182s>
 
     <rendering>
@@ -1000,6 +1006,7 @@
             <path>/controls/SunVisor[1]/position-deg</path>
             <path>/sim/model/door-positions/DoorL/position-norm</path>
             <path>/sim/model/door-positions/DoorR/position-norm</path>
+            <path>/sim/model/c182s/parachuters/aircraft-mod-enabled</path>
             <path>/sim/model/door-positions/BaggageDoor/position-norm</path>
             <path>/sim/model/door-positions/WindowL/position-norm</path>
             <path>/sim/model/door-positions/WindowR/position-norm</path>

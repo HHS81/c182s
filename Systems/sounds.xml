@@ -33,6 +33,7 @@
         <doors>
             <left>/sim/model/door-positions/DoorL/position-norm</left>
             <right>/sim/model/door-positions/DoorR/position-norm</right>
+            <right-removed>/sim/model/c182s/parachuters/aircraft-mod-enabled</right-removed>
         </doors>
         <windows>
             <left>/sim/model/door-positions/WindowL/position-norm</left>
@@ -86,6 +87,12 @@
                                                 <entry><ind>0.65</ind><dep>0.7</dep></entry>
                                                 <entry><ind>1.0</ind><dep>1.0</dep></entry>
                                             </table>
+                                            
+                                            <!-- Right door removed -->
+                                            <product>
+                                                <property alias="/params/doors/right-removed"/>
+                                                <value>1.4</value>
+                                            </product>
 
                                             <!-- Right window fully open is 1.0. Fully closed is 0.0 -->
                                             <table>

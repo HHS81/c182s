@@ -195,6 +195,80 @@
   <y-offset>0.95</y-offset>
   <z-offset>0.95</z-offset>
  </animation>
+ <animation>
+    <object-name>male</object-name>
+    <object-name>female</object-name>
+    <type>translate</type>
+    <property>sim/model/pax/pax[0]/pose/position/limb[0]/x-m</property>
+    <center>
+        <x-m>0.01</x-m>
+        <y-m>0.0</y-m>
+        <z-m>0.1</z-m>
+    </center>
+    <axis>
+        <x>1.0</x>
+        <y>0.0</y>
+        <z>0.0</z>
+    </axis>
+</animation>
+<animation>
+    <object-name>male</object-name>
+    <object-name>female</object-name>
+    <type>translate</type>
+    <property>sim/model/pax/pax[0]/pose/position/limb[0]/z-m</property>
+    <center>
+        <x-m>0.01</x-m>
+        <y-m>0.0</y-m>
+        <z-m>0.1</z-m>
+    </center>
+    <axis>
+        <x>0.0</x>
+        <y>0.0</y>
+        <z>1.0</z>
+    </axis>
+</animation>
+<animation>
+    <object-name>male</object-name>
+    <object-name>female</object-name>
+    <type>rotate</type>
+    <property>sim/model/pax/pax[0]/pose/position/limb[0]/z-deg</property>
+    <center>
+        <x-m>0.0</x-m>
+        <y-m>0.0</y-m>
+        <z-m>0.0</z-m>
+    </center>
+    <axis>
+        <x>0.0</x>
+        <y>0.0</y>
+        <z>1.0</z>
+    </axis>
+</animation>
 
+ <animation>
+    <type>pick</type>
+    <object-name>male</object-name>
+    <object-name>female</object-name>
+    <visible>true</visible>
+    <condition>
+        <and>
+            <property>/sim/model/c182s/parachuters/aircraft-mod-enabled</property>
+        </and>
+    </condition>
+    <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.parajump(2);</script>
+        </binding>
+    </action>
+    <hovered>
+        <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>pax1-jump</tooltip-id>
+            <label>Jump!</label>
+        </binding>
+    </hovered>
+ </animation>
 
 </PropertyList>

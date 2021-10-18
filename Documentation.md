@@ -145,8 +145,7 @@ The lower LCD row displays four different timing information, the active mode is
   - You can setup an countdown timer by by pressing the _select_ and _control_ buttons together (**shift-click one of the two buttons**). Enter the digits like just described at the FT alarm mode. After confirming the last digit, the countdown is armed and ready to be started by another press of _control_. The alarm will go off once the countdown reaches zero. You can confirm the the alarm by either pressing _select_ or _control_.
 
 
-Dual Control feature
--------------------------
+### Dual Control feature
 You can join a remote pilot as copilot! The pilot just uses the normal C182S Aircraft while the copilot must start the special "CoPilot" aircraft variant (select from the launcher).
 
 Once connected to the multiplayer server, both select each other trough the multiplayer menu entry *Select dual-control MP-pilot*:
@@ -157,6 +156,15 @@ Once connected to the multiplayer server, both select each other trough the mult
 The C182S and C182T are equipped with an tow hook and can tow any JSBSim/YASIM glider compatible to FlightGears standard implementation.
 
 Once the glider pilot hooked into your Cessna, you can press `SHIFT-O` to release the hook. For connecting, get close infront of the glider. When accelerating, do it with caution, otherwise the rope my rip. Expect also other airplane behaviour when towing (longer takeoff roll, etc).
+
+
+### Skydiving plane
+In the Aircraft options menu you can reconfigure the plane to haul up skydivers. This will remove the seats and the door.
+When on target altitude, just click on the passengers to make them jump out. Alternatively, you can use the "Jump!" button
+from the aircraft options menu to make them all jump out one after another.  
+Only passengers inside the plane will jump out, so add them using the "fuel and payload" settings dialog.  
+Jump procedure is that they will crawl outside to the strut, then release; so plan for the drag.
+
 
 
 FAQ

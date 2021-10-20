@@ -10,6 +10,13 @@
         <name type="string">default</name>
 	 <index type="int">1</index>
 	 <texture>Liveries/Default.png</texture>
+        <immat>
+            <font_name>LiberationFonts/LiberationSansNarrow-BoldItalic.ttf</font_name>
+            <font_size>650</font_size>
+            <colour_r>0</colour_r>
+            <colour_g>0</colour_g>
+            <colour_b>0</colour_b>
+        </immat>
       </livery>
 <c182s>
 <material>
@@ -36,7 +43,7 @@
 <mw_fairing type="bool">true</mw_fairing>
 <chrome_spinner>false</chrome_spinner>
 		<!-- show registration models -->
-                <immat>false</immat>
+                <immat>true</immat>
                 <immat-on-panel>true</immat-on-panel>
 </c182s>
     </model>

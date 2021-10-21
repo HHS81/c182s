@@ -130,10 +130,16 @@
                 <max>1.0</max>
             </clipto>
         </summer>
+        
+        <pure_gain name="heat/door-right-removed"> <!-- right door removed -->
+            <input>/sim/model/c182s/parachuters/aircraft-mod-enabled</input>
+            <gain>2.0</gain>
+        </pure_gain>
 
         <summer name="heat/doors-windows-total">
             <input>heat/doors-windows-left</input>
             <input>heat/doors-windows-right</input>
+            <input>heat/door-right-removed</input>
             <input>heat/door-baggage</input>
         </summer>
 

@@ -1463,6 +1463,15 @@
                     <value>0.0150</value>
                 </product>
             </function>
+            <function name="aero/coefficient/CDdoorR-removed">
+                <description>Drag_due_to_door-r-removed</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>/sim/model/c182s/parachuters/aircraft-mod-enabled</property>
+                    <value>0.020</value>
+                </product>
+            </function>
             <function name="aero/coefficient/CDbaggagedoor">
                 <description>Drag_due_to_door_left</description>
                 <product>
@@ -2121,6 +2130,20 @@
                 <z>0.0</z>
             </direction>
         </force>
+        
+        <force name="parachuterOnStrut" frame="BODY" unit="LBS" >
+            <location unit="M">
+                <x> 0.794</x>
+                <y> 2.2</y>
+                <z> 0.0</z>
+            </location>
+            <direction>
+                <x>-1.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+            </direction>
+        </force>
+        
     </external_reactions>
     
     <system file="c182s-stallhorn"/>

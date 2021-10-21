@@ -173,7 +173,20 @@
 		</axis>
  </animation>
  
-  
+ <animation>
+    <type>select</type>
+    <object-name>Yoke.R</object-name>
+    <object-name>FrontSeat.R</object-name>
+    <object-name>RearSeats</object-name>
+    <object-name>IntDoor.R</object-name>
+    <object-name>FrameInt.R</object-name>
+    <object-name>doorhandleint_right</object-name>
+    <object-name>FrameLock1.R</object-name>
+    <object-name>FrameLock2.R</object-name>
+    <condition>
+        <not><property>sim/model/c182s/parachuters/aircraft-mod-enabled</property></not>
+    </condition>
+ </animation>
  <animation>
    <type>rotate</type>
 <object-name>IntDoor.R</object-name>

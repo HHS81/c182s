@@ -189,5 +189,31 @@
   <z-offset>1.05</z-offset>
  </animation>
 
+ <animation>
+    <type>pick</type>
+    <object-name>male</object-name>
+    <object-name>female</object-name>
+    <visible>true</visible>
+    <condition>
+        <and>
+            <property>/sim/model/c182s/parachuters/aircraft-mod-enabled</property>
+        </and>
+    </condition>
+    <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <binding>
+            <command>nasal</command>
+            <script>c182s.parajump(2);</script>
+        </binding>
+    </action>
+    <hovered>
+        <binding>
+            <command>set-tooltip</command>
+            <tooltip-id>pax2-jump</tooltip-id>
+            <label>Jump!</label>
+        </binding>
+    </hovered>
+ </animation>
 
 </PropertyList>

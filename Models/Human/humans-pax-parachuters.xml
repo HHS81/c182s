@@ -122,10 +122,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <rest-sec type="double">0</rest-sec>
           <transit-sec type="double">1</transit-sec>
           <limb> <!-- hip -->
-            <y-deg type="double">11.0959</y-deg>
-            <z-deg type="double">0</z-deg>
-            <x-m type="double">0</x-m>
-            <z-m type="double">0</z-m>
+            <y-deg type="double">5.0</y-deg>
+            <z-deg type="double">180</z-deg>
+            <x-m type="double">-0.58</x-m>
+            <z-m type="double">-0.15</z-m>
           </limb>
           <limb n="1"> <!-- chest -->
             <y-deg type="double">-7</y-deg>
@@ -138,10 +138,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <limb n="3"> <!-- arm1.R -->
             <x-deg type="double">-90</x-deg>
             <y-deg type="double">3</y-deg>
-            <z-deg type="double">-25</z-deg>
+            <z-deg type="double">-50</z-deg>
           </limb>
           <limb n="4"> <!-- arm2.R -->
-            <y-deg type="double">0</y-deg>
+            <y-deg type="double">-13</y-deg>
             <z-deg type="double">31.5287</z-deg>
           </limb>
           <limb n="5">  <!-- hand.R -->
@@ -152,7 +152,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <limb n="6"> <!-- arm1.L -->
             <x-deg type="double">-80</x-deg>
             <y-deg type="double">6.20689</y-deg>
-            <z-deg type="double">-17</z-deg>
+            <z-deg type="double">-50</z-deg>
           </limb>
           <limb n="7"> <!-- arm2.L -->
             <y-deg type="double">0</y-deg>
@@ -164,8 +164,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <hand-pose type="double">0</hand-pose> <!-- 1 == grip -->
           </limb>
           <limb n="9"> <!-- leg1.R -->
-            <x-deg type="double">0</x-deg>
-            <y-deg type="double">-95</y-deg>
+            <x-deg type="double">65</x-deg>
+            <y-deg type="double">-125</y-deg>
             <z-deg type="double">0</z-deg>
           </limb>
           <limb n="10"> <!-- leg2.R -->
@@ -175,12 +175,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <y-deg type="double">0</y-deg>
           </limb>
           <limb n="12"> <!-- leg1.L -->
-            <x-deg type="double">0</x-deg>
-            <y-deg type="double">-95</y-deg>
+            <x-deg type="double">75</x-deg>
+            <y-deg type="double">-125</y-deg>
             <z-deg type="double">0</z-deg>
           </limb>
           <limb n="13"> <!-- leg2.L -->
-            <y-deg type="double">50</y-deg>
+            <y-deg type="double">30</y-deg>
           </limb>
           <limb n="14"> <!-- foot.L -->
             <y-deg type="double">0</y-deg>
@@ -190,10 +190,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <character>0</character>
       <gender>1</gender>
       <hair>1</hair>
-      <outfit>0</outfit>
+      <outfit>1</outfit>
       <equipment>0</equipment>
       <eyewear>1</eyewear>
-      <headgear>1</headgear>
+      <headgear>0</headgear>
       <enabled type="bool">1</enabled>
     </pilot>
   </crew>
@@ -210,9 +210,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <transit-sec type="double">1</transit-sec>
           <limb> <!-- hip -->
             <y-deg type="double">11.0959</y-deg>
-            <z-deg type="double">0</z-deg>
-            <x-m type="double">0</x-m>
-            <z-m type="double">0</z-m>
+            <z-deg type="double">180</z-deg>
+            <x-m type="double">-0.2</x-m>
+            <z-m type="double">-0.10</z-m>
           </limb>
           <limb n="1"> <!-- chest -->
             <y-deg type="double">-7</y-deg>
@@ -251,9 +251,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <hand-pose type="double">0</hand-pose> <!-- 1 == grip -->
           </limb>
           <limb n="9"> <!-- leg1.R -->
-            <x-deg type="double">0</x-deg>
-            <y-deg type="double">-110</y-deg>
-            <z-deg type="double">0</z-deg>
+            <x-deg type="double">53</x-deg>
+            <y-deg type="double">-120</y-deg>
+            <z-deg type="double">20</z-deg>
           </limb>
           <limb n="10"> <!-- leg2.R -->
             <y-deg type="double">80</y-deg>
@@ -263,11 +263,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </limb>
           <limb n="12"> <!-- leg1.L -->
             <x-deg type="double">0</x-deg>
-            <y-deg type="double">-110</y-deg>
+            <y-deg type="double">-90</y-deg>
             <z-deg type="double">0</z-deg>
           </limb>
           <limb n="13"> <!-- leg2.L -->
-            <y-deg type="double">80</y-deg>
+            <y-deg type="double">-3</y-deg>
           </limb>
           <limb n="14"> <!-- foot.L -->
             <y-deg type="double">0</y-deg>
@@ -277,9 +277,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <character>0</character>
       <gender>1</gender>
       <hair>1</hair>
-      <outfit>2</outfit>
+      <outfit>1</outfit>
       <equipment>0</equipment>
-      <eyewear>0</eyewear>
+      <eyewear>1</eyewear>
       <headgear>0</headgear>
       <enabled type="bool">1</enabled>
     </pax>
@@ -295,9 +295,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <transit-sec type="double">1</transit-sec>
           <limb> <!-- hip -->
             <y-deg type="double">11.0959</y-deg>
-            <z-deg type="double">0</z-deg>
-            <x-m type="double">0</x-m>
-            <z-m type="double">0</z-m>
+            <z-deg type="double">180</z-deg>
+            <x-m type="double">-0.85</x-m>
+            <z-m type="double">-0.12</z-m>
           </limb>
           <limb n="1"> <!-- chest -->
             <y-deg type="double">-7</y-deg>
@@ -305,7 +305,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </limb>
           <limb n="2"> <!-- head -->
             <y-deg type="double">-8.7222</y-deg>
-            <z-deg type="double">25</z-deg>
+            <z-deg type="double">-45</z-deg>
           </limb>
           <limb n="3"> <!-- arm1.R -->
             <x-deg type="double">-90</x-deg>
@@ -314,7 +314,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </limb>
           <limb n="4"> <!-- arm2.R -->
             <y-deg type="double">0</y-deg>
-            <z-deg type="double">65</z-deg>
+            <z-deg type="double">58</z-deg>
           </limb>
           <limb n="5">  <!-- hand.R -->
             <x-deg type="double">0</x-deg>
@@ -323,8 +323,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </limb>
           <limb n="6"> <!-- arm1.L -->
             <x-deg type="double">-65</x-deg>
-            <y-deg type="double">-5</y-deg>
-            <z-deg type="double">-85</z-deg>
+            <y-deg type="double">30</y-deg>
+            <z-deg type="double">-25</z-deg>
           </limb>
           <limb n="7"> <!-- arm2.L -->
             <y-deg type="double">0</y-deg>
@@ -332,16 +332,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </limb>
           <limb n="8"> <!-- hand.L -->
             <x-deg type="double">0</x-deg>
-            <y-deg type="double">0</y-deg>
+            <y-deg type="double">-30</y-deg>
             <hand-pose type="double">1</hand-pose> <!-- 1 == grip -->
           </limb>
           <limb n="9"> <!-- leg1.R -->
-            <x-deg type="double">0</x-deg>
-            <y-deg type="double">-110</y-deg>
-            <z-deg type="double">0</z-deg>
+            <x-deg type="double">15</x-deg>
+            <y-deg type="double">-105</y-deg>
+            <z-deg type="double">15</z-deg>
           </limb>
           <limb n="10"> <!-- leg2.R -->
-            <y-deg type="double">80</y-deg>
+            <y-deg type="double">20</y-deg>
           </limb>
           <limb n="11"> <!-- foot.R -->
             <y-deg type="double">0</y-deg>
@@ -352,7 +352,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <z-deg type="double">0</z-deg>
           </limb>
           <limb n="13"> <!-- leg2.L -->
-            <y-deg type="double">80</y-deg>
+            <y-deg type="double">30</y-deg>
           </limb>
           <limb n="14"> <!-- foot.L -->
             <y-deg type="double">0</y-deg>
@@ -362,9 +362,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <character>0</character>
       <gender>0</gender>
       <hair>1</hair>
-      <outfit>0</outfit>
+      <outfit>1</outfit>
       <equipment>0</equipment>
-      <eyewear>0</eyewear>
+      <eyewear>1</eyewear>
       <headgear>0</headgear>
       <enabled type="bool">1</enabled>
     </pax>

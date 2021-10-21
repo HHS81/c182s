@@ -785,6 +785,70 @@ setlistener("/sim/model/hide-yoke-alpha-cmd", updateYokeTransparency, 1, 0);
 
 
 ##########
+# Parachuters
+##########
+var parajump_transferToStrutTimeSecs = 5;
+setprop("/fdm/jsbsim/external_reactions/parachuterOnStrut/magnitude", 0.0);
+var parajump = func(who) {
+    var parajump_transferToStrutTimeSecs = 5;
+    #print("DBG: parajump("~who~") called");
+    
+    var jumper_name     = getprop("/payload/weight["~who~"]/name");
+    var jumper_weight_p = "/payload/weight["~who~"]/weight-lb";
+    var jumper_weight   = getprop("/payload/weight["~who~"]/weight-lb");
+    var strut_weight_p  = "/fdm/jsbsim/external_reactions/parachuterOnStrut/magnitude";
+    if (getprop(strut_weight_p) > 0) {
+        print("Already a parajumper on the strut - please wait!");
+        
+    } else if (jumper_weight > 0) {
+        # Transfer the jumpter to the strut, then release him
+        
+        setprop("/sim/messages/pilot", jumper_name ~ ", Go!");
+        print("Parajumper " ~ jumper_name ~ " (" ~ math.round(jumper_weight) ~ " lbs) transfers to strut!");
+        interpolate(strut_weight_p, jumper_weight, parajump_transferToStrutTimeSecs);
+        interpolate(jumper_weight_p, 0, parajump_transferToStrutTimeSecs);
+        
+        # Release jumper (and trigger spawn of jumper submodel)
+        var chute_timer = maketimer(parajump_transferToStrutTimeSecs+1, func(){
+            print("Parajumper " ~ jumper_name ~ " jumped!");
+            setprop("/sim/model/c182s/parachuters/trigger-jump", 1);
+            interpolate("/sim/model/c182s/parachuters/trigger-jump", 0, 0.25);
+            #setprop(jumper_weight_p, 0);
+            setprop(strut_weight_p, 0);
+        });
+        chute_timer.singleShot = 1; # timer will only be run once
+        chute_timer.start();
+        
+    } else {
+        print("Parajumper " ~ jumper_name ~ " not in the plane.");
+    }
+}
+
+var pax_order = [3,2,1];
+var pax_i = 0;
+var paxjumptimer = maketimer(parajump_transferToStrutTimeSecs+2, func() {
+    if (pax_i >= size(pax_order) ) {
+        pax_i = 0;
+        setprop("/sim/model/c182s/parachuters/trigger-running", 0);
+        #print("Parajumper jump_all: all out!");
+        paxjumptimer.stop();
+    } else {
+        #print("Parajumper jump_all: " ~ pax_i ~ " (slot="~pax_order[pax_i]~") triggered to jump");
+        parajump(pax_order[pax_i]);
+        pax_i = pax_i + 1;
+    }
+});
+var parajump_all = func() {
+    # drops out all the parajumpers; called from GUI item
+    if (paxjumptimer.isRunning) return;
+    setprop("/sim/model/c182s/parachuters/trigger-running", 1);
+    paxjumptimer.start();
+    setprop("/sim/messages/pilot", "Prepare to jump!");
+}
+
+
+
+##########
 # FGComands for bindings
 ##########
 var c182_cowlflap_step = func(v) {
@@ -846,6 +910,12 @@ setlistener("/sim/signals/fdm-initialized", func {
         setprop("/sim/model/c182s/securing/pitot-cover-visible", 0);
         settimer(func(){ setprop("/sim/model/c182s/securing/pitot-cover-visible", 1);}, 0.25);
     }
+    
+    # Load correct passenger model stances for the planes configuration
+    setlistener("/sim/model/c182s/parachuters/aircraft-mod-enabled", func (node) {
+        var pax_modelcfg = node.getBoolValue()? "humans-pax-parachuters.xml" : "humans.xml";
+        io.read_properties ("Aircraft/c182s/Models/Human/"~pax_modelcfg, props.globals.getNode("/sim/model"));
+    }, 1, 0);
 
 });
 

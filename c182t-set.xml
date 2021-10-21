@@ -384,6 +384,7 @@
                     <tiedownT-visible type="bool">false</tiedownT-visible>
                     <windGustLockPlate-visible type="bool">false</windGustLockPlate-visible>
                     <pitot-cover-visible type="bool">false</pitot-cover-visible>
+                    <plane-cover-visible type="bool">false</plane-cover-visible>
 </securing>
 
 <procedural-lights type="bool">true</procedural-lights>
@@ -430,6 +431,8 @@
           <aircraft-mod-enabled type="bool">false</aircraft-mod-enabled>
       </parachuters>
         
+      <cleaning type="bool">false</cleaning>
+
     </c182s>
 
     <rendering>
@@ -1014,6 +1017,7 @@
             <path>/sim/chocks001/enable</path>
             <path>/sim/chocks002/enable</path>
             <path>/sim/chocks003/enable</path>
+            <path>/sim/model/c182s/securing/plane-cover-visible</path>
             <!--<path>/sim/coneR/enable</path> todo did not work -->
             <!--<path>/sim/coneL/enable</path> todo did not work -->
             <path>/sim/model/c182s/nw_fairing</path>

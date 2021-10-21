@@ -24,6 +24,9 @@ messages will give a hint on the condition and also the trend (give it some time
 Opening the windows may also be an option to cool down quickly.  
 If the text messages annoy you, you can disable them by unchecking the `Show hint messages` checkbox.
 
+When starting cold&dark in freezing temperatures, the plane may freeze over. In this case you need to clean it (see aircraft options dialog).
+To prevent this, you should apply the plane cover when securing your craft.
+
 
 ### Complex engine procedures
 Unchecking `Complex engine procedures and failures` allows a fairly basic engine mode where no priming is needed (just activate
@@ -131,6 +134,7 @@ Additionally to the default ones, the c182 knows the following:
 - `/engines/engine/manual-roughness-factor` (`0.0` to `1.0`) to induce engine roughness
 - `/engines/engine/manual-power-reduction-pct` (`0.0` to `1.0`) to make the engine less efficient
 - `/engines/engine/kill-engine` immediately kills the engine if set to `1`.
+- `/fdm/jsbsim/heat/init-moisture` (`0.0` to `1.0`) quick-induce fog/frost. The setting will be hold indefinitely, so reset to `0`.
 
 ### KAP 140 Autopilot
 The C182S features a highly detailed and realistic Bendix/Kind KAP 140 Autopilot. You can operate it like described in the manufacturers POH.  

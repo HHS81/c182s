@@ -54,6 +54,18 @@ var secureAircraftOnGround = func(state) {
     setprop("/sim/model/c182s/securing/tiedownR-visible", state);
     setprop("/sim/model/c182s/securing/tiedownT-visible", state);
     setprop("/sim/model/c182s/securing/windGustLockPlate-visible", state);
+    setprop("/sim/model/c182s/securing/plane-cover-visible", state);
+}
+
+var cleanAircraft = func() {
+    setprop("/sim/model/c182s/cleaning", 1);
+    settimer(func(){ setprop("/sim/model/c182s/cleaning", 0); }, 1.0);
+    setprop("/fdm/jsbsim/ice/wing", 0);
+    setprop("/fdm/jsbsim/ice/stabilizer", 0);
+    setprop("/fdm/jsbsim/ice/propeller", 0);
+    setprop("/fdm/jsbsim/ice/fuselage", 0);
+    setprop("/fdm/jsbsim/ice/windshield", 0);
+    setprop("/systems/static[0]/icing", 0);
 }
 
 var calibrateInstruments = func() {
@@ -242,6 +254,7 @@ var checklist_secureAircraft = func() {
 var checklist_preflight = func() {
     repair_damage();
     reset_fuel_contamination();
+    cleanAircraft();
     
     # Checking for minimal oil level
     var oil_level = getprop("/engines/engine/oil-level");

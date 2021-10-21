@@ -165,90 +165,119 @@
                     <padding>6</padding>
                 </group>
 
-		<group>
-                    <layout>vbox</layout>
 
+                <group>
+                    <layout>hbox</layout>
                     
+                    <group>
+                        <layout>vbox</layout>
 
-                    <checkbox>
-                        <halign>left</halign>
-                        <label>Put pitot tube cover </label>
-                        <property>/sim/model/c182s/securing/pitot-cover-visible</property>
-                        <live>true</live>
-                        <enable>
+                        <checkbox>
+                            <halign>left</halign>
+                            <label>Put pitot tube cover </label>
+                            <property>/sim/model/c182s/securing/pitot-cover-visible</property>
+                            <live>true</live>
+                            <enable>
                                 <less-than>
                                     <property>velocities/groundspeed-kt</property>
                                     <value>1.0</value>
                                 </less-than>
-                        </enable>
-               <binding>
-                    <command>property-toggle</command>
-                        <property>/sim/model/c182s/securing/pitot-cover-visible</property>
-                </binding>
-	<binding>
-                    <command>dialog-update</command>
-                </binding>
-                    </checkbox>
-		                        
-                    <checkbox>
-                        <halign>left</halign>
-                        <label>Enable left tie-down </label>
-                        <property>/sim/model/c182s/securing/tiedownL-visible</property>
-                        <live>true</live>
-                        <enable>
-                                <less-than>
-                                    <property>velocities/groundspeed-kt</property>
-                                    <value>0.1</value>
-                                </less-than>
-			</enable>
-			<binding>
-			<command>property-toggle</command>
-                        <property>/sim/model/c182s/securing/tiedownL-visible</property>
-			</binding>
-			<binding>
-			<command>dialog-update</command>
-			</binding>
-                    </checkbox>
-                    
-                    <checkbox>
-                        <halign>left</halign>
-                        <label>Enable right tie-down </label>
-                        <property>/sim/model/c182s/securing/tiedownR-visible</property>
-                        <live>true</live>
-                       <enable>
-                                <less-than>
-                                    <property>velocities/groundspeed-kt</property>
-                                    <value>0.1</value>
-                                </less-than>
-			</enable>
-			<binding>
-			<command>property-toggle</command>
-                        <property>/sim/model/c182s/securing/tiedownR-visible</property>
-			</binding>
-			<binding>
-			<command>dialog-update</command>
-			</binding>
-                    </checkbox>
+                            </enable>
+                            <binding>
+                                <command>property-toggle</command>
+                                    <property>/sim/model/c182s/securing/pitot-cover-visible</property>
+                            </binding>
+                            <binding>
+                                <command>dialog-update</command>
+                            </binding>
+                        </checkbox>
 
-                    <checkbox>
-                        <halign>left</halign>
-                        <label>Enable tail tie-down </label>
-                        <property>/sim/model/c182s/securing/tiedownT-visible</property>
-                        <live>true</live>
-                        <enable>
+                        <checkbox>
+                            <halign>left</halign>
+                            <label>Enable left tie-down </label>
+                            <property>/sim/model/c182s/securing/tiedownL-visible</property>
+                            <live>true</live>
+                            <enable>
                                 <less-than>
                                     <property>velocities/groundspeed-kt</property>
                                     <value>0.1</value>
                                 </less-than>
-			</enable>
-			<binding>
-			<command>property-toggle</command>
-                        <property>/sim/model/c182s/securing/tiedownT-visible</property>
-			</binding>
-			<binding>
-			<command>dialog-update</command>
-			</binding>
-                    </checkbox>
+                            </enable>
+                            <binding>
+                            <command>property-toggle</command>
+                                <property>/sim/model/c182s/securing/tiedownL-visible</property>
+                            </binding>
+                            <binding>
+                            <command>dialog-update</command>
+                            </binding>
+                        </checkbox>
+                    
+                        <checkbox>
+                            <halign>left</halign>
+                            <label>Enable right tie-down </label>
+                            <property>/sim/model/c182s/securing/tiedownR-visible</property>
+                            <live>true</live>
+                            <enable>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>0.1</value>
+                                </less-than>
+                            </enable>
+                            <binding>
+                                <command>property-toggle</command>
+                                <property>/sim/model/c182s/securing/tiedownR-visible</property>
+                            </binding>
+                            <binding>
+                                <command>dialog-update</command>
+                            </binding>
+                        </checkbox>
+
+                        <checkbox>
+                            <halign>left</halign>
+                            <label>Enable tail tie-down </label>
+                            <property>/sim/model/c182s/securing/tiedownT-visible</property>
+                            <live>true</live>
+                            <enable>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>0.1</value>
+                                </less-than>
+                            </enable>
+                            <binding>
+                                <command>property-toggle</command>
+                                <property>/sim/model/c182s/securing/tiedownT-visible</property>
+                            </binding>
+                            <binding>
+                                <command>dialog-update</command>
+                            </binding>
+                        </checkbox>
+                        
+                        <checkbox>
+                            <halign>left</halign>
+                            <label>Cover airplane</label>
+                            <property>/sim/model/c182s/securing/plane-cover-visible</property>
+                            <live>true</live>
+                            <enable>
+                                <less-than>
+                                    <property>velocities/groundspeed-kt</property>
+                                    <value>1.0</value>
+                                </less-than>
+                            </enable>
+                            <binding>
+                                <command>property-toggle</command>
+                                    <property>/sim/model/c182s/securing/plane-cover-visible</property>
+                            </binding>
+                            <binding>
+                                <command>dialog-update</command>
+                            </binding>
+                        </checkbox>
+                        
+                        <empty><stretch>true</stretch></empty>
+                    </group>
+                
+                
+                    <group>
+                        <layout>vbox</layout>
 
             <checkbox>
                 <halign>left</halign>
@@ -279,7 +308,12 @@
 
 			</group>
 
-                <!-- Force group to the left -->
+                        <empty><stretch>true</stretch></empty>
+                    </group>
+                    
+                </group>
+                
+                <!-- Force groups to the left -->
                 <empty><stretch>true</stretch></empty>
 
 

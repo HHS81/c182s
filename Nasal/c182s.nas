@@ -990,7 +990,42 @@ setlistener("/sim/signals/fdm-initialized", func {
         print("C182 FGCamera integration loaded");
     }
 
+
+    # If we are starting outside and in cold weather, add some ice/snow to the plane
+    # We use the metar value for this, as it seems always to be set. Either coming from
+    # the metar fetcher, or "0" if something failed, or properly initialized from manual select
+    settimer(func() {
+        var coverPresent    = getprop("/sim/model/c182s/securing/plane-cover-visible");
+        var fogFrostEnabled = getprop("/sim/model/c182s/enable-fog-frost") or 0;
+        var tempC_OAT       = getprop("/environment/metar/temperature-degc") or 0;
+        var engStartingOrRunning = getprop("/fdm/jsbsim/propulsion/engine/set-running")
+                                or getprop("/engines/engine/auto-start")
+                                or getprop("/engines/engine/running")
+                                or 0;
+        #debug.dump(["Startup weather DBG",
+        #    ["fogFfogFrostEnabled",fogFfogFrostEnabled],
+        #    ["coverPresent",coverPresent],
+        #    ["tempC_OAT",tempC_OAT],
+        #    ["engStartingOrRunning",engStartingOrRunning]
+        #]);
+        
+        if (tempC_OAT < -1 and fogFrostEnabled and !coverPresent and !engStartingOrRunning) {
+            print("Startup frost added (it's really cold and we were parked without cover)");
+            setprop("/fdm/jsbsim/ice/wing", 0.2);
+            setprop("/fdm/jsbsim/ice/stabilizer", 0.2);
+            setprop("/fdm/jsbsim/ice/propeller", 0.2);
+            setprop("/fdm/jsbsim/ice/fuselage", 0.2);
+            setprop("/fdm/jsbsim/ice/windshield", 0.2);
+            setprop("/systems/static[0]/icing", 0.2);
+            
+            setprop("/fdm/jsbsim/heat/init-moisture", 0.45);
+            settimer(func() { setprop("/fdm/jsbsim/heat/init-moisture", 0); }, 5.0, 0);
+        }
+    }, 1.0, 0);
+
+
 });
+
 
 # generate legacy author property (used by the about dialog)
 var authors = [];

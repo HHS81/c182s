@@ -25,6 +25,8 @@
     <property>/environment/aircraft-effects/defrost-set</property>    <!-- defrost lever in cockpit -->
     <property>/controls/climate-control/overhead-vent-front-left</property>
     <property>/controls/climate-control/overhead-vent-front-right</property>
+    
+    <property value="0.0">/fdm/jsbsim/heat/init-moisture</property> <!-- treshold (0 to 1) to initialize frost/fog quickly -->
 
     <channel name="cabin-doors-windows">
 
@@ -283,6 +285,9 @@
         <!--   in the first few moments of the simulation the cabin temperature should adjust very quick to the environment value -->
         <switch name="heat/cabin-temperature-change-factor">
             <default value="0.030"/>
+            <test logic="AND" value="100">
+                heat/init-moisture GT 0.0
+            </test>
             <test logic="AND" value="1">
                 /sim/time/elapsed-sec LE 20
             </test>
@@ -587,23 +592,44 @@
             <test logic="AND" value="1">
                 heat/surface-dewpoint-diff GT 0
                 heat/moisture-norm GE 1
+                heat/moisture-norm GE heat/init-moisture
             </test>
 
             <test logic="AND" value="1">
                 heat/surface-dewpoint-diff LT 0
                 heat/moisture-norm LE 0
+                heat/moisture-norm GE heat/init-moisture
             </test>
         </switch>
 
+        <!-- Overrides to quickly initialize fog/frost at startup
+             heat/init-moisture is the max treshold value (0.0 -> 1.0) -->
+        <switch name="heat/moisture-norm-c1">
+            <default value="heat/windshield-defrost-boost"/>
+            <test logic="OR" value="1">
+                heat/moisture-norm LT heat/init-moisture
+                /sim/model/c182s/cleaning EQ 1
+            </test>
+        </switch>
+        <switch name="heat/moisture-norm-input">
+            <default value="heat/surface-dewpoint-diff"/>
+            <test logic="AND" value="1">
+                heat/moisture-norm LT heat/init-moisture
+            </test>
+            <test logic="AND" value="-1">
+                /sim/model/c182s/cleaning EQ 1
+            </test>
+        </switch>
+        
         <integrator name="heat/moisture-norm">
-            <input>heat/surface-dewpoint-diff</input>
+            <input>heat/moisture-norm-input</input>
             <trigger>heat/moisture-windup-trigger</trigger>
 
             <!-- This is the constant that actually controls how fast
                  (or slow) the moisture changes.
             -->
             <!--<c1>0.010</c1>-->
-            <c1>heat/windshield-defrost-boost</c1>
+            <c1>heat/moisture-norm-c1</c1>
 
             <clipto>
                 <min>0.0</min>

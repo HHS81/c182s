@@ -394,34 +394,10 @@
                     </and>
                 </enable>
                 <binding>
-  <command>property-assign</command>
-  <property>/fdm/jsbsim/ice/wing</property>
-  <value>0</value>
-                </binding>
-                <binding>
-  <command>property-assign</command>
-  <property>/fdm/jsbsim/ice/stabilizer</property>
-  <value>0</value>
-                </binding>
-                <binding>
-  <command>property-assign</command>
-  <property>/fdm/jsbsim/ice/propeller</property>
-  <value>0</value>
-                </binding>
-                    <binding>
-  <command>property-assign</command>
-  <property>/fdm/jsbsim/ice/fuselage</property>
-  <value>0</value>
-                </binding>
-                <binding>
-  <command>property-assign</command>
-  <property>/fdm/jsbsim/ice/windshield</property>
-  <value>0</value>
-                </binding>
-                <binding>
-                    <command>property-assign</command>
-                    <property>/systems/static[0]/icing</property>
-                    <value>0</value>
+                    <command>nasal</command>
+                    <script>
+                        c182s.cleanAircraft();
+                    </script>
                 </binding>
             </button>
         </group>

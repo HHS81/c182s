@@ -415,13 +415,17 @@ var autostart = func (msg=1, delay=1, setStates=0) {
         setprop("/controls/switches/starter", 0);
         setprop("/controls/switches/magnetos", 0);
 
-        #Securing Aircraft
-        checklist_secureAircraft();
+        var securingDelay = 3;
+        settimer(func {
+            #Securing Aircraft
+            checklist_secureAircraft();
+            
+            #securing Aircraft on ground
+            secureAircraftOnGround(1);
+            
+            print("Autoshutdown engine complete.");
+        }, securingDelay);
         
-        #securing Aircraft on ground
-        secureAircraftOnGround(1);
-        
-        print("Autoshutdown engine complete.");
         return;
     }
     

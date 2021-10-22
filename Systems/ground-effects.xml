@@ -190,6 +190,72 @@ Under the GPL. Used by shadows under ALS -->
         </output>
     </logic>
     
+    <filter>
+        <name>Tail Tiedowns ripoff: left</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <or>
+                    <greater-than>
+                        <property>/position/altitude-agl-ft</property>
+                        <value>10</value>
+                    </greater-than>
+                    <greater-than>
+                        <property>/fdm/jsbsim/fcs/tiedown-left-magnitude</property>
+                        <value>1500</value>
+                    </greater-than>
+                </or>
+            </condition>
+        </enable>
+        <input> <value>0</value> </input>
+        <output> <property>/sim/model/c182s/securing/tiedownL-visible</property> </output>
+    </filter>
+    <filter>
+        <name>Tail Tiedowns ripoff: rigth</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <or>
+                    <greater-than>
+                        <property>/position/altitude-agl-ft</property>
+                        <value>10</value>
+                    </greater-than>
+                    <greater-than>
+                        <property>/fdm/jsbsim/fcs/tiedown-rigth-magnitude</property>
+                        <value>1500</value>
+                    </greater-than>
+                </or>
+            </condition>
+        </enable>
+        <input> <value>0</value> </input>
+        <output>
+            <property>/sim/model/c182s/securing/tiedownR-visible</property>
+        </output>
+    </filter>
+    <filter>
+        <name>Tail Tiedowns ripoff: tail</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <or>
+                    <greater-than>
+                        <property>/position/altitude-agl-ft</property>
+                        <value>10</value>
+                    </greater-than>
+                    <greater-than>
+                        <property>/fdm/jsbsim/fcs/tiedown-tail-magnitude</property>
+                        <value>1500</value>
+                    </greater-than>
+                </or>
+            </condition>
+        </enable>
+        <input> <value>0</value> </input>
+        <output>
+            <property>/sim/model/c182s/securing/tiedownT-visible</property>
+        </output>
+    </filter>
+    
+    
     <!-- ================================================================== -->
     <!-- Checking if doors are opened or closed in order to skip or not     -->
     <!-- the handle animation                                               -->

@@ -377,7 +377,6 @@ WindowR.setpos(WindowR_saved);
 # Adjust properties when in motion
 # - external electrical disconnect when groundspeed higher than 0.1ktn (replace later with distance less than 0.01...)
 # - remove external heat
-# - tear tiedowns when significantly off ground
 ad = func {
     GROUNDSPEED = getprop("/velocities/groundspeed-kt") or 0;
     AGL         = getprop("/position/altitude-agl-ft")  or 0;
@@ -385,12 +384,6 @@ ad = func {
     if (GROUNDSPEED > 0.1) {
         setprop("/controls/electric/external-power", "false");
         #setprop("/engines/engine/external-heat/enabled", "false"); #not needed, as you can't start the engine with preheater enabled, nor enable the preheater anyway when engine running, or aircraft moving
-    }
-
-    if (AGL > 10) {
-        setprop("/sim/model/c182s/securing/tiedownT-visible", 0);
-        setprop("/sim/model/c182s/securing/tiedownL-visible", 0);
-        setprop("/sim/model/c182s/securing/tiedownR-visible", 0);
     }
 
     settimer(ad, 0.1);

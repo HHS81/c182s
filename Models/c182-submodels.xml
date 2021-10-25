@@ -2,7 +2,7 @@
     <submodel>
         <name>parachutist</name>
         <model>Models/Geometry/parachuter.xml</model>
-        <trigger>/sim/model/c182s/parachuters/trigger-jump</trigger>
+        <trigger>sim/model/c182s/parachuters/trigger-jump</trigger>
         <speed> 0 </speed>
         <repeat> false </repeat>
         <delay> 0 </delay>
@@ -16,7 +16,7 @@
         <eda> 100 </eda>
         <weight> 200 </weight>
         <wind> true </wind>
-        <buoyancy> -100 </buoyancy>
+        <buoyancy> -30 </buoyancy>   <!-- also adjust mp-parachutes.nas when changing -->
         <life> 600 </life>
     </submodel>
 </PropertyList>

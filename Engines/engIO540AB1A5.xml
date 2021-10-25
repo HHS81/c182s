@@ -21,7 +21,7 @@
     <stroke unit="IN">4.375</stroke>
     <static-friction>1.5</static-friction>
     <cylinders> 6 </cylinders>
-    <cylinder-head-mass unit="KG"> 4 </cylinder-head-mass>
+    <cylinder-head-mass unit="LBS"> 21.75 </cylinder-head-mass>  <!-- Part No. LW-13870 / MFR Model# 16A30080-03; 21.75lbs -->
     <compression-ratio>8.7</compression-ratio>
     <volumetric-efficiency>0.88</volumetric-efficiency>
     <bsfc unit="LBS/HP*HR">0.445</bsfc>

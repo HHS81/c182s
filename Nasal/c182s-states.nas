@@ -53,6 +53,7 @@ var secureAircraftOnGround = func(state) {
     setprop("/sim/model/c182s/securing/tiedownL-visible", state);
     setprop("/sim/model/c182s/securing/tiedownR-visible", state);
     setprop("/sim/model/c182s/securing/tiedownT-visible", state);
+    setprop("/sim/model/c182s/securing/windGustLockPlate-visible", state);
 }
 
 ######

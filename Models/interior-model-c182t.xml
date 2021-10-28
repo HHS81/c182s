@@ -780,8 +780,13 @@
 <animation>
   <type>rotate</type>
   <object-name>Yoke.L</object-name>
-  <property>controls/flight/aileron</property>
-  <factor>90</factor>
+  <expression>
+      <product>
+          <property>controls/flight/yoke-unlocked</property>
+          <property>controls/flight/aileron</property>
+          <value>90</value>
+      </product>
+  </expression>
 		<center>
 			<x-m>-0.4825</x-m>
 			<y-m>-0.252</y-m>
@@ -799,6 +804,13 @@
   <object-name>Yoke.L</object-name>
   <property>controls/flight/elevator</property>
   <factor>-0.11</factor>
+  <expression>
+      <product>
+          <property>controls/flight/yoke-unlocked</property>
+          <property>controls/flight/elevator</property>
+          <value>-0.11</value>
+      </product>
+  </expression>
   <axis>
    <x>1.0</x>
    <y>0.0</y>
@@ -810,8 +822,13 @@
 <animation>
   <type>rotate</type>
   <object-name>Yoke.R</object-name>
-  <property>controls/flight/aileron</property>
-  <factor>90</factor>
+  <expression>
+      <product>
+          <property>controls/flight/yoke-unlocked</property>
+          <property>controls/flight/aileron</property>
+          <value>90</value>
+      </product>
+  </expression>
 		<center>
 			<x-m>0.5175</x-m>
 			<y-m>0.250</y-m>
@@ -827,8 +844,13 @@
 <animation>
   <type>translate</type>
   <object-name>Yoke.R</object-name>
-  <property>controls/flight/elevator</property>
-  <factor>-0.11</factor>
+  <expression>
+      <product>
+          <property>controls/flight/yoke-unlocked</property>
+          <property>controls/flight/elevator</property>
+          <value>-0.11</value>
+      </product>
+  </expression>
   <axis>
    <x>1.0</x>
    <y>0.0</y>

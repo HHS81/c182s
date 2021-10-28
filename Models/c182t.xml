@@ -23,6 +23,11 @@
     </offsets>
   </model>
 
+  <model>
+    <name>ControlLock</name>
+    <path>control-lock/control-lock.xml</path>
+  </model>
+
   <nasal>
    <load><![CDATA[
         # Note: This nasal code is loaded just for remote multiplayer models

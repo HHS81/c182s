@@ -824,6 +824,29 @@
             </condition>
         </engine-repair>
 
+        <switch>
+            <name>click-control_lock</name>
+            <mode>once</mode>
+            <path>Sounds/control_lock.wav</path>
+            <condition>
+                <and>
+                    <property>/sim/model/c182s/sound/click-control_lock</property>
+                    <!--<not>
+                        <property>sim/model/hide-yoke</property>
+                    </not>-->
+                </and>
+            </condition>
+            <volume>
+                <factor>0.32</factor>
+            </volume>
+            <position>
+                <x>-0.3660</x>
+                <y>0.3700</y>
+                <z>-0.3500</z>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+        </switch>
 
         <switch>
             <name>click-light-switch</name>

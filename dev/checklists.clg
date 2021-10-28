@@ -556,8 +556,11 @@ item("Landing Roll") {
 }
 
 item("Control Lock") {
-    state("INSTALL");
-    state("REMOVE");
+    p = "/sim/model/c182s/securing/windGustLockPlate-visible";
+    state("INSTALL", p == 0) p = 0;
+    state("REMOVE",  p == 1) p = 1;
+#    marker(0.5000, -0.5248, -0.1612, 7.0000);
+    marker(0.3669, -0.3124, 0.1884, 7.0000);
 }
 
 item("Land") {

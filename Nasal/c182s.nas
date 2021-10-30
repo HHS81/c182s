@@ -786,6 +786,13 @@ var parajump = func(who) {
     var parajump_transferToStrutTimeSecs = 5;
     #print("DBG: parajump("~who~") called");
     
+    var agl_ft = getprop("/position/altitude-agl-m");
+    if (agl_ft < 150) {
+        print("Altitude too low for jump");
+        setprop("/sim/messages/copilot", "Altitude too low for jump!");
+        return;
+    }
+    
     var jumper_name     = getprop("/payload/weight["~who~"]/name");
     var jumper_weight_p = "/payload/weight["~who~"]/weight-lb";
     var jumper_weight   = getprop("/payload/weight["~who~"]/weight-lb");

@@ -356,6 +356,10 @@
                             <property>/sim/model/pax/pax[0]/enabled</property>
                             <property>/sim/model/pax/pax[1]/enabled</property>
                         </or>
+                        <greater-than>
+                            <property>/position/altitude-agl-m</property>
+                            <value>150</value>
+                        </greater-than>
                     </and>
                 </enable>
                 <legend>Jump!</legend>

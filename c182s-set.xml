@@ -1144,11 +1144,6 @@
         </aircraft-data>
 
      <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>
-     
-     <submodels>
-        <serviceable type="bool">true</serviceable>
-        <path>Models/c182-submodels.xml</path>
-     </submodels>
 
  </sim>
 
@@ -1449,6 +1444,7 @@
     <file>Aircraft/c182s/Nasal/flashlight.nas</file>
     <file>Aircraft/c182s/Nasal/annunciator_panel.nas</file>
     <file>Aircraft/c182s/Nasal/damage.nas</file>
+    <file>Aircraft/c182s/Nasal/mp-parachuters.nas</file>
 </c182s>
 
         <terrain>

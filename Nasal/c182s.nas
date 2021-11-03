@@ -846,6 +846,10 @@ var parajump_all = func() {
     setprop("/sim/messages/pilot", "Prepare to jump!");
 }
 
+# Detect local jump and spawn model
+setlistener("/sim/model/c182s/parachuters/trigger-jump", func(node) {
+    if (node.getValue() == 1) mp_parachuterjump_spawn(props.globals.getNode("/"));
+}, 0, 0);
 
 
 ##########

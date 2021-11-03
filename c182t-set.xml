@@ -1340,6 +1340,7 @@
     <!-- implemented in FG1000: <file>Aircraft/c182s/Nasal/annunciator_panel.nas</file>-->
     <file>Aircraft/c182s/Nasal/damage.nas</file>
     <file>Aircraft/c182s/Nasal/c182t.nas</file>
+    <file>Aircraft/c182s/Nasal/mp-parachuters.nas</file>
 </c182s>
 
     <terrain>

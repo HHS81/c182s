@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+ <path>Models/Geometry/parachuter.ac</path>
+ 
+ <params>
+    <chute-state_p>/ai/models/parachuters/chute-state</chute-state_p>
+ </params>
+
+<!-- INFLATE -->
+ <animation>
+  <type>scale</type>
+  <object-name>parachute</object-name>
+  <property alias="/params/chute-state_p"/>
+  <offset>0</offset>
+  <x-max>20</x-max>
+  <y-max>20</y-max>
+  <z-max>1</z-max>
+  <x-factor>15</x-factor>
+  <y-factor>15</y-factor>
+  <z-factor>1</z-factor>
+ </animation>
+
+
+</PropertyList>

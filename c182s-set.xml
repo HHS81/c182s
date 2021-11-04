@@ -408,6 +408,7 @@
                     <tiedownL-visible type="bool">false</tiedownL-visible>
                     <tiedownR-visible type="bool">false</tiedownR-visible>
                     <tiedownT-visible type="bool">false</tiedownT-visible>
+                    <windGustLockPlate-visible type="bool">false</windGustLockPlate-visible>
                     <pitot-cover-visible type="bool">false</pitot-cover-visible>
 </securing>
 
@@ -1091,6 +1092,7 @@
             <path>/sim/model/c182s/securing/tiedownR-visible</path>
             <path>/sim/model/c182s/securing/tiedownL-visible</path>
             <path>/sim/model/c182s/securing/tiedownT-visible</path>
+            <path>/sim/model/c182s/securing/windGustLockPlate-visible</path>
             <path>/sim/chocks001/enable</path>
             <path>/sim/chocks002/enable</path>
             <path>/sim/chocks003/enable</path>

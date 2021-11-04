@@ -257,6 +257,47 @@ Under the GPL. Used by shadows under ALS -->
     
     
     <!-- ================================================================== -->
+    <!-- Yoke                                                               -->
+    <!-- ================================================================== -->
+    <logic>
+        <input>
+            <not><property>/sim/model/c182s/securing/windGustLockPlate-visible</property></not>
+        </input>
+        <output>/controls/flight/yoke-unlocked</output>
+    </logic>
+    <filter>
+        <name>Yoke lock aileron</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <property>/sim/model/c182s/securing/windGustLockPlate-visible</property>
+            </condition>
+        </enable>
+        <input>
+            <value>0</value>
+        </input>
+        <output>
+            <property>controls/flight/aileron</property>
+        </output>
+    </filter>
+    <filter>
+        <name>Yoke lock elevator</name>
+        <type>gain</type>
+        <enable>
+            <condition>
+                <property>/sim/model/c182s/securing/windGustLockPlate-visible</property>
+            </condition>
+        </enable>
+        <input>
+            <value>0</value>
+        </input>
+        <output>
+            <property>controls/flight/elevator</property>
+        </output>
+    </filter>
+    
+    
+    <!-- ================================================================== -->
     <!-- Checking if doors are opened or closed in order to skip or not     -->
     <!-- the handle animation                                               -->
     <!-- ================================================================== -->

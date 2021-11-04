@@ -250,6 +250,33 @@
 			</binding>
                     </checkbox>
 
+            <checkbox>
+                <halign>left</halign>
+                <label>Apply wind gust lock </label>
+                <property>/sim/model/c182s/securing/windGustLockPlate-visible</property>
+                <enable>
+                    <or>
+                        <property>/sim/model/c182s/securing/windGustLockPlate-visible</property>
+                        <less-than>
+                            <property>velocities/groundspeed-kt</property>
+                            <value>0.1</value>
+                        </less-than>
+                    </or>
+                </enable>
+                <live>true</live>
+                <binding>
+                <command>property-toggle</command>
+                    <property>/sim/model/c182s/securing/windGustLockPlate-visible</property>
+                </binding>
+                <binding>
+                    <command>nasal</command>
+                    <script>c182s.click("control_lock", 1.2)</script>
+                </binding>
+                <binding>
+                    <command>dialog-update</command>
+                </binding>
+            </checkbox>
+
 			</group>
 
                 <!-- Force group to the left -->

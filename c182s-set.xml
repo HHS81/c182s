@@ -145,6 +145,7 @@
 
   <tutorials>
     <tutorial include="Tutorials/sparkPlugFouling.xml"/>
+    <tutorial include="Tutorials/winterFlying.xml"/>
     <tutorial include="Tutorials/davtron803.xml"/>
   </tutorials>
 

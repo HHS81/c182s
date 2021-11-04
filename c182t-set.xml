@@ -139,6 +139,7 @@
   <tutorials>
     <!-- no Davtron clock in the T variant! <tutorial include="Tutorials/davtron803.xml"/> -->
     <tutorial include="Tutorials/sparkPlugFouling.xml"/>
+    <tutorial include="Tutorials/winterFlying.xml"/>
   </tutorials>
 
   <virtual-cockpit>true</virtual-cockpit>

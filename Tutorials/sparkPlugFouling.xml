@@ -1,0 +1,608 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+    <name>Engine handling: Idling, Magneto checks and Spark plug fouling</name>
+
+    <description>
+The engines features six cylinders, which each have two spark plugs that are wired to separate magnetos.
+Some conditions can lead to accumlation of electrically conductive deposits on the plugs, eventually shorting
+the circuits and disabling the spark plug. This leads to misfires, a rough engine and reduced power.
+
+This 10 minutes long Tutorial will show you the effects and how to avoid and remedy them.
+Please start it parked on ground.
+
+
+----------------
+To avoid spark plug fouling:
+ - All ground operations: lean to peak EGT, throttle 1000-1200
+ - Target: keep the combustion above 264 degC/507degF
+ - A lean mixture burns hotter than a rich one
+ - In winter preheat the engine and use the winter kit
+ - In cruise lean properly
+ - After flight before stopping the engine, for 20 seconds set mixture lean,
+   1800 RPM, then reduce to 1000 RPM and stop the engine by pulling mixture to cut-off.
+
+To clean the spark plugs on the ground:
+- Throttle 1800 RPM
+- Mixture 50° lean of Peak
+- Run for about 30 seconds and then reduce power in order to not overheat (watch CHT!)
+- Verify with magneto check (Full rich, 1800 RPM, switch LEFT -> BOTH -> RIGHT -> BOTH, 1000 RPM)
+  Drop must not exceed 150 RPM for single magneto operation and no more than 50 RPM between magnetos
+- repeat two times if needed, after that repair the plane
+In cruise, the problem should resolve within one or two minutes when properly leaned
+    </description>
+    
+    <interval>10</interval>
+    <step-time>2</step-time>
+    <exit-time>2</exit-time>
+    
+    <init>
+        <nasal>
+            <script>
+                c182s.repair_damage();
+            </script>
+        </nasal>
+        <set>
+            <property>/sim/model/c182s/brake-parking</property>
+            <value>1</value>
+        </set>
+        <set>
+            <property>/fdm/jsbsim/systems/propulsion/sparkplugs/right/affected</property>
+            <value>0</value>
+        </set>
+        <set>
+            <property>/fdm/jsbsim/systems/propulsion/sparkplugs/left/affected</property>
+            <value>0</value>
+        </set>
+    </init>
+    
+    <step>
+        <message>In this lesson, you'll learn how to properly idle the engine to avoid fouled spark plugs.
+            Also, I will show you how you can clean the plugs from deposits.</message>
+        <wait>8</wait>
+    </step>
+    
+    <step>
+        <message>The simulation is only active, if you have the aircraft options 'complex engine procedures'
+            and 'Spark plug icing/fouling' active. You can find them in the aircraft dialog menu. </message>
+        <wait>5</wait>
+        
+    </step>
+    <step>
+        <message />
+        <wait>5</wait>
+        <nasal>
+            <script>
+                if (!getprop("/engines/engine/complex-engine-procedures")
+                or  !getprop("/engines/engine/allow-sparkplug-icing") )
+                    fgcommand("dialog-show", {"dialog-name": "aircraft-dialog"});
+            </script>
+        </nasal>
+        <error>
+            <message>Activate the complex 'engine procedures' and 'Spark plug icing/fouling' simulation options.</message>
+            <condition>
+                <or>
+                    <not><property>/engines/engine/complex-engine-procedures</property></not>
+                    <not><property>/engines/engine/allow-sparkplug-icing</property></not>
+                </or>
+            </condition>
+        </error>
+    </step>
+    
+    <step>
+        <condition>
+            <or>
+                <not><property>/engines/engine/running</property></not>
+                <property>/controls/engines/engine[0]/throttle</property>
+                <property>/controls/engines/engine[0]/mixture</property>
+            </or>
+        </condition>
+        <message>Now please start your engine and put throttle to idle, mixture full rich.</message>
+        <wait>3</wait>
+        
+        <error>
+            <message>Please start the engine, throttle idle, mix full rich.</message>
+            <interval>10</interval>
+            <condition>
+                <or>
+                    <not><property>/engines/engine/running</property></not>
+                    <greater-than-equals>
+                        <property>/controls/engines/engine[0]/throttle</property>
+                        <value>0.10</value>
+                    </greater-than-equals>
+                    <less-than-equals>
+                        <property>/controls/engines/engine[0]/mixture</property>
+                        <value>0.95</value>
+                    </less-than-equals>
+                </or>
+            </condition>
+        </error>
+    </step>
+    
+    <step>
+        <message>While the engine idles, it is still cold. Currently slowly lead oxide is forming on your spark plugs,
+            eventually shorting them. We just wait now for that to develop.</message>
+        <wait>25</wait>
+        <set>
+            <property>/fdm/jsbsim/systems/propulsion/sparkplugs/right/fouling-norm/malfunction/fail_hardover</property>
+            <value>1</value>
+        </set>
+        <set>
+            <property>/fdm/jsbsim/systems/propulsion/sparkplugs/right/affected</property>
+            <value>6</value>
+        </set>
+        <set>
+            <property>/fdm/jsbsim/systems/propulsion/sparkplugs/left/affected</property>
+            <value>0</value>
+        </set>
+
+    </step>
+    
+    <step>
+        <message>Usually the forming does take some time, but to shorten your waiting time, I acceleerated the effect.</message>
+        <wait>10</wait>
+        
+        <error>
+            <condition>
+                <less-than-equals>
+                    <property>/fdm/jsbsim/systems/propulsion/sparkplugs/right/fouling-norm</property>
+                    <value>0.95</value>
+                </less-than-equals>
+            </condition>
+            <message>Please wait and monitor your engine instruments.</message>
+            <interval>10</interval>
+        </error>
+        <error>
+            <condition>
+                <not><property>/engines/engine/running</property></not>
+            </condition>
+            <message>If the engine died of roughness, kindly advance throttle a little bit and restart using the 'S' key.</message>
+        </error>
+    </step>
+    
+    <step>
+        <message>Now some of the right magentos spark plugs are lead fouled. 
+            As you probably notice, there is no visible evidence of a fouled spark plug at low RPM settings.</message>
+        <wait>10</wait>
+        <set>
+            <property>/fdm/jsbsim/systems/propulsion/sparkplugs/right/affected</property>
+            <value>1</value>
+        </set>
+    </step>
+    
+    <step>
+        <message>One possible cause of Spark plug fouling is a cold combustion. This plane uses {AVGAS 100LL|Aviation Gas one hundred low lead} which has lead added
+            to make the engine run smoother. There are also EDB lead scavenge agents added to the fuel in order to
+            catch lead oxides. That agent is only working at combustion temperatures above 507 {degF|degree Fahrenheit}.</message>
+        <wait>21</wait>
+    </step>
+    
+    <step>
+        <message>If you would attempt to takeoff now you will observe dangerously reduced engine power.
+            This is why it is important to always do a proper engine runup. Lets check the plugs using the magneto check!</message>
+        <wait>15</wait>
+    </step>
+    
+    <step>
+        <message>To do this, we first set mixture full rich and throttle up to 1800 RPM,
+            then switch Magneto to the LEFT setting, back to BOTH, then to RIGHT, then to BOTH
+            and finally reduce power. If the check is made on ground, it should be carried out swiftly in order to not
+            overheat the engine. Always keep an eye on the CHT gauge!</message>
+        <wait>20</wait>
+        <error>
+            <condition>
+                <or>
+                    <less-than-equals>
+                        <property>/engines/engine/rpm</property>
+                        <value>1750</value>
+                    </less-than-equals>
+                    <greater-than-equals>
+                        <property>/engines/engine/rpm</property>
+                        <value>1850</value>
+                    </greater-than-equals>
+                </or>
+            </condition>
+            <message>Adjust throttle to set the engine to 1800 RPM, full rich</message>
+        </error>
+    </step>
+    <step>
+        <message>Now set the magneto to the LEFT setting, and go back to BOTH. Did you see the drop?{|,} It should not exceed 150 RPM compared to the BOTH setting.</message>
+        <wait>12</wait>
+    </step>
+    <step>
+        <message>Now set the magneto switch to RIGHT{|,} and back to BOTH afterwards. You should notice a heavy drop, exceeding the 150 RPM from the checklist.
+            This is proof that there is something wrong with the magneto or the spark plugs.</message>
+        <wait>13</wait>
+    </step>
+    <step>
+        <message>Seen the drop?{|,} OK, this time we know that the plugs have fouled. You should never take off with this condition!</message>
+        <wait>10</wait>
+        <error>
+            <condition>
+                <greater-than-equals>
+                    <property>/engines/engine/rpm</property>
+                    <value>1250</value>
+                </greater-than-equals>
+            </condition>
+            <message>Don't forget to reduce power to {1000-1200|thousand to thousandtwohundred} RPM after the check!</message>
+        </error>
+    </step>
+    <step>
+        <condition>
+            <greater-than-equals>
+                <property>/engines/engine/cht-degf</property>
+                <value>300</value>
+            </greater-than-equals>
+        </condition>
+        <message>Let's cool the engine a bit, reduce power to 1000 RPM.</message>
+        <wait>10</wait>
+        <error>
+            <condition>
+                <greater-than-equals>
+                    <property>/engines/engine/rpm</property>
+                    <value>1050</value>
+                </greater-than-equals>
+            </condition>
+        </error>
+    </step>
+    <step>
+        <message>The good news is that we can try to get rid of the lead deposits. For this we need a combustion temperature high enough to activate the lead scavenge agents.</message>
+        <wait>10</wait>
+    </step>
+    
+    <step>
+        <condition>
+            <greater-than-equals>
+                <property>/engines/engine/cht-degf</property>
+                <value>300</value>
+            </greater-than-equals>
+        </condition>
+        <message>Before starting, we need to cool down the cylinder a bit.</message>
+        <error>
+            <condition>
+                <greater-than-equals>
+                    <property>/engines/engine/cht-degf</property>
+                    <value>300</value>
+                </greater-than-equals>
+            </condition>
+            <message>Reduce power to 1000 RPM and let it cool to below 300 degree!</message>
+            <interval>5</interval>
+        </error>
+    </step>
+    
+    <step>
+        <message>All right, the engine should be cool enough to proceed with the cleaning procedure.</message>
+        <wait>5</wait>
+    </step>
+    
+    <step>
+        <message>Lean the mixture to achieve 50 degee lean of {EGT|E G T} peak and push the throttle in to set about 1800 RPM.</message>
+        <wait>10</wait>
+        <error>
+            <condition>
+                <or>
+                    <less-than-equals>
+                        <property>/engines/engine/rpm</property>
+                        <value>1700</value>
+                    </less-than-equals>
+                    <greater-than-equals>
+                        <property>/engines/engine/rpm</property>
+                        <value>1900</value>
+                    </greater-than-equals>
+                    <less-than-equals>
+                        <property>/fdm/jsbsim/propulsion/engine/AFR</property>
+                        <value>13.5</value>
+                    </less-than-equals>
+                    <greater-than-equals>
+                        <property>/fdm/jsbsim/propulsion/engine/AFR</property>
+                        <value>15.50</value>
+                    </greater-than-equals>
+                </or>
+            </condition>
+            <interval>2</interval>
+            <message>Lean to 50 degree lean of peak {EGT|E G T} and adjust throttle to set the engine to 1800 RPM
+                {(The EGT gauge's markings are 25 degF each)}</message>
+        </error>
+    </step>
+
+    <step>
+        <message>We need to run the engine for about {30|thirty} seconds on this setting.
+            This should clear the lead deposits.
+            Carefully watch the {CHT|C H T} and do not exceed limits.</message>
+        <wait>20</wait>
+        <set>
+            <property>/fdm/jsbsim/systems/propulsion/sparkplugs/right/fouling-norm/malfunction/fail_hardover</property>
+            <value>0</value>
+        </set>
+        <error>
+            <condition>
+                <greater-than-equals>
+                    <property>/fdm/jsbsim/systems/propulsion/sparkplugs/right/fouling-norm</property>
+                    <value>0.05</value>
+                </greater-than-equals>
+            </condition>
+            <message>There is still lead deposits, we need to burn off some more.</message>
+            <interval>5</interval>
+        </error>
+        <error>
+            <condition>
+                <greater-than-equals>
+                    <property>/engines/engine/cht-degf</property>
+                    <value>500</value>
+                </greater-than-equals>
+            </condition>
+            <message>Your {CHT|C H T} is too hot! add mixture and reduce throttle!</message>
+            <interval>5</interval>
+        </error>
+        <error>
+            <condition>
+                <less-than-equals>
+                    <property>/engines/engine/sparkplugs-temperature-degf</property>
+                    <value>507</value>
+                </less-than-equals>
+            </condition>
+            <message>Your combustion seems to be too cold. Adjust mixture a bit leaner (the leaner, the hotter) and recheck throttle.</message>
+            <interval>5</interval>
+        </error>
+    </step>
+    
+    <step>
+        <message>If you think you now got rid of the problem, reduce power to the proper setting: {1000-1200|thousand to thousandtwohundred} RPM, mixture leaned to peak {EGT|E G T} (or 50 degree less).</message>
+        <wait>10</wait>
+        <set>
+            <property>/fdm/jsbsim/systems/propulsion/sparkplugs/right/fouling-norm/malfunction/fail_hardover</property>
+            <value>0</value>
+        </set>
+        <error>
+            <condition>
+                <or>
+                    <less-than-equals>
+                        <property>/engines/engine/rpm</property>
+                        <value>990</value>
+                    </less-than-equals>
+                    <greater-than-equals>
+                        <property>/engines/engine/rpm</property>
+                        <value>1230</value>
+                    </greater-than-equals>
+                </or>
+            </condition>
+            <message>Adjust throttle to set the engine to {1000-1200|thousand to thousandtwohundred} RPM.</message>
+        </error>
+        <error>
+            <condition>
+                <or>
+                    <less-than-equals>
+                        <property>/fdm/jsbsim/propulsion/engine/AFR</property>
+                        <value>13.0</value>
+                    </less-than-equals>
+                    <greater-than-equals>
+                        <property>/fdm/jsbsim/propulsion/engine/AFR</property>
+                        <value>15.50</value>
+                    </greater-than-equals>
+                </or>
+            </condition>
+            <message>Don't forget to lean to peak {EGT|E G T} while idle!</message>
+        </error>
+        <error>
+            <condition>
+                <less-than-equals>
+                    <property>/engines/engine/sparkplugs-temperature-degf</property>
+                    <value>507</value>
+                </less-than-equals>
+            </condition>
+            <message>Your combustion seems to be too cold. Adjust mixture a bit lean of peak and recheck throttle.</message>
+            <interval>5</interval>
+        </error>
+        <error>
+            <condition>
+                <greater-than-equals>
+                    <property>/engines/engine/cht-degf</property>
+                    <value>500</value>
+                </greater-than-equals>
+            </condition>
+            <message>Your {CHT|C H T} is way too hot! add mixture and reduce throttle!</message>
+            <interval>15</interval>
+        </error>
+    </step>
+    
+    <step>
+        <message>You now can perform another magneto check to verify the problem is gone.
+            {Mixture full rich, 1800 RPM, Mags LEFT-BOTH-RIGHT-BOTH, must not exceed 150/50 RPM drop}</message>
+        <wait>35</wait>
+        <set>
+            <property>/fdm/jsbsim/systems/propulsion/sparkplugs/right/fouling-norm/malfunction/fail_hardover</property>
+            <value>0</value>
+        </set>
+        <error>
+            <condition>
+                <less-than-equals>
+                    <property>/engines/engine/sparkplugs-temperature-degf</property>
+                    <value>507</value>
+                </less-than-equals>
+            </condition>
+            <message>Your combustion seems to be too cold. Adjust mixture a bit lean of peak and recheck throttle.</message>
+            <interval>5</interval>
+        </error>
+    </step>
+    
+    <step>
+        <message />
+        <error>
+            <condition>
+                <greater-than-equals>
+                    <property>/engines/engine/rpm</property>
+                    <value>1250</value>
+                </greater-than-equals>
+            </condition>
+            <message>Don't forget to reduce power to {1000-1200|thousand to thousandtwohundred} RPM after the check!</message>
+        </error>
+        <error>
+            <condition>
+                <or>
+                    <less-than-equals>
+                        <property>/fdm/jsbsim/propulsion/engine/AFR</property>
+                        <value>13.0</value>
+                    </less-than-equals>
+                    <greater-than-equals>
+                        <property>/fdm/jsbsim/propulsion/engine/AFR</property>
+                        <value>15.50</value>
+                    </greater-than-equals>
+                </or>
+            </condition>
+            <message>Don't forget to lean to peak {EGT|E G T} while idle!</message>
+        </error>
+    </step>
+    
+    <step>
+        <message>Great! All looks good now. Every time you are on the ground, adjust RPM to be at {1000-1200|thousand to thousandtwohundred} RPM
+            and the mixture leaned properly. This also depends on the outside air temperature, so you just
+            want to make sure the combustion is hot enough for the EDB agents to work.</message>
+        <wait>20</wait>
+        <error>
+            <condition>
+                <less-than-equals>
+                    <property>/engines/engine/sparkplugs-temperature-degf</property>
+                    <value>507</value>
+                </less-than-equals>
+            </condition>
+            <message>Your combustion seems to be too cold. Adjust mixture a bit lean of peak and recheck throttle.</message>
+            <interval>5</interval>
+        </error>
+        <error>
+            <condition>
+                <greater-than-equals>
+                    <property>/engines/engine/cht-degf</property>
+                    <value>500</value>
+                </greater-than-equals>
+            </condition>
+            <message>Your {CHT|C H T} is too hot! add mixture and reduce throttle!</message>
+            <interval>15</interval>
+        </error>
+    </step>
+    <step>
+        <message>You can idle indefinitely on this setting, just keep an eye on your CHT to not overheat the engine.</message>
+        <wait>5</wait>
+        <error>
+            <condition>
+                <or>
+                    <less-than-equals>
+                        <property>/fdm/jsbsim/propulsion/engine/AFR</property>
+                        <value>13.0</value>
+                    </less-than-equals>
+                    <greater-than-equals>
+                        <property>/fdm/jsbsim/propulsion/engine/AFR</property>
+                        <value>15.50</value>
+                    </greater-than-equals>
+                </or>
+            </condition>
+            <message>Don't forget to lean to peak {EGT|E G T} while idle!</message>
+        </error>
+        <error>
+            <condition>
+                <less-than-equals>
+                    <property>/engines/engine/sparkplugs-temperature-degf</property>
+                    <value>507</value>
+                </less-than-equals>
+            </condition>
+            <message>Your combustion seems to be too cold. Adjust mixture a bit lean of peak and recheck throttle.</message>
+            <interval>5</interval>
+        </error>
+        <error>
+            <condition>
+                <greater-than-equals>
+                    <property>/engines/engine/cht-degf</property>
+                    <value>500</value>
+                </greater-than-equals>
+            </condition>
+            <message>Your {CHT|C H T} is way too hot! add mixture and reduce throttle!</message>
+            <interval>15</interval>
+        </error>
+    </step>
+    <step>
+        <message>If you taxi, you should pull the throttle out or otherwise you will quickly wear down your expensive brakes.</message>
+        <wait>8</wait>
+        <error>
+            <condition>
+                <less-than-equals>
+                    <property>/engines/engine/sparkplugs-temperature-degf</property>
+                    <value>507</value>
+                </less-than-equals>
+            </condition>
+            <message>Your combustion seems to be too cold. Adjust mixture a bit lean of peak and recheck throttle.</message>
+            <interval>5</interval>
+        </error>
+        <error>
+            <condition>
+                <greater-than-equals>
+                    <property>/engines/engine/cht-degf</property>
+                    <value>500</value>
+                </greater-than-equals>
+            </condition>
+            <message>Your {CHT|C H T} is way too hot! add mixture and reduce throttle!</message>
+            <interval>15</interval>
+        </error>
+    </step>
+    <step>
+        <message>When you are flying in cold weather or descending from high altitudes, keep an eye on the {CHT|C H T}. Do not let the engine cool down too much.
+            Plan your descend ahead! It it OK of course to put the throttle to idle if needed, but avoid cold {CHT|cylinder} for prolonged times.</message>
+        <wait>10</wait>
+        <error>
+            <condition>
+                <less-than-equals>
+                    <property>/engines/engine/sparkplugs-temperature-degf</property>
+                    <value>507</value>
+                </less-than-equals>
+            </condition>
+            <message>Your combustion seems to be too cold. Adjust mixture a bit lean of peak and recheck throttle.</message>
+            <interval>5</interval>
+        </error>
+        <error>
+            <condition>
+                <greater-than-equals>
+                    <property>/engines/engine/cht-degf</property>
+                    <value>500</value>
+                </greater-than-equals>
+            </condition>
+            <message>Your {CHT|C H T} is way too hot! add mixture and reduce throttle!</message>
+            <interval>15</interval>
+        </error>
+    </step>
+    <step>
+        <message>But, one more thing: there is another cause for spark plug fouling: carbon deposits! They form when the mixture is overly rich. So always remember to be leaned appropriately.
+            On higher airports for example, the {"full rich"|full rich} checklist item should not be followed by the letter, but better be leaned for peak {EGT|E G T} or max power.
+            Also, running on just one magneto will slowly foul the spark plugs of the inactive magneto.</message>
+        <wait>26</wait>
+        <error>
+            <condition>
+                <less-than-equals>
+                    <property>/engines/engine/sparkplugs-temperature-degf</property>
+                    <value>507</value>
+                </less-than-equals>
+            </condition>
+            <message>Your combustion seems to be too cold. Adjust mixture a bit lean of peak and recheck throttle.</message>
+            <interval>5</interval>
+        </error>
+        <error>
+            <condition>
+                <greater-than-equals>
+                    <property>/engines/engine/cht-degf</property>
+                    <value>500</value>
+                </greater-than-equals>
+            </condition>
+            <message>Your {CHT|C H T} is way too hot! add mixture and reduce throttle!</message>
+            <interval>15</interval>
+        </error>
+    </step>
+    
+    <step>
+        <message>When finally stopping the engine after parking, lean to peak EGT, set 1800 RPM for twenty seconds, reduce to 1000 RPM and stop the engine promptly by pulling mixture to the cut-off position.</message>
+        <wait>13</wait>
+    </step>
+    
+    <step>
+        <message>Tutorial complete. You now know how to avoid and clean fouled spark plugs and how to idle on ground.</message>
+         <wait>10</wait>
+    </step>
+
+
+</PropertyList>

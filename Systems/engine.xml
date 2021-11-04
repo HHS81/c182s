@@ -51,6 +51,180 @@
         </output>
     </logic>
     
+    
+    <!-- ============================================================== -->
+    <!-- Engine roughness                                               -->
+    <!-- ============================================================== -->
+    <!-- A rough running engine will oscillate RPM and very rough engine will also sputter -->
+    
+    <!-- Combustion out of place -->
+    <filter>
+        <name>Engine roughness due to combustion nearly out of range</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <product>
+                    <property>/engines/engine/complex-engine-procedures</property>
+                    <table>
+                        <property>/fdm/jsbsim/propulsion/engine/AFR</property>
+                        <entry><ind>7.9</ind><dep>1.0</dep></entry>
+                        <entry><ind>9.0</ind><dep>0.0</dep></entry>
+                        <entry><ind>17.0</ind><dep>0.0</dep></entry>
+                        <entry><ind>18.9</ind><dep>1.0</dep></entry>
+                    </table>
+                </product>
+            </expression>
+        </input>
+        <output>
+            <property>/engines/engine/combustion-roughness-factor</property>
+        </output>
+    </filter>
+    
+    <!-- Open Throttle with oil still cold -->
+    <filter>
+        <name>Engine roughness due to Open Throttle with oil still cold</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <product>
+                    <property>/engines/engine/complex-engine-procedures</property>
+                    <property>/engines/engine/allow-oil-management</property>
+                    <table>
+                        <property>/controls/engines/engine[0]/throttle</property>
+                        <entry><ind>0.40</ind><dep>0.0</dep></entry>
+                        <entry><ind>1.00</ind><dep>1.5</dep></entry>
+                    </table>
+                    <table>
+                        <property>/engines/engine/oil-final-temperature-degf</property>
+                        <entry><ind>50.0</ind><dep>1.0</dep></entry>
+                        <entry><ind>65.0</ind><dep>0.0</dep></entry>
+                    </table>
+                </product>
+            </expression>
+        </input>
+        <output>
+            <property>/engines/engine/cold-oil-roughness-factor</property>
+        </output>
+    </filter>
+    
+    <!-- Engine running rough with one magneto failed and too lean (POH 3-20) -->
+    <!-- NOTE: This is not the same as signle magneto operation, where only one mag fires. Here, one mag is just bad/failed, causing misfires/mistimings -->
+    <filter>
+        <name>Engine roughness due to single magneto failure</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <product>
+                    <!-- both mags selected -->
+                    <property>/fdm/jsbsim/systems/propulsion/sparkplugs/left/magneto-selected</property>
+                    <property>/fdm/jsbsim/systems/propulsion/sparkplugs/right/magneto-selected</property>
+                    
+                    <!-- one is not serviceable -->
+                    <difference>
+                        <value>1</value>
+                        <product>
+                            <property>/controls/engines/engine/faults/left-magneto-serviceable</property>
+                            <property>/controls/engines/engine/faults/right-magneto-serviceable</property>
+                        </product>
+                    </difference>
+                    
+                    <sum>
+                        <!-- rough when too lean -->
+                        <table>
+                            <property>/fdm/jsbsim/propulsion/engine/AFR</property>
+                            <entry><ind>12.5</ind><dep>0.025</dep></entry>
+                            <entry><ind>15.0</ind><dep>0.10</dep></entry>
+                        </table>
+                        
+                        <!-- rough when power setting not good -->
+                        <table>
+                            <property>/engines/engine/rpm</property>
+                            <entry><ind>1900</ind><dep>0.025</dep></entry>
+                            <entry><ind>2200</ind><dep>0.10</dep></entry>
+                            <entry><ind>2400</ind><dep>0.05</dep></entry>
+                        </table>
+                    </sum>
+                </product>
+            </expression>
+        </input>
+        <output>
+            <property>/engines/engine/mag-singlefail-bothselected-roughness-factor</property>
+        </output>
+    </filter>
+    
+    <!-- Final roughness is the sum of all roughness sources -->
+    <filter>
+        <name>Engine roughness factor</name>
+        <type>gain</type>
+        <input>
+            <condition>
+                <!-- only with running engine and enabled simulation -->
+                <and>
+                    <property>/engines/engine/running</property>
+                    <property>/engines/engine/complex-engine-procedures</property>
+                </and>
+            </condition>
+            <expression>
+                <sum>
+                    <property>/engines/engine/manual-roughness-factor</property> <!-- for fun with telnet :) -->
+                    <property>/engines/engine/cold-oil-roughness-factor</property>
+                    <property>/engines/engine/combustion-roughness-factor</property>
+                    <property>/engines/engine/mag-singlefail-bothselected-roughness-factor</property>
+                    <property>/fdm/jsbsim/systems/propulsion/sparkplugs/fouling-roughness-factor</property>
+                </sum>
+            </expression>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/engines/engine/roughness-factor</property>
+        </output>
+        <min>0.0</min>
+        <max>1.0</max>
+    </filter>
+    
+    <!-- Generate roughness RPM oscillation effect -->
+    <filter>
+        <name>Engine roughness rpm oscillation trigger</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <mod>
+                    <floor>
+                        <product>
+                            <property>/sim/time/elapsed-sec</property>
+                            <value>2</value>
+                        </product>
+                    </floor>
+                    <value>2</value>
+                </mod>
+            </expression>
+        </input>
+        <output>/engines/engine/roughness-rpm-oscillation-trigger</output>
+        <min>0</min>
+        <max>1</max>
+    </filter>
+    <filter>
+        <name>Engine roughness rpm oscillation ammount</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <product>
+                    <property>/engines/engine/roughness-rpm-oscillation-trigger</property>
+                    <table>
+                        <property>/engines/engine/roughness-factor</property>
+                        <entry><ind>0</ind><dep>0.0</dep></entry>
+                        <entry><ind>1</ind><dep>0.5</dep></entry>
+                    </table>
+                </product>
+            </expression>
+        </input>
+        <output>/engines/engine/roughness-rpm-reduction-pct</output>
+        <min>0.0</min>
+        <max>1.0</max>
+    </filter>
+    
 
     <!-- ============================================================== -->
     <!-- Fuel contamination and low oil level                           -->
@@ -282,20 +456,14 @@
                     <property>/fdm/jsbsim/systems/propulsion/friction-critical</property>
                 </and>
                 
-                <!-- Engine is coughing if still cold and throttle is wide open -->
+                <!-- Engine is coughing if it runs really rough -->
                 <and>
-                    <property>/engines/engine/complex-engine-procedures</property>
-                    <property>/engines/engine/allow-oil-management</property>
-                    <not><property>/sim/start-state-internal/oil-temp-override</property></not>
                     <greater-than>
-                        <property>/controls/engines/engine[0]/throttle</property>
-                        <value>0.65</value>
+                        <property>/engines/engine/roughness-factor</property>
+                        <value>0.80</value>
                     </greater-than>
-                    <less-than>
-                        <property>/engines/engine/oil-final-temperature-degf</property>
-                        <value>65</value>
-                    </less-than>
                 </and>
+                
                 
                 <!-- Engine is coughing shortly before it starves of fuel -->
                 <and>

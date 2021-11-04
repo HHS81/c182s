@@ -135,6 +135,11 @@
   <aircraft-operator type="string">NONE</aircraft-operator>
   
   <checklists include="c182t-checklists.xml"/>
+  
+  <tutorials>
+    <!-- no Davtron clock in the T variant! <tutorial include="Tutorials/davtron803.xml"/> -->
+    <tutorial include="Tutorials/sparkPlugFouling.xml"/>
+  </tutorials>
 
   <virtual-cockpit>true</virtual-cockpit>
   <allow-toggle-cockpit>true</allow-toggle-cockpit>
@@ -1204,6 +1209,8 @@
    <governor>
         <serviceable type="bool">true</serviceable>
     </governor>
+    <manual-roughness-factor type="double">0</manual-roughness-factor>
+    <manual-power-reduction-pct type="double">0</manual-power-reduction-pct>
   </engine>
  </engines>
 

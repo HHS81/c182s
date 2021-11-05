@@ -1,119 +1,185 @@
 AC3Db
-MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
-MATERIAL "DefaultWhite.001" rgb 1 1 1 amb 0.2 0.2 0.2 emis 0 0 0 spec 0.025 0.025 0.025 shi 50 trans 0.1
+MATERIAL "DefaultWhite.005" rgb 1.000 1.000 1.000  amb 0.800 0.800 0.800  emis 0.000 0.000 0.000  spec 0.025 0.025 0.025  shi 64 trans 0.100
+MATERIAL "DefaultWhite.006" rgb 1.000 1.000 1.000  amb 0.800 0.800 0.800  emis 0.000 0.000 0.000  spec 0.025 0.025 0.025  shi 64 trans 0.100
 OBJECT world
-kids 6
+name "Blender_exporter_v3.3__procedural_light.ac"
+kids 7
 OBJECT poly
 name "beacon"
 data 8
-Mesh.005
-crease 30.000000
+Mesh.006
+crease 30.0
 numvert 4
-0.057591 -0.247867 -0.249903
-0.057591 0.252133 -0.249903
-0.057592 -0.247867 0.250097
-0.057592 0.252133 0.250097
+0.05759 -0.24787 -0.2499
+0.05759 0.25213 -0.2499
+0.05759 -0.24787 0.2501
+0.05759 0.25213 0.2501
 numsurf 1
-SURF 0x20
-mat 1
+SURF 0X0
+mat 0
 refs 4
-1 0.0 0.0
-0 0.0 0.0
-2 0.0 0.0
-3 0.0 0.0
+1 0 0
+0 1 0
+2 1 1
+3 0 1
 kids 0
 OBJECT poly
 name "green-navlight"
 data 8
-Mesh.001
-crease 30.000000
+Mesh.007
+crease 30.0
 numvert 4
--1e-06 -0.5 -0.5
+-0 -0.5 -0.5
 0 0.5 -0.5
 0 -0.5 0.5
-1e-06 0.5 0.5
+0 0.5 0.5
 numsurf 1
-SURF 0x20
-mat 1
+SURF 0X0
+mat 0
 refs 4
-1 0.0 0.0
-0 0.0 0.0
-2 0.0 0.0
-3 0.0 0.0
+1 0 0
+0 1 0
+2 1 1
+3 0 1
 kids 0
 OBJECT poly
 name "left-strobe"
 data 8
-Mesh.004
-crease 30.000000
+Mesh.008
+crease 30.0
 numvert 4
--1e-06 -0.5 -0.499903
-0 0.5 -0.499903
-0 -0.5 0.500097
-1e-06 0.5 0.500097
+-0 -0.5 -0.4999
+0 0.5 -0.4999
+0 -0.5 0.5001
+0 0.5 0.5001
 numsurf 1
-SURF 0x20
-mat 1
+SURF 0X0
+mat 0
 refs 4
-1 0.0 0.0
-0 0.0 0.0
-2 0.0 0.0
-3 0.0 0.0
+1 0 0
+0 1 0
+2 1 1
+3 0 1
+kids 0
+OBJECT poly
+name "procedural_light"
+data 8
+Cone.001
+crease 180.0
+numvert 9
+-0.21339 -0.37874 0.41612
+-0.21489 0.00979 0.57509
+-0.21367 0.39697 0.41277
+-0.2105 0.55596 0.02424
+-0.20722 0.39363 -0.36294
+-0.20572 0.00507 -0.52191
+-0.20693 -0.38208 -0.3596
+-0.21009 -0.5411 0.02897
+-0.00107 0.00689 -0.00266
+numsurf 8
+SURF 0X10
+mat 1
+refs 3
+8 0 0
+0 1 0
+1 1 1
+SURF 0X10
+mat 1
+refs 3
+8 0 0
+1 1 0
+2 1 1
+SURF 0X10
+mat 1
+refs 3
+8 0 0
+2 1 0
+3 1 1
+SURF 0X10
+mat 1
+refs 3
+8 0 0
+3 1 0
+4 1 1
+SURF 0X10
+mat 1
+refs 3
+8 0 0
+4 1 0
+5 1 1
+SURF 0X10
+mat 1
+refs 3
+8 0 0
+5 1 0
+6 1 1
+SURF 0X10
+mat 1
+refs 3
+8 0 0
+6 1 0
+7 1 1
+SURF 0X10
+mat 1
+refs 3
+7 0 0
+0 1 0
+8 1 1
 kids 0
 OBJECT poly
 name "red-navlight"
-data 4
-Mesh
-crease 30.000000
+data 8
+Mesh.009
+crease 30.0
 numvert 4
--1e-06 -0.5 -0.5
+-0 -0.5 -0.5
 0 0.5 -0.5
 0 -0.5 0.5
-1e-06 0.5 0.5
+0 0.5 0.5
 numsurf 1
-SURF 0x20
-mat 1
+SURF 0X0
+mat 0
 refs 4
-1 0.0 0.0
-0 0.0 0.0
-2 0.0 0.0
-3 0.0 0.0
+1 0 0
+0 1 0
+2 1 1
+3 0 1
 kids 0
 OBJECT poly
 name "right-strobe"
 data 8
-Mesh.003
-crease 30.000000
+Mesh.010
+crease 30.0
 numvert 4
--1e-06 -0.5 -0.499903
-0 0.5 -0.499903
-0 -0.5 0.500097
-1e-06 0.5 0.500097
+-0 -0.5 -0.4999
+0 0.5 -0.4999
+0 -0.5 0.5001
+0 0.5 0.5001
 numsurf 1
-SURF 0x20
-mat 1
+SURF 0X0
+mat 0
 refs 4
-1 0.0 0.0
-0 0.0 0.0
-2 0.0 0.0
-3 0.0 0.0
+1 0 0
+0 1 0
+2 1 1
+3 0 1
 kids 0
 OBJECT poly
 name "tail-navlight"
 data 8
-Mesh.002
-crease 30.000000
+Mesh.011
+crease 30.0
 numvert 4
--1e-06 -0.5 -0.499903
-0 0.5 -0.499903
-0 -0.5 0.500097
-1e-06 0.5 0.500097
+-0 -0.5 -0.4999
+0 0.5 -0.4999
+0 -0.5 0.5001
+0 0.5 0.5001
 numsurf 1
-SURF 0x20
-mat 1
+SURF 0X0
+mat 0
 refs 4
-1 0.0 0.0
-0 0.0 0.0
-2 0.0 0.0
-3 0.0 0.0
+1 0 0
+0 1 0
+2 1 1
+3 0 1
 kids 0

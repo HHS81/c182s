@@ -452,6 +452,12 @@ var customFailures_special = {
         },
         
     ],
+    "c182s-floats":[
+        #{id:"lighting/gear-select",    name:"lighting/gear-select",
+        #    actuator: set_unserviceable_abs("/systems/electrical/gear-select-serviceable"),
+        #    trigger:  MtbfTrigger.new(0),
+        #},
+    ],
     c182t:[
         # STNDBY-Battery not implemented yet!
         #{id:"systems/electrical/battery-stndby", name:"STNDBY Battery",

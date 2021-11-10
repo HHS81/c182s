@@ -286,6 +286,7 @@
       <bool n="3" alias="/sim/model/pax/pax[0]/enabled"/>
       <bool n="4" alias="/sim/model/pax/pax[1]/enabled"/>
       <bool n="20" alias="/sim/model/c182s/parachuters/aircraft-mod-enabled"/>
+      <bool n="21" alias="/sim/model/c182s/parachuters/trigger-jump"/>
 
     </generic>
   </multiplay>
@@ -1339,6 +1340,7 @@
     <!-- implemented in FG1000: <file>Aircraft/c182s/Nasal/annunciator_panel.nas</file>-->
     <file>Aircraft/c182s/Nasal/damage.nas</file>
     <file>Aircraft/c182s/Nasal/c182t.nas</file>
+    <file>Aircraft/c182s/Nasal/mp-parachuters.nas</file>
 </c182s>
 
     <terrain>

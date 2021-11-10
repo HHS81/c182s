@@ -190,6 +190,12 @@
         c182_mp_slowprop_TDM1_updater.start();
 
 
+        # Parachuters dropping animation
+        io.include("Aircraft/c182s/Nasal/mp-parachuters.nas");
+        setlistener(rplayer.getNode("sim/multiplay/generic/bool[21]").getPath(), func(node) {
+            if (node.getValue() == 1) mp_parachuterjump_spawn(rplayer);
+        }, 0, 0);
+
    ]]></load>
 </nasal>
 

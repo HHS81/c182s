@@ -812,7 +812,7 @@ var parajump = func(who) {
         var chute_timer = maketimer(parajump_transferToStrutTimeSecs+1, func(){
             print("Parajumper " ~ jumper_name ~ " jumped!");
             setprop("/sim/model/c182s/parachuters/trigger-jump", 1);
-            interpolate("/sim/model/c182s/parachuters/trigger-jump", 0, 0.25);
+            settimer(func(){ setprop("/sim/model/c182s/parachuters/trigger-jump", 0);}, 0.25);
             #setprop(jumper_weight_p, 0);
             setprop(strut_weight_p, 0);
         });
@@ -846,6 +846,10 @@ var parajump_all = func() {
     setprop("/sim/messages/pilot", "Prepare to jump!");
 }
 
+# Detect local jump and spawn model
+setlistener("/sim/model/c182s/parachuters/trigger-jump", func(node) {
+    if (node.getValue() == 1) mp_parachuterjump_spawn(props.globals.getNode("/"));
+}, 0, 0);
 
 
 ##########

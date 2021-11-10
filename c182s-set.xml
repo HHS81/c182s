@@ -314,6 +314,7 @@
       <bool n="3" alias="/sim/model/pax/pax[0]/enabled"/>
       <bool n="4" alias="/sim/model/pax/pax[1]/enabled"/>
       <bool n="20" alias="/sim/model/c182s/parachuters/aircraft-mod-enabled"/>
+      <bool n="21" alias="/sim/model/c182s/parachuters/trigger-jump"/>
       
 
     </generic>
@@ -1143,11 +1144,6 @@
         </aircraft-data>
 
      <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>
-     
-     <submodels>
-        <serviceable type="bool">true</serviceable>
-        <path>Models/c182-submodels.xml</path>
-     </submodels>
 
  </sim>
 
@@ -1448,6 +1444,7 @@
     <file>Aircraft/c182s/Nasal/flashlight.nas</file>
     <file>Aircraft/c182s/Nasal/annunciator_panel.nas</file>
     <file>Aircraft/c182s/Nasal/damage.nas</file>
+    <file>Aircraft/c182s/Nasal/mp-parachuters.nas</file>
 </c182s>
 
         <terrain>

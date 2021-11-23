@@ -53,7 +53,7 @@ For additional info, please also refer to the Pilots Operating Manual (POH), pag
     </step>
     <step>
         <message>When you approach your plane, be sure to remove all ice and snow accumulation from it. Even small
-            ammounts of snow will have adverse effects on your planes performance.
+            amounts of snow will have adverse effects on your planes performance.
             You can do this by pressing the {"clean"|clean} button from the airplane options menu.</message>
         <wait>20</wait>
     </step>

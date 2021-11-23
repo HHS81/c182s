@@ -738,25 +738,25 @@ var stepMagnetos = func(p) {
 # Handle seat position
 ###########
 # called from interior-model from seat
-var updateSeatPosition = func(ammount_in_m=0) {
+var updateSeatPosition = func(amount_in_m=0) {
     var seat_offset = getprop("/sim/model/c182s/cockpit/FrontSeatL-setting-m") or 0;
-    #print("updateSeatPosition called with p=" ~ ammount_in_m ~ ", seat_offset=" ~ seat_offset);
-    if (ammount_in_m == 0) {
+    #print("updateSeatPosition called with p=" ~ amount_in_m ~ ", seat_offset=" ~ seat_offset);
+    if (amount_in_m == 0) {
         # initialize
-        ammount_in_m = seat_offset;
-    } else if ( (ammount_in_m > 0 and seat_offset < 0.15) or (ammount_in_m < 0 and seat_offset > -0.15) ) {
+        amount_in_m = seat_offset;
+    } else if ( (amount_in_m > 0 and seat_offset < 0.15) or (amount_in_m < 0 and seat_offset > -0.15) ) {
         # adjust if inside seat limits
-        seat_offset = seat_offset + ammount_in_m;
+        seat_offset = seat_offset + amount_in_m;
         setprop("/sim/model/c182s/cockpit/FrontSeatL-setting-m", sprintf("%.2f", seat_offset));
     } else {
         # limits were hit
-        ammount_in_m = 0;
+        amount_in_m = 0;
     }
     
     var view_default = getprop("/sim/view/config/z-offset-m");
     var view_current = getprop("/sim/current-view/z-offset-m");
-    setprop("/sim/view/config/z-offset-m", view_default + ammount_in_m);
-    setprop("/sim/current-view/z-offset-m", view_current + ammount_in_m);
+    setprop("/sim/view/config/z-offset-m", view_default + amount_in_m);
+    setprop("/sim/current-view/z-offset-m", view_current + amount_in_m);
 }
 updateSeatPosition(); # init seat position
 

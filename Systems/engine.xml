@@ -206,7 +206,7 @@
         <max>1</max>
     </filter>
     <filter>
-        <name>Engine roughness rpm oscillation ammount</name>
+        <name>Engine roughness rpm oscillation amount</name>
         <type>gain</type>
         <input>
             <expression>

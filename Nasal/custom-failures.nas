@@ -571,7 +571,7 @@ var registerSVCProp = func(failureID) {
 # Init some random failures
 # (called by GUI mode)
 var initRandomFailures = func() {  
-    var howmany = getprop("/sim/failure-manager/surprise-mode/ammount") or 0;
+    var howmany = getprop("/sim/failure-manager/surprise-mode/amount") or 0;
     var maxtime = getprop("/sim/failure-manager/surprise-mode/maxtime") or 0;
     var maxseconds = maxtime * 60;
     print("Custom failure initRandomFailures: " ~ howmany ~ " in " ~ maxtime ~ " minutes (" ~ maxseconds ~ "s)");
@@ -657,7 +657,7 @@ print("Custom failure modes init: done");
 # Init failure modes in case requested by startup.
 # This can be done by providing the following properties through the laucher or cli:
 #  + random failures (fail at most n systems in max x time)
-#     --prop:/sim/failure-manager/surprise-mode/ammount=<number>
+#     --prop:/sim/failure-manager/surprise-mode/amount=<number>
 #     --prop:/sim/failure-manager/surprise-mode/maxtime=<minutes> (optional, default 30)
 #
 #  + random surprise mode (fail one system every x minutes): 
@@ -668,7 +668,7 @@ print("Custom failure modes init: done");
 #     --prop:/sim/failure-manager/quiet=1
 #
 setlistener("/sim/signals/fdm-initialized", func {
-    if (getprop("/sim/failure-manager/surprise-mode/ammount")) {
+    if (getprop("/sim/failure-manager/surprise-mode/amount")) {
         print("Custom failure modes: request random failures on startup...");
         if (!getprop("/sim/failure-manager/surprise-mode/maxtime")) setprop("/sim/failure-manager/surprise-mode/maxtime", 30);
         initRandomFailures();

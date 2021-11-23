@@ -11,9 +11,9 @@ intake manifods.
 Implementation notice:
 - The idea is to treat every item that holds fuel as independent tank.
 - The tanks have drains: /controls/fuel/tank[n]/drain-valve (1=open/0=shut)
-- Switches define possible valves and define the ammount and conditions of flow.
+- Switches define possible valves and define the amount and conditions of flow.
 - Summers define the outflow/inflow of the whole tank and depend on linked valves;
-  they are just there to let jsbsim handle the content ammount. This way a tank can
+  they are just there to let jsbsim handle the content amount. This way a tank can
   simultaneously be drained+refuelled+whatever.
 - internal system flow rate s synchronized to 0.5pps for now.
 

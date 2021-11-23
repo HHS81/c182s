@@ -646,7 +646,7 @@
            1.  several sources add friction independently
            2.  the souces are summed up end can eventually kill the engine
            2a. a "special" source is caused by a flip-flop that monitors friction itself; if friction exceeds a limit
-               for a defined ammount of time, additional friction is applied that will kill the engine.
+               for a defined amount of time, additional friction is applied that will kill the engine.
             
     -->
     <channel name="Engine Friction" execrate="8">
@@ -757,7 +757,7 @@
         </fcs_function>
         
         
-        <!-- "Special source": if friction levels are too high for an extendet ammount of time, friction should runaway
+        <!-- "Special source": if friction levels are too high for an extendet amount of time, friction should runaway
              and kill the engine. This applies to high CHT temps and loss of oil pressure (failing pump/low oil levels), etc. -->
         <kinematic name="systems/propulsion/friction-kill-engine-norm">
             <!-- kinematic applies friction slowly to get engine down with a nice effect -->

@@ -95,7 +95,7 @@ The simulation is quite detailed, so a failed gauge does not neccesarily mean a 
 The plane has also two surprise modes that can enrich you flying experience and allows training of emergency situations (without knowing what
 and when something fails).
 1. _Random failure mode:_
-   Use this to fail a defined ammount of failures until a maximum time is reached. It is not guaranteed that all failures will trigger (but most will!).
+   Use this to fail a defined amount of failures until a maximum time is reached. It is not guaranteed that all failures will trigger (but most will!).
 2. _Random surprise mode:_
    Fail a random system in a fixed time interval.
 
@@ -104,7 +104,7 @@ The surprise modes can be activated at startup from commandline. You can add, ad
 # Init failure modes in case requested by startup.
 # This can be done by providing the following properties through the laucher or cli:
 #  + random failures (fail at most n systems in max x time)
-#     --prop:/sim/failure-manager/surprise-mode/ammount=<number>
+#     --prop:/sim/failure-manager/surprise-mode/amount=<number>
 #     --prop:/sim/failure-manager/surprise-mode/maxtime=<minutes> (optional, default 30)
 #
 #  + random surprise mode (fail one system every x minutes): 

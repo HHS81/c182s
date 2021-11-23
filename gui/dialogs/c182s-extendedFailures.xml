@@ -11,7 +11,7 @@
       <![CDATA[
         # set some defaults for the gui
         var props = [
-            ["/sim/failure-manager/surprise-mode/ammount", 1],
+            ["/sim/failure-manager/surprise-mode/amount", 1],
             ["/sim/failure-manager/surprise-mode/maxtime", 30],
             ["/sim/failure-manager/surprise-mode/timer",  30],
         ];
@@ -884,15 +884,15 @@
     </text>
 
     <input>
-        <name>c182-customfailures-randomsurprise-ammount</name>
+        <name>c182-customfailures-randomsurprise-amount</name>
         <halign>left</halign>
-        <property>/sim/failure-manager/surprise-mode/ammount</property>
+        <property>/sim/failure-manager/surprise-mode/amount</property>
         <type>INT</type>
         <width>100</width>
         <live>true</live>
         <binding>
             <command>dialog-apply</command>
-            <name>c182-customfailures-randomsurprise-ammount</name>
+            <name>c182-customfailures-randomsurprise-amount</name>
         </binding>
     </input>
     
@@ -929,7 +929,7 @@
                 <value>0.01</value>
             </less-than>
             <greater-than>
-                <property>/sim/failure-manager/surprise-mode/ammount</property>
+                <property>/sim/failure-manager/surprise-mode/amount</property>
                 <value>0</value>
             </greater-than>
         </and>

@@ -34,7 +34,7 @@
         <fcs_function name="static-pressure-inhg-venturi">
           <function>
             <!-- The idea of this implementation is, to calculate the deviation based on the altitude calibration chart.
-              This gives us the ammount of needed adjustemnt based on speed and pressure altitude, and direct from the POH.
+              This gives us the amount of needed adjustemnt based on speed and pressure altitude, and direct from the POH.
               Then we calculate a correction factor out of that and apply it to the static pressure.
               Of course, this yields not perfect results but should be close enough...
             -->

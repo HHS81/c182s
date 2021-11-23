@@ -263,7 +263,7 @@ var calculate_real_chttemp = maketimer(0.5, func {
 # ======== Spark plug icing simulation =========
 # When engine halts, checks if spark plug icing occurs
 # This can occur if the spark plug temp is below freezing temps and the engine stops.
-# Burnt fuel will produce small ammounts of water vapor which then freezes over
+# Burnt fuel will produce small amounts of water vapor which then freezes over
 # the still cold metal, shorting the elec and no spark will appear anymore.
 var sparkPlugIcingMeltingHandler = maketimer(1, func(){
     # Simulate spark plug ice melting (like from resident or environment heat, or heater)

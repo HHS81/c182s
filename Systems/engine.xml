@@ -540,6 +540,35 @@
     </flipflop>
     
     
+    <!-- Oil kinematic viscosity -->
+    <filter>
+        <name>Oil kinematic viscosity</name>
+        <type>gain</type>
+        <input>
+            <!-- TODO: in the future we might switch the inputs based on a selected oil grade.
+                       POH 8-14 says, we can use 15W-50 or 20W-50 in all temps -->
+            <!-- Table for 15W-40 https://wiki.anton-paar.com/us-en/engine-oil/; (adjusted for degC->degF) -->
+            <expression>
+                <table>
+                    <property>/engines/engine/oil-final-temperature-degf</property>
+                    <entry><ind>32</ind><dep>1489.4</dep></entry>  <!-- 0°C -->
+                    <entry><ind>50</ind><dep>658.60</dep></entry>
+                    <entry><ind>68</ind><dep>326.87</dep></entry>
+                    <entry><ind>86</ind><dep>178.01</dep></entry>   <!-- 30°C -->
+                    <entry><ind>104</ind><dep>105.10</dep></entry>  <!-- 40°C, start of green arc -->
+                    <entry><ind>122</ind><dep>66.464</dep></entry>
+                    <entry><ind>140</ind><dep>44.585</dep></entry>
+                    <entry><ind>158</ind><dep>31.350</dep></entry>
+                    <entry><ind>176</ind><dep>23.006</dep></entry>
+                    <entry><ind>194</ind><dep>17.467</dep></entry>
+                    <entry><ind>212</ind><dep>13.648</dep></entry>  <!-- 100°C -->
+                </table>
+            </expression>
+        </input>
+        <output>
+            <property>/engines/engine[0]/oil-kinematic-viscosity</property>
+        </output>
+    </filter>
     
     
     <!-- Oil temperature -->

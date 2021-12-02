@@ -42,15 +42,6 @@ Author: 12/2017  Benedikt Hallinger
             </range>
             <output>/engines/engine/external-heat/applied-degF</output>
         </aerosurface_scale>
-        <fcs_function name="Oil temp plus external heat">
-            <function>
-                <sum>
-                    <property>/engines/engine/external-heat/applied-degF</property>
-                    <property>/engines/engine/oil-temperature-degf-indicated</property> <!-- compensated for env-temp and low oil, see engine.xml -->
-                </sum>
-            </function>
-            <output>/engines/engine/oil-final-temperature-degf</output>   
-        </fcs_function>
         
         <!-- todo: could be modelled more realistical, since engine radiation should also have a little effect -->
         <fcs_function name="Cowling environment air Temperature">
@@ -63,18 +54,6 @@ Author: 12/2017  Benedikt Hallinger
             <output>/engines/engine/cowling-air-temperature-degf</output>   
         </fcs_function>
         
-        <!-- todo: should be better placed in engine.xml, but is not active there... -->
-        <summer name="Engine Oil compensated environment Temperature">
-            <input>/engines/engine/oil-temperature-degf</input>
-            <input>-/engines/engine/oil-temperature-env-diff</input>
-            <output>/engines/engine/oil-compensated-temperature-degf</output>
-        </summer>
-        <summer name="CHT compensated environment Temperature">
-            <input>/engines/engine/cht-degf</input>
-            <input>-/engines/engine/cht-temperature-env-diff</input>
-            <input>/engines/engine/external-heat/applied-degF</input>
-            <output>/engines/engine/cht-compensated-temperature-degf</output>
-        </summer>
     </channel>
 
 </system>

@@ -106,8 +106,6 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
     #
     # Engine start function
     #
-    setprop("/sim/start-state-internal/oil-temp-override", 1); # override disables coughing due to low oil temp
-    settimer(func{ setprop("/sim/start-state-internal/oil-temp-override", 0); }, 240); # disable override after this time
     
     # Ensure disabled complex-engine-procedures
     # (so engine always starts)
@@ -291,8 +289,6 @@ var state_coldAndDark = func() {
     setprop("/controls/lighting/pedestal-lights-norm", 0);
     setprop("/controls/lighting/radio-lights-norm", 0);
     
-    setprop("/sim/start-state-internal/oil-temp-override", 0);
-    
     setprop("/controls/switches/magnetos", 0);
 };
 
@@ -329,7 +325,18 @@ var state_approach = func() {
     state_cruising();
 }
 
-
+# Add some oil and cht temp override to simulate an engine that had already run for some time
+# Note: the values depend significantly on OAT and the current engine configuration.
+#       we might consider to make the adjustments depending on that to get better results, but for now,
+#       the goal is to have sensible starting values for the state system when crusing/approach/ready-for-takeoff,
+#       ie. to not trigger the "oil too cold" engine roughness and coughing.
+var state_adjustEngineTemps = func(oilTemp, chtTemp) {
+    setprop("/engines/engine/oil-temperature-degf-offset", oilTemp);
+    interpolate("/engines/engine/oil-temperature-degf-offset", 0, 100);
+    
+    setprop("/engines/engine/cht-temperature-degf-offset", chtTemp);
+    interpolate("/engines/engine/cht-temperature-degf-offset", 0, 40);
+}
 
 
 ##########################################
@@ -361,11 +368,13 @@ var applyAircraftState = func() {
             } else {
                 print("Apply state: Automatic (not-parking->ReadyForTakeoff)");
                 state_readyForTakeoff();
+                if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(100, 225);
             }
         } else {
             # somewhere in the air
             print("Apply state: Automatic (in-air->cruise)");
             state_cruising();
+            if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(130, 275);
         }
     }
     if (selected_state == "saved") {
@@ -380,14 +389,17 @@ var applyAircraftState = func() {
     if (selected_state == "take-off") {
         print("Apply state: Ready-for-Takeoff");
         state_readyForTakeoff();
+        if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(100, 225);
     }
     if (selected_state == "cruise") {
         print("Apply state: cruise");
         state_cruising();
+        if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(130, 275);
     }
     if (selected_state == "approach") {
         print("Apply state: approach");
         state_approach();
+        if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(130, 275);
     }
 };
 

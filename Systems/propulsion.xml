@@ -155,6 +155,35 @@
 	
     </channel>
 
+
+<channel name="Engine temperature">
+    <summer name="Engine Oil compensated environment Temperature">
+        <input>/engines/engine/oil-temperature-degf</input>
+        <input>-/engines/engine/oil-temperature-env-diff</input>
+        <input>/engines/engine/oil-temperature-degf-offset</input>  <!-- to give some warm oil with engine running states at sim start (takeoff, cruise), see c182s-states.nas -->
+        <output>/engines/engine/oil-compensated-temperature-degf</output>
+    </summer>
+    <summer name="CHT compensated environment Temperature">
+        <input>/engines/engine/cht-degf</input>
+        <input>-/engines/engine/cht-temperature-env-diff</input>
+        <input>/engines/engine/cht-temperature-degf-offset</input>   <!-- to give some warm cylinder with engine running states at sim start (takeoff, cruise), see c182s-states.nas -->
+        <output>/engines/engine/cht-compensated-temperature-degf</output>
+    </summer>
+    
+    <summer name="Oil temp plus external heat">
+        <input>/engines/engine/oil-temperature-degf-indicated</input>
+        <input>/engines/engine/external-heat/applied-degF</input>
+        <output>/engines/engine/oil-final-temperature-degf</output>
+    </summer>
+
+    <summer name="CHT temp plus external heat">
+        <input>/engines/engine/cht-compensated-temperature-degf</input>
+        <input>/engines/engine/external-heat/applied-degF</input>
+        <output>/engines/engine/cht-final-temperature-degf</output>
+    </summer>
+</channel>
+
+
 <channel name= "Prop Icing">
 <fcs_function name="systems/propulsion/prop-ice">
           <function>
@@ -707,12 +736,6 @@
                 <product>
                     <property>/engines/engine/complex-engine-procedures</property>  <!-- complex-engine-procedures EQ 1 -->
                     <property>/engines/engine/allow-oil-management</property>       <!-- allow-oil-management EQ 1 -->
-                    <abs> <!-- oil-temp-override EQ 0; esp. for autostart -->
-                        <difference>
-                            <property>/sim/start-state-internal/oil-temp-override</property>
-                            <value> 1 </value>
-                        </difference>
-                    </abs>
                     <!--<property>/engines/engine/running</property>--> <!-- only apply with pistons moving -->
                 
                     <table>

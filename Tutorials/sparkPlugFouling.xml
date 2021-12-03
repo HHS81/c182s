@@ -276,7 +276,7 @@ In cruise, the problem should resolve within one or two minutes when properly le
     </step>
     
     <step>
-        <message>Lean the mixture to achieve 50 degee lean of {EGT|E G T} peak and push the throttle in to set about 1800 RPM.</message>
+        <message>Lean the mixture to achieve 50 degree lean of {EGT|E G T} peak and push the throttle in to set about 1800 RPM.</message>
         <wait>10</wait>
         <error>
             <condition>
@@ -321,7 +321,7 @@ In cruise, the problem should resolve within one or two minutes when properly le
                     <value>0.05</value>
                 </greater-than-equals>
             </condition>
-            <message>There is still lead deposits, we need to burn off some more.</message>
+            <message>There are still lead deposits, we need to burn off some more.</message>
             <interval>5</interval>
         </error>
         <error>
@@ -407,7 +407,7 @@ In cruise, the problem should resolve within one or two minutes when properly le
     
     <step>
         <message>You now can perform another magneto check to verify the problem is gone.
-            {Mixture full rich, 1800 RPM, Mags LEFT-BOTH-RIGHT-BOTH, must not exceed 150/50 RPM drop}</message>
+            {(Mixture full rich, 1800 RPM, Mags LEFT-BOTH-RIGHT-BOTH, must not exceed 150/50 RPM drop)}</message>
         <wait>35</wait>
         <set>
             <property>/fdm/jsbsim/systems/propulsion/sparkplugs/right/fouling-norm/malfunction/fail_hardover</property>
@@ -544,7 +544,7 @@ In cruise, the problem should resolve within one or two minutes when properly le
     </step>
     <step>
         <message>When you are flying in cold weather or descending from high altitudes, keep an eye on the {CHT|C H T}. Do not let the engine cool down too much.
-            Plan your descend ahead! It it OK of course to put the throttle to idle if needed, but avoid cold {CHT|cylinder} for prolonged times.</message>
+            Plan your descend ahead! It is OK of course to put the throttle to idle if needed, but avoid cold {CHT|cylinder} for prolonged times.</message>
         <wait>10</wait>
         <error>
             <condition>

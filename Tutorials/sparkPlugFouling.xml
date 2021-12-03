@@ -230,7 +230,7 @@ In cruise, the problem should resolve within one or two minutes when properly le
     <step>
         <condition>
             <greater-than-equals>
-                <property>/engines/engine/cht-degf</property>
+                <property>/engines/engine/cht-final-temperature-degf</property>
                 <value>300</value>
             </greater-than-equals>
         </condition>
@@ -253,7 +253,7 @@ In cruise, the problem should resolve within one or two minutes when properly le
     <step>
         <condition>
             <greater-than-equals>
-                <property>/engines/engine/cht-degf</property>
+                <property>/engines/engine/cht-final-temperature-degf</property>
                 <value>300</value>
             </greater-than-equals>
         </condition>
@@ -261,7 +261,7 @@ In cruise, the problem should resolve within one or two minutes when properly le
         <error>
             <condition>
                 <greater-than-equals>
-                    <property>/engines/engine/cht-degf</property>
+                    <property>/engines/engine/cht-final-temperature-degf</property>
                     <value>300</value>
                 </greater-than-equals>
             </condition>
@@ -327,7 +327,7 @@ In cruise, the problem should resolve within one or two minutes when properly le
         <error>
             <condition>
                 <greater-than-equals>
-                    <property>/engines/engine/cht-degf</property>
+                    <property>/engines/engine/cht-final-temperature-degf</property>
                     <value>500</value>
                 </greater-than-equals>
             </condition>
@@ -396,7 +396,7 @@ In cruise, the problem should resolve within one or two minutes when properly le
         <error>
             <condition>
                 <greater-than-equals>
-                    <property>/engines/engine/cht-degf</property>
+                    <property>/engines/engine/cht-final-temperature-degf</property>
                     <value>500</value>
                 </greater-than-equals>
             </condition>
@@ -471,7 +471,7 @@ In cruise, the problem should resolve within one or two minutes when properly le
         <error>
             <condition>
                 <greater-than-equals>
-                    <property>/engines/engine/cht-degf</property>
+                    <property>/engines/engine/cht-final-temperature-degf</property>
                     <value>500</value>
                 </greater-than-equals>
             </condition>
@@ -510,7 +510,7 @@ In cruise, the problem should resolve within one or two minutes when properly le
         <error>
             <condition>
                 <greater-than-equals>
-                    <property>/engines/engine/cht-degf</property>
+                    <property>/engines/engine/cht-final-temperature-degf</property>
                     <value>500</value>
                 </greater-than-equals>
             </condition>
@@ -534,7 +534,7 @@ In cruise, the problem should resolve within one or two minutes when properly le
         <error>
             <condition>
                 <greater-than-equals>
-                    <property>/engines/engine/cht-degf</property>
+                    <property>/engines/engine/cht-final-temperature-degf</property>
                     <value>500</value>
                 </greater-than-equals>
             </condition>
@@ -559,7 +559,7 @@ In cruise, the problem should resolve within one or two minutes when properly le
         <error>
             <condition>
                 <greater-than-equals>
-                    <property>/engines/engine/cht-degf</property>
+                    <property>/engines/engine/cht-final-temperature-degf</property>
                     <value>500</value>
                 </greater-than-equals>
             </condition>
@@ -585,7 +585,7 @@ In cruise, the problem should resolve within one or two minutes when properly le
         <error>
             <condition>
                 <greater-than-equals>
-                    <property>/engines/engine/cht-degf</property>
+                    <property>/engines/engine/cht-final-temperature-degf</property>
                     <value>500</value>
                 </greater-than-equals>
             </condition>

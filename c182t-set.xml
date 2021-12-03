@@ -207,9 +207,6 @@
 
   <!-- Aircraft states -->
   <start-state type="string">auto</start-state>
-  <start-state-internal>
-      <oil-temp-override type="bool">false</oil-temp-override>
-  </start-state-internal>
 
   <chocks>
   <enable type="bool">false</enable>
@@ -1196,6 +1193,8 @@
    <allow-sparkplug-icing type="bool">false</allow-sparkplug-icing>
    <winter-kit-installed type="bool">false</winter-kit-installed>
    <oil-temperature-env-diff type="double">0</oil-temperature-env-diff>
+   <oil-temperature-degf-offset type="double">0</oil-temperature-degf-offset>
+   <cht-temperature-degf-offset type="double">0</cht-temperature-degf-offset>
    <oil-compensated-temperature-degf type="double">60</oil-compensated-temperature-degf>
    <external-heat>
        <enabled type="bool">false</enabled>

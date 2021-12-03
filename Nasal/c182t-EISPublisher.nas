@@ -37,7 +37,7 @@ var GenericEISPublisher =
     obj.addPropMap("OilPressurePSI", "/engines/engine[0]/indicated-oil-pressure-psi");
     obj.addPropMap("OilTemperatureF", "/engines/engine/indicated-oil-final-temperature-degf");
     obj.addPropMap("EGTNorm", "/engines/engine[0]/egt-norm");
-    obj.addPropMap("CHTDegF", "/engines/engine[0]/cht-degf");
+    obj.addPropMap("CHTDegF", "/engines/engine[0]/indicated-cht-degf");
     obj.addPropMap("VacuumSuctionInHG", "/systems/vacuum/suction-inhg");
 
     return obj;

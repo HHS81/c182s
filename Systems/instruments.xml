@@ -88,10 +88,53 @@
         </output>
     </filter>
 
+
+    <filter>
+        <name>Engine Indicated Oil Pressure needle speed</name>
+        <type>gain</type>
+        <input>
+            <!-- adjust needle quickly at startup, for the case that engine starts with engine on from state system -->
+            <condition>
+                <less-than>
+                    <property>/sim/time/elapsed-sec</property>
+                    <value>5.0</value>
+                </less-than>
+            </condition>
+            <value>0.1</value>
+        </input>
+        <input>
+            <condition>
+                <property>/instruments/oil-press/serviceable</property>
+                <greater-than>
+                    <property>/systems/electrical/outputs/instr-ignition-switch</property>
+                    <value>12.0</value>
+                </greater-than>
+                <greater-than>
+                    <property>/engines/engine/oil-pressure-psi</property>
+                    <value>5.0</value>
+                </greater-than>
+            </condition>
+            <expression>
+                <!-- high viscosity (ie. cold) oil is more slowly building pressure -->
+                <table>
+                    <property>/engines/engine[0]/oil-kinematic-viscosity</property>
+                    <entry><ind>  30  </ind> <dep>   1 </dep></entry>
+                    <entry><ind>  150 </ind> <dep>  10 </dep></entry>
+                    <entry><ind> 1500 </ind> <dep>  60 </dep></entry>
+                </table>
+            </expression>
+        </input>
+        <input>
+            <value>1.0</value>
+        </input>
+        <output>
+            <property>/instruments/oil-press/filter-time</property>
+        </output>
+    </filter>
     <filter>
         <name>Engine Indicated Oil Pressure</name>
         <type>exponential</type>
-        <filter-time>1.0</filter-time>
+        <filter-time><property>/instruments/oil-press/filter-time</property></filter-time>
         <input>
             <condition>
                 <property>/instruments/oil-press/serviceable</property>
@@ -144,7 +187,8 @@
                     <value>12.0</value>
                 </greater-than>
             </condition>
-            <property>/engines/engine/cht-degf</property>
+            <!--<property>/engines/engine/cht-degf</property>-->
+            <property>/engines/engine/cht-final-temperature-degf</property>
         </input>
         <input>
             <value>0.0</value>

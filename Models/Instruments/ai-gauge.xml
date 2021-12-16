@@ -206,13 +206,10 @@
   <object-name>InopIndicator</object-name>
   <condition>
     <not>
-        <and>
-            <property>instrumentation/attitude-indicator/serviceable</property>
-            <greater-than>
-                <property>instrumentation/attitude-indicator/spin</property>
-                <value>0.50</value>
-            </greater-than>
-        </and>
+        <greater-than>
+            <property>instrumentation/attitude-indicator/spin</property>
+            <value>0.50</value>
+        </greater-than>
     </not>
   </condition>
  </animation>

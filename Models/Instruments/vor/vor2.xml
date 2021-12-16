@@ -12,35 +12,29 @@
   <gs-in-range>instrumentation/nav[1]/gs-in-range</gs-in-range>
  </params>
 
- <path>vor.ac</path>
+ <path>vor2.ac</path>
 
   <!--<effect>
     <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
     <object-name>Face</object-name>
-    <object-name>GlideslopeNeedle</object-name>
     <object-name>Ring</object-name>
     <object-name>LocalizerNeedle</object-name>
     <object-name>Front</object-name>
     <object-name>TO</object-name>
     <object-name>FR</object-name>
     <object-name>NAV</object-name>
-    <object-name>GS_out_of_range</object-name>
-    <object-name>GS_in_range</object-name>
     <object-name>disk</object-name>
   </effect>-->
 
  <animation>
   <type>material</type>
   <object-name>Face</object-name>
-  <object-name>GlideslopeNeedle</object-name>
   <object-name>Ring</object-name>
   <object-name>LocalizerNeedle</object-name>
   <object-name>Front</object-name>
   <object-name>TO</object-name>
   <object-name>FR</object-name>
   <object-name>NAV</object-name>
-  <object-name>GS_out_of_range</object-name>
-  <object-name>GS_in_range</object-name>
   <emission>
    <red>1.0</red>
    <green>0.8</green>
@@ -89,24 +83,6 @@
 
  <animation>
   <type>select</type>
-  <object-name>GS_in_range</object-name>
-  <condition>
-   <property alias="../../../params/gs-in-range"/>
-  </condition>
- </animation>
-
- <animation>
-  <type>select</type>
-  <object-name>GS_out_of_range</object-name>
-  <condition>
-   <not>
-    <property alias="../../../../params/gs-in-range"/>
-   </not>
-  </condition>
- </animation>
-
- <animation>
-  <type>select</type>
   <object-name>NAV</object-name>
   <condition>
    <not>
@@ -129,26 +105,6 @@
   <condition>
    <property alias="../../../params/nav-from-flag"/>
   </condition>
- </animation>
-
- <animation>
-  <name>GlideslopeNeedleTransform</name>
-  <type>rotate</type>
-  <object-name>GlideslopeNeedle</object-name>
-   <property alias="../../params/nav-gs-needle-deflection"/>
-  <factor>-25</factor>
-  <min-deg>-25</min-deg>
-  <max-deg>25</max-deg>
-  <center>
-   <x-m>0</x-m>
-   <y-m>-0.03</y-m>
-   <z-m>0</z-m>
-  </center>
-  <axis>
-   <x>-1</x>
-   <y>0</y>
-   <z>0</z>
-  </axis>
  </animation>
 
  <animation>
@@ -218,7 +174,6 @@
   <name>Alpha Order Group</name>
   <object-name>Face</object-name>
   <object-name>LocalizerNeedleTransform</object-name>
-  <object-name>GlideslopeNeedleTransform</object-name>
   <object-name>RingTransform</object-name>
   <object-name>Front</object-name>
  </animation>

@@ -23,12 +23,13 @@
 var registerDamageListener = func(id, name) {
     #print("  add listener id=", id, "; name=", name);
     setlistener(id, func(node){
+            var display_on_screen = getprop("/sim/failure-manager/display-on-screen");
             if (node.getValue() > 0.1 and node.getValue()<= 0.5) {
                 print(name, " damaged! (", id ,")");
-                logger.screen.red(name ~ " damaged!");
+                if (display_on_screen) logger.screen.red(name ~ " damaged!");
             } else if (node.getValue() > 0.1) {
                 print(name, " broke! (", id ,")");
-                logger.screen.red(name ~ " broke!");
+                if (display_on_screen) logger.screen.red(name ~ " broke!");
             }
             
             # store the value in a -saved property so we can reinitialize it in the next session

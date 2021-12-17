@@ -181,6 +181,35 @@
             <gain>3.8</gain> <!-- 3.8 g's -->
         </pure_gain>
 
+        <fcs_function name="damage/limits-flaps-break">
+          <function>
+                <table>
+                    <independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+                    <tableData breakPoint="0">
+                        <!-- limits for flapDeg to KIAS, from POH -->
+                         0   999
+                        10   160
+                        20   135
+                        38   115
+                   </tableData>
+                </table>
+          </function>
+        </fcs_function>
+        <fcs_function name="damage/limits-flaps-stuck">
+          <function>
+                <table>
+                    <independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+                    <tableData breakPoint="0">
+                        <!-- limits for flapDeg to KIAS, from POH -->
+                         0   999
+                        10   145
+                        20   125
+                        38   105
+                   </tableData>
+                </table>
+          </function>
+        </fcs_function>
+
         <pure_gain name="damage/force-aero-lbs">
             <input>forces/fbz-aero-lbs</input>
             <gain>-1.0</gain>
@@ -387,6 +416,76 @@
                 wing-damage/right-wing LT 0.085
             </test>
         </switch>
+        
+        
+        
+        <!-- Left flap damage -->
+        <switch name="left-flap-damage-detector">
+            <output>wing-damage/left-flap-detector</output>
+            <default value="wing-damage/left-flap-detector"/>
+
+            <!-- restore saved damage on start -->
+            <test logic="AND" value="wing-damage/left-flap-detector-saved">
+                /sim/time/elapsed-sec LT 0.25
+                wing-damage/left-flap-detector-saved GT 0
+            </test>
+
+            <!-- No damage -->
+            <test logic="OR" value="0.0">
+                settings/damage EQ 0
+                damage/repairing EQ 1
+            </test>
+
+            <!-- Overspeed -->
+            <test logic="AND" value="1.0">
+                /velocities/airspeed-kt GT damage/limits-flaps-break
+            </test>
+            
+            <test logic="AND" value="0.25">
+                /velocities/airspeed-kt GT damage/limits-flaps-stuck
+                wing-damage/left-flap LT 0.25
+            </test>
+        </switch>
+        <actuator name="left-flap-damage">
+            <input> wing-damage/left-flap-detector </input>
+            <rate_limit sense="incr">0.075</rate_limit>
+            <rate_limit sense="decr">10</rate_limit>
+            <output>wing-damage/left-flap</output>
+        </actuator>
+        
+        <!-- Right flap damage -->
+        <switch name="right-flap-damage-detector">
+            <output>wing-damage/right-flap-detector</output>
+            <default value="wing-damage/right-flap-detector"/>
+
+            <!-- restore saved damage on start -->
+            <test logic="AND" value="wing-damage/right-flap-detector-saved">
+                /sim/time/elapsed-sec LT 0.25
+                wing-damage/right-flap-detector-saved GT 0
+            </test>
+
+            <!-- No damage -->
+            <test logic="OR" value="0.0">
+                settings/damage EQ 0
+                damage/repairing EQ 1
+            </test>
+
+            <!-- Overspeed -->
+            <test logic="AND" value="1.0">
+                /velocities/airspeed-kt GT damage/limits-flaps-break
+            </test>
+            
+            <test logic="AND" value="0.25">
+                /velocities/airspeed-kt GT damage/limits-flaps-stuck
+                wing-damage/right-flap LT 0.25
+            </test>
+        </switch>
+        <actuator name="right-flap-damage">
+            <input> wing-damage/right-flap-detector </input>
+            <rate_limit sense="incr">0.075</rate_limit>
+            <rate_limit sense="decr">10</rate_limit>
+            <output>wing-damage/right-flap</output>
+        </actuator>
 
     </channel>
 

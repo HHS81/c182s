@@ -20,6 +20,8 @@ var c182_mp_slowprop_TDM1 = DCT.TDMEncoder.new(
         props.globals.getNode("gear/gear[2]/rollspeed-ms"),
         props.globals.getNode("gear/gear/steering-norm"),
         props.globals.getNode("fdm/jsbsim/ice/graphic"),
+        props.globals.getNode("fdm/jsbsim/wing-damage/left-flap"),
+        props.globals.getNode("fdm/jsbsim/wing-damage/right-flap"),
     ],
     props.globals.getNode("sim/multiplay/generic/string[7]", 1)
 );

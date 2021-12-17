@@ -273,7 +273,58 @@
             <max-dist>1500.0</max-dist>
         </crash>
 
-
+        <flap-ripoff-left>
+            <name>flap-ripoff-left</name>
+            <mode>once</mode>
+            <path>Sounds/damage.wav</path>
+            <condition>
+                <greater-than>
+                    <property>/fdm/jsbsim/wing-damage/left-flap</property>
+                    <value>0.9</value>
+                </greater-than>
+            </condition>
+            <position>
+                <x>0.5</x>
+                <y>6.0</y>
+                <z>1</z>
+            </position>
+            <volume>
+                <property>velocities/groundspeed-kt</property>
+                <type>log</type>
+                <factor>0.25</factor>
+            </volume>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <reference-dist>2.5</reference-dist>
+            <max-dist>1500.0</max-dist>
+        </flap-ripoff-left>
+        <flap-ripoff-right>
+            <name>flap-ripoff-right</name>
+            <mode>once</mode>
+            <path>Sounds/damage.wav</path>
+            <condition>
+                <greater-than>
+                    <property>/fdm/jsbsim/wing-damage/right-flap</property>
+                    <value>0.9</value>
+                </greater-than>
+            </condition>
+            <position>
+                <x>0.5</x>
+                <y>-6.0</y>
+                <z>1</z>
+            </position>
+            <volume>
+                <property>velocities/groundspeed-kt</property>
+                <type>log</type>
+                <factor>0.25</factor>
+            </volume>
+            <volume>
+                <property>/sim/model/c182s/sound/volume-boost-doors</property>
+            </volume>
+            <reference-dist>2.5</reference-dist>
+            <max-dist>1500.0</max-dist>
+        </flap-ripoff-right>
 
  <squeal1>
    <name>squeal1</name>

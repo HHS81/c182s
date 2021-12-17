@@ -2144,6 +2144,36 @@
             </direction>
         </force>
         
+        <!-- wake turbulence from other AI plane (direction is controlled by properties automatically) -->
+        <force name="ai-wake" frame="BODY">
+            <location unit="IN">
+                <!-- Center of the main wing leading edge -->
+                <x>32.0</x>
+                <y> 0.0</y>
+                <z>52.5</z>
+            </location>
+            <direction>
+                <!-- These are dummy values. They are ignored by FlightGear.
+                     Their purpose is to avoid JSBSim display warning messages
+                     about <direction> not being specified.
+                     -->
+                <x>1.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+            </direction>
+        </force>
+        <moment name="ai-wake" frame="BODY">
+            <direction>
+                <!-- These are dummy values. They are ignored by FlightGear.
+                     Their purpose is to avoid JSBSim display warning messages
+                     about <direction> not being specified.
+                     -->
+                <x>1.0</x>
+                <y>0.0</y>
+                <z>0.0</z>
+            </direction>
+        </moment>
+        
     </external_reactions>
     
     <system file="c182s-stallhorn"/>

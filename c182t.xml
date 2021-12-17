@@ -1021,7 +1021,7 @@
             </test>
         </switch>
 	<aerosurface_scale name="Flap Position Normalizer">
-              <input>fcs/flap-pos-norm-selected</input>
+              <input>fcs/flap-input-norm-selected</input>
               <domain>
                 <min>0</min>  
                 <max>1</max> 

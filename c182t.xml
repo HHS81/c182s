@@ -979,6 +979,11 @@
                 <test logic="AND" value="fcs/flap-pos-norm">
                     /systems/electrical/outputs/flaps le 16
                 </test>
+
+                <!-- make flaps stuck when overspeed damage occured -->
+                <test logic="OR" value="fcs/flap-pos-norm">
+                    wing-damage/flaps GE 0.25
+                </test>
             </switch>
             <kinematic name="Flaps Control">
                 <input>fcs/flap-input-norm</input>
@@ -1003,8 +1008,18 @@
                 <output>fcs/flap-pos-norm</output>
             </kinematic>
 	    
+        <!-- select flaps command source -->
+        <switch name="Flaps Command selector">
+            <output>fcs/flap-input-norm-selected</output>
+            <default value="fcs/flap-pos-norm"/>
+
+            <!-- flaps rod breakage: instantly 0° -->
+            <test logic="OR" value="0">
+                wing-damage/flaps EQ 1.00
+            </test>
+        </switch>
 	<aerosurface_scale name="Flap Position Normalizer">
-              <input>fcs/flap-pos-norm</input>
+              <input>fcs/flap-input-norm-selected</input>
               <domain>
                 <min>0</min>  
                 <max>1</max> 
@@ -1326,7 +1341,6 @@
                     <value>3.9</value>
                 </product>
             </function>
-        </axis>
         
 <!--taken from SenecaII by Torsten Dreyer-->
            <function name="aero/coefficient/CLicew">
@@ -1344,6 +1358,8 @@
                     </table>
                 </product>
             </function>
+
+        </axis>
 
         <axis name="DRAG">
             <function name="aero/coefficient/CDo">

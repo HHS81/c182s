@@ -71,7 +71,9 @@ setlistener("/sim/signals/fdm-initialized", func {
         {id:"/fdm/jsbsim/gear/unit[2]/broken",    name:"Right main gear"},
         
         {id:"/fdm/jsbsim/wing-damage/left-wing",  name:"Left wing"},
-        {id:"/fdm/jsbsim/wing-damage/right-wing", name:"Right wing"}
+        {id:"/fdm/jsbsim/wing-damage/right-wing", name:"Right wing"},
+        
+        {id:"/fdm/jsbsim/wing-damage/flaps",  name:"Flaps"}
     ];
     
     var dmgdelayInit = 0.15; # delay in seconds; should be before init of aircraft states (it might repair the plane)

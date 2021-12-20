@@ -19,22 +19,20 @@
       <takeoff-length-ft type="int">365</takeoff-length-ft>  <!-- POH p. 5-17; 2300lbs at sea level. Increaes to 715ft@3100lbs at sea level and 1480ft at max weight at 8000ft altitude. -->
       <landing-length-ft type="int">520</landing-length-ft>  <!-- POH p. 5-35; 2950lbs at sea level. Increases to 755ft at 8000ft altitude. -->
     </minimum>
-    <climb> <!-- POH 5-20 -->
+    <climb /> <!-- POH 5-20 -->
       <!-- potential for climb data in the future 
       <airspeed-knots type="int">90</airspeed-knots>
       <vertical-speed-fpm type="int">675</vertical-speed-fpm>
-      -->
-    </climb>
+    </climb>-->
     <cruise>
       <airspeed-knots type="int">140</airspeed-knots> <!-- max. struct cruise speed -->
       <altitude-ft type="int">6000</altitude-ft>
     </cruise>
-    <descent> <!-- from checklist / POH 4-22 -->
+    <descent /> <!-- from checklist / POH 4-22 -->
       <!-- potential for descent data in the future 
       <airspeed-knots type="int">120</airspeed-knots> 
       <vertical-speed-fpm type="int">-500</vertical-speed-fpm>
-      -->
-    </descent>
+    </descent>-->
     <approach>
       <airspeed-knots type="int">80</airspeed-knots> <!-- from Checklist, normal flaps-up approach -->
     </approach>

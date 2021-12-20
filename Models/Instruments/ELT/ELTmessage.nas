@@ -8,38 +8,57 @@
 #		<file>YOUR/INSTRUMENT/FOLDER/ROUTE/HERE/ELTmessage.nas</file>
 #	</ELT>
 #</nasal>
+#
+# Logic modified by B. Hallinger for C182 12/2021
 
 #Aircraft ID definition
 var aircraft = getprop("sim/description");
 var callsign = getprop("sim/multiplay/callsign");
 var aircraft_id = aircraft ~ ", " ~ callsign;
 
-var crashed = func() {
+var crash_detected = 0;
+
+# Transmit message
+var transmit = maketimer(60, func(){
     var ground = getprop("position/altitude-agl-ft");
-    if ((getprop("sim/crashed")) and (ground < 25)) {
-        var lat = getprop("/position/latitude-string");
-        var lon = getprop("/position/longitude-string");
+    var lat = getprop("/position/latitude-string");
+    var lon = getprop("/position/longitude-string");
+    
+    if (getprop("instrumentation/elt/armed") and crash_detected and ground < 25) {
         var help_string = "ELT AutoMessage: " ~ aircraft_id ~ ", CRASHED AT " ~lat~" LAT "~lon~" LON, REQUESTING SAR SERVICE";
         setprop("/sim/multiplay/chat", help_string);
         print(help_string);
-        settimer(crashed, 60);
-    }
-}
+        transmit.restart(60);
+        setprop("instrumentation/elt/transmitting", 1);
 
-#Print an emergency auto-message when aircraft crashes
-setlistener("sim/crashed", crashed);
-
-#Print an emergency message when pilot turns on the "armed" button
-setlistener("instrumentation/elt/armed", func(alrm) {
-	if (getprop("instrumentation/elt/armed")) {
-		var lat = getprop("/position/latitude-string");
-		var lon = getprop("/position/longitude-string");
-		var help_string = "ELT Message: " ~ aircraft_id ~ ", DECLARING EMERGENCY AT " ~lat~" LAT, "~lon~" LON";
-		setprop("/sim/multiplay/chat", help_string);
+    } elsif (getprop("instrumentation/elt/on") ) {
+        var help_string = "ELT Message: " ~ aircraft_id ~ ", DECLARING EMERGENCY AT " ~lat~" LAT, "~lon~" LON";
+        setprop("/sim/multiplay/chat", help_string);
         print(help_string);
-	}
-});
+        transmit.restart(60);
+        setprop("instrumentation/elt/transmitting", 1);
 
+    } else {
+        crash_detected = 0;
+        transmit.stop();
+        setprop("instrumentation/elt/transmitting", 0);
+    }
+});
+transmit.simulatedTime = 1;
+
+# INIT
 setlistener("sim/signals/fdm-initialized", func {
+    #Print an emergency auto-message when aircraft crashes
+    setlistener("sim/crashed", func(){
+        if (getprop("sim/crashed")) crash_detected = 1;
+        transmit.restart(0.1)
+    }, 0, 0);
+
+    #Print an manual emergency message when pilot turns on the "ON" button
+    # Note: This is also used for testing and should only be activated in the first 5 minutes of each hour
+    # and not for longer than three seconds.
+    #setlistener("instrumentation/elt/on", func(){transmit.restart(0.1)}, 0, 0);
+    setlistener("instrumentation/elt/switchpos", func(){transmit.restart(0.1)}, 0, 0);
+
     print("Emergency Locator Transmitter (ELT) initialized");
 });

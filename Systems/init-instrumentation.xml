@@ -130,4 +130,11 @@
     <elapsed-time type="string">00:00</elapsed-time>
 </davtron803>
 
+<elt>
+    <switchpos type="int">0</switchpos>
+    <on type="bool">0</on>
+    <armed type="bool">1</armed>
+    <transmitting type="bool">0</transmitting>
+</elt>
+
 </PropertyList>

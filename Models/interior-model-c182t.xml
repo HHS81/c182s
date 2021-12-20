@@ -2806,11 +2806,11 @@
 <!--ELT-->
  <model>
    <name>ELT</name>
-   <path>Aircraft/c182s/Models/Instruments/ELT/ArtexELT.xml</path>
+   <path>Aircraft/c182s/Models/Instruments/ELT/Pointer3000-11_ELT.xml</path>
    <offsets>
-     <x-m>0.3505</x-m>
-     <y-m>0.285</y-m>
-     <z-m>0.433</z-m>
+    <x-m>0.3497</x-m>
+    <y-m>0.4366</y-m>
+    <z-m>0.4258</z-m>
    </offsets>
  </model>
 

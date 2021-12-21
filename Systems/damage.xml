@@ -194,11 +194,11 @@
                     <table>
                         <independentVar lookup="row">fcs/flap-pos-deg</independentVar>
                         <tableData breakPoint="0">
-                            <!-- limits for flapDeg to KIAS, from POH 2-4, +30% (KIAS: 10°=140, 20°=120, full=100) -->
-                            0   999
-                            10   182
-                            20   156
-                            38   130
+                            <!-- limits for flapDeg to KIAS, from POH 2-4, +sqrt(1.5) (KIAS: 10°=140, 20°=120, full=100) -->
+                             0   999
+                            10   175
+                            20   147
+                            38   122
                         </tableData>
                     </table>
                     <difference>

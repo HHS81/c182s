@@ -963,6 +963,9 @@
             <path>/instrumentation/transponder/id-code</path>
             <path>/instrumentation/transponder/factory-vfr-code</path>
             <path>/engines/engine[0]/egt-bug-norm</path>
+            <path>/instrumentation/elt/switchpos</path>
+            <path>/instrumentation/elt/on</path>
+            <path>/instrumentation/elt/armed</path>
 
             <!-- now calculated in engine.nas! <path>/controls/engines/engine[0]/magnetos</path> -->
             <path>/controls/switches/magnetos</path>
@@ -1344,6 +1347,9 @@
         <file>Aircraft/c182s/Nasal/terrain.nas</file>
     </terrain>
 
+<ELT>
+    <file>Aircraft/c182s/Models/Instruments/ELT/ELTmessage.nas</file>
+</ELT>
 
 <electrical>
  <file>Aircraft/c182s/Nasal/c182t-electrical.nas</file>

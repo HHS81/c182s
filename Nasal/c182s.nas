@@ -920,6 +920,9 @@ setlistener("/sim/signals/fdm-initialized", func {
         var pax_modelcfg = node.getBoolValue()? "humans-pax-parachuters.xml" : "humans.xml";
         io.read_properties ("Aircraft/c182s/Models/Human/"~pax_modelcfg, props.globals.getNode("/sim/model"));
     }, 1, 0);
+    
+    # Alias standard crashed property
+    setlistener("/engines/engine/crashed", func(n) {setprop("/sim/crashed", n.getBoolValue());});
 
 });
 

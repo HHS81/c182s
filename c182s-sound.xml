@@ -1135,6 +1135,22 @@
             <reference-dist>0.2</reference-dist>
             <max-dist>5.0</max-dist>
         </switch>
+        <elt-alarm>
+            <name>elt-alarm</name>
+            <mode>looped</mode>
+            <path>Sounds/elt-alarm.wav</path>
+            <condition>
+                <property>instrumentation/elt/transmitting</property>
+            </condition>
+            <position>
+                <x-m>2.8000</x-m>
+                <y-m>-0.3000</y-m>
+                <z-m>0.0000</z-m>
+            </position>
+            <reference-dist>0.2</reference-dist>
+            <max-dist>5.0</max-dist>
+            <volume>1.5</volume>
+        </elt-alarm>
 
         <dial>
             <name>dial-kt76c</name>

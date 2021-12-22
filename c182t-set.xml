@@ -861,6 +861,7 @@
             <path>/fdm/jsbsim/gear/unit[2]/broken-saved</path> <!-- right main gear -->
             <path>/fdm/jsbsim/wing-damage/left-wing-saved</path>
             <path>/fdm/jsbsim/wing-damage/right-wing-saved</path>
+            <path>/fdm/jsbsim/wing-damage/flaps-saved</path>
 
             <path>/consumables/fuel/tank[0]/level-gal_us</path>
             <path>/consumables/fuel/tank[1]/level-gal_us</path>
@@ -1260,18 +1261,7 @@
  </payload>
 
  <limits>
-   <max-flap-extension-speed>
-     <flaps>0.26315</flaps>
-     <speed>140</speed>
-   </max-flap-extension-speed>
-   <max-flap-extension-speed>
-     <flaps>0.52</flaps>
-     <speed>120</speed>
-   </max-flap-extension-speed>
-   <max-flap-extension-speed>
-     <flaps>1.0</flaps>
-     <speed>100</speed>
-   </max-flap-extension-speed>
+   <!-- Flap extension limits: in damage.xml -->
    <max-positive-g>3.5</max-positive-g>
    <max-negative-g>-1.52</max-negative-g>
    <vne>175</vne>

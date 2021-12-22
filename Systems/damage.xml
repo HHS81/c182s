@@ -181,6 +181,43 @@
             <gain>3.8</gain> <!-- 3.8 g's -->
         </pure_gain>
 
+        <!-- Flaps stuck means the actuar push rod was bent due to overstress, preventing further movement.
+             Note: According to our research (see https://github.com/HHS81/c182s/issues/463), this is the
+                   most probable cause of flap problem caused by flying error. Especially a rip off of the rod,
+                   which causes loose flap (ie. instant 0° flaps) is very uncommon and thus not modelled here.
+                   Also, a loose flap is usually caused by corrosion of the connecting rod between the two flaps,
+                   which is caused by wrong or lack of maintenance. This may be modelled in the future.
+        -->
+        <fcs_function name="damage/limits-flaps-stuck">
+          <function>
+                <product>
+                    <table>
+                        <independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+                        <tableData breakPoint="0">
+                            <!-- limits for flapDeg to KIAS, from POH 2-4, +sqrt(1.5) (KIAS: 10°=140, 20°=120, full=100) -->
+                             0   999
+                            10   175
+                            20   147
+                            38   122
+                        </tableData>
+                    </table>
+                    <difference>
+                        <value>1.0</value>
+                        <table>
+                            <!-- reduce speed limits depending on roll factor -->
+                            <independentVar lookup="row">damage/roll-moment</independentVar>
+                            <tableData breakPoint="0">
+                               -8000  0.20
+                                -2000  0.00
+                                 2000  0.00
+                                8000  0.20
+                            </tableData>
+                        </table>
+                    </difference>
+                </product>
+          </function>
+        </fcs_function>
+
         <pure_gain name="damage/force-aero-lbs">
             <input>forces/fbz-aero-lbs</input>
             <gain>-1.0</gain>
@@ -387,7 +424,33 @@
                 wing-damage/right-wing LT 0.085
             </test>
         </switch>
+        
+        
+        
+        <!-- Flaps damage -->
+        <switch name="flaps-damage">
+            <output>wing-damage/flaps</output>
+            <default value="wing-damage/flaps"/>
 
+            <!-- restore saved damage on sim startup -->
+            <test logic="AND" value="wing-damage/flaps-saved">
+                /sim/time/elapsed-sec LT 0.25
+                wing-damage/flaps-saved GT 0
+            </test>
+
+            <!-- Reset to no damage when repairing -->
+            <test logic="OR" value="0.0">
+                settings/damage EQ 0
+                damage/repairing EQ 1
+            </test>
+
+            <!-- Overspeed -->
+            <test logic="AND" value="0.25">
+                /velocities/airspeed-kt GT damage/limits-flaps-stuck
+                wing-damage/flaps LT 0.25
+            </test>
+        </switch>
+        
     </channel>
 
     <channel name="upside-down">

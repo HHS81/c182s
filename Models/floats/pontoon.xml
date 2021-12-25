@@ -1,7 +1,31 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-
+    <params>
+        <bushkit>sim/model/variant</bushkit>
+        <!-- 0 = normal, 1 = broken, 2 = damaged -->
+        <pontoon_left_damaged>
+            <property>/fdm/jsbsim/gear/unit[19]/broken</property>
+        </pontoon_left_damaged>
+        <pontoon_right_damaged>
+            <property>/fdm/jsbsim/gear/unit[20]/broken</property>
+        </pontoon_right_damaged>
+        <gear-amphibious>
+            <front-left-compression-ft>engines/engine[3]/n1</front-left-compression-ft>
+            <front-left-position-norm>engines/engine[3]/n2</front-left-position-norm>
+            <front-left-rollspeed-ms>engines/engine[3]/rpm</front-left-rollspeed-ms>
+            <front-right-compression-ft>engines/engine[4]/n1</front-right-compression-ft>
+            <front-right-position-norm>engines/engine[4]/n2</front-right-position-norm>
+            <front-right-rollspeed-ms>engines/engine[4]/rpm</front-right-rollspeed-ms>
+            <rear-left-compression-ft>engines/engine[5]/n1</rear-left-compression-ft>
+            <rear-left-position-norm>engines/engine[5]/n2</rear-left-position-norm>
+            <rear-left-rollspeed-ms>engines/engine[5]/rpm</rear-left-rollspeed-ms>
+            <rear-right-compression-ft>engines/engine[6]/n1</rear-right-compression-ft>
+            <rear-right-position-norm>engines/engine[6]/n2</rear-right-position-norm>
+            <rear-right-rollspeed-ms>engines/engine[6]/rpm</rear-right-rollspeed-ms>
+        </gear-amphibious>
+    </params>
+    
     <path>c182s-pontoon.ac</path>
     <texture-path>../../Models</texture-path>
     <nopreview/>
@@ -57,9 +81,6 @@
 
     <animation>
         <type>material</type>
-        <object-name>FloatReinforceLeft</object-name>
-        <object-name>FloatReinforceRight</object-name>
-        <object-name>FloatReinforceJoin</object-name>
         <object-name>RudderCatch</object-name>
         <object-name>RudderHandle</object-name>
         <object-name>RudderScrews</object-name>
@@ -141,12 +162,12 @@
         <object-name>Lstrut.001</object-name>
         <object-name>LFrontWheel</object-name>
         <property>/fdm/jsbsim/gear/unit[19]/steering-angle-deg</property>
-        <condition>
+        <!--<condition>
             <greater-than>
                 <property>/fdm/jsbsim/gear/unit[19]/wheel-speed-fps</property>
                 <value>0.5</value>
             </greater-than>
-        </condition>
+        </condition>-->
         <axis>
             <x1-m>-2.12707</x1-m>
             <y1-m>-1.15091</y1-m>
@@ -164,12 +185,12 @@
         <object-name>Rstrut.001</object-name>
         <object-name>RFrontWheel</object-name>
         <property>/fdm/jsbsim/gear/unit[20]/steering-angle-deg</property>
-        <condition>
+        <!--<condition>
             <greater-than>
                 <property>/fdm/jsbsim/gear/unit[19]/wheel-speed-fps</property>
                 <value>0.5</value>
             </greater-than>
-        </condition>
+        </condition>-->
         <axis>
             <x1-m>-2.12179</x1-m>
             <y1-m> 1.1682</y1-m>
@@ -178,6 +199,893 @@
             <y2-m> 1.16825</y2-m>
             <z2-m>-1.86383</z2-m>
         </axis>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>Ldamper</object-name>
+        <object-name>LAxle</object-name>
+        <object-name>LFrontWheel</object-name>
+        <property alias="/params/gear-amphibious/front-left-compression-ft"/>
+        <factor>8</factor>
+        <center>
+            <x-m>-3.599</x-m>
+            <y-m>1.434</y-m>
+            <z-m>-2.189</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>LFrontWheel</object-name>
+        <object-name>LAxle</object-name>
+        <object-name>Ldamper</object-name>
+        <object-name>Lstrut.001</object-name>
+        <property alias="/params/gear-amphibious/front-left-position-norm"/>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.220</dep>
+            </entry>
+            <entry>
+                <ind>1.0</ind>
+                <dep>0.0</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-3.553</x-m>
+            <y-m>1.430</y-m>
+            <z-m>-1.901</z-m>
+        </center>
+        <axis>
+            <x>0.342</x>
+            <y>0</y>
+            <z>0.940</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>Lstrut.002</object-name>
+        <property alias="/params/gear-amphibious/front-left-position-norm"/>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.115</dep>
+            </entry>
+            <entry>
+                <ind>1.0</ind>
+                <dep>0.0</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-3.553</x-m>
+            <y-m>1.430</y-m>
+            <z-m>-1.901</z-m>
+        </center>
+        <axis>
+            <x>0.342</x>
+            <y>0</y>
+            <z>0.940</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>Rdamper</object-name>
+        <object-name>RAxle</object-name>
+        <object-name>RFrontWheel</object-name>
+        <property alias="/params/gear-amphibious/front-right-compression-ft"/>
+        <factor>8</factor>
+        <center>
+            <x-m>-3.599</x-m>
+            <y-m>-1.434</y-m>
+            <z-m>-2.189</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>RFrontWheel</object-name>
+        <object-name>RAxle</object-name>
+        <object-name>Rdamper</object-name>
+        <object-name>Rstrut.001</object-name>
+        <property alias="/params/gear-amphibious/front-right-position-norm"/>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.220</dep>
+            </entry>
+            <entry>
+                <ind>1.0</ind>
+                <dep>0.0</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-3.553</x-m>
+            <y-m>-1.430</y-m>
+            <z-m>-1.901</z-m>
+        </center>
+        <axis>
+            <x>0.342</x>
+            <y>0</y>
+            <z>0.940</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>Rstrut.002</object-name>
+        <property alias="/params/gear-amphibious/front-right-position-norm"/>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.115</dep>
+            </entry>
+            <entry>
+                <ind>1.0</ind>
+                <dep>0.0</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m>-3.553</x-m>
+            <y-m>-1.430</y-m>
+            <z-m>-1.901</z-m>
+        </center>
+        <axis>
+            <x>0.342</x>
+            <y>0</y>
+            <z>0.940</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>spin</type>
+        <object-name>LFrontWheel</object-name>
+        <property alias="/params/gear-amphibious/front-left-rollspeed-ms"/>
+        <factor>75</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>-1.55165</x-m>
+            <y-m>-1.14871</y-m>
+            <z-m>-1.87327</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>spin</type>
+        <object-name>RFrontWheel</object-name>
+        <property alias="/params/gear-amphibious/front-right-rollspeed-ms"/>
+        <factor>75</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>-1.55305</x-m>
+            <y-m>1.16615</y-m>
+            <z-m>-1.87073</z-m>
+        </center>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>LRtarm</object-name>
+        <object-name>LRAxle</object-name>
+        <object-name>LRwheel</object-name>
+        <expression>
+            <sum>
+                <product>
+                    <sum>
+                        <value>0.07</value>
+                        <property alias="/params/gear-amphibious/rear-left-compression-ft"/>
+                    </sum>
+                    <value>15</value>
+                </product>
+                <product>
+                    <table>
+                        <property alias="/params/gear-amphibious/rear-left-position-norm"/>
+                        <entry>
+                            <ind>1</ind>
+                            <dep>0</dep>
+                        </entry>
+                        <entry>
+                            <ind>0</ind>
+                            <dep>10</dep>
+                        </entry>
+                    </table>
+                </product>
+            </sum>
+        </expression>
+        <center>
+            <x-m>-0.6019</x-m>
+            <y-m>-1.1513</y-m>
+            <z-m>-1.8621</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>RRtarm</object-name>
+        <object-name>RRAxle</object-name>
+        <object-name>RRwheel</object-name>
+        <expression>
+            <sum>
+                <product>
+                    <sum>
+                        <value>0.07</value>
+                        <property alias="/params/gear-amphibious/rear-right-compression-ft"/>
+                    </sum>
+                    <value>15</value>
+                </product>
+                <product>
+                    <table>
+                        <property alias="/params/gear-amphibious/rear-right-position-norm"/>
+                        <entry>
+                            <ind>1</ind>
+                            <dep>0</dep>
+                        </entry>
+                        <entry>
+                            <ind>0</ind>
+                            <dep>10</dep>
+                        </entry>
+                    </table>
+                </product>
+            </sum>
+        </expression>
+        <center>
+            <x-m>-0.6019</x-m>
+            <y-m>1.1676</y-m>
+            <z-m>-1.8621</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>spin</type>
+        <object-name>LRwheel</object-name>
+        <property alias="/params/gear-amphibious/rear-left-rollspeed-ms"/>
+        <factor>52</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>1.44163</x-m>
+            <y-m>-1.15147</y-m>
+            <z-m>-1.87121</z-m>
+        </center>
+    </animation>
+    <animation>
+        <type>spin</type>
+        <object-name>RRwheel</object-name>
+        <property alias="/params/gear-amphibious/rear-right-rollspeed-ms"/>
+        <factor>52</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>1.44217</x-m>
+            <y-m>1.16754</y-m>
+            <z-m>-1.87092</z-m>
+        </center>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>RHrudder</object-name>
+        <property alias="/params/water-rudder-norm"/>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>1.0</ind>
+                <dep>0.09</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m> 3.48832</x-m>
+            <y-m> 1.15971</y-m>
+            <z-m>-1.61943</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>-1</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>RHrudder</object-name>
+        <expression>
+            <product>
+                <value>30</value>
+                <property>surface-positions/rudder-pos-norm</property>
+                <property alias="/params/water-rudder-norm"/>
+            </product>
+        </expression>
+        <center>
+            <x-m> 3.5172</x-m>
+            <y-m> 1.1571</y-m>
+            <z-m>-1.4308</z-m>
+        </center>
+        <axis>
+            <x>-0.087</x>
+            <y> 0</y>
+            <z> 0.996</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>RHrudder</object-name>
+        <property alias="/params/water-rudder-norm"/>
+        <factor>90</factor>
+        <center>
+            <x-m> 3.47</x-m>
+            <y-m> 1.434</y-m>
+            <z-m>-1.63</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>LHrudder</object-name>
+        <property alias="/params/water-rudder-norm"/>
+        <interpolation>
+            <entry>
+                <ind>0.0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>1.0</ind>
+                <dep>0.09</dep>
+            </entry>
+        </interpolation>
+        <center>
+            <x-m> 3.48777</x-m>
+            <y-m>-1.15794</y-m>
+            <z-m>-1.6197</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>-1</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>LHrudder</object-name>
+        <expression>
+            <product>
+                <value>30</value>
+                <property>surface-positions/rudder-pos-norm</property>
+                <property alias="/params/water-rudder-norm"/>
+            </product>
+        </expression>
+        <center>
+            <x-m> 3.5172</x-m>
+            <y-m>-1.1571</y-m>
+            <z-m>-1.4308</z-m>
+        </center>
+        <axis>
+            <x>-0.087</x>
+            <y> 0</y>
+            <z> 0.996</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>LHrudder</object-name>
+        <property alias="/params/water-rudder-norm"/>
+        <factor>90</factor>
+        <center>
+            <x-m> 3.47</x-m>
+            <y-m>-1.434</y-m>
+            <z-m>-1.63</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+    
+    <!-- Left Pontoons Not Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>L-FloatC</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Right Pontoons Not Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>R-FloatC</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Amphibious Not Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>L-Float</object-name>
+        <object-name>LRwheel</object-name>
+        <object-name>LRAxle</object-name>
+        <object-name>LFrontWheel</object-name>
+        <object-name>LAxle</object-name>
+        <object-name>LRtarm</object-name>
+        <object-name>Ldamper</object-name>
+        <object-name>Lstrut.001</object-name>
+        <object-name>Lstrut.002</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Right Amphibious Not Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>R-Float</object-name>
+        <object-name>RRwheel</object-name>
+        <object-name>RRAxle</object-name>
+        <object-name>RFrontWheel</object-name>
+        <object-name>RAxle</object-name>
+        <object-name>RRtarm</object-name>
+        <object-name>Rdamper</object-name>
+        <object-name>Rstrut.001</object-name>
+        <object-name>Rstrut.002</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Float Not Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>LHrudder</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Right Float Not Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>RHrudder</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>0</value>
+                </equals>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Pontoon and Amphibious -->
+    <animation>
+        <type>select</type>
+        <object-name>RuddWires</object-name>
+        <object-name>FloatStruts</object-name>
+        <object-name>FloatReinforceLeft</object-name>
+        <object-name>FloatReinforceRight</object-name>
+        <object-name>FloatReinforceJoin</object-name>
+        <object-name>RudderCatch</object-name>
+        <object-name>RudderHandle</object-name>
+        <object-name>RudderScrews</object-name>
+        <object-name>RudderTube</object-name>
+        <condition>
+            <or>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </or>
+        </condition>
+    </animation>
+
+    <!-- Rudder cable -->
+    <animation>
+        <type>select</type>
+        <object-name>RudderCable</object-name>
+        <condition>
+            <and>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                </or>
+                <not>
+                    <property>/controls/gear/water-rudder</property>
+                </not>
+            </and>
+        </condition>
+    </animation>
+    <animation>
+        <type>pick</type>
+        <object-name>RudderHandle</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <binding>
+                <command>property-toggle</command>
+                <property>/controls/gear/water-rudder</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <label>Water rudders: %s</label>
+                <property>/controls/gear/water-rudder</property>
+                <tooltip-id>water-rudders</tooltip-id>
+                <mapping>down-up</mapping>
+            </binding>
+        </hovered>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>RudderHandle</object-name>
+        <property alias="/params/controls/water-rudder-animation"/>
+        <factor>-0.21348</factor>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+
+    <!-- Left Pontoon Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>L-FloatCD</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Right Pontoon Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>R-FloatCD</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Left Pontoon Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>L-FloatCB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Right Pontoon Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>R-FloatCB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>3</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Amphibious Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>L-FloatOD</object-name>
+        <object-name>LRwheelOD</object-name>
+        <object-name>LdamperOD</object-name>
+        <object-name>LstrutOD.001</object-name>
+        <object-name>LstrutOD.002</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Right Amphibious Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>R-FloatOD</object-name>
+        <object-name>RRwheelOD</object-name>
+        <object-name>RdamperOD</object-name>
+        <object-name>RstrutOD.001</object-name>
+        <object-name>RstrutOD.002</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Left Amphibious Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>L-FloatOB</object-name>
+        <object-name>LRwheelOB</object-name>
+        <object-name>LdamperOB</object-name>
+        <object-name>LstrutOB.001</object-name>
+        <object-name>LstrutOB.002</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Right Amphibious Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>R-FloatOB</object-name>
+        <object-name>RRwheelOB</object-name>
+        <object-name>RdamperOB</object-name>
+        <object-name>RstrutOB.001</object-name>
+        <object-name>RstrutOB.002</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <equals>
+                    <property alias="/params/bushkit"/>
+                    <value>4</value>
+                </equals>
+            </and>
+        </condition>
+    </animation>
+
+    <!-- Left Float Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>LHrudderD</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Right Float Damaged -->
+    <animation>
+        <type>select</type>
+        <object-name>RHrudderD</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>2</value>
+                </equals>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Left Float Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>LHrudderB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_left_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+    </animation>
+
+    <!--Right Float Broken -->
+    <animation>
+        <type>select</type>
+        <object-name>RHrudderB</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property alias="/params/pontoon_right_damaged/property"/>
+                    <value>1</value>
+                </equals>
+                <or>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>3</value>
+                    </equals>
+                    <equals>
+                        <property alias="/params/bushkit"/>
+                        <value>4</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
     </animation>
 
 </PropertyList>

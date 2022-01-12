@@ -20,18 +20,19 @@ var crash_detected = 0;
 
 # Transmit message
 var transmit = maketimer(60, func(){
-    var ground = getprop("position/altitude-agl-ft");
-    var lat = getprop("/position/latitude-string");
-    var lon = getprop("/position/longitude-string");
+    var ground    = getprop("position/altitude-agl-ft");
+    var lat       = getprop("/position/latitude-string");
+    var lon       = getprop("/position/longitude-string");
+    var repairing = getprop("/fdm/jsbsim/damage/repairing");
     
-    if (getprop("instrumentation/elt/armed") and crash_detected and ground < 25) {
+    if (getprop("instrumentation/elt/armed") and crash_detected and ground < 25 and !repairing) {
         var help_string = "ELT AutoMessage: " ~ aircraft_id ~ ", CRASHED AT " ~lat~" LAT "~lon~" LON, REQUESTING SAR SERVICE";
         setprop("/sim/multiplay/chat", help_string);
         print(help_string);
         transmit.restart(60);
         setprop("instrumentation/elt/transmitting", 1);
 
-    } elsif (getprop("instrumentation/elt/on") ) {
+    } elsif (getprop("instrumentation/elt/on") and !repairing) {
         var help_string = "ELT Message: " ~ aircraft_id ~ ", DECLARING EMERGENCY AT " ~lat~" LAT, "~lon~" LON";
         setprop("/sim/multiplay/chat", help_string);
         print(help_string);

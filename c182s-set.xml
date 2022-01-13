@@ -154,6 +154,7 @@
   <state include="states/idling-overlay.xml"   n="3" />
   <state include="states/cruising-overlay.xml" n="4" />
   <state include="states/approach-overlay.xml" n="5" />
+  <inair-startup-stabilizer type="bool">1</inair-startup-stabilizer>
 
   <virtual-cockpit>true</virtual-cockpit>
   <allow-toggle-cockpit>true</allow-toggle-cockpit>
@@ -182,6 +183,9 @@
     </autopilot>
     <autopilot n="2">
         <path>Systems/glass-rain.xml</path>
+    </autopilot>
+    <autopilot n="3">
+        <path>states/in-air-startup-stabilizer.xml</path>
     </autopilot>
     <property-rule n="100">
         <name>FiltersOnly</name>

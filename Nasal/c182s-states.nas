@@ -322,7 +322,18 @@ var state_cruising = func() {
 
 var state_approach = func() {
     # lower initial airspeed is set from state-overlay xml
-    state_cruising();
+    repair_damage();
+    reset_fuel_contamination();
+    secureAircraftOnGround(0);
+    checklist_beforeEngineStart();
+    setAvionics(1);
+    setprop("/controls/lighting/landing-lights", 1);
+    setEngineRunning(2400, 0.50, 1.0, 1.00);
+    setprop("/controls/gear/brake-parking", 0);
+    setprop("/controls/engines/engine/cowl-flaps-norm", 0);
+    
+    var ap_start_delay = 3.5;
+    settimer(kap140_fastboot, ap_start_delay);
 }
 
 # Add some oil and cht temp override to simulate an engine that had already run for some time

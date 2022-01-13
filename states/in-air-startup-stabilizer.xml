@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+
+<!-- Simple "autopilot" that stabilizes the plane when starting in air -->
+<PropertyList>
+    <pid-controller>
+        <name>Wing Leveler</name>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <and>
+                    <property>/sim/inair-startup-stabilizer</property>
+                    <property>/engines/engine/running</property>
+                    <less-than>
+                        <property>/sim/time/elapsed-sec</property>
+                        <value>8</value>
+                    </less-than>
+                    <greater-than>
+                        <property>/position/altitude-agl-ft</property>
+                        <value>250</value>
+                    </greater-than>
+                </and>
+            </condition>
+        </enable>
+        <input>
+            <property>/orientation/roll-deg</property>
+        </input>
+        <reference> 0.0 </reference>
+        <output>
+            <property>/controls/flight/aileron</property>
+        </output>
+        <config>
+            <Kp>0.5</Kp>        <!-- proportional gain -->
+            <beta>1.0</beta>    <!-- input value weighing factor -->
+            <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
+            <gamma>0.0</gamma>  <!-- input value weighing factor for -->
+                                <!-- unfiltered derivative error -->
+            <Ti>10.0</Ti>       <!-- integrator time -->
+            <Td>0.00001</Td>    <!-- derivator time -->
+            <u_min>-1.0</u_min> <!-- minimum output clamp -->
+            <u_max>1.0</u_max>  <!-- maximum output clamp -->
+        </config>
+    </pid-controller>
+  
+    <pid-controller>
+        <name>Pitch hold</name>
+        <debug>false</debug>
+        <enable>
+            <condition>
+                <and>
+                    <property>/sim/inair-startup-stabilizer</property>
+                    <property>/engines/engine/running</property>
+                    <less-than>
+                        <property>/sim/time/elapsed-sec</property>
+                        <value>8</value>
+                    </less-than>
+                    <greater-than>
+                        <property>/position/altitude-agl-ft</property>
+                        <value>250</value>
+                    </greater-than>
+                </and>
+            </condition>
+        </enable>
+        <input>
+            <property>/orientation/pitch-deg</property>
+        </input>
+        <reference> 0.424 </reference>
+        <output>
+            <property>/controls/flight/elevator</property>
+        </output>
+        <config>
+            <Kp>-0.05</Kp>      <!-- proportional gain -->
+            <beta>1.0</beta>    <!-- input value weighing factor -->
+            <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
+            <gamma>0.0</gamma>  <!-- input value weighing factor for -->
+                                <!-- unfiltered derivative error -->
+            <Ti>1.0</Ti>        <!-- integrator time -->
+            <Td>0.00001</Td>    <!-- derivator time -->
+            <u_min>-1.0</u_min> <!-- minimum output clamp -->
+            <u_max>1.0</u_max>  <!-- maximum output clamp -->
+        </config>
+    </pid-controller>
+</PropertyList>

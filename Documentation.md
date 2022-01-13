@@ -77,6 +77,8 @@ The following states are available currently:
 * `--state=approach` Engine on and set to cruise (use with in-air-start)
 With an in-air-start, airspeed gets initialized to 100kts unless otherwise specified >0 (e.g. `--vc=5`).
 
+The plane tries to stabilize itself for some seconds after sim startup when starting in air. To disable this feature, supply `--prop:/sim/inair-startup-stabilizer=0` in your launcher.
+
 Examples:
 * _Approach to EDDM:_ `fgfs --aircraft=c182s --state=auto --airport=EDDM --offset-distance=6 --altitude=3500 --timeofday=noon`
 * _Power-off Approach to EDDM:_ `fgfs --aircraft=c182s --state=take-off --airport=EDDM --offset-distance=6 --altitude=3500 --timeofday=noon` (engine idles; `--state=parking` state gives the funny experience of gliding with all <s>hope</s> power lost and blocked pitot)

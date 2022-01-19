@@ -2568,6 +2568,68 @@
   <range-m>6</range-m>
 </light>
  
+<light>
+  <name>pedestal-spot</name>
+  <type>spot</type>
+  <position>
+    <x-m>0.3587</x-m>
+    <y-m>-0.0380</y-m>
+    <z-m>0.0107</z-m>
+  </position>
+  <direction>
+    <pitch-deg>-12.45</pitch-deg>
+    <roll-deg>4</roll-deg>
+    <heading-deg>0</heading-deg>
+  </direction>
+  <ambient>
+    <r>0.03</r>
+    <g>0.03</g>
+    <b>0.03</b>
+    <a>1</a>
+  </ambient>
+  <diffuse>
+    <r>0.95</r>
+    <g>0.9</g>
+    <b>0.9</b>
+    <a>1</a>
+  </diffuse>
+  <specular>
+    <r>0.95</r>
+    <g>0.9</g>
+    <b>0.9</b>
+    <a>1</a>
+  </specular>
+  <attenuation>
+    <c>1.0</c>
+    <l>0.07</l>
+    <q>1.3</q>
+  </attenuation>
+  <spot-exponent>3.5</spot-exponent>
+  <spot-cutoff>30</spot-cutoff>
+  <range-m>0.05</range-m>
+  <dim-factor>
+    <expression>
+        <min>
+            <value>1</value>
+            <sum>
+                <product>
+                    <value>0.5</value>
+                    <property>/systems/electrical/outputs/glareshield-lights-norm</property>
+                </product>
+                <property>/systems/electrical/outputs/pedestal-lights-norm</property>
+                <product>
+                    <value>0.20</value>
+                    <property>/systems/electrical/outputs/dome-light-r</property>
+                </product>
+                <product>
+                    <value>0.20</value>
+                    <property>/systems/electrical/outputs/dome-light-l</property>
+                </product>
+            </sum>
+        </min>
+    </expression>
+  </dim-factor>
+</light>
  
  
 <model>

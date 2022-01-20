@@ -221,7 +221,7 @@
                 <sum>
                     <property>/sim/model/c182s/lighting/audio-panel</property>
                     <property>/sim/model/c182s/lighting/dme</property>
-                    <property>/sim/model/c182s/lighting/nav-1</property>
+                    <property>/sim/model/c182s/lighting/nav-1</property> <property>/sim/model/c182s/lighting/nav-1</property>  <!-- counted twice because of com+nav unit -->
                 </sum>
             </expression>
         </input>
@@ -244,7 +244,7 @@
             </condition>
             <expression>
                 <sum>
-                    <property>/sim/model/c182s/lighting/nav-2</property>
+                    <property>/sim/model/c182s/lighting/nav-2</property> <property>/sim/model/c182s/lighting/nav-2</property>  <!-- counted twice because of com+nav unit -->
                     <property>/sim/model/c182s/lighting/adf</property>
                     <property>/sim/model/c182s/lighting/ident</property>
                 </sum>
@@ -267,12 +267,12 @@
             </condition>
             <expression>
                 <sum>
-                    <property>/sim/model/c182s/lighting/audio-panel</property>
-                    <property>/sim/model/c182s/lighting/dme</property>
-                    <property>/sim/model/c182s/lighting/nav-1</property>
-                    <property>/sim/model/c182s/lighting/nav-2</property>
+                    <!--<property>/sim/model/c182s/lighting/audio-panel</property>  no light from audio panel -->
+                    <!--<property>/sim/model/c182s/lighting/dme</property>  no light for DME -->
+                    <property>/sim/model/c182s/lighting/nav-1</property> <property>/sim/model/c182s/lighting/nav-1</property>  <!-- counted twice because of com+nav unit -->
+                    <property>/sim/model/c182s/lighting/nav-2</property> <property>/sim/model/c182s/lighting/nav-2</property>  <!-- counted twice because of com+nav unit -->
                     <property>/sim/model/c182s/lighting/adf</property>
-                    <property>/sim/model/c182s/lighting/ident</property>
+                    <!--<property>/sim/model/c182s/lighting/ident</property>  no light for transponder -->
                 </sum>
             </expression>
         </input>
@@ -356,12 +356,12 @@
             </condition>
             <expression>
                 <sum>
-                    <property>/sim/model/c182s/lighting/audio-panel-norm</property>
-                    <property>/sim/model/c182s/lighting/dme-norm</property>
-                    <property>/sim/model/c182s/lighting/nav-1-norm</property>
-                    <property>/sim/model/c182s/lighting/nav-2-norm</property>
-                    <property>/sim/model/c182s/lighting/adf-norm</property>
-                    <property>/sim/model/c182s/lighting/ident-norm</property>
+                    <!--<property>/sim/model/c182s/lighting/audio-panel</property>  no light from audio panel -->
+                    <!--<property>/sim/model/c182s/lighting/dme</property>  no light for DME -->
+                    <property>/sim/model/c182s/lighting/nav-1</property> <property>/sim/model/c182s/lighting/nav-1</property>  <!-- counted twice because of com+nav unit -->
+                    <property>/sim/model/c182s/lighting/nav-2</property> <property>/sim/model/c182s/lighting/nav-2</property>  <!-- counted twice because of com+nav unit -->
+                    <property>/sim/model/c182s/lighting/adf</property>
+                    <!--<property>/sim/model/c182s/lighting/ident</property>  no light for transponder -->
                 </sum>
             </expression>
         </input>
@@ -386,7 +386,7 @@
                 <sum>
                     <property>/sim/model/c182s/lighting/audio-panel</property>
                     <property>/sim/model/c182s/lighting/dme</property>
-                    <property>/sim/model/c182s/lighting/nav-1</property>
+                    <property>/sim/model/c182s/lighting/nav-1</property>  <property>/sim/model/c182s/lighting/nav-1</property>  <!-- counted twice because of com+nav unit -->
                 </sum>
             </expression>
         </input>
@@ -409,7 +409,7 @@
             </condition>
             <expression>
                 <sum>
-                    <property>/sim/model/c182s/lighting/nav-2</property>
+                    <property>/sim/model/c182s/lighting/nav-2</property>  <property>/sim/model/c182s/lighting/nav-2</property>  <!-- counted twice because of com+nav unit -->
                     <property>/sim/model/c182s/lighting/adf</property>
                     <property>/sim/model/c182s/lighting/ident</property>
                 </sum>
@@ -457,7 +457,7 @@
                 <sum>
                     <property>/sim/model/c182s/lighting/audio-panel</property>
                     <property>/sim/model/c182s/lighting/dme</property>
-                    <property>/sim/model/c182s/lighting/nav-1</property>
+                    <property>/sim/model/c182s/lighting/nav-1</property>  <property>/sim/model/c182s/lighting/nav-1</property>  <!-- counted twice because of com+nav unit -->
                 </sum>
             </expression>
         </input>
@@ -480,7 +480,7 @@
             </condition>
             <expression>
                 <sum>
-                    <property>/sim/model/c182s/lighting/nav-2</property>
+                    <property>/sim/model/c182s/lighting/nav-2</property>  <property>/sim/model/c182s/lighting/nav-2</property>  <!-- counted twice because of com+nav unit -->
                     <property>/sim/model/c182s/lighting/adf</property>
                     <property>/sim/model/c182s/lighting/ident</property>
                 </sum>
@@ -503,12 +503,12 @@
             </condition>
             <expression>
                 <sum>
-                    <property>/sim/model/c182s/lighting/audio-panel</property>
-                    <property>/sim/model/c182s/lighting/dme</property>
-                    <property>/sim/model/c182s/lighting/nav-1</property>
-                    <property>/sim/model/c182s/lighting/nav-2</property>
+                    <!--<property>/sim/model/c182s/lighting/audio-panel</property>  no light from audio panel -->
+                    <!--<property>/sim/model/c182s/lighting/dme</property>  no light for DME -->
+                    <property>/sim/model/c182s/lighting/nav-1</property> <property>/sim/model/c182s/lighting/nav-1</property>  <!-- counted twice because of com+nav unit -->
+                    <property>/sim/model/c182s/lighting/nav-2</property> <property>/sim/model/c182s/lighting/nav-2</property>  <!-- counted twice because of com+nav unit -->
                     <property>/sim/model/c182s/lighting/adf</property>
-                    <property>/sim/model/c182s/lighting/ident</property>
+                    <!--<property>/sim/model/c182s/lighting/ident</property>  no light for transponder -->
                 </sum>
             </expression>
         </input>
@@ -622,7 +622,7 @@
                 <sum>
                     <property>/sim/model/c182s/lighting/audio-panel</property>
                     <property>/sim/model/c182s/lighting/dme</property>
-                    <property>/sim/model/c182s/lighting/nav-1</property>
+                    <property>/sim/model/c182s/lighting/nav-1</property>  <property>/sim/model/c182s/lighting/nav-1</property>  <!-- counted twice because of com+nav unit -->
                 </sum>
             </expression>
         </input>
@@ -645,7 +645,7 @@
             </condition>
             <expression>
                 <sum>
-                    <property>/sim/model/c182s/lighting/nav-2</property>
+                    <property>/sim/model/c182s/lighting/nav-2</property>  <property>/sim/model/c182s/lighting/nav-2</property>  <!-- counted twice because of com+nav unit -->
                     <property>/sim/model/c182s/lighting/adf</property>
                     <property>/sim/model/c182s/lighting/ident</property>
                 </sum>
@@ -693,7 +693,7 @@
                 <sum>
                     <property>/sim/model/c182s/lighting/audio-panel</property>
                     <property>/sim/model/c182s/lighting/dme</property>
-                    <property>/sim/model/c182s/lighting/nav-1</property>
+                    <property>/sim/model/c182s/lighting/nav-1</property>  <property>/sim/model/c182s/lighting/nav-1</property>  <!-- counted twice because of com+nav unit -->
                 </sum>
             </expression>
         </input>
@@ -716,7 +716,7 @@
             </condition>
             <expression>
                 <sum>
-                    <property>/sim/model/c182s/lighting/nav-2</property>
+                    <property>/sim/model/c182s/lighting/nav-2</property>  <property>/sim/model/c182s/lighting/nav-2</property>  <!-- counted twice because of com+nav unit -->
                     <property>/sim/model/c182s/lighting/adf</property>
                     <property>/sim/model/c182s/lighting/ident</property>
                 </sum>
@@ -739,12 +739,12 @@
             </condition>
             <expression>
                 <sum>
-                    <property>/sim/model/c182s/lighting/audio-panel</property>
-                    <property>/sim/model/c182s/lighting/dme</property>
-                    <property>/sim/model/c182s/lighting/nav-1</property>
-                    <property>/sim/model/c182s/lighting/nav-2</property>
+                    <!--<property>/sim/model/c182s/lighting/audio-panel</property>  no light from audio panel -->
+                    <!--<property>/sim/model/c182s/lighting/dme</property>  no light for DME -->
+                    <property>/sim/model/c182s/lighting/nav-1</property> <property>/sim/model/c182s/lighting/nav-1</property>  <!-- counted twice because of com+nav unit -->
+                    <property>/sim/model/c182s/lighting/nav-2</property> <property>/sim/model/c182s/lighting/nav-2</property>  <!-- counted twice because of com+nav unit -->
                     <property>/sim/model/c182s/lighting/adf</property>
-                    <property>/sim/model/c182s/lighting/ident</property>
+                    <!--<property>/sim/model/c182s/lighting/ident</property>  no light for transponder -->
                 </sum>
             </expression>
         </input>
@@ -754,15 +754,33 @@
     </filter>
 
     <!-- Reduce the red glow from the digits of the radio stack
-         if the instrument lighting is at 100 %.
+         if the instrument lighting or glareshield is really bright.
     -->
+    <filter>
+        <name>Inst/Glareshield lighting</name>
+        <type>gain</type>
+        <input>
+            <expression>
+                <max>
+                    <product>
+                        <property>/sim/model/c182s/lighting/glare-ra-gain</property>
+                        <property>/systems/electrical/outputs/glareshield-lights-norm</property>
+                    </product>
+                    <property>/systems/electrical/outputs/instrument-lights-norm</property>
+                </max>
+            </expression>
+        </input>
+        <output>
+            <property>/sim/model/c182s/lighting/inst-gain-panellights</property>
+        </output>
+    </filter>
     <filter>
         <name>Inst Gain As Function Of Instrument Lighting</name>
         <type>gain</type>
         <input>
             <expression>
                 <table>
-                    <property>/systems/electrical/outputs/instrument-lights-norm</property>
+                    <property>/sim/model/c182s/lighting/inst-gain-panellights</property>
                     <entry><ind>0.0</ind><dep>2.5</dep></entry>
                     <entry><ind>1.0</ind><dep>0.4</dep></entry>
                 </table>
@@ -770,6 +788,20 @@
         </input>
         <output>
             <property>/sim/model/c182s/lighting/inst-gain</property>
+        </output>
+    </filter>
+    
+    <filter>
+        <name>Inst radiance</name>
+        <type>gain</type>
+        <gain>
+            <property>/sim/model/c182s/lighting/inst-ra-gain</property>
+        </gain>
+        <input>
+            <property>/systems/electrical/outputs/instrument-lights-norm</property>
+        </input>
+        <output>
+            <property>/sim/model/c182s/lighting/inst-ra</property>
         </output>
     </filter>
 
@@ -793,7 +825,7 @@
         <input>
             <expression>
                 <sum>
-                    <property>/systems/electrical/outputs/instrument-lights-norm</property>
+                    <property>/sim/model/c182s/lighting/inst-ra</property>
                     <property>/sim/model/c182s/lighting/rad-r-total</property>
                 </sum>
             </expression>
@@ -837,7 +869,7 @@
         <input>
             <expression>
                 <sum>
-                    <property>/systems/electrical/outputs/instrument-lights-norm</property>
+                    <property>/sim/model/c182s/lighting/inst-ra</property>
                     <property>/sim/model/c182s/lighting/rad-g-total</property>
                 </sum>
             </expression>
@@ -881,7 +913,7 @@
         <input>
             <expression>
                 <sum>
-                    <property>/systems/electrical/outputs/instrument-lights-norm</property>
+                    <property>/sim/model/c182s/lighting/inst-ra</property>
                     <property>/sim/model/c182s/lighting/rad-b-total</property>
                 </sum>
             </expression>

@@ -442,9 +442,11 @@
                 <immat-on-panel>true</immat-on-panel>
 
       <lighting>
-          <ra-r type="double">0.05</ra-r>
-          <ra-g type="double">0.025</ra-g>
-          <ra-b type="double">0.025</ra-b>
+          <ra-r type="double">0.095</ra-r>
+          <ra-g type="double">0.065</ra-g>
+          <ra-b type="double">0.065</ra-b>
+          <inst-ra-gain type="double">1.15</inst-ra-gain>
+          <glare-ra-gain type="double">0.5</glare-ra-gain>
       </lighting>
       
       <parachuters>

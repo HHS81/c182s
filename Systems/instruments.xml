@@ -266,7 +266,7 @@
       <input>
         <condition>
           <greater-than>
-              <property>/instrumentation/nav[0]/volume</property>
+              <property>/instrumentation/comm[0]/power-btn</property>
               <value>0.0</value>
             </greater-than>
         </condition>
@@ -286,7 +286,7 @@
       <input>
         <condition>
           <greater-than>
-              <property>/instrumentation/nav[1]/volume</property>
+              <property>/instrumentation/comm[1]/power-btn</property>
               <value>0.0</value>
             </greater-than>
         </condition>
@@ -386,7 +386,7 @@
       <input>
         <condition>
           <greater-than>
-              <property>/instrumentation/nav[0]/volume</property>
+              <property>/instrumentation/nav[0]/power-btn</property>
               <value>0.0</value>
             </greater-than>
         </condition>
@@ -406,7 +406,7 @@
       <input>
         <condition>
           <greater-than>
-              <property>/instrumentation/nav[1]/volume</property>
+              <property>/instrumentation/nav[1]/power-btn</property>
               <value>0.0</value>
             </greater-than>
         </condition>

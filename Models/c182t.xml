@@ -33,6 +33,9 @@
         # Note: This nasal code is loaded just for remote multiplayer models
 
         var rplayer = cmdarg();
+        
+        # mark model as remote
+        rplayer.getNode("sim/model/c182s/remote-instance", 1).setBoolValue(1);
 
         # Set up property aliases for animations.
         rplayer.getNode("sim/model/door-positions/DoorL/position-norm-effective", 1).
@@ -2567,7 +2570,21 @@
   <spot-cutoff>89</spot-cutoff>
   <range-m>6</range-m>
 </light>
- 
+
+<animation>
+    <type>select</type>
+    <object-name>pedestal-spot</object-name>
+    <condition>
+        <and>
+            <greater-than>
+                <property>/systems/electrical/outputs/pedestal-lights-norm</property>
+                <value>0</value>
+            </greater-than>
+            <property>sim/current-view/internal</property>
+            <not> <property>sim/model/c182s/remote-instance</property>  </not>
+        </and>
+    </condition>
+</animation>
 <light>
   <name>pedestal-spot</name>
   <type>spot</type>
@@ -2606,7 +2623,7 @@
   </attenuation>
   <spot-exponent>3.5</spot-exponent>
   <spot-cutoff>30</spot-cutoff>
-  <range-m>0.05</range-m>
+  <range-m>0.07</range-m>
   <dim-factor>
     <expression>
         <min>

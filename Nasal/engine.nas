@@ -14,8 +14,8 @@ var UPDATE_PERIOD = 0.3;
 var hobbsmeter_engine = aircraft.timer.new("/sim/time/hobbs/engine", 12, 1);
 
 var init_hobbs_meter = func(index, meter) {
-    setlistener("/engines/engine[" ~ index ~ "]/running", func {
-        if (getprop("/engines/engine[" ~ index ~ "]/running")) {
+    setlistener("/engines/engine[" ~ index ~ "]/hobbs-meter-switch", func {
+        if (getprop("/engines/engine[" ~ index ~ "]/hobbs-meter-switch")) {
             meter.start();
             print("Hobbs system started");
         } else {

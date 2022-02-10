@@ -570,6 +570,18 @@
         </output>
     </filter>
     
+    <logic>
+        <name>Oil pressure hobbs-meter switch</name> <!-- POH 7-20 -->
+        <input>
+            <greater-than-equals>
+                <property>/engines/engine[0]/oil-pressure-psi-final</property>
+                <value>20</value>
+            </greater-than-equals>
+        </input>
+        <output>
+            <property>/engines/engine/hobbs-meter-switch</property>
+        </output>
+    </logic>
     
     <!-- Oil temperature -->
     <!-- chain is: jsbsim modified value, low oil effect, heater, real value -->

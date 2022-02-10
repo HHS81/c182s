@@ -150,6 +150,7 @@
   <state include="states/idling-overlay.xml"   n="3" />
   <state include="states/cruising-overlay.xml" n="4" />
   <state include="states/approach-overlay.xml" n="5" />
+  <inair-startup-stabilizer type="bool">1</inair-startup-stabilizer>
 
   <hitches>
     <aerotow>
@@ -172,6 +173,9 @@
     </autopilot>
     <autopilot>
         <path>Systems/glass-rain.xml</path>
+    </autopilot>
+    <autopilot>
+        <path>states/in-air-startup-stabilizer.xml</path>
     </autopilot>
     <property-rule n="100">
         <name>FiltersOnly</name>

@@ -129,6 +129,12 @@
                     <command>property-toggle</command>
 		<property>/sim/gpu/enable</property>
                 </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    if (!getprop("/sim/gpu/enable")) setprop("/controls/electric/external-power", 0);
+                </script>
+            </binding>
 	<binding>
                     <command>dialog-update</command>
                 </binding>

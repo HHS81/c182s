@@ -3803,5 +3803,41 @@
             </binding>
         </hovered>
     </animation>
+    
+    <!-- spiral map light yoke cable -->
+    <model>
+        <name>LeftYokeCable</name>
+        <path>yoke-cable.xml</path>
+        <offsets>
+            <x-m>0.352</x-m>
+            <y-m>0.25</y-m>
+            <z-m>0.175</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>RightYokeCable</name>
+        <path>yoke-cable.xml</path>
+        <offsets>
+            <x-m>0.352</x-m>
+            <y-m>-0.25</y-m>
+            <z-m>0.175</z-m>
+        </offsets>
+    </model>
+    <animation>
+        <type>material</type>
+        <object-name>LeftYokeCable</object-name>
+        <object-name>RightYokeCable</object-name>
+        <transparency>
+            <alpha-prop>sim/model/hide-yoke-alpha</alpha-prop>
+        </transparency>
+    </animation>
+    
+    <effect>
+        <inherits-from>Effects/model-combined-transparent</inherits-from>
+        <object-name>Yoke.L</object-name>
+        <object-name>Yoke.R</object-name>
+        <object-name>LeftYokeCable</object-name>
+        <object-name>RightYokeCable</object-name>
+    </effect>
 
 </PropertyList>

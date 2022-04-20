@@ -75,7 +75,7 @@
 				<rad2deg>
 					<acos>
 						<dif>
-							<value>1</value>
+							<value>0.9</value>
 							<property>controls/flight/elevator</property>
 						</dif>
 					</acos>
@@ -99,7 +99,7 @@
 				<rad2deg>
 					<acos>
 						<dif>
-							<value>1</value>
+							<value>0.9</value>
 							<property>controls/flight/elevator</property>
 						</dif>
 					</acos>
@@ -116,6 +116,7 @@
 		<axis>
 			<x>-1</x>
 		</axis>
+		<offset-m>0.015</offset-m>
 		<property>controls/flight/elevator</property>
 		<factor>0.13</factor>
 		<min-m>0</min-m>

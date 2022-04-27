@@ -155,6 +155,16 @@
         
             <checkbox>
                 <halign>left</halign>
+                <label>Enable icing</label>
+                <property>/sim/model/c182s/enable-icing</property>
+                <live>true</live>
+                <binding>
+                    <command>dialog-apply</command>
+                </binding>
+            </checkbox>
+            
+            <checkbox>
+                <halign>left</halign>
                 <label>Enable frost and fog</label>
                 <property>/sim/model/c182s/enable-fog-frost</property>
                 <live>true</live>

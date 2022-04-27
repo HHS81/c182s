@@ -361,6 +361,11 @@ var icing = func {
     # if temperature below zero, sublimating factor is initialized
   }
 
+  if (! getprop("/sim/model/c182s/enable-icing") ) {
+    # insta de-ice if option is disabled
+    icingFactorN.setDoubleValue( -100000 );
+  }
+
   setSeverity( severity );
 
   # update all sensitive areas

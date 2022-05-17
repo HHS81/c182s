@@ -149,7 +149,7 @@
         
     </mass_balance>
 
-<ground_reactions>
+    <ground_reactions>
 <!-- based on: https://www.researchgate.net/figure/Typical-air-spring-and-oil-damper-force-curves-for-a-light-aircraft_fig3_224989810-->
         <contact type="BOGEY" name="NOSE">
             <location unit="IN">
@@ -600,7 +600,7 @@
             <location unit="IN">
                 <x>3.230</x>
                 <y>-56.889</y>
-                <z>38.5</z>
+                <z>-60</z>
             </location>
             <static_friction>  0.5 </static_friction>
             <dynamic_friction> 0.2 </dynamic_friction>
@@ -611,7 +611,7 @@
             <location unit="IN">
                 <x>3.230</x>
                 <y>56.889</y>
-                <z>38.5</z>
+                <z>-60</z>
             </location>
             <static_friction>  0.5 </static_friction>
             <dynamic_friction> 0.2 </dynamic_friction>
@@ -622,7 +622,7 @@
             <location unit="IN">
                 <x>70.16</x>
                 <y>-56.889</y>
-                <z>38.5</z>
+                <z>-60</z>
             </location>
             <static_friction>  0.5 </static_friction>
             <dynamic_friction> 0.2 </dynamic_friction>
@@ -633,7 +633,7 @@
             <location unit="IN">
                 <x>70.16</x>
                 <y>56.889</y>
-                <z>38.5</z>
+                <z>-60</z>
             </location>
             <static_friction>  0.5 </static_friction>
             <dynamic_friction> 0.2 </dynamic_friction>
@@ -644,7 +644,7 @@
             <location unit="IN">
                 <x>160.71</x>
                 <y>-56.889</y>
-                <z>38.5</z>
+                <z>-60</z>
             </location>
             <static_friction>  0.5 </static_friction>
             <dynamic_friction> 0.2 </dynamic_friction>
@@ -655,7 +655,7 @@
             <location unit="IN">
                 <x>160.71</x>
                 <y>56.889</y>
-                <z>38.5</z>
+                <z>-60</z>
             </location>
             <static_friction>  0.5 </static_friction>
             <dynamic_friction> 0.2 </dynamic_friction>
@@ -668,14 +668,14 @@
             <location unit="IN">
                 <x>-78</x>
                 <y>-56.889</y>
-                <z>0</z>
+                <z>-84</z>
             </location>
             <static_friction> 0.05</static_friction>
             <dynamic_friction>0.05</dynamic_friction>
             <rolling_friction>0.02</rolling_friction>
             <spring_coeff unit="LBS/FT"> 1000 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 600 </damping_coeff>
-            <max_steer unit="DEG">360</max_steer>
+            <max_steer unit="DEG">20</max_steer>
             <brake_group>NONE</brake_group>
             <retractable>1</retractable>
         </contact>
@@ -683,14 +683,14 @@
             <location unit="IN">
                 <x>-78</x>
                 <y>56.889</y>
-                <z>0</z>
+                <z>-84</z>
             </location>
             <static_friction> 0.05</static_friction>
             <dynamic_friction>0.05</dynamic_friction>
             <rolling_friction>0.02</rolling_friction>
             <spring_coeff unit="LBS/FT"> 1000 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 600 </damping_coeff>
-            <max_steer unit="DEG">360</max_steer>
+            <max_steer unit="DEG">20</max_steer>
             <brake_group>NONE</brake_group>
             <retractable>1</retractable>
         </contact>
@@ -698,7 +698,7 @@
             <location unit="IN">
                 <x>76</x>
                 <y>-56.889</y>
-                <z>0</z>
+                <z>-85</z>
             </location>
             <static_friction> 0.80</static_friction>
             <dynamic_friction>0.50</dynamic_friction>
@@ -713,7 +713,7 @@
             <location unit="IN">
                 <x>76</x>
                 <y>56.889</y>
-                <z>0</z>
+                <z>-85</z>
             </location>
             <static_friction> 0.80</static_friction>
             <dynamic_friction>0.50</dynamic_friction>
@@ -905,12 +905,36 @@
     <system file="c182-hydrodynamics"/>
     
     <flight_control name="FCS: c182s">
-<!--Cessna 182S POH Page 7-12: nose gear steer deg=11deg, by applying left or right brake increasing steer deg up to 29deg-->
+       <channel name="amphibious gear">
+            <switch name="Gear Command">
+                <default value="gear/gear-cmd-norm"/>
+                <output>gear/gear-input-norm</output>
 
-<channel name="ground reaction">
-<!-- can be used for idividuell damping as an example  based on velocity or anything else-->
-         <fcs_function name="fcs/gear-compression-velocity-dep-nose"> 
-                <function>
+                <test logic="AND" value="gear/gear-pos-norm">
+                    /systems/electrical/outputs/hydraulic-pump le 12
+                </test>
+            </switch>
+            <kinematic name="Gear Control">
+                <input>gear/gear-input-norm</input>
+                <traverse>
+                    <setting>
+                        <position>0</position>
+                        <time>0</time>
+                    </setting>
+                    <setting>
+                        <position>1</position>
+                        <time>4</time>
+                    </setting>
+                </traverse>
+                <output>gear/gear-pos-norm</output>
+            </kinematic>
+        </channel>
+
+        <!--Cessna 182S POH Page 7-12: nose gear steer deg=11deg, by applying left or right brake increasing steer deg up to 29deg-->
+        <channel name="ground reaction">
+        <!-- can be used for idividuell damping as an example  based on velocity or anything else-->
+        <fcs_function name="fcs/gear-compression-velocity-dep-nose"> 
+            <function>
                 <table>
                     <independentVar>velocities/u-fps</independentVar>
                     <tableData>
@@ -921,7 +945,7 @@
                 </function>
             </fcs_function>
             
-         <fcs_function name="fcs/gear-compression-velocity-dep"> 
+            <fcs_function name="fcs/gear-compression-velocity-dep"> 
                 <function>
                 <table>
                     <independentVar>velocities/u-fps</independentVar>
@@ -933,11 +957,10 @@
                 </function>
             </fcs_function>
             
-            
-</channel>
+        </channel>
  
- <!-- following code by Jonathan Redpath aka legoboyvdlp-->
-<channel name="NWS">
+        <!-- following code by Jonathan Redpath aka legoboyvdlp-->
+        <channel name="NWS">
             <switch name="fcs/nws-enabled">
                 <default value="0"/>
                 <test logic="OR" value="1"> <!-- NWS mechanically centered if gear is fully extended -->
@@ -1017,7 +1040,7 @@
                 <rate_limit>80</rate_limit> <!-- 80 deg / s , or 1/8 second to full deflection with NWS -->
                 <output>fcs/steer-pos-deg</output>
             </actuator>
-</channel>
+        </channel>
 
         <channel name="Pitch">
             <summer name="Pitch Trim Sum">

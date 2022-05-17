@@ -1435,65 +1435,53 @@
         <!-- FIXME: The delayed activation isn't pretty but, apparently,
                     the solid property isn't reliable at the begining. -->
         <switch name="left-pontoon/contact-z-pos-in[0]">
-            <default value="38.5"/>
-            <test logic="AND" value="-51.0">
+            <default value="60"/>
+            <test logic="AND" value="-72">
                 simulation/sim-time-sec GT 0.25
-                bushkit GE 3
-                bushkit LE 4
                 contact/unit[13]/solid NE 0
             </test>
             <output>contact/unit[13]/z-position</output>
         </switch>
 
         <switch name="left-pontoon/contact-z-pos-in[1]">
-            <default value="38.5"/>
-            <test logic="AND" value="-48.0">
+            <default value="60"/>
+            <test logic="AND" value="-69">
                 simulation/sim-time-sec GT 0.25
-                bushkit GE 3
-                bushkit LE 4
                 contact/unit[15]/solid NE 0
             </test>
             <output>contact/unit[15]/z-position</output>
         </switch>
 
         <switch name="left-pontoon/contact-z-pos-in[2]">
-            <default value="38.5"/>
-            <test logic="AND" value="-43.9">
+            <default value="60"/>
+            <test logic="AND" value="-28">
                 simulation/sim-time-sec GT 0.25
-                bushkit GE 3
-                bushkit LE 4
                 contact/unit[17]/solid NE 0
             </test>
             <output>contact/unit[17]/z-position</output>
         </switch>
 
         <switch name="right-pontoon/contact-z-pos-in[0]">
-            <default value="38.5"/>
-            <test logic="AND" value="-51.0">
+            <default value="60"/>
+            <test logic="AND" value="-72">
                 simulation/sim-time-sec GT 0.25
-                bushkit GE 3
-                bushkit LE 4
                 contact/unit[14]/solid NE 0
             </test>
             <output>contact/unit[14]/z-position</output>
         </switch>
 
         <switch name="right-pontoon/contact-z-pos-in[1]">
-            <default value="38.5"/>
-            <test logic="AND" value="-48.0">
-                bushkit GE 3
-                bushkit LE 4
+            <default value="60"/>
+            <test logic="AND" value="-69">
                 contact/unit[16]/solid NE 0
             </test>
             <output>contact/unit[16]/z-position</output>
         </switch>
 
         <switch name="right-pontoon/contact-z-pos-in[2]">
-            <default value="38.5"/>
-            <test logic="AND" value="-43.9">
+            <default value="60"/>
+            <test logic="AND" value="-28">
                 simulation/sim-time-sec GT 0.25
-                bushkit GE 3
-                bushkit LE 4
                 contact/unit[18]/solid NE 0
             </test>
             <output>contact/unit[18]/z-position</output>

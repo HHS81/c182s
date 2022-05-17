@@ -53,7 +53,7 @@
         
         <aircraft-data>
             <path>controls/lighting/gearled</path>
-            <path>controls/gear/gear-down-command</path>
+            <path>controls/gear/gear-down</path>
             <path>controls/gear/water-rudder-down</path>
             <path>controls/circuit-breakers/gear-select</path>
             <path>controls/circuit-breakers/gear-advisory</path>
@@ -63,6 +63,7 @@
         <model>
             <path archive="y">Aircraft/c182s/Models/c182s-floats.xml</path>
             <variant>4</variant>
+            <floats-enabled type="bool">true</floats-enabled>
         </model>
         
         <systems>
@@ -83,11 +84,11 @@
             <gearled type="bool">1</gearled>
         </lighting>
         <gear>
-            <gear-down-command type="bool">1</gear-down-command>
+            <gear-down type="bool">1</gear-down>
             <water-rudder-down type="double">0</water-rudder-down>
         </gear>
     </controls>
-    
+    <engines>
         <!-- Following properties are part of a static list of properties
              that FlightGear transmits during multiplay. Because the number
              of properties in /sim/multiplay/generic/ is quite limited and
@@ -125,7 +126,7 @@
             <n2 alias="/gear/gear[22]/position-norm"/>
             <rpm alias="/gear/gear[22]/rollspeed-ms"/>
         </engine>
-    
+    </engines>
     <nasal>
         <electrical-floats>
             <file>Aircraft/c182s/Nasal/c182s-floats.nas</file>
@@ -135,25 +136,24 @@
     <!-- ================ map keyboard ================ -->
     <input>
         <keyboard>
-
-           <!-- <key n="89">
+           <key n="89">
                 <name>G</name>
-                <desc>Toggle Floats gear</desc>
+                <desc>Toggle floats gear</desc>
                 <repeatable type="bool">false</repeatable>
                 <binding>
                 <command>property-toggle</command>
-                <property>sim/model/hide-yoke</property>
+                <property>/controls/gear/gear-down</property>
                 </binding>
             </key>
             <key n="89">
-                <name>G</name>
-                <desc>Toggle Floats paddle</desc>
+                <name>F</name>
+                <desc>Toggle water rudder</desc>
                 <repeatable type="bool">false</repeatable>
                 <binding>
                 <command>property-toggle</command>
-                <property>sim/model/hide-yoke</property>
+                <property>/controls/gear/water-rudder-down</property>
                 </binding>
-            </key>-->
+            </key>
         </keyboard>
     </input>
     

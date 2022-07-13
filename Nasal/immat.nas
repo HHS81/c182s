@@ -14,7 +14,7 @@ var immat_dialog = gui.Dialog.new("/sim/gui/dialogs/c182s/status/dialog",
                   "Aircraft/c182s/gui/dialogs/immat.xml");
 
 setlistener("/sim/signals/fdm-initialized", func {
-    print("[IMMAT-DBG] fdm-initialized");
+    #print("[IMMAT-DBG] fdm-initialized");
     var immat    = props.globals.getNode("sim/model/immat", 1);
     var callsign = props.globals.getNode("sim/multiplay/callsign").getValue();
 

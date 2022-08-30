@@ -414,10 +414,10 @@ var copilot_connect_pilot = func (pilot) {
             func (b) {  pilot.getNode("instrumentation/nav[0]/to-flag").setBoolValue(b)  },
             func (b) {  pilot.getNode("instrumentation/nav[0]/in-range").setBoolValue(b)  },
             func (b) {  pilot.getNode("instrumentation/nav[0]/gs-in-range").setBoolValue(b)  },
-            func (b) {  pilot.getNode("instrumentation/nav[1]/from-flag").setBoolValue(b)  },
-            func (b) {  pilot.getNode("instrumentation/nav[1]/to-flag").setBoolValue(b)  },
-            func (b) {  pilot.getNode("instrumentation/nav[1]/in-range").setBoolValue(b)  },
-            func (b) {  pilot.getNode("instrumentation/nav[1]/gs-in-range").setBoolValue(b)  },
+            func (b) {  pilot.getNode("instrumentation/nav[1]/from-flag", 1).setBoolValue(b)  },
+            func (b) {  pilot.getNode("instrumentation/nav[1]/to-flag", 1).setBoolValue(b)  },
+            func (b) {  pilot.getNode("instrumentation/nav[1]/in-range", 1).setBoolValue(b)  },
+            func (b) {  pilot.getNode("instrumentation/nav[1]/gs-in-range", 1).setBoolValue(b)  },
           ]),
 
 

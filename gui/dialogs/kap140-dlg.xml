@@ -112,7 +112,7 @@
 					<property>/autopilot/kap140/panel/state</property>
 					<value>6</value>
 				</equals>
-				<property>/autopilot/kap140/settings/cws</property>
+				<property>/autopilot/kap140/event/button-cws</property>
 			</visible>
 		</text>
 		

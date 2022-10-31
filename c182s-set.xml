@@ -1431,6 +1431,7 @@
     <file>Aircraft/c182s/Nasal/c182s.nas</file>
     <file>Aircraft/c182s/Nasal/engine.nas</file>
     <file>Aircraft/c182s/Nasal/fuelcontamination.nas</file>
+    <file>Aircraft/c182s/Nasal/kap140.nas</file>
     <file>Aircraft/c182s/Nasal/kx165a.nas</file>
     <file>Aircraft/c182s/Nasal/kt76c.nas</file>
     <file>Aircraft/c182s/Nasal/kn62a.nas</file>
@@ -1528,13 +1529,13 @@
         <desc>CWS Button KAP 140</desc>
         <binding n="20">
             <command>property-assign</command>
-            <property>autopilot/kap140/settings/cws</property>
+            <property>autopilot/kap140/event/button-cws</property>
             <value>1</value>
         </binding>
         <mod-up>
             <binding n="20">
                 <command>property-assign</command>
-                <property>autopilot/kap140/settings/cws</property>
+                <property>autopilot/kap140/event/button-cws</property>
                 <value>0</value>
             </binding>
         </mod-up>
@@ -1544,13 +1545,13 @@
         <desc>AP-DISC Button KAP 140</desc>
         <binding n="20">
             <command>property-assign</command>
-            <property>autopilot/kap140/settings/ap-disc</property>
+            <property>autopilot/kap140/event/button-disc</property>
             <value>1</value>
         </binding>
         <mod-up>
             <binding n="20">
                 <command>property-assign</command>
-                <property>autopilot/kap140/settings/ap-disc</property>
+                <property>autopilot/kap140/event/button-disc</property>
                 <value>0</value>
             </binding>
         </mod-up>

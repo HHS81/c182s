@@ -192,6 +192,7 @@
     <object-name>doorhandleint_right</object-name>
     <object-name>FrameLock1.R</object-name>
     <object-name>FrameLock2.R</object-name>
+    <object-name>LeftYokeCable</object-name>
     <condition>
         <not><property>sim/model/c182s/parachuters/aircraft-mod-enabled</property></not>
     </condition>

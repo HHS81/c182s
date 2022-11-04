@@ -20,6 +20,10 @@
   <name>KAP140TwoAxisAlt</name>
   <path>kap140.ac</path>
 
+  <defaults>
+    <axis-animation-vertex-order-xyz/>
+  </defaults>
+
   <animation>
     <name>annunciators</name>
 
@@ -87,23 +91,18 @@
     <object-name>btn-baro</object-name>
   </animation>
 
-  <!-- TODO: implement glass effects -->
-  <!--<effect>
-    <inherits-from>Aircraft/PA28/Models/Effects/Glass/instrument_glass</inherits-from>
+
+  <effect>
+    <inherits-from>/Models/Effects/c182sreflectglas_interior_front</inherits-from>
     <object-name>glass</object-name>
     <object-name>base-sensor</object-name>
-  </effect>-->
-  <animation> <!-- hide glass alltogether -->
-      <!--<inherits-from>Aircraft/PA28/Models/Effects/Glass/instrument_glass</inherits-from>-->
-      <object-name>glass</object-name>
-      <type>select</type>
-      <condition>
-          <equals>
-              <value>0</value>
-              <value>1</value>
-          </equals>
-      </condition>
-  </animation>
+    <parameters>
+      <fog-level>0</fog-level>
+      <frost-level>0</frost-level>
+      <rnorm>0</rnorm>
+      <gsnorm>0</gsnorm>
+    </parameters>
+  </effect>
 
   <!--<effect>
     <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
@@ -303,7 +302,6 @@
             <blue>1.0</blue>
         </emission>
     </animation>
-
 
   <animation>
     <type>select</type>
@@ -742,7 +740,7 @@
     <object-name>ann-ap-act</object-name>
     <name>AP Anunciator</name>
     <condition>
-      <not><property>autopilot/kap140/settings/cws</property></not>
+      <not><property>autopilot/kap140/event/button-cws</property></not>
     </condition>
   </animation>
 
@@ -1423,44 +1421,18 @@
       <name>AP Button</name>
       <button>0</button>
       <binding>
+        <command>property-assign</command>
+        <property>autopilot/kap140/event/button-ap</property>
+        <value>1</value>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("kap140")</script>
-      </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/button-ap</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-      <binding>
-        <condition>
-          <greater-than>
-            <property>autopilot/kap140/panel/state</property>
-            <value>4</value>
-          </greater-than>
-          <not><property>autopilot/kap140/roll-axis-fail</property></not>
-          <not><property>autopilot/kap140/pitch-axis-fail</property></not>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/state-old</property>
-        <property>autopilot/kap140/panel/state</property>
-      </binding>
-      <binding>
-        <condition>
-          <greater-than>
-            <property>autopilot/kap140/panel/state</property>
-            <value>4</value>
-          </greater-than>
-          <not><property>autopilot/kap140/roll-axis-fail</property></not>
-          <not><property>autopilot/kap140/pitch-axis-fail</property></not>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/internal/target-climb-rate</property>
-        <property>autopilot/internal/vert-speed-fpm</property>
       </binding>
       <mod-up>
         <binding>
           <command>property-assign</command>
-          <property>autopilot/kap140/panel/button-ap</property>
+          <property>autopilot/kap140/event/button-ap</property>
           <value>0</value>
         </binding>
       </mod-up>
@@ -1474,151 +1446,18 @@
       <name>HDG Button</name>
       <button>0</button>
       <binding>
+        <command>property-assign</command>
+        <property>autopilot/kap140/event/button-hdg</property>
+        <value>1</value>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("kap140")</script>
-      </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/button-hdg</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>2</value>
-          </equals>
-          <less-than>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>3</value>
-          </less-than>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-mode</property>
-        <value>-1</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>1</value>
-          </equals>
-          <less-than>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>3</value>
-          </less-than>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-mode</property>
-        <value>2</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <greater-than>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>2</value>
-          </greater-than>
-          <less-than>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>6</value>
-          </less-than>
-          <property>autopilot/kap140/settings/from-hdg</property>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-mode</property>
-        <value>2</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <greater-than>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>2</value>
-          </greater-than>
-          <less-than>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>6</value>
-          </less-than>
-          <not><property>autopilot/kap140/settings/from-hdg</property></not>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-mode</property>
-        <value>1</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <less-than>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>0</value>
-          </less-than>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-mode</property>
-        <value>1</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <less-than>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>3</value>
-          </less-than>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/from-hdg</property>
-        <value>0</value>
-      </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-arm</property>
-        <value>0</value>
-      </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/internal/target-roll-deg</property>
-        <value>0</value>
-      </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/internal/target-intercept-angle</property>
-        <value>0</value>
-      </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/hdg-timer</property>
-        <value>0</value>
-      </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/nav-timer</property>
-        <value>0</value>
       </binding>
       <mod-up>
         <binding>
           <command>property-assign</command>
-          <property>autopilot/kap140/panel/button-hdg</property>
+          <property>autopilot/kap140/event/button-hdg</property>
           <value>0</value>
         </binding>
       </mod-up>
@@ -1632,147 +1471,18 @@
       <name>NAV Button</name>
       <button>0</button>
       <binding>
-        <command>nasal</command>
-        <script>c182s.click("kap140")</script>
-      </binding>
-      <binding>
         <command>property-assign</command>
-        <property>autopilot/kap140/panel/button-nav</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <not-equals>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>3</value>
-          </not-equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>3</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-arm</property>
-        <value>-1</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <not-equals>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>3</value>
-          </not-equals>
-          <greater-than>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>-1</value>
-          </greater-than>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-arm</property>
-        <value>3</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <not-equals>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>3</value>
-          </not-equals>
-          <less-than>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>0</value>
-          </less-than>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-arm</property>
-        <value>0</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>3</value>
-          </equals>
-          <not><property alias="/params/hsi-installed"/></not>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>2</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/from-hdg</property>
+        <property>autopilot/kap140/event/button-nav</property>
         <value>1</value>
       </binding>
       <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>0</value>
-          </equals>
-          <not><property alias="/params/hsi-installed"/></not>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/from-hdg</property>
-        <value>0</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>3</value>
-          </equals>
-          <not><property alias="/params/hsi-installed"/></not>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/hdg-timer</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>0</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/hdg-timer</property>
-        <value>0</value>
-      </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/nav-timer</property>
-        <value>0</value>
+        <command>nasal</command>
+        <script>c182s.click("kap140")</script>
       </binding>
       <mod-up>
         <binding>
           <command>property-assign</command>
-          <property>autopilot/kap140/panel/button-nav</property>
+          <property>autopilot/kap140/event/button-nav</property>
           <value>0</value>
         </binding>
       </mod-up>
@@ -1786,147 +1496,18 @@
       <name>APR Button</name>
       <button>0</button>
       <binding>
-        <command>nasal</command>
-        <script>c182s.click("kap140")</script>
-      </binding>
-      <binding>
         <command>property-assign</command>
-        <property>autopilot/kap140/panel/button-apr</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <not-equals>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>4</value>
-          </not-equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>4</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-arm</property>
-        <value>-1</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <not-equals>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>4</value>
-          </not-equals>
-          <greater-than>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>-1</value>
-          </greater-than>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-arm</property>
-        <value>4</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <not-equals>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>4</value>
-          </not-equals>
-          <less-than>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>0</value>
-          </less-than>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-arm</property>
-        <value>0</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>4</value>
-          </equals>
-          <not><property alias="/params/hsi-installed"/></not>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>2</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/from-hdg</property>
+        <property>autopilot/kap140/event/button-apr</property>
         <value>1</value>
       </binding>
       <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>0</value>
-          </equals>
-          <not><property alias="/params/hsi-installed"/></not>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/from-hdg</property>
-        <value>0</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>4</value>
-          </equals>
-          <not><property alias="/params/hsi-installed"/></not>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/hdg-timer</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>0</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/hdg-timer</property>
-        <value>0</value>
-      </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/nav-timer</property>
-        <value>0</value>
+        <command>nasal</command>
+        <script>c182s.click("kap140")</script>
       </binding>
       <mod-up>
         <binding>
           <command>property-assign</command>
-          <property>autopilot/kap140/panel/button-apr</property>
+          <property>autopilot/kap140/event/button-apr</property>
           <value>0</value>
         </binding>
       </mod-up>
@@ -1940,147 +1521,18 @@
       <name>REV Button</name>
       <button>0</button>
       <binding>
-        <command>nasal</command>
-        <script>c182s.click("kap140")</script>
-      </binding>
-      <binding>
         <command>property-assign</command>
-        <property>autopilot/kap140/panel/button-rev</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <not-equals>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>5</value>
-          </not-equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>5</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-arm</property>
-        <value>-1</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <not-equals>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>5</value>
-          </not-equals>
-          <greater-than>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>-1</value>
-          </greater-than>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-arm</property>
-        <value>5</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <not-equals>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>5</value>
-          </not-equals>
-          <less-than>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>0</value>
-          </less-than>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/lateral-arm</property>
-        <value>0</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>5</value>
-          </equals>
-          <not><property alias="/params/hsi-installed"/></not>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-mode</property>
-            <value>2</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/from-hdg</property>
+        <property>autopilot/kap140/event/button-rev</property>
         <value>1</value>
       </binding>
       <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>0</value>
-          </equals>
-          <not><property alias="/params/hsi-installed"/></not>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/from-hdg</property>
-        <value>0</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>5</value>
-          </equals>
-          <not><property alias="/params/hsi-installed"/></not>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/hdg-timer</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/lateral-arm</property>
-            <value>0</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/hdg-timer</property>
-        <value>0</value>
-      </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/nav-timer</property>
-        <value>0</value>
+        <command>nasal</command>
+        <script>c182s.click("kap140")</script>
       </binding>
       <mod-up>
         <binding>
           <command>property-assign</command>
-          <property>autopilot/kap140/panel/button-rev</property>
+          <property>autopilot/kap140/event/button-rev</property>
           <value>0</value>
         </binding>
       </mod-up>
@@ -2094,109 +1546,18 @@
       <name>ALT Button</name>
       <button>0</button>
       <binding>
+        <command>property-assign</command>
+        <property>autopilot/kap140/event/button-alt</property>
+        <value>1</value>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("kap140")</script>
       </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/button-alt</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-mode</property>
-            <value>2</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/vertical-mode</property>
-        <value>-1</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-mode</property>
-            <value>1</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/vertical-mode</property>
-        <value>2</value>
-      </binding>
-
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-mode</property>
-            <value>-1</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/vertical-mode</property>
-        <value>1</value>
-      </binding>
-
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/gs-timer</property>
-        <value>0</value>
-      </binding>
-
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-mode</property>
-            <value>1</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/internal/target-pressure</property>
-        <value>0.0</value>
-      </binding>
-
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-mode</property>
-            <value>2</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/internal/target-pressure</property>
-        <property alias="/params/pressure-source"/>
-      </binding>
-
       <mod-up>
         <binding>
           <command>property-assign</command>
-          <property>autopilot/kap140/panel/button-alt</property>
+          <property>autopilot/kap140/event/button-alt</property>
           <value>0</value>
         </binding>
       </mod-up>
@@ -2211,89 +1572,18 @@
       <name>DOWN Button</name>
       <button>0</button>
       <binding>
+        <command>property-assign</command>
+        <property>autopilot/kap140/event/button-down</property>
+        <value>1</value>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("kap140")</script>
       </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/button-down</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-<!-- FPM setting -->
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-mode</property>
-            <value>1</value>
-          </equals>
-          <greater-than>
-            <property>autopilot/kap140/panel/fpm-timer</property>
-            <value>0</value>
-          </greater-than>
-        </condition>
-        <command>property-adjust</command>
-        <property>autopilot/internal/target-climb-rate</property>
-        <step>-100</step>
-        <min>-2000</min>
-        <max>2000</max>
-        <wrap>false</wrap>
-      </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/fpm-old</property>
-        <property>autopilot/internal/target-climb-rate</property>
-      </binding>
-<!--altitude setting-->
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-mode</property>
-            <value>2</value>
-          </equals>
-        </condition>
-        <command>property-adjust</command>
-        <property>autopilot/internal/target-pressure</property>
-        <step>0.022</step>
-        <min>5.0</min>
-        <max>35.0</max>
-        <wrap>false</wrap>
-      </binding>
       <mod-up>
         <binding>
-          <condition>
-            <equals>
-              <property>autopilot/kap140/panel/state</property>
-              <value>6</value>
-            </equals>
-            <equals>
-              <property>autopilot/kap140/settings/vertical-mode</property>
-              <value>2</value>
-            </equals>
-            <greater-than>
-              <property>sim/time/elapsed-sec</property>
-              <expression>
-                <sum>
-                  <property>autopilot/kap140/panel/button-down</property>
-                  <value>1</value>
-                </sum>
-              </expression>
-            </greater-than>
-          </condition>
           <command>property-assign</command>
-          <property>autopilot/internal/target-pressure</property>
-          <property alias="/params/pressure-source"/>
-        </binding>
-        <binding>
-          <command>property-assign</command>
-          <property>autopilot/kap140/panel/button-down</property>
+          <property>autopilot/kap140/event/button-down</property>
           <value>0</value>
         </binding>
       </mod-up>
@@ -2307,89 +1597,18 @@
       <name>UP Button</name>
       <button>0</button>
       <binding>
+        <command>property-assign</command>
+        <property>autopilot/kap140/event/button-up</property>
+        <value>1</value>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("kap140")</script>
       </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/button-up</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-<!-- FPM setting -->
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-mode</property>
-            <value>1</value>
-          </equals>
-          <greater-than>
-            <property>autopilot/kap140/panel/fpm-timer</property>
-            <value>0</value>
-          </greater-than>
-        </condition>
-        <command>property-adjust</command>
-        <property>autopilot/internal/target-climb-rate</property>
-        <step>100</step>
-        <min>-2000</min>
-        <max>2000</max>
-        <wrap>false</wrap>
-      </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/fpm-old</property>
-        <property>autopilot/internal/target-climb-rate</property>
-      </binding>
-<!--altitude setting-->
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-mode</property>
-            <value>2</value>
-          </equals>
-        </condition>
-        <command>property-adjust</command>
-        <property>autopilot/internal/target-pressure</property>
-        <step>-0.022</step>
-        <min>5.0</min>
-        <max>35.0</max>
-        <wrap>false</wrap>
-      </binding>
       <mod-up>
         <binding>
-          <condition>
-            <equals>
-              <property>autopilot/kap140/panel/state</property>
-              <value>6</value>
-            </equals>
-            <equals>
-              <property>autopilot/kap140/settings/vertical-mode</property>
-              <value>2</value>
-            </equals>
-            <greater-than>
-              <property>sim/time/elapsed-sec</property>
-              <expression>
-                <sum>
-                  <property>autopilot/kap140/panel/button-up</property>
-                  <value>1</value>
-                </sum>
-              </expression>
-            </greater-than>
-          </condition>
           <command>property-assign</command>
-          <property>autopilot/internal/target-pressure</property>
-          <property alias="/params/pressure-source"/>
-        </binding>
-        <binding>
-          <command>property-assign</command>
-          <property>autopilot/kap140/panel/button-up</property>
+          <property>autopilot/kap140/event/button-up</property>
           <value>0</value>
         </binding>
       </mod-up>
@@ -2403,63 +1622,18 @@
       <name>ARM Button</name>
       <button>0</button>
       <binding>
+        <command>property-assign</command>
+        <property>autopilot/kap140/event/button-arm</property>
+        <value>1</value>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("kap140")</script>
-      </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/button-arm</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-arm</property>
-            <value>2</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/vertical-arm</property>
-        <value>-1</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-arm</property>
-            <value>0</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/vertical-arm</property>
-        <value>2</value>
-      </binding>
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>6</value>
-          </equals>
-          <less-than>
-            <property>autopilot/kap140/settings/vertical-arm</property>
-            <value>0</value>
-          </less-than>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/vertical-arm</property>
-        <value>0</value>
       </binding>
       <mod-up>
         <binding>
           <command>property-assign</command>
-          <property>autopilot/kap140/panel/button-arm</property>
+          <property>autopilot/kap140/event/button-arm</property>
           <value>0</value>
         </binding>
       </mod-up>
@@ -2473,29 +1647,18 @@
       <name>BARO Button</name>
       <button>0</button>
       <binding>
+        <command>property-assign</command>
+        <property>autopilot/kap140/event/button-baro</property>
+        <value>1</value>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("kap140")</script>
-      </binding>
-      <binding>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/button-baro</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-      <binding>
-        <condition>
-          <greater-than>
-            <property>autopilot/kap140/panel/state</property>
-            <value>3</value>
-          </greater-than>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/baro-mode-old</property>
-        <property>autopilot/kap140/panel/baro-mode</property>
       </binding>
       <mod-up>
         <binding>
           <command>property-assign</command>
-          <property>autopilot/kap140/panel/button-baro</property>
+          <property>autopilot/kap140/event/button-baro</property>
           <value>0</value>
         </binding>
       </mod-up>
@@ -2506,136 +1669,14 @@
     <type>knob</type>
     <object-name>knob-outer</object-name>
     <action>
-
-<!-- alt preselect setting -->
+      <binding>
+        <command>property-adjust</command>
+        <property>autopilot/kap140/event/knob-outer</property>
+        <factor>1</factor>
+      </binding>
       <binding>
         <command>nasal</command>
         <script>c182s.click("kap140-dial")</script>
-      </binding>
-      <binding>
-        <condition>
-          <greater-than>
-            <property>autopilot/kap140/panel/state</property>
-            <value>4</value>
-          </greater-than>
-          <equals>
-            <property>autopilot/kap140/panel/digit-mode</property>
-            <value>1</value>
-          </equals>
-        </condition>
-        <command>property-adjust</command>
-        <property>autopilot/internal/target-altitude</property>
-        <factor>1000</factor>
-        <min>-1000</min>
-        <max>35000</max>
-        <wrap>false</wrap>
-      </binding>
-
-      <binding>
-        <condition>
-          <greater-than>
-            <property>autopilot/kap140/panel/state</property>
-            <value>5</value>
-          </greater-than>
-          <equals>
-            <property>autopilot/kap140/panel/digit-mode</property>
-            <value>1</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-arm</property>
-            <value>0</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/vertical-arm</property>
-        <value>2</value>
-      </binding>
-
-<!-- baro setting -->
-
-      <binding>
-        <condition>
-          <not><property alias="/params/baro-tied"/></not>
-          <greater-than>
-            <property>autopilot/kap140/panel/state</property>
-            <value>3</value>
-          </greater-than>
-          <equals>
-            <property>autopilot/kap140/panel/digit-mode</property>
-            <value>3</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/panel/baro-mode</property>
-            <value>0</value>
-          </equals>
-        </condition>
-        <command>property-adjust</command>
-        <property alias="/params/baro-inhg"/>
-        <factor>0.1</factor>
-        <min>26.0</min>
-        <max>33.0</max>
-        <wrap>false</wrap>
-      </binding>
-
-      <binding>
-        <condition>
-          <not><property alias="/params/baro-tied"/></not>
-          <greater-than>
-            <property>autopilot/kap140/panel/state</property>
-            <value>3</value>
-          </greater-than>
-          <equals>
-            <property>autopilot/kap140/panel/digit-mode</property>
-            <value>3</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/panel/baro-mode</property>
-            <value>1</value>
-          </equals>
-        </condition>
-        <command>property-adjust</command>
-        <property alias="/params/baro-hpa"/>
-        <factor>10</factor>
-        <min>880</min>
-        <max>1118</max>
-        <wrap>false</wrap>
-      </binding>
-
-      <binding>
-        <condition>
-          <not><property alias="/params/baro-tied"/></not>
-          <greater-than>
-            <property>autopilot/kap140/panel/state</property>
-            <value>3</value>
-          </greater-than>
-          <equals>
-            <property>autopilot/kap140/panel/digit-mode</property>
-            <value>3</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/baro-timer</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>4</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/state</property>
-        <value>5</value>
-      </binding>
-
-<!-- position for animation -->
-
-      <binding>
-        <command>property-adjust</command>
-        <property>autopilot/kap140/panel/knob-outer-pos</property>
-        <factor>1</factor>
       </binding>
 
     </action>
@@ -2645,138 +1686,15 @@
     <type>knob</type>
     <object-name>knob-inner</object-name>
     <action>
-
-<!-- alt preselect setting -->
+      <binding>
+        <command>property-adjust</command>
+        <property>autopilot/kap140/event/knob-inner</property>
+        <factor>1</factor>
+      </binding>
       <binding>
         <command>nasal</command>
         <script>c182s.click("kap140-dial")</script>
       </binding>
-      <binding>
-        <condition>
-          <greater-than>
-            <property>autopilot/kap140/panel/state</property>
-            <value>4</value>
-          </greater-than>
-          <equals>
-            <property>autopilot/kap140/panel/digit-mode</property>
-            <value>1</value>
-          </equals>
-        </condition>
-        <command>property-adjust</command>
-        <property>autopilot/internal/target-altitude</property>
-        <factor>100</factor>
-        <min>-1000</min>
-        <max>35000</max>
-        <wrap>false</wrap>
-      </binding>
-
-      <binding>
-        <condition>
-          <greater-than>
-            <property>autopilot/kap140/panel/state</property>
-            <value>5</value>
-          </greater-than>
-          <equals>
-            <property>autopilot/kap140/panel/digit-mode</property>
-            <value>1</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/settings/vertical-arm</property>
-            <value>0</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/settings/vertical-arm</property>
-        <value>2</value>
-      </binding>
-
-<!-- baro setting -->
-
-      <binding>
-        <condition>
-          <not><property alias="/params/baro-tied"/></not>
-          <greater-than>
-            <property>autopilot/kap140/panel/state</property>
-            <value>3</value>
-          </greater-than>
-          <equals>
-            <property>autopilot/kap140/panel/digit-mode</property>
-            <value>3</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/panel/baro-mode</property>
-            <value>0</value>
-          </equals>
-        </condition>
-        <command>property-adjust</command>
-        <property alias="/params/baro-inhg"/>
-        <factor>0.01</factor>
-        <min>26.0</min>
-        <max>33.0</max>
-        <wrap>false</wrap>
-      </binding>
-
-      <binding>
-        <condition>
-          <not><property alias="/params/baro-tied"/></not>
-          <greater-than>
-            <property>autopilot/kap140/panel/state</property>
-            <value>3</value>
-          </greater-than>
-          <equals>
-            <property>autopilot/kap140/panel/digit-mode</property>
-            <value>3</value>
-          </equals>
-          <equals>
-            <property>autopilot/kap140/panel/baro-mode</property>
-            <value>1</value>
-          </equals>
-        </condition>
-        <command>property-adjust</command>
-        <property alias="/params/baro-hpa"/>
-        <factor>1</factor>
-        <min>880</min>
-        <max>1118</max>
-        <wrap>false</wrap>
-      </binding>
-
-      <binding>
-        <condition>
-          <not><property alias="/params/baro-tied"/></not>
-          <greater-than>
-            <property>autopilot/kap140/panel/state</property>
-            <value>3</value>
-          </greater-than>
-          <equals>
-            <property>autopilot/kap140/panel/digit-mode</property>
-            <value>3</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/baro-timer</property>
-        <property>sim/time/elapsed-sec</property>
-      </binding>
-
-      <binding>
-        <condition>
-          <equals>
-            <property>autopilot/kap140/panel/state</property>
-            <value>4</value>
-          </equals>
-        </condition>
-        <command>property-assign</command>
-        <property>autopilot/kap140/panel/state</property>
-        <value>5</value>
-      </binding>
-
-<!-- position for animation -->
-
-      <binding>
-        <command>property-adjust</command>
-        <property>autopilot/kap140/panel/knob-inner-pos</property>
-        <factor>1</factor>
-      </binding>
-
     </action>
   </animation>
 
@@ -2803,12 +1721,8 @@
   <animation>
     <type>translate</type>
     <object-name>btn-ap</object-name>
-    <property>autopilot/kap140/panel/button-ap</property>
+    <property>autopilot/kap140/event/button-ap</property>
     <factor>1</factor>
-    <interpolation>
-      <entry><ind>0.0</ind><dep>0.0</dep></entry>
-      <entry><ind>1.0</ind><dep>1.0</dep></entry>
-    </interpolation>
     <axis>
       <object-name>knob-axis</object-name>
     </axis>
@@ -2817,12 +1731,8 @@
   <animation>
     <type>translate</type>
     <object-name>btn-hdg</object-name>
-    <property>autopilot/kap140/panel/button-hdg</property>
+    <property>autopilot/kap140/event/button-hdg</property>
     <factor>1</factor>
-    <interpolation>
-      <entry><ind>0.0</ind><dep>0.0</dep></entry>
-      <entry><ind>1.0</ind><dep>1.0</dep></entry>
-    </interpolation>
     <axis>
       <object-name>knob-axis</object-name>
     </axis>
@@ -2831,12 +1741,8 @@
   <animation>
     <type>translate</type>
     <object-name>btn-nav</object-name>
-    <property>autopilot/kap140/panel/button-nav</property>
+    <property>autopilot/kap140/event/button-nav</property>
     <factor>1</factor>
-    <interpolation>
-      <entry><ind>0.0</ind><dep>0.0</dep></entry>
-      <entry><ind>1.0</ind><dep>1.0</dep></entry>
-    </interpolation>
     <axis>
       <object-name>knob-axis</object-name>
     </axis>
@@ -2845,12 +1751,8 @@
   <animation>
     <type>translate</type>
     <object-name>btn-apr</object-name>
-    <property>autopilot/kap140/panel/button-apr</property>
+    <property>autopilot/kap140/event/button-apr</property>
     <factor>1</factor>
-    <interpolation>
-      <entry><ind>0.0</ind><dep>0.0</dep></entry>
-      <entry><ind>1.0</ind><dep>1.0</dep></entry>
-    </interpolation>
     <axis>
       <object-name>knob-axis</object-name>
     </axis>
@@ -2859,12 +1761,8 @@
   <animation>
     <type>translate</type>
     <object-name>btn-rev</object-name>
-    <property>autopilot/kap140/panel/button-rev</property>
+    <property>autopilot/kap140/event/button-rev</property>
     <factor>1</factor>
-    <interpolation>
-      <entry><ind>0.0</ind><dep>0.0</dep></entry>
-      <entry><ind>1.0</ind><dep>1.0</dep></entry>
-    </interpolation>
     <axis>
       <object-name>knob-axis</object-name>
     </axis>
@@ -2873,12 +1771,8 @@
   <animation>
     <type>translate</type>
     <object-name>btn-alt</object-name>
-    <property>autopilot/kap140/panel/button-alt</property>
+    <property>autopilot/kap140/event/button-alt</property>
     <factor>1</factor>
-    <interpolation>
-      <entry><ind>0.0</ind><dep>0.0</dep></entry>
-      <entry><ind>1.0</ind><dep>1.0</dep></entry>
-    </interpolation>
     <axis>
       <object-name>knob-axis</object-name>
     </axis>
@@ -2887,12 +1781,8 @@
   <animation>
     <type>translate</type>
     <object-name>btn-up</object-name>
-    <property>autopilot/kap140/panel/button-up</property>
+    <property>autopilot/kap140/event/button-up</property>
     <factor>1</factor>
-    <interpolation>
-      <entry><ind>0.0</ind><dep>0.0</dep></entry>
-      <entry><ind>1.0</ind><dep>1.0</dep></entry>
-    </interpolation>
     <axis>
       <object-name>knob-axis</object-name>
     </axis>
@@ -2901,12 +1791,8 @@
   <animation>
     <type>translate</type>
     <object-name>btn-down</object-name>
-    <property>autopilot/kap140/panel/button-down</property>
+    <property>autopilot/kap140/event/button-down</property>
     <factor>1</factor>
-    <interpolation>
-      <entry><ind>0.0</ind><dep>0.0</dep></entry>
-      <entry><ind>1.0</ind><dep>1.0</dep></entry>
-    </interpolation>
     <axis>
       <object-name>knob-axis</object-name>
     </axis>
@@ -2915,12 +1801,8 @@
   <animation>
     <type>translate</type>
     <object-name>btn-arm</object-name>
-    <property>autopilot/kap140/panel/button-arm</property>
+    <property>autopilot/kap140/event/button-arm</property>
     <factor>1</factor>
-    <interpolation>
-      <entry><ind>0.0</ind><dep>0.0</dep></entry>
-      <entry><ind>1.0</ind><dep>1.0</dep></entry>
-    </interpolation>
     <axis>
       <object-name>knob-axis</object-name>
     </axis>
@@ -2929,15 +1811,20 @@
   <animation>
     <type>translate</type>
     <object-name>btn-baro</object-name>
-    <property>autopilot/kap140/panel/button-baro</property>
+    <property>autopilot/kap140/event/button-baro</property>
     <factor>1</factor>
-    <interpolation>
-      <entry><ind>0.0</ind><dep>0.0</dep></entry>
-      <entry><ind>1.0</ind><dep>1.0</dep></entry>
-    </interpolation>
     <axis>
       <object-name>knob-axis</object-name>
     </axis>
   </animation>
+
+  <!--effect>
+    <inherits-from>../Effects/c182s_interior_radiance</inherits-from>
+    <object-name>knob-outer</object-name>
+    <object-name>knob-inner</object-name>
+    <object-name>base</object-name>
+    <object-name>buttons</object-name>
+  </effect-->
+
 
 </PropertyList>

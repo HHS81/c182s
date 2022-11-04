@@ -343,8 +343,8 @@ We have captured the localizer and the GS.
         <output>autopilot/kap140/panel/baro-timer</output>
         <output>autopilot/kap140/panel/nav-timer</output>
         <output>autopilot/kap140/panel/gs-timer</output>
-        <output>autopilot/kap140/settings/cws</output>
-        <output>autopilot/kap140/settings/ap-disc</output>
+        <output>autopilot/kap140/event/button-cws</output>
+        <output>autopilot/kap140/event/button-disc</output>
         <output>autopilot/kap140/servo/roll-servo/check-timer</output>
         <output>autopilot/kap140/servo/pitch-servo/check-timer</output>
     </filter>
@@ -1098,7 +1098,7 @@ We have captured the localizer and the GS.
                     <property>autopilot/kap140/roll-axis-fail</property>
                     <not><property>autopilot/kap140/sensors/turn-indicator-operable</property></not>
                     <and>
-                        <not><property>autopilot/kap140/settings/cws</property></not>
+                        <not><property>autopilot/kap140/event/button-cws</property></not>
                         <property>autopilot/kap140/sensors/excess-g</property>
                     </and>
                     <and>
@@ -1167,8 +1167,8 @@ We have captured the localizer and the GS.
         <output>autopilot/kap140/panel/baro-timer</output>
         <output>autopilot/kap140/panel/digit-timer</output>
         <output>autopilot/kap140/panel/button-ap</output>
-        <output>autopilot/kap140/settings/cws</output>
-        <output>autopilot/kap140/settings/ap-disc</output>
+        <output>autopilot/kap140/event/button-cws</output>
+        <output>autopilot/kap140/event/button-disc</output>
         <output>autopilot/kap140/sensors/pitch-up</output>
         <output>autopilot/kap140/sensors/pitch-down</output>
     </filter>
@@ -1181,7 +1181,7 @@ We have captured the localizer and the GS.
         <debug>false</debug>
         <enable>
             <condition>
-                <property>autopilot/kap140/settings/ap-disc</property>
+                <property>autopilot/kap140/event/button-disc</property>
                 <less-than>
                     <property>autopilot/kap140/panel/state</property>
                     <value>6</value>
@@ -1189,7 +1189,7 @@ We have captured the localizer and the GS.
             </condition>
         </enable>
         <input>0</input>
-        <output>autopilot/kap140/settings/ap-disc</output>
+        <output>autopilot/kap140/event/button-disc</output>
     </filter>
 
     <filter>
@@ -1198,7 +1198,7 @@ We have captured the localizer and the GS.
         <debug>false</debug>
         <enable>
             <condition>
-                <property>autopilot/kap140/settings/ap-disc</property>
+                <property>autopilot/kap140/event/button-disc</property>
                 <equals>
                     <property>autopilot/kap140/panel/state</property>
                     <value>6</value>
@@ -1219,7 +1219,7 @@ We have captured the localizer and the GS.
         <debug>false</debug>
         <enable>
             <condition>
-                <property>autopilot/kap140/settings/ap-disc</property>
+                <property>autopilot/kap140/event/button-disc</property>
                 <equals>
                     <property>autopilot/kap140/panel/state</property>
                     <value>6</value>
@@ -1646,7 +1646,7 @@ We have captured the localizer and the GS.
                     <property>autopilot/kap140/settings/vertical-mode</property>
                     <value>1</value>
                 </equals>
-                <property>autopilot/kap140/settings/cws</property>
+                <property>autopilot/kap140/event/button-cws</property>
             </condition>
         </enable>
         <input>autopilot/internal/vert-speed-fpm</input>
@@ -1698,7 +1698,7 @@ We have captured the localizer and the GS.
                     <property>autopilot/kap140/settings/vertical-mode</property>
                     <value>1</value>
                 </equals>
-                <not><property>autopilot/kap140/settings/cws</property></not>
+                <not><property>autopilot/kap140/event/button-cws</property></not>
                 <not-equals>
                     <expression>
                         <mod>
@@ -1746,7 +1746,7 @@ We have captured the localizer and the GS.
                     <property>autopilot/kap140/settings/vertical-mode</property>
                     <value>2</value>
                 </equals>
-                <property>autopilot/kap140/settings/cws</property>
+                <property>autopilot/kap140/event/button-cws</property>
             </condition>
         </enable>
         <input>
@@ -1869,7 +1869,6 @@ We have captured the localizer and the GS.
                     <value>6</value>
                 </less-than>
                 <property>instrumentation/nav-source/signal-valid</property>
-                
                 <or>
                     <!-- with DG+ROL mode: capture once the calculated intercept course is smaller than the commanded ROL course difference -->
                     <and>
@@ -1878,7 +1877,6 @@ We have captured the localizer and the GS.
                             <property>autopilot/kap140/settings/lateral-mode</property>
                             <value>1</value>
                         </equals>
-                        
                         <greater-than-equals>
                             <expression>
                                 <difference>
@@ -1889,7 +1887,6 @@ We have captured the localizer and the GS.
                             <value>0</value>
                         </greater-than-equals>
                     </and>
-                    
                     <!-- with HSI or DG+HDG: capture just using the radial course error -->
                     <property alias="/params/hsi-installed" />
                     <and>
@@ -1899,7 +1896,6 @@ We have captured the localizer and the GS.
                         </not-equals>
                     </and>
                 </or>
-                
                 <less-than>
                     <expression>
                         <abs><property>instrumentation/nav-source/heading-needle-deflection-norm</property></abs>
@@ -2794,7 +2790,7 @@ We have captured the localizer and the GS.
                 <value>6</value>
             </equals>
             <not><property>/autopilot/kap140/roll-axis-fail</property></not>
-            <not><property>/autopilot/kap140/settings/cws</property></not>
+            <not><property>/autopilot/kap140/event/button-cws</property></not>
         </input>
         <output>/autopilot/internal/logic/roll-active</output>
     </logic>
@@ -2944,7 +2940,7 @@ We have captured the localizer and the GS.
                 <value>6</value>
             </equals>
             <not><property>/autopilot/kap140/pitch-axis-fail</property></not>
-            <not><property>/autopilot/kap140/settings/cws</property></not>
+            <not><property>/autopilot/kap140/event/button-cws</property></not>
         </input>
         <output>/autopilot/internal/logic/pitch-active</output>
     </logic>

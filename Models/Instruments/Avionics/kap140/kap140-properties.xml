@@ -21,6 +21,10 @@
             <hsi-installed type="bool">false</hsi-installed>
             <baro-tied type="bool">false</baro-tied>
         </config>
+        <event>
+            <button-cws type="bool">false</button-cws>
+            <button-disc type="bool">false</button-disc>
+        </event>
         <panel>
             <state type="int">0</state>
             <state-old type="int">0</state-old>
@@ -92,8 +96,6 @@
             </elevator-trim-servo>
         </servo>
         <settings>
-            <ap-disc type="bool">false</ap-disc>
-            <cws type="bool">false</cws>
             <from-hdg type="bool">false</from-hdg>
             <lateral-mode type="int">0</lateral-mode>
             <lateral-arm type="int">0</lateral-arm>

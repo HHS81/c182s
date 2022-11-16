@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+	<path>CompassCorrectionCard.ac</path>
+	
+	<effect>
+		<inherits-from>Aircraft/c182s/Models/Effects/c182s_glareshield</inherits-from>
+		<object-name>CompassCorrectionCard</object-name>
+	</effect>
+</PropertyList>

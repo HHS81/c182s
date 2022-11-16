@@ -22,6 +22,22 @@
     <object-name>VACR.Ann</object-name>
     <object-name>Volts.Ann</object-name>
    </effect>
+	
+	<animation>
+		<condition>
+			<not>
+				<property>sim/rendering/shaders/skydome</property>
+			</not>
+		</condition>
+		<type>material</type>
+		<object-name>Panel</object-name>
+		<emission>
+			<red>0.5</red>
+			<green>0.5</green>
+			<blue>0.5</blue>
+			<factor-prop>systems/electrical/outputs/glareshield-lights-norm</factor-prop>
+		</emission>
+	</animation>
    
    <effect>
        <inherits-from>Aircraft/c182s/Models/Effects/c182s_glareshield</inherits-from>

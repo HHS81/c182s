@@ -975,4 +975,27 @@
     </filter>
 
 
+	<filter>
+		<name>Panel emission factor</name>
+		<type>gain</type>
+		<input>
+			<expression>
+				<sum>
+					<product>
+						<property>/systems/electrical/outputs/glareshield-lights-norm</property>
+						<value>0.4</value>
+					</product>
+					<product>
+						<property>/systems/electrical/outputs/dome-light-l</property>
+						<value>0.15</value>
+					</product>
+					<product>
+						<property>/systems/electrical/outputs/dome-light-r</property>
+						<value>0.05</value>
+					</product>
+				</sum>
+			</expression>
+		</input>
+		<output>/sim/model/c182s/lighting/panel-emission-factor</output>
+	</filter>
 </PropertyList>

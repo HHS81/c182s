@@ -6,10 +6,10 @@
 		<type>material</type>
 		<object-name>CompassCorrectionCard</object-name>
 		<emission>
-			<red>0.5</red>
-			<green>0.5</green>
-			<blue>0.5</blue>
-			<factor-prop>systems/electrical/outputs/glareshield-lights-norm</factor-prop>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>sim/model/c182s/lighting/panel-emission-factor</factor-prop>
 		</emission>
 	</animation>
 	

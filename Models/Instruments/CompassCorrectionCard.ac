@@ -10,10 +10,10 @@ Plane
 crease 40.0
 texture "Compass-correction-card.png"
 numvert 4
-0 0.02 0.0512
--0 -0.02 0.0512
-0 0.02 -0.0512
--0 -0.02 -0.0512
+0 0.01563 0.04
+-0 -0.01563 0.04
+0 0.01563 -0.04
+-0 -0.01563 -0.04
 numsurf 1
 SURF 0X0
 mat 0

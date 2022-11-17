@@ -2735,8 +2735,8 @@
 		<path>Instruments/CompassCorrectionCard.xml</path>
 		<offsets>
 			<x-m>0.352</x-m>
-			<y-m>0.25</y-m>
-			<z-m>0.35</z-m>
+			<y-m>0.22</y-m>
+			<z-m>0.42</z-m>
 		</offsets>
 	</model>
 

@@ -983,7 +983,7 @@
 				<sum>
 					<product>
 						<property>/systems/electrical/outputs/glareshield-lights-norm</property>
-						<value>0.4</value>
+						<value>0.6</value>
 					</product>
 					<product>
 						<property>/systems/electrical/outputs/dome-light-l</property>

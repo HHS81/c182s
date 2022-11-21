@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+	<path>CompassCorrectionCard.ac</path>
+	
+	<animation>
+		<type>material</type>
+		<object-name>CompassCorrectionCard</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>sim/model/c182s/lighting/panel-emission-factor</factor-prop>
+		</emission>
+	</animation>
+	
+	<effect>
+		<inherits-from>Aircraft/c182s/Models/Effects/c182s_glareshield</inherits-from>
+		<object-name>CompassCorrectionCard</object-name>
+		<parameters>
+			<texture n="3">
+				<image>Aircraft/c182s/Models/Effects/null_lm.png</image>
+				<type>2d</type>
+				<filter>linear-mipmap-linear</filter>
+				<wrap-s>clamp</wrap-s>
+				<wrap-t>clamp</wrap-t>
+				<internal-format>normalized</internal-format>
+			</texture>
+		</parameters>
+	</effect>
+</PropertyList>

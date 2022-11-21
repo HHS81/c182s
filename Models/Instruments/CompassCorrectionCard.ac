@@ -1,0 +1,25 @@
+AC3Db
+MATERIAL "CompassCorrectionCardMaterial" rgb 1.000 1.000 1.000  amb 1.000 1.000 1.000  emis 0.000 0.000 0.000  spec 1.000 1.000 1.000  shi 102 trans 0.000
+OBJECT world
+name "Blender_exporter_v3.3__CompassCorrectionCard.ac"
+kids 1
+OBJECT poly
+name "CompassCorrectionCard"
+data 5
+Plane
+crease 40.0
+texture "Compass-correction-card.png"
+numvert 4
+0 0.01563 0.04
+-0 -0.01563 0.04
+0 0.01563 -0.04
+-0 -0.01563 -0.04
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+0 0 0.8875
+1 0 0.1125
+3 1 0.1125
+2 1 0.8875
+kids 0

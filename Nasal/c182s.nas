@@ -923,6 +923,25 @@ setlistener("/sim/signals/fdm-initialized", func {
     
     # Alias standard crashed property
     setlistener("/engines/engine/crashed", func(n) {setprop("/sim/crashed", n.getBoolValue());});
+    
+    
+    #
+    # FGCamera compatibility (https://wiki.flightgear.org/FGCamera#Aircraft_integration_API)
+    #  - Open the door on the C182S/T when getting out or in:
+    #
+    if (addons.isAddonLoaded("a.marius.FGCamera")) {
+        fgcamera.walker.getOutCallback = func {
+            fgcamera.walker.getOutTime = getprop("/sim/model/door-positions/DoorL/opened") == 0 ? 2 : 0;
+            c182s.DoorL.open();
+        };
+
+        fgcamera.walker.getInCallback = func {
+            view.setViewByIndex(110); # so we stay outside (under the hood we are already switched one frame into the pilot seat, which we must roll back)
+            fgcamera.walker.getInTime = getprop("/sim/model/door-positions/DoorL/opened") == 0 ? 2 : 0;
+            #c182s.DoorL.close();
+        };
+        print("C182 FGCamera integration loaded");
+    }
 
 });
 

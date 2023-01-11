@@ -324,10 +324,14 @@
     <object-name>llglas</object-name>
    </effect>
    
+	<effect>
+		<inherits-from>Aircraft/c182s/Models/Effects/fast-prop</inherits-from>
+		<object-name>FastProp</object-name>
+		<object-name>SlowProp</object-name>
+	</effect>
+	
    <effect>
        <inherits-from>Effects/model-transparent</inherits-from>
-       <object-name>FastProp</object-name>
-       <object-name>SlowProp</object-name>
         <object-name>TaxiLight</object-name>
 		<object-name>PlaneX</object-name>
 		<object-name>Plane.002X</object-name>

@@ -170,11 +170,8 @@ We have captured the localizer and the GS.
     <logic>
         <input>
             <and>
+                <property>instrumentation/turn-indicator/operable</property>
                 <property>instrumentation/turn-indicator/serviceable</property>
-                <greater-than>
-                    <property>systems/electrical/outputs/turn-coordinator</property>
-                    <value>12</value>
-                </greater-than>
             </and>
         </input>
         <output>autopilot/kap140/sensors/turn-indicator-operable</output>

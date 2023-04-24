@@ -197,6 +197,7 @@ file, these values will be used (they are hardcoded).
   <turn-indicator>
     <name>turn-indicator</name>
     <number>0</number>
+    <power-supply>systems/electrical/outputs/turn-coordinator</power-supply>
   </turn-indicator>
 
   <vertical-speed-indicator>

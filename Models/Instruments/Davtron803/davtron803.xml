@@ -46,7 +46,8 @@
     <object-name>OAT.swt</object-name>    <!-- switch OAT mode -->
     <object-name>Select.btn</object-name> <!-- switch clock modes -->
     <object-name>Control.btn</object-name><!-- control current mode -->
-          <specular>
+          <!-- Disabled: See https://github.com/HHS81/c182s/issues/500
+        <specular>
             <red>   0.0 </red>
             <green> 0.0 </green>
             <blue>  0.0 </blue>
@@ -65,7 +66,7 @@
             <red>   0 </red>
             <green> 0 </green>
             <blue>  0 </blue>
-        </shininess>  
+        </shininess>  -->
   </animation>
 
   <animation>

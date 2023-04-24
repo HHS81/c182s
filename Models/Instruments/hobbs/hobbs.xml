@@ -25,6 +25,7 @@
     <object-name>Drum.2</object-name>
     <object-name>Drum.3</object-name>
     <object-name>Drum.4</object-name>
+        <!--DISABLED: See https://github.com/HHS81/c182s/issues/500
         <specular>
             <red>   0.0 </red>
             <green> 0.0 </green>
@@ -44,7 +45,7 @@
             <red>   0 </red>
             <green> 0 </green>
             <blue>  0 </blue>
-        </shininess>  
+        </shininess>  -->
 </animation>
   
   <animation>

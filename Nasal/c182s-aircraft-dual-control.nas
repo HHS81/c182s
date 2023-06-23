@@ -330,6 +330,7 @@ var pilot_disconnect_copilot = func {
     setprop("payload/weight[1]/weight-lb", 0); # remove copilot from pax
 
     # remove additional MP properties from sending
+    setprop("/sim/remote/pilot-callsign", "");
     props.globals.getNode(pilot_aileron, 1).unalias();
     props.globals.getNode(pilot_elevator, 1).unalias();
     props.globals.getNode(pilot_airspeed, 1).unalias();
@@ -510,6 +511,7 @@ var copilot_connect_pilot = func (pilot) {
 };
 
 var copilot_disconnect_pilot = func {
+  setprop("/sim/remote/pilot-callsign", "");
 };
 
 

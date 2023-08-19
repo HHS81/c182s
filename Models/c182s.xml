@@ -2884,7 +2884,7 @@
             </less-than>
             <less-than>
                 <property>/engines/engine/thruster/rpm</property>
-                <value>0.0001</value>
+                <value>0.1</value>
             </less-than>
         </and>
    </condition>

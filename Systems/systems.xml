@@ -44,7 +44,7 @@
         <number>1</number>
         <tau>0.1</tau>
         <type>0</type>
-        <error-factor>0.35</error-factor>
+        <error-factor>0</error-factor>  <!-- for type=0 error is ignored, see fgfs source code: Systems/static.cxx -->
     </static>
 
 <vacuum>

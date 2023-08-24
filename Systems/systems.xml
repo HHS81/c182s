@@ -42,7 +42,7 @@
     <static n="1"> <!-- Alternate source is from cabin, see POH p. 7-42 -->
         <name>static</name>
         <number>1</number>
-        <tau>0.1</tau>
+        <tau>0.3</tau>
         <type>0</type>
         <error-factor>0</error-factor>  <!-- for type=0 error is ignored, see fgfs source code: Systems/static.cxx -->
     </static>

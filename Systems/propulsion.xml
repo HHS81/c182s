@@ -239,8 +239,8 @@
                     <table>
                         <independentVar>propulsion/engine/engine-rpm</independentVar>
                         <tableData>
-                             800   0.20
-                            1000   0.35
+                             700   0.20
+                             900   0.35
                             2400   0.60
                         </tableData>
                     </table>

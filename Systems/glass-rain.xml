@@ -363,6 +363,94 @@
             <property>/environment/aircraft-effects/splash-vector-left-side-z</property>
         </output>
     </filter>
+    <filter>
+        <!-- Decide rain intensity on side window based on airspeed/prop downwash -->
+        <name>rain-norm-left-window</name>
+        <update-interval-secs type="double">0.1</update-interval-secs>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>
+            <condition>
+                <greater-than-equals>
+                    <property>/velocities/airspeed-kt</property>
+                    <value>40</value>
+                </greater-than-equals>
+            </condition>
+            <property>/environment/rain-norm</property>
+        </input>
+        <input>
+            <condition>
+                <greater-than-equals>
+                    <property>/velocities/airspeed-kt</property>
+                    <value>15</value>
+                </greater-than-equals>
+            </condition>
+            <expression>
+                <product>
+                    <value>0.5</value>
+                    <property>/environment/rain-norm</property>
+                </product>
+            </expression>
+        </input>
+        <input>
+            <condition>
+                <greater-than-equals>
+                    <property>/velocities/airspeed-kt</property>
+                    <value>5</value>
+                </greater-than-equals>
+            </condition>
+            <expression>
+                <product>
+                    <value>0.1</value>
+                    <property>/environment/rain-norm</property>
+                </product>
+            </expression>
+        </input>
+        <input>
+            <condition>
+                <greater-than-equals>
+                    <property>/engines/engine/rpm</property>
+                    <value>1500</value>
+                </greater-than-equals>
+            </condition>
+            <property>/environment/rain-norm</property>
+        </input>
+        <input>
+            <condition>
+                <greater-than-equals>
+                    <property>/engines/engine/rpm</property>
+                    <value>800</value>
+                </greater-than-equals>
+            </condition>
+            <expression>
+                <product>
+                    <value>0.5</value>
+                    <property>/environment/rain-norm</property>
+                </product>
+            </expression>
+        </input>
+        <input>
+            <condition>
+                <greater-than-equals>
+                    <property>/engines/engine/rpm</property>
+                    <value>300</value>
+                </greater-than-equals>
+            </condition>
+            <expression>
+                <product>
+                    <value>0.1</value>
+                    <property>/environment/rain-norm</property>
+                </product>
+            </expression>
+        </input>
+        <input>
+            <!-- default: no rain, as wings are keeping 'em dry -->
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/environment/aircraft-effects/rain-norm-left-side</property>
+        </output>
+    </filter>
 
     <!-- right side windows -->
      <filter>
@@ -561,6 +649,22 @@
             <property>/environment/aircraft-effects/splash-vector-right-side-z</property>
         </output>
     </filter>
+    
+    <filter>
+        <!-- Decide rain intensity on side window based on airspeed/prop downwash -->
+        <name>rain-norm-right-window</name>
+        <update-interval-secs type="double">0.1</update-interval-secs>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>
+            <!-- For simplicity, just take the value of the left window -->
+            <property>/environment/aircraft-effects/rain-norm-left-side</property>
+        </input>
+        <output>
+            <property>/environment/aircraft-effects/rain-norm-right-side</property>
+        </output>
+    </filter>
+    
 
     <!-- back window -->
      <filter>

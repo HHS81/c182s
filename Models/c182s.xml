@@ -363,14 +363,22 @@
     </effect>
 
     <effect>
-        <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_left_side</inherits-from>
+        <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_left_windshield</inherits-from>
         <object-name>Windscreen.Side.Left</object-name>
+    </effect>
+    
+    <effect>
+        <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_left_side</inherits-from>
         <object-name>Window.L.001</object-name>
     </effect>
-
+    
+    <effect>
+        <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_right_windshield</inherits-from>
+        <object-name>Windscreen.Side.Right</object-name>
+    </effect>
+    
     <effect>
         <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_right_side</inherits-from>
-        <object-name>Windscreen.Side.Right</object-name>
         <object-name>Window.R.001</object-name>
     </effect>
     

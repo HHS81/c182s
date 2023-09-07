@@ -22,5 +22,6 @@
     <reflection-strength type="float">.75</reflection-strength>
     <surface-mapping-scheme type="int">2</surface-mapping-scheme>
 	<shadow-mapping-enabled>true</shadow-mapping-enabled>
+	<rnorm><use>/environment/aircraft-effects/rain-norm-left-side</use></rnorm>
   </parameters>
 </PropertyList>

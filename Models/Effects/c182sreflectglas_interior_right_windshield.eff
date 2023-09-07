@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PropertyList>
-  <name>c182sreflectglas_interior_right_side</name>
+  <name>c182sreflectglas_interior_right_windshield</name>
   <inherits-from>Effects/glass</inherits-from>
   <parameters>
 	<!--<texture n="3">
@@ -22,6 +22,5 @@
     <reflection-strength type="float">.75</reflection-strength>
     <surface-mapping-scheme type="int">2</surface-mapping-scheme>
 	<shadow-mapping-enabled>true</shadow-mapping-enabled>
-	<rnorm><use>/environment/aircraft-effects/rain-norm-right-side</use></rnorm>
   </parameters>
 </PropertyList>

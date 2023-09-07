@@ -576,5 +576,12 @@
         </group>	
 	
         <hrule/>
-
+		<button>
+			<legend>Rain Vector Editor</legend>
+			<binding>
+				<command>dialog-show</command>
+				<dialog-name type="string">rain-dialog</dialog-name>
+			</binding>
+		</button>
+		<hrule/>
 </PropertyList>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- J3Cub
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 2 of the
+ License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+-->
+
+<PropertyList>
+
+    <name>rain-dialog</name>
+    <layout>vbox</layout>
+    <resizable>false</resizable>
+    <modal>false</modal>
+    <draggable>true</draggable>
+
+    <group>
+        <layout>hbox</layout>
+
+        <empty><stretch>true</stretch></empty>
+        <text>
+            <label>Rain Vector Editor</label>
+        </text>
+        <empty><stretch>true</stretch></empty>
+
+        <button>
+            <legend/>
+            <key>Esc</key>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+
+    <hrule/>
+
+    <group>
+        <layout>vbox</layout>
+        <padding>6</padding>
+        <group>
+            <layout>hbox</layout>
+            <group>
+                <layout>vbox</layout>
+                <halign>left</halign>
+                <text>
+                    <halign>left</halign>
+                    <label>X Vector</label>
+                </text>
+            </group>
+            <group>
+                <layout>vbox</layout>
+                <slider>
+                    <name>x-vector</name>
+
+                    <min>-2.0</min>
+                    <max>2.0</max>
+                    <step>.1</step>
+                    <live>true</live>
+                    <property>/environment/aircraft-effects/splash-vector-right-side-x</property>
+                    <binding>
+                        <command>dialog-apply</command>
+                        <object-name>x-vector</object-name>
+                    </binding>
+                </slider>
+            </group>
+			<layout>hbox</layout>
+            <group>
+                <layout>vbox</layout>
+                <halign>left</halign>
+                <text>
+                    <halign>left</halign>
+                    <label>Y Vector</label>
+                </text>
+            </group>
+            <group>
+                <layout>vbox</layout>
+                <slider>
+                    <name>y-vector</name>
+
+                    <min>-2.0</min>
+                    <max>2.0</max>
+                    <step>.1</step>
+                    <live>true</live>
+                    <property>/environment/aircraft-effects/splash-vector-right-side-y</property>
+                    <binding>
+                        <command>dialog-apply</command>
+                        <object-name>y-vector</object-name>
+                    </binding>
+                </slider>
+            </group>
+			<layout>hbox</layout>
+            <group>
+                <layout>vbox</layout>
+                <halign>left</halign>
+                <text>
+                    <halign>left</halign>
+                    <label>Z Vector</label>
+                </text>
+            </group>
+            <group>
+                <layout>vbox</layout>
+                <slider>
+                    <name>z-vector</name>
+
+                    <min>-2.0</min>
+                    <max>2.0</max>
+                    <step>.1</step>
+                    <live>true</live>
+                    <property>/environment/aircraft-effects/splash-vector-right-side-z</property>
+                    <binding>
+                        <command>dialog-apply</command>
+                        <object-name>z-vector</object-name>
+                    </binding>
+                </slider>
+            </group>
+        </group>
+	</group>
+
+	<hrule/>
+
+	<group>
+    <layout>hbox</layout>
+    <default-padding>6</default-padding>
+
+    <empty><stretch>true</stretch></empty>
+
+    <button>
+      <legend>Close</legend>
+      <equal>true</equal>
+      <key>Esc</key>
+      <default>true</default>
+      <binding>
+        <command>dialog-close</command>
+      </binding>
+    </button>
+  </group>
+
+
+</PropertyList>

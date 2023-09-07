@@ -22,13 +22,11 @@
 
     <group>
         <layout>hbox</layout>
-
         <empty><stretch>true</stretch></empty>
         <text>
             <label>Rain Vector Editor</label>
         </text>
         <empty><stretch>true</stretch></empty>
-
         <button>
             <legend/>
             <key>Esc</key>
@@ -42,106 +40,159 @@
 
     <hrule/>
 
-    <group>
-        <layout>vbox</layout>
-        <padding>6</padding>
-        <group>
-            <layout>hbox</layout>
-            <group>
-                <layout>vbox</layout>
-                <halign>left</halign>
-                <text>
-                    <halign>left</halign>
-                    <label>X Vector</label>
-                </text>
-            </group>
-            <group>
-                <layout>vbox</layout>
-                <slider>
-                    <name>x-vector</name>
+	<group>
+		<layout>table</layout>
+		<group>
+			<row>0</row>
+			<col>0</col>
+			<layout>vbox</layout>
+			<halign>left</halign>
+			<text>
+				<halign>left</halign>
+				<label>X Vector</label>
+			</text>
+			<layout>vbox</layout>
+			<slider>
+				<name>x-vector</name>
+				<min>-2.0</min>
+				<max>2.0</max>
+				<step>.1</step>
+				<live>true</live>
+				<property>/environment/aircraft-effects/splash-vector-x</property>
+				<binding>
+					<command>nasal</command>
+					<script>
+						var xvector = getprop("/environment/aircraft-effects/splash-vector-x");
+						setprop("/environment/aircraft-effects/splash-vector-left-side-x", xvector);
+						setprop("/environment/aircraft-effects/splash-vector-right-side-x", xvector);
+						setprop("/environment/aircraft-effects/splash-vector-back-x", xvector);
+					</script>
+				</binding>
+				<binding>
+					<command>dialog-apply</command>
+					<object-name>x-vector</object-name>
+				</binding>
+			</slider>
+			<text>
+				<halign>left</halign>
+				<label></label>
+				<live>true</live>
+				<format>%.3f</format>
+				<property>/environment/aircraft-effects/splash-vector-x</property>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.2</blue>
+				</color>
+			</text>
+		</group>
 
-                    <min>-2.0</min>
-                    <max>2.0</max>
-                    <step>.1</step>
-                    <live>true</live>
-                    <property>/environment/aircraft-effects/splash-vector-right-side-x</property>
-                    <binding>
-                        <command>dialog-apply</command>
-                        <object-name>x-vector</object-name>
-                    </binding>
-                </slider>
-            </group>
-			<layout>hbox</layout>
-            <group>
-                <layout>vbox</layout>
-                <halign>left</halign>
-                <text>
-                    <halign>left</halign>
-                    <label>Y Vector</label>
-                </text>
-            </group>
-            <group>
-                <layout>vbox</layout>
-                <slider>
-                    <name>y-vector</name>
+		<group>
+			<row>0</row>
+			<col>1</col>
+			<layout>vbox</layout>
+			<halign>left</halign>
+			<text>
+				<halign>left</halign>
+				<label>Y Vector</label>
+			</text>
+			<layout>vbox</layout>
+			<slider>
+				<name>y-vector</name>
+				<min>-2.0</min>
+				<max>2.0</max>
+				<step>.1</step>
+				<live>true</live>
+				<property>/environment/aircraft-effects/splash-vector-y</property>
+				<binding>
+					<command>nasal</command>
+					<script>
+						var yvector = getprop("/environment/aircraft-effects/splash-vector-y");
+						setprop("/environment/aircraft-effects/splash-vector-left-side-y", yvector);
+						setprop("/environment/aircraft-effects/splash-vector-right-side-y", yvector);
+						setprop("/environment/aircraft-effects/splash-vector-back-y", yvector);
+					</script>
+				</binding>
+				<binding>
+					<command>dialog-apply</command>
+					<object-name>y-vector</object-name>
+				</binding>
+			</slider>
+			<text>
+				<halign>left</halign>
+				<label></label>
+				<live>true</live>
+				<format>%.3f</format>
+				<property>/environment/aircraft-effects/splash-vector-y</property>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.2</blue>
+				</color>
+			</text>
+		</group>
 
-                    <min>-2.0</min>
-                    <max>2.0</max>
-                    <step>.1</step>
-                    <live>true</live>
-                    <property>/environment/aircraft-effects/splash-vector-right-side-y</property>
-                    <binding>
-                        <command>dialog-apply</command>
-                        <object-name>y-vector</object-name>
-                    </binding>
-                </slider>
-            </group>
-			<layout>hbox</layout>
-            <group>
-                <layout>vbox</layout>
-                <halign>left</halign>
-                <text>
-                    <halign>left</halign>
-                    <label>Z Vector</label>
-                </text>
-            </group>
-            <group>
-                <layout>vbox</layout>
-                <slider>
-                    <name>z-vector</name>
-
-                    <min>-2.0</min>
-                    <max>2.0</max>
-                    <step>.1</step>
-                    <live>true</live>
-                    <property>/environment/aircraft-effects/splash-vector-right-side-z</property>
-                    <binding>
-                        <command>dialog-apply</command>
-                        <object-name>z-vector</object-name>
-                    </binding>
-                </slider>
-            </group>
-        </group>
+		<group>
+			<row>0</row>
+			<col>2</col>
+			<layout>vbox</layout>
+			<halign>left</halign>
+			<text>
+				<halign>left</halign>
+				<label>Z Vector</label>
+			</text>
+			<layout>vbox</layout>
+			<slider>
+				<name>z-vector</name>
+				<min>-2.0</min>
+				<max>2.0</max>
+				<step>.1</step>
+				<live>true</live>
+				<property>/environment/aircraft-effects/splash-vector-z</property>
+				<binding>
+					<command>nasal</command>
+					<script>
+						var zvector = getprop("/environment/aircraft-effects/splash-vector-z");
+						setprop("/environment/aircraft-effects/splash-vector-left-side-z", zvector);
+						setprop("/environment/aircraft-effects/splash-vector-right-side-z", zvector);
+						setprop("/environment/aircraft-effects/splash-vector-back-z", zvector);
+					</script>
+				</binding>
+				<binding>
+					<command>dialog-apply</command>
+					<object-name>z-vector</object-name>
+				</binding>
+			</slider>
+			<text>
+				<halign>left</halign>
+				<label></label>
+				<live>true</live>
+				<format>%.3f</format>
+				<property>/environment/aircraft-effects/splash-vector-z</property>
+				<color>
+					<red>0.2</red>
+					<green>0.9</green>
+					<blue>0.2</blue>
+				</color>
+			</text>
+		</group>
 	</group>
 
 	<hrule/>
 
 	<group>
-    <layout>hbox</layout>
-    <default-padding>6</default-padding>
-
-    <empty><stretch>true</stretch></empty>
-
-    <button>
-      <legend>Close</legend>
-      <equal>true</equal>
-      <key>Esc</key>
-      <default>true</default>
-      <binding>
-        <command>dialog-close</command>
-      </binding>
-    </button>
-  </group>
-
+		<layout>hbox</layout>
+		<default-padding>6</default-padding>
+		<empty><stretch>true</stretch></empty>
+		<button>
+		  <legend>Close</legend>
+		  <equal>true</equal>
+		  <key>Esc</key>
+		  <default>true</default>
+		  <binding>
+			<command>dialog-close</command>
+		  </binding>
+		</button>
+	</group>
 
 </PropertyList>

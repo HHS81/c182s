@@ -651,6 +651,36 @@
     </filter>
     
     <filter>
+        <!-- Decide surface mapping scheme dynamically -->
+        <name>scheme-leftright-switch</name>
+        <update-interval-secs type="double">0.1</update-interval-secs>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <input>
+            <condition>
+                <or>
+                    <greater-than>
+                        <property>/environment/aircraft-effects/splash-vector-x</property>
+                        <value>1.0</value>
+                    </greater-than>
+                    <less-than>
+                        <property>/environment/aircraft-effects/splash-vector-x</property>
+                        <value>-1.0</value>
+                    </less-than>
+                </or>
+            </condition>
+            <value>1</value>
+        </input>
+        <input>
+            <value>2</value>
+        </input>
+        <output>
+            <property>/environment/aircraft-effects/scheme-left-windshield</property>
+            <property>/environment/aircraft-effects/scheme-right-windshield</property>
+        </output>
+    </filter>
+    
+    <filter>
         <!-- Decide rain intensity on side window based on airspeed/prop downwash -->
         <name>rain-norm-right-window</name>
         <update-interval-secs type="double">0.1</update-interval-secs>

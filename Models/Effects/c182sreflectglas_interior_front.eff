@@ -15,6 +15,9 @@
 		 <negative-z>Aircraft/c182s/Models/Effects/interior/default_nz.png</negative-z>
 	  </images>
 	</texture>-->
+	<splash-x><use>/environment/aircraft-effects/splash-vector-x</use></splash-x>
+    <splash-y><use>/environment/aircraft-effects/splash-vector-y</use></splash-y>
+	<splash-z><use>/environment/aircraft-effects/splash-vector-z</use></splash-z>
 	<use-reflection type="int">0</use-reflection>
     <reflection-strength type="float">.75</reflection-strength>
 	<shadow-mapping-enabled>true</shadow-mapping-enabled>

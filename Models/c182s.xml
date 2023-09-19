@@ -343,30 +343,42 @@
         <object-name>NavLightGreen</object-name>
    </effect>
    
-<effect>
-    <inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
-    
-	<parameters>
-			<reflection-correction type="float">1.0</reflection-correction>
-			<reflection-dynamic type="int">1</reflection-dynamic>
-	</parameters>
-	<object-name>chrome_spinner</object-name>
-</effect>
+	<effect>
+		<inherits-from>Aircraft/c182s/Models/Effects/c182sreflect-uber</inherits-from>
+		<parameters>
+				<reflection-correction type="float">1.0</reflection-correction>
+				<reflection-dynamic type="int">1</reflection-dynamic>
+		</parameters>
+		<object-name>chrome_spinner</object-name>
+	</effect>
 
     <effect>
         <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_front</inherits-from>
         <object-name>Windscreen.Int</object-name>
     </effect>
+
+    <effect>
+        <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_back</inherits-from>
+        <object-name>Windscreen.Int.Back</object-name>
+    </effect>
+
+    <effect>
+        <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_left_windshield</inherits-from>
+        <object-name>Windscreen.Side.Left</object-name>
+    </effect>
     
     <effect>
-        <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_side</inherits-from>
-        <object-name>Windscreen.Side.Left</object-name>
+        <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_left_side</inherits-from>
         <object-name>Window.L.001</object-name>
     </effect>
     
-        <effect>
-        <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_side</inherits-from>
+    <effect>
+        <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_right_windshield</inherits-from>
         <object-name>Windscreen.Side.Right</object-name>
+    </effect>
+    
+    <effect>
+        <inherits-from>Aircraft/c182s/Models/Effects/c182sreflectglas_interior_right_side</inherits-from>
         <object-name>Window.R.001</object-name>
     </effect>
     

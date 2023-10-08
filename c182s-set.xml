@@ -9,7 +9,7 @@
 <aircraft>
   <icao>
     <wake-turbulence-category>L</wake-turbulence-category> <!-- see: https://www.skybrary.aero/index.php/C182 -->
-    <type type="string">C182</type> 
+    <type type="string">C182</type>
     <equipment type="string">SDFY</equipment>  <!-- ICAO equipment string (see: https://en.wikipedia.org/wiki/Equipment_codes) -->
     <surveillance type="string">C</surveillance>  <!-- ICAO surveillance string;  mode-A/C transponder (see again: https://en.wikipedia.org/wiki/Equipment_codes) -->
   </icao>
@@ -20,7 +20,7 @@
       <landing-length-ft type="int">520</landing-length-ft>  <!-- POH p. 5-35; 2950lbs at sea level. Increases to 755ft at 8000ft altitude. -->
     </minimum>
     <climb /> <!-- POH 5-20 -->
-      <!-- potential for climb data in the future 
+      <!-- potential for climb data in the future
       <airspeed-knots type="int">90</airspeed-knots>
       <vertical-speed-fpm type="int">675</vertical-speed-fpm>
     </climb>-->
@@ -29,8 +29,8 @@
       <altitude-ft type="int">6000</altitude-ft>
     </cruise>
     <descent /> <!-- from checklist / POH 4-22 -->
-      <!-- potential for descent data in the future 
-      <airspeed-knots type="int">120</airspeed-knots> 
+      <!-- potential for descent data in the future
+      <airspeed-knots type="int">120</airspeed-knots>
       <vertical-speed-fpm type="int">-500</vertical-speed-fpm>
     </descent>-->
     <approach>
@@ -69,7 +69,7 @@
       <model type="int">5</model>
       <cockpit type="int">5</cockpit>
     </rating>
-    
+
     <authors>
         <author n="0">
             <name>Heiko Schulz</name>
@@ -125,7 +125,7 @@
             <name>Benedikt Hallinger</name>
         </maintainer>
     </maintainers>
-    
+
     <urls>
         <home-page>http://wiki.flightgear.org/Cessna_182S</home-page>
         <support>https://forum.flightgear.org/viewtopic.php?f=4&amp;t=28475</support>
@@ -291,21 +291,21 @@
       <float n="31" alias="/sim/rendering/fresnel-factor"/>
       <float n="32" alias="/sim/rendering/refl-type"/>
       <float n="33" alias="/sim/rendering/ambient_correction"/>
-      
+
       <!-- Dual-Control: float 34 to 39 -->
 
       <!-- Registration number over MP -->
       <string n="0" alias="/sim/model/immat"/>
-      
+
       <!-- Dual-Control: string 1-6 -->
-      
+
       <!-- Slow MP props via TDM: string 7 -->
 
       <bool n="0" alias="/sim/model/c182s/nw_fairing"/>
       <bool n="1" alias="/sim/model/c182s/mw_fairing"/>
-      
+
       <!-- Dual-Control: bool 1-5 -->
-      
+
       <!-- Dual-Control: int 17-19 -->
 
       <!-- passengers/crew -->
@@ -314,7 +314,7 @@
       <bool n="4" alias="/sim/model/pax/pax[1]/enabled"/>
       <bool n="20" alias="/sim/model/c182s/parachuters/aircraft-mod-enabled"/>
       <bool n="21" alias="/sim/model/c182s/parachuters/trigger-jump"/>
-      
+
 
     </generic>
   </multiplay>
@@ -441,6 +441,7 @@
 
 		<nw_fairing type="bool">true</nw_fairing>
 		<mw_fairing type="bool">true</mw_fairing>
+    <GPSMap196 type="bool">true</GPSMap196>
 		<chrome_spinner>true</chrome_spinner>
 		<!-- show registration models -->
                 <immat>true</immat>
@@ -453,7 +454,7 @@
           <inst-ra-gain type="double">1.11</inst-ra-gain>
           <glare-ra-gain type="double">0.5</glare-ra-gain>
       </lighting>
-      
+
       <parachuters>
           <aircraft-mod-enabled type="bool">false</aircraft-mod-enabled>
       </parachuters>
@@ -656,7 +657,7 @@
             <pitch-offset-deg>-15</pitch-offset-deg>
         </config>
     </view>
-    
+
 <view n="104">
         <name>Bottom Camera</name>
         <enabled type="bool">true</enabled>
@@ -946,7 +947,7 @@
             <path>/engines/engine/allow-oil-management</path>
             <path>/engines/engine/allow-sparkplug-icing</path>
             <path>/engines/engine/winter-kit-installed</path>
-            
+
             <path>/fdm/jsbsim/settings/damage</path>
             <path>/fdm/jsbsim/gear/unit[0]/broken-saved</path> <!-- nose gear -->
             <path>/fdm/jsbsim/gear/unit[1]/broken-saved</path> <!-- left main gear -->
@@ -1126,7 +1127,7 @@
             <path>/sim/model/door-positions/BaggageDoor/position-norm</path>
             <path>/sim/model/door-positions/WindowL/position-norm</path>
             <path>/sim/model/door-positions/WindowR/position-norm</path>
-            
+
             <path>/sim/model/c182s/cockpit/FrontSeatL-setting-m</path>
 
             <path>/controls/circuit-breakers/Flap</path>
@@ -1150,6 +1151,7 @@
             <path>/sim/failure-manager/display-on-screen</path>
             <path>/sim/failure-manager/restore-on-start</path>
             <path>/sim/model/hide-yoke-alpha-cmd</path>
+            <path>//sim/model/GPSMap196</path>
         </aircraft-data>
 
      <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>
@@ -1493,6 +1495,12 @@
     <multiplayer>
         <file>Nasal/c182s-multiplay.nas</file>
     </multiplayer>
+
+    <!-- garmin196 from FGData -->
+    <garmin196>
+        <file>Aircraft/c182s/Models/Instruments/garmin196/garmin196.nas</file>
+    </garmin196>
+
  </nasal>
 
  <!-- ================ map keyboard ================ -->
@@ -1602,7 +1610,7 @@
             </binding>
         </mod-up>
       </key>
-      
+
       <!-- Overwrite FGCom PTT (space) -->
       <key n="32">
         <name>SPACE</name>
@@ -1630,7 +1638,7 @@
             </mod-up>
         </mod-shift>
       </key>
-      
+
       <!-- Rudder trim keybinds -->
       <!-- (we reset the default aileron-trim, because the c182 has just rudder trim) -->
       <key n="28">

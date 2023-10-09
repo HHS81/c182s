@@ -189,6 +189,13 @@ var oil_consumption = maketimer(1.0, func {
         
         # Should give 1.0 for oil_level = 4 and 1.5 for oil_level 3.97
         low_oil_temperature_factor = -50/3 * oil_level_limited + 203/3;
+        
+        # if engine not running, only allow decreasing of the value (Issue #512)
+        if (!getprop("/engines/engine/running")) {
+            var old_low_oil_temperature_factor = getprop("/engines/engine[0]/low-oil-temperature-factor") or low_oil_pressure_factor;
+            if (low_oil_temperature_factor >= old_low_oil_temperature_factor)
+                low_oil_temperature_factor = old_low_oil_temperature_factor;
+        }
     
         setprop("/engines/engine[0]/low-oil-pressure-factor", low_oil_pressure_factor);
         setprop("/engines/engine[0]/low-oil-temperature-factor", low_oil_temperature_factor);

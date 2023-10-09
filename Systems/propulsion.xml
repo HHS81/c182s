@@ -730,7 +730,7 @@
         </fcs_function>
         
         <fcs_function name="systems/propulsion/oil-temp-friction">
-            <description>made up data for engine oil temperature affecting viscosity </description>
+            <description>made up data for engine oil temperature affecting friction </description>
             <function>
                 <!-- Only apply if this test is TRUE, otherwise interference with autostart and other things -->
                 <product>

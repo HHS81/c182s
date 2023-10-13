@@ -50,8 +50,8 @@ transmit.simulatedTime = 1;
 # INIT
 setlistener("sim/signals/fdm-initialized", func {
     #Print an emergency auto-message when aircraft crashes
-    setlistener("sim/crashed", func(){
-        if (getprop("sim/crashed")) crash_detected = 1;
+    setlistener("engines/engine/crashed", func(){
+        if (getprop("engines/engine/crashed")) crash_detected = 1;
         transmit.restart(0.1)
     }, 0, 0);
 

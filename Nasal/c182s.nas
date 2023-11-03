@@ -288,7 +288,7 @@ var fueltanktrailer_model = {
 		var fueltanktrailer = geo.aircraft_position().set_alt(
 				props.globals.getNode("/position/ground-elev-m").getValue());
 
-		geo.put_model("Aircraft/c182s/Models/Exterior/fueltanktrailer.ac", fueltanktrailer,
+		geo.put_model("Aircraft/c182s/Models/Exterior/fueltanktrailer.xml", fueltanktrailer,
 				props.globals.getNode("/orientation/heading-deg").getValue());
 
 		 me.index = i;
@@ -384,6 +384,8 @@ ad = func {
     if (GROUNDSPEED > 0.1) {
         setprop("/controls/electric/external-power", "false");
         #setprop("/engines/engine/external-heat/enabled", "false"); #not needed, as you can't start the engine with preheater enabled, nor enable the preheater anyway when engine running, or aircraft moving
+        setprop("/controls/fuel/tank[0]/fill-up", 0);
+        setprop("/controls/fuel/tank[1]/fill-up", 0);
     }
 
     settimer(ad, 0.1);

@@ -20,6 +20,9 @@ Implementation notice:
 Author: 09/2017  Benedikt Hallinger
 -->
 <system name="fuel">
+    <property type="bool" value="0">/controls/fuel/tank[0]/fill-up</property>
+    <property type="bool" value="0">/controls/fuel/tank[1]/fill-up</property>
+    
     <property type="bool" value="0">/controls/fuel/tank[0]/drain-valve</property>
     <property type="bool" value="0">/controls/fuel/tank[1]/drain-valve</property>
     <property type="bool" value="0">/controls/fuel/tank[2]/drain-valve</property>
@@ -59,6 +62,12 @@ Author: 09/2017  Benedikt Hallinger
         <!-- ######################### -->
         <!-- ###### 0: LEFT TANK ##### -->
         <!-- ######################### -->
+        <switch name="fuel/left-tank-refill-flow-rate-pps">
+            <default value="0"/>
+            <test logic="AND" value="5">
+                /controls/fuel/tank[0]/fill-up EQ 1
+            </test>
+        </switch>
         <switch name="fuel/left-tank-drain-flow-rate-pps">
             <default value="0"/>
             <test logic="AND" value="25">
@@ -106,6 +115,7 @@ Author: 09/2017  Benedikt Hallinger
         </switch>
 
         <summer name="fuel/left-wing-total-flow-pps">
+            <input>fuel/left-tank-refill-flow-rate-pps</input>
             <input>-fuel/left-tank-drain-flow-rate-pps</input>
             <input>-/systems/fuel/tank[0]/leak-flow-rate-pps</input>
             <input>-fuel/flow-left-right-transfer-pps</input>
@@ -119,6 +129,12 @@ Author: 09/2017  Benedikt Hallinger
         <!-- ########################## -->
         <!-- ###### 1: RIGHT TANK ##### -->
         <!-- ########################## -->
+        <switch name="fuel/right-tank-refill-flow-rate-pps">
+            <default value="0"/>
+            <test logic="AND" value="5">
+                /controls/fuel/tank[1]/fill-up EQ 1
+            </test>
+        </switch>
         <switch name="fuel/right-tank-drain-flow-rate-pps">
             <default value="0"/>
             <test logic="AND" value="25">
@@ -166,6 +182,7 @@ Author: 09/2017  Benedikt Hallinger
         </switch>
 
         <summer name="fuel/right-wing-total-flow-pps">
+            <input>fuel/right-tank-refill-flow-rate-pps</input>
             <input>-fuel/right-tank-drain-flow-rate-pps</input>
             <input>-/systems/fuel/tank[1]/leak-flow-rate-pps</input>
             <input>-fuel/right-tank-tofuelselector-flow-rate-pps</input>

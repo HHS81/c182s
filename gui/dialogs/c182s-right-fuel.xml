@@ -45,10 +45,10 @@
                 <max>44.0</max>
                 <live>true</live>
                 <enable>
-                    <less-than>
-                        <property>velocities/groundspeed-kt</property>
-                        <value>1.0</value>
-                    </less-than>
+                    <equals>
+                        <property>/sim/time/elapsed-sec</property>
+                        <value>-1.0</value>
+                    </equals>
                 </enable>
                 <property>/consumables/fuel/tank[1]/level-gal_us</property>
                 <binding>
@@ -91,6 +91,29 @@
                 </group>
             </group>
         </group>
+        
+        <checkbox>
+            <halign>left</halign>
+            <label>Fill up</label>
+            <live>true</live>
+            <property>/controls/fuel/tank[1]/fill-up</property>
+            <enable>
+                <and>
+                    <less-than>
+                        <property>velocities/groundspeed-kt</property>
+                        <value>1.0</value>
+                    </less-than>
+                    <not><property>/engines/engine/cranking</property></not>
+                    <not><property>/engines/engine/starting</property></not>
+                    <not><property>/engines/engine/running</property></not>
+                </and>
+            </enable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/controls/fuel/tank[1]/fill-up</property>
+            </binding>
+        </checkbox>
+        
     </group>
         
     <group>

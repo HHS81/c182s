@@ -13,4 +13,27 @@
 	</condition>
 </animation>
 
+<animation>
+	<type>pick</type>
+	<object-name>external-power-un</object-name>
+	<visible>true</visible>
+	<action>
+		<name>Select</name>
+		<button>0</button>
+		<binding>
+			<command>property-toggle</command>
+			<property>/controls/electric/external-power</property>
+		</binding>
+	</action>
+	<hovered>
+		<binding>
+			<command>set-tooltip</command>
+			<label>External power: %s</label>
+			<property>/controls/electric/external-power</property>
+			<tooltip-id>external-power-tooltip-connected</tooltip-id>
+			<mapping>on-off</mapping>
+		</binding>
+	</hovered>
+</animation>
+
 </PropertyList>

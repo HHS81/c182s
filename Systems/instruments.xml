@@ -579,7 +579,6 @@
     <filter>
         <name>Magnetic compass deviation</name>
         <!-- To debug this, set /orientation/heading-deg to the desired value + declination (so heading-magnetic-deg shows the desired target value).
-             Also set /instrumentation/magnetic-compass/calibration-mode to 1
              The compass should then read the corrected value from the table below (and the corresponding card in the cockpit).
         -->
         <type>gain</type>
@@ -638,13 +637,10 @@
         </output>
     </filter>
     <filter>
-        <name>Magnetic compass deviation calibration mode</name>
-        <!-- Must be set ON to calibrate compass card, so pitch on the ground is compensated  (Compass should be calibrated for level flight) -->
-        <type>gain</type>
+        <name>Magnetic compass pivot mounting</name>
+        <type>exponential</type>
+        <filter-time>5.0</filter-time>
         <input>
-          <condition>
-              <property>/instrumentation/magnetic-compass/calibration-mode</property>
-          </condition>
           <expression>
             <product>
               <property>/orientation/pitch-deg</property>
@@ -652,12 +648,15 @@
             </product>
           </expression>
         </input>
-        <input>
-          <value>0</value>
-        </input>
         <output>
             <property>/instrumentation/magnetic-compass/pitch-offset-deg</property>
         </output>
+        <!-- Clamp to 9° in each direction; no better source found than "in most compasses, the 
+             bowl to tilt by approximately 18 degrees before it will touch the side of the casing"
+             https://en.wikipedia.org/wiki/Aircraft_compass_turns.
+             From testing this looks enough for normal flight. -->
+        <min> -9 </min>
+        <max>  9 </max>
     </filter>
     
 </PropertyList>

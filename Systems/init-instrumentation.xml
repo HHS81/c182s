@@ -137,4 +137,8 @@
     <transmitting type="bool">0</transmitting>
 </elt>
 
+<magnetic-compass>
+    <calibration-mode type="bool">0</calibration-mode> <!-- set to 1 to compensate pitch for calibration of deviation -->
+</magnetic-compass>
+
 </PropertyList>

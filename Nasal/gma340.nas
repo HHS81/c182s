@@ -17,6 +17,7 @@ var gma340_com_mic1       = props.globals.getNode("/instrumentation/audio-panel/
 var gma340_com_mic2       = props.globals.getNode("/instrumentation/audio-panel/com-mic[2]");
 var gma340_serviceable    = props.globals.getNode("/instrumentation/audio-panel/serviceable");
 var gma340_powerbtn       = props.globals.getNode("/instrumentation/audio-panel/power-btn");
+var gma340_operable       = props.globals.getNode("/instrumentation/audio-panel/operable",1);
 var gma340_powerVolts     = props.globals.getNode("/systems/electrical/outputs/audio-panel");
 var gma340_spkrbtn        = props.globals.getNode("/instrumentation/audio-panel/spkr");
 
@@ -333,6 +334,7 @@ var refresh_com_volumes = func {
     refresh_marker_volume();
     refresh_ident_volume();
     gma340_fgcom_updateServiceable();
+    gma340_fgcom_updateOperable();
 };
 
 
@@ -397,6 +399,19 @@ var gma340_toggleMarkerMute = func() {
     }
 };
 
+
+# Calculate standard operable property
+var gma340_fgcom_updateOperable = func() {
+    var pwrSw  = gma340_powerbtn.getValue();
+    var svcabl = gma340_serviceable.getValue();
+    var volts  = getprop("/systems/electrical/outputs/audio-panel");
+
+    if (pwrSw and svcabl and volts) {
+        gma340_operable.setBoolValue(1);
+    } else {
+        gma340_operable.setBoolValue(0);
+    }
+};
 
 # Initialize GMA 340 at startup (delayed, so propertys are properly initialized)
 setlistener("/sim/signals/fdm-initialized", func {

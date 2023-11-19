@@ -130,7 +130,7 @@
   <animation>
     <type>rotate</type>
     <object-name>OBS-Knob</object-name>
-     <property>instrumentation/heading-indicator/offset-deg</property>
+     <property>instrumentation/heading-indicator/align-deg</property>
 <factor>10</factor>
 		<center>
 			<x-m>0.012842</x-m>
@@ -183,6 +183,14 @@
       <binding>
         <command>property-adjust</command>
         <property>instrumentation/heading-indicator/offset-deg</property>
+        <factor>1</factor>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <command>property-adjust</command>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <factor>1</factor>
         <min>0</min>
         <max>360</max>
@@ -362,6 +370,14 @@
         <wrap>1</wrap>
       </binding>
       <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("heading-offset-dial")</script>
       </binding>
@@ -373,6 +389,14 @@
       <binding>
         <command>property-adjust</command>
         <property>/instrumentation/heading-indicator/offset-deg</property>
+        <step>5</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
         <step>5</step>
         <min>0</min>
         <max>360</max>
@@ -396,6 +420,14 @@
         <wrap>1</wrap>
       </binding>
       <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>-1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("heading-offset-dial")</script>
       </binding>
@@ -407,6 +439,14 @@
       <binding>
         <command>property-adjust</command>
         <property>/instrumentation/heading-indicator/offset-deg</property>
+        <step>1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
         <step>1</step>
         <min>0</min>
         <max>360</max>
@@ -445,6 +485,14 @@
         <wrap>1</wrap>
       </binding>
       <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>-1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("heading-offset-dial")</script>
       </binding>
@@ -456,6 +504,14 @@
       <binding>
         <command>property-adjust</command>
         <property>/instrumentation/heading-indicator/offset-deg</property>
+        <step>-5</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
         <step>-5</step>
         <min>0</min>
         <max>360</max>
@@ -479,6 +535,14 @@
         <wrap>1</wrap>
       </binding>
       <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>-1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("heading-offset-dial")</script>
       </binding>
@@ -490,6 +554,14 @@
       <binding>
         <command>property-adjust</command>
         <property>/instrumentation/heading-indicator/offset-deg</property>
+        <step>1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/aign-deg</property>
         <step>1</step>
         <min>0</min>
         <max>360</max>

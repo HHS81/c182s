@@ -312,7 +312,7 @@ var state_cruising = func() {
     secureAircraftOnGround(0);
     checklist_beforeEngineStart();
     setAvionics(1);
-    setEngineRunning(2000, 0.75, 0.7, 0.80);  # TODO: Mix should be calculated lean by altitude
+    setEngineRunning(2000, 0.75, 0.7, getprop("/controls/engines/engine/mixture-maxaltitude-lean"));
     setprop("/controls/gear/brake-parking", 0);
     setprop("/controls/engines/engine/cowl-flaps-norm", 0);
     
@@ -425,6 +425,9 @@ var applyAircraftState = func() {
 ##########################################
 var autostart = func (msg=1, delay=1, setStates=0) {
     print("Autostart engine engaged.");
+    var altAGL = getprop("/position/altitude-agl-ft");
+    var onGround = 0; if (altAGL <= 5) onGround = 1;
+
     if (getprop("/fdm/jsbsim/propulsion/engine/set-running") and !setStates) {
         # When engine already running, perform autoshutdown
         if (msg)
@@ -441,11 +444,14 @@ var autostart = func (msg=1, delay=1, setStates=0) {
 
         var securingDelay = 3;
         settimer(func {
-            #Securing Aircraft
-            checklist_secureAircraft();
-            
-            #securing Aircraft on ground
-            secureAircraftOnGround(1);
+            # Securing only if on ground
+            if (onGround) {
+                #Securing Aircraft
+                checklist_secureAircraft();
+                
+                #securing Aircraft on ground
+                secureAircraftOnGround(1);
+            }
             
             print("Autoshutdown engine complete.");
         }, securingDelay);
@@ -470,9 +476,9 @@ var autostart = func (msg=1, delay=1, setStates=0) {
     # kick off engine
     var delay = 1;
     settimer(func {
-        var throttle = 0.15;
+        var throttle = 0.15; if (!onGround) throttle = 0.75;
         var rpm      = 2400;
-        var mixture  = getprop("/controls/engines/engine/mixture-maxaltitude") - 0.20; # for lean ROP setting
+        var mixture  = getprop("/controls/engines/engine/mixture-maxaltitude-lean");
         var prop     = 1.0;
         print("Autostart engine: execute setEngineRunning");
         print("  RPM:      "~rpm);

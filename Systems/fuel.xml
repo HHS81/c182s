@@ -620,7 +620,7 @@ Author: 09/2017  Benedikt Hallinger
                     <!-- calibrated to standard atmosphere -->
                     <independentVar lookup="row">/position/altitude-ft</independentVar> <!-- TODO: hould be true altitude consiering actual pressure+humidity -->
                     <tableData>
-                            0   1.00
+                            0   0.86
                          1000   0.84
                          2000   0.81
                          3000   0.76

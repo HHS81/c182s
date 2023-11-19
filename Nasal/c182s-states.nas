@@ -470,8 +470,16 @@ var autostart = func (msg=1, delay=1, setStates=0) {
     # kick off engine
     var delay = 1;
     settimer(func {
+        var throttle = 0.15;
+        var rpm      = 2400;
+        var mixture  = getprop("/controls/engines/engine/mixture-maxaltitude") - 0.20; # for lean ROP setting
+        var prop     = 1.0;
         print("Autostart engine: execute setEngineRunning");
-        setEngineRunning(2400, 0.05, getprop("/controls/engines/engine/mixture-maxaltitude"), 1.0);
+        print("  RPM:      "~rpm);
+        print("  Throttle: "~throttle);
+        print("  Prop:     "~prop);
+        print("  Mixture:  "~mixture);
+        setEngineRunning(rpm, throttle, mixture, prop);
          
         # investigate results once starter is done
         var startListener = setlistener("/engines/engine/auto-start", func(n){

@@ -84,11 +84,11 @@ file, these values will be used (they are hardcoded).
     <number>0</number>
   </marker-beacon>
 
-  <heading-indicator>
+  <heading-indicator-dg>
     <name>heading-indicator</name>
     <number>0</number>
     <suction>/systems/vacuum/suction-inhg</suction>
-  </heading-indicator>
+  </heading-indicator-dg>
 
   <magnetic-compass>
     <name>magnetic-compass</name>

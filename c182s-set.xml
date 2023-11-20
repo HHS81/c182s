@@ -1080,8 +1080,9 @@
             <path>/instrumentation/attitude-indicator/caged-flag</path>
             <path>/instrumentation/attitude-indicator/horizon-offset-deg</path>
             <path>/instrumentation/airspeed-indicator/tas-face-rotation</path>
-            <path>/instrumentation/heading-indicator/offset-deg</path>
             <path>/instrumentation/heading-indicator/align-deg</path>
+            <path>/instrumentation/heading-indicator/error-deg</path>
+            <path>/instrumentation/heading-indicator/offset-deg-save</path>
             <path>/autopilot/settings/heading-bug-deg</path>
             <path>/instrumentation/transponder/id-code</path>
             <path>/instrumentation/transponder/factory-vfr-code</path>

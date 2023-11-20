@@ -1001,6 +1001,24 @@ setlistener("/sim/signals/fdm-initialized", func {
         };
         print("C182 FGCamera integration loaded");
     }
+    
+    # DG: Reset offset to stored value
+    # for some unknown (to me) reason, the DG offset is set to something obscure after initialization; and the value is location specific...
+    # So we store the last known value when the im exits and restore that here
+    var dg_offset_startup = getprop("/instrumentation/heading-indicator/offset-deg-save") or 0;
+    var dg_offset_storemode = 0;
+    var dg_offset_startup_timer = maketimer(1.0, func(){
+        dg_offset_now = getprop("/instrumentation/heading-indicator/offset-deg") or 0;
+        if (dg_offset_storemode == 0) {
+            print("c182 restore DG offset from "~dg_offset_now~" to "~dg_offset_startup~" (saved value)");
+            setprop("/instrumentation/heading-indicator/offset-deg", dg_offset_startup);
+            dg_offset_storemode = 1;
+        } else {
+            #print("c182 updating stored DG offset to "~dg_offset_now);
+            setprop("/instrumentation/heading-indicator/offset-deg-save", dg_offset_now);
+        }
+    });
+    dg_offset_startup_timer.start();
 
 
     # If we are starting outside and in cold weather, add some ice/snow to the plane
@@ -1037,6 +1055,7 @@ setlistener("/sim/signals/fdm-initialized", func {
 
 
 });
+
 
 
 # generate legacy author property (used by the about dialog)

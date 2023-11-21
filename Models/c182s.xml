@@ -92,7 +92,7 @@
             alias(rplayer.getNode("sim/multiplay/generic/float[23]"));
         rplayer.getNode("engines/engine/indicated-cht-degf", 1).
             alias(rplayer.getNode("sim/multiplay/generic/float[24]"));
-        rplayer.getNode("instrumentation/vertical-speed-indicator/indicated-speed-fpm", 1).
+        rplayer.getNode("instrumentation/vertical-speed-indicator/indicated-speed-fpm-final", 1).
             alias(rplayer.getNode("sim/multiplay/generic/float[25]"));
         rplayer.getNode("instrumentation/heading-indicator/indicated-heading-deg", 1).
             alias(rplayer.getNode("sim/multiplay/generic/float[26]"));

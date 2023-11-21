@@ -108,7 +108,7 @@ var pilot_connect_copilot = func (copilot) {
     props.globals.getNode(pilot_inst_cht, 1).
         alias(props.globals.getNode("engines/engine/indicated-cht-degf"));
     props.globals.getNode(pilot_inst_vsi, 1).
-        alias(props.globals.getNode("instrumentation/vertical-speed-indicator/indicated-speed-fpm"));
+        alias(props.globals.getNode("instrumentation/vertical-speed-indicator/indicated-speed-fpm-final"));
     props.globals.getNode(pilot_inst_hsi, 1).
         alias(props.globals.getNode("instrumentation/heading-indicator/indicated-heading-deg"));
     props.globals.getNode(pilot_inst_turn_1, 1).

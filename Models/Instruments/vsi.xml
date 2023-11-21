@@ -59,7 +59,7 @@
     <type>rotate</type>
     <object-name>PointerCentre</object-name>
     <object-name>PointerTip</object-name>
-    <property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+    <property>instrumentation/vertical-speed-indicator/indicated-speed-fpm-final</property>
     <interpolation>
       <entry><ind> -2000 </ind><dep> -172 </dep></entry>
       <entry><ind> -1500 </ind><dep> -130 </dep></entry>

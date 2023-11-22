@@ -284,15 +284,15 @@
     <switch name="systems/propulsion/sparkplugs/right/magneto-selected">
         <default value="0"/>
         <test logic="OR" value="1">
-            /controls/switches/magnetos EQ 1
-            /controls/switches/magnetos EQ 3
+            /controls/engines/engine/magnetos EQ 1
+            /controls/engines/engine/magnetos EQ 3
         </test>
     </switch>
     <switch name="systems/propulsion/sparkplugs/left/magneto-selected">
         <default value="0"/>
         <test logic="OR" value="1">
-            /controls/switches/magnetos EQ 2
-            /controls/switches/magnetos EQ 3
+            /controls/engines/engine/magnetos EQ 2
+            /controls/engines/engine/magnetos EQ 3
         </test>
     </switch>
     

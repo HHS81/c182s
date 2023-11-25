@@ -297,6 +297,7 @@
         <object-name>PlaneTailLight</object-name>
         <object-name>NavLightRed</object-name>
         <object-name>NavLightGreen</object-name>
+        <object-name>ExtLight</object-name>
  </animation>
 
 <effect>
@@ -1685,6 +1686,8 @@
  <animation>
   <type>select</type>
   <object-name>ExtLight</object-name>
+  <object-name>extlightleft</object-name>
+  <object-name>extlightright</object-name>
   <condition>
    <greater-than>
     <property>systems/electrical/outputs/dome-exterior-light</property>
@@ -1692,15 +1695,6 @@
    </greater-than>
   </condition>
  </animation>
- 
- <animation>
-	<type>select</type>
-        <object-name>extlightleft</object-name>
-        <object-name>extlightright</object-name>
-	<condition>
-	<property>systems/electrical/outputs/dome-exterior-light</property>
-	</condition>
-</animation>
 
  <light>
   <name>extlightleft</name>

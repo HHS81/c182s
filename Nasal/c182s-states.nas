@@ -496,21 +496,37 @@ var autostart = func (msg=1, delay=1, setStates=0) {
         print("  Throttle: "~throttle);
         print("  Prop:     "~prop);
         print("  Mixture:  "~mixture);
+        #state_adjustEngineTemps(75,75);  #! not calling on purpose! Autostart should only try to start the engine, not suceed in all cases!
         setEngineRunning(rpm, throttle, mixture, prop);
          
         # investigate results once starter is done
         var startListener = setlistener("/engines/engine/auto-start", func(n){
             if (n.getValue() == 0) {
-                # autostart has finished
-                if (!getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
-                    gui.popupTip("The autostart failed to start the engine. You must lean the mixture and start the engine manually.", 5);
-                    print("Autostart engine FAILED");
-                } else {
-                    print("Autostart engine finished.");
-                }
                 
                 # activate avionics
                 setAvionics(1);
+                
+                # report results after some more time
+                reportResults = maketimer(2, func{
+                    if (!getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
+                        var failMsg = "The autostart failed to start the engine.";
+                        
+                        if (getprop("/engines/engine/complex-engine-procedures")) {
+                            failMsg = failMsg~"\nTry preheating or disabling 'complex engine procedures'";
+                        } else {
+                            failMsg = failMsg~"\nTry leaning and starting manually'";
+                        }
+                            
+                        gui.popupTip(failMsg, 5);
+                        print("Autostart engine FAILED");
+                        print("  oil temp °F: "~getprop("/engines/engine/oil-final-temperature-degf"));
+                        print("  complex-engine-procedures: "~getprop("/engines/engine/complex-engine-procedures"));
+                    } else {
+                        print("Autostart engine succeeded.");
+                    }
+                });
+                reportResults.singleShot = 1;
+                reportResults.start();
                 
                 removelistener(startListener);
                 

@@ -85,6 +85,9 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
     repair_damage();
     reset_fuel_contamination();
     
+    # Remove preheater in case it was attached
+    setprop("/engines/engine/external-heat/enabled", 0);
+    
     # Battery/Alternator on
     setprop("/controls/engines/engine[0]/master-bat", 1);
     setprop("/controls/engines/engine[0]/master-alt", 1);

@@ -137,9 +137,17 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
         setprop("/controls/switches/AVMBus2", ams2_old);
         
         # apply desired after-start properties
-        setprop("/controls/engines/engine[0]/throttle", throttle);
-        setprop("/controls/engines/engine[0]/mixture", mix);
-        setprop("/controls/engines/engine[0]/propeller-pitch", prop);
+        if (getprop("/engines/engine/auto-start")) {
+            # slowly for autostart
+            interpolate("/controls/engines/engine[0]/throttle", throttle, 3);
+            interpolate("/controls/engines/engine[0]/mixture", mix, 3);
+            interpolate("/controls/engines/engine[0]/propeller-pitch", prop, 3);
+        } else {
+            # instant for presets/states
+            setprop("/controls/engines/engine[0]/throttle", throttle);
+            setprop("/controls/engines/engine[0]/mixture", mix);
+            setprop("/controls/engines/engine[0]/propeller-pitch", prop);
+        }
         
         # all done, go home
         setprop("/engines/engine/auto-start", 0);

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ########################################
+
+ # DR400-dauphin by PAF team
+ # April 2012 : Modified by PAF team
+ # http://equipe-flightgear.forumactif.com
+
+##########################################-->
+
+<PropertyList>
+  <path>support2.ac</path>
+
+  <model>
+    <name>Garmin 196</name>
+    <path>Aircraft/Instruments-3d/garmin196/garmin196.xml</path>
+  </model>
+</PropertyList>

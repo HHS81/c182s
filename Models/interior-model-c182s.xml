@@ -22,7 +22,7 @@
     <object-name>VACR.Ann</object-name>
     <object-name>Volts.Ann</object-name>
    </effect>
-	
+
 	<animation>
 		<condition>
 			<not>
@@ -38,33 +38,33 @@
 			<factor-prop>sim/model/c182s/lighting/panel-emission-factor</factor-prop>
 		</emission>
 	</animation>
-   
+
    <effect>
        <inherits-from>Aircraft/c182s/Models/Effects/c182s_glareshield</inherits-from>
     <object-name>Panel</object-name>
     <object-name>PanelLight</object-name>
     <object-name>Pedestal</object-name>
     <object-name>FuelTankSelector</object-name>
-    
+
     <object-name>MasterAltSwitch</object-name>
     <object-name>MasterBattSwitch</object-name>
     <object-name>AVMBus1</object-name>
     <object-name>AVMBus2</object-name>
-    
+
   <object-name>PanelLightKnob</object-name>
     <object-name>RadioLightKnob</object-name>
     <object-name>PedestalLightKnob</object-name>
     <object-name>GlareshieldLightKnob</object-name>
-    
+
   <object-name>Throttle</object-name>
     <object-name>PropControl</object-name>
     <object-name>Mixture</object-name>
     <object-name>AltStaticAir</object-name>
-    
+
     <object-name>CabinHeat</object-name>
     <object-name>DeFrost</object-name>
     <object-name>CabinAir</object-name>
-    
+
     <object-name>FuelPumpSwitch</object-name>
     <object-name>BeaconSwitch</object-name>
     <object-name>LandingLightSwitch</object-name>
@@ -72,10 +72,10 @@
     <object-name>NavLightSwitch</object-name>
     <object-name>StrobeLightSwitch</object-name>
     <object-name>PitotHeatSwitch</object-name>
-    
-    <object-name>FlapSwitch</object-name>  
-    <object-name>FlapPos</object-name>   
-   
+
+    <object-name>FlapSwitch</object-name>
+    <object-name>FlapPos</object-name>
+
     <object-name>Breaker.Flap</object-name>
     <object-name>Breaker.Inst</object-name>
     <object-name>Breaker.AVNBus1</object-name>
@@ -101,28 +101,28 @@
       <object-name>start</object-name>
       <object-name>starter</object-name>
    </effect>
-   
+
 <effect>
        <inherits-from>Aircraft/c182s/Models/Effects/c182s_controls</inherits-from>
-   
+
     <object-name>Yoke.R</object-name>
     <object-name>Yoke.L</object-name>
-    
+
     <object-name>Pedal22</object-name>
     <object-name>Pedal21</object-name>
     <object-name>Pedal12</object-name>
     <object-name>Pedal11</object-name>
-    
+
     <object-name>Pedal22.001</object-name>
     <object-name>Pedal21.001</object-name>
     <object-name>Pedal12.001</object-name>
     <object-name>Pedal11.001</object-name>
     <object-name>ParkingBrake</object-name>
    </effect>
-   
+
 <effect>
        <inherits-from>Aircraft/c182s/Models/Effects/c182s_seats</inherits-from>
-   
+
     <object-name>FrontSeat.R</object-name>
     <object-name>FrontSeat.L</object-name>
     <object-name>RearSeats</object-name>
@@ -135,17 +135,17 @@
     <object-name>Glareshield</object-name>
     <object-name>IntDoor.L</object-name>
     <object-name>IntDoor.R</object-name>
-    
+
     <object-name>FrameInt.L</object-name>
     <object-name>FrameInt.R</object-name>
     <object-name>FrameLock1.L</object-name>
     <object-name>FrameLock1.R</object-name>
-    
+
     <object-name>FrameLock2.L</object-name>
     <object-name>FrameLock2.R</object-name>
     <object-name>doorhandleint_right</object-name>
     <object-name>doorhandleint_left</object-name>
-    
+
     <object-name>DomeLight1</object-name>
     <object-name>DomeLight2</object-name>
     <object-name>DL.swt.L</object-name>
@@ -158,12 +158,12 @@
    </effect>
 
 
-   
 
-  
+
+
 <!-- Doors-->
 
-   
+
  <animation>
    <type>rotate</type>
 <object-name>IntDoor.L</object-name>
@@ -197,7 +197,7 @@
 			<z>-0.508674</z>
 		</axis>
  </animation>
- 
+
   <animation>
     <type>select</type>
     <object-name>Yoke.R</object-name>
@@ -246,7 +246,7 @@
 			<z>-0.508674</z>
 		</axis>
  </animation>
- 
+
 
     <animation>
         <type>pick</type>
@@ -290,7 +290,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
     <animation>
         <type>rotate</type>
         <object-name>doorhandleint_right</object-name>
@@ -348,7 +348,7 @@
 			<z>0</z>
 		</axis>
     </animation>
-    
+
  <animation>
         <type>pick</type>
         <object-name>FrameInt.R</object-name>
@@ -370,7 +370,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
 <animation>
    <type>rotate</type>
         <object-name>FrameInt.R</object-name>
@@ -402,7 +402,7 @@
 			<z>-0.01543</z>
 		</axis>
  </animation>
- 
+
 <animation>
    <type>rotate</type>
         <object-name>FrameLock2.R</object-name>
@@ -432,7 +432,7 @@
 			<z>0</z>
 		</axis>
  </animation>
-    
+
     <animation>
         <type>pick</type>
         <object-name>leftdoor</object-name>
@@ -454,7 +454,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
     <animation>
         <type>rotate</type>
         <object-name>doorhandleint_left</object-name>
@@ -527,7 +527,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
 <animation>
    <type>rotate</type>
         <object-name>FrameInt.L</object-name>
@@ -559,7 +559,7 @@
 			<z>-0.01543</z>
 		</axis>
  </animation>
- 
+
 <animation>
    <type>rotate</type>
         <object-name>FrameLock2.L</object-name>
@@ -589,7 +589,7 @@
 			<z>0</z>
 		</axis>
  </animation>
- 
+
  <animation>
    <type>rotate</type>
 <object-name>BaggageIntDoor</object-name>
@@ -616,7 +616,7 @@
 		</axis>
  </animation>
 
- 
+
  <!--Sun visors-->
    <animation>
     <type>knob</type>
@@ -646,7 +646,7 @@
       </binding>
     </action>
   </animation>
-  
+
  <animation>
     <type>rotate</type>
     <object-name>SunVirsor.R</object-name>
@@ -664,7 +664,7 @@
 			<z>0</z>
 		</axis>
   </animation>
-  
+
 <animation>
     <type>knob</type>
     <object-name>SunVirsor.L</object-name>
@@ -693,7 +693,7 @@
       </binding>
     </action>
   </animation>
-  
+
  <animation>
     <type>rotate</type>
     <object-name>SunVirsor.L</object-name>
@@ -766,7 +766,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
 <!-- yoke animation-->
 <animation>
         <type>pick</type>
@@ -790,7 +790,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
     <animation>
         <type>material</type>
         <object-name>Yoke.L</object-name>
@@ -799,7 +799,7 @@
             <alpha-prop>sim/model/hide-yoke-alpha</alpha-prop>
         </transparency>
     </animation>
-    
+
 <animation>
   <type>rotate</type>
   <object-name>Yoke.L</object-name>
@@ -821,7 +821,7 @@
 			<z>0</z>
 		</axis>
  </animation>
- 
+
 <animation>
   <type>translate</type>
   <object-name>Yoke.L</object-name>
@@ -840,7 +840,7 @@
    <z>0.0</z>
   </axis>
  </animation>
- 
+
 <animation>
   <type>rotate</type>
   <object-name>Yoke.R</object-name>
@@ -862,7 +862,7 @@
 			<z>0</z>
 		</axis>
  </animation>
- 
+
 <animation>
   <type>translate</type>
   <object-name>Yoke.R</object-name>
@@ -957,7 +957,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
     <animation>
         <type>translate</type>
         <object-name>PropControl</object-name>
@@ -996,7 +996,7 @@
             </binding>
         </hovered>
     </animation>
- 
+
  <animation>
     <type>knob</type>
     <object-name>CowlFlapsLever</object-name>
@@ -1019,7 +1019,7 @@
       </binding>
     </action>
   </animation>
-  
+
  <animation>
     <type>translate</type>
     <object-name>CowlFlapsLever</object-name>
@@ -1031,7 +1031,7 @@
    <z>1.0</z>
   </axis>
   </animation>
-  
+
 <!-- Elevator Trim -->
     <animation>
         <type>knob</type>
@@ -1090,7 +1090,7 @@
             <z-m>-0.109</z-m>
         </center>
     </animation>
-    
+
 <!-- Rudder Trim -->
     <animation>
         <type>knob</type>
@@ -1175,7 +1175,7 @@
             </entry>
         </interpolation>
       </animation>
-     
+
      <animation>
  <type>rotate</type>
      <property>surface-positions/flap-pos-norm</property>
@@ -1209,9 +1209,9 @@
             </entry>
         </interpolation>
       </animation>
-      
-  
-    
+
+
+
 
     <!-- ================================================================== -->
     <!-- Flaps lever                                                       -->
@@ -1251,7 +1251,7 @@
             </binding>
         </increase>
     </animation>
-    
+
 <animation>
  <type>translate</type>
       <property>sim/model/c182s/cockpit/flaps-lever</property>
@@ -1280,7 +1280,7 @@
             </entry>
         </interpolation>
       </animation>
-      
+
 <animation>
         <type>rotate</type>
       <property>sim/model/c182s/cockpit/flaps-lever</property>
@@ -1314,10 +1314,10 @@
             </entry>
         </interpolation>
       </animation>
-      
 
 
-      
+
+
 
     <animation>
         <type>translate</type>
@@ -1355,7 +1355,7 @@
             </entry>
         </interpolation>
     </animation>
-    
+
 <!-- Pedals-->
  <animation>
   <type>translate</type>
@@ -1461,7 +1461,7 @@
         </binding>
     </hovered>
   </animation>
-  
+
 <animation>
     <type>knob</type>
     <object-name>PanelLightKnob</object-name>
@@ -1499,7 +1499,7 @@
         </binding>
     </hovered>
   </animation>
-  
+
 <animation>
     <type>knob</type>
     <object-name>GlareshieldLightKnob</object-name>
@@ -1537,7 +1537,7 @@
         </binding>
     </hovered>
   </animation>
-  
+
 <animation>
     <type>knob</type>
     <object-name>PedestalLightKnob</object-name>
@@ -1575,7 +1575,7 @@
         </binding>
     </hovered>
   </animation>
-  
+
   <!-- Alt static knob -->
   <animation>
         <type>slider</type>
@@ -1604,7 +1604,7 @@
             </binding>
         </hovered>
   </animation>
-  
+
   <!-- Cabin heat and Air / defrost-->
     <animation>
         <type>slider</type>
@@ -1737,7 +1737,7 @@
             <z>0.0</z>
         </axis>
     </animation>
- 
+
 <!--switches-->
     <!-- MasterSwitch -->
     <animation>
@@ -1766,7 +1766,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
     <!-- MasterSwitch -->
     <animation>
         <type>pick</type>
@@ -1794,7 +1794,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
     <!-- FuelPump -->
     <animation>
         <type>pick</type>
@@ -1848,7 +1848,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
     <!-- Beacon swt-->
     <animation>
         <type>pick</type>
@@ -1902,7 +1902,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
     <!-- strobe swt-->
     <animation>
         <type>pick</type>
@@ -1956,7 +1956,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
     <!-- LL swt-->
     <animation>
         <type>pick</type>
@@ -2010,7 +2010,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
     <!-- TL swt-->
     <animation>
         <type>pick</type>
@@ -2064,7 +2064,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
     <!-- NL swt-->
     <animation>
         <type>pick</type>
@@ -2118,7 +2118,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
     <!-- PH swt-->
     <animation>
         <type>pick</type>
@@ -2172,7 +2172,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
             <!-- avionic swt-->
     <animation>
         <type>pick</type>
@@ -2200,7 +2200,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
 <animation>
         <type>pick</type>
         <object-name>AVMBus2</object-name>
@@ -2227,7 +2227,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
 <animation>
         <type>pick</type>
         <object-name>DL.swt.L</object-name>
@@ -2250,7 +2250,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
   <animation>
   <type>select</type>
   <object-name>DomeLight1Em</object-name>
@@ -2261,7 +2261,7 @@
    </greater-than>
   </condition>
  </animation>
-    
+
 <animation>
         <type>pick</type>
         <object-name>DL.swt.R</object-name>
@@ -2284,7 +2284,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
  <animation>
   <type>select</type>
   <object-name>DomeLight2Em</object-name>
@@ -2295,7 +2295,7 @@
    </greater-than>
   </condition>
  </animation>
-    
+
 <animation>
         <type>pick</type>
         <object-name>DEL.swt</object-name>
@@ -2318,7 +2318,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
  <animation>
   <type>select</type>
   <object-name>DomeLight3Em</object-name>
@@ -2329,7 +2329,7 @@
    </greater-than>
   </condition>
  </animation>
-    
+
 <!-- Switch animation -->
     <animation>
         <type>rotate</type>
@@ -2347,7 +2347,7 @@
             <z-m>0.073</z-m>
         </center>
     </animation>
-    
+
  <animation>
         <type>rotate</type>
         <object-name>StrobeLightSwitch</object-name>
@@ -2364,7 +2364,7 @@
             <z-m>0.073</z-m>
         </center>
     </animation>
-    
+
 <animation>
         <type>rotate</type>
         <object-name>NavLightSwitch</object-name>
@@ -2381,7 +2381,7 @@
             <z-m>0.073</z-m>
         </center>
     </animation>
-    
+
 <animation>
         <type>rotate</type>
         <object-name>TaxiLightSwitch</object-name>
@@ -2398,7 +2398,7 @@
             <z-m>0.073</z-m>
         </center>
     </animation>
-    
+
 <animation>
         <type>rotate</type>
         <object-name>LandingLightSwitch</object-name>
@@ -2415,7 +2415,7 @@
             <z-m>0.073</z-m>
         </center>
     </animation>
-    
+
 <animation>
         <type>rotate</type>
         <object-name>BeaconSwitch</object-name>
@@ -2432,7 +2432,7 @@
             <z-m>0.073</z-m>
         </center>
     </animation>
-    
+
 <animation>
         <type>rotate</type>
         <object-name>FuelPumpSwitch</object-name>
@@ -2449,7 +2449,7 @@
             <z-m>0.073</z-m>
         </center>
     </animation>
-    
+
 <!--Master ALT BAT and AVMBus1+2-->
 <animation>
         <type>rotate</type>
@@ -2467,7 +2467,7 @@
             <z-m>0.091</z-m>
         </center>
     </animation>
-    
+
 <animation>
         <type>rotate</type>
         <object-name>MasterBattSwitch</object-name>
@@ -2484,7 +2484,7 @@
             <z-m>0.091</z-m>
         </center>
     </animation>
-    
+
 <animation>
         <type>rotate</type>
         <object-name>AVMBus1</object-name>
@@ -2501,7 +2501,7 @@
             <z-m>0.091</z-m>
         </center>
     </animation>
-    
+
 <animation>
         <type>rotate</type>
         <object-name>AVMBus2</object-name>
@@ -2518,7 +2518,7 @@
             <z-m>0.091</z-m>
         </center>
     </animation>
-    
+
     <!--Domelight Buttons-->
     <animation>
         <type>translate</type>
@@ -2600,8 +2600,8 @@
             </binding>
         </hovered>
     </animation>
-                
-                
+
+
 <animation>
         <type>knob</type>
         <object-name>FuelTankSelector</object-name>
@@ -2780,7 +2780,7 @@
    <z-m>0.685</z-m>
   </offsets>
  </model>
-	
+
 	<model>
 		<path>Instruments/CompassCorrectionCard.xml</path>
 		<offsets>
@@ -2800,8 +2800,8 @@
             <z-m>0.397</z-m>
         </offsets>
     </model>
-    
-    
+
+
     <model>
         <path>Aircraft/c182s/Models/Instruments/Avionics/kn62a.xml</path>
         <name>kn62a</name>
@@ -2842,7 +2842,7 @@
             <z-m>0.216</z-m>
         </offsets>
     </model>
-    
+
     <model>
         <path>Aircraft/c182s/Models/Instruments/Avionics/kap140/kap140.xml</path>
         <name>kap140</name>
@@ -2852,7 +2852,7 @@
             <z-m>0.277</z-m>
         </offsets>
     </model>
-    
+
    <model>
         <path>Aircraft/c182s/Models/Instruments/Avionics/kt76c.xml</path>
         <name>kt76c</name>
@@ -2861,10 +2861,10 @@
             <y-m>0.083</y-m>
             <z-m>0.135</z-m>
         </offsets>
-    </model>  
+    </model>
 
-  
-    
+
+
 <!--gauges-->
    <model>
         <path>Aircraft/c182s/Models/Instruments/Airspeed.xml</path>
@@ -2895,7 +2895,7 @@
             <z-m>0.413</z-m>
         </offsets>
     </model>
-    
+
     <model>
         <path>Aircraft/c182s/Models/Instruments/vsi.xml</path>
         <name>VSI</name>
@@ -2905,7 +2905,7 @@
             <z-m>0.315</z-m>
         </offsets>
     </model>
-    
+
     <model>
         <path>Aircraft/c182s/Models/Instruments/hi.xml</path>
         <name>HI</name>
@@ -2915,7 +2915,7 @@
             <z-m>0.313</z-m>
         </offsets>
     </model>
-    
+
 <model>
    <name>vor</name>
    <path>Aircraft/c182s/Models/Instruments/vor/vor.xml</path>
@@ -2935,7 +2935,7 @@
      <z-m>0.317</z-m>
    </offsets>
  </model>
- 
+
     <model>
         <path>Aircraft/c182s/Models/Instruments/ki227_228.xml</path>
         <name>KI227</name>
@@ -2945,7 +2945,7 @@
             <z-m>0.214</z-m>
         </offsets>
     </model>
-    
+
  <model>
    <name>Turn</name>
    <path>Aircraft/c182s/Models/Instruments/turn.xml</path>
@@ -2955,7 +2955,7 @@
      <z-m>0.312</z-m>
    </offsets>
  </model>
- 
+
 <model>
    <name>Tach</name>
    <path>Aircraft/c182s/Models/Instruments/Tach.xml</path>
@@ -2965,7 +2965,7 @@
      <z-m>0.215</z-m>
    </offsets>
  </model>
- 
+
  <model>
    <name>ManPressFuelFlow</name>
    <path>Aircraft/c182s/Models/Instruments/ManPressFuelFlow.xml</path>
@@ -2975,7 +2975,7 @@
      <z-m>0.215</z-m>
    </offsets>
  </model>
- 
+
  <model>
    <name>VacAmp</name>
    <path>Aircraft/c182s/Models/Instruments/vacamp.xml</path>
@@ -2985,8 +2985,8 @@
      <z-m>0.253</z-m>
    </offsets>
  </model>
- 
- 
+
+
  <model>
    <name>Oil</name>
    <path>Aircraft/c182s/Models/Instruments/oil.xml</path>
@@ -2996,7 +2996,7 @@
      <z-m>0.2535</z-m>
    </offsets>
  </model>
- 
+
  <model>
    <name>EGT</name>
    <path>Aircraft/c182s/Models/Instruments/egt.xml</path>
@@ -3006,7 +3006,7 @@
      <z-m>0.327</z-m>
    </offsets>
  </model>
- 
+
  <model>
    <name>FuelQty</name>
    <path>Aircraft/c182s/Models/Instruments/fuelqty.xml</path>
@@ -3016,7 +3016,7 @@
      <z-m>0.327</z-m>
    </offsets>
  </model>
- 
+
 <model>
         <path>Aircraft/c182s/Models/Instruments/Davtron803/davtron803.xml</path>
         <name>Davtron803</name>
@@ -3026,7 +3026,7 @@
             <z-m>0.402</z-m>
         </offsets>
     </model>
- 
+
 <!--ELT-->
  <model>
    <name>ELT</name>
@@ -3037,7 +3037,7 @@
     <z-m>0.4239</z-m>
    </offsets>
  </model>
- 
+
  <!--Hobbs-->
   <model>
    <name>Hobbs</name>
@@ -3048,8 +3048,8 @@
      <z-m>0.376</z-m>
    </offsets>
  </model>
-    
- 
+
+
  <!-- Circuit breakers -->
 	<animation>
 		<type>slider</type>
@@ -3516,7 +3516,7 @@
 			</binding>
 		</hovered>
 	</animation>
-	
+
    <!-- MOD: animation for the checklists -->
     <animation>
         <type>pick</type>
@@ -3539,10 +3539,10 @@
         </hovered>
     </animation>
     <!-- MODEND -->
-    
+
     <!-- Annunciators-->
     <!-- They are nasal driven! -->
-    
+
     <!-- Ann Test swt -->
     <animation>
         <type>knob</type>
@@ -3589,7 +3589,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
 <animation>
         <type>knob</type>
         <object-name>AnnTest.swt</object-name>
@@ -3653,7 +3653,7 @@
 			<z>0</z>
 		</axis>
     </animation>
-    
+
     <animation>
         <type>material</type>
         <object-name>FuelFlow.Ann</object-name>
@@ -3675,7 +3675,7 @@
             <factor-prop>instrumentation/annunciator/dim-factor</factor-prop>
         </emission>
     </animation>
-   
+
     <animation>
     <type>select</type>
         <object-name>FuelFlowL.Ann</object-name>
@@ -3705,7 +3705,7 @@
             </and>
         </condition>
     </animation>
-    
+
     <animation>
         <type>select</type>
         <object-name>FuelFlowR.Ann</object-name>
@@ -3720,7 +3720,7 @@
             </and>
         </condition>
     </animation>
-    
+
     <animation>
         <type>select</type>
         <object-name>PitchTrim.Ann</object-name>
@@ -3735,7 +3735,7 @@
             </and>
         </condition>
     </animation>
-    
+
     <animation>
         <type>select</type>
         <object-name>OilPress.Ann</object-name>
@@ -3750,7 +3750,7 @@
             </and>
         </condition>
     </animation>
-    
+
     <animation>
         <type>select</type>
         <object-name>VACL.Ann</object-name>
@@ -3765,7 +3765,7 @@
             </and>
         </condition>
     </animation>
-    
+
     <animation>
         <type>select</type>
         <object-name>VAC.Ann</object-name>
@@ -3798,7 +3798,7 @@
             </and>
         </condition>
     </animation>
-    
+
     <animation>
         <type>select</type>
         <object-name>VACR.Ann</object-name>
@@ -3813,7 +3813,7 @@
             </and>
         </condition>
     </animation>
-    
+
     <animation>
         <type>select</type>
         <object-name>Volts.Ann</object-name>
@@ -3879,7 +3879,7 @@
             </binding>
         </hovered>
     </animation>
-    
+
     <!-- spiral map light yoke cable -->
     <model>
         <name>LeftYokeCable</name>
@@ -3921,4 +3921,96 @@
             <alpha-prop>sim/model/hide-yoke-alpha</alpha-prop>
         </transparency>
     </animation>
+
+    <!-- garmin196 GPS -->
+    <model>
+        <name>garmin196</name>
+		    <path>Aircraft/c182s/Models/Instruments/garmin196/garmin196.xml</path>
+		    <offsets>
+          <x-m>0.585</x-m>
+          <y-m>-0.25</y-m>
+          <z-m>0.22</z-m>
+          <pitch-deg>-10</pitch-deg>
+		    </offsets>
+	  </model>
+
+    <animation>
+     <type>select</type>
+     <object-name>garmin196</object-name>
+     <condition>
+       <property>/sim/model/GPSMap196</property>
+     </condition>
+    </animation>
+
+    <animation>
+            <type>pick</type>
+            <object-name>CS.Yokes</object-name>
+            <visible>false</visible>
+            <action>
+                <name>Select</name>
+                <button>0</button>
+                <binding>
+                    <command>property-toggle</command>
+            <property>sim/model/hide-yoke</property>
+                </binding>
+            </action>
+            <hovered>
+                <binding>
+                    <command>set-tooltip</command>
+                    <label>Hide Yokes: %s</label>
+            <property>sim/model/hide-yoke</property>
+                    <tooltip-id>hide-yokes</tooltip-id>
+                    <mapping>on-off</mapping>
+                </binding>
+            </hovered>
+        </animation>
+
+        <animation>
+            <type>material</type>
+            <object-name>garmin196</object-name>
+            <transparency>
+                <alpha-prop>sim/model/hide-yoke-alpha</alpha-prop>
+            </transparency>
+        </animation>
+
+    <animation>
+      <type>rotate</type>
+      <object-name>garmin196</object-name>
+      <expression>
+          <product>
+              <property>controls/flight/yoke-unlocked</property>
+              <property>controls/flight/aileron</property>
+              <value>90</value>
+          </product>
+      </expression>
+    		<center>
+    			<x-m>-0.4825</x-m>
+    			<y-m>-0.252</y-m>
+    			<z-m>0.238</z-m>
+    		</center>
+    		<axis>
+    			<x>-1</x>
+    			<y>0</y>
+    			<z>0</z>
+    		</axis>
+     </animation>
+
+    <animation>
+      <type>translate</type>
+      <object-name>garmin196</object-name>
+      <property>controls/flight/elevator</property>
+      <factor>-0.11</factor>
+      <expression>
+          <product>
+              <property>controls/flight/yoke-unlocked</property>
+              <property>controls/flight/elevator</property>
+              <value>-0.11</value>
+          </product>
+      </expression>
+      <axis>
+       <x>1.0</x>
+       <y>0.0</y>
+       <z>0.0</z>
+      </axis>
+     </animation>
 </PropertyList>

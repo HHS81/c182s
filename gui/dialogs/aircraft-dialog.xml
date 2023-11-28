@@ -41,7 +41,7 @@
 	</button>
 	</group>
 	<hrule/>
-    
+
     <group>
         <layout>hbox</layout>
         <text><halign>left</halign>
@@ -100,13 +100,13 @@
                 <property>/sim/start-state</property>
             </binding>
         </button>
-        
+
         <empty><stretch>true</stretch></empty>
-        
+
     </group>
-    
+
     <hrule/>
-    
+
     <group>
         <layout>hbox</layout>
 
@@ -133,9 +133,9 @@
             </binding>
         </button>
     </group>
-    
+
     <hrule/>
-    
+
 	<group>
 	<layout>vbox</layout>
 	<padding>6</padding>
@@ -152,7 +152,7 @@
                     <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
                 </binding>
 	</checkbox>
-        
+
             <checkbox>
                 <halign>left</halign>
                 <label>Enable icing</label>
@@ -162,7 +162,7 @@
                     <command>dialog-apply</command>
                 </binding>
             </checkbox>
-            
+
             <checkbox>
                 <halign>left</halign>
                 <label>Enable frost and fog</label>
@@ -179,7 +179,7 @@
                     <layout>vbox</layout>
                     <padding>6</padding>
                 </group>
-                
+
                 <group>
                     <layout>hbox</layout>
                     <checkbox>
@@ -199,7 +199,7 @@
                 </group>
                 <empty><stretch>true</stretch></empty> <!-- force group to the left -->
             </group>
-    
+
             <checkbox>
                 <halign>left</halign>
                 <label>Complex engine procedures and failures</label>
@@ -209,7 +209,7 @@
                     <command>dialog-apply</command>
                 </binding>
             </checkbox>
-            
+
             <group>
                 <layout>hbox</layout>
                 <!-- Small left padding -->
@@ -235,10 +235,10 @@
                         </binding>
                     </checkbox>
                 </group>
-                
+
                 <empty><stretch>true</stretch></empty> <!-- force group to the left -->
             </group>
-            
+
              <group>
                 <layout>hbox</layout>
                 <!-- Small left padding -->
@@ -246,7 +246,7 @@
                     <layout>vbox</layout>
                     <padding>6</padding>
                 </group>
-                
+
                 <group>
                     <layout>hbox</layout>
                     <checkbox>
@@ -264,10 +264,10 @@
                         </binding>
                     </checkbox>
                 </group>
-                
+
                 <empty><stretch>true</stretch></empty> <!-- force group to the left -->
             </group>
-            
+
             <group>
                 <layout>hbox</layout>
                 <!-- Small left padding -->
@@ -293,13 +293,13 @@
                         </binding>
                     </checkbox>
                 </group>
-                
+
                 <empty><stretch>true</stretch></empty> <!-- force group to the left -->
             </group>
-            
-            
+
+
         </group>
-        
+
         <checkbox>
             <halign>left</halign>
             <label>Enable FGCom audio panel integration</label>
@@ -309,7 +309,7 @@
                 <command>dialog-apply</command>
             </binding>
         </checkbox>
-        
+
         <checkbox>
             <halign>left</halign>
             <label>Winter Kit installed</label>
@@ -331,7 +331,7 @@
                 <command>dialog-apply</command>
             </binding>
         </checkbox>
-        
+
         <group>
             <layout>hbox</layout>
             <checkbox>
@@ -384,7 +384,7 @@
                 </binding>
             </button>
         </group>
-        
+
 <hrule/>
 
         <group>
@@ -399,7 +399,7 @@
                     <command>dialog-apply</command>
                 </binding>
             </checkbox>
-            
+
             <button>
                 <legend>Inspect damage</legend>
                 <binding>
@@ -438,7 +438,7 @@
                     </script>
                 </binding>
             </button>
-            
+
               <button>
                 <halign>right</halign>
                 <legend>Clean Aircraft</legend>
@@ -511,7 +511,7 @@
                 </binding>
 	</checkbox>
 
-	
+
 
 	<checkbox>
                 <halign>right</halign>
@@ -528,15 +528,15 @@
 	</checkbox>
         </group>
 	<hrule/>
-	
+
 <group>
 	<layout>vbox</layout>
 	<padding>6</padding>
-    
+
         <group>
             <layout>hbox</layout>
             <halign>left</halign>
-            
+
             <checkbox>
                 <halign>left</halign>
                 <label>Show/Hide Yokes</label>
@@ -573,8 +573,19 @@
                     <property>/sim/rendering/shadow-volume</property>
                 </binding>
             </checkbox>
-        </group>	
-	
+
+            <checkbox>
+                <halign>left</halign>
+                <label>Show GPSMap196</label>
+                <property>/sim/model/GPSMap196</property>
+                <live>true</live>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/sim/model/GPSMap196</property>
+                </binding>
+            </checkbox>
+        </group>
+
         <hrule/>
 
 </PropertyList>

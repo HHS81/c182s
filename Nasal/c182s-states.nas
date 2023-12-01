@@ -519,7 +519,7 @@ var autostart = func (msg=1, delay=1, setStates=0) {
         print("  Throttle: "~throttle);
         print("  Prop:     "~prop);
         print("  Mixture:  "~mixture);
-        #state_adjustEngineTemps(75,75);  #! not calling on purpose! Autostart should only try to start the engine, not suceed in all cases!
+        state_adjustEngineTemps(125,250);
         setEngineRunning(rpm, throttle, mixture, prop);
          
         # investigate results once starter is done

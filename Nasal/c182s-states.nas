@@ -97,9 +97,6 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
     # Prestart preparations
     #
     
-    repair_damage();
-    reset_fuel_contamination();
-    
     # Remove preheater in case it was attached
     setprop("/engines/engine/external-heat/enabled", 0);
     
@@ -218,6 +215,7 @@ var checklist_secureAircraft = func() {
 }
         
 var checklist_preflight = func() {
+    repair_damage();
     reset_fuel_contamination();
     
     # Checking for minimal oil level
@@ -308,18 +306,23 @@ var state_coldAndDark = func() {
     setprop("/controls/lighting/pedestal-lights-norm", 0);
     setprop("/controls/lighting/radio-lights-norm", 0);
     
+    # Engine cut-off
+    setprop("/controls/engines/engine[0]/throttle", 0.0);
+    setprop("/controls/engines/engine[0]/mixture", 0.0);
+    setprop("/controls/switches/starter", 0);
     setprop("/controls/switches/magnetos", 0);
 };
 
 var state_readyForTakeoff = func() {
-    repair_damage();
-    reset_fuel_contamination();
+    checklist_preflight();
     secureAircraftOnGround(0);
     checklist_beforeEngineStart();
     setAvionics(1);
     setEngineRunning(1000, 0.1, getprop("/controls/engines/engine/mixture-maxaltitude"), 1);
     setprop("/controls/gear/brake-parking", 1);
     setprop("/controls/engines/engine/cowl-flaps-norm", 1);
+    setprop("/controls/flight/elevator-trim", 0);
+    setprop("/controls/flight/rudder-trim", 0);
     
     calibrateInstruments();
     
@@ -328,8 +331,7 @@ var state_readyForTakeoff = func() {
 };
 
 var state_cruising = func() {
-    repair_damage();
-    reset_fuel_contamination();
+    checklist_preflight();
     secureAircraftOnGround(0);
     checklist_beforeEngineStart();
     setAvionics(1);
@@ -345,8 +347,7 @@ var state_cruising = func() {
 
 var state_approach = func() {
     # lower initial airspeed is set from state-overlay xml
-    repair_damage();
-    reset_fuel_contamination();
+    checklist_preflight();
     secureAircraftOnGround(0);
     checklist_beforeEngineStart();
     setAvionics(1);
@@ -491,6 +492,9 @@ var autostart = func (msg=1, delay=1, setStates=0) {
 
     # Pre-flight inspection
     checklist_preflight();
+    
+    # Remove securing
+    secureAircraftOnGround(0);
     
     # Before start checklist
     checklist_beforeEngineStart();

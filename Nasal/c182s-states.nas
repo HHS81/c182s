@@ -318,7 +318,8 @@ var state_readyForTakeoff = func() {
     secureAircraftOnGround(0);
     checklist_beforeEngineStart();
     setAvionics(1);
-    setEngineRunning(1000, 0.1, getprop("/controls/engines/engine/mixture-maxaltitude"), 1);
+    state_adjustEngineTemps(125, 250);
+    setEngineRunning(1000, 0.15, getprop("/controls/engines/engine/mixture-maxaltitude"), 1);
     setprop("/controls/gear/brake-parking", 1);
     setprop("/controls/engines/engine/cowl-flaps-norm", 1);
     setprop("/controls/flight/elevator-trim", 0);
@@ -335,6 +336,7 @@ var state_cruising = func() {
     secureAircraftOnGround(0);
     checklist_beforeEngineStart();
     setAvionics(1);
+    state_adjustEngineTemps(135, 300);
     setEngineRunning(2000, 0.75, 0.7, getprop("/controls/engines/engine/mixture-maxaltitude-lean"));
     setprop("/controls/gear/brake-parking", 0);
     setprop("/controls/engines/engine/cowl-flaps-norm", 0);
@@ -352,6 +354,7 @@ var state_approach = func() {
     checklist_beforeEngineStart();
     setAvionics(1);
     setprop("/controls/lighting/landing-lights", 1);
+    state_adjustEngineTemps(130, 275);
     setEngineRunning(2400, 0.50, 1.0, 1.00);
     setprop("/controls/gear/brake-parking", 0);
     setprop("/controls/engines/engine/cowl-flaps-norm", 0);
@@ -363,16 +366,23 @@ var state_approach = func() {
 }
 
 # Add some oil and cht temp override to simulate an engine that had already run for some time
-# Note: the values depend significantly on OAT and the current engine configuration.
-#       we might consider to make the adjustments depending on that to get better results, but for now,
-#       the goal is to have sensible starting values for the state system when crusing/approach/ready-for-takeoff,
-#       ie. to not trigger the "oil too cold" engine roughness and coughing.
 var state_adjustEngineTemps = func(oilTemp, chtTemp) {
-    setprop("/engines/engine/oil-temperature-degf-offset", oilTemp);
+    # For sim startup we need a compensator (JSBSIM initializes oil and cht at 60°F),
+    # For later times, we have a valid oil/cht compensated value.
+    var startup_compensator = 0;
+    if (getprop("/sim/time/elapsed-sec") <= 5) startup_compensator = 60;
+    
+    var cur_oil_temp   = getprop("/engines/engine/oil-compensated-temperature-degf");
+    var cur_oil_offset = getprop("/engines/engine/oil-temperature-degf-offset");
+    var oil_tgt_temp   = oilTemp - cur_oil_temp + cur_oil_offset + startup_compensator;
+    setprop("/engines/engine/oil-temperature-degf-offset", oil_tgt_temp);
     interpolate("/engines/engine/oil-temperature-degf-offset", 0, 100);
     
-    setprop("/engines/engine/cht-temperature-degf-offset", chtTemp);
-    interpolate("/engines/engine/cht-temperature-degf-offset", 0, 40);
+    var cur_cht_temp   = getprop("/engines/engine/cht-compensated-temperature-degf");
+    var cur_cht_offset = getprop("/engines/engine/cht-temperature-degf-offset");
+    var cht_tgt_temp   = chtTemp - cur_cht_temp + cur_cht_offset + startup_compensator;
+    setprop("/engines/engine/cht-temperature-degf-offset", cht_tgt_temp);
+    interpolate("/engines/engine/cht-temperature-degf-offset", 0, 100);
 }
 
 
@@ -405,13 +415,11 @@ var applyAircraftState = func() {
             } else {
                 print("Apply state: Automatic (not-parking->ReadyForTakeoff)");
                 state_readyForTakeoff();
-                if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(100, 225);
             }
         } else {
             # somewhere in the air
             print("Apply state: Automatic (in-air->cruise)");
             state_cruising();
-            if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(130, 275);
         }
     }
     if (selected_state == "saved") {
@@ -426,17 +434,14 @@ var applyAircraftState = func() {
     if (selected_state == "take-off") {
         print("Apply state: Ready-for-Takeoff");
         state_readyForTakeoff();
-        if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(100, 225);
     }
     if (selected_state == "cruise") {
         print("Apply state: cruise");
         state_cruising();
-        if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(130, 275);
     }
     if (selected_state == "approach") {
         print("Apply state: approach");
         state_approach();
-        if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(130, 275);
     }
 };
 

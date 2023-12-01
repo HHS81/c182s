@@ -87,7 +87,7 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
     }
     # Do not engage if engine is already on
     if (getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
-        print("setEngineRunning: skip execution (another instance is already running)");
+        print("setEngineRunning: skip execution (engine is already running)");
         return;
     }
     
@@ -214,6 +214,7 @@ var checklist_secureAircraft = func() {
     setprop("/controls/engines/engine[0]/master-alt", 0);
     setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
     setprop("/controls/switches/fuel_tank_selector", 1);
+    #secureAircraftOnGround(1); # no "official" checklist item, so we keep it separate and call it in the individual state definitions
 }
         
 var checklist_preflight = func() {

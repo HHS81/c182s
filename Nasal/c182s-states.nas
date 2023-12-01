@@ -56,6 +56,21 @@ var secureAircraftOnGround = func(state) {
     setprop("/sim/model/c182s/securing/windGustLockPlate-visible", state);
 }
 
+var calibrateInstruments = func() {
+    # Set the altimeter
+    var pressure_sea_level = getprop("/environment/pressure-sea-level-inhg");
+    setprop("/instrumentation/altimeter/setting-inhg", pressure_sea_level);
+    print("Altimeter calibrated to: " ~ sprintf("%.2f", pressure_sea_level) ~ "inHG");
+
+    # Set heading indicator alignment
+    # Note: this needs a correctly spun up gyro to work.
+    var magnetic_variation = getprop("/environment/magnetic-variation-deg");
+    setprop("/instrumentation/heading-indicator/align-deg", -magnetic_variation);
+    setprop("/instrumentation/heading-indicator/offset-deg", -magnetic_variation);
+    print("Heading Indicator calibrated to: " ~ sprintf("%.2f", magnetic_variation) ~ " magVar");
+}
+
+
 ######
 # Function to start engine
 #   rpm:     initial RPM of propeller
@@ -245,14 +260,6 @@ var checklist_beforeEngineStart = func() {
 
     # Setting flaps to 0
     setprop("/controls/flight/flaps", 0.0);
-
-    # Set the altimeter
-    var pressure_sea_level = getprop("/environment/pressure-sea-level-inhg");
-    setprop("/instrumentation/altimeter/setting-inhg", pressure_sea_level);
-
-    # Set heading offset
-    var magnetic_variation = getprop("/environment/magnetic-variation-deg");
-    setprop("/instrumentation/heading-indicator/offset-deg", -magnetic_variation);
     
     # close doors
     DoorL.close();
@@ -313,6 +320,8 @@ var state_readyForTakeoff = func() {
     setprop("/controls/gear/brake-parking", 1);
     setprop("/controls/engines/engine/cowl-flaps-norm", 1);
     
+    calibrateInstruments();
+    
     var ap_start_delay = 3.5;
     settimer(kap140_fastboot, ap_start_delay);
 };
@@ -326,6 +335,8 @@ var state_cruising = func() {
     setEngineRunning(2000, 0.75, 0.7, getprop("/controls/engines/engine/mixture-maxaltitude-lean"));
     setprop("/controls/gear/brake-parking", 0);
     setprop("/controls/engines/engine/cowl-flaps-norm", 0);
+    
+    calibrateInstruments();
     
     var ap_start_delay = 3.5;
     settimer(kap140_fastboot, ap_start_delay);
@@ -342,6 +353,8 @@ var state_approach = func() {
     setEngineRunning(2400, 0.50, 1.0, 1.00);
     setprop("/controls/gear/brake-parking", 0);
     setprop("/controls/engines/engine/cowl-flaps-norm", 0);
+    
+    calibrateInstruments();
     
     var ap_start_delay = 3.5;
     settimer(kap140_fastboot, ap_start_delay);
@@ -505,6 +518,9 @@ var autostart = func (msg=1, delay=1, setStates=0) {
                 
                 # activate avionics
                 setAvionics(1);
+                
+                # calibrate instruments
+                calibrateInstruments();
                 
                 # report results after some more time
                 reportResults = maketimer(2, func{

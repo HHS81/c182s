@@ -9,10 +9,10 @@
             <enabled type="bool">true</enabled>
             
             <item>
-                <label>Auto Startup/Shutdown</label>
+                <label>Autostart / States</label>
                 <binding>
-                    <command>nasal</command>
-                    <script>c182s.autostart()</script>
+                    <command>dialog-show</command>
+                    <dialog-name>c182s-states-dialog</dialog-name>
                 </binding>
             </item>
 

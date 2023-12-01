@@ -1330,6 +1330,21 @@
     </governor>
     <manual-roughness-factor type="double">0</manual-roughness-factor>
     <manual-power-reduction-pct type="double">0</manual-power-reduction-pct>
+  
+    <auto-start>
+      <run-preflight-checklist type="bool">true</run-preflight-checklist>
+      <preheat type="bool">true</preheat>
+      <run-beforeEngineStart-checklist type="bool">true</run-beforeEngineStart-checklist>
+      <calibrate-instruments type="bool">true</calibrate-instruments>
+      <avionics-on-after-start type="bool">true</avionics-on-after-start>
+      <kap140-fastboot type="bool">true</kap140-fastboot>
+    </auto-start>
+    <auto-stop>
+      <run-after-landing-checklist type="bool">true</run-after-landing-checklist>
+      <run-secure-aircraft-checklist type="bool">true</run-secure-aircraft-checklist>
+      <secure-on-ground type="bool">true</secure-on-ground>
+    </auto-stop>
+
   </engine>
  </engines>
 

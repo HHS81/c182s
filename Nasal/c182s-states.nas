@@ -465,7 +465,8 @@ var autostart = func (msg=1, delay=1, setStates=0) {
             gui.popupTip("Autoshutdown engine engaged.", 5);
                 
         #After landing
-        checklist_afterLanding();
+        if(getprop("/engines/engine/auto-stop/run-after-landing-checklist"))
+            checklist_afterLanding();
         
         # Shutdown engine
         setprop("/controls/engines/engine[0]/throttle", 0.0);
@@ -473,15 +474,18 @@ var autostart = func (msg=1, delay=1, setStates=0) {
         setprop("/controls/switches/starter", 0);
         setprop("/controls/switches/magnetos", 0);
 
+        
         var securingDelay = 3;
         settimer(func {
             # Securing only if on ground
             if (onGround) {
                 #Securing Aircraft
-                checklist_secureAircraft();
+                if (getprop("/engines/engine/auto-stop/run-secure-aircraft-checklist"))
+                    checklist_secureAircraft();
                 
                 #securing Aircraft on ground
-                secureAircraftOnGround(1);
+                if (getprop("/engines/engine/auto-stop/secure-on-ground"))
+                    secureAircraftOnGround(1);
             }
             
             print("Autoshutdown engine complete.");
@@ -490,22 +494,21 @@ var autostart = func (msg=1, delay=1, setStates=0) {
         return;
     }
     
-    # Repair Aircraft
-    # This repairs any damage, reloads battery, removes water contamination, etc
-    repair_damage();
-    reset_fuel_contamination();
-
     # Pre-flight inspection
-    checklist_preflight();
-    
-    # Remove securing
-    secureAircraftOnGround(0);
+    # This repairs any damage, reloads battery, removes water contamination, etc
+    if (getprop("/engines/engine/auto-start/run-preflight-checklist"))
+        checklist_preflight();
     
     # Before start checklist
-    checklist_beforeEngineStart();
+    if (getprop("/engines/engine/auto-start/run-beforeEngineStart-checklist"))
+        checklist_beforeEngineStart();
     
     # Avionics should be on after start
-    setAvionics(1); #will be disabled by enigneStart function
+    if (getprop("/engines/engine/auto-start/avionics-on-after-start"))
+        setAvionics(1); #will be disabled by enigneStart function
+    
+    if (getprop("/engines/engine/auto-start/preheat"))
+        state_adjustEngineTemps(100, 100);
     
     # kick off engine
     var delay = 1;
@@ -519,7 +522,6 @@ var autostart = func (msg=1, delay=1, setStates=0) {
         print("  Throttle: "~throttle);
         print("  Prop:     "~prop);
         print("  Mixture:  "~mixture);
-        state_adjustEngineTemps(125,250);
         setEngineRunning(rpm, throttle, mixture, prop);
          
         # investigate results once starter is done
@@ -527,26 +529,34 @@ var autostart = func (msg=1, delay=1, setStates=0) {
             if (n.getValue() == 0) {
                 
                 # activate avionics
-                setAvionics(1);
+                if (getprop("/engines/engine/auto-start/avionics-on-after-start")) {
+                    setAvionics(1);
+                
+                    if (getprop("/engines/engine/auto-start/kap140-fastboot")) {
+                        var ap_start_delay = 1.0;
+                        settimer(kap140_fastboot, ap_start_delay);
+                    }
+                }
                 
                 # calibrate instruments
-                calibrateInstruments();
+                if (getprop("/engines/engine/auto-start/calibrate-instruments"))
+                    calibrateInstruments();
                 
                 # report results after some more time
                 reportResults = maketimer(2, func{
                     if (!getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
                         var failMsg = "The autostart failed to start the engine.";
                         
-                        if (getprop("/engines/engine/complex-engine-procedures")) {
-                            failMsg = failMsg~"\nTry preheating or disabling 'complex engine procedures'";
-                        } else {
-                            failMsg = failMsg~"\nTry leaning and starting manually'";
-                        }
+                        if (getprop("/engines/engine/complex-engine-procedures"))
+                            failMsg = failMsg~"\nTry disabling 'complex engine procedures'";
+                        failMsg = failMsg~"\nCheck engine parameters and controls and follow the checklist!";
+
                             
                         gui.popupTip(failMsg, 5);
                         print("Autostart engine FAILED");
                         print("  oil temp °F: "~getprop("/engines/engine/oil-final-temperature-degf"));
                         print("  complex-engine-procedures: "~getprop("/engines/engine/complex-engine-procedures"));
+                        props.dump(props.globals.getNode("/engines/engine/auto-start"));
                     } else {
                         print("Autostart engine succeeded.");
                     }

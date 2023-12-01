@@ -936,6 +936,15 @@
         <!-- Save these properties between sessions -->
         <aircraft-data>
             <path>/sim/start-state</path>
+            <path>/engines/engine/auto-start/run-preflight-checklist</path>
+            <path>/engines/engine/auto-start/preheat</path>
+            <path>/engines/engine/auto-start/run-beforeEngineStart-checklist</path>
+            <path>/engines/engine/auto-start/calibrate-instruments</path>
+            <path>/engines/engine/auto-start/avionics-on-after-start</path>
+            <path>/engines/engine/auto-start/kap140-fastboot</path>
+            <path>/engines/engine/auto-stop/run-after-landing-checklist</path>
+            <path>/engines/engine/auto-stop/run-secure-aircraft-checklist</path>
+            <path>/engines/engine/auto-stop/secure-on-ground</path>
 
             <path>/sim/time/hobbs/engine</path>
             <path>/sim/model/c182s/enable-fog-frost</path>

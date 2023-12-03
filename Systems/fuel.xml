@@ -20,6 +20,9 @@ Implementation notice:
 Author: 09/2017  Benedikt Hallinger
 -->
 <system name="fuel">
+    <property type="bool" value="0">/controls/fuel/tank[0]/fill-up</property>
+    <property type="bool" value="0">/controls/fuel/tank[1]/fill-up</property>
+    
     <property type="bool" value="0">/controls/fuel/tank[0]/drain-valve</property>
     <property type="bool" value="0">/controls/fuel/tank[1]/drain-valve</property>
     <property type="bool" value="0">/controls/fuel/tank[2]/drain-valve</property>
@@ -44,6 +47,7 @@ Author: 09/2017  Benedikt Hallinger
     <property type="double" value="0">/systems/fuel/priming-mixture-flow-pps</property>
     <property type="double" value="0">/systems/fuel/priming-mixture-flow-gph</property>
     <property type="double" value="1">/controls/engines/engine/mixture-maxaltitude</property>
+    <property type="double" value="1">/controls/engines/engine/mixture-maxaltitude-lean</property>
     <property type="bool" value="0">/systems/fuel/engine-primed</property>
     <property type="bool" value="0">/systems/fuel/engine-flooded</property>
     
@@ -59,6 +63,12 @@ Author: 09/2017  Benedikt Hallinger
         <!-- ######################### -->
         <!-- ###### 0: LEFT TANK ##### -->
         <!-- ######################### -->
+        <switch name="fuel/left-tank-refill-flow-rate-pps">
+            <default value="0"/>
+            <test logic="AND" value="5">
+                /controls/fuel/tank[0]/fill-up EQ 1
+            </test>
+        </switch>
         <switch name="fuel/left-tank-drain-flow-rate-pps">
             <default value="0"/>
             <test logic="AND" value="25">
@@ -106,6 +116,7 @@ Author: 09/2017  Benedikt Hallinger
         </switch>
 
         <summer name="fuel/left-wing-total-flow-pps">
+            <input>fuel/left-tank-refill-flow-rate-pps</input>
             <input>-fuel/left-tank-drain-flow-rate-pps</input>
             <input>-/systems/fuel/tank[0]/leak-flow-rate-pps</input>
             <input>-fuel/flow-left-right-transfer-pps</input>
@@ -119,6 +130,12 @@ Author: 09/2017  Benedikt Hallinger
         <!-- ########################## -->
         <!-- ###### 1: RIGHT TANK ##### -->
         <!-- ########################## -->
+        <switch name="fuel/right-tank-refill-flow-rate-pps">
+            <default value="0"/>
+            <test logic="AND" value="5">
+                /controls/fuel/tank[1]/fill-up EQ 1
+            </test>
+        </switch>
         <switch name="fuel/right-tank-drain-flow-rate-pps">
             <default value="0"/>
             <test logic="AND" value="25">
@@ -166,6 +183,7 @@ Author: 09/2017  Benedikt Hallinger
         </switch>
 
         <summer name="fuel/right-wing-total-flow-pps">
+            <input>fuel/right-tank-refill-flow-rate-pps</input>
             <input>-fuel/right-tank-drain-flow-rate-pps</input>
             <input>-/systems/fuel/tank[1]/leak-flow-rate-pps</input>
             <input>-fuel/right-tank-tofuelselector-flow-rate-pps</input>
@@ -589,6 +607,31 @@ Author: 09/2017  Benedikt Hallinger
                                    (however i checked 18000ft to 2000ft in 1000ft intervals!) -->
                             0   1.00
                         18000   0.70  <!-- service ceiling -->
+                    </tableData>
+                </table>
+            </function>
+            <output>/controls/engines/engine/mixture-maxaltitude</output>
+        </fcs_function>
+        <!-- Defining maximal mixture levels for after start logic (too high initial mixture won't let engine start!) -->
+        <!-- this should only be used as long as we are in the downwards-slope leaning mixture after start -->
+        <fcs_function name="/controls/engines/engine/mixture-maxaltitude-lean">
+            <function>
+                <table>
+                    <!-- calibrated to standard atmosphere -->
+                    <independentVar lookup="row">/position/altitude-ft</independentVar> <!-- TODO: hould be true altitude consiering actual pressure+humidity -->
+                    <tableData>
+                            0   0.86
+                         1000   0.84
+                         2000   0.81
+                         3000   0.76
+                         4000   0.73
+                         6000   0.68
+                         8000   0.64
+                        10000   0.60
+                        12000   0.56
+                        14000   0.51
+                        16000   0.47
+                        18000   0.44  <!-- service ceiling -->
                     </tableData>
                 </table>
             </function>

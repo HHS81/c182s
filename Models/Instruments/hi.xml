@@ -130,7 +130,7 @@
   <animation>
     <type>rotate</type>
     <object-name>OBS-Knob</object-name>
-     <property>instrumentation/heading-indicator/offset-deg</property>
+     <property>instrumentation/heading-indicator/align-deg</property>
 <factor>10</factor>
 		<center>
 			<x-m>0.012842</x-m>
@@ -168,7 +168,7 @@
      <command>set-tooltip</command>
      <tooltip-id>heading-bug</tooltip-id>
      <mapping>heading</mapping>
-     <label>Heading Bug: %3d</label>
+     <label>Heading Bug: %3.0f</label>
      <property>autopilot/settings/heading-bug-deg</property>
    </binding>
   </hovered>
@@ -189,6 +189,14 @@
         <wrap>1</wrap>
       </binding>
       <binding>
+        <command>property-adjust</command>
+        <property>instrumentation/heading-indicator/align-deg</property>
+        <factor>1</factor>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("heading-offset-dial")</script>
       </binding>
@@ -202,7 +210,7 @@
       <binding>
         <command>set-tooltip</command>
         <tooltip-id>heading-offset</tooltip-id>
-        <label>Heading: %3d</label>
+        <label>Heading: %3.0f</label>
         <property>instrumentation/heading-indicator/indicated-heading-deg</property>
         <mapping>heading</mapping>
       </binding>
@@ -226,6 +234,17 @@
         <max>360</max>
         <wrap>1</wrap>
       </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/heading-bug-deg</property>
+        <step>4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
     </action>
     <action>
       <name>large decrease</name>
@@ -252,6 +271,17 @@
         <max>360</max>
         <wrap>1</wrap>
       </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/heading-bug-deg</property>
+        <step>-4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
     </action>  
     <action>
       <name>scrollwheel decrease</name>
@@ -265,13 +295,24 @@
         <max>360</max>
         <wrap>1</wrap>
       </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/heading-bug-deg</property>
+        <step>4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
     </action>
     <hovered>
       <binding>
         <command>set-tooltip</command>
         <tooltip-id>heading-bug</tooltip-id>
         <mapping>heading</mapping>
-        <label>Heading Bug: %3d</label>
+        <label>Heading Bug: %3.0f</label>
         <property>autopilot/settings/heading-bug-deg</property>
       </binding>
     </hovered>
@@ -289,6 +330,17 @@
         <command>property-adjust</command>
         <property>/autopilot/settings/heading-bug-deg</property>
         <step>-1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/heading-bug-deg</property>
+        <step>-4</step>
         <min>0</min>
         <max>360</max>
         <wrap>1</wrap>
@@ -319,6 +371,17 @@
         <max>360</max>
         <wrap>1</wrap>
       </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/heading-bug-deg</property>
+        <step>-4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
     </action>  
     <action>
       <name>scrollwheel decrease</name>
@@ -332,13 +395,24 @@
         <max>360</max>
         <wrap>1</wrap>
       </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/heading-bug-deg</property>
+        <step>4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
     </action>
     <hovered>
       <binding>
         <command>set-tooltip</command>
         <tooltip-id>heading-bug</tooltip-id>
         <mapping>heading</mapping>
-        <label>Heading Bug: %3d</label>
+        <label>Heading Bug: %3.0f</label>
         <property>autopilot/settings/heading-bug-deg</property>
       </binding>
     </hovered>
@@ -362,8 +436,38 @@
         <wrap>1</wrap>
       </binding>
       <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("heading-offset-dial")</script>
+      </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/offset-deg</property>
+        <step>4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
       </binding>
     </action>  
     <action>
@@ -373,6 +477,14 @@
       <binding>
         <command>property-adjust</command>
         <property>/instrumentation/heading-indicator/offset-deg</property>
+        <step>5</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
         <step>5</step>
         <min>0</min>
         <max>360</max>
@@ -396,6 +508,36 @@
         <wrap>1</wrap>
       </binding>
       <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>-1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/offset-deg</property>
+        <step>-4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>-4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("heading-offset-dial")</script>
       </binding>
@@ -413,6 +555,36 @@
         <wrap>1</wrap>
       </binding>
       <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/offset-deg</property>
+        <step>4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("heading-offset-dial")</script>
       </binding>
@@ -421,7 +593,7 @@
       <binding>
         <command>set-tooltip</command>
         <tooltip-id>heading-offset</tooltip-id>
-        <label>Heading: %3d</label>
+        <label>Heading: %3.0f</label>
         <property>instrumentation/heading-indicator/indicated-heading-deg</property>
         <mapping>heading</mapping>
       </binding>
@@ -445,6 +617,36 @@
         <wrap>1</wrap>
       </binding>
       <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>-1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/offset-deg</property>
+        <step>-4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>-4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("heading-offset-dial")</script>
       </binding>
@@ -456,6 +658,14 @@
       <binding>
         <command>property-adjust</command>
         <property>/instrumentation/heading-indicator/offset-deg</property>
+        <step>-5</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
         <step>-5</step>
         <min>0</min>
         <max>360</max>
@@ -479,6 +689,36 @@
         <wrap>1</wrap>
       </binding>
       <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>-1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/offset-deg</property>
+        <step>-4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>-4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("heading-offset-dial")</script>
       </binding>
@@ -496,6 +736,36 @@
         <wrap>1</wrap>
       </binding>
       <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/offset-deg</property>
+        <step>4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <property>/devices/status/keyboard/shift</property>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/heading-indicator/align-deg</property>
+        <step>4</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
         <command>nasal</command>
         <script>c182s.click("heading-offset-dial")</script>
       </binding>
@@ -504,7 +774,7 @@
       <binding>
         <command>set-tooltip</command>
         <tooltip-id>heading-offset</tooltip-id>
-        <label>Heading: %3d</label>
+        <label>Heading: %3.0f</label>
         <property>instrumentation/heading-indicator/indicated-heading-deg</property>
         <mapping>heading</mapping>
       </binding>

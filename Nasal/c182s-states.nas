@@ -85,6 +85,9 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
     repair_damage();
     reset_fuel_contamination();
     
+    # Remove preheater in case it was attached
+    setprop("/engines/engine/external-heat/enabled", 0);
+    
     # Battery/Alternator on
     setprop("/controls/engines/engine[0]/master-bat", 1);
     setprop("/controls/engines/engine[0]/master-alt", 1);
@@ -134,9 +137,17 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
         setprop("/controls/switches/AVMBus2", ams2_old);
         
         # apply desired after-start properties
-        setprop("/controls/engines/engine[0]/throttle", throttle);
-        setprop("/controls/engines/engine[0]/mixture", mix);
-        setprop("/controls/engines/engine[0]/propeller-pitch", prop);
+        if (getprop("/engines/engine/auto-start")) {
+            # slowly for autostart
+            interpolate("/controls/engines/engine[0]/throttle", throttle, 3);
+            interpolate("/controls/engines/engine[0]/mixture", mix, 3);
+            interpolate("/controls/engines/engine[0]/propeller-pitch", prop, 3);
+        } else {
+            # instant for presets/states
+            setprop("/controls/engines/engine[0]/throttle", throttle);
+            setprop("/controls/engines/engine[0]/mixture", mix);
+            setprop("/controls/engines/engine[0]/propeller-pitch", prop);
+        }
         
         # all done, go home
         setprop("/engines/engine/auto-start", 0);
@@ -312,7 +323,7 @@ var state_cruising = func() {
     secureAircraftOnGround(0);
     checklist_beforeEngineStart();
     setAvionics(1);
-    setEngineRunning(2000, 0.75, 0.7, 0.80);  # TODO: Mix should be calculated lean by altitude
+    setEngineRunning(2000, 0.75, 0.7, getprop("/controls/engines/engine/mixture-maxaltitude-lean"));
     setprop("/controls/gear/brake-parking", 0);
     setprop("/controls/engines/engine/cowl-flaps-norm", 0);
     
@@ -425,6 +436,9 @@ var applyAircraftState = func() {
 ##########################################
 var autostart = func (msg=1, delay=1, setStates=0) {
     print("Autostart engine engaged.");
+    var altAGL = getprop("/position/altitude-agl-ft");
+    var onGround = 0; if (altAGL <= 5) onGround = 1;
+
     if (getprop("/fdm/jsbsim/propulsion/engine/set-running") and !setStates) {
         # When engine already running, perform autoshutdown
         if (msg)
@@ -441,11 +455,14 @@ var autostart = func (msg=1, delay=1, setStates=0) {
 
         var securingDelay = 3;
         settimer(func {
-            #Securing Aircraft
-            checklist_secureAircraft();
-            
-            #securing Aircraft on ground
-            secureAircraftOnGround(1);
+            # Securing only if on ground
+            if (onGround) {
+                #Securing Aircraft
+                checklist_secureAircraft();
+                
+                #securing Aircraft on ground
+                secureAircraftOnGround(1);
+            }
             
             print("Autoshutdown engine complete.");
         }, securingDelay);
@@ -470,22 +487,46 @@ var autostart = func (msg=1, delay=1, setStates=0) {
     # kick off engine
     var delay = 1;
     settimer(func {
+        var throttle = 0.15; if (!onGround) throttle = 0.75;
+        var rpm      = 2400;
+        var mixture  = getprop("/controls/engines/engine/mixture-maxaltitude-lean");
+        var prop     = 1.0;
         print("Autostart engine: execute setEngineRunning");
-        setEngineRunning(2400, 0.05, getprop("/controls/engines/engine/mixture-maxaltitude"), 1.0);
+        print("  RPM:      "~rpm);
+        print("  Throttle: "~throttle);
+        print("  Prop:     "~prop);
+        print("  Mixture:  "~mixture);
+        #state_adjustEngineTemps(75,75);  #! not calling on purpose! Autostart should only try to start the engine, not suceed in all cases!
+        setEngineRunning(rpm, throttle, mixture, prop);
          
         # investigate results once starter is done
         var startListener = setlistener("/engines/engine/auto-start", func(n){
             if (n.getValue() == 0) {
-                # autostart has finished
-                if (!getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
-                    gui.popupTip("The autostart failed to start the engine. You must lean the mixture and start the engine manually.", 5);
-                    print("Autostart engine FAILED");
-                } else {
-                    print("Autostart engine finished.");
-                }
                 
                 # activate avionics
                 setAvionics(1);
+                
+                # report results after some more time
+                reportResults = maketimer(2, func{
+                    if (!getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
+                        var failMsg = "The autostart failed to start the engine.";
+                        
+                        if (getprop("/engines/engine/complex-engine-procedures")) {
+                            failMsg = failMsg~"\nTry preheating or disabling 'complex engine procedures'";
+                        } else {
+                            failMsg = failMsg~"\nTry leaning and starting manually'";
+                        }
+                            
+                        gui.popupTip(failMsg, 5);
+                        print("Autostart engine FAILED");
+                        print("  oil temp °F: "~getprop("/engines/engine/oil-final-temperature-degf"));
+                        print("  complex-engine-procedures: "~getprop("/engines/engine/complex-engine-procedures"));
+                    } else {
+                        print("Autostart engine succeeded.");
+                    }
+                });
+                reportResults.singleShot = 1;
+                reportResults.start();
                 
                 removelistener(startListener);
                 

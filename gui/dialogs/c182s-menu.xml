@@ -69,7 +69,7 @@
             </item>
 
 	    <item>
-                <label>Fuel management</label>
+                <label>Fuel/Oil management</label>
                 <binding>
                     <command>dialog-show</command>
                     <dialog-name>fuelmgmt-dialog</dialog-name>

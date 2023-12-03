@@ -84,7 +84,7 @@ Examples:
 * _Power-off Approach to EDDM:_ `fgfs --aircraft=c182s --state=take-off --airport=EDDM --offset-distance=6 --altitude=3500 --timeofday=noon` (engine idles; `--state=parking` state gives the funny experience of gliding with all <s>hope</s> power lost and blocked pitot)
 
 
-### Engine failure simulation
+### Extended failure simulation
 In the aircraft menu you can select `Extended failures`. This brings up a dialog in which you can fail most aircraft systems and equipment. If you wish, you can also have failures be restored in your next session, but be aware this only works reliably with the saved and parked state, because take-off and cruise will set the aircraft in an repaired state (as would be assumed by running the checklists properly beforehand).
 You have also convinient access to FGFS default failures from there.  
 By default, the simulation will print a red text showing that a component failed, informing the pilot. You can turn off that message with the `Display failure messages on screen` checkbox.

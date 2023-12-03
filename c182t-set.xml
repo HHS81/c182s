@@ -881,6 +881,7 @@
             <path>/controls/engines/engine[0]/propeller-pitch</path>
             <path>/engines/engine[0]/oil-level</path>
             <path>/engines/engine[0]/oil-service-hours</path>
+            <path>/engines/engine[0]/oil-grade</path>
             <path>/controls/gear/brake-parking</path>
             <path>/environment/aircraft-effects/cabin-heat-set</path>
             <path>/environment/aircraft-effects/cabin-air-set</path>
@@ -969,6 +970,7 @@
             <path>/instrumentation/attitude-indicator/horizon-offset-deg</path>
             <path>/instrumentation/airspeed-indicator/tas-face-rotation</path>
             <path>/instrumentation/heading-indicator/offset-deg</path>
+            <path>/instrumentation/heading-indicator/align-deg</path>
             <path>/autopilot/settings/heading-bug-deg</path>
             <path>/instrumentation/transponder/id-code</path>
             <path>/instrumentation/transponder/factory-vfr-code</path>
@@ -1203,6 +1205,7 @@
    <allow-oil-management type="bool">false</allow-oil-management>
    <allow-sparkplug-icing type="bool">false</allow-sparkplug-icing>
    <winter-kit-installed type="bool">false</winter-kit-installed>
+   <oil-grade>15W-50</oil-grade>
    <oil-temperature-env-diff type="double">0</oil-temperature-env-diff>
    <oil-temperature-degf-offset type="double">0</oil-temperature-degf-offset>
    <cht-temperature-degf-offset type="double">0</cht-temperature-degf-offset>

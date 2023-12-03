@@ -21,6 +21,9 @@ fg1000system.display(2);
 #  Display a GUI version of device 1 at 50% scale.
 #fg1000system.displayGUI(1, 0.5);
 
+var audioPanel_powerVolts  = props.globals.getNode("/systems/electrical/outputs/audio-panel", 1)
+  .alias("/systems/electrical/outputs/fg1000-pfd");
+
 # Switch the FG1000 on/off depending on power.
 setlistener("/systems/electrical/outputs/fg1000-pfd", func(n) {
     if (n.getValue() > 0) {

@@ -92,7 +92,7 @@
             alias(rplayer.getNode("sim/multiplay/generic/float[23]"));
         rplayer.getNode("engines/engine/indicated-cht-degf", 1).
             alias(rplayer.getNode("sim/multiplay/generic/float[24]"));
-        rplayer.getNode("instrumentation/vertical-speed-indicator/indicated-speed-fpm", 1).
+        rplayer.getNode("instrumentation/vertical-speed-indicator/indicated-speed-fpm-final", 1).
             alias(rplayer.getNode("sim/multiplay/generic/float[25]"));
         rplayer.getNode("instrumentation/heading-indicator/indicated-heading-deg", 1).
             alias(rplayer.getNode("sim/multiplay/generic/float[26]"));
@@ -135,11 +135,13 @@
         }, 1, 0);
         var beacon_node      = rplayer.getNode("systems/electrical/outputs/beacon",1).getPath();
         var beacon_node_norm = rplayer.getNode("systems/electrical/outputs/beacon-norm",1).getPath();
+        var beacon_comp_norm = rplayer.getNode("sim/model/c182s/lighting/beacon-dim-factor",1).getPath();
         setlistener(lighting_beacon_state ~ "/state", func (node) {
             var bus_volts = 0;
             if (node.getValue()) bus_volts = 24;
             interpolate (beacon_node, bus_volts, 1);
             interpolate (beacon_node_norm, (bus_volts/24), 1);
+            interpolate (beacon_comp_norm, (bus_volts/24), 1);
         }, 1,0);
 
         var strobe_switch = rplayer.getNode("systems/electrical/strobe-switch");
@@ -165,6 +167,18 @@
             if (node.getValue() > 12) setprop(nav_lights_norm, 1);
             if (node.getValue() <= 0) setprop(nav_lights_norm, 0);
         }, 1, 0);
+        
+        # calculate dim factor locally
+        var dim_factor = rplayer.getNode("sim/model/c182s/lighting/dim-factor",1).getPath();
+        var update_dim_factor = func() {
+          var diffuse_red = getprop("/rendering/scene/diffuse/red");
+          var dimval = 1 - diffuse_red;
+          setprop(dim_factor, dimval);
+          #print("c182s dim_factor update: "~ dim_factor ~ "=" ~ dimval ~ "(diffuse_red="~diffuse_red ~")");
+        };
+        update_dim_factor();
+        dim_factor_calc = maketimer(5, update_dim_factor);
+        dim_factor_calc.start();
         
         
         # Small helper function to update the wheel fairings etc.
@@ -283,6 +297,7 @@
         <object-name>PlaneTailLight</object-name>
         <object-name>NavLightRed</object-name>
         <object-name>NavLightGreen</object-name>
+        <object-name>ExtLight</object-name>
  </animation>
 
 <effect>
@@ -1671,6 +1686,8 @@
  <animation>
   <type>select</type>
   <object-name>ExtLight</object-name>
+  <object-name>extlightleft</object-name>
+  <object-name>extlightright</object-name>
   <condition>
    <greater-than>
     <property>systems/electrical/outputs/dome-exterior-light</property>
@@ -1678,15 +1695,6 @@
    </greater-than>
   </condition>
  </animation>
- 
- <animation>
-	<type>select</type>
-        <object-name>extlightleft</object-name>
-        <object-name>extlightright</object-name>
-	<condition>
-	<property>systems/electrical/outputs/dome-exterior-light</property>
-	</condition>
-</animation>
 
  <light>
   <name>extlightleft</name>
@@ -2331,7 +2339,7 @@
 	<type>select</type>
         <object-name>taillight</object-name>
 	<condition>
-	<property>/systems/electrical/outputs/nav-lights-norm</property>
+	<property>systems/electrical/outputs/nav-lights-norm</property>
 	</condition>
 </animation>
 

@@ -22,6 +22,8 @@ For additional info, please also refer to the Pilots Operating Manual (POH), pag
   - For starting, use the external power source to relieve the battery (master switch off!).
   - Engine runs cooler, correctly lean the engine. Watch the CHT and oil temps.
   - Idle at 1000-1200 RPM and peak EGT.
+  - Add a bit of throttle to avoid the engine dying shortly after starting.
+  - Consider changing the oil to winter variant (for example SAE 30 grade).
 
 - Flying:
   - Especially watch for icing conditions (humid air).
@@ -61,7 +63,11 @@ For additional info, please also refer to the Pilots Operating Manual (POH), pag
         <message>The oil in the plane is cold and thus has a high viscosity. To ensure smooth engine operation and reduce wear and tear,
             apply the Preheater to warm the oil. The time it takes depends on the temperatures.
             You can apply the preheater from the aircrafts ground equipment menu.</message>
-        <wait>20</wait>
+        <wait>18</wait>
+    </step>
+    <step>
+        <message>Also consider switching to oil that is better suited for cold temperatures, like {SAE 30|S A E thirty} grade.</message>
+        <wait>10</wait>
     </step>
     <step>
         <message>When you fly in temperatures below {20 degF/-6 degC|20 degrees fahrenheit} you should equip the winterizatoin kit.
@@ -75,6 +81,11 @@ For additional info, please also refer to the Pilots Operating Manual (POH), pag
     <step>
         <message>Starting the engine in cold weather is basicly the same procedure as normally.
             However, you will need to prime a little more, but don't flood the engine!</message>
+        <wait>15</wait>
+    </step>
+    <step>
+        <message>When there are freezing temperatures, you risk your spark plugs freezing over when the engine dies off
+            after startup as long as it is still cold. Consider opening the throttle a little more.</message>
         <wait>15</wait>
     </step>
     <step>

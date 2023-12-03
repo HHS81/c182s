@@ -545,9 +545,88 @@
         <name>Oil kinematic viscosity</name>
         <type>gain</type>
         <input>
-            <!-- TODO: in the future we might switch the inputs based on a selected oil grade.
-                       POH 8-14 says, we can use 15W-50 or 20W-50 in all temps -->
+            <!-- Table for SAE 30 https://wiki.anton-paar.com/us-en/engine-oil/; (adjusted for degC->degF) -->
+            <condition>
+                <equals>
+                    <property>/engines/engine/oil-grade</property>
+                    <value>SAE 30</value>
+                </equals>
+            </condition>
+            <expression>
+                <table>
+                    <property>/engines/engine/oil-final-temperature-degf</property>
+                    <entry><ind>32</ind><dep>1257.25</dep></entry>  <!-- 0°C -->
+                    <entry><ind>50</ind><dep>553.20</dep></entry>
+                    <entry><ind>68</ind><dep>271.56</dep></entry>
+                    <entry><ind>86</ind><dep>146.70</dep></entry>   <!-- 30°C -->
+                    <entry><ind>104</ind><dep>85.76</dep></entry>   <!-- 40°C, start of green arc -->
+                    <entry><ind>122</ind><dep>53.80</dep></entry>
+                    <entry><ind>140</ind><dep>35.69</dep></entry>
+                    <entry><ind>158</ind><dep>24.89</dep></entry>
+                    <entry><ind>176</ind><dep>18.10</dep></entry>
+                    <entry><ind>194</ind><dep>13.62</dep></entry>
+                    <entry><ind>212</ind><dep>10.58</dep></entry>   <!-- 100°C -->
+                </table>
+            </expression>
+        </input>
+        <input>
+            <!-- Table for 10W-40 https://wiki.anton-paar.com/us-en/engine-oil/; (adjusted for degC->degF) -->
+            <condition>
+                <equals>
+                    <property>/engines/engine/oil-grade</property>
+                    <value>10W-40</value>
+                </equals>
+            </condition>
+            <expression>
+                <table>
+                    <property>/engines/engine/oil-final-temperature-degf</property>
+                    <entry><ind>32</ind><dep>839.76</dep></entry>   <!-- 0°C -->
+                    <entry><ind>50</ind><dep>443.53</dep></entry>
+                    <entry><ind>68</ind><dep>242.07</dep></entry>
+                    <entry><ind>86</ind><dep>141.98</dep></entry>   <!-- 30°C -->
+                    <entry><ind>104</ind><dep>93.274</dep></entry>  <!-- 40°C, start of green arc -->
+                    <entry><ind>122</ind><dep>63.847</dep></entry>
+                    <entry><ind>140</ind><dep>44.327</dep></entry>
+                    <entry><ind>158</ind><dep>31.865</dep></entry>
+                    <entry><ind>176</ind><dep>23.265</dep></entry>
+                    <entry><ind>194</ind><dep>18.424</dep></entry>
+                    <entry><ind>212</ind><dep>14.607</dep></entry>  <!-- 100°C -->
+                </table>
+            </expression>
+        </input>
+        <input>
+            <!-- Table for 10W-60 https://wiki.anton-paar.com/us-en/engine-oil/; (adjusted for degC->degF) -->
+            <condition>
+                <equals>
+                    <property>/engines/engine/oil-grade</property>
+                    <value>10W-60</value>
+                </equals>
+            </condition>
+            <expression>
+                <table>
+                    <property>/engines/engine/oil-final-temperature-degf</property>
+                    <entry><ind>32</ind><dep>1684.4</dep></entry>   <!-- 0°C -->
+                    <entry><ind>50</ind><dep>831.44</dep></entry>
+                    <entry><ind>68</ind><dep>448.10</dep></entry>
+                    <entry><ind>86</ind><dep>260.69</dep></entry>   <!-- 30°C -->
+                    <entry><ind>104</ind><dep>161.73</dep></entry>  <!-- 40°C, start of green arc -->
+                    <entry><ind>122</ind><dep>106.47</dep></entry>
+                    <entry><ind>140</ind><dep>73.406</dep></entry>
+                    <entry><ind>158</ind><dep>52.766</dep></entry>
+                    <entry><ind>176</ind><dep>39.292</dep></entry>
+                    <entry><ind>194</ind><dep>30.129</dep></entry>
+                    <entry><ind>212</ind><dep>23.717</dep></entry>  <!-- 100°C -->
+                </table>
+            </expression>
+        </input>
+        <input>
             <!-- Table for 15W-40 https://wiki.anton-paar.com/us-en/engine-oil/; (adjusted for degC->degF) -->
+            <condition>
+                <equals>
+                    <property>/engines/engine/oil-grade</property>
+                    <value>15W-40</value>
+                </equals>
+            </condition>
             <expression>
                 <table>
                     <property>/engines/engine/oil-final-temperature-degf</property>
@@ -562,6 +641,28 @@
                     <entry><ind>176</ind><dep>23.006</dep></entry>
                     <entry><ind>194</ind><dep>17.467</dep></entry>
                     <entry><ind>212</ind><dep>13.648</dep></entry>  <!-- 100°C -->
+                </table>
+            </expression>
+        </input>
+        <input>
+            <!-- DEFAULT -->
+            <!-- Table for 15W-50: made up data. -->
+            <!-- Could not find any more detailed values, but specificatoin tells "it runs slightly cooler" than 15W-40
+                 https://www.shell-livedocs.com/data/published/en-US/1d9fde0d-cf24-4b4f-ad73-38c41767f853.pdf -->
+            <expression>
+                <table>
+                    <property>/engines/engine/oil-final-temperature-degf</property>
+                    <entry><ind>32</ind><dep>1400</dep></entry>  <!-- 0°C -->
+                    <entry><ind>50</ind><dep>640</dep></entry>
+                    <entry><ind>68</ind><dep>305</dep></entry>
+                    <entry><ind>86</ind><dep>160</dep></entry>   <!-- 30°C -->
+                    <entry><ind>104</ind><dep>95</dep></entry>   <!-- 40°C, start of green arc -->
+                    <entry><ind>122</ind><dep>63</dep></entry>
+                    <entry><ind>140</ind><dep>44</dep></entry>
+                    <entry><ind>158</ind><dep>32</dep></entry>
+                    <entry><ind>176</ind><dep>23</dep></entry>
+                    <entry><ind>194</ind><dep>18</dep></entry>
+                    <entry><ind>212</ind><dep>14</dep></entry>   <!-- 100°C -->
                 </table>
             </expression>
         </input>

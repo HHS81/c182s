@@ -35,7 +35,9 @@
         <padding>6</padding>
 
         <group>
-            <layout>vbox</layout>
+            <layout>hbox</layout>
+            <padding>6</padding>
+
             <empty><stretch>true</stretch></empty>
             <button>
                 <legend>Left Wing</legend>
@@ -44,10 +46,7 @@
                     <dialog-name type="string">c182s-left-fuel-drain-dialog</dialog-name>
                 </binding>
             </button>
-        </group>
         
-        <group>
-            <layout>vbox</layout>
             <empty><stretch>true</stretch></empty>
             <button>
                 <legend>Right Wing</legend>
@@ -59,7 +58,9 @@
         </group>
         
         <group>
-            <layout>vbox</layout>
+            <layout>hbox</layout>
+            <padding>6</padding>
+            
             <empty><stretch>true</stretch></empty>
             <button>
                 <legend>Fuel Selector</legend>
@@ -68,16 +69,28 @@
                     <dialog-name type="string">c182s-fuelselector-dialog</dialog-name>
                 </binding>
             </button>
-        </group>
-        
-        <group>
-            <layout>vbox</layout>
+
             <empty><stretch>true</stretch></empty>
             <button>
                 <legend>Fuel Strainer</legend>
                 <binding>
                     <command>dialog-show</command>
                     <dialog-name type="string">c182s-fuelstrainer-dialog</dialog-name>
+                </binding>
+            </button>
+        </group>
+        
+        
+        <hrule/>
+        
+        <group>
+            <layout>vbox</layout>
+            <empty><stretch>true</stretch></empty>
+            <button>
+                <legend>Oil management</legend>
+                <binding>
+                    <command>dialog-show</command>
+                    <dialog-name type="string">c182s-oilmanagement-dialog</dialog-name>
                 </binding>
             </button>
         </group>

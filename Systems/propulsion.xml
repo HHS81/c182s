@@ -284,15 +284,15 @@
     <switch name="systems/propulsion/sparkplugs/right/magneto-selected">
         <default value="0"/>
         <test logic="OR" value="1">
-            /controls/switches/magnetos EQ 1
-            /controls/switches/magnetos EQ 3
+            /controls/engines/engine/magnetos EQ 1
+            /controls/engines/engine/magnetos EQ 3
         </test>
     </switch>
     <switch name="systems/propulsion/sparkplugs/left/magneto-selected">
         <default value="0"/>
         <test logic="OR" value="1">
-            /controls/switches/magnetos EQ 2
-            /controls/switches/magnetos EQ 3
+            /controls/engines/engine/magnetos EQ 2
+            /controls/engines/engine/magnetos EQ 3
         </test>
     </switch>
     
@@ -730,7 +730,7 @@
         </fcs_function>
         
         <fcs_function name="systems/propulsion/oil-temp-friction">
-            <description>made up data for engine oil temperature affecting viscosity </description>
+            <description>made up data for engine oil temperature affecting friction </description>
             <function>
                 <!-- Only apply if this test is TRUE, otherwise interference with autostart and other things -->
                 <product>
@@ -742,7 +742,6 @@
                         <!--<independentVar>propulsion/engine/oil-temperature-degF</independentVar>-->
                         <independentVar>/engines/engine/oil-final-temperature-degf</independentVar>
                         <tableData>
-                            -20.0   25.0   <!-- -28°C --> <!-- engine does not develop full power and is harder to keep running once started -->
                             75.0     0.0   <!--  32°C --> <!-- engine is considered "warm" -->
                             255.0    0.0   <!--  93°C --> <!-- engine is starting to overheat -->
                             275.0   10.0
@@ -759,6 +758,26 @@
                         </tableData>
                     </table>
                     
+                </product>
+            </function>
+        </fcs_function>
+        
+        <fcs_function name="systems/propulsion/oil-viscosity-friction">
+            <description> oil friction due to viscosity </description>
+            <function>
+                <product>
+                    <!-- Only apply if this test is TRUE, otherwise interference with autostart and other things -->
+                    <property>/engines/engine/complex-engine-procedures</property>  <!-- complex-engine-procedures EQ 1 -->
+                    <property>/engines/engine/allow-oil-management</property>       <!-- allow-oil-management EQ 1 -->
+                    <!--<property>/engines/engine/running</property>--> <!-- only apply with pistons moving -->
+                
+                    <table>
+                        <independentVar>/engines/engine[0]/oil-kinematic-viscosity</independentVar>
+                        <tableData>
+                            150     0.0   <!-- engine is considered "warm" -->
+                           1500    25.0   <!-- engine oil is tough, engine does not develop full power -->
+                        </tableData>
+                    </table>
                 </product>
             </function>
         </fcs_function>
@@ -838,6 +857,7 @@
             <input> systems/propulsion/manual-friction </input>     <!-- we might have fun trough telnet/scripts... -->
             <input> systems/propulsion/oil-age-friction </input>
             <input> systems/propulsion/oil-temp-friction </input>
+            <input> systems/propulsion/oil-viscosity-friction </input>
             <input> systems/propulsion/oil-press-friction </input>
             <input> systems/propulsion/expansion-friction </input>
             <input> systems/propulsion/friction-kill-engine </input>

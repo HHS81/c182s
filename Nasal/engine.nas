@@ -404,6 +404,10 @@ setlistener("/engines/engine/running", func(ngn){
         });
         timer.singleShot = 1; # timer will only be run once
         timer.start();
+        
+        # Stop refilling the tanks
+        setprop("/controls/fuel/tank[0]/fill-up", 0);
+        setprop("/controls/fuel/tank[1]/fill-up", 0);
     } else {
         engine_starting.setValue(0);
     }
@@ -437,4 +441,10 @@ setlistener("/engines/engine/starting", func(ngn){
         stoptimer.singleShot = 1;
         stoptimer.start();
     }
+}, 0, 0);
+
+setlistener("/engines/engine/cranking", func(ngn){
+    # Stop refilling the tanks
+    setprop("/controls/fuel/tank[0]/fill-up", 0);
+    setprop("/controls/fuel/tank[1]/fill-up", 0);
 }, 0, 0);

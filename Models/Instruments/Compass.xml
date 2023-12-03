@@ -27,7 +27,30 @@
 <animation>
 	<type>rotate</type>
 	<object-name>Compass</object-name>
-	<property>instrumentation/magnetic-compass/indicated-heading-deg</property>
+	<property>instrumentation/magnetic-compass/roll-deg-final</property>
+	<factor>0.5</factor>
+	<axis>
+		<x> 1.0 </x>
+		<y> 0.0 </y>
+		<z> 0.0 </z>
+	</axis>
+</animation>
+<animation>
+	<type>rotate</type>
+	<object-name>Compass</object-name>
+	<property>instrumentation/magnetic-compass/pitch-deg-final</property>
+	<factor>0.5</factor>
+	<axis>
+		<x>  0.0 </x>
+		<y> -1.0 </y>
+		<z>  0.0 </z>
+	</axis>
+</animation>
+
+<animation>
+	<type>rotate</type>
+	<object-name>Compass</object-name>
+	<property>instrumentation/magnetic-compass/indicated-heading-deg-final</property>
 	<axis>
 		<x>0.0</x>
 		<y>0.0</y>
@@ -87,8 +110,8 @@
       <command>set-tooltip</command>
       <tooltip-id>heading-bug</tooltip-id>
       <mapping>heading</mapping>
-      <label>Compass: %3d</label>
-      <property>instrumentation/magnetic-compass/indicated-heading-deg</property>
+      <label>Compass: %3.f</label>
+      <property>instrumentation/magnetic-compass/indicated-heading-deg-final</property>
     </binding>
   </hovered>
 </animation>

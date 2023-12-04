@@ -172,52 +172,14 @@
             </checkbox>
             <checkbox>
                 <halign>left</halign>
-                <label>Calibrate Instruments</label>
-                <property>/engines/engine/auto-start/calibrate-instruments</property>
+                <label>Run "Before Takeoff" checklist</label>
+                <property>/engines/engine/auto-start/run-beforeTakeoff-checklist</property>
                 <live>true</live>
                 <binding>
                     <command>property-toggle</command>
-                    <property>/engines/engine/auto-start/calibrate-instruments</property>
+                    <property>/engines/engine/auto-start/run-beforeTakeoff-checklist</property>
                 </binding>
             </checkbox>
-            <checkbox>
-                <halign>left</halign>
-                <label>Turn Avionics on</label>
-                <property>/engines/engine/auto-start/avionics-on-after-start</property>
-                <live>true</live>
-                <binding>
-                    <command>property-toggle</command>
-                    <property>/engines/engine/auto-start/avionics-on-after-start</property>
-                </binding>
-            </checkbox>
-            <group>
-                <layout>hbox</layout>
-                <halign>left</halign>
-                <!-- Small left padding -->
-                <group>
-                    <layout>vbox</layout>
-                    <padding>8</padding>
-                </group>
-                <checkbox>
-                    <halign>left</halign>
-                    <label>Fastboot KAP 140</label>
-                    <property>/engines/engine/auto-start/kap140-fastboot</property>
-                    <live>true</live>
-                    <visible>
-                        <equals>
-                            <property>/sim/aircraft</property>
-                            <value>c182s</value>
-                        </equals>
-                    </visible>
-                    <enable>
-                        <property>/engines/engine/auto-start/avionics-on-after-start</property>
-                    </enable>
-                    <binding>
-                        <command>property-toggle</command>
-                        <property>/engines/engine/auto-start/kap140-fastboot</property>
-                    </binding>
-                </checkbox>
-            </group>
         </group>
         
         <vrule/>
@@ -243,36 +205,53 @@
                 </binding>
             </button>
 
-            <checkbox>
+            <text>
                 <halign>left</halign>
-                <label>Run "After landing" checklist</label>
-                <property>/engines/engine/auto-stop/run-after-landing-checklist</property>
-                <live>true</live>
-                <binding>
-                    <command>property-toggle</command>
-                    <property>/engines/engine/auto-stop/run-after-landing-checklist</property>
-                </binding>
-            </checkbox>
-            <checkbox>
+                <label>When on ground:</label>
+            </text>
+            <group>
+                <layout>hbox</layout>
                 <halign>left</halign>
-                <label>Run "Secure Aircraft" checklist</label>
-                <property>/engines/engine/auto-stop/run-secure-aircraft-checklist</property>
-                <live>true</live>
-                <binding>
-                    <command>property-toggle</command>
-                    <property>/engines/engine/auto-stop/run-secure-aircraft-checklist</property>
-                </binding>
-            </checkbox>
-            <checkbox>
-                <halign>left</halign>
-                <label>Secure plane on ground (tiedowns/chocks/...)</label>
-                <property>/engines/engine/auto-stop/secure-on-ground</property>
-                <live>true</live>
-                <binding>
-                    <command>property-toggle</command>
-                    <property>/engines/engine/auto-stop/secure-on-ground</property>
-                </binding>
-            </checkbox>
+                <!-- Small left padding -->
+                <group>
+                    <layout>vbox</layout>
+                    <padding>8</padding>
+                </group>
+                <group>
+                    <layout>vbox</layout>
+                    <halign>left</halign>
+                    <checkbox>
+                        <halign>left</halign>
+                        <label>Run "After landing" checklist</label>
+                        <property>/engines/engine/auto-stop/run-after-landing-checklist</property>
+                        <live>true</live>
+                        <binding>
+                            <command>property-toggle</command>
+                            <property>/engines/engine/auto-stop/run-after-landing-checklist</property>
+                        </binding>
+                    </checkbox>
+                    <checkbox>
+                        <halign>left</halign>
+                        <label>Run "Secure Aircraft" checklist</label>
+                        <property>/engines/engine/auto-stop/run-secure-aircraft-checklist</property>
+                        <live>true</live>
+                        <binding>
+                            <command>property-toggle</command>
+                            <property>/engines/engine/auto-stop/run-secure-aircraft-checklist</property>
+                        </binding>
+                    </checkbox>
+                    <checkbox>
+                        <halign>left</halign>
+                        <label>Secure plane on ground (tiedowns/chocks/...)</label>
+                        <property>/engines/engine/auto-stop/secure-on-ground</property>
+                        <live>true</live>
+                        <binding>
+                            <command>property-toggle</command>
+                            <property>/engines/engine/auto-stop/secure-on-ground</property>
+                        </binding>
+                    </checkbox>
+                </group>
+            </group>
         </group>
     </group>
 

@@ -65,6 +65,7 @@ var calibrateInstruments = func() {
 
     # Set heading indicator alignment
     # Note: this needs a correctly spun up gyro to work.
+    setprop("/instrumentation/heading-indicator/spin", 1.0);
     var magnetic_variation = getprop("/environment/magnetic-variation-deg");
     magnetic_variation     = sprintf("%.2f", magnetic_variation);
     setprop("/instrumentation/heading-indicator/align-deg", -magnetic_variation);
@@ -311,6 +312,8 @@ var checklist_beforeTakeOff = func() {
     
     # Not actually in checklist, but done on hold-short line
     calibrateInstruments();
+    
+    #setprop("/controls/gear/brake-parking", 0);  #Intentionally left 
 }
 
 var checklist_cruise = func() {
@@ -554,6 +557,7 @@ var autostart = func (msg=1, delay=1, setStates=0) {
         var throttle = 0.15; if (!onGround) throttle = 0.75;
         var rpm      = 2400;
         var mixture  = getprop("/controls/engines/engine/mixture-maxaltitude-lean");
+            #^^TODO: Basicly automate three states: In-Air:Cruise settings; OnGround&&Near runway: Ready-For-Takeoff settings; On ground&&not near runway: hot idle (like now)
         var prop     = 1.0;
         print("Autostart engine: execute setEngineRunning");
         setEngineRunning(rpm, throttle, mixture, prop);

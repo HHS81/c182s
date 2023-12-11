@@ -62,7 +62,7 @@
             <tag>high-wing</tag>
             <tag>dual-controls</tag>
         </tags>
-    <minimum-fg-version>2018.3.0</minimum-fg-version>
+    <minimum-fg-version>2020.4.0</minimum-fg-version>
     <rating>
       <FDM type="int">5</FDM>
       <systems type="int">5</systems>

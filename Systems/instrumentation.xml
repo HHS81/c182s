@@ -88,6 +88,13 @@ file, these values will be used (they are hardcoded).
     <name>heading-indicator</name>
     <number>0</number>
     <suction>/systems/vacuum/suction-inhg</suction>
+    <minimum-vacuum>4.5</minimum-vacuum>
+    <minimum-spin-norm>0.8</minimum-spin-norm>
+    <yaw-limit-rate>7.0</yaw-limit-rate> <!-- about 40° bank -->
+    <g-limit-lower>-0.8</g-limit-lower>
+    <g-limit-upper>1.8</g-limit-upper>
+    <!--<yaw-error-factor>0.033</yaw-error-factor>-->
+    <!--<g-error-factor>0.033</g-error-factor>-->
   </heading-indicator-dg>
 
   <magnetic-compass>

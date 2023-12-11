@@ -805,7 +805,7 @@
             <property>instrumentation/magnetic-compass/roll-deg-final</property>
         </output>
     </filter>
-    
+
     <!-- VSI damper -->
     <!-- To dampen the needle a bit more, especially at very tiny changes (like parking) -->
     <!-- By observation, it fluctuates around -20/+20 in a seemingly random manner. -->

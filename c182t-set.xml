@@ -61,7 +61,7 @@
             <tag>ifr</tag>
             <tag>high-wing</tag>
         </tags>
-    <minimum-fg-version>2017.3.1</minimum-fg-version>
+    <minimum-fg-version>2020.4.0</minimum-fg-version>
     <rating>
       <FDM type="int">5</FDM>
       <systems type="int">3</systems>

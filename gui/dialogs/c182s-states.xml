@@ -1,0 +1,275 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+    <name>c182s-states-dialog</name>
+    <layout>vbox</layout>
+    <resizable>false</resizable>
+    <modal>false</modal>
+    <draggable>true</draggable>
+    
+    <group>
+        <layout>hbox</layout>
+
+        <empty><stretch>true</stretch></empty>
+        <text>
+            <label>Aircraft States and Auto-start/Auto-shutdown</label>
+        </text>
+        <empty><stretch>true</stretch></empty>
+
+        <button>
+            <legend/>
+            <key>Esc</key>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+	</group>
+	<hrule/>
+    
+    <text>
+        <halign>left</halign>
+        <label>The preset you select here will be applied at sim start with "Default"</label>
+    </text>
+    <text>
+        <halign>left</halign>
+        <label>state selected in the launcher. Other launcher states override this.</label>
+    </text>
+        
+    <group>
+        <layout>hbox</layout>
+        <text><halign>left</halign>
+            <label>Aircraft state preset:</label>
+        </text>
+
+        <combo>
+            <halign>left</halign>
+            <stretch>true</stretch>
+            <pref-width>300</pref-width>
+            <property>/sim/start-state-internal/gui-selection</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    c182s.updateStateSettingGUI();
+                </script>
+            </binding>
+            <value>Automatic</value>
+            <value>Saved state</value>
+            <value>Cold and Dark</value>
+            <value>Ready for Takeoff</value>
+            <value>Cruising</value>
+            <value>Approach</value>
+        </combo>
+
+        <button>
+            <halign>center</halign>
+            <legend>Apply now</legend>
+            <enable>
+                <and>
+                    <not>
+                        <property>/sim/freeze/replay-state</property>
+                    </not>
+                    <not>
+                        <equals>
+                            <property>/sim/start-state-internal/gui-selection-key</property>
+                            <property>/sim/start-state</property>
+                        </equals>
+                    </not>
+                </and>
+            </enable>
+            <binding>
+                <command>nasal</command>
+                <script>
+                    c182s.applyAircraftState();
+                </script>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/start-state-internal/gui-selection-key</property>
+                <property>/sim/start-state</property>
+            </binding>
+        </button>
+        
+        <empty><stretch>true</stretch></empty>
+        
+    </group>
+    
+    <hrule/>
+
+    <group>
+        <layout>hbox</layout>
+        <halign>left</halign>
+
+        <empty>
+            <stretch>true</stretch>
+        </empty>
+    </group>
+    <group>
+        <layout>hbox</layout>
+        <halign>left</halign>
+        
+        <group>
+            <layout>vbox</layout>
+            <halign>left</halign>
+            <valign>top</valign>
+            
+            <button>
+                <legend>Auto-startup</legend>
+                <halign>center</halign>
+                <enable>
+                    <and>
+                        <not>
+                            <property>/engines/engine/auto-start</property>
+                        </not>
+                        <not>
+                            <property>/fdm/jsbsim/propulsion/engine/set-running</property>
+                        </not>
+                    </and>
+                </enable>
+                <binding>
+                    <command>nasal</command>
+                    <script>c182s.autostart()</script>
+                </binding>
+            </button>
+
+            <empty>
+                <stretch>true</stretch>
+            </empty>
+            <checkbox>
+                <halign>left</halign>
+                <label>Run "Preflight" checklist</label>
+                <property>/engines/engine/auto-start/run-preflight-checklist</property>
+                <live>true</live>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/engines/engine/auto-start/run-preflight-checklist</property>
+                </binding>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>Preheat engine if neccesary</label>
+                <property>/engines/engine/auto-start/preheat</property>
+                <live>true</live>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/engines/engine/auto-start/preheat</property>
+                </binding>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>Run "Before engine start" checklist</label>
+                <property>/engines/engine/auto-start/run-beforeEngineStart-checklist</property>
+                <live>true</live>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/engines/engine/auto-start/run-beforeEngineStart-checklist</property>
+                </binding>
+            </checkbox>
+            <checkbox>
+                <halign>left</halign>
+                <label>Run "Before Takeoff" checklist</label>
+                <property>/engines/engine/auto-start/run-beforeTakeoff-checklist</property>
+                <live>true</live>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/engines/engine/auto-start/run-beforeTakeoff-checklist</property>
+                </binding>
+            </checkbox>
+        </group>
+        
+        <vrule/>
+        
+        <group>
+            <layout>vbox</layout>
+            <halign>left</halign>
+            <valign>top</valign>
+
+            <button>
+                <legend>Auto-shutdown</legend>
+                <enable>
+                    <and>
+                        <not>
+                            <property>/engines/engine/auto-start</property>
+                        </not>
+                        <property>/fdm/jsbsim/propulsion/engine/set-running</property>
+                    </and>
+                </enable>
+                <binding>
+                    <command>nasal</command>
+                    <script>c182s.autostart()</script>
+                </binding>
+            </button>
+
+            <text>
+                <halign>left</halign>
+                <label>When on ground:</label>
+            </text>
+            <group>
+                <layout>hbox</layout>
+                <halign>left</halign>
+                <!-- Small left padding -->
+                <group>
+                    <layout>vbox</layout>
+                    <padding>8</padding>
+                </group>
+                <group>
+                    <layout>vbox</layout>
+                    <halign>left</halign>
+                    <checkbox>
+                        <halign>left</halign>
+                        <label>Run "After landing" checklist</label>
+                        <property>/engines/engine/auto-stop/run-after-landing-checklist</property>
+                        <live>true</live>
+                        <binding>
+                            <command>property-toggle</command>
+                            <property>/engines/engine/auto-stop/run-after-landing-checklist</property>
+                        </binding>
+                    </checkbox>
+                    <checkbox>
+                        <halign>left</halign>
+                        <label>Run "Secure Aircraft" checklist</label>
+                        <property>/engines/engine/auto-stop/run-secure-aircraft-checklist</property>
+                        <live>true</live>
+                        <binding>
+                            <command>property-toggle</command>
+                            <property>/engines/engine/auto-stop/run-secure-aircraft-checklist</property>
+                        </binding>
+                    </checkbox>
+                    <checkbox>
+                        <halign>left</halign>
+                        <label>Secure plane on ground (tiedowns/chocks/...)</label>
+                        <property>/engines/engine/auto-stop/secure-on-ground</property>
+                        <live>true</live>
+                        <binding>
+                            <command>property-toggle</command>
+                            <property>/engines/engine/auto-stop/secure-on-ground</property>
+                        </binding>
+                    </checkbox>
+                </group>
+            </group>
+        </group>
+    </group>
+
+
+    <hrule/>
+    <group>
+        <layout>hbox</layout>
+        <default-padding>6</default-padding>
+        <empty><stretch>true</stretch></empty>
+        <button>
+            <legend>Close</legend>
+            <equal>true</equal>
+            <key>Esc</key>
+            <default>true</default>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+
+</PropertyList>

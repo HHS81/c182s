@@ -851,6 +851,13 @@
         <!-- Save these properties between sessions -->
         <aircraft-data>
             <path>/sim/start-state</path>
+            <path>/engines/engine/auto-start/run-preflight-checklist</path>
+            <path>/engines/engine/auto-start/preheat</path>
+            <path>/engines/engine/auto-start/run-beforeEngineStart-checklist</path>
+            <path>/engines/engine/auto-start/run-beforeTakeoff-checklist</path>
+            <path>/engines/engine/auto-stop/run-after-landing-checklist</path>
+            <path>/engines/engine/auto-stop/run-secure-aircraft-checklist</path>
+            <path>/engines/engine/auto-stop/secure-on-ground</path>
 
             <path>/sim/time/hobbs/engine</path>
             <path>/sim/model/c182s/enable-fog-frost</path>
@@ -1228,6 +1235,18 @@
     </governor>
     <manual-roughness-factor type="double">0</manual-roughness-factor>
     <manual-power-reduction-pct type="double">0</manual-power-reduction-pct>
+    
+    <auto-start>
+      <run-preflight-checklist type="bool">true</run-preflight-checklist>
+      <preheat type="bool">true</preheat>
+      <run-beforeEngineStart-checklist type="bool">true</run-beforeEngineStart-checklist>
+      <run-beforeTakeoff-checklist type="bool">true</run-beforeTakeoff-checklist>
+    </auto-start>
+    <auto-stop>
+      <run-after-landing-checklist type="bool">true</run-after-landing-checklist>
+      <run-secure-aircraft-checklist type="bool">true</run-secure-aircraft-checklist>
+      <secure-on-ground type="bool">true</secure-on-ground>
+    </auto-stop>
   </engine>
  </engines>
 

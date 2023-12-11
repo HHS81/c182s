@@ -56,6 +56,24 @@ var secureAircraftOnGround = func(state) {
     setprop("/sim/model/c182s/securing/windGustLockPlate-visible", state);
 }
 
+var calibrateInstruments = func() {
+    # Set the altimeter
+    var pressure_sea_level = getprop("/environment/pressure-sea-level-inhg");
+    pressure_sea_level     = sprintf("%.2f", pressure_sea_level);
+    setprop("/instrumentation/altimeter/setting-inhg", pressure_sea_level);
+    print("Altimeter calibrated to: " ~ pressure_sea_level ~ "inHG");
+
+    # Set heading indicator alignment
+    # Note: this needs a correctly spun up gyro to work.
+    setprop("/instrumentation/heading-indicator/spin", 1.0);
+    var magnetic_variation = getprop("/environment/magnetic-variation-deg");
+    magnetic_variation     = sprintf("%.2f", magnetic_variation);
+    setprop("/instrumentation/heading-indicator/align-deg", -magnetic_variation);
+    setprop("/instrumentation/heading-indicator/offset-deg", -magnetic_variation);
+    print("Heading Indicator calibrated to: " ~ magnetic_variation ~ " magVar");
+}
+
+
 ######
 # Function to start engine
 #   rpm:     initial RPM of propeller
@@ -70,20 +88,35 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
         print("setEngineRunning: skip execution (another instance is already running)");
         return;
     }
+    
+    # round throttle, mixture and prop settings to full percents
+    throttle = sprintf("%.2f", throttle);
+    mix      = sprintf("%.2f", mix);
+    prop     = sprintf("%.2f", prop);
+    print("setEngineRunning: target engine settings:");
+    print("  RPM:      "~rpm);
+    print("  Throttle: "~throttle);
+    print("  Prop:     "~prop);
+    print("  Mixture:  "~mix);
+    
     # Do not engage if engine is already on
     if (getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
-        print("setEngineRunning: skip execution (another instance is already running)");
+        print("setEngineRunning: skip execution (engine is already running)");
+        
+        # but set lever positions in case preset differs
+        setprop("/controls/engines/engine[0]/throttle", throttle);
+        setprop("/controls/engines/engine[0]/mixture", mix);
+        setprop("/controls/engines/engine[0]/propeller-pitch", prop);
+        
         return;
     }
+    
     
     setprop("/engines/engine/auto-start", 1);
 
     #
     # Prestart preparations
     #
-    
-    repair_damage();
-    reset_fuel_contamination();
     
     # Remove preheater in case it was attached
     setprop("/engines/engine/external-heat/enabled", 0);
@@ -199,9 +232,11 @@ var checklist_secureAircraft = func() {
     setprop("/controls/engines/engine[0]/master-alt", 0);
     setprop("/sim/model/c182s/cockpit/control-lock-placed", 1);
     setprop("/controls/switches/fuel_tank_selector", 1);
+    #secureAircraftOnGround(1); # no "official" checklist item, so we keep it separate and call it in the individual state definitions
 }
         
 var checklist_preflight = func() {
+    repair_damage();
     reset_fuel_contamination();
     
     # Checking for minimal oil level
@@ -240,26 +275,11 @@ var checklist_beforeEngineStart = func() {
 
     # Setting lights
     setprop("/controls/lighting/nav-lights", 1);
-    setprop("/controls/lighting/strobe", 1);
     setprop("/controls/lighting/beacon", 1);
 
     # Setting flaps to 0
     setprop("/controls/flight/flaps", 0.0);
-
-    # Set the altimeter
-    var pressure_sea_level = getprop("/environment/pressure-sea-level-inhg");
-    setprop("/instrumentation/altimeter/setting-inhg", pressure_sea_level);
-
-    # Set heading offset
-    var magnetic_variation = getprop("/environment/magnetic-variation-deg");
-    setprop("/instrumentation/heading-indicator/offset-deg", -magnetic_variation);
     
-    # close doors
-    DoorL.close();
-    DoorR.close();
-    BaggageDoor.close();
-    # may remain open: WindowL.close();
-    # may remain open: WindowR.close();
 
     # Adjust winterkit depending on OAT
     # (we must do this with delay on sim sart to give the weather system a chance to adjust temperature at startup)
@@ -271,6 +291,41 @@ var checklist_beforeEngineStart = func() {
 
 }
 
+var checklist_beforeTakeOff = func() {
+    # close doors
+    DoorL.close();
+    DoorR.close();
+    BaggageDoor.close();
+    # may remain open: WindowL.close();
+    # may remain open: WindowR.close();
+    
+    # Parking brake only if not in air
+    var pbrake_tgt = getprop("/position/altitude-agl-ft") <= 5 ? 1 : 0;
+    setprop("/controls/gear/brake-parking", pbrake_tgt);
+    
+    setprop("/controls/engines/engine/cowl-flaps-norm", 1);
+    setprop("/controls/flight/elevator-trim", 0);
+    setprop("/controls/flight/rudder-trim", 0);
+    
+    setprop("/controls/lighting/strobe", 1);
+    setAvionics(1);
+    
+    # Not actually in checklist, but done on hold-short line
+    calibrateInstruments();
+    
+    #setprop("/controls/gear/brake-parking", 0);  #Intentionally left 
+}
+
+var checklist_cruise = func() {
+    setprop("/controls/gear/brake-parking", 0);
+    setprop("/controls/engines/engine/cowl-flaps-norm", 0);
+}
+
+var checklist_approach = func() {
+    setprop("/controls/gear/brake-parking", 0);
+    setprop("/controls/engines/engine/cowl-flaps-norm", 0);
+    setprop("/controls/lighting/landing-lights", 1);
+}
 
 
 
@@ -300,32 +355,36 @@ var state_coldAndDark = func() {
     setprop("/controls/lighting/pedestal-lights-norm", 0);
     setprop("/controls/lighting/radio-lights-norm", 0);
     
+    # Engine cut-off
+    setprop("/controls/engines/engine[0]/throttle", 0.0);
+    setprop("/controls/engines/engine[0]/mixture", 0.0);
+    setprop("/controls/switches/starter", 0);
     setprop("/controls/switches/magnetos", 0);
 };
 
 var state_readyForTakeoff = func() {
-    repair_damage();
-    reset_fuel_contamination();
+    checklist_preflight();
     secureAircraftOnGround(0);
     checklist_beforeEngineStart();
     setAvionics(1);
-    setEngineRunning(1000, 0.1, getprop("/controls/engines/engine/mixture-maxaltitude"), 1);
-    setprop("/controls/gear/brake-parking", 1);
-    setprop("/controls/engines/engine/cowl-flaps-norm", 1);
+    state_adjustEngineTemps(125, 250);
+    setEngineRunning(1000, 0.15, getprop("/controls/engines/engine/mixture-maxaltitude"), 1);
+    checklist_beforeTakeOff();
     
     var ap_start_delay = 3.5;
     settimer(kap140_fastboot, ap_start_delay);
 };
 
 var state_cruising = func() {
-    repair_damage();
-    reset_fuel_contamination();
+    checklist_preflight();
     secureAircraftOnGround(0);
     checklist_beforeEngineStart();
     setAvionics(1);
+    state_adjustEngineTemps(135, 300);
     setEngineRunning(2000, 0.75, 0.7, getprop("/controls/engines/engine/mixture-maxaltitude-lean"));
-    setprop("/controls/gear/brake-parking", 0);
-    setprop("/controls/engines/engine/cowl-flaps-norm", 0);
+    checklist_beforeTakeOff();
+    checklist_cruise();
+    # todo: this is more complex than this: setprop("/controls/flight/elevator-trim", 0.2);
     
     var ap_start_delay = 3.5;
     settimer(kap140_fastboot, ap_start_delay);
@@ -333,31 +392,42 @@ var state_cruising = func() {
 
 var state_approach = func() {
     # lower initial airspeed is set from state-overlay xml
-    repair_damage();
-    reset_fuel_contamination();
+    checklist_preflight();
     secureAircraftOnGround(0);
     checklist_beforeEngineStart();
     setAvionics(1);
-    setprop("/controls/lighting/landing-lights", 1);
+    state_adjustEngineTemps(130, 275);
     setEngineRunning(2400, 0.50, 1.0, 1.00);
-    setprop("/controls/gear/brake-parking", 0);
-    setprop("/controls/engines/engine/cowl-flaps-norm", 0);
+    checklist_beforeTakeOff();
+    checklist_cruise();
+    checklist_approach();
     
     var ap_start_delay = 3.5;
     settimer(kap140_fastboot, ap_start_delay);
 }
 
-# Add some oil and cht temp override to simulate an engine that had already run for some time
-# Note: the values depend significantly on OAT and the current engine configuration.
-#       we might consider to make the adjustments depending on that to get better results, but for now,
-#       the goal is to have sensible starting values for the state system when crusing/approach/ready-for-takeoff,
-#       ie. to not trigger the "oil too cold" engine roughness and coughing.
+# Add some oil and cht temp override to simulate an engine that had already run for some time.
+# The override will slowly degrade to 0, as to completely hand off the value to jsbsim again over time.
 var state_adjustEngineTemps = func(oilTemp, chtTemp) {
-    setprop("/engines/engine/oil-temperature-degf-offset", oilTemp);
-    interpolate("/engines/engine/oil-temperature-degf-offset", 0, 100);
+    # For sim startup we need a compensator (JSBSIM initializes oil and cht at 60°F),
+    # For later times, we have a valid oil/cht compensated value.
+    var startup_compensator = 0;
+    if (getprop("/sim/time/elapsed-sec") <= 5) startup_compensator = 60;
     
-    setprop("/engines/engine/cht-temperature-degf-offset", chtTemp);
-    interpolate("/engines/engine/cht-temperature-degf-offset", 0, 40);
+    # Hand over time
+    var t_handover = 100;
+    
+    var cur_oil_temp   = getprop("/engines/engine/oil-compensated-temperature-degf");
+    var cur_oil_offset = getprop("/engines/engine/oil-temperature-degf-offset");
+    var oil_tgt_temp   = oilTemp - cur_oil_temp + cur_oil_offset + startup_compensator;
+    setprop("/engines/engine/oil-temperature-degf-offset", oil_tgt_temp);
+    interpolate("/engines/engine/oil-temperature-degf-offset", 0, t_handover);
+    
+    var cur_cht_temp   = getprop("/engines/engine/cht-compensated-temperature-degf");
+    var cur_cht_offset = getprop("/engines/engine/cht-temperature-degf-offset");
+    var cht_tgt_temp   = chtTemp - cur_cht_temp + cur_cht_offset + startup_compensator;
+    setprop("/engines/engine/cht-temperature-degf-offset", cht_tgt_temp);
+    interpolate("/engines/engine/cht-temperature-degf-offset", 0, t_handover);
 }
 
 
@@ -390,13 +460,11 @@ var applyAircraftState = func() {
             } else {
                 print("Apply state: Automatic (not-parking->ReadyForTakeoff)");
                 state_readyForTakeoff();
-                if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(100, 225);
             }
         } else {
             # somewhere in the air
             print("Apply state: Automatic (in-air->cruise)");
             state_cruising();
-            if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(130, 275);
         }
     }
     if (selected_state == "saved") {
@@ -411,17 +479,14 @@ var applyAircraftState = func() {
     if (selected_state == "take-off") {
         print("Apply state: Ready-for-Takeoff");
         state_readyForTakeoff();
-        if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(100, 225);
     }
     if (selected_state == "cruise") {
         print("Apply state: cruise");
         state_cruising();
-        if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(130, 275);
     }
     if (selected_state == "approach") {
         print("Apply state: approach");
         state_approach();
-        if (getprop("/sim/time/elapsed-sec") <= 10) state_adjustEngineTemps(130, 275);
     }
 };
 
@@ -445,7 +510,8 @@ var autostart = func (msg=1, delay=1, setStates=0) {
             gui.popupTip("Autoshutdown engine engaged.", 5);
                 
         #After landing
-        checklist_afterLanding();
+        if(onGround and getprop("/engines/engine/auto-stop/run-after-landing-checklist"))
+            checklist_afterLanding();
         
         # Shutdown engine
         setprop("/controls/engines/engine[0]/throttle", 0.0);
@@ -453,15 +519,18 @@ var autostart = func (msg=1, delay=1, setStates=0) {
         setprop("/controls/switches/starter", 0);
         setprop("/controls/switches/magnetos", 0);
 
+        
         var securingDelay = 3;
         settimer(func {
             # Securing only if on ground
             if (onGround) {
                 #Securing Aircraft
-                checklist_secureAircraft();
+                if (getprop("/engines/engine/auto-stop/run-secure-aircraft-checklist"))
+                    checklist_secureAircraft();
                 
                 #securing Aircraft on ground
-                secureAircraftOnGround(1);
+                if (getprop("/engines/engine/auto-stop/secure-on-ground"))
+                    secureAircraftOnGround(1);
             }
             
             print("Autoshutdown engine complete.");
@@ -470,19 +539,17 @@ var autostart = func (msg=1, delay=1, setStates=0) {
         return;
     }
     
-    # Repair Aircraft
-    # This repairs any damage, reloads battery, removes water contamination, etc
-    repair_damage();
-    reset_fuel_contamination();
-
     # Pre-flight inspection
-    checklist_preflight();
+    # This repairs any damage, reloads battery, removes water contamination, etc
+    if (getprop("/engines/engine/auto-start/run-preflight-checklist"))
+        checklist_preflight();
     
     # Before start checklist
-    checklist_beforeEngineStart();
+    if (getprop("/engines/engine/auto-start/run-beforeEngineStart-checklist"))
+        checklist_beforeEngineStart();
     
-    # Avionics should be on after start
-    setAvionics(1); #will be disabled by enigneStart function
+    if (getprop("/engines/engine/auto-start/preheat"))
+        state_adjustEngineTemps(100, 100);
     
     # kick off engine
     var delay = 1;
@@ -490,37 +557,38 @@ var autostart = func (msg=1, delay=1, setStates=0) {
         var throttle = 0.15; if (!onGround) throttle = 0.75;
         var rpm      = 2400;
         var mixture  = getprop("/controls/engines/engine/mixture-maxaltitude-lean");
+            #^^TODO: Basicly automate three states: In-Air:Cruise settings; OnGround&&Near runway: Ready-For-Takeoff settings; On ground&&not near runway: hot idle (like now)
         var prop     = 1.0;
         print("Autostart engine: execute setEngineRunning");
-        print("  RPM:      "~rpm);
-        print("  Throttle: "~throttle);
-        print("  Prop:     "~prop);
-        print("  Mixture:  "~mixture);
-        #state_adjustEngineTemps(75,75);  #! not calling on purpose! Autostart should only try to start the engine, not suceed in all cases!
         setEngineRunning(rpm, throttle, mixture, prop);
          
         # investigate results once starter is done
         var startListener = setlistener("/engines/engine/auto-start", func(n){
             if (n.getValue() == 0) {
                 
-                # activate avionics
-                setAvionics(1);
+                if (getprop("/engines/engine/auto-start/run-beforeTakeoff-checklist"))
+                    checklist_beforeTakeOff(1);
+                
+                if (!onGround) {
+                    var ap_start_delay = 1.0;
+                    settimer(kap140_fastboot, ap_start_delay);
+                }
                 
                 # report results after some more time
                 reportResults = maketimer(2, func{
                     if (!getprop("/fdm/jsbsim/propulsion/engine/set-running")) {
                         var failMsg = "The autostart failed to start the engine.";
                         
-                        if (getprop("/engines/engine/complex-engine-procedures")) {
-                            failMsg = failMsg~"\nTry preheating or disabling 'complex engine procedures'";
-                        } else {
-                            failMsg = failMsg~"\nTry leaning and starting manually'";
-                        }
+                        if (getprop("/engines/engine/complex-engine-procedures"))
+                            failMsg = failMsg~"\nTry disabling 'complex engine procedures'";
+                        failMsg = failMsg~"\nCheck engine parameters and controls and follow the checklist!";
+
                             
                         gui.popupTip(failMsg, 5);
                         print("Autostart engine FAILED");
                         print("  oil temp °F: "~getprop("/engines/engine/oil-final-temperature-degf"));
                         print("  complex-engine-procedures: "~getprop("/engines/engine/complex-engine-procedures"));
+                        props.dump(props.globals.getNode("/engines/engine/auto-start"));
                     } else {
                         print("Autostart engine succeeded.");
                     }

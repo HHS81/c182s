@@ -932,6 +932,34 @@ addcommand("c182_cowlflap_step_close", func {
 });
 
 
+var latitude_nut_update = func() {
+    var p = "/instrumentation/heading-indicator/latitude-nut-setting";
+    var lat = getprop("position/latitude-deg");
+    var tgt = sprintf("%2.0f", lat);
+    var cur = sprintf("%2.0f", getprop(p));
+    if (tgt != cur) {
+        setprop(p, tgt);
+        print("C182 HI/DG latitude nut adjusted from "~cur~"° to "~tgt~"°");
+    }
+}
+var latitude_nut_setter_timer = maketimer(30.0, latitude_nut_update);
+setlistener("/instrumentation/heading-indicator/latitude-nut-setting-autoset", func (node) {
+    if (node.getBoolValue()) {
+        latitude_nut_update();
+        if (!latitude_nut_setter_timer.isRunning) {
+            latitude_nut_setter_timer.start();
+            print("C182 HI/DG latitude nut autoset activated");
+        }
+    } else {
+        if (latitude_nut_setter_timer.isRunning) {
+            latitude_nut_setter_timer.stop();
+            print("C182 HI/DG latitude nut autoset stopped");
+        }
+    }
+}, 0, 0);
+
+
+
 ###########
 # INIT of Aircraft
 # (states are initialized in separate nasal script!)
@@ -1010,16 +1038,15 @@ setlistener("/sim/signals/fdm-initialized", func {
     var dg_offset_startup_timer = maketimer(1.0, func(){
         dg_offset_now = getprop("/instrumentation/heading-indicator/offset-deg") or 0;
         if (dg_offset_storemode == 0) {
-            print("c182 restore DG offset from "~dg_offset_now~" to "~dg_offset_startup~" (saved value)");
+            print("C182 restore HI/DG offset from "~dg_offset_now~" to "~dg_offset_startup~" (saved value)");
             setprop("/instrumentation/heading-indicator/offset-deg", dg_offset_startup);
             dg_offset_storemode = 1;
         } else {
-            #print("c182 updating stored DG offset to "~dg_offset_now);
+            #print("C182 updating stored HI/DG offset to "~dg_offset_now);
             setprop("/instrumentation/heading-indicator/offset-deg-save", dg_offset_now);
         }
     });
     dg_offset_startup_timer.start();
-
 
     # If we are starting outside and in cold weather, add some ice/snow to the plane
     # We use the metar value for this, as it seems always to be set. Either coming from
@@ -1053,6 +1080,12 @@ setlistener("/sim/signals/fdm-initialized", func {
         }
     }, 1.0, 0);
 
+    # DG: Latitude-Nut autoset if that was activated
+    if (getprop("/instrumentation/heading-indicator/latitude-nut-setting-autoset")) {
+        print("C182 HI/DG latitude nut autoset activated (option was set from previous session)");
+        latitude_nut_update();
+        latitude_nut_setter_timer.start();
+    }
 
 });
 

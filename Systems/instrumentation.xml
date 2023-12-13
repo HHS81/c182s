@@ -95,6 +95,7 @@ file, these values will be used (they are hardcoded).
     <g-limit-upper>1.8</g-limit-upper>
     <!--<yaw-error-factor>0.033</yaw-error-factor>-->
     <!--<g-error-factor>0.033</g-error-factor>-->
+    <!--<g-limit-tumble-factor>1.5</g-limit-tumble-factor>-->
   </heading-indicator-dg>
 
   <magnetic-compass>

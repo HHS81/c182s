@@ -1083,6 +1083,7 @@
             <path>/instrumentation/heading-indicator/align-deg</path>
             <path>/instrumentation/heading-indicator/error-deg</path>
             <path>/instrumentation/heading-indicator/offset-deg-save</path>
+            <path>/instrumentation/heading-indicator/caged-flag</path>
             <path>/autopilot/settings/heading-bug-deg</path>
             <path>/instrumentation/transponder/id-code</path>
             <path>/instrumentation/transponder/factory-vfr-code</path>

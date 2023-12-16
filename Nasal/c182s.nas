@@ -1030,21 +1030,44 @@ setlistener("/sim/signals/fdm-initialized", func {
         print("C182 FGCamera integration loaded");
     }
     
-    # DG: Reset offset to stored value
-    # for some unknown (to me) reason, the DG offset is set to something obscure after initialization; and the value is location specific...
-    # So we store the last known value when the im exits and restore that here
-    var dg_offset_startup = getprop("/instrumentation/heading-indicator/offset-deg-save") or 0;
+    # HI/DG: Reset offset to stored values
+    # The DG always initializes to indicated_heading=/orientation/heading-deg, so we need to apply the
+    # difference of the last known orientation to offset the HI, so it shows the last stored value.
+    # The result is, that the HI is only correctly aligned when the planes location and orientation did
+    # not change between sessions AND it was calibrated correctly.
+    # (This all would be alot easier if the c++ instrument would initialize to saved values)
     var dg_offset_storemode = 0;
+    var dg_hdg_cur      = props.globals.getNode("/orientation/heading-deg");
+    var dg_hdg_saved    = props.globals.getNode("/orientation/heading-deg-saved", 1);
+    var dg_offset_cur   = props.globals.getNode("/instrumentation/heading-indicator/offset-deg");
+    var dg_offset_saved = props.globals.getNode("/instrumentation/heading-indicator/offset-deg-saved", 1);
+    var dg_error_cur    = props.globals.getNode("/instrumentation/heading-indicator/error-deg");
+    var dg_error_saved  = props.globals.getNode("/instrumentation/heading-indicator/error-deg-saved", 1);
+    
+    # Restore values from last session
+    if (dg_hdg_saved.getValue() != nil and dg_offset_saved.getValue() != nil and dg_error_saved.getValue() != nil) {
+        print("C182 restore HI/DG settings...");
+        print("  HI/DG startup error: "~sprintf("%.2f",dg_error_saved.getValue()));
+        dg_error_cur.setDoubleValue(dg_error_saved.getValue());
+        
+        print("  HI/DG startup offset: "~sprintf("%.2f",dg_offset_saved.getValue()));
+        dg_offset_cur.setDoubleValue(dg_offset_saved.getValue());
+        
+        # Apply orientation difference from last session
+        var hdg_diff           = dg_hdg_saved.getValue() - dg_hdg_cur.getValue();
+        var dg_offset_startup  = dg_offset_cur.getValue() + hdg_diff;
+        print("  HI/DG startup heading: from "~sprintf("%.2f",dg_offset_cur.getValue())~" to "~sprintf("%.2f",dg_offset_startup)~" (stored orientation diff="~sprintf("%.2f", hdg_diff)~")");
+        dg_offset_cur.setDoubleValue(dg_offset_startup);
+    }
+    
+    # Store values for next session (as we can't store the instruments values itself, they get overwritten)
     var dg_offset_startup_timer = maketimer(1.0, func(){
-        dg_offset_now = getprop("/instrumentation/heading-indicator/offset-deg") or 0;
-        if (dg_offset_storemode == 0) {
-            print("C182 restore HI/DG offset from "~dg_offset_now~" to "~dg_offset_startup~" (saved value)");
-            setprop("/instrumentation/heading-indicator/offset-deg", dg_offset_startup);
-            dg_offset_storemode = 1;
-        } else {
-            #print("C182 updating stored HI/DG offset to "~dg_offset_now);
-            setprop("/instrumentation/heading-indicator/offset-deg-save", dg_offset_now);
-        }
+            dg_hdg_saved.setDoubleValue(dg_hdg_cur.getValue());
+            #print("C182 updating stored HI/DG heading to "~dg_hdg_saved.getValue());
+            dg_offset_saved.setDoubleValue(dg_offset_cur.getValue());
+            #print("C182 updating stored HI/DG offset to "~dg_offset_saved.getValue());
+            dg_error_saved.setDoubleValue(dg_error_cur.getValue());
+            #print("C182 updating stored HI/DG error to "~dg_error_saved.getValue());
     });
     dg_offset_startup_timer.start();
 
@@ -1080,7 +1103,7 @@ setlistener("/sim/signals/fdm-initialized", func {
         }
     }, 1.0, 0);
 
-    # DG: Latitude-Nut autoset if that was activated
+    # HI/DG: Latitude-Nut autoset if that was activated
     if (getprop("/instrumentation/heading-indicator/latitude-nut-setting-autoset")) {
         print("C182 HI/DG latitude nut autoset activated (option was set from previous session)");
         latitude_nut_update();

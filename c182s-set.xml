@@ -1081,8 +1081,9 @@
             <path>/instrumentation/attitude-indicator/horizon-offset-deg</path>
             <path>/instrumentation/airspeed-indicator/tas-face-rotation</path>
             <path>/instrumentation/heading-indicator/align-deg</path>
-            <path>/instrumentation/heading-indicator/error-deg</path>
-            <path>/instrumentation/heading-indicator/offset-deg-save</path>
+            <path>/orientation/heading-deg-saved</path>
+            <path>/instrumentation/heading-indicator/error-deg-saved</path>
+            <path>/instrumentation/heading-indicator/offset-deg-saved</path>
             <path>/instrumentation/heading-indicator/caged-flag</path>
             <path>/instrumentation/heading-indicator/latitude-nut-setting</path>
             <path>/instrumentation/heading-indicator/latitude-nut-setting-autoset</path>

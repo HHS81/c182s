@@ -96,6 +96,8 @@ file, these values will be used (they are hardcoded).
     <!--<yaw-error-factor>0.033</yaw-error-factor>-->
     <!--<g-error-factor>0.033</g-error-factor>-->
     <!--<g-limit-tumble-factor>1.5</g-limit-tumble-factor>-->
+    <gyro-spin-up-sec>180.0</gyro-spin-up-sec>     <!-- ~3 minutes -->
+    <gyro-spin-down-sec>300.0</gyro-spin-down-sec> <!-- ~5 minutes -->
   </heading-indicator-dg>
 
   <magnetic-compass>

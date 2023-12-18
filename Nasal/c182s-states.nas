@@ -69,6 +69,11 @@ var cleanAircraft = func() {
 }
 
 var calibrateInstruments = func() {
+    # Insta-Spin up gyros
+    setprop("/instrumentation/heading-indicator/spin", 1.0);
+    setprop("/instrumentation/turn-indicator/spin", 1.0);
+    setprop("/instrumentation/attitude-indicator/spin", 1.0);
+    
     # Set the altimeter
     var pressure_sea_level = getprop("/environment/pressure-sea-level-inhg");
     pressure_sea_level     = sprintf("%.2f", pressure_sea_level);
@@ -77,7 +82,6 @@ var calibrateInstruments = func() {
 
     # Set heading indicator alignment
     # Note: this needs a correctly spun up gyro to work.
-    setprop("/instrumentation/heading-indicator/spin", 1.0);
     var magnetic_variation = getprop("/environment/magnetic-variation-deg");
     magnetic_variation     = sprintf("%.2f", magnetic_variation);
     setprop("/instrumentation/heading-indicator/align-deg", -magnetic_variation);

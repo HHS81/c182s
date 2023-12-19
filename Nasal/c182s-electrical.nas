@@ -354,6 +354,11 @@ update_virtual_bus = func( dt ) {
             setprop("/sim/messages/pilot", "Disconnect external heat before starting engine!");
             return;
         }
+        if (getprop("/fdm/jsbsim/external_reactions/towbar/attached") and v == 1)
+        {
+            setprop("/sim/messages/pilot", "Disconnect towbar before starting engine!");
+            return;
+        }
         if (getprop("/engines/engine[0]/running"))
         {
             setprop("/controls/switches/starter", 0);

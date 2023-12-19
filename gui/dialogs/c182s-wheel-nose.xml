@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+    <name>c182-wheel-nose</name>
+    <layout>vbox</layout>
+    <resizable>false</resizable>
+    <modal>false</modal>
+    <draggable>true</draggable>
+    
+    <group>
+        <layout>hbox</layout>
+
+        <empty><stretch>true</stretch></empty>
+        <text>
+            <label>Nose wheel</label>
+        </text>
+        <empty><stretch>true</stretch></empty>
+
+        <button>
+            <legend/>
+            <key>Esc</key>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group> 
+
+    <hrule/>
+    
+    <group>
+        <layout>vbox</layout>
+        <default-padding>6</default-padding>
+        <halign>left</halign>
+        <empty><stretch>true</stretch></empty>
+        
+        <checkbox>
+            <halign>left</halign>
+            <label>Apply wheel chock</label>
+            <property>/sim/chocks001/enable</property>
+            <live>true</live>
+            <binding>
+                <command>property-toggle</command>
+                <property>/sim/chocks001/enable</property>
+            </binding>
+            <binding>
+                <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
+            </binding>
+            <enable>
+                <and>
+                    <property>gear/gear[0]/wow</property>
+                    <less-than>
+                        <property>velocities/groundspeed-kt</property>
+                        <value>1.0</value>
+                    </less-than>
+                </and>
+            </enable>
+        </checkbox>
+    
+        <checkbox>
+            <halign>left</halign>
+            <label>Attach Towbar</label>
+            <property>/fdm/jsbsim/external_reactions/towbar/attached</property>
+            <live>true</live>
+            <binding>
+                <command>property-toggle</command>
+                <property>/fdm/jsbsim/external_reactions/towbar/attached</property>
+            </binding>
+            <binding>
+                <command>property-assign</command>
+                <property>/fdm/jsbsim/external_reactions/towbar/steer-deg</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
+            </binding>
+            <enable>
+                <and>
+                    <property>gear/gear[0]/wow</property>
+                    <less-than>
+                        <property>velocities/groundspeed-kt</property>
+                        <value>1.0</value>
+                    </less-than>
+                    <less-than>
+                        <property>/engines/engine/thruster/rpm</property>
+                        <value>0.01</value>
+                    </less-than>
+                </and>
+            </enable>
+        </checkbox>
+        
+        <hrule />
+        <checkbox>
+            <halign>left</halign>
+            <label>Wheel fairing</label>
+            <property>sim/model/c182s/nw_fairing</property>
+            <live>true</live>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/model/c182s/nw_fairing</property>
+            </binding>
+            <binding>
+                <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
+            </binding>
+            <enable>
+                <and>
+                    <property>gear/gear[0]/wow</property>
+                    <less-than>
+                        <property>velocities/groundspeed-kt</property>
+                        <value>1.0</value>
+                    </less-than>
+                </and>
+            </enable>
+        </checkbox>
+
+    </group>
+
+    <hrule/>
+
+    <group>
+        <layout>hbox</layout>
+        <default-padding>6</default-padding>
+        <empty><stretch>true</stretch></empty>
+        <button>
+            <legend>Close</legend>
+            <equal>true</equal>
+            <key>Esc</key>
+            <default>true</default>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+
+</PropertyList>

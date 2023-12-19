@@ -370,6 +370,11 @@
         </offsets>
     </model>
 
+    <!-- Towbar -->
+    <model>
+        <path>Exterior/towbar.xml</path>
+    </model>
+
  <animation>
    <type>material</type>
    <object-name>Fuselage</object-name><!-- grouped in Blender for faster loading of liveries-->
@@ -2874,28 +2879,19 @@
  </animation>
 
 <animation>
- <nopreview/>
-        <type>pick</type>
-        <object-name>chokes.cs.001</object-name>
-        <visible>false</visible>
-        <action>
-            <name>Select</name>
-            <button>0</button>
-            <binding>
-                <command>property-toggle</command>
-        <property>/sim/chocks001/enable</property>
-            </binding>
-        </action>
-        <hovered>
-            <binding>
-                <command>set-tooltip</command>
-                <label>Wheel Choke Nose Gear: %s</label>
-        <property>/sim/chocks001/enable</property>
-                <tooltip-id>wheel-chokes</tooltip-id>
-                <mapping>on-off</mapping>
-            </binding>
-        </hovered>
-    </animation>
+      <nopreview/>
+      <type>pick</type>
+      <object-name>chokes.cs.001</object-name>
+      <visible>false</visible>
+      <action>
+          <button>0</button>
+          <repeatable>false</repeatable>
+          <binding>
+              <command>dialog-show</command>
+              <dialog-name>c182-wheel-nose</dialog-name>
+          </binding>
+      </action>
+  </animation>
 
 <animation>
  <nopreview/>

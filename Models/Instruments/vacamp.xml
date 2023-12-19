@@ -49,7 +49,7 @@
     <animation>
   <type>rotate</type>
   <object-name>VacNeedle</object-name>
-  <property>systems/vacuum/suction-inhg</property>
+  <property>instruments/vac/suction-inhg-indicated</property>
   <interpolation>
    <entry><ind>  0.0</ind><dep>0 </dep></entry>     
    <entry><ind> 3.0</ind><dep> -9.10 </dep></entry>     
@@ -73,7 +73,7 @@
    <animation>
         <type>rotate</type>
         <object-name>AmpNeedle</object-name>
-        <property>systems/electrical/amps</property>
+        <property>instruments/amp/amps-indicated</property>
  <interpolation>
       <entry><ind>60</ind><dep> 61.80</dep></entry>
       <entry><ind>45</ind><dep>45.18</dep></entry>

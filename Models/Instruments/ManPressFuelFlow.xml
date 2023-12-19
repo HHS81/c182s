@@ -49,7 +49,7 @@
     <animation>
         <type>rotate</type>
         <object-name>ManPressNeedle</object-name>
-        <property>engines/engine/mp-inhg</property>
+        <property>instruments/manfold-press/mp-inhg</property>
  <interpolation>
       <entry><ind>0</ind><dep> 0</dep></entry>
       <entry><ind>10</ind><dep> -12.54</dep></entry>

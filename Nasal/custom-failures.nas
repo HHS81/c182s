@@ -278,21 +278,20 @@ customFailures_c182common = [
         trigger:  MtbfTrigger.new(0),
     },
     
-    # TODO: Implement me - but: can they really fail?
-    #{id:"instrumentation/vac",    name:"VAC",
-    #    actuator: set_unserviceable("/instruments/vac"),
-    #    trigger:  MtbfTrigger.new(0),
-    #},
-    #
-    #{id:"instrumentation/amp",    name:"AMP",
-    #    actuator: set_unserviceable("/instruments/amp"),
-    #    trigger:  MtbfTrigger.new(0),
-    #},
-    #
-    #{id:"instrumentation/manfold-press",    name:"Manifold pres.",
-    #    actuator: set_unserviceable("/instruments/manfold-press"),
-    #    trigger:  MtbfTrigger.new(0),
-    #},
+    {id:"instrumentation/vac",    name:"VAC",
+        actuator: set_unserviceable("/instruments/vac"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"instrumentation/amp",    name:"AMP",
+        actuator: set_unserviceable("/instruments/amp"),
+        trigger:  MtbfTrigger.new(0),
+    },
+    
+    {id:"instrumentation/manfold-press",    name:"Manifold pres.",
+        actuator: set_unserviceable("/instruments/manfold-press"),
+        trigger:  MtbfTrigger.new(0),
+    },
     
     {id:"instrumentation/fuel-flow",    name:"Fuel flow",
         actuator: set_unserviceable("/instruments/fuel-flow"),

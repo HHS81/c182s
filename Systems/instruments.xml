@@ -219,6 +219,56 @@
             <property>/engines/engine/indicated-manfold-fuel-flow-gph</property>
         </output>
     </filter>
+    <filter>
+        <name>Manfold needle</name>
+        <type>exponential</type>
+        <filter-time>0.5</filter-time>
+        <input>
+          <condition>
+            <property>/instruments/manfold-press/serviceable</property>
+          </condition>
+          <property>/engines/engine/mp-inhg</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/instruments/manfold-press/mp-inhg</property>
+        </output>
+    </filter>
+    <filter>
+        <name>Vaccum needle</name>
+        <type>exponential</type>
+        <filter-time>1.0</filter-time>
+        <input>
+          <condition>
+              <property>/instruments/vac/serviceable</property>
+            </condition>
+            <property>/systems/vacuum/suction-inhg</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/instruments/vac/suction-inhg-indicated</property>
+        </output>
+    </filter>
+    <filter>
+        <name>Amps needle</name>
+        <type>gain</type>
+        <input>
+          <condition>
+            <property>/instruments/amp/serviceable</property>
+          </condition>
+          <property>/systems/electrical/amps</property>
+        </input>
+        <input>
+            <value>0.0</value>
+        </input>
+        <output>
+            <property>/instruments/amp/amps-indicated</property>
+        </output>
+    </filter>
 
     <filter>
       <name>Audio Panel</name>

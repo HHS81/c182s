@@ -561,55 +561,70 @@
         <property>/sim/failure-manager/instrumentation/fuel-flow/mtbf</property>
       </input>
       
-      <!-- NOT IMPLEMENTED YET!
       <text>
         <row>10</row>
+        <col>0</col>
+        <halign>right</halign>
+        <label>Manifold press</label>
+      </text>
+      <checkbox>
+        <row>10</row>
+        <col>1</col>
+        <property>/sim/failure-manager/instrumentation/manfold-press/serviceable</property>
+      </checkbox>
+      <input>
+        <row>10</row>
+        <col>2</col>
+        <property>/sim/failure-manager/instrumentation/manfold-press/mtbf</property>
+      </input>
+      
+      <text>
+        <row>11</row>
         <col>0</col>
         <halign>right</halign>
         <label>VAC</label>
       </text>
       <checkbox>
-        <row>10</row>
+        <row>11</row>
         <col>1</col>
         <property>/sim/failure-manager/instrumentation/vac/serviceable</property>
       </checkbox>
       <input>
-        <row>10</row>
+        <row>11</row>
         <col>2</col>
         <property>/sim/failure-manager/instrumentation/vac/mtbf</property>
       </input>
       
       <text>
-        <row>11</row>
+        <row>12</row>
         <col>0</col>
         <halign>right</halign>
         <label>AMP</label>
       </text>
       <checkbox>
-        <row>11</row>
+        <row>12</row>
         <col>1</col>
         <property>/sim/failure-manager/instrumentation/amp/serviceable</property>
       </checkbox>
       <input>
-        <row>11</row>
+        <row>12</row>
         <col>2</col>
         <property>/sim/failure-manager/instrumentation/amp/mtbf</property>
       </input>
-      -->
       
       <text>
-        <row>12</row>
+        <row>13</row>
         <col>0</col>
         <halign>right</halign>
         <label>Instruments light</label>
       </text>
       <checkbox>
-        <row>12</row>
+        <row>13</row>
         <col>1</col>
         <property>/sim/failure-manager/lighting/instruments/serviceable</property>
       </checkbox>
       <input>
-        <row>12</row>
+        <row>13</row>
         <col>2</col>
         <property>/sim/failure-manager/lighting/instruments/mtbf</property>
       </input>

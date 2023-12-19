@@ -1182,10 +1182,10 @@
     <cht>  <serviceable type="bool">true</serviceable>  </cht>
     <oil-temp>  <serviceable type="bool">true</serviceable>  </oil-temp>
     <oil-press>  <serviceable type="bool">true</serviceable>  </oil-press>
-    <!--<vac>  <serviceable type="bool">true</serviceable>  </vac>  IMPLEMENT ME -->
-    <!--<amp>  <serviceable type="bool">true</serviceable>  </amp>  IMPLEMENT ME -->
+    <vac>  <serviceable type="bool">true</serviceable>  </vac>
+    <amp>  <serviceable type="bool">true</serviceable>  </amp>
     <fuel-flow>  <serviceable type="bool">true</serviceable>  </fuel-flow>
-    <!--<manfold-press> <serviceable type="bool">true</serviceable> </manfold-press> IMPLEMENT ME -->
+    <manfold-press> <serviceable type="bool">true</serviceable> </manfold-press>
   </instruments>
 
    <consumables>

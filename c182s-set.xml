@@ -1130,6 +1130,7 @@
             <!--<path>/sim/gpu/enable</path>todo did not work -->
             <!--<path>/controls/electric/external-power</path> todo did not work -->
             <!--<path>/sim/fueltanktrailer/enable</path> todo did not work -->
+            <path>/fdm/jsbsim/external_reactions/towbar/attached</path>
             <path>/sim/model/c182s/securing/pitot-cover-visible</path>
             <path>/controls/SunVisor[0]/position-deg</path>
             <path>/controls/SunVisor[1]/position-deg</path>

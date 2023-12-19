@@ -121,6 +121,10 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
     # Remove preheater in case it was attached
     setprop("/engines/engine/external-heat/enabled", 0);
     
+    # Remove Towbar if it was attached
+    setprop("/fdm/jsbsim/external_reactions/towbar/attached", 0);
+    
+    
     # Battery/Alternator on
     setprop("/controls/engines/engine[0]/master-bat", 1);
     setprop("/controls/engines/engine[0]/master-alt", 1);

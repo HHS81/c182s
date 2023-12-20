@@ -21,7 +21,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Towbar</object-name>
-		<property>/fdm/jsbsim/fcs/steer-pos-deg</property>
+		<property>gear/gear/steering-norm</property>
+		<factor>11</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>

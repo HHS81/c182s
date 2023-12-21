@@ -13,12 +13,7 @@
 	<effect>
 		<inherits-from>Effects/model-combined</inherits-from>
 		<reflection-enabled>1</reflection-enabled>
-		<object-name>tow_arm</object-name>
-		<object-name>tow_attachment</object-name>
-		<object-name>tow_fork</object-name>
-		<object-name>tow_handle</object-name>
-		<object-name>tow_handle.end.1</object-name>
-		<object-name>tow_handle.end.2</object-name>
+		<object-name>Towbar</object-name>
 	</effect>
 
 	<animation>

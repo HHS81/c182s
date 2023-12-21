@@ -58,9 +58,13 @@ file, these values will be used (they are hardcoded).
     <number>0</number>
     <suction>/systems/vacuum/suction-inhg</suction>
     <minimum-vacuum>4.5</minimum-vacuum>  <!-- source: https://www.kellymfg.com/images/RC%20ALLEN%20Catalog.pdf -->
-    <spin_thresh>0.8</spin_thresh>
-    <gyro-spin-up-sec>180.0</gyro-spin-up-sec>     <!-- ~3 minutes -->
-    <gyro-spin-down-sec>300.0</gyro-spin-down-sec> <!-- ~5 minutes -->
+    <limits>
+      <spin_thresh>0.8</spin_thresh>
+    </limits>
+    <gyro>
+      <spin-up-sec>180.0</spin-up-sec>     <!-- ~3 minutes -->
+      <spin-down-sec>300.0</spin-down-sec> <!-- ~5 minutes -->
+    </gyro>
   </attitude-indicator>
 
   <clock>
@@ -93,15 +97,19 @@ file, these values will be used (they are hardcoded).
     <number>0</number>
     <suction>/systems/vacuum/suction-inhg</suction>
     <minimum-vacuum>4.0</minimum-vacuum>  <!-- source: https://www.kellymfg.com/images/RC%20ALLEN%20Catalog.pdf -->
-    <minimum-spin-norm>0.8</minimum-spin-norm>
-    <yaw-limit-rate>7.0</yaw-limit-rate> <!-- about 40° bank -->
-    <g-limit-lower>-0.8</g-limit-lower>
-    <g-limit-upper>1.8</g-limit-upper>
-    <!--<yaw-error-factor>0.033</yaw-error-factor>-->
-    <!--<g-error-factor>0.033</g-error-factor>-->
-    <!--<g-limit-tumble-factor>1.5</g-limit-tumble-factor>-->
-    <gyro-spin-up-sec>180.0</gyro-spin-up-sec>     <!-- ~3 minutes -->
-    <gyro-spin-down-sec>300.0</gyro-spin-down-sec> <!-- ~5 minutes -->
+    <limits>
+      <minimum-spin-norm>0.8</minimum-spin-norm>
+      <yaw-limit-rate>7.0</yaw-limit-rate> <!-- about 40° bank -->
+      <g-limit-lower>-0.8</g-limit-lower>
+      <g-limit-upper>1.8</g-limit-upper>
+      <!--<yaw-error-factor>0.033</yaw-error-factor>-->
+      <!--<g-error-factor>0.033</g-error-factor>-->
+      <!--<g-limit-tumble-factor>1.5</g-limit-tumble-factor>-->
+    </limits>
+    <gyro>
+      <spin-up-sec>180.0</spin-up-sec>     <!-- ~3 minutes -->
+      <spin-down-sec>300.0</spin-down-sec> <!-- ~5 minutes -->
+    </gyro>
   </heading-indicator-dg>
 
   <magnetic-compass>
@@ -159,8 +167,10 @@ file, these values will be used (they are hardcoded).
     <name>turn-indicator</name>
     <number>0</number>
     <power-supply>systems/electrical/outputs/turn-coordinator</power-supply>
-    <gyro-spin-up-sec>180.0</gyro-spin-up-sec>     <!-- ~3 minutes -->
-    <gyro-spin-down-sec>300.0</gyro-spin-down-sec> <!-- ~5 minutes -->
+    <gyro>
+      <spin-up-sec>180.0</spin-up-sec>     <!-- ~3 minutes -->
+      <spin-down-sec>300.0</spin-down-sec> <!-- ~5 minutes -->
+    </gyro>
   </turn-indicator>
 
   <vertical-speed-indicator>

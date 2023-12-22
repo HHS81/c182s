@@ -229,6 +229,12 @@
     </pilot-model>
   </rendering>
 
+  <realism>
+    <instruments>
+      <realistic-instruments type="bool">true</realistic-instruments>
+    </instruments>
+  </realism>
+
 <instrumentation n="0">
     <path>Aircraft/c182s/Systems/instrumentation.xml</path>
   </instrumentation>
@@ -981,7 +987,7 @@
             <path>/instrumentation/heading-indicator/offset-deg-save</path>
             <path>/instrumentation/heading-indicator/caged-flag</path>
             <path>/instrumentation/heading-indicator/latitude-nut-setting</path>
-            <path>/instrumentation/heading-indicator/latitude-nut-setting-autoset</path>
+            <path>/sim/realism/instruments/realistic-instruments</path>
             <path>/autopilot/settings/heading-bug-deg</path>
             <path>/instrumentation/transponder/id-code</path>
             <path>/instrumentation/transponder/factory-vfr-code</path>

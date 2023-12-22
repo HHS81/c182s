@@ -106,23 +106,6 @@
             </binding>
         </button>
     </group>
-    <group>
-        <layout>vbox</layout>
-        <padding>8</padding>
-        <checkbox>
-            <halign>left</halign>
-            <label>Autoset periodically and on sim startup</label>
-            <property>/instrumentation/heading-indicator/latitude-nut-setting-autoset</property>
-            <live>true</live>
-            <binding>
-                <command>property-toggle</command>
-                <property>/instrumentation/heading-indicator/latitude-nut-setting-autoset</property>
-            </binding>
-            <binding>
-                <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
-            </binding>
-        </checkbox>
-    </group>
     
     <hrule/>
     
@@ -286,9 +269,24 @@
                 
                 <empty><stretch>true</stretch></empty> <!-- force group to the left -->
             </group>
-            
-            
+
         </group>
+        
+        <checkbox>
+            <halign>left</halign>
+            <label>Realistic Instruments</label>
+            <property>/sim/realism/instruments/realistic-instruments</property>
+            <live>true</live>
+            <binding>
+                <command>property-toggle</command>
+                <property>/sim/realism/instruments/realistic-instruments</property>
+            </binding>
+            <binding>
+                <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
+            </binding>
+        </checkbox>
+        
+        <hrule/>
         
         <checkbox>
             <halign>left</halign>

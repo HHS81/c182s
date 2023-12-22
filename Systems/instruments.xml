@@ -887,4 +887,21 @@
     </filter>
     
     
+    <!-- Enforce unrealistic instrument behaviour for gyro instruments -->
+    <logic>
+      <name>Unrealistic gyro instruments settings</name>
+      <input>
+        <condition>
+          <property>/sim/realism/instruments/realistic-gyros</property>
+        </condition>
+        <value>1</value>
+      </input>
+      <input>
+        <value>0</value>
+      </input>
+      <output>
+          <property>/instrumentation/heading-indicator/latitude-nut-setting-autoset</property>
+      </output>
+    </logic>
+
 </PropertyList>

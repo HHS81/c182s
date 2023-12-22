@@ -932,6 +932,9 @@ addcommand("c182_cowlflap_step_close", func {
 });
 
 
+#
+# Realism settings
+#
 var latitude_nut_update = func() {
     var p = "/instrumentation/heading-indicator/latitude-nut-setting";
     var lat = getprop("position/latitude-deg");
@@ -943,20 +946,80 @@ var latitude_nut_update = func() {
     }
 }
 var latitude_nut_setter_timer = maketimer(30.0, latitude_nut_update);
-setlistener("/instrumentation/heading-indicator/latitude-nut-setting-autoset", func (node) {
-    if (node.getBoolValue()) {
-        latitude_nut_update();
-        if (!latitude_nut_setter_timer.isRunning) {
-            latitude_nut_setter_timer.start();
-            print("C182 HI/DG latitude nut autoset activated");
-        }
-    } else {
-        if (latitude_nut_setter_timer.isRunning) {
-            latitude_nut_setter_timer.stop();
-            print("C182 HI/DG latitude nut autoset stopped");
+
+# Define realism adjustments. Default values here are the "unrealistic" settings.
+var prev_realism_state = [
+    {
+        id:"attitude-indicator",
+        node: props.globals.getNode("/instrumentation/attitude-indicator"),
+        props:[
+            {name:"gyro/spin-up-sec",        value:4.0}
+        ]
+    },
+    {
+        id:"heading-indicator",
+        node: props.globals.getNode("/instrumentation/heading-indicator"),
+        props:[
+            {name:"gyro/spin-up-sec",        value:4.0},
+            {name:"limits/g-error-factor",   value:0.0},
+            {name:"limits/yaw-error-factor", value:0.0},
+            {name:"limits/g-limit-lower",    value:-99.0},
+            {name:"limits/g-limit-upper",    value:99.0}
+        ]
+    },
+    {
+        id:"turn-indicator",
+        node: props.globals.getNode("/instrumentation/turn-indicator"),
+        props:[
+            {name:"gyro/spin-up-sec",        value:4.0}
+        ]
+    },
+    {
+        id:"magnetic-compass",
+        node: props.globals.getNode("/instrumentation/magnetic-compass"),
+        props:[
+            {name:"roll-limit-left",        value:-999.0},
+            {name:"roll-limit-right",       value:999.0},
+            {name:"pitch-limit-up",         value:999.0},
+            {name:"pitch-limit-down",       value:-999.0}
+        ]
+    },
+];
+var setRealismInstruments_setting = 1;
+var setRealismInstruments = func() {
+    var activate    = getprop("/sim/realism/instruments/realistic-instruments");
+    if (activate == setRealismInstruments_setting) return;
+
+    setRealismInstruments_setting = activate;
+    var setting_txt = (activate)? "enabled": "disabled";
+    print("C182 realistic instruments: "~setting_txt);
+
+    # Swap the current value with the old one for each defined prop
+    foreach (item; prev_realism_state) {
+        print("  "~item.id);
+        foreach (p; item.props) {
+            var cur_val = item.node.getValue(p.name);
+            #print("    "~p.name~ "\t\t(old="~cur_val~"; new="~p.value~")");
+            item.node.setValue(p.name, p.value);
+            p.value = cur_val;
         }
     }
-}, 0, 0);
+    
+    # Do some specific actions
+    if (activate) {
+        # Activate realistic behaviour
+        latitude_nut_setter_timer.stop();
+        print("  HI/DG latitude nut autoset stopped");
+
+    } else {
+        # Make unrealistic
+        latitude_nut_update();
+        latitude_nut_setter_timer.start();
+        print("  HI/DG latitude nut autoset activated");
+    }
+
+}
+
 
 
 
@@ -1103,12 +1166,8 @@ setlistener("/sim/signals/fdm-initialized", func {
         }
     }, 1.0, 0);
 
-    # HI/DG: Latitude-Nut autoset if that was activated
-    if (getprop("/instrumentation/heading-indicator/latitude-nut-setting-autoset")) {
-        print("C182 HI/DG latitude nut autoset activated (option was set from previous session)");
-        latitude_nut_update();
-        latitude_nut_setter_timer.start();
-    }
+    # Handle realism settings
+    setlistener("/sim/realism/instruments/realistic-instruments", setRealismInstruments, 1, 0);
 
 });
 

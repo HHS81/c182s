@@ -30,13 +30,13 @@ io.load_nasal(nasal_dir ~ 'Interfaces/GenericFuelInterface.nas', "fg1000");
 io.load_nasal(nasal_dir ~ 'Interfaces/GenericFuelPublisher.nas', "fg1000");
 io.load_nasal(nasal_dir ~ 'Interfaces/GFC700Interface.nas', "fg1000");
 io.load_nasal(nasal_dir ~ 'Interfaces/GFC700Publisher.nas', "fg1000");
-io.load_nasal(nasal_dir ~ 'Interfaces/GMA1347Interface.nas', "fg1000");
 
 
 # C182T-specific interfaces loaded locally, replacing GenericEISPublisher implementation.
 # The reason we do this is that this C182T version uses some modified property locations for the EIS display.
 var aircraft_dir = getprop("/sim/aircraft-dir");
 io.load_nasal(aircraft_dir ~ '/Nasal/c182t-EISPublisher.nas', "fg1000");
+io.load_nasal(aircraft_dir ~ '/Nasal/GMA1347Interface.nas', "fg1000");
 
 
 var GenericInterfaceController = {

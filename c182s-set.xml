@@ -849,15 +849,6 @@
                         </binding>
                     </item>
                     </menu>
-                    <menu n="10">
-                        <item n="99">
-                        <label>Aircraft Failure Management</label>
-                        <binding>
-                            <command>dialog-show</command>
-                            <dialog-name>extended-failure-dialog-c182s</dialog-name>
-                        </binding>
-                    </item>
-                </menu>
             </default>
         </menubar>
 

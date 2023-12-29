@@ -783,13 +783,6 @@
         <menubar include="gui/dialogs/c182s-menu.xml">
           <default n="0">
             <menu n="10">
-              <item n="97">
-                <label>Aircraft Failure Management</label>
-                <binding>
-                    <command>dialog-show</command>
-                    <dialog-name>extended-failure-dialog-c182t</dialog-name>
-                </binding>
-              </item>
               <item n="98">
                 <label>Display PFD</label>
                 <binding>

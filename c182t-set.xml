@@ -231,7 +231,7 @@
 
   <realism>
     <instruments>
-      <realistic-instruments type="bool">true</realistic-instruments>
+      <realistic-instruments type="bool">false</realistic-instruments>
     </instruments>
   </realism>
 

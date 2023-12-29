@@ -1098,11 +1098,45 @@
         <row>9</row>
         <col>1</col>
         <property>/sim/failure-manager/instrumentation/avionics/autopilot/serviceable</property>
+        <visible>
+          <equals>
+            <property>/sim/aircraft</property>
+            <value>c182s</value> 
+          </equals>
+        </visible>
       </checkbox>
       <input>
         <row>9</row>
         <col>2</col>
         <property>/sim/failure-manager/instrumentation/avionics/autopilot/mtbf</property>
+        <visible>
+          <equals>
+            <property>/sim/aircraft</property>
+            <value>c182s</value> 
+          </equals>
+        </visible>
+      </input>
+      <checkbox>
+        <row>9</row>
+        <col>1</col>
+        <property>/sim/failure-manager/autopilot/GFC700/serviceable</property>
+        <visible>
+          <equals>
+            <property>/sim/aircraft</property>
+            <value>c182t</value> 
+          </equals>
+        </visible>
+      </checkbox>
+      <input>
+        <row>9</row>
+        <col>2</col>
+        <property>/sim/failure-manager/autopilot/GFC700/mtbf</property>
+        <visible>
+          <equals>
+            <property>/sim/aircraft</property>
+            <value>c182t</value> 
+          </equals>
+        </visible>
       </input>
       
       <text>

@@ -942,6 +942,41 @@ setlistener("/sim/signals/fdm-initialized", func {
         print("C182 FGCamera integration loaded");
     }
 
+    # C182 internal flashlight
+    # We want to use the walkers settings if they are set, however that is a patch pending
+    # see: https://sourceforge.net/p/flightgear/codetickets/2853/
+    # TODO: Once the patch in fgdata was accepted, we can safely just remove this code here.
+    #       Also our custom flashlight entry in the aircraft menu is not needed anymore
+    if (props.globals.getNode("sim/walker/flashlight/mode").getValue() == nil) {
+        setprop("sim/walker/flashlight/mode", 0);
+        setprop("sim/walker/flashlight/brightness-norm", 0.5);
+        setlistener("sim/walker/flashlight/mode", func(n) {
+            var mode = n.getValue();
+            
+            # flashlight on/off
+            if (mode == 0){
+                setprop("sim/walker/flashlight/dim-factor", 0.0);
+            } else {
+                setprop("sim/walker/flashlight/dim-factor", getprop("sim/walker/flashlight/brightness-norm"));
+            }
+            
+            # flashlight colour
+            if (mode == 2) {
+                setprop("sim/walker/flashlight/colour-red-factor",   1.0);
+                setprop("sim/walker/flashlight/colour-green-factor", 0.0);
+                setprop("sim/walker/flashlight/colour-blue-factor",  0.0);
+            } else {
+                setprop("sim/walker/flashlight/colour-red-factor",   1.0);
+                setprop("sim/walker/flashlight/colour-green-factor", 1.0);
+                setprop("sim/walker/flashlight/colour-blue-factor",  1.0);
+            }
+        }, 1);
+    } else {
+        print("[TODO]: looks like the walker flashlight got available in fgdata, so this code here is not needed anymore.");
+        print("        see: https://sourceforge.net/p/flightgear/codetickets/2853/");
+        # Also our custom flashlight entry in the aircraft menu is not needed anymore
+    }
+
 });
 
 # generate legacy author property (used by the about dialog)

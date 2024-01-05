@@ -92,7 +92,7 @@
     <object-name>Breaker.ADF</object-name>
     <object-name>Breaker.AutoPilot</object-name>
     <object-name>CowlFlapsLever</object-name>
-	<object-name>FlapSwitch</object-name>
+    <object-name>FlapSwitch</object-name>
     <object-name>key</object-name>
     <object-name>start</object-name>
     <object-name>starter</object-name>

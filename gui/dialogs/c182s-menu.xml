@@ -60,13 +60,6 @@
                 </binding>
             </item>
             
-            <item>
-                <label>Flashlight</label>
-                <binding>
-                    <command>nasal</command>
-                    <script>c182s.toggle_flashlight()</script>
-                </binding>
-            </item>
 
 	    <item>
                 <label>Fuel/Oil management</label>

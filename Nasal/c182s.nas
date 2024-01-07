@@ -947,6 +947,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     # see: https://sourceforge.net/p/flightgear/codetickets/2853/
     # TODO: Once the patch in fgdata was accepted, we can safely just remove this code here.
     #       Also our custom flashlight entry in the aircraft menu is not needed anymore
+    #       Also the CTRL+F keybind definiton can be removed.
     if (props.globals.getNode("sim/walker/flashlight/mode").getValue() == nil) {
         setprop("sim/walker/flashlight/mode", 0);
         setprop("sim/walker/flashlight/brightness-norm", 0.25);
@@ -975,6 +976,7 @@ setlistener("/sim/signals/fdm-initialized", func {
         print("[TODO]: looks like the walker flashlight got available in fgdata, so this code here is not needed anymore.");
         print("        see: https://sourceforge.net/p/flightgear/codetickets/2853/");
         # Also our custom flashlight entry in the aircraft menu is not needed anymore
+        # Also the CTRL+F keybind definiton can be removed.
     }
 
 });

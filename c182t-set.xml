@@ -751,6 +751,10 @@
     <desc>Cowl flaps close/open</desc>
    </key>
    <key>
+    <name>CTRL+F</name>
+    <desc>Toggle Flashlight</desc>
+   </key>
+   <key>
     <name>y/Y</name>
     <desc>Toggle yoke visibility</desc>
    </key>
@@ -1449,6 +1453,17 @@
         <desc>Cowl flaps open</desc>
         <binding>
             <command>c182_cowlflap_step_open</command>
+        </binding>
+      </key>
+      <key n="6">
+        <name>CTRL+F</name>
+        <desc>Toggle Flashlight</desc>
+        <binding n="0">
+          <command>property-cycle</command>
+          <property>/sim/walker/flashlight/mode</property>
+          <value type="int">0</value> <!-- off -->
+          <value type="int">1</value> <!-- white -->
+          <value type="int">2</value> <!-- red -->
         </binding>
       </key>
 

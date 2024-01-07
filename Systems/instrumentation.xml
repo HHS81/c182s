@@ -33,7 +33,7 @@ file, these values will be used (they are hardcoded).
   <airspeed-indicator>
     <name>airspeed-indicator</name>
     <number>0</number>
-    <total-pressure>/systems/pitot/total-pressure-inhg</total-pressure>
+    <total-pressure>/systems/pitot/measured-total-pressure-inhg</total-pressure>
     <static-pressure>/systems/static-pressure-inhg-selected</static-pressure>
   </airspeed-indicator>
 

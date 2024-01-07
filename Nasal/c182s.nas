@@ -949,7 +949,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     #       Also our custom flashlight entry in the aircraft menu is not needed anymore
     if (props.globals.getNode("sim/walker/flashlight/mode").getValue() == nil) {
         setprop("sim/walker/flashlight/mode", 0);
-        setprop("sim/walker/flashlight/brightness-norm", 0.5);
+        setprop("sim/walker/flashlight/brightness-norm", 0.25);
         setlistener("sim/walker/flashlight/mode", func(n) {
             var mode = n.getValue();
             

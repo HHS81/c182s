@@ -1663,21 +1663,21 @@
     <heading-deg>0</heading-deg>
   </direction>
   <ambient>
-    <r><property>sim/walker/flashlight/colour-red-factor</property></r>
-    <g><property>sim/walker/flashlight/colour-green-factor</property></g>
-    <b><property>sim/walker/flashlight/colour-blue-factor</property></b>
+    <r><property>sim/walker/flashlight/color-red-factor</property></r>
+    <g><property>sim/walker/flashlight/color-green-factor</property></g>
+    <b><property>sim/walker/flashlight/color-blue-factor</property></b>
     <a>1</a>
   </ambient>
   <diffuse>
-    <r><property>sim/walker/flashlight/colour-red-factor</property></r>
-    <g><property>sim/walker/flashlight/colour-green-factor</property></g>
-    <b><property>sim/walker/flashlight/colour-blue-factor</property></b>
+    <r><property>sim/walker/flashlight/color-red-factor</property></r>
+    <g><property>sim/walker/flashlight/color-green-factor</property></g>
+    <b><property>sim/walker/flashlight/color-blue-factor</property></b>
     <a>1</a>
   </diffuse>
   <specular>
-    <r><property>sim/walker/flashlight/colour-red-factor</property></r>
-    <g><property>sim/walker/flashlight/colour-green-factor</property></g>
-    <b><property>sim/walker/flashlight/colour-blue-factor</property></b>
+    <r><property>sim/walker/flashlight/color-red-factor</property></r>
+    <g><property>sim/walker/flashlight/color-green-factor</property></g>
+    <b><property>sim/walker/flashlight/color-blue-factor</property></b>
     <a>1</a>
   </specular>
   <attenuation>

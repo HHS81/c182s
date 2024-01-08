@@ -963,13 +963,13 @@ setlistener("/sim/signals/fdm-initialized", func {
             
             # flashlight colour
             if (mode == 2) {
-                setprop("sim/walker/flashlight/colour-red-factor",   1.0);
-                setprop("sim/walker/flashlight/colour-green-factor", 0.0);
-                setprop("sim/walker/flashlight/colour-blue-factor",  0.0);
+                setprop("sim/walker/flashlight/color-red-factor",   1.0);
+                setprop("sim/walker/flashlight/color-green-factor", 0.0);
+                setprop("sim/walker/flashlight/color-blue-factor",  0.0);
             } else {
-                setprop("sim/walker/flashlight/colour-red-factor",   1.0);
-                setprop("sim/walker/flashlight/colour-green-factor", 1.0);
-                setprop("sim/walker/flashlight/colour-blue-factor",  1.0);
+                setprop("sim/walker/flashlight/color-red-factor",   1.0);
+                setprop("sim/walker/flashlight/color-green-factor", 1.0);
+                setprop("sim/walker/flashlight/color-blue-factor",  1.0);
             }
         }, 1);
     } else {

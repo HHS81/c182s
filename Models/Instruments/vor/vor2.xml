@@ -164,7 +164,7 @@
          <binding>
            <command>property-adjust</command>
            <property>/instrumentation/nav[1]/radials/selected-deg</property>
-           <factor>1</factor>
+           <factor>-1</factor>
            <min>0</min>
            <max>360</max>
            <wrap>1</wrap>

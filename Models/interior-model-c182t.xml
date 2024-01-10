@@ -2631,6 +2631,7 @@
                 <condition> <not><property>sim/model/c182s/cockpit/fuel_tank_selector-z</property></not> </condition>
                 <command>property-adjust</command>
                 <property>controls/switches/fuel_tank_selector_tgt</property>
+                <factor>-1</factor>
                 <wrap>true</wrap>
                 <min>0</min>
                 <max>4</max> <!-- 0=off, 1=right, 2=both, 3=left -->

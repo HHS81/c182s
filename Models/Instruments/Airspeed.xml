@@ -91,7 +91,7 @@
         <type>rotate</type>
         <object-name>Airspeed.Knob</object-name>
         <property alias="../../params/tas-face-rotation"/>
-        <factor>-5</factor>
+        <factor>5</factor>
         <axis>
             <x>1</x>
             <y>0</y>

@@ -815,6 +815,10 @@
     <desc>Cowl flaps close/open</desc>
    </key>
    <key>
+    <name>CTRL+F</name>
+    <desc>Toggle Flashlight</desc>
+   </key>
+   <key>
     <name>y/Y</name>
     <desc>Toggle yoke visibility</desc>
    </key>
@@ -1462,7 +1466,6 @@
     <file>Aircraft/c182s/Nasal/immat.nas</file>
     <file>Aircraft/c182s/Nasal/gma340.nas</file>
     <file>Aircraft/c182s/Nasal/c182s-states.nas</file>
-    <file>Aircraft/c182s/Nasal/flashlight.nas</file>
     <file>Aircraft/c182s/Nasal/annunciator_panel.nas</file>
     <file>Aircraft/c182s/Nasal/damage.nas</file>
     <file>Aircraft/c182s/Nasal/mp-parachuters.nas</file>

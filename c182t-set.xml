@@ -1455,17 +1455,6 @@
             <command>c182_cowlflap_step_open</command>
         </binding>
       </key>
-      <key n="6">
-        <name>CTRL+F</name>
-        <desc>Toggle Flashlight</desc>
-        <binding n="0">
-          <command>property-cycle</command>
-          <property>/sim/walker/flashlight/mode</property>
-          <value type="int">0</value> <!-- off -->
-          <value type="int">1</value> <!-- white -->
-          <value type="int">2</value> <!-- red -->
-        </binding>
-      </key>
 
       <!-- overwriting { and } default aliases -->
       <key n="123">

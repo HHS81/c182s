@@ -855,6 +855,54 @@ setlistener("/sim/model/c182s/parachuters/trigger-jump", func(node) {
 
 
 ##########
+# C182 internal cockpit flashlight (example how to mod it)
+##########
+var c182_flashlight_la  = -100;
+var c182_flashlight_lad = 10;
+var c182_flashlight_ac  = 0;
+var c182_flashlight_acd = 30;
+var c182_flashlight_ts  = 0.25;
+var c182_flashlight_tmf = 1;
+var c182_flashlight_tm  = maketimer(0.1, func{
+    var ts = c182_flashlight_ts;
+    if (c182_flashlight_tmf) {
+        logger.screen.red("E"~" N"~" J "~"O"~" Y"~" !");
+        c182_flashlight_tmf = 0;
+    }
+    setprop("sim/walker/flashlight/dim-factor", 1.0);
+    setprop("sim/walker/flashlight/color-red-factor",   1.0);
+    setprop("sim/walker/flashlight/color-green-factor", 0.0);
+    setprop("sim/walker/flashlight/color-blue-factor",  0.0);
+    interpolate("sim/walker/flashlight/color-red-factor",   1.0, ts, 0.0, ts, 0.0, ts, 0.0, ts, 1.0, ts, 1.0, ts);
+    interpolate("sim/walker/flashlight/color-green-factor", 0.0, ts, 0.0, ts, 1.0, ts, 1.0, ts, 1.0, ts, 0.0, ts);
+    interpolate("sim/walker/flashlight/color-blue-factor",  1.0, ts, 1.0, ts, 1.0, ts, 0.0, ts, 0.0, ts, 0.0, ts);
+    if (getprop("sim/walker/flashlight/mode") == 1337)
+        c182_flashlight_tm.restart(ts*6);
+});
+setlistener("sim/walker/flashlight/mode", func(n) {
+    c182_flashlight_ac += 1;
+    var tnow = getprop("/sim/time/elapsed-sec");
+    if (c182_flashlight_la + c182_flashlight_lad < tnow) {
+        c182_flashlight_la = tnow;
+        c182_flashlight_ac = 1;
+        if (c182_flashlight_tm.isRunning) {
+            c182_flashlight_tm.stop();
+            setprop("sim/walker/flashlight/mode", 0);
+        }
+    } else {
+        if (c182_flashlight_ac >= c182_flashlight_acd) {
+            setprop("sim/walker/flashlight/mode", 1337);
+            if (!c182_flashlight_tm.isRunning) {
+                c182_flashlight_tmf = 1;
+                c182_flashlight_tm.restart(0.1);
+                c182_flashlight_la = tnow-c182_flashlight_lad+2;
+            }
+        }
+    }
+});
+
+
+##########
 # FGComands for bindings
 ##########
 var c182_cowlflap_step = func(v) {
@@ -940,43 +988,6 @@ setlistener("/sim/signals/fdm-initialized", func {
             #c182s.DoorL.close();
         };
         print("C182 FGCamera integration loaded");
-    }
-
-    # C182 internal flashlight
-    # We want to use the walkers settings if they are set, however that is a patch pending
-    # see: https://sourceforge.net/p/flightgear/codetickets/2853/
-    # TODO: Once the patch in fgdata was accepted, we can safely just remove this code here.
-    #       Also our custom flashlight entry in the aircraft menu is not needed anymore
-    #       Also the CTRL+F keybind definiton can be removed.
-    if (props.globals.getNode("sim/walker/flashlight/mode").getValue() == nil) {
-        setprop("sim/walker/flashlight/mode", 0);
-        setprop("sim/walker/flashlight/brightness-norm", 0.25);
-        setlistener("sim/walker/flashlight/mode", func(n) {
-            var mode = n.getValue();
-            
-            # flashlight on/off
-            if (mode == 0){
-                setprop("sim/walker/flashlight/dim-factor", 0.0);
-            } else {
-                setprop("sim/walker/flashlight/dim-factor", getprop("sim/walker/flashlight/brightness-norm"));
-            }
-            
-            # flashlight colour
-            if (mode == 2) {
-                setprop("sim/walker/flashlight/color-red-factor",   1.0);
-                setprop("sim/walker/flashlight/color-green-factor", 0.0);
-                setprop("sim/walker/flashlight/color-blue-factor",  0.0);
-            } else {
-                setprop("sim/walker/flashlight/color-red-factor",   1.0);
-                setprop("sim/walker/flashlight/color-green-factor", 1.0);
-                setprop("sim/walker/flashlight/color-blue-factor",  1.0);
-            }
-        }, 1);
-    } else {
-        print("[TODO]: looks like the walker flashlight got available in fgdata, so this code here is not needed anymore.");
-        print("        see: https://sourceforge.net/p/flightgear/codetickets/2853/");
-        # Also our custom flashlight entry in the aircraft menu is not needed anymore
-        # Also the CTRL+F keybind definiton can be removed.
     }
 
 });

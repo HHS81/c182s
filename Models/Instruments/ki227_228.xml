@@ -98,9 +98,9 @@
       </not>
     </condition>
     <offset-deg>113</offset-deg>
-    <factor>-1</factor>
+    <factor>1</factor>
     <axis>
-      <x>-1</x>
+      <x>1</x>
       <y>0</y>
       <z>0</z>
     </axis>
@@ -154,7 +154,7 @@
     <object-name>HDGSelector</object-name>
 
     <property alias="../../params/rotation-deg"/>
-    <factor>8.0</factor>
+    <factor>-8.0</factor>
     <offset-deg>13</offset-deg>
     <axis>
       <x>1.0</x>

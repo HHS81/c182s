@@ -89,15 +89,15 @@
     <type>rotate</type>
     <object-name>CompassRose</object-name>
     <property alias="../../params/rotation-deg"/>
-    <condition>
+    <!--<condition>
       <not>
         <equals>
           <property alias="../../../../../params/model"/>
           <value>ki228</value>
         </equals>
       </not>
-    </condition>
-    <offset-deg>113</offset-deg>
+    </condition>-->
+<!--      <offset-deg>-120</offset-deg> -->
     <factor>1</factor>
     <axis>
       <x>1</x>
@@ -106,7 +106,7 @@
     </axis>
   </animation>
 
-  <animation>
+  <!--<animation>
     <type>rotate</type>
     <object-name>CompassRose</object-name>
     <property alias="../../params/indicated-heading"/>
@@ -122,7 +122,7 @@
       <y>0</y>
       <z>0</z>
     </axis>
-  </animation>
+  </animation>-->
 
   
 

@@ -171,7 +171,7 @@
       <binding>
         <command>property-adjust</command>
         <property alias="../../../../params/rotation-deg"/>
-        <factor>-1</factor>
+        <factor>1</factor>
         <min>0</min>
         <max>360</max>
         <wrap>1</wrap>

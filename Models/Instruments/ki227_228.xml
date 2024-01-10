@@ -97,6 +97,7 @@
         </equals>
       </not>
     </condition>
+    <offset-deg>113</offset-deg>
     <factor>-1</factor>
     <axis>
       <x>-1</x>
@@ -154,6 +155,7 @@
 
     <property alias="../../params/rotation-deg"/>
     <factor>8.0</factor>
+    <offset-deg>13</offset-deg>
     <axis>
       <x>1.0</x>
       <y>0.0</y>

@@ -24,6 +24,11 @@
   </model>
 
   <model>
+    <name>Cover</name>
+    <path>Exterior/cover/cover.xml</path>
+  </model>
+
+  <model>
     <name>ControlLock</name>
     <path>control-lock/control-lock.xml</path>
   </model>

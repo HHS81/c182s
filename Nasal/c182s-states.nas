@@ -136,6 +136,9 @@ var setEngineRunning = func(rpm, throttle, mix, prop) {
     # Remove Towbar if it was attached
     setprop("/fdm/jsbsim/external_reactions/towbar/attached", 0);
     
+    # Remove plane cover if it was still there
+    setprop("/sim/model/c182s/securing/plane-cover-visible", 0);
+    
     
     # Battery/Alternator on
     setprop("/controls/engines/engine[0]/master-bat", 1);
@@ -221,6 +224,18 @@ var kap140_fastboot = func() {
         setprop("autopilot/kap140/servo/pitch-servo/check-timer", -1);
         setprop("/instrumentation/altimeter-kap140-internal/setting-inhg", getprop("instrumentation/altimeter/setting-inhg"));
 };
+
+
+####################
+# Function to toggle walker outside at start
+####################
+var check_start_walker_outside = func() {
+    var cover_applied = getprop("/sim/model/c182s/securing/plane-cover-visible") or 0;
+    if (cover_applied) {
+        print("Start with walker outside (cover was applied)");
+        setprop("/sim/walker/key-triggers/outside-toggle", 1);
+    }
+}
 
 
 ####################
@@ -352,6 +367,9 @@ var checklist_approach = func() {
 
 var state_saved = func() {
     # Basically: do nothing, flightgear already has initialized everything from the savefile
+    
+    # If plane cover was applied, toggle walker out
+    check_start_walker_outside();
 };
 
 var state_coldAndDark = func() {
@@ -377,6 +395,9 @@ var state_coldAndDark = func() {
     setprop("/controls/engines/engine[0]/mixture", 0.0);
     setprop("/controls/switches/starter", 0);
     setprop("/controls/switches/magnetos", 0);
+    
+    # If plane cover was applied, toggle walker out
+    check_start_walker_outside();
 };
 
 var state_readyForTakeoff = func() {

@@ -265,7 +265,7 @@
                             </enable>
                             <binding>
                                 <command>property-toggle</command>
-                                    <property>/sim/model/c182s/securing/plane-cover-visible</property>
+                                <property>sim/model/c182s/securing/plane-cover-visible</property>
                             </binding>
                             <binding>
                                 <command>dialog-update</command>
@@ -305,8 +305,6 @@
                     <command>dialog-update</command>
                 </binding>
             </checkbox>
-
-			</group>
 
                         <empty><stretch>true</stretch></empty>
                     </group>

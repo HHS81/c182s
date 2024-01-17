@@ -359,6 +359,11 @@ update_virtual_bus = func( dt ) {
             setprop("/sim/messages/pilot", "Disconnect towbar before starting engine!");
             return;
         }
+        if (getprop("/sim/model/c182s/securing/plane-cover-visible") and v == 1)
+        {
+            setprop("/sim/messages/pilot", "Remove plane cover before starting engine!");
+            return;
+        }
         if (getprop("/engines/engine[0]/running"))
         {
             setprop("/controls/switches/starter", 0);

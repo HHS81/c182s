@@ -114,6 +114,7 @@
         <object-name>ImmatWingLeft</object-name>
         <condition>
             <property>sim/model/c182s/immat</property>
+            <not><property>sim/model/c182s/securing/plane-cover-visible</property></not>
         </condition>
     </animation>
 

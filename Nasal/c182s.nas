@@ -372,11 +372,22 @@ BaggageDoor.setpos(BaggageDoor_saved);
 WindowL.setpos(WindowL_saved);
 WindowR.setpos(WindowR_saved);
 
+# Plane cover
+setlistener("/sim/model/c182s/securing/plane-cover-visible", func(n) {
+    if (n.getBoolValue()) {
+        DoorL.setpos(0);
+        DoorR.setpos(0);
+        BaggageDoor.setpos(0);
+        WindowL.setpos(0);
+        WindowR.setpos(0);
+    }
+});
 
 #####################
 # Adjust properties when in motion
 # - external electrical disconnect when groundspeed higher than 0.1ktn (replace later with distance less than 0.01...)
 # - remove external heat
+# - remove plane cover
 ad = func {
     GROUNDSPEED = getprop("/velocities/groundspeed-kt") or 0;
     AGL         = getprop("/position/altitude-agl-ft")  or 0;
@@ -384,6 +395,7 @@ ad = func {
     if (GROUNDSPEED > 0.1) {
         setprop("/controls/electric/external-power", "false");
         #setprop("/engines/engine/external-heat/enabled", "false"); #not needed, as you can't start the engine with preheater enabled, nor enable the preheater anyway when engine running, or aircraft moving
+        setprop("/sim/model/c182s/securing/plane-cover-visible", "false");
         setprop("/controls/fuel/tank[0]/fill-up", 0);
         setprop("/controls/fuel/tank[1]/fill-up", 0);
     }

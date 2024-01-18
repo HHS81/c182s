@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+	<path>cover.ac</path>
+	<texture-path>Aircraft/c182s/Models/</texture-path>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Cover</object-name>
+		<condition>
+			<property>sim/model/c182s/securing/plane-cover-visible</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>Cover</object-name>
+		<texture>cover.png</texture>
+		<texture-prop>sim/model/livery/cover-texture</texture-prop>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Cover</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>sim/model/c182s/securing/plane-cover-visible</property>
+			</binding>
+		</action>
+	</animation>
+</PropertyList>

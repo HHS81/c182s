@@ -10,6 +10,7 @@
         <name type="string">default</name>
 	 <index type="int">1</index>
 	 <texture>Liveries/Default.png</texture>
+         <cover-texture>Liveries/cover_blue.png</cover-texture>
         <immat>
             <font_name>LiberationFonts/LiberationSansNarrow-BoldItalic.ttf</font_name>
             <font_size>650</font_size>

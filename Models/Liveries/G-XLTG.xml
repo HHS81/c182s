@@ -10,6 +10,7 @@
         <name type="string">G-XLTG</name>
 	 <index type="int">1</index>
 	 <texture>Liveries/GXLTG.png</texture>
+         <cover-texture>Liveries/cover_blue.png</cover-texture>
      <immat>
                     <font_name>LiberationFonts/LiberationSans-Bold.ttf</font_name>
                     <font_size>520</font_size>

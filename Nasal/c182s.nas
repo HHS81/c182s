@@ -372,11 +372,22 @@ BaggageDoor.setpos(BaggageDoor_saved);
 WindowL.setpos(WindowL_saved);
 WindowR.setpos(WindowR_saved);
 
+# Plane cover
+setlistener("/sim/model/c182s/securing/plane-cover-visible", func(n) {
+    if (n.getBoolValue()) {
+        DoorL.setpos(0);
+        DoorR.setpos(0);
+        BaggageDoor.setpos(0);
+        WindowL.setpos(0);
+        WindowR.setpos(0);
+    }
+});
 
 #####################
 # Adjust properties when in motion
 # - external electrical disconnect when groundspeed higher than 0.1ktn (replace later with distance less than 0.01...)
 # - remove external heat
+# - remove plane cover
 ad = func {
     GROUNDSPEED = getprop("/velocities/groundspeed-kt") or 0;
     AGL         = getprop("/position/altitude-agl-ft")  or 0;
@@ -384,6 +395,7 @@ ad = func {
     if (GROUNDSPEED > 0.1) {
         setprop("/controls/electric/external-power", "false");
         #setprop("/engines/engine/external-heat/enabled", "false"); #not needed, as you can't start the engine with preheater enabled, nor enable the preheater anyway when engine running, or aircraft moving
+        setprop("/sim/model/c182s/securing/plane-cover-visible", "false");
         setprop("/controls/fuel/tank[0]/fill-up", 0);
         setprop("/controls/fuel/tank[1]/fill-up", 0);
     }
@@ -990,7 +1002,42 @@ setlistener("/sim/signals/fdm-initialized", func {
         print("C182 FGCamera integration loaded");
     }
 
+
+    # If we are starting outside and in cold weather, add some ice/snow to the plane
+    # We use the metar value for this, as it seems always to be set. Either coming from
+    # the metar fetcher, or "0" if something failed, or properly initialized from manual select
+    settimer(func() {
+        var coverPresent    = getprop("/sim/model/c182s/securing/plane-cover-visible");
+        var fogFrostEnabled = getprop("/sim/model/c182s/enable-fog-frost") or 0;
+        var tempC_OAT       = getprop("/environment/metar/temperature-degc") or 0;
+        var engStartingOrRunning = getprop("/fdm/jsbsim/propulsion/engine/set-running")
+                                or getprop("/engines/engine/auto-start")
+                                or getprop("/engines/engine/running")
+                                or 0;
+        #debug.dump(["Startup weather DBG",
+        #    ["fogFfogFrostEnabled",fogFfogFrostEnabled],
+        #    ["coverPresent",coverPresent],
+        #    ["tempC_OAT",tempC_OAT],
+        #    ["engStartingOrRunning",engStartingOrRunning]
+        #]);
+        
+        if (tempC_OAT < -1 and fogFrostEnabled and !coverPresent and !engStartingOrRunning) {
+            print("Startup frost added (it's really cold and we were parked without cover)");
+            setprop("/fdm/jsbsim/ice/wing", 0.2);
+            setprop("/fdm/jsbsim/ice/stabilizer", 0.2);
+            setprop("/fdm/jsbsim/ice/propeller", 0.2);
+            setprop("/fdm/jsbsim/ice/fuselage", 0.2);
+            setprop("/fdm/jsbsim/ice/windshield", 0.2);
+            setprop("/systems/static[0]/icing", 0.2);
+            
+            setprop("/fdm/jsbsim/heat/init-moisture", 0.45);
+            settimer(func() { setprop("/fdm/jsbsim/heat/init-moisture", 0); }, 5.0, 0);
+        }
+    }, 1.0, 0);
+
+
 });
+
 
 # generate legacy author property (used by the about dialog)
 var authors = [];

@@ -24,6 +24,11 @@
   </model>
 
   <model>
+    <name>Cover</name>
+    <path>Exterior/cover/cover.xml</path>
+  </model>
+
+  <model>
     <name>ControlLock</name>
     <path>control-lock/control-lock.xml</path>
   </model>
@@ -1221,6 +1226,9 @@
      <button>0</button>
      <repeatable>false</repeatable>
      <binding>
+        <condition>
+          <not><property>sim/model/c182s/securing/plane-cover-visible</property></not>
+        </condition>
         <command>nasal</command>
         <script>c182s.DoorL.toggle();</script>
      </binding>
@@ -1280,6 +1288,9 @@
      <button>0</button>
      <repeatable>false</repeatable>
      <binding>
+        <condition>
+          <not><property>sim/model/c182s/securing/plane-cover-visible</property></not>
+        </condition>
         <command>nasal</command>
         <script>c182s.DoorR.toggle();</script>
      </binding>
@@ -1569,6 +1580,9 @@
             <button>0</button>
             <repeatable>false</repeatable>
             <binding>
+                <condition>
+                  <not><property>sim/model/c182s/securing/plane-cover-visible</property></not>
+                </condition>
                 <command>dialog-show</command>
                 <dialog-name>c182s-oilmanagement-dialog</dialog-name>
             </binding>
@@ -1620,6 +1634,8 @@
      <repeatable>false</repeatable>
      <binding>
         <condition>
+          <and>
+            <not><property>sim/model/c182s/securing/plane-cover-visible</property></not>
             <or>
                 <equals>
                     <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
@@ -1636,16 +1652,20 @@
                     </less-than>
                 </and>
             </or>
+          </and>
         </condition>
         <command>nasal</command>
         <script>c182s.BaggageDoor.toggle();</script>
      </binding>
       <binding>
           <condition>
+            <and>
+              <not><property>sim/model/c182s/securing/plane-cover-visible</property></not>
               <equals>
                   <property>/sim/model/door-positions/BaggageDoor/position-norm</property>
                   <value>0</value>
               </equals>
+            </and>
           </condition>
           <command>dialog-show</command>
           <dialog-name>c182s-baggage-weight-dialog</dialog-name>

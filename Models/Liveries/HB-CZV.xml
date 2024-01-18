@@ -7,6 +7,7 @@
         <name type="string">HB-CZV</name>
 	 <index type="int">1</index>
 	 <texture>Liveries/HB-CZV.png</texture>
+         <cover-texture>Liveries/cover_blue.png</cover-texture>
       </livery>
 <c182s>
 <material>

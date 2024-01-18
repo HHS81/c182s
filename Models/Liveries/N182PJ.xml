@@ -7,6 +7,7 @@
         <name type="string">N182PJ</name>
 	 <index type="int">1</index>
 	 <texture>Liveries/N182PJ.png</texture>
+         <cover-texture>Liveries/cover_blue.png</cover-texture>
       </livery>
 <c182s>
 <material>

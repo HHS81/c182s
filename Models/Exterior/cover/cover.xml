@@ -19,9 +19,10 @@
 	</animation>
 	
 	<animation>
-		<type>knob</type>
+		<type>pick</type>
 		<object-name>Cover</object-name>
 		<action>
+			<button>0</button>
 			<binding>
 				<command>property-toggle</command>
 				<property>sim/model/c182s/securing/plane-cover-visible</property>

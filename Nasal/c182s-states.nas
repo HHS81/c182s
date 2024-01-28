@@ -85,7 +85,8 @@ var calibrateInstruments = func() {
     var magnetic_variation = getprop("/environment/magnetic-variation-deg");
     magnetic_variation     = sprintf("%.2f", magnetic_variation);
     setprop("/instrumentation/heading-indicator/align-deg", -magnetic_variation);
-    setprop("/instrumentation/heading-indicator/offset-deg", -magnetic_variation);
+    setprop("/instrumentation/heading-indicator/error-deg", 0);
+    setprop("/instrumentation/heading-indicator/offset-deg", 0);
     print("Heading Indicator calibrated to: " ~ magnetic_variation ~ " magVar");
 }
 

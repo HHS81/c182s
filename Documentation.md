@@ -61,6 +61,11 @@ When parking the plane after flight, you should go to 1800 RPM and lean mix for 
 - `Winter Kit`  
   The winter kit is needed in cold weather (<20°F/-6°C) to reduce cooling air flow. If not supplied, the engine will possibly not get warm enough to develop good power, but be sure to remove it in hot weather, otherwise you risk too high CHT temps.
 
+### Realistic Instruments
+When this option is activated, some instruments will be simulated more realistically.  
+The gyro based instruments will need more time to spin up fully (2-3 minutes), so for example give the HI/DG time before trying to calibrate it. Also, excess forces (steep turns, high G-loads) can introduce errors or even induce tumbling of the gyro.  
+The HI will be affected by some expected errors like precession due to earths rotation, as well as transport wander, so you need to check and recalibrate the instrument every 15 minutes or so.
+
 ### Autostart
 The c182 features an autostart- and autoshutdown option which can be used to quickly start/stop the engine. The corresponding checklist items
 will be run trough, so for example autostart will take care of removing tiedowns and check fuel contamination for you, as well as ensuring good battery, enough oil and fuel. Shutdown will secure the airplane on the ground.

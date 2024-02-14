@@ -149,4 +149,9 @@
   <stuck type="bool"> 0 </stuck>
 </magnetic-compass>
 
+<vertical-speed-indicator>
+  <indicated-speed-fpm type="double">0</indicated-speed-fpm>
+  <indicated-speed-mps type="double">0</indicated-speed-mps>
+</vertical-speed-indicator>
+
 </PropertyList>

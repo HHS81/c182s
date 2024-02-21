@@ -108,10 +108,16 @@ file, these values will be used (they are hardcoded).
       <g-limit-tumble-factor>1.5</g-limit-tumble-factor>
     </limits>
     <gyro>
+      <!-- The spin up time is given as about 3 minutes from Kellys.
+           The spin down time I could only find various vague mentions on the net, that for safety
+           the gyro needs time to spin down. That time is given in a frame from about 5 to 15 minutes.
+           So I tought a sensible setting would be the lower end. But in reality, this also depends
+           on the wear and tear of the gyros bearings. -->
       <minimum-spin-norm>0.8</minimum-spin-norm>
       <spin-up-sec>180.0</spin-up-sec>     <!-- ~3 minutes -->
       <spin-down-sec>300.0</spin-down-sec> <!-- ~5 minutes -->
     </gyro>
+
   </heading-indicator-dg>
 
   <magnetic-compass>

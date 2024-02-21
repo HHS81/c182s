@@ -61,7 +61,7 @@
             <tag>ifr</tag>
             <tag>high-wing</tag>
         </tags>
-    <minimum-fg-version>2017.3.1</minimum-fg-version>
+    <minimum-fg-version>2020.4.0</minimum-fg-version>
     <rating>
       <FDM type="int">5</FDM>
       <systems type="int">3</systems>
@@ -228,6 +228,12 @@
       <available>true</available>
     </pilot-model>
   </rendering>
+
+  <realism>
+    <instruments>
+      <realistic-instruments type="bool">false</realistic-instruments>
+    </instruments>
+  </realism>
 
 <instrumentation n="0">
     <path>Aircraft/c182s/Systems/instrumentation.xml</path>
@@ -976,8 +982,12 @@
             <path>/instrumentation/attitude-indicator/caged-flag</path>
             <path>/instrumentation/attitude-indicator/horizon-offset-deg</path>
             <path>/instrumentation/airspeed-indicator/tas-face-rotation</path>
-            <path>/instrumentation/heading-indicator/offset-deg</path>
             <path>/instrumentation/heading-indicator/align-deg</path>
+            <path>/instrumentation/heading-indicator/error-deg</path>
+            <path>/instrumentation/heading-indicator/offset-deg-save</path>
+            <path>/instrumentation/heading-indicator/caged-flag</path>
+            <path>/instrumentation/heading-indicator/latitude-nut-setting</path>
+            <path>/sim/realism/instruments/realistic-instruments</path>
             <path>/autopilot/settings/heading-bug-deg</path>
             <path>/instrumentation/transponder/id-code</path>
             <path>/instrumentation/transponder/factory-vfr-code</path>

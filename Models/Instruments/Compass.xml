@@ -122,7 +122,7 @@
       <command>set-tooltip</command>
       <tooltip-id>heading-bug</tooltip-id>
       <mapping>heading</mapping>
-      <label>Compass: %3.f</label>
+      <label>Compass: %3.0f</label>
       <property>instrumentation/magnetic-compass/indicated-heading-deg-final</property>
     </binding>
   </hovered>

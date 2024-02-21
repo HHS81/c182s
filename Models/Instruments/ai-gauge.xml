@@ -206,10 +206,16 @@
   <object-name>InopIndicator</object-name>
   <condition>
     <not>
+      <and>
         <greater-than>
             <property>instrumentation/attitude-indicator/spin</property>
-            <value>0.50</value>
+            <value>0.80</value> <!-- to match <spin_thresh> config prop instrumentation.xml -->
         </greater-than>
+        <greater-than>
+            <property>/systems/vacuum/suction-inhg</property>
+            <value>3.80</value>
+        </greater-than>
+      </and>
     </not>
   </condition>
  </animation>

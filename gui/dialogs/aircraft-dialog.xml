@@ -20,6 +20,15 @@
     <modal>false</modal>
     <draggable>true</draggable>
 
+    <nasal>
+        <open><![CDATA[
+            # Ensure latitude nut has a value
+            var latnutprop = "/instrumentation/heading-indicator/latitude-nut-setting";
+            if (!getprop(latnutprop))
+                setprop(latnutprop, 0);
+        ]]></open>
+    </nasal>
+
 
     <group>
         <layout>hbox</layout>
@@ -62,6 +71,35 @@
             <default>false</default>
             <binding>
                 <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+    
+    <group>
+        <layout>hbox</layout>
+
+        <text>
+            <label>HI/DG Latitude Nut setting:</label>
+            <halign>left</halign>
+        </text>
+    
+        <input>
+            <name>latitude-nut-setting</name>
+            <halign>left</halign>
+            <property>/instrumentation/heading-indicator/latitude-nut-setting</property>
+            <type>INT</type>
+            <width>2</width>
+        </input>
+        <button>
+            <legend>Apply</legend>
+            <equal>true</equal>
+            <default>false</default>
+            <binding>
+                <command>dialog-apply</command>
+                <object-name>latitude-nut-setting</object-name>
             </binding>
             <binding>
                 <command>dialog-close</command>
@@ -231,9 +269,24 @@
                 
                 <empty><stretch>true</stretch></empty> <!-- force group to the left -->
             </group>
-            
-            
+
         </group>
+        
+        <checkbox>
+            <halign>left</halign>
+            <label>Realistic Instruments</label>
+            <property>/sim/realism/instruments/realistic-instruments</property>
+            <live>true</live>
+            <binding>
+                <command>property-toggle</command>
+                <property>/sim/realism/instruments/realistic-instruments</property>
+            </binding>
+            <binding>
+                <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
+            </binding>
+        </checkbox>
+        
+        <hrule/>
         
         <checkbox>
             <halign>left</halign>

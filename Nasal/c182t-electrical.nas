@@ -11,8 +11,9 @@
 # Initialize internal values
 #
 
-var battery = nil;
-var alternator = nil;
+var battery     = nil;
+var battery_sby = nil;
+var alternator  = nil;
 
 var last_time = 0.0;
 
@@ -21,6 +22,8 @@ var ebus1_volts = 0.0;
 var ebus2_volts = 0.0;
 
 props.globals.initNode("/systems/electrical/battery-serviceable",    1, "BOOL");
+props.globals.initNode("/systems/electrical/battery-sby-serviceable",    1, "BOOL");
+props.globals.initNode("/systems/electrical/battery-sby-charge-percent", 0.9, "DOUBLE");
 props.globals.initNode("/systems/electrical/alternator-serviceable", 1, "BOOL");
 props.globals.initNode("/systems/electrical/taxi-light-serviceable", 1, "BOOL");
 props.globals.initNode("/systems/electrical/landing-light-serviceable", 1, "BOOL");
@@ -53,8 +56,9 @@ var epu = func{
 epu();
 
 init_electrical = func {
-    battery = BatteryClass.new();
-    alternator = AlternatorClass.new();
+    battery     = BatteryClass.new("battery");
+    battery_sby = BatteryClass.new("battery-sby");
+    alternator  = AlternatorClass.new();
 
 
     # set initial switch positions
@@ -86,14 +90,21 @@ init_electrical = func {
 #
 
 BatteryClass = {};
-BatteryClass.new = func() {
+BatteryClass.new = func(name) {
     var obj = { parents : [BatteryClass],
+                name: name,
                 ideal_volts : 24.0,
                 ideal_amps : 30.0,
                 amp_hours : 12.75,
-                charge_percent : getprop("/systems/electrical/battery-charge-percent") or 1.0,
+                charge_percent : getprop("/systems/electrical/"~name~"-charge-percent") or 1.0,
                 charge_amps : 7.0 };
     return obj;
+}
+
+BatteryClass.isServiceable = func {
+    var svc = getprop("/systems/electrical/"~me.name~"-serviceable");
+    if (!svc) return 0.0;
+    return svc;
 }
 
 ##
@@ -114,11 +125,11 @@ BatteryClass.apply_load = func( amps, dt ) {
     }
     if ((charge_percent < 0.3)and(me.charge_percent >= 0.3))
     {
-        print("Warning: Low battery! Enable alternator or apply external power to recharge battery.");
+        print("Warning: Low "~me.name~"! Enable alternator or apply external power to recharge battery.");
     }
     me.charge_percent = charge_percent;
-    setprop("/systems/electrical/battery-charge-percent", charge_percent * capacity_factor);
-    # print( "battery percent = ", charge_percent);
+    setprop("/systems/electrical/"~me.name~"-charge-percent", charge_percent * capacity_factor);
+    #print( me.name~"percent = ", charge_percent);
     return me.amp_hours * charge_percent;
 }
 
@@ -128,7 +139,7 @@ BatteryClass.apply_load = func( amps, dt ) {
 #
 
 BatteryClass.get_output_volts = func {
-    if (!getprop("/systems/electrical/battery-serviceable")) return 0.0;
+    if (!me.isServiceable()) return 0.0;
     
     var x = 1.0 - me.charge_percent;
     var tmp = -(3.0 * x - 1.0);
@@ -260,6 +271,7 @@ BatteryClass.reset_to_full_charge = func {
 var reset_battery_and_circuit_breakers = func {
     # Charge battery to 100 %
     battery.reset_to_full_charge();
+    battery_sby.reset_to_full_charge();
 
     # Reset circuit breakers
     setprop("/controls/circuit-breakers/Flap", 1);
@@ -292,12 +304,15 @@ update_virtual_bus = func( dt ) {
     var battery_volts = 0.0;
     var alternator_volts = 0.0;
     if ( serviceable ) {
-        battery_volts = battery.get_output_volts();
-        alternator_volts = alternator.get_output_volts();
+        battery_volts     = battery.get_output_volts();
+        battery_sby_volts = battery_sby.get_output_volts();
+        alternator_volts  = alternator.get_output_volts();
     }
 
     # switch state
     var master_bat = getprop("/controls/engines/engine[0]/master-bat");
+    var battery_sby_switch = getprop("controls/switches/battery-sby");  # 0=armed, 1=off, 2=test
+    var battery_sby_armed = 0; if (battery_sby_switch == 0) battery_sby_armed = 1;
     var master_alt = getprop("/controls/engines/engine[0]/master-alt");
     if (getprop("/controls/electric/external-power")) {
         external_volts = 28;
@@ -307,9 +322,16 @@ update_virtual_bus = func( dt ) {
     var bus_volts = 0.0;
     var power_source = nil;
     if ( master_bat ) {
-        bus_volts = battery_volts;
+        if (battery_volts <= 22 and battery_sby_armed and battery_sby.isServiceable()) {
+            # select standby battery if it is armed and charged
+            bus_volts = battery_sby_volts;
+            power_source = "battery-sby";
+        } else {
+            # main battery
+            bus_volts = battery_volts;
+            power_source = "battery";
+        }
         bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
-        power_source = "battery";
     }
     if ( master_alt and (alternator_volts > bus_volts) ) {
         bus_volts = alternator_volts;
@@ -321,7 +343,7 @@ update_virtual_bus = func( dt ) {
         bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
         power_source = "external";
     }
-    # print( "virtual bus volts = ", bus_volts );
+    #print( "virtual bus volts = ", bus_volts, "; power_source=", power_source );
 
     # starter motor
     var starter_switch = getprop("controls/switches/starter");
@@ -388,20 +410,31 @@ update_virtual_bus = func( dt ) {
     var ammeter = 0.0;
     if ( bus_volts > 1.0 ) {
         # ammeter gauge
-        if ( power_source == "battery" ) {
+        if ( power_source == "battery" or power_source == "battery-sby") {
             ammeter = -load;
         } else {
             ammeter = battery.charge_amps;
         }
     }
-    # print( "ammeter = ", ammeter );
+    #print( "ammeter = ", ammeter );
 
     # charge/discharge the battery
+    #print( "loading SBY:  power_source=",power_source, " battery_sby.isServiceable()=",battery_sby.isServiceable(),"; battery_sby_armed=", battery_sby_armed);
     if ( power_source == "battery" ) {
         battery.apply_load( load, dt );
+    } elsif ( power_source == "battery-sby" ) {
+        battery_sby.apply_load( load, dt );
     } elsif ( bus_volts > battery_volts ) {
-        battery.apply_load( -battery.charge_amps, dt );
+        if (battery.isServiceable())
+            battery.apply_load( -battery.charge_amps, dt );
+
+        if (battery_sby.isServiceable() and battery_sby_armed)
+            battery_sby.apply_load( -battery.charge_amps, dt );
     }
+
+    # If SBY battery test switch is invoked, drain directly from that battery without indicating
+    if (battery_sby_switch == 2 and battery_sby.isServiceable())
+        battery_sby.apply_load( 1.0, dt );
 
     # filter ammeter needle pos
     ammeter_ave = 0.8 * ammeter_ave + 0.2 * ammeter;

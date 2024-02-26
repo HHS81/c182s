@@ -14,6 +14,10 @@
     <property type="bool"   value="1">/systems/electrical/avionics-fan/serviceable</property>
     <property type="double" value="0">/systems/electrical/avionics-fan/spin</property>
     <property type="double" value="0">/systems/electrical/outputs/avionics-fan</property>
+    <property type="bool"   value="0">/systems/electrical/avionics-fan[1]/operating</property>
+    <property type="bool"   value="1">/systems/electrical/avionics-fan[1]/serviceable</property>
+    <property type="double" value="0">/systems/electrical/avionics-fan[1]/spin</property>
+    <property type="double" value="0">/systems/electrical/outputs/avionics-fan[1]</property>
 
     <!-- the electrical system is implemented in electrical.nas! -->
 
@@ -101,6 +105,19 @@
         </switch>
         <lag_filter name="/systems/electrical/avionics-fan/spin">
             <input>/systems/electrical/avionics-fan/operating</input>
+            <c1>0.3</c1>
+        </lag_filter>
+
+        <!-- C182T MFD fan -->
+        <switch name="/systems/electrical/avionics-fan[1]/operating">
+            <default value="0"/>
+            <test value="1">
+                /systems/electrical/avionics-fan[1]/serviceable EQ 1
+                /systems/electrical/outputs/avionics-fan[1] GE 12.0
+            </test>
+        </switch>
+        <lag_filter name="/systems/electrical/avionics-fan[1]/spin">
+            <input>/systems/electrical/avionics-fan[1]/operating</input>
             <c1>0.3</c1>
         </lag_filter>
     </channel>

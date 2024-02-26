@@ -457,11 +457,15 @@ var customFailures_special = {
         
     ],
     c182t:[
-        # STNDBY-Battery not implemented yet!
-        #{id:"systems/electrical/battery-stndby", name:"STNDBY Battery",
-        #actuator: set_unserviceable_abs("/systems/electrical/battery-stndby-serviceable"),
-        #trigger:  MtbfTrigger.new(0)
-        #},
+        {id:"systems/electrical/battery-stndby", name:"STBY Battery",
+            actuator: set_unserviceable_abs("/systems/electrical/battery-sby-serviceable"),
+            trigger:  MtbfTrigger.new(0)
+        },
+        
+        {id:"systems/electrical/avionics-fan[1]", name:"Avionics Fan",
+            actuator: set_unserviceable_abs("/systems/electrical/avionics-fan[1]/serviceable"),
+            trigger:  MtbfTrigger.new(0)
+        },
         
         # Clock failure is not implemented ion FG1000 yet
         {id:"instrumentation/clock",    name:"FG1000 clock",

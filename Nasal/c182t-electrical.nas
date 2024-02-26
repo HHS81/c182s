@@ -820,6 +820,14 @@ avionics_bus_2 = func() {
     
     var load = bus_volts / 20.0;
 
+    # Avionics Fan Power
+    if ( bus_volts > 12 and getprop("/controls/circuit-breakers/AvionicsFan")) {
+        setprop("/systems/electrical/outputs/avionics-fan", bus_volts);
+        load += bus_volts / 28;
+    } else {
+        setprop("/systems/electrical/outputs/avionics-fan", 0);
+    }
+
     # FG1000 PFD Power.
     if ( bus_volts > 22 and getprop("/instrumentation/fg1000/screen2/serviceable") ) {
         setprop("/systems/electrical/outputs/fg1000-mfd", bus_volts);

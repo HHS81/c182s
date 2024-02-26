@@ -413,6 +413,11 @@ customFailures_c182common = [
         actuator: set_unserviceable_abs("/systems/pitot/pitot-heat-serviceable"),
         trigger:  MtbfTrigger.new(0)
     },
+    
+    {id:"systems/electrical/avionics-fan", name:"Avionics Fan",
+        actuator: set_unserviceable_abs("/systems/electrical/avionics-fan/serviceable"),
+        trigger:  MtbfTrigger.new(0)
+    },
 ];
 
 # Airplane variant specific failures

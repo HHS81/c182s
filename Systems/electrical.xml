@@ -10,6 +10,10 @@
     <property type="double" value="0">/systems/electrical/outputs/comm[1]</property>
     <property type="double" value="0">/systems/electrical/flaps/actuator-cmd-diff</property>
     <property type="bool"   value="0">/systems/electrical/flaps/actuator-moving</property>
+    <property type="bool"   value="0">/systems/electrical/avionics-fan/operating</property>
+    <property type="bool"   value="1">/systems/electrical/avionics-fan/serviceable</property>
+    <property type="double" value="0">/systems/electrical/avionics-fan/spin</property>
+    <property type="double" value="0">/systems/electrical/outputs/avionics-fan</property>
 
     <!-- the electrical system is implemented in electrical.nas! -->
 
@@ -84,6 +88,21 @@
                 /systems/electrical/flaps/actuator-cmd-diff > 0.005
             </test>
         </switch>
+    </channel>
+
+    <!-- Avionics fan -->
+    <channel name="avionics_fan" execrate="10">
+        <switch name="/systems/electrical/avionics-fan/operating">
+            <default value="0"/>
+            <test value="1">
+                /systems/electrical/avionics-fan/serviceable EQ 1
+                /systems/electrical/outputs/avionics-fan GE 12.0
+            </test>
+        </switch>
+        <lag_filter name="/systems/electrical/avionics-fan/spin">
+            <input>/systems/electrical/avionics-fan/operating</input>
+            <c1>0.3</c1>
+        </lag_filter>
     </channel>
 
 </system>

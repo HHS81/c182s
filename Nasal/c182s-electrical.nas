@@ -3,6 +3,7 @@
 # preliminary battery charge/discharge model and realistic ammeter
 # gauge modeling.
 #
+# Details in POH 7-31ff.
 #
 
 
@@ -727,13 +728,6 @@ avionics_bus_1 = func() {
     setprop("/systems/electrical/outputs/turn-coordinator",0);    
     }
 
-    # Avionics Fan Power
-    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/AvionicsFan")) {
-    setprop("/systems/electrical/outputs/avionics-fan", bus_volts);
-    load += bus_volts / 28;
-    }else{
-    setprop("/systems/electrical/outputs/avionics-fan", 0);
-    }
     
     # GPS Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/GPS")) {
@@ -826,6 +820,13 @@ if ( bus_volts > 22 ) {
    # setprop("/instrumentation/marker-beacon[0]/serviceable, 0");
 }
      
+    # Avionics Fan Power
+    if ( bus_volts > 12 and getprop("/controls/circuit-breakers/AvionicsFan")) {
+        setprop("/systems/electrical/outputs/avionics-fan", bus_volts);
+        load += bus_volts / 28;
+    } else {
+        setprop("/systems/electrical/outputs/avionics-fan", 0);
+    }
      
     # Com 2 Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom2")) {

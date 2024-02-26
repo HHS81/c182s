@@ -79,6 +79,12 @@
     </group>
     
     <group>
+        <visible>
+          <equals>
+            <property>/sim/aircraft</property>
+            <value>c182s</value> 
+          </equals>
+        </visible>
         <layout>hbox</layout>
 
         <text>

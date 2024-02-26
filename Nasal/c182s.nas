@@ -1006,16 +1006,18 @@ var setRealismInstruments = func() {
     }
     
     # Do some specific actions
-    if (activate) {
-        # Activate realistic behaviour
-        latitude_nut_setter_timer.stop();
-        print("  HI/DG latitude nut autoset stopped");
+    if (getprop("/sim/aircraft") == "c182s") {
+        if (activate) {
+            # Activate realistic behaviour
+            latitude_nut_setter_timer.stop();
+            print("  HI/DG latitude nut autoset stopped");
 
-    } else {
-        # Make unrealistic
-        latitude_nut_update();
-        latitude_nut_setter_timer.start();
-        print("  HI/DG latitude nut autoset activated");
+        } else {
+            # Make unrealistic
+            latitude_nut_update();
+            latitude_nut_setter_timer.start();
+            print("  HI/DG latitude nut autoset activated");
+        }
     }
 
 }

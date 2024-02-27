@@ -1427,6 +1427,25 @@
    </jsbsim>
  </fdm>
 
+  <systems>
+    <electrical>
+      <AVMBus n="0">
+        <load-volts type="double">0.0</load-volts>
+        <max-volts type="double">32.0</max-volts>   <!-- expected load with all equipment on -->
+      </AVMBus>
+      <AVMBus n="1">
+        <load-volts type="double">0.0</load-volts>
+        <max-volts type="double">32.0</max-volts>   <!-- expected load with all equipment on -->
+      </AVMBus>
+      <avionics-fan n="0">
+        <execute type="bool">true</execute>
+      </avionics-fan>
+      <avionics-fan n="1">
+        <execute type="bool">true</execute>
+      </avionics-fan>
+    </electrical>
+  </systems>
+
 
  <!-- ================ map keyboard ================ -->
  <input>

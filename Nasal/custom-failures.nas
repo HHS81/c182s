@@ -414,10 +414,6 @@ customFailures_c182common = [
         trigger:  MtbfTrigger.new(0)
     },
     
-    {id:"systems/electrical/avionics-fan", name:"Avionics Fan",
-        actuator: set_unserviceable_abs("/systems/electrical/avionics-fan/serviceable"),
-        trigger:  MtbfTrigger.new(0)
-    },
 ];
 
 # Airplane variant specific failures
@@ -455,6 +451,11 @@ var customFailures_special = {
             trigger:  MtbfTrigger.new(0),
         },
         
+        {id:"systems/electrical/avionics-fan[1]", name:"Avionics Fan",
+        actuator: set_unserviceable_abs("/systems/electrical/avionics-fan[1]/serviceable"),
+        trigger:  MtbfTrigger.new(0)
+    },
+        
     ],
     c182t:[
         {id:"systems/electrical/battery-stndby", name:"STBY Battery",
@@ -462,7 +463,12 @@ var customFailures_special = {
             trigger:  MtbfTrigger.new(0)
         },
         
-        {id:"systems/electrical/avionics-fan[1]", name:"Avionics Fan",
+        {id:"systems/electrical/avionics-fan", name:"Avionics Fan 1",
+            actuator: set_unserviceable_abs("/systems/electrical/avionics-fan/serviceable"),
+            trigger:  MtbfTrigger.new(0)
+        },
+        
+        {id:"systems/electrical/avionics-fan[1]", name:"Avionics Fan 2",
             actuator: set_unserviceable_abs("/systems/electrical/avionics-fan[1]/serviceable"),
             trigger:  MtbfTrigger.new(0)
         },

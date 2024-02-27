@@ -741,18 +741,18 @@ cross_feed_bus = func() {
 
 
 avionics_bus_1 = func() {
-    var bus_volts = 0.0;
-    var load = 0.0;
-
     # we are fed from the electrical bus 1
-    var master_av = getprop("/controls/switches/AVMBus1");
-    var avb_brk   = getprop("/controls/circuit-breakers/AVNBus1");
-    if ( master_av and avb_brk) {
+    var master_av    = getprop("/controls/switches/AVMBus1");
+    var avb_brk      = getprop("/controls/circuit-breakers/AVNBus1");
+    var isOverheated = getprop("/systems/electrical/avionics-fan[0]/temp/overheated"); # If Avionics are overheated, simulate electrical failure of equipment
+    var bus_volts    = 0.0;
+    if ( master_av and avb_brk and !isOverheated) {
         bus_volts = ebus1_volts;
         bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
     }
 
-    load += bus_volts / 20.0;
+    var load = bus_volts / 20.0;
+
 
     # Turn Coordinator Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/TurnCoord")) {
@@ -828,17 +828,20 @@ avionics_bus_1 = func() {
         setprop("systems/electrical/outputs/nav[0]", 0);
     }
 
+
     # return cumulative load
+    setprop("/systems/electrical/AVMBus[0]/load-volts", load);
     return load;
 }
 
 
 avionics_bus_2 = func() {
     # we are fed from the electrical bus 2
-    var master_av = getprop("/controls/switches/AVMBus2");
-    var avb_brk   = getprop("/controls/circuit-breakers/AVNBus2");
-    var bus_volts = 0.0;
-    if ( master_av and avb_brk) {
+    var master_av    = getprop("/controls/switches/AVMBus2");
+    var avb_brk      = getprop("/controls/circuit-breakers/AVNBus2");
+    var isOverheated = getprop("/systems/electrical/avionics-fan[1]/temp/overheated"); # If Avionics are overheated, simulate electrical failure of equipment
+    var bus_volts    = 0.0;
+    if ( master_av and avb_brk and !isOverheated) {
         bus_volts = ebus2_volts;
         bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
     }
@@ -909,6 +912,7 @@ avionics_bus_2 = func() {
 
 
     # return cumulative load
+    setprop("/systems/electrical/AVMBus[1]/load-volts", load);
     return load;
 }
 

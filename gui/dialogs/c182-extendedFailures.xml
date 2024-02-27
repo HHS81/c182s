@@ -1364,7 +1364,7 @@
       <checkbox>
         <row>12</row>
         <col>1</col>
-        <property>/sim/failure-manager/systems/electrical/avionics-fan/serviceable</property>
+        <property>/sim/failure-manager/systems/electrical/avionics-fan[1]/serviceable</property>
         <visible>
           <equals>
             <property>/sim/aircraft</property>
@@ -1375,7 +1375,7 @@
       <input>
         <row>12</row>
         <col>2</col>
-        <property>/sim/failure-manager/systems/electrical/avionics-fan/mtbf</property>
+        <property>/sim/failure-manager/systems/electrical/avionics-fan[1]/mtbf</property>
         <visible>
           <equals>
             <property>/sim/aircraft</property>
@@ -1388,7 +1388,7 @@
         <row>14</row>
         <col>0</col>
         <halign>right</halign>
-        <label>Avionics Fan</label>
+        <label>Avionics Fan 1</label>
         <visible>
           <equals>
             <property>/sim/aircraft</property>

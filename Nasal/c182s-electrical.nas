@@ -382,8 +382,16 @@ update_virtual_bus = func( dt ) {
     load += electrical_bus_1();
     load += electrical_bus_2();
     load += cross_feed_bus();
-    load += avionics_bus_1();
-    load += avionics_bus_2();
+    var avn1_load = avionics_bus_1();
+    load += avn1_load;
+    var avn2_load = avionics_bus_2();
+    load += avn2_load;
+
+    # Avionics temperature load
+    # All avionics are contributing to thermal load
+    var avionics_thermal_load = (avn1_load+avn2_load) / 12;
+    if (avionics_thermal_load > 1.0) avionics_thermal_load = 1.0;
+    setprop("/systems/electrical/avionics-fan[0]/load-norm", avionics_thermal_load);
 
     # system loads and ammeter gauge
     var ammeter = 0.0;
@@ -699,9 +707,8 @@ avionics_bus_1 = func() {
     # we are fed from the electrical bus 2
     var master_av    = getprop("/controls/switches/AVMBus1");
     var avb_brk      = getprop("/controls/circuit-breakers/AVNBus1");
-    var isOverheated = getprop("/systems/electrical/avionics-fan[1]/temp/overheated"); # only one main fan
     var bus_volts    = 0.0;
-    if ( master_av and avb_brk and !isOverheated) {
+    if ( master_av and avb_brk) {
         bus_volts = ebus2_volts;
         bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
     }
@@ -742,7 +749,14 @@ avionics_bus_1 = func() {
     }
 
     # Nav/Com 2 Power
-    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom2")) {
+    # This is cooled from the Avionics fan, which is powered by AVMBus2.
+    # If the equipment is overheated, then this need to fail
+    var isOverheated = getprop("/systems/electrical/avionics-fan[0]/temp/overheated");
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom2")
+        and getprop("/instrumentation/comm[1]/power-btn")
+        and getprop("/instrumentation/comm[1]/serviceable")
+        and !isOverheated
+    ) {
         setprop("systems/electrical/outputs/comm[1]", bus_volts);
         load += bus_volts / 28;
 
@@ -795,7 +809,7 @@ avionics_bus_2 = func() {
     # we are fed from the electrical bus 1
     var master_av    = getprop("/controls/switches/AVMBus2");
     var avb_brk      = getprop("/controls/circuit-breakers/AVNBus2");
-    var isOverheated = getprop("/systems/electrical/avionics-fan[1]/temp/overheated"); # If Avionics are overheated, simulate electrical failure of equipment
+    var isOverheated = getprop("/systems/electrical/avionics-fan[0]/temp/overheated"); # If Avionics are overheated, simulate electrical failure of equipment
     var bus_volts    = 0.0;
     if ( master_av and avb_brk and !isOverheated) {
         bus_volts = ebus1_volts;
@@ -804,14 +818,6 @@ avionics_bus_2 = func() {
 
     var load = bus_volts / 20.0;
 
-
-    # Avionics Fan Power
-    if ( bus_volts > 12 and getprop("/controls/circuit-breakers/AvionicsFan")) {
-        setprop("/systems/electrical/outputs/avionics-fan[1]", bus_volts);
-        load += bus_volts / 28;
-    } else {
-        setprop("/systems/electrical/outputs/avionics-fan[1]", 0);
-    }
 
     # GPS Power
     if ( bus_volts > 22 and getprop("/controls/circuit-breakers/GPS")) {
@@ -822,7 +828,10 @@ avionics_bus_2 = func() {
     }
 
     # Nav/Com 1 Power
-    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom1")) {
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom1")
+        and getprop("/instrumentation/comm[0]/power-btn")
+        and getprop("/instrumentation/comm[0]/serviceable")
+    ) {
         setprop("systems/electrical/outputs/comm[0]", bus_volts);
         load += bus_volts / 28;
 
@@ -834,6 +843,15 @@ avionics_bus_2 = func() {
         setprop("/systems/electrical/outputs/nav[0]", 0);
     }
 
+
+    # Avionics Fan Power
+    # The C182s just has one Fan, cooling both the NAV/Com units, and which is powered from AVMBus2
+    if ( bus_volts > 12 and getprop("/controls/circuit-breakers/AvionicsFan")) {
+        setprop("/systems/electrical/outputs/avionics-fan[0]", bus_volts);
+        load += bus_volts / 28;
+    } else {
+        setprop("/systems/electrical/outputs/avionics-fan[0]", 0);
+    }
 
     # return cumulative load
     setprop("/systems/electrical/AVMBus[1]/load-volts", load);

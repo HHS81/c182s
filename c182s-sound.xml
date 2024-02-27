@@ -1709,7 +1709,7 @@
             </condition>
             <position>
                 <x>0.2000</x>
-                <y>0.0000</y>
+                <y>-0.3000</y>
                 <z>0</z>
             </position>
             <reference-dist>0.1</reference-dist>
@@ -1741,7 +1741,7 @@
             </condition>
             <position>
                 <x>0.2000</x>
-                <y>0.0000</y>
+                <y>0.3000</y>
                 <z>0</z>
             </position>
             <reference-dist>0.1</reference-dist>

@@ -403,8 +403,19 @@ update_virtual_bus = func( dt ) {
     load += electrical_bus_1();
     load += electrical_bus_2();
     load += cross_feed_bus();
-    load += avionics_bus_1();
-    load += avionics_bus_2();
+    var avn1_load = avionics_bus_1();
+    load += avn1_load;
+    var avn2_load = avionics_bus_2();
+    load += avn2_load;
+
+    # Avionics temperature load
+    # All avionics are contributing to thermal load
+    var avionics_thermal_load1 = avn1_load / 9;
+    var avionics_thermal_load2 = avn2_load / 5;
+    if (avionics_thermal_load1 > 1.0) avionics_thermal_load1 = 1.0;
+    if (avionics_thermal_load2 > 1.0) avionics_thermal_load2 = 1.0;
+    setprop("/systems/electrical/avionics-fan[0]/load-norm", avionics_thermal_load1);
+    setprop("/systems/electrical/avionics-fan[1]/load-norm", avionics_thermal_load2);
 
     # system loads and ammeter gauge
     var ammeter = 0.0;
@@ -762,13 +773,6 @@ avionics_bus_1 = func() {
         setprop("/systems/electrical/outputs/turn-coordinator",0);
     }
 
-    # Avionics Fan Power
-    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/AvionicsFan")) {
-        setprop("/systems/electrical/outputs/avionics-fan", bus_volts);
-        load += bus_volts / 24;
-    } else {
-        setprop("/systems/electrical/outputs/avionics-fan", 0);
-    }
 
     # FG1000 PFD Power.
     if ( bus_volts > 22 and getprop("/instrumentation/fg1000/screen1/serviceable") ) {
@@ -828,6 +832,13 @@ avionics_bus_1 = func() {
         setprop("systems/electrical/outputs/nav[0]", 0);
     }
 
+    # Avionics Fan Power
+    if ( bus_volts > 12 and getprop("/controls/circuit-breakers/AvionicsFan")) {
+        setprop("/systems/electrical/outputs/avionics-fan[0]", bus_volts);
+        load += bus_volts / 24;
+    } else {
+        setprop("/systems/electrical/outputs/avionics-fan[0]", 0);
+    }
 
     # return cumulative load
     setprop("/systems/electrical/AVMBus[0]/load-volts", load);
@@ -848,13 +859,6 @@ avionics_bus_2 = func() {
 
     var load = bus_volts / 20.0;
 
-    # Avionics Fan Power
-    if ( bus_volts > 12 and getprop("/controls/circuit-breakers/AvionicsFan")) {
-        setprop("/systems/electrical/outputs/avionics-fan[1]", bus_volts);
-        load += bus_volts / 28;
-    } else {
-        setprop("/systems/electrical/outputs/avionics-fan[1]", 0);
-    }
 
     # FG1000 MFD Power.
     if ( bus_volts > 22 and getprop("/instrumentation/fg1000/screen2/serviceable") ) {
@@ -908,6 +912,15 @@ avionics_bus_2 = func() {
         load += bus_volts / 24;
     } else {
         setprop("/systems/electrical/outputs/autopilot", 0);
+    }
+
+
+    # Avionics Fan Power
+    if ( bus_volts > 12 and getprop("/controls/circuit-breakers/AvionicsFan")) {
+        setprop("/systems/electrical/outputs/avionics-fan[1]", bus_volts);
+        load += bus_volts / 24;
+    } else {
+        setprop("/systems/electrical/outputs/avionics-fan[1]", 0);
     }
 
 

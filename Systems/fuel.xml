@@ -34,7 +34,9 @@ Author: 09/2017  Benedikt Hallinger
     <property type="double" value="0">fuel/manifold-flooded-empty-cranking-rate-throttle-pps</property>
 
     <property type="bool" value="1">/systems/fuel/fuel-pump-aux-serviceable</property>
+    <property type="bool" value="0">/systems/fuel/fuel-pump-aux-operating</property>
     <property type="bool" value="1">/systems/fuel/fuel-pump-engine-serviceable</property>
+    <property type="bool" value="0">/systems/fuel/fuel-pump-engine-operating</property>
     <property type="bool" value="1">/systems/fuel/fuel-pipe-serviceable</property>
     <property type="double" value="0">/systems/fuel/tank[0]/leak-flow-rate-pps</property>
     <property type="double" value="0">/systems/fuel/tank[1]/leak-flow-rate-pps</property>
@@ -369,6 +371,20 @@ Author: 09/2017  Benedikt Hallinger
         <!-- ##### FUEL PUMPING #### -->
         <!-- ####################### -->
         <!-- The fuel pumps fill the manifold from the fuel pipe. Fill rate >= treshold means engine flooded. -->
+        <switch name="/systems/fuel/fuel-pump-engine-operating">
+            <default value="0"/>
+            <test logic="AND" value="1">
+                <!-- motor pump is serviceable -->
+                /systems/fuel/fuel-pump-engine-serviceable EQ   1
+            </test>
+        </switch>
+        <switch name="/systems/fuel/fuel-pump-aux-operating">
+            <default value="0"/>
+            <test logic="AND" value="1">
+                /systems/electrical/outputs/fuel-pump      GT   0
+                /systems/fuel/fuel-pump-aux-serviceable    EQ   1
+            </test>
+        </switch>
         <switch name="fuel/pump-flow-rate-pps">
             <default value="0"/>
 
@@ -393,15 +409,8 @@ Author: 09/2017  Benedikt Hallinger
                     /fdm/jsbsim/propulsion/tank[5]/pct-full    LT  45.0 <!-- this threshold roughly defines how much fuel is left after engine shutdown -->
                 </test>
                 <test logic="OR">
-                    <test logic="AND">
-                        <!-- motor pump is serviceable -->
-                        /systems/fuel/fuel-pump-engine-serviceable EQ   1
-                    </test>
-                    <test logic="AND">
-                        <!-- motor pump failed but aux pump is switched on and serviceable -->
-                        /systems/electrical/outputs/fuel-pump      GT   0
-                        /systems/fuel/fuel-pump-aux-serviceable    EQ   1
-                    </test>
+                    /systems/fuel/fuel-pump-engine-operating EQ 1
+                    /systems/fuel/fuel-pump-aux-operating    EQ 1
                 </test>
             </test>
 
@@ -410,8 +419,7 @@ Author: 09/2017  Benedikt Hallinger
             <test logic="AND" value="/systems/fuel/priming-mixture-flow-pps">
                 <!-- engine off: aux pump on and powered? -->
                 /fdm/jsbsim/propulsion/engine/set-running  EQ   0
-                /systems/electrical/outputs/fuel-pump      GT   0
-                /systems/fuel/fuel-pump-aux-serviceable    EQ   1
+                /systems/fuel/fuel-pump-aux-operating      EQ   1
                 /fdm/jsbsim/propulsion/tank[4]/pct-full    GT   1.0
                 /fdm/jsbsim/propulsion/tank[5]/pct-full    LT 100.0
             </test>
@@ -655,7 +663,24 @@ Author: 09/2017  Benedikt Hallinger
                     </min>
                 </max>
             </function>
-            <output>fcs/mixture-pos-norm</output>   <!-- jsbsim internal mixture value fed to engine -->
+            <output>fcs/mixture-cmd-norm</output>
+        </fcs_function>
+
+        <!-- Mixture unit
+             Mixture lever 0.0->1.0 setting is translated to jsbsim internal values.
+             Activating the aux pump enrichens the mixture slightly (POH 7-28).
+        -->
+        <fcs_function name="fcs/mixture-unit-cmd">
+            <function>
+                <sum>
+                    <property>fcs/mixture-cmd-norm</property>
+                    <product>
+                        <property>/systems/fuel/fuel-pump-aux-operating</property>
+                        <value>0.01</value>
+                    </product>
+                </sum>
+            </function>
+            <output>fcs/mixture-pos-norm</output> <!-- jsbsim internal mixture value fed to engine -->
         </fcs_function>
 
 
@@ -751,8 +776,7 @@ Author: 09/2017  Benedikt Hallinger
             </test>
             <test logic="AND" value="/systems/fuel/priming-mixture-flow-gph">   <!-- when normal priming -->
                 /fdm/jsbsim/propulsion/engine/set-running  EQ   0
-                /systems/electrical/outputs/fuel-pump      GT   0
-                /systems/fuel/fuel-pump-aux-serviceable    EQ   1
+                /systems/fuel/fuel-pump-aux-operating      EQ   1
             </test>
         </switch>
         <!-- convert the calculated value to a pct-input for the kinematic -->
@@ -798,8 +822,7 @@ Author: 09/2017  Benedikt Hallinger
             </test>
             <test logic="AND" value="/systems/fuel/priming-mixture-flow-gph-kinematic">
                 /fdm/jsbsim/propulsion/engine/set-running  EQ   0
-                /systems/electrical/outputs/fuel-pump      GT   0
-                /systems/fuel/fuel-pump-aux-serviceable    EQ   1
+                /systems/fuel/fuel-pump-aux-operating      EQ   1
             </test>
         </switch>
 

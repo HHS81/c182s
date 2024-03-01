@@ -103,10 +103,11 @@ BatteryClass.new = func() {
 #
 
 BatteryClass.apply_load = func( amps, dt ) {
+    var old_charge_percent = getprop("/systems/electrical/battery-charge-percent") or 0;
     var capacity_factor = getprop("/systems/electrical/battery-capacity-factor") or 1.0;
     var amphrs_used = amps * dt / 3600.0;
     var percent_used = amphrs_used / me.amp_hours;
-    var charge_percent = me.charge_percent;
+    var charge_percent = old_charge_percent;
     charge_percent -= percent_used;
     if ( charge_percent < 0.0 ) {
         charge_percent = 0.0;
@@ -317,7 +318,7 @@ update_virtual_bus = func( dt ) {
         bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
         power_source = "alternator";
     }
-    if ( external_volts > bus_volts ) {
+    if ( external_volts > bus_volts and master_bat) {
         bus_volts = external_volts;
         bus_volts = sprintf("%.2f", bus_volts);  # reformat to x.yy format
         power_source = "external";

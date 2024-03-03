@@ -223,7 +223,6 @@
   </gpu>
 
   <rendering>
-    <!-- Enable the ALS shadow volume by default -->
     <pilot-model>
       <available>true</available>
     </pilot-model>

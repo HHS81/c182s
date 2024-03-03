@@ -357,11 +357,6 @@
         <object-name>Window.R.001</object-name>
     </effect>
 
-<!-- ALS volume shadow  -->
-    <model>
-        <path>Effects/shadow.xml</path>
-    </model>
-
     <!-- Registration number -->
     <model>
         <path>Immat/immat-c182t.xml</path>

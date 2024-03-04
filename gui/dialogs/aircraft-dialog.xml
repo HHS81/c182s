@@ -537,6 +537,16 @@
                     <property>/sim/rendering/shadow-volume</property>
                 </binding>
             </checkbox>
+            
+            <checkbox>
+                <halign>left</halign>
+                <label>Split master switches operation</label>
+                <property>/sim/model/split-master-switches</property>
+                <live>true</live>
+                <binding>
+                    <command>dialog-apply</command>
+                </binding>
+            </checkbox>
         </group>	
 	
         <hrule/>

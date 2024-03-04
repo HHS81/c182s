@@ -301,6 +301,7 @@
    <fallback-model-index>3</fallback-model-index>
    <hide-yoke type="bool">false</hide-yoke>
    <hide-yoke-alpha-cmd>0.25</hide-yoke-alpha-cmd>
+   <split-master-switches type="bool">false</split-master-switches>
 
     <icing>
        <iceable>
@@ -1074,6 +1075,7 @@
             <path>/sim/failure-manager/display-on-screen</path>
             <path>/sim/failure-manager/restore-on-start</path>
             <path>/sim/model/hide-yoke-alpha-cmd</path>
+            <path>/sim/model/split-master-switches</path>
         </aircraft-data>
 
         <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>

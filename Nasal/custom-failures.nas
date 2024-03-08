@@ -413,6 +413,7 @@ customFailures_c182common = [
         actuator: set_unserviceable_abs("/systems/pitot/pitot-heat-serviceable"),
         trigger:  MtbfTrigger.new(0)
     },
+    
 ];
 
 # Airplane variant specific failures
@@ -450,13 +451,27 @@ var customFailures_special = {
             trigger:  MtbfTrigger.new(0),
         },
         
+        {id:"systems/electrical/avionics-fan[1]", name:"Avionics Fan",
+        actuator: set_unserviceable_abs("/systems/electrical/avionics-fan[1]/serviceable"),
+        trigger:  MtbfTrigger.new(0)
+    },
+        
     ],
     c182t:[
-        # STNDBY-Battery not implemented yet!
-        #{id:"systems/electrical/battery-stndby", name:"STNDBY Battery",
-        #actuator: set_unserviceable_abs("/systems/electrical/battery-stndby-serviceable"),
-        #trigger:  MtbfTrigger.new(0)
-        #},
+        {id:"systems/electrical/battery-stndby", name:"STBY Battery",
+            actuator: set_unserviceable_abs("/systems/electrical/battery-sby-serviceable"),
+            trigger:  MtbfTrigger.new(0)
+        },
+        
+        {id:"systems/electrical/avionics-fan", name:"Avionics Fan 1",
+            actuator: set_unserviceable_abs("/systems/electrical/avionics-fan/serviceable"),
+            trigger:  MtbfTrigger.new(0)
+        },
+        
+        {id:"systems/electrical/avionics-fan[1]", name:"Avionics Fan 2",
+            actuator: set_unserviceable_abs("/systems/electrical/avionics-fan[1]/serviceable"),
+            trigger:  MtbfTrigger.new(0)
+        },
         
         # Clock failure is not implemented ion FG1000 yet
         {id:"instrumentation/clock",    name:"FG1000 clock",

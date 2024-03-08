@@ -533,6 +533,16 @@
             </slider>
         </group>
 
+            <checkbox>
+                <halign>left</halign>
+                <label>Split master switches operation</label>
+                <property>/sim/model/split-master-switches</property>
+                <live>true</live>
+                <binding>
+                    <command>dialog-apply</command>
+                </binding>
+            </checkbox>
+
         </group>	
 	
         <hrule/>

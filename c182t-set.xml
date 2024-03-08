@@ -300,6 +300,7 @@
    <fallback-model-index>3</fallback-model-index>
    <hide-yoke type="bool">false</hide-yoke>
    <hide-yoke-alpha-cmd>0.25</hide-yoke-alpha-cmd>
+   <split-master-switches type="bool">false</split-master-switches>
 
     <icing>
        <iceable>
@@ -1011,6 +1012,8 @@
             <path>/controls/lighting/avionics-lights-norm</path>
             <path>/controls/lighting/radio-lights-norm</path>
             <path>/systems/electrical/battery-charge-percent</path>
+            <path>/systems/electrical/battery-sby-charge-percent</path>
+            <path>/controls/switches/battery-sby</path>
 
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[0]</path>
             <path>/fdm/jsbsim/inertia/pointmass-weight-lbs[1]</path>
@@ -1071,6 +1074,7 @@
             <path>/sim/failure-manager/display-on-screen</path>
             <path>/sim/failure-manager/restore-on-start</path>
             <path>/sim/model/hide-yoke-alpha-cmd</path>
+            <path>/sim/model/split-master-switches</path>
         </aircraft-data>
 
         <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>
@@ -1176,6 +1180,7 @@
   <switches>
    <AVMBus1 type="bool">true</AVMBus1>
    <AVMBus2 type="bool">true</AVMBus2>
+   <battery-sby type="int">0</battery-sby>
    <starter type="bool">false</starter>
    <kt-76c type="double">0</kt-76c>
    <kn-62a type="double">0</kn-62a>
@@ -1422,6 +1427,17 @@
      </ice>
    </jsbsim>
  </fdm>
+
+  <systems>
+    <electrical>
+      <avionics-fan n="0">
+        <execute type="bool">true</execute>
+      </avionics-fan>
+      <avionics-fan n="1">
+        <execute type="bool">true</execute>
+      </avionics-fan>
+    </electrical>
+  </systems>
 
 
  <!-- ================ map keyboard ================ -->

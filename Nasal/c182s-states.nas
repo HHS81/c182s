@@ -351,6 +351,9 @@ var checklist_beforeTakeOff = func() {
     calibrateInstruments();
     
     #setprop("/controls/gear/brake-parking", 0);  #Intentionally left 
+    
+    if (getprop("/sim/aircraft") == "c182t")
+        setprop("/controls/switches/battery-sby", 0);
 }
 
 var checklist_cruise = func() {

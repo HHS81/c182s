@@ -25,6 +25,7 @@
     <object-name>MasterBattSwitch</object-name>
     <object-name>AVMBus1</object-name>
     <object-name>AVMBus2</object-name>
+    <object-name>StandbyBATT</object-name>
 
   <!--<object-name>PanelLightKnob</object-name>
     <object-name>RadioLightKnob</object-name>
@@ -2519,6 +2520,71 @@
             <y-m>-0.427</y-m>
             <z-m>0.282</z-m>
         </center>
+    </animation>
+
+    <animation>
+        <type>knob</type>
+        <object-name>StandbyBATT</object-name>
+        <property>controls/switches/battery-sby</property>
+        <factor>35</factor>
+        <offset-deg>-35</offset-deg>
+        <drag-direction>vertical</drag-direction>
+        <drag-scale-px>-20</drag-scale-px>
+        <axis>
+            <x>0.0</x>
+            <y>1.0</y>
+            <z>0.0</z>
+        </axis>
+        <center>
+            <x-m>0.3583</x-m>
+            <y-m>-0.4575</y-m>
+            <z-m>0.3450</z-m>
+        </center>
+
+        <!-- Normal action, positions 0, 1 and 2 -->
+        <!-- 0=MAIN/ARM, 1=OFF, 2=TEST -->
+        <action>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/switches/battery-sby</property>
+                <min>0</min>
+                <max>2</max>
+            </binding>
+        </action>
+
+        <!-- Release action, limit to 0 and 1. 2 is spring loaded TEST position -->
+        <release>
+            <binding>
+                <command>property-adjust</command>
+                <property>controls/switches/battery-sby</property>
+                <step>0</step>
+                <min>0</min>
+                <max>1</max>
+            </binding>
+        </release>
+    </animation>
+
+    <animation>
+        <object-name>StandbyBATTtestLight</object-name>
+        <type>material</type>
+        <emission>
+            <red>1</red>
+            <green>1</green>
+            <blue>1</blue>
+            <factor-prop>systems/electrical/battery-sby-charge-percent</factor-prop>
+        </emission>
+        <condition>
+            <and>
+                <!--<greater-than>
+                    <property>systems/electrical/battery-sby-charge-percent</property>
+                    <value>25.0</value>
+                </greater-than>-->
+                <equals>
+                    <property>controls/switches/battery-sby</property>
+                    <value>2</value>
+                </equals>
+            </and>
+        </condition>
     </animation>
 
     <!--Domelight Buttons-->

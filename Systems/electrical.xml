@@ -10,30 +10,39 @@
     <property type="double" value="0">/systems/electrical/outputs/comm[1]</property>
     <property type="double" value="0">/systems/electrical/flaps/actuator-cmd-diff</property>
     <property type="bool"   value="0">/systems/electrical/flaps/actuator-moving</property>
+    <property type="bool"   value="0">/systems/electrical/avionics-fan[0]/operating</property>
+    <property type="bool"   value="1">/systems/electrical/avionics-fan[0]/serviceable</property>
+    <property type="double" value="0">/systems/electrical/avionics-fan[0]/spin</property>
+    <property type="double" value="0">/systems/electrical/avionics-fan[0]/load-norm</property>
+    <property type="double" value="0">/systems/electrical/outputs/avionics-fan[0]</property>
+    <property type="bool"   value="0">/systems/electrical/avionics-fan[1]/operating</property>
+    <property type="bool"   value="1">/systems/electrical/avionics-fan[1]/serviceable</property>
+    <property type="double" value="0">/systems/electrical/avionics-fan[1]/spin</property>
+    <property type="double" value="0">/systems/electrical/avionics-fan[1]/load-norm</property>
+    <property type="double" value="0">/systems/electrical/outputs/avionics-fan[1]</property>
 
     <!-- the electrical system is implemented in electrical.nas! -->
 
 <!-- http://www.pacificpowerbatteries.com/aboutbatts/car%20battery%20faq/carfaq7.html-->
 
     <channel name="battery">
-
-<fcs_function name="capacity factor">
-          <function>
-                 <table>
-                    <independentVar>/engines/engine/cowling-air-temperature-degf</independentVar>
-                    <tableData>
-		-40	0.3
-		-30	0.425
-		-20	0.55
-		-10	0.675
-		0	0.8
-		10	0.88
-		20	0.97
-		25	1.0
-                      </tableData>
-                </table>
-          </function>
-          <output>/systems/electrical/battery-capacity-factor</output>   
+        <fcs_function name="capacity factor">
+        <function>
+            <table>
+                <independentVar>/engines/engine/cowling-air-temperature-degf</independentVar>
+                <tableData>
+                    -40   0.3
+                    -30   0.425
+                    -20   0.55
+                    -10   0.675
+                      0   0.8
+                     10   0.88
+                     20   0.97
+                     25   1.0
+                </tableData>
+            </table>
+        </function>
+            <output>/systems/electrical/battery-capacity-factor</output>   
         </fcs_function>
     </channel>
     
@@ -47,7 +56,7 @@
             <test value="1">
                 /instrumentation/comm[0]/volume-selected > 0.05
                 /instrumentation/comm[0]/serviceable == 1
-                /systems/electrical/outputs/comm[0]  >= 22
+<!--                 /systems/electrical/outputs/comm[0]  >= 22 -->
             </test>
         </switch>
         <switch name="com2_power-btn">
@@ -56,7 +65,7 @@
             <test value="1">
                 /instrumentation/comm[1]/volume-selected > 0.05
                 /instrumentation/comm[1]/serviceable == 1
-                /systems/electrical/outputs/comm[1]  >= 22
+<!--                 /systems/electrical/outputs/comm[1]  >= 22 -->
             </test>
         </switch>
     </channel>
@@ -82,6 +91,127 @@
             <default value="0"/>
             <test value="1">
                 /systems/electrical/flaps/actuator-cmd-diff > 0.005
+            </test>
+        </switch>
+    </channel>
+
+    <!-- Avionics fan -->
+    <channel name="avionics_fan" execrate="10" execute="/systems/electrical/avionics-fan[0]/execute">
+        <switch name="/systems/electrical/avionics-fan/operating">
+            <default value="0"/>
+            <test value="1">
+                /systems/electrical/avionics-fan/serviceable EQ 1
+                /systems/electrical/outputs/avionics-fan GE 12.0
+            </test>
+        </switch>
+        <lag_filter name="/systems/electrical/avionics-fan/spin">
+            <input>/systems/electrical/avionics-fan/operating</input>
+            <c1>0.3</c1>
+        </lag_filter>
+
+        <!-- Simulate avionics temperature; the fan uses cabin air and ductwork to cool Avionics -->
+        <!-- TODO: note this is a really simple implementation because of the rare usecase. If needed, should be replaced by actual physics -->
+        <fcs_function name="/systems/electrical/avionics-fan[0]/temp/tgt-temp-degc">
+            <function>
+                <sum>
+                    <property>/fdm/jsbsim/heat/cabin-air-temp-degc</property>
+
+                    <product>  <!-- uncooled target temperature based on "full load" -->
+                        <property>/systems/electrical/avionics-fan[0]/load-norm</property>
+                        <value>100</value> <!-- 90° is critical temp for failure -->
+                    </product>
+
+                    <product>  <!-- how much a full-spin fan can shove off -->
+                        <property>/systems/electrical/avionics-fan[0]/spin</property>
+                        <value>-60</value>
+                    </product>
+                </sum>
+            </function>
+        </fcs_function>
+        <switch name="/systems/electrical/avionics-fan[0]/temp/avionics-temp-filterspeed">
+            <default value="0.0005"/>
+            <test logic="OR" value="0.05">
+                <!-- quicker adaption as long as the avioincs is cooler than the air (weather change/init adaption) -->
+                /systems/electrical/avionics-fan[0]/temp/avionics-temp-degc LE /fdm/jsbsim/heat/cabin-air-temp-degc
+            </test>
+            <test logic="OR" value="0.0010">
+                <!-- quicker cooldown than heatup -->
+                /systems/electrical/avionics-fan[0]/temp/avionics-temp-degc GE /systems/electrical/avionics-fan[0]/temp/tgt-temp-degc
+            </test>
+        </switch>
+        <lag_filter name="/systems/electrical/avionics-fan[0]/temp/avionics-temp-degc">
+            <!-- Slowly heat/cool avionics to target temperature -->
+            <input>/systems/electrical/avionics-fan[0]/temp/tgt-temp-degc</input>
+            <c1>/systems/electrical/avionics-fan[0]/temp/avionics-temp-filterspeed</c1>
+        </lag_filter>
+        <switch name="/systems/electrical/avionics-fan[0]/temp/overheated">
+            <default value="/systems/electrical/avionics-fan[0]/temp/overheated"/>
+            <test logic="OR" value="0">
+                /fdm/jsbsim/damage/repairing EQ 1
+                /sim/realism/instruments/realistic-instruments EQ 0
+            </test>
+            <test value="1">
+                /systems/electrical/avionics-fan[0]/temp/avionics-temp-degc GE 99
+            </test>
+        </switch>
+    </channel>
+
+    <channel name="avionics_fan2" execrate="10" execute="/systems/electrical/avionics-fan[1]/execute">
+        <switch name="/systems/electrical/avionics-fan[1]/operating">
+            <default value="0"/>
+            <test value="1">
+                /systems/electrical/avionics-fan[1]/serviceable EQ 1
+                /systems/electrical/outputs/avionics-fan[1] GE 12.0
+            </test>
+        </switch>
+        <lag_filter name="/systems/electrical/avionics-fan[1]/spin">
+            <input>/systems/electrical/avionics-fan[1]/operating</input>
+            <c1>0.3</c1>
+        </lag_filter>
+        
+        <!-- Simulate avionics temperature; the fan uses cabin air and ductwork to cool Avionics -->
+        <!-- TODO: note this is a really simple implementation because of the rare usecase. If needed, should be replaced by actual physics -->
+        <fcs_function name="/systems/electrical/avionics-fan[1]/temp/tgt-temp-degc">
+            <function>
+                <sum>
+                    <property>/fdm/jsbsim/heat/cabin-air-temp-degc</property>
+
+                    <product>  <!-- uncooled target temperature based on "full load" -->
+                        <property>/systems/electrical/avionics-fan[1]/load-norm</property>
+                        <value>100</value> <!-- 90° is critical temp for failure -->
+                    </product>
+
+                    <product>  <!-- how much a full-spin fan can shove off -->
+                        <property>/systems/electrical/avionics-fan[1]/spin</property>
+                        <value>-60</value>
+                    </product>
+                </sum>
+            </function>
+        </fcs_function>
+        <switch name="/systems/electrical/avionics-fan[1]/temp/avionics-temp-filterspeed">
+            <default value="0.0005"/>
+            <test logic="OR" value="0.05">
+                <!-- quicker adaption as long as the avioincs is cooler than the air (weather change/init adaption) -->
+                /systems/electrical/avionics-fan[1]/temp/avionics-temp-degc LE /fdm/jsbsim/heat/cabin-air-temp-degc
+            </test>
+            <test logic="OR" value="0.0010">
+                <!-- quicker cooldown than heatup -->
+                /systems/electrical/avionics-fan[1]/temp/avionics-temp-degc GE /systems/electrical/avionics-fan[1]/temp/tgt-temp-degc
+            </test>
+        </switch>
+        <lag_filter name="/systems/electrical/avionics-fan[1]/temp/avionics-temp-degc">
+            <!-- Slowly heat/cool avionics to target temperature -->
+            <input>/systems/electrical/avionics-fan[1]/temp/tgt-temp-degc</input>
+            <c1>/systems/electrical/avionics-fan[1]/temp/avionics-temp-filterspeed</c1>
+        </lag_filter>
+        <switch name="/systems/electrical/avionics-fan[1]/temp/overheated">
+            <default value="/systems/electrical/avionics-fan[1]/temp/overheated"/>
+            <test logic="OR" value="0">
+                /fdm/jsbsim/damage/repairing EQ 1
+                /sim/realism/instruments/realistic-instruments EQ 0
+            </test>
+            <test value="1">
+                /systems/electrical/avionics-fan[1]/temp/avionics-temp-degc GE 99
             </test>
         </switch>
     </channel>

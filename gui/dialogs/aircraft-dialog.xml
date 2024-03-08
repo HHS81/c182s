@@ -533,16 +533,6 @@
             </slider>
         </group>
 
-            <checkbox>
-                <halign>left</halign>
-                <label>Show shadow</label>
-                <property>/sim/rendering/shadow-volume</property>
-                <live>true</live>
-                <binding>
-                    <command>property-toggle</command>
-                    <property>/sim/rendering/shadow-volume</property>
-                </binding>
-            </checkbox>
         </group>	
 	
         <hrule/>

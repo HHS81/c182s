@@ -79,6 +79,12 @@
     </group>
     
     <group>
+        <visible>
+          <equals>
+            <property>/sim/aircraft</property>
+            <value>c182s</value> 
+          </equals>
+        </visible>
         <layout>hbox</layout>
 
         <text>
@@ -529,17 +535,6 @@
 
             <checkbox>
                 <halign>left</halign>
-                <label>Show shadow</label>
-                <property>/sim/rendering/shadow-volume</property>
-                <live>true</live>
-                <binding>
-                    <command>property-toggle</command>
-                    <property>/sim/rendering/shadow-volume</property>
-                </binding>
-            </checkbox>
-            
-            <checkbox>
-                <halign>left</halign>
                 <label>Split master switches operation</label>
                 <property>/sim/model/split-master-switches</property>
                 <live>true</live>
@@ -547,6 +542,7 @@
                     <command>dialog-apply</command>
                 </binding>
             </checkbox>
+
         </group>	
 	
         <hrule/>

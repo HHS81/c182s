@@ -194,6 +194,15 @@ Only passengers inside the plane will jump out, so add them using the "fuel and 
 Jump procedure is that they will crawl outside to the strut, then release; so plan for the drag.
 
 
+Engine lever operation
+----------------------
+The Throttle, Prop and Mixture control levers can be operated either by keyboard,
+by mouse dragging or by mouse wheel (when pointing on the lever and turning the wheel):
+
+- Big adjustments: press `shift` while normal operation.
+- Medium adjustments are done by just operating the levers.
+- Small adjustments: press `alt` while normal operation. This simulates the Throttle friction lock and vernier features of the prop and mixture.
+
 
 FAQ
 ---

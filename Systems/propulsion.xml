@@ -212,7 +212,19 @@
                         <value>1</value>
                         <property>/engines/engine[0]/governor/oil-pressure-norm</property>
                     </difference>
-                    <property>fcs/advance-cmd-norm</property> <!-- lever positional input: 1=full in/high RPM -->
+                    
+                    <!-- advance-cmd-norm = lever positional input: 1=full in/high RPM
+                         we pipe that through a table because otherwise the first ~third of the lever is inop;
+                         this also gives us finer control at the upper end (where we actually want to set RPM)
+                    -->
+                    <table>
+                        <independentVar>fcs/advance-cmd-norm</independentVar>
+                        <tableData>
+                                0.0   0.0
+                                0.25  0.5
+                                1.0   1.0
+                        </tableData>
+                    </table>
                 </max>
                 
             </product>

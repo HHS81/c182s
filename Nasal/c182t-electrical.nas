@@ -20,6 +20,10 @@ var last_time = 0.0;
 var vbus_volts = 0.0;
 var ebus1_volts = 0.0;
 var ebus2_volts = 0.0;
+var essbus_load = 0.0;
+
+var pfd_load_ess = 0.0;
+var pfd_load_avn = 0.0;
 
 props.globals.initNode("/systems/electrical/battery-serviceable",    1, "BOOL");
 props.globals.initNode("/systems/electrical/battery-sby-serviceable",    1, "BOOL");
@@ -404,10 +408,13 @@ update_virtual_bus = func( dt ) {
     load += electrical_bus_1();
     load += electrical_bus_2();
     load += cross_feed_bus();
+    essbus_load += essential_bus();
+    if (!ebus1_volts or !ebus2_volts) load += essbus_load;  # don't count load twice
     var avn1_load = avionics_bus_1();
     load += avn1_load;
     var avn2_load = avionics_bus_2();
     load += avn2_load;
+    fg1000_PFD_calc_power();
 
     # Avionics temperature load
     # All avionics are contributing to thermal load
@@ -663,28 +670,7 @@ cross_feed_bus = func() {
     }
 
 
-    if ( getprop("/controls/circuit-breakers/InstLts") ) {
-        setprop("/systems/electrical/outputs/ecrf", bus_volts);#needed to dim lights
-    } else {
-        setprop("/systems/electrical/outputs/ecrf", 0.0);
-    }
-
-
-    var IL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/instrument-lights-norm"));
-    if (getprop ("/controls/lighting/instrument-lights-norm") >0.05 and (bus_volts > 22) and getprop("/systems/electrical/instrument-light-serviceable") ){
-        setprop("/systems/electrical/outputs/instrument-lights",IL_DIMMER);
-        setprop("/systems/electrical/outputs/instrument-lights-norm",IL_DIMMER/24);
-        load += IL_DIMMER/24;
-    } else {
-        setprop("/systems/electrical/outputs/instrument-lights",0);
-        setprop("/systems/electrical/outputs/instrument-lights-norm",0);
-    }
-    if (getprop("/systems/electrical/outputs/instrument-lights-norm") >1.0) {
-        setprop("/systems/electrical/outputs/instrument-lights-norm", 1.0)
-    };
-
-
-    var GL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/glareshield-lights-norm"));
+    var GL_DIMMER = (getprop("/systems/electrical/outputs/ecrf") or 0) * (getprop("controls/lighting/glareshield-lights-norm"));
     if (getprop ("/controls/lighting/glareshield-lights-norm") >0.05 and (bus_volts > 22) and getprop("/systems/electrical/cabin-light-serviceable")){
         setprop("/systems/electrical/outputs/glareshield-lights",GL_DIMMER);
         setprop("/systems/electrical/outputs/glareshield-lights-norm",GL_DIMMER/28);
@@ -698,7 +684,7 @@ cross_feed_bus = func() {
     };
 
 
-    var PL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/pedestal-lights-norm"));
+    var PL_DIMMER = (getprop("/systems/electrical/outputs/ecrf") or 0) * (getprop("controls/lighting/pedestal-lights-norm"));
     if (getprop ("/controls/lighting/pedestal-lights-norm") >0.05 and (bus_volts > 22) and getprop("/systems/electrical/cabin-light-serviceable")){
         setprop("/systems/electrical/outputs/pedestal-lights",PL_DIMMER);
         setprop("/systems/electrical/outputs/pedestal-lights-norm",PL_DIMMER/28);
@@ -713,7 +699,7 @@ cross_feed_bus = func() {
     };
 
 
-    var RL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/radio-lights-norm"));
+    var RL_DIMMER = (getprop("/systems/electrical/outputs/ecrf") or 0) * (getprop("controls/lighting/radio-lights-norm"));
     if (getprop ("/controls/lighting/radio-lights-norm") >0.05 and (bus_volts > 22) and getprop("/systems/electrical/instrument-light-serviceable")){
         setprop("/systems/electrical/outputs/radio-lights",RL_DIMMER);
         setprop("/systems/electrical/outputs/radio-lights-norm",RL_DIMMER/24);
@@ -725,26 +711,6 @@ cross_feed_bus = func() {
     if (getprop("/systems/electrical/outputs/radio-lights-norm") >1.0) {
         setprop("/systems/electrical/outputs/radio-lights-norm", 1.0)
     };
-
-    # Control the backlighting of the bezel based on the avionics light knob
-    var FG1000_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("/controls/lighting/avionics-lights-norm"));
-    if (getprop("/systems/electrical/outputs/ecrf") > 5.0) {
-        setprop("/instrumentation/FG1000/Lightmap", FG1000_DIMMER/28);
-
-        # Used from GMA audio panel
-        # TODO: The panel does not support proper lighting right now.
-        #setprop("/controls/lighting/floods-lights", FG1000_DIMMER/28);
-        #setprop("/controls/lighting/instrument-lights", FG1000_DIMMER/28);
-
-        load += FG1000_DIMMER/28
-    } else {
-        setprop("/instrumentation/FG1000/Lightmap", 0.0);
-
-        # Used from GMA audio panel
-        # TODO: The panel does not support proper lighting right now.
-        #setprop("/controls/lighting/floods-lights", 0);
-        #setprop("/controls/lighting/instrument-lights", 0);
-    }
 
 
     # return cumulative load
@@ -777,10 +743,10 @@ avionics_bus_1 = func() {
 
     # FG1000 PFD Power.
     if ( bus_volts > 22 and getprop("/instrumentation/fg1000/screen1/serviceable") ) {
-        setprop("/systems/electrical/outputs/fg1000-pfd", bus_volts);
+        setprop("/systems/electrical/outputs/pfd-avn", bus_volts);
         load += bus_volts / 28;
     } else {
-        setprop("/systems/electrical/outputs/fg1000-pfd", 0);
+        setprop("/systems/electrical/outputs/pfd-avn", 0);
     }
 
     # HSI Power
@@ -928,6 +894,117 @@ avionics_bus_2 = func() {
     # return cumulative load
     setprop("/systems/electrical/AVMBus[1]/load-volts", load);
     return load;
+}
+
+
+var essential_bus = func() {
+    var bus_volts = 0.0;
+    var load = 0.0;
+
+    # feed through bus1 and bus2 or stby-batt-breaker
+    var total_bus_volts = ebus1_volts + ebus2_volts;
+    if (total_bus_volts > 28) total_bus_volts = 28;
+    if (total_bus_volts) {
+        bus_volts = total_bus_volts;
+    }
+    #print("ESS-Bus volts: ", bus_volts);
+
+    if ( getprop("/controls/circuit-breakers/InstLts") ) {
+        setprop("/systems/electrical/outputs/ecrf", bus_volts);#needed to dim lights
+    } else {
+        setprop("/systems/electrical/outputs/ecrf", 0.0);
+    }
+
+    # sby instruments backlight
+    var IL_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("controls/lighting/instrument-lights-norm"));
+    if (getprop ("/controls/lighting/instrument-lights-norm") >0.05 and (bus_volts > 22) and getprop("/systems/electrical/instrument-light-serviceable") ){
+        setprop("/systems/electrical/outputs/instrument-lights",IL_DIMMER);
+        setprop("/systems/electrical/outputs/instrument-lights-norm",IL_DIMMER/24);
+        load += IL_DIMMER/24;
+    } else {
+        setprop("/systems/electrical/outputs/instrument-lights",0);
+        setprop("/systems/electrical/outputs/instrument-lights-norm",0);
+    }
+    if (getprop("/systems/electrical/outputs/instrument-lights-norm") >1.0) {
+        setprop("/systems/electrical/outputs/instrument-lights-norm", 1.0)
+    };
+
+    # Control the backlighting of the bezel based on the avionics light knob
+    var FG1000_DIMMER = (getprop("/systems/electrical/outputs/ecrf")) * (getprop("/controls/lighting/avionics-lights-norm"));
+    if (getprop("/systems/electrical/outputs/ecrf") > 5.0) {
+        setprop("/instrumentation/FG1000/Lightmap", FG1000_DIMMER/28);
+
+        # Used from GMA audio panel
+        # TODO: The panel does not support proper lighting right now.
+        #setprop("/controls/lighting/floods-lights", FG1000_DIMMER/28);
+        #setprop("/controls/lighting/instrument-lights", FG1000_DIMMER/28);
+
+        load += FG1000_DIMMER/28
+    } else {
+        setprop("/instrumentation/FG1000/Lightmap", 0.0);
+
+        # Used from GMA audio panel
+        # TODO: The panel does not support proper lighting right now.
+        #setprop("/controls/lighting/floods-lights", 0);
+        #setprop("/controls/lighting/instrument-lights", 0);
+    }
+
+    # FG1000 PFD Power.
+    if ( bus_volts > 22 and getprop("/instrumentation/fg1000/screen1/serviceable") ) {
+        setprop("/systems/electrical/outputs/pfd-ess", bus_volts);
+        load += bus_volts / 28;
+    } else {
+        setprop("/systems/electrical/outputs/pfd-ess", 0.0);
+    }
+
+    # Nav/Com 1 Power
+    if ( bus_volts > 22 and getprop("/controls/circuit-breakers/NavCom1")) {
+        setprop("systems/electrical/outputs/comm[0]", bus_volts);
+        load += bus_volts / 24;
+
+        setprop("/systems/electrical/outputs/nav[0]", bus_volts);
+        load += bus_volts / 24;
+    }
+
+    # Air Data Computer
+    #if (getprop("/controls/circuit-breakers/adc-ahrs-ess")) {
+    #    setprop("/systems/electrical/outputs/adc-ahrs", bus_volts);
+    #    load += 10 * bus_volts;
+    #} else {
+    #    setprop("/systems/electrical/outputs/adc-ahrs", 0.0);
+    #}
+
+    # Panel Power 5 amp breaker
+    #if ( getprop("/controls/circuit-breakers/instr") ) {
+    #    setprop("/systems/electrical/outputs/instrument-lights", bus_volts);
+    #    load += (2.00 * swcb_lighting) * bus_volts;
+    #    load += (2.00 * stby_lighting) * bus_volts;
+    #} else {
+    #    setprop("/systems/electrical/outputs/instrument-lights", 0.0);
+    #}
+
+    return load;
+}
+
+
+# Switch the FG1000 on/off depending on power.
+# The PFD can be powered by either the AVN1 bus (normal operation)
+# or the essentials bus (in case of electrical failure).
+# The MFD is powered normally trough its bus.
+var fg1000_PFD_calc_power = func() {
+    var amps_load_factor = 4.5;   # 4.5-5 amps
+    var avn_power = getprop("/systems/electrical/outputs/pfd-avn") or 0;
+    var ess_power = getprop("/systems/electrical/outputs/pfd-ess") or 0;
+    var pfd_power = avn_power;
+    pfd_load_avn  = avn_power * amps_load_factor;
+    pfd_load_ess  = 0.0;
+    if (ess_power > avn_power)  {
+        pfd_power = ess_power;
+        pfd_load_avn = 0.0;
+        pfd_load_ess = pfd_power * amps_load_factor;
+    }
+
+    setprop("/systems/electrical/outputs/fg1000-pfd", pfd_power);
 }
 
 

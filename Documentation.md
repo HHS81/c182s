@@ -170,6 +170,24 @@ The lower LCD row displays four different timing information, the active mode is
   - The elapsed timer starts when you selected ET mode and then push the _control_ button. The next button press stops the timer. Another press resets it to zero.
   - You can setup an countdown timer by by pressing the _select_ and _control_ buttons together (**shift-click one of the two buttons**). Enter the digits like just described at the FT alarm mode. After confirming the last digit, the countdown is armed and ready to be started by another press of _control_. The alarm will go off once the countdown reaches zero. You can confirm the the alarm by either pressing _select_ or _control_.
 
+### KR87 ADF receiver
+The Bendix/King KR87 ADF receiver can tune into NDBs. It also features two timers, which can be cycled by pressing the `FLT/ET` button.
+
+- Flight timer (FT):
+  - It starts counting upwards as soon as the unit receives power.
+  - It cannot be reset, despite momentarily switching the unit off.
+  - In addition to the Davtron 8003s FT timer (which can be reset) this might serve as a "total flight time timer".
+- Elapsed timer (ET):
+  - It starts counting upwards as soon as the unit receives power.
+  - Can be reset to `00:00` by shortly pressing the `SET/RST` button.
+  - Pressing `SET/RST` for more than two seconds will enter the _Set_-mode (indicated by flashing `ET` annunciator) for _ET countdown mode_:
+    - with the inner and outer knobs you can adjust the time.
+    - shortly pressing the `SET/RST` button will activate the countdown.
+    - Once the timer reaches `00:00`, the display will switch to `ET` mode and flash the digits for about 15 seconds. Also, an aural alarm is activated for about one second. The timer continues to count upwards when crossing `00:00`.
+
+When either of the two timer modes is active (`FT` or `ET` is annunctiated and right display shows time), turning the inner or outer knob will directly tune the _selected_ frequency. This might be useful to scan for stations.  
+You can return to the normal standby-tuning mode by shortly pressing the `FRQ` button.
+
 ### GMA 340 FGCom integration ###
 If enabled, this integrates the GMA 340 audio panel with FGCom. Most notably, you can select the radio on which you want to transmit by pressing the respective COM/MIC button. Only one can be active for transmission. If you press the FGCOM PTT button (`space`), you will transmit over the selected radio, which indicates a blinking led.
 

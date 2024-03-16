@@ -32,6 +32,7 @@ To prevent this, you should apply the plane cover when securing your craft.
 Unchecking `Complex engine procedures and failures` allows a fairly basic engine mode where no priming is needed (just activate
 battery, apply enough mixture and press `s` to start), and no further damage can occur.  
 Otherwise you need to pay attention to varios engine related things:
+
 - Priming for startup  
   The priming procedure involves applying some fuel into the manifold by the fuel pump. The exact procedure is laid out in the checklist.
   The engine can be easily flooded, especially in cold weather (remedy actions also in the POH/Checklist).
@@ -58,6 +59,8 @@ Otherwise you need to pay attention to varios engine related things:
   engine at 1200 RPM. Should a magneto check reveal spark plug problems, its most of the time some fouled plugs. Put the engine to 1800 RPM and 50°
   lean of peak EGT. Let it run for about 30 seconds, monitor CHT. This should clean the deposits which a second magneto check should verify.  
 When parking the plane after flight, you should go to 1800 RPM and lean mix for 20 secs, then reduce throttle to 1000 RPM and then stop the engine by pulling mixture to the cut-off position.
+- `Allow starter cycle limits`  
+  If active, you need to observe the starter cycle, otherwise you risk burning trough the engine starter.
 - `Winter Kit`  
   The winter kit is needed in cold weather (<20°F/-6°C) to reduce cooling air flow. If not supplied, the engine will possibly not get warm enough to develop good power, but be sure to remove it in hot weather, otherwise you risk too high CHT temps.
 

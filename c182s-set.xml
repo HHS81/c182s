@@ -959,6 +959,7 @@
             <path>/engines/engine/allow-fuel-contamination</path>
             <path>/engines/engine/allow-oil-management</path>
             <path>/engines/engine/allow-sparkplug-icing</path>
+            <path>/engines/engine/starter-management</path>
             <path>/engines/engine/winter-kit-installed</path>
             
             <path>/fdm/jsbsim/settings/damage</path>
@@ -1331,6 +1332,7 @@
    <complex-engine-procedures type="bool">false</complex-engine-procedures>
    <allow-fuel-contamination type="bool">false</allow-fuel-contamination>
    <allow-oil-management type="bool">false</allow-oil-management>
+   <starter-management type="bool">false</starter-management>
    <winter-kit-installed type="bool">false</winter-kit-installed>
    <oil-grade>15W-50</oil-grade>
    <oil-temperature-env-diff type="double">0</oil-temperature-env-diff>
@@ -1354,6 +1356,9 @@
    <governor>
         <serviceable type="bool">true</serviceable>
     </governor>
+    <starter>
+      <serviceable type="bool">true</serviceable>
+    </starter>
     <manual-roughness-factor type="double">0</manual-roughness-factor>
     <manual-power-reduction-pct type="double">0</manual-power-reduction-pct>
   

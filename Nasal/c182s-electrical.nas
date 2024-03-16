@@ -327,8 +327,10 @@ update_virtual_bus = func( dt ) {
 
     # starter motor
     var starter_switch = getprop("controls/switches/starter");
+    var starter_svc    = getprop("/engines/engine/starter/serviceable");
+    var starter_molten = getprop("/engines/engine/starter/overheated");
     var starter_volts = 0.0;
-    if ( starter_switch ) {
+    if ( starter_switch and starter_svc and !starter_molten ) {
         starter_volts = bus_volts;
         load += 22;
     }

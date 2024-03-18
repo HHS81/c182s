@@ -398,6 +398,10 @@ customFailures_c182common = [
         trigger:  MtbfTrigger.new(0)
     },
     
+    {id:"engine/starter", name:"Starter",
+        actuator: set_unserviceable_abs("/engines/engine[0]/starter/serviceable"),
+        trigger:  MtbfTrigger.new(0)
+    },
     
     {id:"engine/magnetos", name:"Magnetos",
         actuator: fail_random_magnetos(),

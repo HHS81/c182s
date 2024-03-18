@@ -369,6 +369,23 @@
         <col>2</col>
         <property>/sim/failure-manager/engine/governor/mtbf</property>
       </input>
+      
+      <text>
+        <row>2</row>
+        <col>3</col>
+        <halign>right</halign>
+        <label>Engine starter</label>
+      </text>
+      <checkbox>
+        <row>2</row>
+        <col>4</col>
+        <property>/sim/failure-manager/engine/starter/serviceable</property>
+      </checkbox>
+      <input>
+        <row>2</row>
+        <col>5</col>
+        <property>/sim/failure-manager/engine/starter/mtbf</property>
+      </input>
 
       <!--
       <text>

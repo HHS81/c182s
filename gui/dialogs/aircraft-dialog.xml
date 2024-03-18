@@ -276,6 +276,35 @@
                 <empty><stretch>true</stretch></empty> <!-- force group to the left -->
             </group>
 
+            <group>
+                <layout>hbox</layout>
+                <!-- Small left padding -->
+                <group>
+                    <layout>vbox</layout>
+                    <padding>6</padding>
+                </group>
+                
+                <group>
+                    <layout>hbox</layout>
+                    <checkbox>
+                        <halign>left</halign>
+                        <label>  Allow starter cycle limits</label>
+                        <property>/engines/engine/starter-management</property>
+                        <live>true</live>
+                        <enable>
+                            <and>
+                                <property>/engines/engine/complex-engine-procedures</property>
+                            </and>
+                        </enable>
+                        <binding>
+                            <command>dialog-apply</command>
+                        </binding>
+                    </checkbox>
+                </group>
+                
+                <empty><stretch>true</stretch></empty> <!-- force group to the left -->
+            </group>
+            
         </group>
         
         <checkbox>

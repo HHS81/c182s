@@ -179,12 +179,13 @@
     </action>
 
     <hovered>
-     <binding>
-       <command>set-tooltip</command>
-       <tooltip-id>adf-hdg</tooltip-id>
-       <label>ADF Heading: %3d</label>
-       <property alias="../../../../params/rotation-deg"/>
-    </binding>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>adf-hdg</tooltip-id>
+        <mapping>heading</mapping>
+        <label>ADF Heading: %3d</label>
+        <property alias="../../../../params/rotation-deg"/>
+      </binding>
     </hovered>
   </animation>
   

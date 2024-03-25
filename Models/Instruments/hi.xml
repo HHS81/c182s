@@ -179,7 +179,7 @@
      <command>set-tooltip</command>
      <tooltip-id>heading-bug</tooltip-id>
      <mapping>heading</mapping>
-     <label>Heading Bug: %3.0f</label>
+     <label>Heading Bug: %3d</label>
      <property>autopilot/settings/heading-bug-deg</property>
    </binding>
   </hovered>
@@ -303,7 +303,9 @@
         <mapping>nasal</mapping>
         <script>
           var heading = getprop("instrumentation/heading-indicator/indicated-heading-deg");
-          var returnString = "Heading: " ~ sprintf("%3.0f", heading);
+          heading = math.round(heading);
+          if (heading == 0) heading = 360;
+          var returnString = "Heading: " ~ sprintf("%3d", heading);
           if (getprop("instrumentation/heading-indicator/caged-flag")) {
               returnString = returnString ~ "\n(caged)";
           }
@@ -408,7 +410,7 @@
         <command>set-tooltip</command>
         <tooltip-id>heading-bug</tooltip-id>
         <mapping>heading</mapping>
-        <label>Heading Bug: %3.0f</label>
+        <label>Heading Bug: %3d</label>
         <property>autopilot/settings/heading-bug-deg</property>
       </binding>
     </hovered>
@@ -508,7 +510,7 @@
         <command>set-tooltip</command>
         <tooltip-id>heading-bug</tooltip-id>
         <mapping>heading</mapping>
-        <label>Heading Bug: %3.0f</label>
+        <label>Heading Bug: %3d</label>
         <property>autopilot/settings/heading-bug-deg</property>
       </binding>
     </hovered>
@@ -726,7 +728,9 @@
         <mapping>nasal</mapping>
         <script>
           var heading = getprop("instrumentation/heading-indicator/indicated-heading-deg");
-          var returnString = "Heading: " ~ sprintf("%3.0f", heading);
+          heading = math.round(heading);
+          if (heading == 0) heading = 360;
+          var returnString = "Heading: " ~ sprintf("%3d", heading);
           if (getprop("instrumentation/heading-indicator/caged-flag")) {
               returnString = returnString ~ "\n(caged)";
           }
@@ -947,7 +951,9 @@
         <mapping>nasal</mapping>
         <script>
           var heading = getprop("instrumentation/heading-indicator/indicated-heading-deg");
-          var returnString = "Heading: " ~ sprintf("%3.0f", heading);
+          heading = math.round(heading);
+          if (heading == 0) heading = 360;
+          var returnString = "Heading: " ~ sprintf("%3d", heading);
           if (getprop("instrumentation/heading-indicator/caged-flag")) {
               returnString = returnString ~ "\n(caged)";
           }

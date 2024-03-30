@@ -692,6 +692,14 @@
             
     -->
     <channel name="Engine Friction" execrate="8">
+        <!-- Add friction with very low RPM, so prop can finally be stopped (Issue #578) -->
+        <switch name="systems/propulsion/static-friction">
+            <default value="0"/>
+            <test logic="AND" value="1.5">
+                propulsion/engine/engine-rpm LE 500
+            </test>
+        </switch>
+        
         <fcs_function name="systems/propulsion/expansion-friction">
             <description>made up data to simulate too hot CHT causing friction</description>
             <function>
@@ -867,6 +875,7 @@
         <summer name="systems/propulsion/friction-summer">
             <!--<bias> 0.5 </bias>-->
             <input> systems/propulsion/manual-friction </input>     <!-- we might have fun trough telnet/scripts... -->
+            <input> systems/propulsion/static-friction </input>
             <input> systems/propulsion/oil-age-friction </input>
             <input> systems/propulsion/oil-temp-friction </input>
             <input> systems/propulsion/oil-viscosity-friction </input>

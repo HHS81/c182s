@@ -158,6 +158,17 @@
         <default-padding>6</default-padding>
 
         <button>
+            <halign>center</halign>
+            <legend>Documentation</legend>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name type="string">c182-documentation-dialog</dialog-name>
+            </binding>
+        </button>
+        
+        <vrule/>
+        
+        <button>
             <halign>left</halign>
             <legend>Wiki Page</legend>
             <binding>

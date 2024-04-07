@@ -27,4 +27,61 @@
 			</texture>
 		</parameters>
 	</effect>
+
+	<!-- Zoom for the Card when clicked -->
+	<animation>
+		<type>pick</type>
+		<object-name>CompassCorrectionCard</object-name>
+		<visible>true</visible>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script><![CDATA[
+					var size = {original: [1024, 512], resize: 0.5};
+					var CompassCorrectionCardDialog = {
+						new: func(sized) {
+							var width = sized.original[0] * sized.resize;
+							var height = sized.original[1] * sized.resize;
+							var m = {
+								parents: [CompassCorrectionCardDialog],
+								_dlg: canvas.Window.new([width, height], "dialog")
+												.set("title", "Compass Deviation Correction Card")
+												.set("resize", 1),
+							};
+
+							m._dlg.getCanvas(1)
+								.set("background", canvas.style.getColor("bg_color"));
+							m._root = m._dlg.getCanvas().createGroup();
+						
+							var vbox = canvas.VBoxLayout.new();
+							m._dlg.setLayout(vbox);
+
+							var path = "Aircraft/c182s/Models/Instruments/Compass-correction-card.png";
+							var child = m._root.createChild("image")
+								.setFile(path)
+								.setSize(width, height)
+								.setTranslation(0,0);
+
+							var hint = vbox.sizeHint();
+							hint[0] = math.max(width, hint[0]);
+							hint[1] = math.max(height, hint[1]);
+							m._dlg.setSize(hint);
+
+							return m;
+						},
+					};
+					CompassCorrectionCardDialog.new(size);
+				]]></script>
+			</binding>
+		</action>
+		<hovered>
+			<binding>
+				<command>set-tooltip</command>
+				<tooltip-id>CompassCorrectionCard_tt</tooltip-id>
+				<label>Show bigger Card</label>
+			</binding>
+		</hovered>
+	</animation>
 </PropertyList>

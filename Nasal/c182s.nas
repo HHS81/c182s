@@ -1204,10 +1204,12 @@ setlistener("/sim/signals/fdm-initialized", func {
     
     # Show a welcome dialog for first time users
     canvas.MessageBox.information(
-        "Welcome!",
-        "We wish you alot of fun with your new Cessna 182!\n" ~
-        "If you step up from the C172, you will appreciate the bigger engine and faster speed,\n" ~
-        "while still getting the familiar and gently Cessna feeling (albeit it is more sensitive!).\n" ~
+        "Welcome!\n",
+        "We wish you alot of fun with your new Cessna 182!\n\n" ~
+        "If you step up from the C172, you will appreciate the bigger engine and the higher " ~
+        "power that come with that - all while still getting the familiar and gently Cessna feeling.\n" ~
+        "The C182 is more sensitive and features a constant speed propeller, which need some " ~
+        "time to get used to - but the higher service ceiling and bigger endurance will pay off quickly.\n" ~
         "\n" ~
         "If you load this plane the first time, not all features are enabled and you won't get\n" ~
         "the most realistic simulation possible. The C182 has alot of enhanced features and\n" ~
@@ -1218,7 +1220,7 @@ setlistener("/sim/signals/fdm-initialized", func {
         "\n\n...and now: always blue skies!",
         nil,
         canvas.MessageBox.Ok | canvas.MessageBox.DontShowAgain,
-        [700, 400]
+        [700, 470]
     );
 
 });

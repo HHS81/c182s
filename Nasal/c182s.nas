@@ -1201,6 +1201,25 @@ setlistener("/sim/signals/fdm-initialized", func {
 
     # Handle realism settings
     setlistener("/sim/realism/instruments/realistic-instruments", setRealismInstruments, 1, 0);
+    
+    # Show a welcome dialog for first time users
+    canvas.MessageBox.information(
+        "Welcome!",
+        "We wish you alot of fun with your new Cessna 182!\n" ~
+        "If you step up from the C172, you will appreciate the bigger engine and faster speed,\n" ~
+        "while still getting the familiar and gently Cessna feeling (albeit it is more sensitive!).\n" ~
+        "\n" ~
+        "If you load this plane the first time, not all features are enabled and you won't get\n" ~
+        "the most realistic simulation possible. The C182 has alot of enhanced features and\n" ~
+        "can (should) be flown according to the Pilots operating Handbook (POH).\n" ~
+        "Check out the 'Aircraft Options' menu to activate more realism and features.\n" ~
+        "Refer to the 'Aircraft Help' menu to access the checklist and keybinds.\n" ~
+        "The 'About' dialog has more infos and links to further documentation.\n" ~
+        "\n\n...and now: always blue skies!",
+        nil,
+        canvas.MessageBox.Ok | canvas.MessageBox.DontShowAgain,
+        [700, 400]
+    );
 
 });
 

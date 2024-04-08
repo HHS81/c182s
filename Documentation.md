@@ -191,6 +191,14 @@ The Bendix/King KR87 ADF receiver can tune into NDBs. It also features two timer
 When either of the two timer modes is active (`FT` or `ET` is annunctiated and right display shows time), turning the inner or outer knob will directly tune the _selected_ frequency. This might be useful to scan for stations.  
 You can return to the normal standby-tuning mode by shortly pressing the `FRQ` button.
 
+### KN62A DME
+The Bendix/King KN62A DME allows you to get measurements to a tuned VOR station and displays _distance_, _speed_ and _estimated time_ to the station.  
+It features a primary mode (`RMT`) which is autmatically slaved to NAV1.  
+Changing the mode to `FREQ` allows you to adjust the secondary frequency using the inner and outer frequency selection knobs (while in `FREQ` mode, the distance to the station is displayed, so you can see if you have reception.).  
+Finally, the `GS/T` mode locks the secondary frequency selection and displays _distance_, _speed_ and _estimated time_ to the secondary station.
+
+This way, you can scan for stations and get information about a station without the need to retune NAV1.
+
 ### GMA 340 FGCom integration ###
 If enabled, this integrates the GMA 340 audio panel with FGCom. Most notably, you can select the radio on which you want to transmit by pressing the respective COM/MIC button. Only one can be active for transmission. If you press the FGCOM PTT button (`space`), you will transmit over the selected radio, which indicates a blinking led.
 

@@ -1092,9 +1092,23 @@
         </center>
         <action>
             <binding>
+                <condition>
+                    <not><property>/devices/status/keyboard/alt</property></not>
+                </condition>
                 <command>property-adjust</command>
                 <property>controls/flight/elevator-trim</property>
                 <factor>0.01</factor>
+                <min>-1</min>
+                <max>1</max>
+                <wrap>0</wrap>
+            </binding>
+            <binding>
+                <condition>
+                    <property>/devices/status/keyboard/alt</property>
+                </condition>
+                <command>property-adjust</command>
+                <property>controls/flight/elevator-trim</property>
+                <factor>0.001</factor>
                 <min>-1</min>
                 <max>1</max>
                 <wrap>0</wrap>
@@ -1137,7 +1151,7 @@
         <type>knob</type>
         <object-name>RudderTrim</object-name>
         <property>controls/flight/rudder-trim</property>
-        <factor>-360</factor>
+        <factor>360</factor>
         <drag-direction>horizontal</drag-direction>
         <axis>
             <x>0.0</x>
@@ -1151,9 +1165,23 @@
         </center>
         <action>
             <binding>
+                <condition>
+                    <not><property>/devices/status/keyboard/alt</property></not>
+                </condition>
                 <command>property-adjust</command>
                 <property>controls/flight/rudder-trim</property>
                 <factor>0.01</factor>
+                <min>-1</min>
+                <max>1</max>
+                <wrap>0</wrap>
+            </binding>
+            <binding>
+                <condition>
+                    <property>/devices/status/keyboard/alt</property>
+                </condition>
+                <command>property-adjust</command>
+                <property>controls/flight/rudder-trim</property>
+                <factor>0.001</factor>
                 <min>-1</min>
                 <max>1</max>
                 <wrap>0</wrap>
@@ -4018,7 +4046,7 @@
             <binding>
                 <command>set-tooltip</command>
                 <label>Seat position: %s</label>
-                <tooltip-id>throttle</tooltip-id>
+                <tooltip-id>pilotSeatpos_tt</tooltip-id>
                 <property>sim/model/c182s/cockpit/FrontSeatL-setting-m</property>
                 <mapping>nasal</mapping>
                 <script><![CDATA[

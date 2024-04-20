@@ -221,6 +221,9 @@
    ]]></load>
 </nasal>
 
+<!-- Multiplayer Sound -->
+<sound><path>Aircraft/c182s/c182-sound-multiplayer.xml</path></sound>
+
 <!-- Engine smoke -->
 <model>
   <path>Aircraft/c182s/Models/Effects/c182_enginesmoke.xml</path>

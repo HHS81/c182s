@@ -1053,7 +1053,7 @@
         <type>knob</type>
         <object-name>TrimElevator</object-name>
         <property>controls/flight/elevator-trim</property>
-        <factor>-360</factor>
+        <factor>-720</factor>
         <drag-direction>vertical</drag-direction>
         <axis>
             <x>0.0</x>
@@ -1072,7 +1072,7 @@
                 </condition>
                 <command>property-adjust</command>
                 <property>controls/flight/elevator-trim</property>
-                <factor>0.01</factor>
+                <factor>0.001</factor>
                 <min>-1</min>
                 <max>1</max>
                 <wrap>0</wrap>
@@ -1083,7 +1083,7 @@
                 </condition>
                 <command>property-adjust</command>
                 <property>controls/flight/elevator-trim</property>
-                <factor>0.001</factor>
+                <factor>0.0001</factor>
                 <min>-1</min>
                 <max>1</max>
                 <wrap>0</wrap>
@@ -1120,7 +1120,7 @@
         <type>knob</type>
         <object-name>RudderTrim</object-name>
         <property>controls/flight/rudder-trim</property>
-        <factor>360</factor>
+        <factor>720</factor>
         <drag-direction>horizontal</drag-direction>
         <axis>
             <x>0.0</x>
@@ -1139,7 +1139,7 @@
                 </condition>
                 <command>property-adjust</command>
                 <property>controls/flight/rudder-trim</property>
-                <factor>0.01</factor>
+                <factor>0.001</factor>
                 <min>-1</min>
                 <max>1</max>
                 <wrap>0</wrap>
@@ -1150,7 +1150,7 @@
                 </condition>
                 <command>property-adjust</command>
                 <property>controls/flight/rudder-trim</property>
-                <factor>0.001</factor>
+                <factor>0.0001</factor>
                 <min>-1</min>
                 <max>1</max>
                 <wrap>0</wrap>

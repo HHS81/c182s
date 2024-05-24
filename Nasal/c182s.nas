@@ -1217,7 +1217,11 @@ setlistener("/sim/signals/fdm-initialized", func {
         "Check out the 'Aircraft Options' menu to activate more realism and features.\n" ~
         "Refer to the 'Aircraft Help' menu to access the checklist and keybinds.\n" ~
         "The 'About' dialog has more infos and links to further documentation.\n" ~
-        "\n\n...and now: always blue skies!",
+        "\n" ~
+        "When you have suggestions or want to report a bug, just kindly open a ticket at\n" ~
+        "the GitHub project site: https://github.com/HHS81/c182s \n" ~
+        "\n" ~
+        "\n...and now: always blue skies!",
         nil,
         canvas.MessageBox.Ok | canvas.MessageBox.DontShowAgain,
         [700, 470]

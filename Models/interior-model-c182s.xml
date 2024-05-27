@@ -2782,7 +2782,7 @@
 <animation>
         <type>knob</type>
         <object-name>FuelTankSelector</object-name>
-        <property>controls/switches/fuel_tank_selector</property>
+        <property>controls/switches/fuel_tank_selector</property> <!-- 0=off, 1=right, 2=both, 3=left; -1 and 4 are for interpolation and be clamped to 0/3 after the animation -->
         <visible>true</visible>
         <factor>90</factor>
         <offset-deg>90</offset-deg>
@@ -2808,14 +2808,14 @@
                 <command>property-adjust</command>
                 <property>controls/switches/fuel_tank_selector_tgt</property>
                 <factor>-1</factor>
-                <wrap>true</wrap>
-                <min>0</min>
-                <max>4</max> <!-- 0=off, 1=right, 2=both, 3=left -->
             </binding>
             <binding>
                 <condition> <not><property>sim/model/c182s/cockpit/fuel_tank_selector-z</property></not> </condition>
                 <command>nasal</command>
                 <script><![CDATA[
+                    var fsp     = "controls/switches/fuel_tank_selector";
+                    var fsp_tgt = "controls/switches/fuel_tank_selector_tgt";
+                    
                     # Push selector down, then rotate and release the push
                     var pushTime = 0.2;
                     interpolate(
@@ -2825,10 +2825,7 @@
                     
                     var rotateTime = 0.5;
                     var rotateAction = maketimer(pushTime, func {
-                        interpolate(
-                            "controls/switches/fuel_tank_selector",
-                            getprop("controls/switches/fuel_tank_selector_tgt"),
-                        rotateTime);
+                        interpolate(fsp, getprop(fsp_tgt), rotateTime);
                     });
                     rotateAction.singleShot = 1;
                     rotateAction.start();
@@ -2842,6 +2839,14 @@
                     });
                     releaseAction.singleShot = 1;
                     releaseAction.start();
+                    
+                    var cleanupTime = 0.1;
+                    var cleanupAction = maketimer(pushTime+rotateTime+releaseTime, func {
+                        if (getprop(fsp) < 0) setprop(fsp, 3);
+                        if (getprop(fsp) > 3) setprop(fsp, 0);
+                    });
+                    cleanupAction.singleShot = 1;
+                    cleanupAction.start();
                 ]]></script>
             </binding>
         </action>

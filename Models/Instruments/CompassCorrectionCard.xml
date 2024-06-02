@@ -37,6 +37,7 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
+				<condition> <not><property>/sim/model/c182s/compassCardZoomed</property></not> </condition>
 				<command>nasal</command>
 				<script><![CDATA[
 					var size = {original: [1024, 512], resize: 0.5};
@@ -68,11 +69,17 @@
 							hint[0] = math.max(width, hint[0]);
 							hint[1] = math.max(height, hint[1]);
 							m._dlg.setSize(hint);
+							
+							m._dlg.del = func {
+								setprop("/sim/model/c182s/compassCardZoomed", 0);
+								call(canvas.Window.del, [], me);
+							}
 
 							return m;
 						},
 					};
 					CompassCorrectionCardDialog.new(size);
+					setprop("/sim/model/c182s/compassCardZoomed", 1);
 				]]></script>
 			</binding>
 		</action>

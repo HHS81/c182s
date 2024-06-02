@@ -407,6 +407,16 @@
                     <command>dialog-close</command>
                 </binding>
             </button>
+            <button>
+                <legend>Configure humans</legend>
+                <binding>
+                    <command>dialog-show</command>
+                    <dialog-name type="string">c182s-pax-dialog</dialog-name>
+                </binding>
+                <binding>
+                    <command>dialog-close</command>
+                </binding>
+            </button>
         </group>
         
 <hrule/>

@@ -867,6 +867,36 @@ setlistener("/sim/model/c182s/parachuters/trigger-jump", func(node) {
 
 
 ##########
+# Pax outfit/model restore
+# (This needs to be done time delayed, because humans.xml overloads the values with fdm-init.
+#  The state from the aircraft savefile is loaded initially, so we can read the values at startup time)
+##########
+var c182_pax_savedvars = [];
+foreach (pax_type; ["crew/pilot", "pax/pax"]) {
+    for (var i=0; i<=1; i += 1) {
+        foreach (pax_item; ["gender", "eyewear", "headgear", "hair", "outfit"]) {
+            var pax_path   = "/sim/model/" ~ pax_type ~ "["~i~"]/"~pax_item;
+            var pax_path_v = getprop(pax_path);
+            if (pax_path_v != nil) {
+                #print("PAX saved value = "~pax_path~" (value='"~pax_path_v~"')");
+                append(c182_pax_savedvars, [pax_path, pax_path_v]);
+            }
+        }
+    }
+}
+settimer(func {
+    foreach (pax_restore; c182_pax_savedvars) {
+        var pax_path   = pax_restore[0];
+        var pax_path_v = pax_restore[1];
+        if (pax_path_v != -1) {
+            #print("PAX restore value '"~pax_path~"'='"~pax_path_v~"'");
+            setprop(pax_path, pax_path_v);
+        }
+    }
+}, 1.0);
+
+
+##########
 # C182 internal cockpit flashlight (example how to mod it)
 ##########
 var c182_flashlight_la  = -100;

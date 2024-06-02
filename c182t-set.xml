@@ -1076,6 +1076,27 @@
             <path>/sim/failure-manager/restore-on-start</path>
             <path>/sim/model/hide-yoke-alpha-cmd</path>
             <path>/sim/model/split-master-switches</path>
+            
+            <path>/sim/model/crew/pilot[0]/gender</path>
+            <path>/sim/model/crew/pilot[0]/eyewear</path>
+            <path>/sim/model/crew/pilot[0]/headgear</path>
+            <path>/sim/model/crew/pilot[0]/hair</path>
+            <path>/sim/model/crew/pilot[0]/outfit</path>
+            <path>/sim/model/crew/pilot[1]/gender</path>
+            <path>/sim/model/crew/pilot[1]/eyewear</path>
+            <path>/sim/model/crew/pilot[1]/headgear</path>
+            <path>/sim/model/crew/pilot[1]/hair</path>
+            <path>/sim/model/crew/pilot[1]/outfit</path>
+            <path>/sim/model/pax/pax[0]/gender</path>
+            <path>/sim/model/pax/pax[0]/eyewear</path>
+            <path>/sim/model/pax/pax[0]/headgear</path>
+            <path>/sim/model/pax/pax[0]/hair</path>
+            <path>/sim/model/pax/pax[0]/outfit</path>
+            <path>/sim/model/pax/pax[1]/gender</path>
+            <path>/sim/model/pax/pax[1]/eyewear</path>
+            <path>/sim/model/pax/pax[1]/headgear</path>
+            <path>/sim/model/pax/pax[1]/hair</path>
+            <path>/sim/model/pax/pax[1]/outfit</path>
         </aircraft-data>
 
         <flight-recorder include="Systems/flight-recorder/flight-recorder.xml"/>

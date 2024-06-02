@@ -102,13 +102,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </limb>
         </position>
       </pose>
-      <character>0</character>
-      <gender>1</gender>
-      <hair>1</hair>
-      <outfit>2</outfit>
-      <equipment>0</equipment>
-      <eyewear>1</eyewear>
-      <headgear>1</headgear>
+      <character type="int">0</character>
+      <gender type="int">1</gender>
+      <hair type="int">1</hair>
+      <outfit type="int">2</outfit>
+      <equipment type="int">0</equipment>
+      <eyewear type="int">1</eyewear>
+      <headgear type="int">1</headgear>
       <enabled type="bool">1</enabled>
     </pilot>
     <pilot n="1">
@@ -187,13 +187,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </limb>
         </position>
       </pose>
-      <character>0</character>
-      <gender>1</gender>
-      <hair>1</hair>
-      <outfit>0</outfit>
-      <equipment>0</equipment>
-      <eyewear>1</eyewear>
-      <headgear>1</headgear>
+      <character type="int">0</character>
+      <gender type="int">1</gender>
+      <hair type="int">1</hair>
+      <outfit type="int">0</outfit>
+      <equipment type="int">0</equipment>
+      <eyewear type="int">1</eyewear>
+      <headgear type="int">1</headgear>
       <enabled type="bool">1</enabled>
     </pilot>
   </crew>
@@ -274,13 +274,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </limb>
         </position>
       </pose>
-      <character>0</character>
-      <gender>1</gender>
-      <hair>1</hair>
-      <outfit>2</outfit>
-      <equipment>0</equipment>
-      <eyewear>0</eyewear>
-      <headgear>0</headgear>
+      <character type="int">0</character>
+      <gender type="int">1</gender>
+      <hair type="int">1</hair>
+      <outfit type="int">2</outfit>
+      <equipment type="int">0</equipment>
+      <eyewear type="int">0</eyewear>
+      <headgear type="int">0</headgear>
       <enabled type="bool">1</enabled>
     </pax>
     <pax n="1">
@@ -359,13 +359,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </limb>
         </position>
       </pose>
-      <character>0</character>
-      <gender>0</gender>
-      <hair>1</hair>
-      <outfit>0</outfit>
-      <equipment>0</equipment>
-      <eyewear>0</eyewear>
-      <headgear>0</headgear>
+      <character type="int">0</character>
+      <gender type="int">0</gender>
+      <hair type="int">1</hair>
+      <outfit type="int">0</outfit>
+      <equipment type="int">0</equipment>
+      <eyewear type="int">0</eyewear>
+      <headgear type="int">0</headgear>
       <enabled type="bool">1</enabled>
     </pax>
   </pax>

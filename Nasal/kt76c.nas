@@ -29,6 +29,7 @@ var kt76c_test       = props.globals.getNode("/instrumentation/transponder/testm
 
 var encoder_serviceable	= props.globals.getNode("/instrumentation/encoder/serviceable");
 
+var kt76c_init      = 0;   # for internal init mode override
 var kt76c_codes		= [];						# Array for 4 code digits
 var kt76c_last		= [];						# Holds copy of last known good code
 
@@ -36,6 +37,13 @@ var kt76c_last		= [];						# Holds copy of last known good code
 # Update transponders knob-mode for ATC clients
 #   Translate: We must skip mode 3=GND; knob pos 3 must result in mode 4
 #   Power and serviceable is also considered.
+# Transmitted MP props are (multiplaymgr.cxx):
+#   instrumentation/transponder/transmitted-id
+#   instrumentation/transponder/altitude
+#   instrumentation/transponder/ident
+#   instrumentation/transponder/inputs/mode
+#   instrumentation/transponder/ground-bit
+#   instrumentation/transponder/airspeed-kt
 var kt76c_updateMode = func() {
     var svc = kt76c_serviceable.getValue() or 0;
     var pwr = kt76c_pwr.getValue() or 0;
@@ -104,7 +112,8 @@ kt76c_reply_update_timer.singleShot = 0;
 
 # Set next digit (push on list)
 var kt76c_button_code = func(i) {					# i = 0-7
-  if (!kt76c_pwr.getValue()) { return 0; }
+  if (!kt76c_pwr.getValue() and !kt76c_init) { return 0; }
+  if (kt76c_test.getValue() and !kt76c_init) { return 0; }
   if (size(kt76c_codes) >= 4) { return 0; }				# Max of 4 digits
   append(kt76c_codes,i);
   if (size(kt76c_codes) == 4) {						# If we now have 4 digits, treat as a good
@@ -123,7 +132,8 @@ var kt76c_button_code = func(i) {					# i = 0-7
 
 # Clear last digit (pop from list)
 var kt76c_button_clr = func {
-  if (!kt76c_pwr.getValue()) { return 0; }
+  if (!kt76c_pwr.getValue() and !kt76c_init) { return 0; }
+  if (kt76c_test.getValue() and !kt76c_init) { return 0; }
   if (size(kt76c_codes)) {
     pop(kt76c_codes);
     kt76c_copycode();
@@ -133,7 +143,8 @@ var kt76c_button_clr = func {
 
 # Standard VFR code is 1200
 var kt76c_button_vfr = func {
-  if (!kt76c_pwr.getValue()) { return 0; }
+  if (!kt76c_pwr.getValue() and !kt76c_init) { return 0; }
+  if (kt76c_test.getValue() and !kt76c_init) { return 0; }
   
   vfr = kt76c_vfr_default.getValue();
   vfr = vfr ~ ""; # convert to string so substr() can work
@@ -141,17 +152,18 @@ var kt76c_button_vfr = func {
   vfr2 = substr(vfr, 1, 1);
   vfr3 = substr(vfr, 2, 1);
   vfr4 = substr(vfr, 3, 1);
-  
-  kt76c_codes = [vfr1,vfr2,vfr3,vfr4];
-  kt76c_goodcode.setValue(1);
-  kt76c_copycode();
+
+  for (var i=1; i<=4; i=i+1) kt76c_button_clr();
+  foreach (c; [vfr1,vfr2,vfr3,vfr4]) kt76c_button_code(c);
+
   #kt76c_entry_clock(0);
 }
 
 
 # Send our good code for 18 seconds
 var kt76c_button_idt = func {
-  if (kt76c_pwr.getValue() < 3) { return 0; }
+  if (kt76c_pwr.getValue() < 3 and !kt76c_init) { return 0; }
+  if (kt76c_test.getValue() and !kt76c_init) { return 0; }
   if (kt76c_goodcode.getValue() and kt76c_ready.getValue() == 1) {
     kt76c_ident_btn.setValue(1);
     kt76c_updateReply();
@@ -242,28 +254,40 @@ setlistener(kt76c_knob_state, func(n) {
 });
 
 # listen to test mode changes
+var kt76c_test_codemem = [];
 setlistener(kt76c_test, func(n) {
     if (n.getValue()) {
         # test mode entered
+        kt76c_test_codemem = [];
+        foreach (c; kt76c_last) append(kt76c_test_codemem, c);
         kt76c_code.setIntValue(8888);
     } else {
-        # test mode leaved
-        kt76c_code.setIntValue(kt76c_last[0] ~ kt76c_last[1] ~ kt76c_last[2] ~ kt76c_last[3]);
+        # test mode leaved, reset previous code (and honor partial entries)
+        for (var i=1; i<=4; i=i+1) kt76c_button_clr();
+        foreach (c; kt76c_test_codemem) {
+          kt76c_button_code(c);
+        }
     }
 }, 0, 0);
 
-# INIT
-setlistener("/sim/signals/fdm-initialized", func {
+var kt76c_initialize = func() {
     # init goodcode with current saved code
+    kt76c_init = 1;
     code = kt76c_code.getValue();
-    code = code ~ ""; # convert to string so substr() can work
-    code1 = substr(code, 0, 1);
-    code2 = substr(code, 1, 1);
-    code3 = substr(code, 2, 1);
-    code4 = substr(code, 3, 1);
-    kt76c_codes = [code1,code2,code3,code4];
-    kt76c_last = kt76c_codes;
-    kt76c_goodcode.setValue(1);
+    if (code == nil or code == 0 or code == "") {
+      print("KT76C transponder no saved code, setting VFR");
+      kt76c_button_vfr();
+    } else {
+      print("KT76C transponder restore saved code ("~code~")");
+      code = code ~ ""; # convert to string so substr() can work
+      code1 = substr(code, 0, 1);
+      code2 = substr(code, 1, 1);
+      code3 = substr(code, 2, 1);
+      code4 = substr(code, 3, 1);
+    
+      for (var i=1; i<=4; i=i+1) kt76c_button_clr();
+      foreach (c; [code1,code2,code3,code4]) kt76c_button_code(c);
+    }
 
     # init knob and instuments
     kt76c_updateMode();  #sync internal knob state to real knob state
@@ -274,5 +298,11 @@ setlistener("/sim/signals/fdm-initialized", func {
     # init reply sign timer
     kt76c_reply_update_timer.start();
 
+    kt76c_init = 0;
+}
+
+# INIT
+setlistener("/sim/signals/fdm-initialized", func {
+    kt76c_initialize();
     print("KT76C transponder initialized");
 });

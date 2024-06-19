@@ -261,6 +261,75 @@
         <default-padding>6</default-padding>
         <empty><stretch>true</stretch></empty>
         <button>
+            <legend>Drain Oil</legend>
+            <enable>
+                <and>
+                    <or>
+                        <property>/fdm/jsbsim/gear/unit[1]/WOW</property>
+                        <property>/fdm/jsbsim/gear/unit[19]/WOW</property>
+                        <property>/fdm/jsbsim/gear/unit[23]/WOW</property>
+                        <property>/fdm/jsbsim/hydro/active-norm</property>
+                    </or>
+                    <not>
+                        <property>/engines/engine/running</property>
+                    </not>
+                    <greater-than>
+                        <property>/engines/engine[0]/oil-level</property>
+                        <value>0.0</value>
+                    </greater-than>
+                </and>
+            </enable>
+            <binding>
+                <command>property-interpolate</command>
+                <property>/engines/engine[0]/oil-level</property>
+                <value type="double">0</value>
+                <rate>0.5</rate>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script><![CDATA[
+                    var olvl_p = "/engines/engine[0]/oil-level";
+                    var olvl   = getprop(olvl_p);
+                    var rate   = 1.0 * olvl;
+                    var otgt   = olvl + 0.5;
+                    if (otgt > 8.5) otgt = 9;
+                    interpolate(olvl_p, 0, rate);
+                    c182s.oil_refill();
+                ]]></script>
+            </binding>
+        </button>
+        <button>
+            <legend>Add Oil</legend>
+            <enable>
+                <and>
+                    <or>
+                        <property>/fdm/jsbsim/gear/unit[1]/WOW</property>
+                        <property>/fdm/jsbsim/gear/unit[19]/WOW</property>
+                        <property>/fdm/jsbsim/gear/unit[23]/WOW</property>
+                        <property>/fdm/jsbsim/hydro/active-norm</property>
+                    </or>
+                    <not>
+                        <property>/engines/engine/running</property>
+                    </not>
+                    <less-than>
+                        <property>/engines/engine[0]/oil-level</property>
+                        <value>9.0</value>
+                    </less-than>
+                </and>
+            </enable>
+            <binding>
+                <command>nasal</command>
+                <script><![CDATA[
+                    var olvl_p = "/engines/engine[0]/oil-level";
+                    var olvl   = getprop(olvl_p);
+                    var otgt   = olvl + 0.5;
+                    if (otgt > 8.5) otgt = 9;
+                    interpolate(olvl_p, otgt, 1.0);
+                    c182s.oil_refill();
+                ]]></script>
+            </binding>
+        </button>
+        <button>
             <legend>Close</legend>
             <equal>true</equal>
             <key>Esc</key>

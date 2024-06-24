@@ -712,8 +712,16 @@
     <animation>
         <type>translate</type>
         <object-name>ParkingBrake</object-name>
-        <property>sim/model/c182s/cockpit/brake-lever</property>
-        <factor>0.04</factor>
+        <expression>
+            <table>
+                <property>sim/model/c182s/cockpit/brake-lever</property>
+                <entry> <ind>0.00</ind> <dep>0.00</dep> </entry>
+                <entry> <ind>0.20</ind> <dep>0.02</dep> </entry>
+                <entry> <ind>0.40</ind> <dep>0.03</dep> </entry>
+                <entry> <ind>0.60</ind> <dep>0.035</dep> </entry>
+                <entry> <ind>0.70</ind> <dep>0.04</dep> </entry>
+            </table>
+        </expression>
         <axis>
             <x>1.0</x>
             <y>0.0</y>
@@ -723,8 +731,13 @@
     <animation>
         <type>rotate</type>
         <object-name>ParkingBrake</object-name>
-        <property>sim/model/c182s/cockpit/brake-lever</property>
-        <factor>90</factor>
+        <expression>
+            <table>
+                <property>sim/model/c182s/cockpit/brake-lever</property>
+                <entry> <ind>0.85</ind> <dep>0.0</dep> </entry>
+                <entry> <ind>1.0</ind> <dep>90</dep> </entry>
+            </table>
+        </expression>
         <axis>
             <x>1.0</x>
             <y>0.0</y>

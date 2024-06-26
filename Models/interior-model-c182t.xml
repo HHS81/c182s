@@ -1844,18 +1844,45 @@
                 <command>nasal</command>
                 <script>c182s.click("master")</script>
             </binding>
+            <binding>
+                <condition>
+                    <or>
+                        <and>
+                            <not><property>sim/model/split-master-switches</property></not>
+                            <not><property>/devices/status/keyboard/shift</property></not>
+                        </and>
+                        <and>
+                            <property>sim/model/split-master-switches</property>
+                            <property>/devices/status/keyboard/shift</property>
+                        </and>
+                    </or>
+                </condition>
+                <command>property-assign</command>
+                <property>controls/engines/engine/master-bat</property>
+                <property>controls/engines/engine/master-alt</property>
+            </binding>
         </action>
         <hovered>
-            <binding>
+           <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>Master-Alt-switch</tooltip-id>
                 <label>Alternator: %s</label>
-                <mapping>on-off</mapping>
                 <property>controls/engines/engine/master-alt</property>
+                <mapping>nasal</mapping>
+                <script>
+                    <![CDATA[
+                    var setting     = getprop("controls/engines/engine/master-alt");
+                    var setting_txt = "OFF";  if (setting) setting_txt = "ON";
+                    var ret_str     = setting_txt;
+                    if (getprop("sim/model/split-master-switches"))  ret_str ~= "\n(shift-click for both switches)";
+                    if (!getprop("sim/model/split-master-switches")) ret_str ~= "\n(shift-click for single switch)";
+                    return ret_str;
+                    ]]>
+                </script>
             </binding>
         </hovered>
     </animation>
-
+    
     <!-- MasterSwitch -->
     <animation>
         <type>pick</type>
@@ -1872,14 +1899,41 @@
                 <command>nasal</command>
                 <script>c182s.click("master")</script>
             </binding>
+            <binding>
+                <condition>
+                    <or>
+                        <and>
+                            <not><property>sim/model/split-master-switches</property></not>
+                            <not><property>/devices/status/keyboard/shift</property></not>
+                        </and>
+                        <and>
+                            <property>sim/model/split-master-switches</property>
+                            <property>/devices/status/keyboard/shift</property>
+                        </and>
+                    </or>
+                </condition>
+                <command>property-assign</command>
+                <property>controls/engines/engine/master-alt</property>
+                <property>controls/engines/engine/master-bat</property>
+            </binding>
         </action>
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <tooltip-id>Master-Batt-switch</tooltip-id>
+                <tooltip-id>Master-Bat-switch</tooltip-id>
                 <label>Battery: %s</label>
-                <mapping>on-off</mapping>
                 <property>controls/engines/engine/master-bat</property>
+                <mapping>nasal</mapping>
+                <script>
+                    <![CDATA[
+                    var setting     = getprop("controls/engines/engine/master-bat");
+                    var setting_txt = "OFF";  if (setting) setting_txt = "ON";
+                    var ret_str     = setting_txt;
+                    if (getprop("sim/model/split-master-switches"))  ret_str ~= "\n(shift-click for both switches)";
+                    if (!getprop("sim/model/split-master-switches")) ret_str ~= "\n(shift-click for single switch)";
+                    return ret_str;
+                    ]]>
+                </script>
             </binding>
         </hovered>
     </animation>
@@ -2278,18 +2332,45 @@
                 <command>nasal</command>
                 <script>c182s.click("avionics")</script>
             </binding>
+            <binding>
+                <condition>
+                    <or>
+                        <and>
+                            <not><property>sim/model/split-master-switches</property></not>
+                            <not><property>/devices/status/keyboard/shift</property></not>
+                        </and>
+                        <and>
+                            <property>sim/model/split-master-switches</property>
+                            <property>/devices/status/keyboard/shift</property>
+                        </and>
+                    </or>
+                </condition>
+                <command>property-assign</command>
+                <property>controls/switches/AVMBus2</property>
+                <property>controls/switches/AVMBus1</property>
+            </binding>
         </action>
         <hovered>
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>Avionics Master-Switch Bus1</tooltip-id>
                 <label>Avionics Master 1: %s</label>
-                <mapping>on-off</mapping>
                 <property>controls/switches/AVMBus1</property>
+                <mapping>nasal</mapping>
+                <script>
+                    <![CDATA[
+                    var setting     = getprop("controls/switches/AVMBus1");
+                    var setting_txt = "OFF";  if (setting) setting_txt = "ON";
+                    var ret_str     = setting_txt;
+                    if (getprop("sim/model/split-master-switches"))  ret_str ~= "\n(shift-click for both switches)";
+                    if (!getprop("sim/model/split-master-switches")) ret_str ~= "\n(shift-click for single switch)";
+                    return ret_str;
+                    ]]>
+                </script>
             </binding>
         </hovered>
     </animation>
-
+    
 <animation>
         <type>pick</type>
         <object-name>AVMBus2</object-name>
@@ -2305,14 +2386,41 @@
                 <command>nasal</command>
                 <script>c182s.click("avionics")</script>
             </binding>
+            <binding>
+                <condition>
+                    <or>
+                        <and>
+                            <not><property>sim/model/split-master-switches</property></not>
+                            <not><property>/devices/status/keyboard/shift</property></not>
+                        </and>
+                        <and>
+                            <property>sim/model/split-master-switches</property>
+                            <property>/devices/status/keyboard/shift</property>
+                        </and>
+                    </or>
+                </condition>
+                <command>property-assign</command>
+                <property>controls/switches/AVMBus1</property>
+                <property>controls/switches/AVMBus2</property>
+            </binding>
         </action>
         <hovered>
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>Avionics Master-Switch Bus2</tooltip-id>
                 <label>Avionics Master 2: %s</label>
-                <mapping>on-off</mapping>
                 <property>controls/switches/AVMBus2</property>
+                <mapping>nasal</mapping>
+                <script>
+                    <![CDATA[
+                    var setting     = getprop("controls/switches/AVMBus2");
+                    var setting_txt = "OFF";  if (setting) setting_txt = "ON";
+                    var ret_str     = setting_txt;
+                    if (getprop("sim/model/split-master-switches"))  ret_str ~= "\n(shift-click for both switches)";
+                    if (!getprop("sim/model/split-master-switches")) ret_str ~= "\n(shift-click for single switch)";
+                    return ret_str;
+                    ]]>
+                </script>
             </binding>
         </hovered>
     </animation>

@@ -20,7 +20,6 @@
     <modal>false</modal>
     <draggable>true</draggable>
 
-
     <group>
         <layout>hbox</layout>
 
@@ -40,216 +39,240 @@
                 <command>dialog-close</command>
             </binding>
         </button>
-	</group>
-	<hrule/>
-    
-<group>
-                <layout>hbox</layout>
-		
-	<checkbox>
-                    <halign>left</halign>
-                <label>Enable ladder </label>
-                        <live>true</live>
-		<property>/sim/ladder/enable</property>
-			<enable>
-                                <less-than>
-                                    <property>velocities/groundspeed-kt</property>
-                                    <value>0.1</value>
-                                </less-than>
-			</enable>
-               <binding>
-                    <command>property-toggle</command>
-		<property>/sim/ladder/enable</property>
-                </binding>
-		<binding>
-                    <command>dialog-update</command>
-                </binding>
-	</checkbox>
+    </group>
 
-                <radio>
-                    <halign>left</halign>
-                    <label>ladder left</label>
-                    <property>sim/model/c182s/ladder_position_l</property>
-                    <live>true</live>
-                    <enable>
-                            <property>/sim/ladder/enable</property>
-                    </enable>
-                    <binding>
-                        <command>dialog-update</command>
-                    </binding>
-                    <binding>
-                        <command>nasal</command>
-                        <script>
-                            setprop("sim/model/c182s/ladder_position_l", 1);
-                            setprop("sim/model/c182s/ladder_position_r", 0);
-                        </script>
-                    </binding>
-                </radio>
+    <hrule/>
 
-                <radio>
-                    <halign>right</halign>
-                    <label>ladder right</label>
-                    <enable>
-                            <property>/sim/ladder/enable</property>
-                    </enable>
-                    <property>sim/model/c182s/ladder_position_r</property>
-                    <live>true</live>
-                    <binding>
-                        <command>dialog-update</command>
-                    </binding>
-                    <binding>
-                        <command>nasal</command>
-                        <script>
-                            setprop("sim/model/c182s/ladder_position_l", 0);
-                            setprop("sim/model/c182s/ladder_position_r", 1);
-                        </script>
-                    </binding>
-                </radio>
-            </group>
+    <group>
+        <layout>hbox</layout>
 
-            <hrule/>
-
-            <checkbox>
-                <halign>left</halign>
-                <label>Attach Towbar</label>
-                <property>/fdm/jsbsim/external_reactions/towbar/attached</property>
-                <live>true</live>
-                <binding>
-                    <command>property-toggle</command>
-                    <property>/fdm/jsbsim/external_reactions/towbar/attached</property>
-                </binding>
-                <binding>
-                    <command>property-assign</command>
-                    <property>/fdm/jsbsim/external_reactions/towbar/steer-deg</property>
-                    <value>0</value>
-                </binding>
-                <binding>
-                    <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
-                </binding>
-                <enable>
-                    <and>
-                        <property>gear/gear[0]/wow</property>
-                        <less-than>
-                            <property>velocities/groundspeed-kt</property>
-                            <value>1.0</value>
-                        </less-than>
-                        <less-than>
-                            <property>/engines/engine/thruster/rpm</property>
-                            <value>0.01</value>
-                        </less-than>
-                    </and>
-                </enable>
+        <checkbox>
+            <halign>left</halign>
+            <label>Enable ladder </label>
+            <live>true</live>
+            <property>/sim/ladder/enable</property>
+            <enable>
+                <less-than>
+                    <property>velocities/groundspeed-kt</property>
+                    <value>0.1</value>
+                </less-than>
+            </enable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/sim/ladder/enable</property>
+            </binding>
+            <binding>
+                <command>dialog-update</command>
+            </binding>
             </checkbox>
 
+            <radio>
+                <halign>left</halign>
+                <label>ladder left</label>
+                <property>sim/model/c182s/ladder_position_l</property>
+                <live>true</live>
+                <enable>
+                        <property>/sim/ladder/enable</property>
+                </enable>
+                <binding>
+                    <command>dialog-update</command>
+                </binding>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        setprop("sim/model/c182s/ladder_position_l", 1);
+                        setprop("sim/model/c182s/ladder_position_r", 0);
+                    </script>
+                </binding>
+            </radio>
+
+            <radio>
+                <halign>right</halign>
+                <label>ladder right</label>
+                <enable>
+                        <property>/sim/ladder/enable</property>
+                </enable>
+                <property>sim/model/c182s/ladder_position_r</property>
+                <live>true</live>
+                <binding>
+                    <command>dialog-update</command>
+                </binding>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        setprop("sim/model/c182s/ladder_position_l", 0);
+                        setprop("sim/model/c182s/ladder_position_r", 1);
+                    </script>
+                </binding>
+            </radio>
+        </group>
+
         <hrule/>
 
-	
-	
-<group>
-	<layout>vbox</layout>
-	<padding>6</padding>
-	<checkbox>
-                <halign>left</halign>
-                <label>Place Ground Power Unit</label>
-                        <live>true</live>
-		<property>/sim/gpu/enable</property>
-			<enable>
-                                <less-than>
-                                    <property>velocities/groundspeed-kt</property>
-                                    <value>0.1</value>
-                                </less-than>
-			</enable>
-               <binding>
-                    <command>property-toggle</command>
-		<property>/sim/gpu/enable</property>
-                </binding>
+        <checkbox>
+            <halign>left</halign>
+            <label>Attach Towbar</label>
+            <property>/fdm/jsbsim/external_reactions/towbar/attached</property>
+            <live>true</live>
             <binding>
-                <command>nasal</command>
-                <script>
-                    if (!getprop("/sim/gpu/enable")) setprop("/controls/electric/external-power", 0);
-                </script>
+                <command>property-toggle</command>
+                <property>/fdm/jsbsim/external_reactions/towbar/attached</property>
             </binding>
-	<binding>
-                    <command>dialog-update</command>
-                </binding>
-	</checkbox>
-        
-	<checkbox>
-                <halign>left</halign>
-                <label>Connect Groud Power Unit</label>
-                        <live>true</live>
-		<property>/controls/electric/external-power</property>
-	<enable>
-		<property>/sim/gpu/enable</property>
-	</enable>
-               <binding>
-                    <command>property-toggle</command>
-		<property>/controls/electric/external-power</property>
-                </binding>
-	<binding>
-                    <command>dialog-update</command>
-                </binding>
-	</checkbox>
-        </group>
+            <binding>
+                <command>property-assign</command>
+                <property>/fdm/jsbsim/external_reactions/towbar/steer-deg</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
+            </binding>
+            <enable>
+                <and>
+                    <property>gear/gear[0]/wow</property>
+                    <less-than>
+                        <property>velocities/groundspeed-kt</property>
+                        <value>1.0</value>
+                    </less-than>
+                    <less-than>
+                        <property>/engines/engine/thruster/rpm</property>
+                        <value>0.01</value>
+                    </less-than>
+                </and>
+            </enable>
+        </checkbox>
+
         <hrule/>
-	
-<group>
-	<layout>vbox</layout>
-	<padding>6</padding>
-	<checkbox>
-                <halign>left</halign>
-                <label>Fuel Tank Trailer</label>
-                        <live>true</live>
-		<property>/sim/fueltanktrailer/enable</property>
-			<enable>
-                                <less-than>
-                                    <property>velocities/groundspeed-kt</property>
-                                    <value>0.1</value>
-                                </less-than>
-			</enable>
-               <binding>
-                    <command>property-toggle</command>
-		<property>/sim/fueltanktrailer/enable</property>
-                </binding>
-	<binding>
-                    <command>dialog-update</command>
-                </binding>
-	</checkbox>
-        </group>
-	
-	
-        <hrule/>
-	
+
         <group>
             <layout>vbox</layout>
             <padding>6</padding>
-            <checkbox>
-                <halign>left</halign>
-                <label>External heater applied</label>
-                <live>true</live>
-                <property>/engines/engine/external-heat/enabled</property>
-                <enable>
-                    <and>
+            <group>
+                <layout>hbox</layout>
+                <checkbox>
+                    <halign>left</halign>
+                    <label>Place Ground Power Unit</label>
+                    <live>true</live>
+                    <property>/sim/gpu/enable</property>
+                    <enable>
                         <less-than>
                             <property>velocities/groundspeed-kt</property>
                             <value>0.1</value>
                         </less-than>
-                        <less-than>
-                            <property>/engines/engine/thruster/rpm</property>
-                            <value>0.0001</value>
-                        </less-than>
-                    </and>
-                </enable>
-                <binding>
-                    <command>property-toggle</command>
-                    <property>/engines/engine/external-heat/enabled</property>
-                </binding>
-                <binding>
-                    <command>dialog-update</command>
-                </binding>
-            </checkbox>
+                    </enable>
+                    <binding>
+                        <command>property-toggle</command>
+                        <property>/sim/gpu/enable</property>
+                    </binding>
+                    <binding>
+                        <command>nasal</command>
+                        <script>
+                            if (!getprop("/sim/gpu/enable")) setprop("/controls/electric/external-power", 0);
+                        </script>
+                    </binding>
+                    <binding>
+                        <command>dialog-update</command>
+                    </binding>
+                </checkbox>
+                <text>
+                    <halign>right</halign>
+                    <label>(Battery charge: xxxx %%)</label>
+                    <format>(Battery charge: %3.0f %%)</format>
+                    <live>true</live>
+                    <property>/systems/electrical/battery-charge-percent-100</property>
+                    <factor>100</factor>
+                </text>
+            </group>
+
+            <group>
+                <layout>hbox</layout>
+                <checkbox>
+                    <halign>left</halign>
+                    <label>Connect Groud Power Unit</label>
+                    <live>true</live>
+                    <property>/controls/electric/external-power</property>
+                    <enable>
+                        <property>/sim/gpu/enable</property>
+                    </enable>
+                    <binding>
+                        <command>property-toggle</command>
+                        <property>/controls/electric/external-power</property>
+                    </binding>
+                    <binding>
+                        <command>dialog-update</command>
+                    </binding>
+                </checkbox>
+                <text>
+                    <visible>
+                        <equals>
+                            <property>/sim/aircraft</property>
+                            <value>c182t</value> 
+                        </equals>
+                    </visible>
+                    <halign>right</halign>
+                    <label>(Standby charge: xxxx %%)</label>
+                    <format>(Standby charge: %3.0f %%)</format>
+                    <live>true</live>
+                    <property>/systems/electrical/battery-sby-charge-percent-100</property>
+                </text>
+            </group>
         </group>
-	
+        <hrule/>
+
+    <group>
+        <layout>vbox</layout>
+        <padding>6</padding>
+        <checkbox>
+            <halign>left</halign>
+            <label>Fuel Tank Trailer</label>
+            <live>true</live>
+            <property>/sim/fueltanktrailer/enable</property>
+            <enable>
+                <less-than>
+                    <property>velocities/groundspeed-kt</property>
+                    <value>0.1</value>
+                </less-than>
+            </enable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/sim/fueltanktrailer/enable</property>
+            </binding>
+            <binding>
+                <command>dialog-update</command>
+            </binding>
+        </checkbox>
+    </group>
+
+    <hrule/>
+
+    <group>
+        <layout>vbox</layout>
+        <padding>6</padding>
+        <checkbox>
+            <halign>left</halign>
+            <label>External heater applied</label>
+            <live>true</live>
+            <property>/engines/engine/external-heat/enabled</property>
+            <enable>
+                <and>
+                    <less-than>
+                        <property>velocities/groundspeed-kt</property>
+                        <value>0.1</value>
+                    </less-than>
+                    <less-than>
+                        <property>/engines/engine/thruster/rpm</property>
+                        <value>0.0001</value>
+                    </less-than>
+                </and>
+            </enable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/engines/engine/external-heat/enabled</property>
+            </binding>
+            <binding>
+                <command>dialog-update</command>
+            </binding>
+        </checkbox>
+    </group>
 
   
 </PropertyList>

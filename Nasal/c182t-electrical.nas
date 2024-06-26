@@ -134,6 +134,7 @@ BatteryClass.apply_load = func( amps, dt ) {
     }
     me.charge_percent = charge_percent;
     setprop("/systems/electrical/"~me.name~"-charge-percent", charge_percent * capacity_factor);
+    setprop("/systems/electrical/"~me.name~"-charge-percent-100", 100*charge_percent * capacity_factor);
     #print( me.name~"percent = ", charge_percent);
     return me.amp_hours * charge_percent;
 }

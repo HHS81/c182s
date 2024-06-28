@@ -88,6 +88,10 @@ var calibrateInstruments = func() {
     setprop("/instrumentation/heading-indicator/error-deg", 0);
     setprop("/instrumentation/heading-indicator/offset-deg", 0);
     print("Heading Indicator calibrated to: " ~ magnetic_variation ~ " magVar");
+
+    # Uncage calibrated instruments
+    setprop("/instrumentation/heading-indicator/caged-flag", 0);
+    setprop("/instrumentation/attitude-indicator/caged-flag", 0);
 }
 
 

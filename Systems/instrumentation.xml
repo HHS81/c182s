@@ -102,6 +102,7 @@ file, these values will be used (they are hardcoded).
     <limits>
       <yaw-limit-rate>11.5</yaw-limit-rate> <!-- about 55° bank, from video footage, see refs in https://github.com/HHS81/c182s/pull/527 -->
       <yaw-error-factor>0.033</yaw-error-factor>
+      <g-node>/accelerations/pilot-gdamped</g-node>
       <g-limit-lower>-0.85</g-limit-lower>
       <g-limit-upper>2.0</g-limit-upper>
       <g-error-factor>0.033</g-error-factor>

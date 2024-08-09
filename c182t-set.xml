@@ -915,6 +915,7 @@
             <path>/controls/switches/kn-62a</path>
             <path>/controls/switches/fuel_tank_selector</path>
             <path>/controls/engines/engine/cowl-flaps-norm</path>
+            <path>/controls/flight/aileron-trim</path>
             <path>/controls/flight/elevator-trim</path>
             <path>/controls/flight/rudder-trim</path>
             <path>/controls/flight/flaps</path>
@@ -1171,7 +1172,7 @@
 
  <controls>
   <flight>
-   <aileron-trim type="double">0.00</aileron-trim>
+   <aileron-trim type="double">0.0135</aileron-trim> <!-- Calibrated to 130KIAs/2200RPM. Note: C182 has no aileron trim. Instead, this is achieved factory-sided by incidence of the wings -->
    <rudder-trim type="double">0.0</rudder-trim>
   </flight>
 <gear>

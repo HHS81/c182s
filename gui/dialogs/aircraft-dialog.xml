@@ -52,66 +52,150 @@
 	</group>
 	<hrule/>
     
-    <group>
-        <layout>hbox</layout>
-
-        <text>
-            <label>Transponder factory VFR code:</label>
-            <halign>left</halign>
-        </text>
-
-        <input>
-            <halign>left</halign>
-            <property>/instrumentation/transponder/factory-vfr-code</property>
-            <type>INT</type>
-            <width>4</width>
-        </input>
-        <button>
-            <legend>Apply</legend>
-            <equal>true</equal>
-            <default>false</default>
-            <binding>
-                <command>dialog-apply</command>
-            </binding>
-            <binding>
-                <command>dialog-close</command>
-            </binding>
-        </button>
-    </group>
+    
+    <text>
+        <label>Factory settings:</label>
+        <halign>left</halign>
+    </text>
     
     <group>
-        <visible>
-          <equals>
-            <property>/sim/aircraft</property>
-            <value>c182s</value> 
-          </equals>
-        </visible>
         <layout>hbox</layout>
+        <halign>left</halign>
+        <!-- Small left padding -->
+        <group>
+            <layout>vbox</layout>
 
-        <text>
-            <label>HI/DG Latitude Nut setting:</label>
-            <halign>left</halign>
-        </text>
+            <padding>6</padding>
+        </group>
     
-        <input>
-            <name>latitude-nut-setting</name>
+        <group>
+            <layout>table</layout>
             <halign>left</halign>
-            <property>/instrumentation/heading-indicator/latitude-nut-setting</property>
-            <type>INT</type>
-            <width>2</width>
-        </input>
-        <button>
-            <legend>Apply</legend>
-            <equal>true</equal>
-            <default>false</default>
-            <binding>
-                <command>dialog-apply</command>
-                <object-name>latitude-nut-setting</object-name>
-            </binding>
-            <binding>
-                <command>dialog-close</command>
-            </binding>
-        </button>
+            <valign>top</valign>
+
+            <text>
+                <label>Transponder factory VFR code:</label>
+                <halign>left</halign>
+                <row>0</row>
+                <col>0</col>
+            </text>
+            <input>
+                <halign>left</halign>
+                <property>/instrumentation/transponder/factory-vfr-code</property>
+                <type>INT</type>
+                <width>4</width>
+                <row>0</row>
+                <col>1</col>
+            </input>
+            <button>
+                <legend>Apply</legend>
+                <halign>left</halign>
+                <row>0</row>
+                <col>2</col>
+                <equal>true</equal>
+                <default>false</default>
+                <binding>
+                    <command>dialog-apply</command>
+                </binding>
+                <binding>
+                    <command>dialog-close</command>
+                </binding>
+            </button>
+            
+            <text>
+                <label>Wing incidence:</label>
+                <halign>left</halign>
+                <row>1</row>
+                <col>0</col>
+            </text>
+            <input>
+                <halign>left</halign>
+                <row>1</row>
+                <col>1</col>
+                <property>/controls/flight/aileron-trim</property>
+            </input>
+            <group>
+                <layout>hbox</layout>
+                <halign>left</halign>
+                <row>1</row>
+                <col>2</col>
+                <button>
+                    <legend>Apply</legend>
+                    <halign>left</halign>
+                    <equal>true</equal>
+                    <default>false</default>
+                    <binding>
+                        <command>dialog-apply</command>
+                    </binding>
+                    <binding>
+                        <command>dialog-close</command>
+                    </binding>
+                </button>
+                <button>
+                    <legend>Reset</legend>
+                    <equal>true</equal>
+                    <default>false</default>
+                    <binding>
+                        <command>property-assign</command>
+                        <property>/controls/flight/aileron-trim</property>
+                        <value>0.0135</value>
+                    </binding>
+                    <binding>
+                        <command>dialog-update</command>
+                    </binding>
+                </button>
+            </group>
+            
+            <text>
+                <label>HI/DG Latitude Nut setting:</label>
+                <halign>left</halign>
+                <row>2</row>
+                <col>0</col>
+                <visible>
+            <equals>
+                <property>/sim/aircraft</property>
+                <value>c182s</value> 
+            </equals>
+            </visible>
+            </text>
+            <input>
+                <name>latitude-nut-setting</name>
+                <halign>left</halign>
+                <row>2</row>
+                <col>1</col>
+                <property>/instrumentation/heading-indicator/latitude-nut-setting</property>
+                <type>INT</type>
+                <width>2</width>
+                <visible>
+            <equals>
+                <property>/sim/aircraft</property>
+                <value>c182s</value> 
+            </equals>
+            </visible>
+            </input>
+            <button>
+                <legend>Apply</legend>
+                <halign>left</halign>
+                <equal>true</equal>
+                <default>false</default>
+                <row>2</row>
+                <col>2</col>
+                <visible>
+                    <equals>
+                        <property>/sim/aircraft</property>
+                        <value>c182s</value> 
+                    </equals>
+                </visible>
+                <binding>
+                    <command>dialog-apply</command>
+                    <object-name>latitude-nut-setting</object-name>
+                </binding>
+                <binding>
+                    <command>dialog-close</command>
+                </binding>
+            </button>
+
+        </group>
     </group>
     
     <hrule/>

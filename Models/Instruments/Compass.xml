@@ -31,7 +31,7 @@
 		<clip>
 			<clipMin>-25</clipMin>
 			<clipMax>25</clipMax>
-			<property>instrumentation/magnetic-compass/roll-deg-final</property>
+			<property>instrumentation/magnetic-compass/roll-deg</property>
 		</clip>
 	</expression>
 	<factor>1.0</factor>
@@ -48,7 +48,7 @@
 		<clip>
 			<clipMin>-9</clipMin>
 			<clipMax>9</clipMax>
-			<property>instrumentation/magnetic-compass/pitch-deg-final</property>
+			<property>instrumentation/magnetic-compass/pitch-deg</property>
 		</clip>
 	</expression>
 	<factor>1.0</factor>

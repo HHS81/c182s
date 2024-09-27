@@ -1849,10 +1849,10 @@
                     <property>aero/qbarUW-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
-
+<sin>
                         <property>aero/alpha-rad</property>
-
-                    <value>-1.65</value> 
+</sin>
+                    <value>-2</value> 
                     <!-- 
                         stall and spin (5):
                         horizontal tail stall (for flat spin)

@@ -243,7 +243,7 @@
     <visible>true</visible>
     <condition>
         <and>
-            <property>/sim/model/c182s/parachuters/aircraft-mod-enabled</property>
+            <property>sim/model/c182s/parachuters/aircraft-mod-enabled</property>
         </and>
     </condition>
     <action>

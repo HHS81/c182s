@@ -9,7 +9,7 @@
 	<type>select</type>
         <object-name>ladder.right</object-name>
 	<condition>
-	<property>/sim/ladder/right</property>
+	<property>sim/ladder/right</property>
 <value>true</value>
 	</condition>
 </animation>-->

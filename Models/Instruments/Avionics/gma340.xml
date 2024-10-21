@@ -77,9 +77,9 @@
       <object-name>gma340.Marker.M</object-name>
       <object-name>gma340.Marker.I</object-name>
       <condition>
-        <property>/instrumentation/audio-panel/serviceable</property>
-        <property>/instrumentation/audio-panel/power-btn</property>
-        <property>/systems/electrical/outputs/audio-panel</property>
+        <property>instrumentation/audio-panel/serviceable</property>
+        <property>instrumentation/audio-panel/power-btn</property>
+        <property>systems/electrical/outputs/audio-panel</property>
       </condition>
   </animation>
   
@@ -87,12 +87,12 @@
     <type>material</type>
     <object-name>gma340.Marker.O</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/marker-beacon/outer</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/marker-beacon/outer</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -105,8 +105,8 @@
     <type>material</type>
     <object-name>gma340.Marker.O</object-name>
     <condition>
-      <not><property>/instrumentation/marker-beacon/outer</property></not>
-      <not><property>/instrumentation/audio-panel/test</property></not>
+      <not><property>instrumentation/marker-beacon/outer</property></not>
+      <not><property>instrumentation/audio-panel/test</property></not>
     </condition>
     <emission>
       <red>0.5</red>
@@ -140,12 +140,12 @@
     <type>material</type>
     <object-name>gma340.Marker.M</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/marker-beacon/middle</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/marker-beacon/middle</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -158,8 +158,8 @@
     <type>material</type>
     <object-name>gma340.Marker.M</object-name>
     <condition>
-      <not><property>/instrumentation/marker-beacon/middle</property></not>
-      <not><property>/instrumentation/audio-panel/test</property></not>
+      <not><property>instrumentation/marker-beacon/middle</property></not>
+      <not><property>instrumentation/audio-panel/test</property></not>
     </condition>
     <emission>
       <red>0.5</red>
@@ -193,12 +193,12 @@
     <type>material</type>
     <object-name>gma340.Marker.I</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/marker-beacon/inner</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/marker-beacon/inner</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -211,8 +211,8 @@
     <type>material</type>
     <object-name>gma340.Marker.I</object-name>
     <condition>
-      <not><property>/instrumentation/marker-beacon/inner</property></not>
-      <not><property>/instrumentation/audio-panel/test</property></not>
+      <not><property>instrumentation/marker-beacon/inner</property></not>
+      <not><property>instrumentation/audio-panel/test</property></not>
     </condition>
     <emission>
       <red>0.5</red>
@@ -253,9 +253,9 @@
         <command>property-toggle</command>
         <property>instrumentation/adf[0]/ident-audible</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -268,12 +268,12 @@
     <type>material</type>
     <object-name>gma340.led.adf</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/adf[0]/ident-audible</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/adf[0]/ident-audible</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -294,9 +294,9 @@
         <command>property-toggle</command>
         <property>instrumentation/dme[0]/ident</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -309,12 +309,12 @@
     <type>material</type>
     <object-name>gma340.led.dme</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/dme[0]/ident</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/dme[0]/ident</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -335,9 +335,9 @@
         <command>property-toggle</command>
         <property>instrumentation/nav[1]/ident</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -350,12 +350,12 @@
     <type>material</type>
     <object-name>gma340.led.nav2</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/nav[1]/ident</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/nav[1]/ident</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -374,11 +374,11 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/instrumentation/nav[0]/ident</property>
+        <property>instrumentation/nav[0]/ident</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -391,12 +391,12 @@
     <type>material</type>
     <object-name>gma340.led.nav1</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/nav[0]/ident</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/nav[0]/ident</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -415,19 +415,19 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/instrumentation/audio-panel/mkr</property>
+        <property>instrumentation/audio-panel/mkr</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>nasal</command>
         <script>c182s.gma340_toggleMarkerMute()</script>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
         </condition>
       </binding>
       <binding>
@@ -440,12 +440,12 @@
     <type>material</type>
     <object-name>gma340.led.mkr</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/mkr</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/mkr</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -464,11 +464,11 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/instrumentation/audio-panel/com[0]</property>
+        <property>instrumentation/audio-panel/com[0]</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -481,12 +481,12 @@
     <type>material</type>
     <object-name>gma340.led.com1</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/com[0]</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/com[0]</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -505,11 +505,11 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/instrumentation/audio-panel/com[1]</property>
+        <property>instrumentation/audio-panel/com[1]</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -522,12 +522,12 @@
     <type>material</type>
     <object-name>gma340.led.com2</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/com[1]</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/com[1]</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -546,11 +546,11 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/instrumentation/audio-panel/com[2]</property>
+        <property>instrumentation/audio-panel/com[2]</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -563,12 +563,12 @@
     <type>material</type>
     <object-name>gma340.led.com3</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/com[2]</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/com[2]</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -587,62 +587,62 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com-mic[0]</property>
+        <property>instrumentation/audio-panel/com-mic[0]</property>
         <value>1</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com-mic[1]</property>
+        <property>instrumentation/audio-panel/com-mic[1]</property>
         <value>0</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com-mic[2]</property>
+        <property>instrumentation/audio-panel/com-mic[2]</property>
         <value>0</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com[0]</property>
+        <property>instrumentation/audio-panel/com[0]</property>
         <value>1</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com[1]</property>
+        <property>instrumentation/audio-panel/com[1]</property>
         <value>0</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com[2]</property>
+        <property>instrumentation/audio-panel/com[2]</property>
         <value>0</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -655,24 +655,24 @@
     <type>material</type>
     <object-name>gma340.led.com1mic</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/test</property>
         <and>
-            <property>/instrumentation/audio-panel/com-mic[0]</property>
+            <property>instrumentation/audio-panel/com-mic[0]</property>
             <not>
                 <equals>
-                    <property>/controls/radios/comm-ptt</property>
+                    <property>controls/radios/comm-ptt</property>
                     <value>1</value>
                 </equals>
             </not>
         </and>
         <and>
-            <property>/instrumentation/audio-panel/ptt_blinker</property>
+            <property>instrumentation/audio-panel/ptt_blinker</property>
             <equals>
-                <property>/controls/radios/comm-ptt</property>
+                <property>controls/radios/comm-ptt</property>
                 <value>1</value>
             </equals>
         </and>
@@ -694,62 +694,62 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com-mic[0]</property>
+        <property>instrumentation/audio-panel/com-mic[0]</property>
         <value>0</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com-mic[1]</property>
+        <property>instrumentation/audio-panel/com-mic[1]</property>
         <value>1</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com-mic[2]</property>
+        <property>instrumentation/audio-panel/com-mic[2]</property>
         <value>0</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com[0]</property>
+        <property>instrumentation/audio-panel/com[0]</property>
         <value>0</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com[1]</property>
+        <property>instrumentation/audio-panel/com[1]</property>
         <value>1</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com[2]</property>
+        <property>instrumentation/audio-panel/com[2]</property>
         <value>0</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -762,24 +762,24 @@
     <type>material</type>
     <object-name>gma340.led.com2mic</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/test</property>
         <and>
-            <property>/instrumentation/audio-panel/com-mic[1]</property>
+            <property>instrumentation/audio-panel/com-mic[1]</property>
             <not>
                 <equals>
-                    <property>/controls/radios/comm-ptt</property>
+                    <property>controls/radios/comm-ptt</property>
                     <value>2</value>
                 </equals>
             </not>
         </and>
         <and>
-            <property>/instrumentation/audio-panel/ptt_blinker</property>
+            <property>instrumentation/audio-panel/ptt_blinker</property>
             <equals>
-                <property>/controls/radios/comm-ptt</property>
+                <property>controls/radios/comm-ptt</property>
                 <value>2</value>
             </equals>
         </and>
@@ -801,62 +801,62 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com-mic[0]</property>
+        <property>instrumentation/audio-panel/com-mic[0]</property>
         <value>0</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com-mic[1]</property>
+        <property>instrumentation/audio-panel/com-mic[1]</property>
         <value>0</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com-mic[2]</property>
+        <property>instrumentation/audio-panel/com-mic[2]</property>
         <value>1</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com[0]</property>
+        <property>instrumentation/audio-panel/com[0]</property>
         <value>0</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com[1]</property>
+        <property>instrumentation/audio-panel/com[1]</property>
         <value>0</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/com[2]</property>
+        <property>instrumentation/audio-panel/com[2]</property>
         <value>1</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -869,12 +869,12 @@
     <type>material</type>
     <object-name>gma340.led.com3mic</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/com-mic[2]</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/com-mic[2]</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -893,20 +893,20 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/instrumentation/audio-panel/hi</property>
+        <property>instrumentation/audio-panel/hi</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
         <command>property-toggle</command>
-        <property>/instrumentation/audio-panel/lo</property>
+        <property>instrumentation/audio-panel/lo</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -919,12 +919,12 @@
     <type>material</type>
     <object-name>gma340.led.hi</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/hi</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/hi</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -938,12 +938,12 @@
     <type>material</type>
     <object-name>gma340.led.lo</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/lo</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/lo</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -962,11 +962,11 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/instrumentation/audio-panel/com1-2</property>
+        <property>instrumentation/audio-panel/com1-2</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -979,12 +979,12 @@
     <type>material</type>
     <object-name>gma340.led.com1_2</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/com1-2</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/com1-2</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -1003,11 +1003,11 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/instrumentation/audio-panel/spkr</property>
+        <property>instrumentation/audio-panel/spkr</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -1018,9 +1018,9 @@
         <command>nasal</command>
         <script>c182s.gma340_refresh_spkr_volume()</script>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
     </action>
@@ -1029,12 +1029,12 @@
     <type>material</type>
     <object-name>gma340.led.spkr</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/spkr</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/spkr</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -1053,11 +1053,11 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/instrumentation/audio-panel/pa</property>
+        <property>instrumentation/audio-panel/pa</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -1070,12 +1070,12 @@
     <type>material</type>
     <object-name>gma340.led.pa</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/pa</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/pa</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -1094,11 +1094,11 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/instrumentation/audio-panel/crew</property>
+        <property>instrumentation/audio-panel/crew</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -1111,12 +1111,12 @@
     <type>material</type>
     <object-name>gma340.led.crew</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/crew</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/crew</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -1135,11 +1135,11 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/instrumentation/audio-panel/pilot</property>
+        <property>instrumentation/audio-panel/pilot</property>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <binding>
@@ -1152,12 +1152,12 @@
     <type>material</type>
     <object-name>gma340.led.pilot</object-name>
     <condition>
-      <property>/instrumentation/audio-panel/serviceable</property>
-      <property>/instrumentation/audio-panel/power-btn</property>
-      <property>/systems/electrical/outputs/audio-panel</property>
+      <property>instrumentation/audio-panel/serviceable</property>
+      <property>instrumentation/audio-panel/power-btn</property>
+      <property>systems/electrical/outputs/audio-panel</property>
       <or>
-        <property>/instrumentation/audio-panel/pilot</property>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/pilot</property>
+        <property>instrumentation/audio-panel/test</property>
       </or>
     </condition>
     <emission>
@@ -1176,22 +1176,22 @@
       <repeatable>false</repeatable>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/audio-panel/test</property>
+        <property>instrumentation/audio-panel/test</property>
         <value>1</value>
         <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
-            <property>/systems/electrical/outputs/audio-panel</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
+            <property>systems/electrical/outputs/audio-panel</property>
         </condition>
       </binding>
       <mod-up>
         <binding>
           <command>property-assign</command>
-          <property>/instrumentation/audio-panel/test</property>
+          <property>instrumentation/audio-panel/test</property>
           <value>0</value>
           <condition>
-            <property>/instrumentation/audio-panel/serviceable</property>
-            <property>/instrumentation/audio-panel/power-btn</property>
+            <property>instrumentation/audio-panel/serviceable</property>
+            <property>instrumentation/audio-panel/power-btn</property>
         </condition>
         </binding>
       </mod-up>
@@ -1205,7 +1205,7 @@
   <animation>
         <type>knob</type>
         <object-name>gma340.Knob.Left.Inner</object-name>
-        <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+        <property>instrumentation/audio-panel/volume-ics-pilot</property>
         <factor>-250</factor>
         <center>
             <x-m>0.017</x-m>
@@ -1222,7 +1222,7 @@
             <!-- handling of ICS value -->
             <binding>
                 <command>property-adjust</command>
-                <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+                <property>instrumentation/audio-panel/volume-ics-pilot</property>
                 <factor>0.1</factor>
                 <min>0</min>
                 <max>1</max>                
@@ -1232,22 +1232,22 @@
             <!-- handling power -->
             <binding>
                 <command>property-assign</command>
-                <property>/instrumentation/audio-panel/power-btn</property>
+                <property>instrumentation/audio-panel/power-btn</property>
                 <value>1</value>
                 <condition>
                     <greater-than>
-                        <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+                        <property>instrumentation/audio-panel/volume-ics-pilot</property>
                         <value>0.01</value>
                     </greater-than>
                 </condition>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/instrumentation/audio-panel/power-btn</property>
+                <property>instrumentation/audio-panel/power-btn</property>
                 <value>0</value>
                 <condition>
                     <less-than>
-                        <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+                        <property>instrumentation/audio-panel/volume-ics-pilot</property>
                         <value>0.01</value>
                     </less-than>
                 </condition>
@@ -1262,7 +1262,7 @@
                 <command>set-tooltip</command>
                 <tooltip-id>ICS-pilot-volume</tooltip-id>
                 <label>ICS Volume (Pilot): %3d%%</label>
-                <property>/instrumentation/audio-panel/volume-ics-pilot</property>
+                <property>instrumentation/audio-panel/volume-ics-pilot</property>
                 <mapping>percent</mapping>
             </binding>
         </hovered>
@@ -1789,15 +1789,15 @@
     <condition>
         <and>
             <and>
-                <property>/instrumentation/audio-panel/serviceable</property>
-                <property>/instrumentation/audio-panel/power-btn</property>
-                <property>/systems/electrical/outputs/audio-panel</property>
+                <property>instrumentation/audio-panel/serviceable</property>
+                <property>instrumentation/audio-panel/power-btn</property>
+                <property>systems/electrical/outputs/audio-panel</property>
             </and>
             <not>
                 <property>sim/rendering/rembrandt/enabled</property>
             </not>
             <greater-than>
-                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <property>systems/electrical/outputs/radio-lights-norm</property>
                 <value>0.0</value>
             </greater-than>
         </and>
@@ -1838,7 +1838,7 @@
                 <property>sim/rendering/rembrandt/enabled</property>
             </not>
             <greater-than>
-                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <property>systems/electrical/outputs/radio-lights-norm</property>
                 <value>0.0</value>
             </greater-than>
         </and>

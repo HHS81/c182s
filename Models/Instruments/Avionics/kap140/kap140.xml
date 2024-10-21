@@ -182,7 +182,7 @@
                 <property>sim/rendering/rembrandt/enabled</property>
             </not>
             <greater-than>
-                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <property>systems/electrical/outputs/radio-lights-norm</property>
                 <value>0</value>
             </greater-than>
         </condition>
@@ -218,7 +218,7 @@
         <object-name>buttons</object-name>
         <condition>
             <equals>
-                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <property>systems/electrical/outputs/radio-lights-norm</property>
                 <value>0</value>
             </equals>
         </condition>
@@ -264,7 +264,7 @@
                     <property>sim/rendering/rembrandt/enabled</property>
                 </not>
                 <greater-than>
-                    <property>/systems/electrical/outputs/radio-lights-norm</property>
+                    <property>systems/electrical/outputs/radio-lights-norm</property>
                     <value>0.0</value>
                 </greater-than>
             </and>
@@ -291,7 +291,7 @@
                     <property>sim/rendering/rembrandt/enabled</property>
                 </not>
                 <equals>
-                    <property>/systems/electrical/outputs/radio-lights-norm</property>
+                    <property>systems/electrical/outputs/radio-lights-norm</property>
                     <value>0.0</value>
                 </equals>
             </and>

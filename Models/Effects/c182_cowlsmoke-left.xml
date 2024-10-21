@@ -17,7 +17,7 @@
 		<condition>
 			<and>
                 <equals>
-                    <property>/engines/engine[0]/running</property>
+                    <property>engines/engine[0]/running</property>
                     <value>1</value>
                 </equals>
                 <!-- Currently we just use the "after start virtual tank" to generate smoke
@@ -26,7 +26,7 @@
                      smoke because of incomplete combustion (as is the case shortly after startup) -->
                 
                 <greater-than-equals>
-                    <property>/fdm/jsbsim/propulsion/tank[6]/pct-full</property>
+                    <property>fdm/jsbsim/propulsion/tank[6]/pct-full</property>
                     <value>0.45</value>
                 </greater-than-equals>
 			</and>

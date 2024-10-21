@@ -177,31 +177,31 @@
 			<condition>
 				<and>
 					<or>
-						<property>/autopilot/internal/logic/nav-active</property>
-						<property>/autopilot/internal/logic/apr-active</property>
-						<property>/autopilot/internal/logic/rev-active</property>
+						<property>autopilot/internal/logic/nav-active</property>
+						<property>autopilot/internal/logic/apr-active</property>
+						<property>autopilot/internal/logic/rev-active</property>
 					</or>
 					<less-than-equals>
-						<property>/autopilot/internal/nav-course-error</property>
+						<property>autopilot/internal/nav-course-error</property>
 						<value>10</value>
 					</less-than-equals>
 					<greater-than-equals>
-						<property>/autopilot/internal/nav-course-error</property>
+						<property>autopilot/internal/nav-course-error</property>
 						<value>-10</value>
 					</greater-than-equals>
 					<less-than-equals>
-						<property>/instrumentation/nav-source/heading-needle-deflection</property>
+						<property>instrumentation/nav-source/heading-needle-deflection</property>
 						<value>1</value>
 					</less-than-equals>
 					<greater-than-equals>
-						<property>/instrumentation/nav-source/heading-needle-deflection</property>
+						<property>instrumentation/nav-source/heading-needle-deflection</property>
 						<value>-1</value>
 					</greater-than-equals>
 				</and>
 			</condition>
 			<expression>
 				<product>
-					<property>/instrumentation/nav-source/heading-needle-deflection</property>
+					<property>instrumentation/nav-source/heading-needle-deflection</property>
 					<value>0.8</value>
 				</product>
 			</expression>

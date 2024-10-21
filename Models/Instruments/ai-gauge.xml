@@ -212,7 +212,7 @@
             <value>0.80</value> <!-- to match <spin_thresh> config prop instrumentation.xml -->
         </greater-than>
         <greater-than>
-            <property>/systems/vacuum/suction-inhg</property>
+            <property>systems/vacuum/suction-inhg</property>
             <value>3.80</value>
         </greater-than>
       </and>

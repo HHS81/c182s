@@ -37,7 +37,7 @@
         <type>select</type>
         <object-name>ControlLock-yoke</object-name>
         <condition>
-            <property>/sim/model/c182s/securing/windGustLockPlate-visible</property>
+            <property>sim/model/c182s/securing/windGustLockPlate-visible</property>
         </condition>
     </animation>
 
@@ -46,7 +46,7 @@
         <object-name>ControlLock-pocket</object-name>
         <condition>
             <not>
-                <property>/sim/model/c182s/securing/windGustLockPlate-visible</property>
+                <property>sim/model/c182s/securing/windGustLockPlate-visible</property>
             </not>
         </condition>
     </animation>
@@ -60,7 +60,7 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>property-assign</command>
-                <property>/sim/model/c182s/securing/windGustLockPlate-visible</property>
+                <property>sim/model/c182s/securing/windGustLockPlate-visible</property>
                 <value>false</value>
             </binding>
             <binding>
@@ -91,7 +91,7 @@
                     </not>
                 </condition>-->
                 <command>property-assign</command>
-                <property>/sim/model/c182s/securing/windGustLockPlate-visible</property>
+                <property>sim/model/c182s/securing/windGustLockPlate-visible</property>
                 <value>true</value>
             </binding>
             <binding>

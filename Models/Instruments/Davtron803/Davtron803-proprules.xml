@@ -25,7 +25,7 @@ Important properties:
         <type>gain</type>
         <gain>1.0</gain>
         <input>
-            <property>/systems/electrical/volts</property>
+            <property>systems/electrical/volts</property>
         </input>
         <output>/instrumentation/davtron803/power-source-volts</output>
     </filter>
@@ -34,9 +34,9 @@ Important properties:
     <logic>
         <name>Power on state</name>
         <input>
-            <property>/instrumentation/clock/serviceable</property>
+            <property>instrumentation/clock/serviceable</property>
             <greater-than>
-                <property>/instrumentation/davtron803/power-source-volts</property>
+                <property>instrumentation/davtron803/power-source-volts</property>
                 <value>4.0</value>
             </greater-than>
         </input>
@@ -46,16 +46,16 @@ Important properties:
         <name>Enable test mode</name>
         <input>
             <and>
-                <property>/instrumentation/davtron803/operable</property>
+                <property>instrumentation/davtron803/operable</property>
                 <greater-than>
-                    <property>/instrumentation/davtron803/internal/select-btn-timer</property>
+                    <property>instrumentation/davtron803/internal/select-btn-timer</property>
                     <value>0.0</value>
                 </greater-than>
                 <greater-than>
                     <property>sim/time/elapsed-sec</property>
                     <expression>
                         <sum>
-                            <property>/instrumentation/davtron803/internal/select-btn-timer</property>
+                            <property>instrumentation/davtron803/internal/select-btn-timer</property>
                             <value>3.0</value>
                         </sum>
                     </expression>
@@ -67,9 +67,9 @@ Important properties:
     <logic>
         <name>UT mode active</name>
         <input>
-            <property>/instrumentation/davtron803/operable</property>
+            <property>instrumentation/davtron803/operable</property>
             <equals>
-                <property>/instrumentation/davtron803/internal/bot-mode</property>
+                <property>instrumentation/davtron803/internal/bot-mode</property>
                 <value>0</value>
             </equals>
         </input>
@@ -78,9 +78,9 @@ Important properties:
     <logic>
         <name>LT mode active</name>
         <input>
-            <property>/instrumentation/davtron803/operable</property>
+            <property>instrumentation/davtron803/operable</property>
             <equals>
-                <property>/instrumentation/davtron803/internal/bot-mode</property>
+                <property>instrumentation/davtron803/internal/bot-mode</property>
                 <value>1</value>
             </equals>
         </input>
@@ -89,9 +89,9 @@ Important properties:
     <logic>
         <name>FT mode active</name>
         <input>
-            <property>/instrumentation/davtron803/operable</property>
+            <property>instrumentation/davtron803/operable</property>
             <equals>
-                <property>/instrumentation/davtron803/internal/bot-mode</property>
+                <property>instrumentation/davtron803/internal/bot-mode</property>
                 <value>2</value>
             </equals>
         </input>
@@ -100,9 +100,9 @@ Important properties:
     <logic>
         <name>ET mode active</name>
         <input>
-            <property>/instrumentation/davtron803/operable</property>
+            <property>instrumentation/davtron803/operable</property>
             <equals>
-                <property>/instrumentation/davtron803/internal/bot-mode</property>
+                <property>instrumentation/davtron803/internal/bot-mode</property>
                 <value>3</value>
             </equals>
         </input>
@@ -134,14 +134,14 @@ Important properties:
         <name>Annunciator: UT</name>
         <input>
             <and>
-                <property>/instrumentation/davtron803/operable</property>
+                <property>instrumentation/davtron803/operable</property>
                 <or>
-                    <property>/instrumentation/davtron803/logic/test</property>
+                    <property>instrumentation/davtron803/logic/test</property>
                     <and>
-                        <property>/instrumentation/davtron803/logic/mode-ut</property>
+                        <property>instrumentation/davtron803/logic/mode-ut</property>
                         <or>
-                            <property>/instrumentation/davtron803/internal/bot-mode-set</property>
-                            <property>/instrumentation/davtron803/annunciators/flasher</property>
+                            <property>instrumentation/davtron803/internal/bot-mode-set</property>
+                            <property>instrumentation/davtron803/annunciators/flasher</property>
                         </or>
                     </and>
                 </or>
@@ -153,14 +153,14 @@ Important properties:
         <name>Annunciator: LT</name>
         <input>
             <and>
-                <property>/instrumentation/davtron803/operable</property>
+                <property>instrumentation/davtron803/operable</property>
                 <or>
-                    <property>/instrumentation/davtron803/logic/test</property>
+                    <property>instrumentation/davtron803/logic/test</property>
                     <and>
-                        <property>/instrumentation/davtron803/logic/mode-lt</property>
+                        <property>instrumentation/davtron803/logic/mode-lt</property>
                         <or>
-                            <property>/instrumentation/davtron803/internal/bot-mode-set</property>
-                            <property>/instrumentation/davtron803/annunciators/flasher</property>
+                            <property>instrumentation/davtron803/internal/bot-mode-set</property>
+                            <property>instrumentation/davtron803/annunciators/flasher</property>
                         </or>
                     </and>
                 </or>
@@ -172,14 +172,14 @@ Important properties:
         <name>Annunciator: FT</name>
         <input>
             <and>
-                <property>/instrumentation/davtron803/operable</property>
+                <property>instrumentation/davtron803/operable</property>
                 <or>
-                    <property>/instrumentation/davtron803/logic/test</property>
+                    <property>instrumentation/davtron803/logic/test</property>
                     <and>
-                        <property>/instrumentation/davtron803/logic/mode-ft</property>
+                        <property>instrumentation/davtron803/logic/mode-ft</property>
                         <or>
-                            <property>/instrumentation/davtron803/internal/bot-mode-set</property>
-                            <property>/instrumentation/davtron803/annunciators/flasher</property>
+                            <property>instrumentation/davtron803/internal/bot-mode-set</property>
+                            <property>instrumentation/davtron803/annunciators/flasher</property>
                         </or>
                     </and>
                 </or>
@@ -191,14 +191,14 @@ Important properties:
         <name>Annunciator: ET</name>
         <input>
             <and>
-                <property>/instrumentation/davtron803/operable</property>
+                <property>instrumentation/davtron803/operable</property>
                 <or>
-                    <property>/instrumentation/davtron803/logic/test</property>
+                    <property>instrumentation/davtron803/logic/test</property>
                     <and>
-                        <property>/instrumentation/davtron803/logic/mode-et</property>
+                        <property>instrumentation/davtron803/logic/mode-et</property>
                         <or>
-                            <property>/instrumentation/davtron803/internal/bot-mode-set</property>
-                            <property>/instrumentation/davtron803/annunciators/flasher</property>
+                            <property>instrumentation/davtron803/internal/bot-mode-set</property>
+                            <property>instrumentation/davtron803/annunciators/flasher</property>
                         </or>
                     </and>
                 </or>
@@ -215,7 +215,7 @@ Important properties:
         <debug>false</debug>
         <enable>
             <condition>
-                <not><property>/instrumentation/davtron803/operable</property></not>
+                <not><property>instrumentation/davtron803/operable</property></not>
             </condition>
         </enable>
         <input>0</input>
@@ -238,9 +238,9 @@ Important properties:
         <debug>false</debug>
         <enable>
             <condition>
-                <property>/instrumentation/davtron803/operable</property>
+                <property>instrumentation/davtron803/operable</property>
                 <equals>
-                    <property>/instrumentation/davtron803/internal/flight-timer-step</property>
+                    <property>instrumentation/davtron803/internal/flight-timer-step</property>
                     <value>0</value>
                 </equals>
             </condition>
@@ -256,20 +256,20 @@ Important properties:
         <enable>
             <condition>
                 <and>
-                    <property>/instrumentation/davtron803/operable</property>
+                    <property>instrumentation/davtron803/operable</property>
                     <equals>
-                        <property>/instrumentation/davtron803/internal/bot-mode</property>
+                        <property>instrumentation/davtron803/internal/bot-mode</property>
                         <value>2</value>
                     </equals>
                     <greater-than>
-                        <property>/instrumentation/davtron803/internal/control-btn-timer</property>
+                        <property>instrumentation/davtron803/internal/control-btn-timer</property>
                         <value>0.0</value>
                     </greater-than>
                     <greater-than>
                         <property>sim/time/elapsed-sec</property>
                         <expression>
                             <sum>
-                                <property>/instrumentation/davtron803/internal/control-btn-timer</property>
+                                <property>instrumentation/davtron803/internal/control-btn-timer</property>
                                 <value>3.0</value>
                             </sum>
                         </expression>
@@ -288,11 +288,11 @@ Important properties:
         <enable>
             <condition>
                 <equals>
-                    <property>/instrumentation/davtron803/internal/elapsed-timer-step</property>
+                    <property>instrumentation/davtron803/internal/elapsed-timer-step</property>
                     <value>-1</value>
                 </equals>
                 <less-than-equals>
-                    <property>/instrumentation/davtron803/elapsed-time-secs</property>
+                    <property>instrumentation/davtron803/elapsed-time-secs</property>
                     <value>0</value>
                 </less-than-equals>
             </condition>
@@ -307,9 +307,9 @@ Important properties:
         <type>gain</type>
         <enable>
             <condition>
-                <property>/instrumentation/davtron803/logic/mode-ft</property>
+                <property>instrumentation/davtron803/logic/mode-ft</property>
                 <equals>
-                    <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                    <property>instrumentation/davtron803/internal/bot-mode-set</property>
                     <value>-1</value>
                 </equals>
             </condition>
@@ -323,9 +323,9 @@ Important properties:
         <type>gain</type>
         <enable>
             <condition>
-                <property>/instrumentation/davtron803/logic/mode-et</property>
+                <property>instrumentation/davtron803/logic/mode-et</property>
                 <equals>
-                    <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                    <property>instrumentation/davtron803/internal/bot-mode-set</property>
                     <value>-1</value>
                 </equals>
             </condition>
@@ -341,7 +341,7 @@ Important properties:
         <enable>
             <condition>
                 <equals>
-                    <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                    <property>instrumentation/davtron803/internal/bot-mode-set</property>
                     <value>-1</value>
                 </equals>
             </condition>
@@ -356,15 +356,15 @@ Important properties:
         <type>gain</type>
         <enable>
             <condition>
-                <property>/instrumentation/davtron803/operable</property>
+                <property>instrumentation/davtron803/operable</property>
                 <equals>
-                    <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                    <property>instrumentation/davtron803/internal/bot-mode-set</property>
                     <value>5</value>
                 </equals>
-                <not><property>/instrumentation/davtron803/internal/flight-timer-alarm-armed</property></not>
+                <not><property>instrumentation/davtron803/internal/flight-timer-alarm-armed</property></not>
                 <less-than>
-                    <property>/instrumentation/davtron803/flight-time-secs</property>
-                    <property>/instrumentation/davtron803/internal/flight-timer-alarm-time</property>
+                    <property>instrumentation/davtron803/flight-time-secs</property>
+                    <property>instrumentation/davtron803/internal/flight-timer-alarm-time</property>
                 </less-than>
             </condition>
         </enable>
@@ -378,14 +378,14 @@ Important properties:
         <type>gain</type>
         <enable>
             <condition>
-                <property>/instrumentation/davtron803/operable</property>
+                <property>instrumentation/davtron803/operable</property>
                 <equals>
-                    <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                    <property>instrumentation/davtron803/internal/bot-mode-set</property>
                     <value>5</value>
                 </equals>
-                <not><property>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</property></not>
+                <not><property>instrumentation/davtron803/internal/elapsed-timer-alarm-armed</property></not>
                 <greater-than>
-                    <property>/instrumentation/davtron803/elapsed-time-secs</property>
+                    <property>instrumentation/davtron803/elapsed-time-secs</property>
                     <value>0</value>
                 </greater-than>
             </condition>
@@ -400,7 +400,7 @@ Important properties:
         <enable>
             <condition>
                 <equals>
-                    <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                    <property>instrumentation/davtron803/internal/bot-mode-set</property>
                     <value>5</value>
                 </equals>
             </condition>
@@ -417,18 +417,18 @@ Important properties:
         <inverted type="bool">true</inverted>
         <S><not>
             <and>
-                <property>/instrumentation/davtron803/operable</property>
-                <property>/instrumentation/davtron803/internal/flight-timer-alarm-armed</property>
+                <property>instrumentation/davtron803/operable</property>
+                <property>instrumentation/davtron803/internal/flight-timer-alarm-armed</property>
                 <greater-than>
-                    <property>/instrumentation/davtron803/flight-time-secs</property>
-                    <property>/instrumentation/davtron803/internal/flight-timer-alarm-time</property>
+                    <property>instrumentation/davtron803/flight-time-secs</property>
+                    <property>instrumentation/davtron803/internal/flight-timer-alarm-time</property>
                 </greater-than>
             </and>
         </not></S>
         <time>
             <value>0.1</value>
         </time>
-        <output> <property>/instrumentation/davtron803/logic/alarm-ft</property> </output>
+        <output> <property>instrumentation/davtron803/logic/alarm-ft</property> </output>
     </flipflop>
     <flipflop>
         <name>ET Alarm triggered</name>
@@ -437,32 +437,32 @@ Important properties:
         <S><not>
             <or>
                 <and>
-                    <property>/instrumentation/davtron803/operable</property>
-                    <property>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</property>
+                    <property>instrumentation/davtron803/operable</property>
+                    <property>instrumentation/davtron803/internal/elapsed-timer-alarm-armed</property>
                     <less-than-equals>
-                        <property>/instrumentation/davtron803/elapsed-time-secs</property>
+                        <property>instrumentation/davtron803/elapsed-time-secs</property>
                         <value>0</value>
                     </less-than-equals>
                 </and>
                 <and>
-                    <property>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</property>
-                    <property>/instrumentation/davtron803/logic/alarm-et</property>
+                    <property>instrumentation/davtron803/internal/elapsed-timer-alarm-armed</property>
+                    <property>instrumentation/davtron803/logic/alarm-et</property>
                 </and>
             </or>
         </not></S>
         <time>
             <value>0.1</value>
         </time>
-        <output> <property>/instrumentation/davtron803/logic/alarm-et</property> </output>
+        <output> <property>instrumentation/davtron803/logic/alarm-et</property> </output>
     </flipflop>
     
     <logic>
         <name>Some alarm tripped</name>
         <input>
-            <property>/instrumentation/davtron803/operable</property>
+            <property>instrumentation/davtron803/operable</property>
             <or>
-                <property>/instrumentation/davtron803/logic/alarm-ft</property>
-                <property>/instrumentation/davtron803/logic/alarm-et</property>
+                <property>instrumentation/davtron803/logic/alarm-ft</property>
+                <property>instrumentation/davtron803/logic/alarm-et</property>
             </or>
         </input>
         <output>/instrumentation/davtron803/annunciators/alarm</output>
@@ -473,11 +473,11 @@ Important properties:
         <type>gain</type>
         <enable>
             <condition>
-                <property>/instrumentation/davtron803/operable</property>
-                <property>/instrumentation/davtron803/logic/alarm-ft</property>
+                <property>instrumentation/davtron803/operable</property>
+                <property>instrumentation/davtron803/logic/alarm-ft</property>
                 <or>
-                    <property>/instrumentation/davtron803/select-btn</property>
-                    <property>/instrumentation/davtron803/control-btn</property>
+                    <property>instrumentation/davtron803/select-btn</property>
+                    <property>instrumentation/davtron803/control-btn</property>
                 </or>
             </condition>
         </enable>
@@ -489,11 +489,11 @@ Important properties:
         <type>gain</type>
         <enable>
             <condition>
-                <property>/instrumentation/davtron803/operable</property>
-                <property>/instrumentation/davtron803/logic/alarm-et</property>
+                <property>instrumentation/davtron803/operable</property>
+                <property>instrumentation/davtron803/logic/alarm-et</property>
                 <or>
-                    <property>/instrumentation/davtron803/select-btn</property>
-                    <property>/instrumentation/davtron803/control-btn</property>
+                    <property>instrumentation/davtron803/select-btn</property>
+                    <property>instrumentation/davtron803/control-btn</property>
                 </or>
             </condition>
         </enable>
@@ -507,8 +507,8 @@ Important properties:
         <type>gain</type>
         <enable>
             <condition>
-                <not><property>/instrumentation/davtron803/logic/mode-ft</property></not>
-                <property>/instrumentation/davtron803/logic/alarm-ft</property>
+                <not><property>instrumentation/davtron803/logic/mode-ft</property></not>
+                <property>instrumentation/davtron803/logic/alarm-ft</property>
             </condition>
         </enable>
         <input>2</input>
@@ -519,8 +519,8 @@ Important properties:
         <type>gain</type>
         <enable>
             <condition>
-                <not><property>/instrumentation/davtron803/logic/mode-et</property></not>
-                <property>/instrumentation/davtron803/logic/alarm-et</property>
+                <not><property>instrumentation/davtron803/logic/mode-et</property></not>
+                <property>instrumentation/davtron803/logic/alarm-et</property>
             </condition>
         </enable>
         <input>3</input>

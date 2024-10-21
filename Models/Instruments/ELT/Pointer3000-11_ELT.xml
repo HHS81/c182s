@@ -275,7 +275,7 @@
                 </equals>
             </condition>
             <command>property-assign</command>
-            <property>/instrumentation/elt/armed</property>
+            <property>instrumentation/elt/armed</property>
             <value type="bool">true</value>
         </binding>
         <binding>
@@ -286,7 +286,7 @@
                 </equals>
             </condition>
             <command>property-assign</command>
-            <property>/instrumentation/elt/switchpos</property>
+            <property>instrumentation/elt/switchpos</property>
             <value>0</value>
         </binding>
       </mod-up>

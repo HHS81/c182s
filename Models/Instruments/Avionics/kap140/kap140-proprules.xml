@@ -1877,8 +1877,8 @@ We have captured the localizer and the GS.
                         <greater-than-equals>
                             <expression>
                                 <difference>
-                                    <abs><property>/autopilot/internal/heading-bug-latch-error</property></abs>
-                                    <abs><property>/autopilot/internal/intercept-angle</property></abs>
+                                    <abs><property>autopilot/internal/heading-bug-latch-error</property></abs>
+                                    <abs><property>autopilot/internal/intercept-angle</property></abs>
                                 </difference>
                             </expression>
                             <value>0</value>
@@ -2783,11 +2783,11 @@ We have captured the localizer and the GS.
     <logic>
         <input>
             <equals>
-                <property>/autopilot/kap140/panel/state</property>
+                <property>autopilot/kap140/panel/state</property>
                 <value>6</value>
             </equals>
-            <not><property>/autopilot/kap140/roll-axis-fail</property></not>
-            <not><property>/autopilot/kap140/event/button-cws</property></not>
+            <not><property>autopilot/kap140/roll-axis-fail</property></not>
+            <not><property>autopilot/kap140/event/button-cws</property></not>
         </input>
         <output>/autopilot/internal/logic/roll-active</output>
     </logic>
@@ -2796,14 +2796,14 @@ We have captured the localizer and the GS.
         <input>
             <and>
                 <equals>
-                    <property>/autopilot/kap140/settings/lateral-mode</property>
+                    <property>autopilot/kap140/settings/lateral-mode</property>
                     <value>2</value>
                 </equals>
                 <less-than>
-                    <property>/autopilot/kap140/panel/hdg-timer</property>
+                    <property>autopilot/kap140/panel/hdg-timer</property>
                     <value>1</value>
                 </less-than>
-                <not><property>/autopilot/kap140/settings/from-hdg</property></not>
+                <not><property>autopilot/kap140/settings/from-hdg</property></not>
             </and>
         </input>
         <output>/autopilot/internal/logic/hdg-active</output>
@@ -2814,11 +2814,11 @@ We have captured the localizer and the GS.
             <or>
                 <and>
                     <equals>
-                        <property>/autopilot/kap140/settings/lateral-mode</property>
+                        <property>autopilot/kap140/settings/lateral-mode</property>
                         <value>3</value>
                     </equals>
                     <less-than>
-                        <property>/autopilot/kap140/panel/nav-timer</property>
+                        <property>autopilot/kap140/panel/nav-timer</property>
                         <value>1</value>
                     </less-than>
                     <property>instrumentation/nav-source/signal-valid</property>
@@ -2826,19 +2826,19 @@ We have captured the localizer and the GS.
                 <and>
                     <not><property alias="/params/hsi-installed" /></not>
                     <equals>
-                        <property>/autopilot/kap140/settings/lateral-arm</property>
+                        <property>autopilot/kap140/settings/lateral-arm</property>
                         <value>3</value>
                     </equals>
                     <less-than>
-                        <property>/autopilot/kap140/panel/nav-timer</property>
+                        <property>autopilot/kap140/panel/nav-timer</property>
                         <value>1</value>
                     </less-than>
                     <equals>
-                        <property>/autopilot/kap140/settings/lateral-mode</property>
+                        <property>autopilot/kap140/settings/lateral-mode</property>
                         <value>2</value>
                     </equals>
                     <less-than>
-                        <property>/autopilot/kap140/panel/hdg-timer</property>
+                        <property>autopilot/kap140/panel/hdg-timer</property>
                         <value>1</value>
                     </less-than>
                     <property>instrumentation/nav-source/signal-valid</property>
@@ -2853,11 +2853,11 @@ We have captured the localizer and the GS.
             <or>
                 <and>
                     <equals>
-                        <property>/autopilot/kap140/settings/lateral-mode</property>
+                        <property>autopilot/kap140/settings/lateral-mode</property>
                         <value>4</value>
                     </equals>
                     <less-than>
-                        <property>/autopilot/kap140/panel/nav-timer</property>
+                        <property>autopilot/kap140/panel/nav-timer</property>
                         <value>1</value>
                     </less-than>
                     <property>instrumentation/nav-source/signal-valid</property>
@@ -2865,19 +2865,19 @@ We have captured the localizer and the GS.
                 <and>
                     <not><property alias="/params/hsi-installed" /></not>
                     <equals>
-                        <property>/autopilot/kap140/settings/lateral-arm</property>
+                        <property>autopilot/kap140/settings/lateral-arm</property>
                         <value>4</value>
                     </equals>
                     <less-than>
-                        <property>/autopilot/kap140/panel/nav-timer</property>
+                        <property>autopilot/kap140/panel/nav-timer</property>
                         <value>1</value>
                     </less-than>
                     <equals>
-                        <property>/autopilot/kap140/settings/lateral-mode</property>
+                        <property>autopilot/kap140/settings/lateral-mode</property>
                         <value>2</value>
                     </equals>
                     <less-than>
-                        <property>/autopilot/kap140/panel/hdg-timer</property>
+                        <property>autopilot/kap140/panel/hdg-timer</property>
                         <value>1</value>
                     </less-than>
                     <property>instrumentation/nav-source/signal-valid</property>
@@ -2892,11 +2892,11 @@ We have captured the localizer and the GS.
             <or>
                 <and>
                     <equals>
-                        <property>/autopilot/kap140/settings/lateral-mode</property>
+                        <property>autopilot/kap140/settings/lateral-mode</property>
                         <value>5</value>
                     </equals>
                     <less-than>
-                        <property>/autopilot/kap140/panel/nav-timer</property>
+                        <property>autopilot/kap140/panel/nav-timer</property>
                         <value>1</value>
                     </less-than>
                     <property>instrumentation/nav-source/signal-valid</property>
@@ -2904,19 +2904,19 @@ We have captured the localizer and the GS.
                 <and>
                     <not><property alias="/params/hsi-installed" /></not>
                     <equals>
-                        <property>/autopilot/kap140/settings/lateral-arm</property>
+                        <property>autopilot/kap140/settings/lateral-arm</property>
                         <value>5</value>
                     </equals>
                     <less-than>
-                        <property>/autopilot/kap140/panel/nav-timer</property>
+                        <property>autopilot/kap140/panel/nav-timer</property>
                         <value>1</value>
                     </less-than>
                     <equals>
-                        <property>/autopilot/kap140/settings/lateral-mode</property>
+                        <property>autopilot/kap140/settings/lateral-mode</property>
                         <value>2</value>
                     </equals>
                     <less-than>
-                        <property>/autopilot/kap140/panel/hdg-timer</property>
+                        <property>autopilot/kap140/panel/hdg-timer</property>
                         <value>1</value>
                     </less-than>
                     <property>instrumentation/nav-source/signal-valid</property>
@@ -2933,11 +2933,11 @@ We have captured the localizer and the GS.
                 <value>1</value>
             </greater-than>
             <equals>
-                <property>/autopilot/kap140/panel/state</property>
+                <property>autopilot/kap140/panel/state</property>
                 <value>6</value>
             </equals>
-            <not><property>/autopilot/kap140/pitch-axis-fail</property></not>
-            <not><property>/autopilot/kap140/event/button-cws</property></not>
+            <not><property>autopilot/kap140/pitch-axis-fail</property></not>
+            <not><property>autopilot/kap140/event/button-cws</property></not>
         </input>
         <output>/autopilot/internal/logic/pitch-active</output>
     </logic>
@@ -2946,15 +2946,15 @@ We have captured the localizer and the GS.
         <input>
             <and>
                 <equals>
-                    <property>/autopilot/kap140/settings/vertical-mode</property>
+                    <property>autopilot/kap140/settings/vertical-mode</property>
                     <value>2</value>
                 </equals>
                 <equals>
-                    <property>/autopilot/kap140/panel/button-up</property>
+                    <property>autopilot/kap140/panel/button-up</property>
                     <value>0</value>
                 </equals>
                 <equals>
-                    <property>/autopilot/kap140/panel/button-down</property>
+                    <property>autopilot/kap140/panel/button-down</property>
                     <value>0</value>
                 </equals>
             </and>
@@ -2965,7 +2965,7 @@ We have captured the localizer and the GS.
     <logic>
         <input>
             <equals>
-                <property>/autopilot/kap140/settings/vertical-mode</property>
+                <property>autopilot/kap140/settings/vertical-mode</property>
                 <value>3</value>
             </equals>
         </input>

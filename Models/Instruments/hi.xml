@@ -224,10 +224,10 @@
       <binding>
         <condition>
           <greater-than>
-            <property>/sim/time/elapsed-sec</property>
+            <property>sim/time/elapsed-sec</property>
             <expression>
               <sum>
-                <property>/instrumentation/heading-indicator/obs_last-shift-click</property>
+                <property>instrumentation/heading-indicator/obs_last-shift-click</property>
                 <value>1</value>
               </sum>
             </expression>
@@ -240,10 +240,10 @@
       <binding>
         <condition>
           <less-than-equals>
-            <property>/sim/time/elapsed-sec</property>
+            <property>sim/time/elapsed-sec</property>
             <expression>
               <sum>
-                <property>/instrumentation/heading-indicator/obs_last-shift-click</property>
+                <property>instrumentation/heading-indicator/obs_last-shift-click</property>
                 <value>1</value>
               </sum>
             </expression>
@@ -259,10 +259,10 @@
       <binding>
         <condition>
           <less-than-equals>
-            <property>/sim/time/elapsed-sec</property>
+            <property>sim/time/elapsed-sec</property>
             <expression>
               <sum>
-                <property>/instrumentation/heading-indicator/obs_last-shift-click</property>
+                <property>instrumentation/heading-indicator/obs_last-shift-click</property>
                 <value>1</value>
               </sum>
             </expression>
@@ -282,8 +282,8 @@
       </binding>
       <binding>
         <command>property-assign</command>
-        <property>/instrumentation/heading-indicator/obs_last-shift-click</property>
-        <property>/sim/time/elapsed-sec</property>
+        <property>instrumentation/heading-indicator/obs_last-shift-click</property>
+        <property>sim/time/elapsed-sec</property>
       </binding>
       <binding>
         <command>nasal</command>
@@ -299,7 +299,7 @@
         <command>set-tooltip</command>
         <tooltip-id>heading-offset</tooltip-id>
         <label>%s</label>
-        <property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+        <property>instrumentation/heading-indicator/indicated-heading-deg</property>
         <mapping>nasal</mapping>
         <script>
           var heading = getprop("instrumentation/heading-indicator/indicated-heading-deg");
@@ -326,7 +326,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
+        <property>autopilot/settings/heading-bug-deg</property>
         <step>1</step>
         <min>0</min>
         <max>360</max>
@@ -334,10 +334,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
+        <property>autopilot/settings/heading-bug-deg</property>
         <step>4</step>
         <min>0</min>
         <max>360</max>
@@ -350,7 +350,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
+        <property>autopilot/settings/heading-bug-deg</property>
         <step>5</step>
         <min>0</min>
         <max>360</max>
@@ -363,7 +363,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
+        <property>autopilot/settings/heading-bug-deg</property>
         <step>-1</step>
         <min>0</min>
         <max>360</max>
@@ -371,10 +371,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
+        <property>autopilot/settings/heading-bug-deg</property>
         <step>-4</step>
         <min>0</min>
         <max>360</max>
@@ -387,7 +387,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
+        <property>autopilot/settings/heading-bug-deg</property>
         <step>1</step>
         <min>0</min>
         <max>360</max>
@@ -395,10 +395,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
+        <property>autopilot/settings/heading-bug-deg</property>
         <step>4</step>
         <min>0</min>
         <max>360</max>
@@ -426,7 +426,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
+        <property>autopilot/settings/heading-bug-deg</property>
         <step>-1</step>
         <min>0</min>
         <max>360</max>
@@ -434,10 +434,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
+        <property>autopilot/settings/heading-bug-deg</property>
         <step>-4</step>
         <min>0</min>
         <max>360</max>
@@ -450,7 +450,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
+        <property>autopilot/settings/heading-bug-deg</property>
         <step>-5</step>
         <min>0</min>
         <max>360</max>
@@ -463,7 +463,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
+        <property>autopilot/settings/heading-bug-deg</property>
         <step>-1</step>
         <min>0</min>
         <max>360</max>
@@ -471,10 +471,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
+        <property>autopilot/settings/heading-bug-deg</property>
         <step>-4</step>
         <min>0</min>
         <max>360</max>
@@ -487,7 +487,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
+        <property>autopilot/settings/heading-bug-deg</property>
         <step>1</step>
         <min>0</min>
         <max>360</max>
@@ -495,10 +495,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/autopilot/settings/heading-bug-deg</property>
+        <property>autopilot/settings/heading-bug-deg</property>
         <step>4</step>
         <min>0</min>
         <max>360</max>
@@ -527,7 +527,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>1</step>
         <min>0</min>
         <max>360</max>
@@ -539,10 +539,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>4</step>
         <min>0</min>
         <max>360</max>
@@ -550,10 +550,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>4</step>
         <min>0</min>
         <max>360</max>
@@ -582,7 +582,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>5</step>
         <min>0</min>
         <max>360</max>
@@ -615,7 +615,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>-1</step>
         <min>0</min>
         <max>360</max>
@@ -623,10 +623,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>-4</step>
         <min>0</min>
         <max>360</max>
@@ -634,10 +634,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>-4</step>
         <min>0</min>
         <max>360</max>
@@ -670,7 +670,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>1</step>
         <min>0</min>
         <max>360</max>
@@ -678,10 +678,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>4</step>
         <min>0</min>
         <max>360</max>
@@ -689,10 +689,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>4</step>
         <min>0</min>
         <max>360</max>
@@ -724,7 +724,7 @@
         <command>set-tooltip</command>
         <tooltip-id>heading-offset</tooltip-id>
         <label>%s</label>
-        <property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+        <property>instrumentation/heading-indicator/indicated-heading-deg</property>
         <mapping>nasal</mapping>
         <script>
           var heading = getprop("instrumentation/heading-indicator/indicated-heading-deg");
@@ -750,7 +750,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>-1</step>
         <min>0</min>
         <max>360</max>
@@ -758,10 +758,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>-4</step>
         <min>0</min>
         <max>360</max>
@@ -769,10 +769,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>-4</step>
         <min>0</min>
         <max>360</max>
@@ -805,7 +805,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>-5</step>
         <min>0</min>
         <max>360</max>
@@ -838,7 +838,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>-1</step>
         <min>0</min>
         <max>360</max>
@@ -846,10 +846,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>-4</step>
         <min>0</min>
         <max>360</max>
@@ -857,10 +857,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>-4</step>
         <min>0</min>
         <max>360</max>
@@ -893,7 +893,7 @@
       <repeatable>true</repeatable>
       <binding>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>1</step>
         <min>0</min>
         <max>360</max>
@@ -901,10 +901,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>4</step>
         <min>0</min>
         <max>360</max>
@@ -912,10 +912,10 @@
       </binding>
       <binding>
         <condition>
-          <property>/devices/status/keyboard/shift</property>
+          <property>devices/status/keyboard/shift</property>
         </condition>
         <command>property-adjust</command>
-        <property>/instrumentation/heading-indicator/align-deg</property>
+        <property>instrumentation/heading-indicator/align-deg</property>
         <step>4</step>
         <min>0</min>
         <max>360</max>
@@ -947,7 +947,7 @@
         <command>set-tooltip</command>
         <tooltip-id>heading-offset</tooltip-id>
         <label>%s</label>
-        <property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+        <property>instrumentation/heading-indicator/indicated-heading-deg</property>
         <mapping>nasal</mapping>
         <script>
           var heading = getprop("instrumentation/heading-indicator/indicated-heading-deg");

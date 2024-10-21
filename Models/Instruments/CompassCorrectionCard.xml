@@ -37,7 +37,7 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<condition> <not><property>/sim/model/c182s/compassCardZoomed</property></not> </condition>
+				<condition> <not><property>sim/model/c182s/compassCardZoomed</property></not> </condition>
 				<command>nasal</command>
 				<script><![CDATA[
 					var size = {original: [1024, 512], resize: 0.5};

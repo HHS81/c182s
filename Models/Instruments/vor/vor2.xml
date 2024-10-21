@@ -163,7 +163,7 @@
      <action>
          <binding>
            <command>property-adjust</command>
-           <property>/instrumentation/nav[1]/radials/selected-deg</property>
+           <property>instrumentation/nav[1]/radials/selected-deg</property>
            <factor>1</factor>
            <min>0</min>
            <max>360</max>
@@ -177,7 +177,7 @@
        <tooltip-id>nav2-obs</tooltip-id>
        <label>Nav 2 Radial %3d</label>
        <mapping>heading</mapping>
-       <property>/instrumentation/nav[1]/radials/selected-deg</property>
+       <property>instrumentation/nav[1]/radials/selected-deg</property>
     </binding>
     </hovered>
  </animation>

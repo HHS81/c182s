@@ -264,13 +264,13 @@
         <property>sim/model/door-positions/DoorR/position-norm-effective</property>
         <condition>
             <equals>
-                <property>/sim/model/door-positions/DoorR/opened</property>
+                <property>sim/model/door-positions/DoorR/opened</property>
                 <value>0.0</value>
             </equals>
         </condition>
         <condition>
             <equals>
-                <property>/sim/model/door-positions/leftDoor/opened</property>
+                <property>sim/model/door-positions/leftDoor/opened</property>
                 <value>0.0</value>
             </equals>
         </condition>
@@ -428,7 +428,7 @@
         <property>sim/model/door-positions/DoorL/position-norm-effective</property>
         <condition>
             <equals>
-                <property>/sim/model/door-positions/DoorL/opened</property>
+                <property>sim/model/door-positions/DoorL/opened</property>
                 <value>0.0</value>
             </equals>
         </condition>
@@ -732,7 +732,7 @@
             <button>0</button>
             <binding>
                 <command>property-toggle</command>
-                <property>/controls/gear/brake-parking</property>
+                <property>controls/gear/brake-parking</property>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -743,7 +743,7 @@
             <binding>
                 <command>set-tooltip</command>
                 <label>Parking brake: %s</label>
-        <property>/controls/gear/brake-parking</property>
+        <property>controls/gear/brake-parking</property>
                 <tooltip-id>parking-brake</tooltip-id>
                 <mapping>on-off</mapping>
             </binding>
@@ -885,10 +885,10 @@
         <action>
             <binding>
                 <condition>
-                    <not><property>/devices/status/keyboard/alt</property></not>
+                    <not><property>devices/status/keyboard/alt</property></not>
                 </condition>
                 <command>property-adjust</command>
-                <property>/controls/engines/engine[0]/throttle</property>
+                <property>controls/engines/engine[0]/throttle</property>
                 <factor>0.05</factor>
                 <min>0</min>
                 <max>1</max>
@@ -896,10 +896,10 @@
             </binding>
             <binding>
                 <condition>
-                    <property>/devices/status/keyboard/alt</property>
+                    <property>devices/status/keyboard/alt</property>
                 </condition>
                 <command>property-adjust</command>
-                <property>/controls/engines/engine[0]/throttle</property>
+                <property>controls/engines/engine[0]/throttle</property>
                 <factor>0.01</factor>
                 <min>0</min>
                 <max>1</max>
@@ -913,7 +913,7 @@
                 <measure-text>Throttle: 100%</measure-text>
                 <tooltip-id>throttle</tooltip-id>
                 <mapping>percent</mapping>
-                <property>/controls/engines/engine[0]/throttle</property>
+                <property>controls/engines/engine[0]/throttle</property>
             </binding>
         </hovered>
     </animation>
@@ -939,10 +939,10 @@
         <action>
             <binding>
                 <condition>
-                    <not><property>/devices/status/keyboard/alt</property></not>
+                    <not><property>devices/status/keyboard/alt</property></not>
                 </condition>
                 <command>property-adjust</command>
-                <property>/controls/engines/engine[0]/mixture</property>
+                <property>controls/engines/engine[0]/mixture</property>
                 <factor>0.05</factor>
                 <min>0</min>
                 <max>1</max>
@@ -950,10 +950,10 @@
             </binding>
             <binding>
                 <condition>
-                    <property>/devices/status/keyboard/alt</property>
+                    <property>devices/status/keyboard/alt</property>
                 </condition>
                 <command>property-adjust</command>
-                <property>/controls/engines/engine[0]/mixture</property>
+                <property>controls/engines/engine[0]/mixture</property>
                 <factor>0.01</factor>
                 <min>0</min>
                 <max>1</max>
@@ -967,7 +967,7 @@
                 <measure-text>Mixture: 100%</measure-text>
                 <tooltip-id>Mixture</tooltip-id>
                 <mapping>percent</mapping>
-                <property>/controls/engines/engine[0]/mixture</property>
+                <property>controls/engines/engine[0]/mixture</property>
             </binding>
         </hovered>
     </animation>
@@ -993,10 +993,10 @@
         <action>
             <binding>
                 <condition>
-                    <not><property>/devices/status/keyboard/alt</property></not>
+                    <not><property>devices/status/keyboard/alt</property></not>
                 </condition>
                 <command>property-adjust</command>
-                <property>/controls/engines/engine[0]/propeller-pitch</property>
+                <property>controls/engines/engine[0]/propeller-pitch</property>
                 <factor>0.05</factor>
                 <min>0</min>
                 <max>1</max>
@@ -1004,10 +1004,10 @@
             </binding>
             <binding>
                 <condition>
-                    <property>/devices/status/keyboard/alt</property>
+                    <property>devices/status/keyboard/alt</property>
                 </condition>
                 <command>property-adjust</command>
-                <property>/controls/engines/engine[0]/propeller-pitch</property>
+                <property>controls/engines/engine[0]/propeller-pitch</property>
                 <factor>0.01</factor>
                 <min>0</min>
                 <max>1</max>
@@ -1021,7 +1021,7 @@
                 <measure-text>Propeller Pitch: 100%</measure-text>
                 <tooltip-id>Propeller Pitch</tooltip-id>
                 <mapping>percent</mapping>
-                <property>/controls/engines/engine[0]/propeller-pitch</property>
+                <property>controls/engines/engine[0]/propeller-pitch</property>
             </binding>
         </hovered>
     </animation>
@@ -1081,7 +1081,7 @@
         <action>
             <binding>
                 <condition>
-                    <not><property>/devices/status/keyboard/alt</property></not>
+                    <not><property>devices/status/keyboard/alt</property></not>
                 </condition>
                 <command>property-adjust</command>
                 <property>controls/flight/elevator-trim</property>
@@ -1092,7 +1092,7 @@
             </binding>
             <binding>
                 <condition>
-                    <property>/devices/status/keyboard/alt</property>
+                    <property>devices/status/keyboard/alt</property>
                 </condition>
                 <command>property-adjust</command>
                 <property>controls/flight/elevator-trim</property>
@@ -1148,7 +1148,7 @@
         <action>
             <binding>
                 <condition>
-                    <not><property>/devices/status/keyboard/alt</property></not>
+                    <not><property>devices/status/keyboard/alt</property></not>
                 </condition>
                 <command>property-adjust</command>
                 <property>controls/flight/rudder-trim</property>
@@ -1159,7 +1159,7 @@
             </binding>
             <binding>
                 <condition>
-                    <property>/devices/status/keyboard/alt</property>
+                    <property>devices/status/keyboard/alt</property>
                 </condition>
                 <command>property-adjust</command>
                 <property>controls/flight/rudder-trim</property>
@@ -1305,7 +1305,7 @@
 
 <animation>
  <type>translate</type>
-      <property>/sim/model/c182s/cockpit/flaps-lever</property>
+      <property>sim/model/c182s/cockpit/flaps-lever</property>
         <object-name>FlapSwitch</object-name>
        <axis>
          <x>0.0</x>
@@ -1334,7 +1334,7 @@
 
 <animation>
         <type>rotate</type>
-      <property>/sim/model/c182s/cockpit/flaps-lever</property>
+      <property>sim/model/c182s/cockpit/flaps-lever</property>
         <object-name>FlapSwitch</object-name>
         <axis>
          <x>0.0</x>
@@ -1372,7 +1372,7 @@
 
     <animation>
         <type>translate</type>
-      <property>/sim/model/c182s/cockpit/flaps-lever</property>
+      <property>sim/model/c182s/cockpit/flaps-lever</property>
         <object-name>FlapSwitch</object-name>
         <axis>
             <x>0.0</x>
@@ -1669,7 +1669,7 @@
   <animation>
         <type>slider</type>
         <object-name>AltStaticAir</object-name>
-        <property>/systems/static-selected-source-norm</property>
+        <property>systems/static-selected-source-norm</property>
         <factor>0.010</factor>
         <offset-m>-0.008</offset-m>
         <axis>
@@ -1680,7 +1680,7 @@
         <action>
             <binding>
                 <command>property-toggle</command>
-                <property>/systems/static-selected-source</property>
+                <property>systems/static-selected-source</property>
             </binding>
         </action>
         <hovered>
@@ -1689,7 +1689,7 @@
                 <tooltip-id>alt-static-air-tooltip</tooltip-id>
                 <mapping>on-off</mapping>
                 <label>Alternate static air: %s</label>
-                <property>/systems/static-selected-source</property>
+                <property>systems/static-selected-source</property>
             </binding>
         </hovered>
   </animation>
@@ -1715,7 +1715,7 @@
                 <command>set-tooltip</command>
                 <tooltip-id>cabinheat</tooltip-id>
                 <label>%s</label>
-                <property>/fdm/jsbsim/heat/cabin-temperature-change-text-update</property>
+                <property>fdm/jsbsim/heat/cabin-temperature-change-text-update</property>
                 <mapping>nasal</mapping>
                 <script>
                     <![CDATA[
@@ -1762,7 +1762,7 @@
                 <command>set-tooltip</command>
                 <tooltip-id>cabinair</tooltip-id>
                 <label>%s</label>
-                <property>/fdm/jsbsim/heat/cabin-temperature-change-text-update</property>
+                <property>fdm/jsbsim/heat/cabin-temperature-change-text-update</property>
                 <mapping>nasal</mapping>
                 <script>
                     <![CDATA[
@@ -1849,11 +1849,11 @@
                     <or>
                         <and>
                             <not><property>sim/model/split-master-switches</property></not>
-                            <not><property>/devices/status/keyboard/shift</property></not>
+                            <not><property>devices/status/keyboard/shift</property></not>
                         </and>
                         <and>
                             <property>sim/model/split-master-switches</property>
-                            <property>/devices/status/keyboard/shift</property>
+                            <property>devices/status/keyboard/shift</property>
                         </and>
                     </or>
                 </condition>
@@ -1904,11 +1904,11 @@
                     <or>
                         <and>
                             <not><property>sim/model/split-master-switches</property></not>
-                            <not><property>/devices/status/keyboard/shift</property></not>
+                            <not><property>devices/status/keyboard/shift</property></not>
                         </and>
                         <and>
                             <property>sim/model/split-master-switches</property>
-                            <property>/devices/status/keyboard/shift</property>
+                            <property>devices/status/keyboard/shift</property>
                         </and>
                     </or>
                 </condition>
@@ -2337,11 +2337,11 @@
                     <or>
                         <and>
                             <not><property>sim/model/split-master-switches</property></not>
-                            <not><property>/devices/status/keyboard/shift</property></not>
+                            <not><property>devices/status/keyboard/shift</property></not>
                         </and>
                         <and>
                             <property>sim/model/split-master-switches</property>
-                            <property>/devices/status/keyboard/shift</property>
+                            <property>devices/status/keyboard/shift</property>
                         </and>
                     </or>
                 </condition>
@@ -2391,11 +2391,11 @@
                     <or>
                         <and>
                             <not><property>sim/model/split-master-switches</property></not>
-                            <not><property>/devices/status/keyboard/shift</property></not>
+                            <not><property>devices/status/keyboard/shift</property></not>
                         </and>
                         <and>
                             <property>sim/model/split-master-switches</property>
-                            <property>/devices/status/keyboard/shift</property>
+                            <property>devices/status/keyboard/shift</property>
                         </and>
                     </or>
                 </condition>
@@ -2827,7 +2827,7 @@
         <action>
             <binding>
                 <command>property-adjust</command>
-                <property>/controls/switches/magnetos</property>
+                <property>controls/switches/magnetos</property>
                 <factor>1</factor>
                 <min>0</min>
                 <max>3</max>
@@ -2850,7 +2850,7 @@
                 <command>set-tooltip</command>
                 <tooltip-id>magneto-switch</tooltip-id>
                 <label>Magnetos: %s</label>
-                <property>/controls/switches/magnetos</property>
+                <property>controls/switches/magnetos</property>
                 <mapping>nasal</mapping>
                 <script>
                     var m = arg[0];
@@ -3628,7 +3628,7 @@
     <animation>
         <type>translate</type>
         <object-name>FrontSeat.L</object-name>
-        <property>/sim/model/c182s/cockpit/FrontSeatL-setting-m</property>
+        <property>sim/model/c182s/cockpit/FrontSeatL-setting-m</property>
         <factor>1</factor>
         <axis>
             <x>1.0</x>
@@ -3643,7 +3643,7 @@
         <drag-direction>vertical</drag-direction>
         <condition>
             <equals>
-                <property>/sim/current-view/view-number</property>
+                <property>sim/current-view/view-number</property>
                 <value>0</value>
             </equals>
         </condition>

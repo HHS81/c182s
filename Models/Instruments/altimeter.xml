@@ -103,7 +103,7 @@
     <animation>
         <type>knob</type>
         <object-name>InhgKnob</object-name>
-        <property>/instrumentation/altimeter/setting-inhg</property>
+        <property>instrumentation/altimeter/setting-inhg</property>
         <factor>-800</factor>
         <axis>
             <x>1</x>
@@ -118,7 +118,7 @@
         <action>
             <binding>
                 <command>property-adjust</command>
-                <property>/instrumentation/altimeter/setting-inhg</property>
+                <property>instrumentation/altimeter/setting-inhg</property>
                 <factor>0.01</factor>
                 <min>26.0</min>
                 <max>33.0</max>

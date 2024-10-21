@@ -89,7 +89,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
                 <property>sim/rendering/rembrandt/enabled</property>
             </not>
             <greater-than>
-                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <property>systems/electrical/outputs/radio-lights-norm</property>
                 <value>0</value>
             </greater-than>
         </condition>
@@ -135,7 +135,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
         <object-name>Btn7</object-name>
         <condition>
             <equals>
-                <property>/systems/electrical/outputs/radio-lights-norm</property>
+                <property>systems/electrical/outputs/radio-lights-norm</property>
                 <value>0</value>
             </equals>
         </condition>
@@ -194,11 +194,11 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
   <object-name>AltDigit3</object-name>
   <condition>
     <and>
-        <property>/systems/electrical/outputs/kt-76c</property>
+        <property>systems/electrical/outputs/kt-76c</property>
         <or>
-            <property>/instrumentation/transponder/testmode</property>
+            <property>instrumentation/transponder/testmode</property>
             <equals>
-                <property>/controls/switches/kt-76c</property>
+                <property>controls/switches/kt-76c</property>
                 <value>4</value>
             </equals>
         </or>
@@ -213,10 +213,10 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
   <object-name>CodeDigit3</object-name>
   <object-name>CodeDigit4</object-name>
   <condition>
-    <property>/systems/electrical/outputs/kt-76c</property>
+    <property>systems/electrical/outputs/kt-76c</property>
     <or>
-        <property>/instrumentation/transponder/testmode</property>
-        <property>/controls/switches/kt-76c</property>
+        <property>instrumentation/transponder/testmode</property>
+        <property>controls/switches/kt-76c</property>
     </or>
   </condition>
 </animation>
@@ -225,10 +225,10 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
   <type>select</type>
   <object-name>LabelReply</object-name>
   <condition>
-    <property>/systems/electrical/outputs/kt-76c</property>
+    <property>systems/electrical/outputs/kt-76c</property>
     <or>
-        <property>/instrumentation/transponder/replying</property>
-        <property>/instrumentation/transponder/testmode</property>
+        <property>instrumentation/transponder/replying</property>
+        <property>instrumentation/transponder/testmode</property>
     </or>
   </condition>
 </animation>
@@ -236,7 +236,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
   <type>textranslate</type>
   <object-name>AltDigit1</object-name>
-  <property>/instrumentation/transponder/flight-level</property>
+  <property>instrumentation/transponder/flight-level</property>
   <factor>0.001</factor>
   <step>100</step>
   <axis>
@@ -248,7 +248,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
   <type>textranslate</type>
   <object-name>AltDigit2</object-name>
-  <property>/instrumentation/transponder/flight-level</property>
+  <property>instrumentation/transponder/flight-level</property>
   <factor>0.01</factor>
   <step>10</step>
   <axis>
@@ -260,7 +260,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
   <type>textranslate</type>
   <object-name>AltDigit3</object-name>
-  <property>/instrumentation/transponder/flight-level</property>
+  <property>instrumentation/transponder/flight-level</property>
   <factor>0.1</factor>
   <step>1</step>
   <axis>
@@ -273,7 +273,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
   <type>textranslate</type>
   <object-name>CodeDigit1</object-name>
-  <property>/instrumentation/transponder/id-code</property>
+  <property>instrumentation/transponder/id-code</property>
   <factor>0.0001</factor>
   <step>1000</step>
   <axis>
@@ -285,7 +285,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
   <type>textranslate</type>
   <object-name>CodeDigit2</object-name>
-  <property>/instrumentation/transponder/id-code</property>
+  <property>instrumentation/transponder/id-code</property>
   <factor>0.001</factor>
   <step>100</step>
   <axis>
@@ -297,7 +297,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
   <type>textranslate</type>
   <object-name>CodeDigit3</object-name>
-  <property>/instrumentation/transponder/id-code</property>
+  <property>instrumentation/transponder/id-code</property>
   <factor>0.01</factor>
   <step>10</step>
   <axis>
@@ -309,7 +309,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
   <type>textranslate</type>
   <object-name>CodeDigit4</object-name>
-  <property>/instrumentation/transponder/id-code</property>
+  <property>instrumentation/transponder/id-code</property>
   <factor>0.1</factor>
   <step>1</step>
   <axis>
@@ -322,7 +322,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
   <animation>
         <type>knob</type>
         <object-name>Knob</object-name>
-        <property>/controls/switches/kt-76c</property>
+        <property>controls/switches/kt-76c</property>
         <interpolation>
             <entry><ind>0</ind><dep>  0</dep></entry>
             <entry><ind>1</ind><dep> -40</dep></entry>
@@ -344,7 +344,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
         <increase>
             <binding>
                 <command>property-adjust</command>
-                <property>/controls/switches/kt-76c</property>
+                <property>controls/switches/kt-76c</property>
                 <step>1</step>
                 <min>0</min>
                 <max>4</max>
@@ -362,7 +362,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
         <decrease>
             <binding>
                 <command>property-adjust</command>
-                <property>/controls/switches/kt-76c</property>
+                <property>controls/switches/kt-76c</property>
                 <step>-1</step>
                 <min>0</min>
                 <max>4</max>
@@ -382,7 +382,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
                 <command>set-tooltip</command>
                 <tooltip-id>transMode</tooltip-id>
                 <label>Mode: %s</label>
-                <property>/controls/switches/kt-76c</property>
+                <property>controls/switches/kt-76c</property>
                 <mapping>nasal</mapping>
                 <script>
                     var modes = ['OFF', 'SBY', 'TST', 'ON', 'ALT'];
@@ -395,7 +395,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
     <type>translate</type>
     <object-name>BtnIDT</object-name>
-    <property>/instrumentation/kt-70/buttons/id</property>
+    <property>instrumentation/kt-70/buttons/id</property>
     <factor>-0.0018</factor>
     <axis>
         <x>1</x>
@@ -412,8 +412,8 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
       <repeatable>false</repeatable>
         <binding>
           <condition>
-            <property>/systems/electrical/outputs/kt-76c</property>
-            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+            <property>systems/electrical/outputs/kt-76c</property>
+            <not>  <property>instrumentation/transponder/testmode</property>   </not>
           </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_idt(0);</script>
@@ -424,12 +424,12 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
         </binding>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/id</property>
+          <property>instrumentation/kt-70/buttons/id</property>
         </binding>
       <mod-up>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/id</property>
+          <property>instrumentation/kt-70/buttons/id</property>
         </binding>
       </mod-up>
     </action>
@@ -438,7 +438,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
     <type>translate</type>
     <object-name>Btn0</object-name>
-    <property>/instrumentation/kt-70/buttons/num_zero</property>
+    <property>instrumentation/kt-70/buttons/num_zero</property>
     <factor>-0.0018</factor>
     <axis>
         <x>1</x>
@@ -455,8 +455,8 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
       <repeatable>false</repeatable>
       <binding>
         <condition>
-            <property>/systems/electrical/outputs/kt-76c</property>
-            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+            <property>systems/electrical/outputs/kt-76c</property>
+            <not>  <property>instrumentation/transponder/testmode</property>   </not>
         </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(0);</script>
@@ -467,12 +467,12 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
         </binding>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_zero</property>
+          <property>instrumentation/kt-70/buttons/num_zero</property>
         </binding>
       <mod-up>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_zero</property>
+          <property>instrumentation/kt-70/buttons/num_zero</property>
         </binding>
       </mod-up>
     </action>
@@ -481,7 +481,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
     <type>translate</type>
     <object-name>Btn1</object-name>
-    <property>/instrumentation/kt-70/buttons/num_one</property>
+    <property>instrumentation/kt-70/buttons/num_one</property>
     <factor>-0.0018</factor>
     <axis>
         <x>1</x>
@@ -498,8 +498,8 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
       <repeatable>false</repeatable>
       <binding>
         <condition>
-          <property>/systems/electrical/outputs/kt-76c</property>
-          <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+          <property>systems/electrical/outputs/kt-76c</property>
+          <not>  <property>instrumentation/transponder/testmode</property>   </not>
         </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(1);</script>
@@ -510,12 +510,12 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
         </binding>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_one</property>
+          <property>instrumentation/kt-70/buttons/num_one</property>
         </binding>
       <mod-up>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_one</property>
+          <property>instrumentation/kt-70/buttons/num_one</property>
         </binding>
       </mod-up>
     </action>
@@ -524,7 +524,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
     <type>translate</type>
     <object-name>Btn2</object-name>
-    <property>/instrumentation/kt-70/buttons/num_two</property>
+    <property>instrumentation/kt-70/buttons/num_two</property>
     <factor>-0.0018</factor>
     <axis>
         <x>1</x>
@@ -541,8 +541,8 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
       <repeatable>false</repeatable>
         <binding>
          <condition>
-            <property>/systems/electrical/outputs/kt-76c</property>
-            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+            <property>systems/electrical/outputs/kt-76c</property>
+            <not>  <property>instrumentation/transponder/testmode</property>   </not>
          </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(2);</script>
@@ -553,12 +553,12 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
         </binding>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_two</property>
+          <property>instrumentation/kt-70/buttons/num_two</property>
         </binding>
       <mod-up>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_two</property>
+          <property>instrumentation/kt-70/buttons/num_two</property>
         </binding>
       </mod-up>
     </action>
@@ -567,7 +567,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
     <type>translate</type>
     <object-name>Btn3</object-name>
-    <property>/instrumentation/kt-70/buttons/num_three</property>
+    <property>instrumentation/kt-70/buttons/num_three</property>
     <factor>-0.0018</factor>
     <axis>
         <x>1</x>
@@ -584,8 +584,8 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
       <repeatable>false</repeatable>
       <binding>
          <condition>
-            <property>/systems/electrical/outputs/kt-76c</property>
-            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+            <property>systems/electrical/outputs/kt-76c</property>
+            <not>  <property>instrumentation/transponder/testmode</property>   </not>
           </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(3);</script>
@@ -596,12 +596,12 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
         </binding>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_three</property>
+          <property>instrumentation/kt-70/buttons/num_three</property>
         </binding>
       <mod-up>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_three</property>
+          <property>instrumentation/kt-70/buttons/num_three</property>
         </binding>
       </mod-up>
     </action>
@@ -610,7 +610,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
     <type>translate</type>
     <object-name>Btn4</object-name>
-    <property>/instrumentation/kt-70/buttons/num_four</property>
+    <property>instrumentation/kt-70/buttons/num_four</property>
     <factor>-0.0018</factor>
     <axis>
         <x>1</x>
@@ -627,8 +627,8 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
       <repeatable>false</repeatable>
       <binding>
           <condition>
-            <property>/systems/electrical/outputs/kt-76c</property>
-            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+            <property>systems/electrical/outputs/kt-76c</property>
+            <not>  <property>instrumentation/transponder/testmode</property>   </not>
           </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(4);</script>
@@ -639,12 +639,12 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
         </binding>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_four</property>
+          <property>instrumentation/kt-70/buttons/num_four</property>
         </binding>
       <mod-up>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_four</property>
+          <property>instrumentation/kt-70/buttons/num_four</property>
         </binding>
       </mod-up>
     </action>
@@ -653,7 +653,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
   <animation>
     <type>translate</type>
     <object-name>Btn5</object-name>
-    <property>/instrumentation/kt-70/buttons/num_five</property>
+    <property>instrumentation/kt-70/buttons/num_five</property>
     <factor>-0.0018</factor>
     <axis>
         <x>1</x>
@@ -670,8 +670,8 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
       <repeatable>false</repeatable>
         <binding>
             <condition>
-            <property>/systems/electrical/outputs/kt-76c</property>
-            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+            <property>systems/electrical/outputs/kt-76c</property>
+            <not>  <property>instrumentation/transponder/testmode</property>   </not>
           </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(5);</script>
@@ -682,12 +682,12 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
         </binding>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_five</property>
+          <property>instrumentation/kt-70/buttons/num_five</property>
         </binding>
       <mod-up>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_five</property>
+          <property>instrumentation/kt-70/buttons/num_five</property>
         </binding>
       </mod-up>
     </action>
@@ -696,7 +696,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
     <type>translate</type>
     <object-name>Btn6</object-name>
-    <property>/instrumentation/kt-70/buttons/num_six</property>
+    <property>instrumentation/kt-70/buttons/num_six</property>
     <factor>-0.0018</factor>
     <axis>
         <x>1</x>
@@ -713,8 +713,8 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
       <repeatable>false</repeatable>
         <binding>
           <condition>
-            <property>/systems/electrical/outputs/kt-76c</property>
-            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+            <property>systems/electrical/outputs/kt-76c</property>
+            <not>  <property>instrumentation/transponder/testmode</property>   </not>
           </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(6);</script>
@@ -725,12 +725,12 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
         </binding>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_six</property>
+          <property>instrumentation/kt-70/buttons/num_six</property>
         </binding>
       <mod-up>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_six</property>
+          <property>instrumentation/kt-70/buttons/num_six</property>
         </binding>
       </mod-up>
     </action>
@@ -739,7 +739,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
     <type>translate</type>
     <object-name>Btn7</object-name>
-    <property>/instrumentation/kt-70/buttons/num_seven</property>
+    <property>instrumentation/kt-70/buttons/num_seven</property>
     <factor>-0.0018</factor>
     <axis>
         <x>1</x>
@@ -756,8 +756,8 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
       <repeatable>false</repeatable>
         <binding>
           <condition>
-              <property>/systems/electrical/outputs/kt-76c</property>
-              <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+              <property>systems/electrical/outputs/kt-76c</property>
+              <not>  <property>instrumentation/transponder/testmode</property>   </not>
           </condition>
           <command>nasal</command>
           <script>c182s.kt76c_button_code(7);</script>
@@ -768,12 +768,12 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
         </binding>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_seven</property>
+          <property>instrumentation/kt-70/buttons/num_seven</property>
         </binding>
       <mod-up>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/num_seven</property>
+          <property>instrumentation/kt-70/buttons/num_seven</property>
         </binding>
       </mod-up>
     </action>
@@ -782,7 +782,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
     <type>translate</type>
     <object-name>BtnCLR</object-name>
-    <property>/instrumentation/kt-70/buttons/clr</property>
+    <property>instrumentation/kt-70/buttons/clr</property>
     <factor>-0.0018</factor>
     <axis>
         <x>1</x>
@@ -799,8 +799,8 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
       <repeatable>false</repeatable>
       <binding>
         <condition>
-            <property>/systems/electrical/outputs/kt-76c</property>
-            <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+            <property>systems/electrical/outputs/kt-76c</property>
+            <not>  <property>instrumentation/transponder/testmode</property>   </not>
         </condition>
         <command>nasal</command>
           <script>c182s.kt76c_button_clr();</script>
@@ -811,12 +811,12 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
         </binding>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/clr</property>
+          <property>instrumentation/kt-70/buttons/clr</property>
         </binding>
       <mod-up>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/clr</property>
+          <property>instrumentation/kt-70/buttons/clr</property>
         </binding>
       </mod-up>
     </action>
@@ -825,7 +825,7 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
 <animation>
     <type>translate</type>
     <object-name>BtnVFR</object-name>
-    <property>/instrumentation/kt-70/buttons/vfr</property>
+    <property>instrumentation/kt-70/buttons/vfr</property>
     <factor>-0.0018</factor>
     <axis>
         <x>1</x>
@@ -842,8 +842,8 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
       <repeatable>false</repeatable>
         <binding>
             <condition>
-                <property>/systems/electrical/outputs/kt-76c</property>
-                <not>  <property>/instrumentation/transponder/testmode</property>   </not>
+                <property>systems/electrical/outputs/kt-76c</property>
+                <not>  <property>instrumentation/transponder/testmode</property>   </not>
             </condition>
             <command>nasal</command>
             <script>c182s.kt76c_button_vfr();</script>
@@ -854,12 +854,12 @@ Factory VFR code can be changed in "/instrumentation/transponder/factory-vfr-cod
         </binding>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/vfr</property>
+          <property>instrumentation/kt-70/buttons/vfr</property>
         </binding>
       <mod-up>
         <binding>
           <command>property-toggle</command>
-          <property>/instrumentation/kt-70/buttons/vfr</property>
+          <property>instrumentation/kt-70/buttons/vfr</property>
         </binding>
       </mod-up>
     </action>

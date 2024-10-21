@@ -109,7 +109,7 @@
 	<type>select</type>
 		<object-name>LabelText</object-name>
 	<condition>
-		<property>/sim/panel-hotspots</property>
+		<property>sim/panel-hotspots</property>
 	</condition>
 </animation>
 

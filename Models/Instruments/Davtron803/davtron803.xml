@@ -107,7 +107,7 @@
   <animation>
     <type>translate</type>
     <object-name>OAT.swt</object-name>
-    <property>/instrumentation/davtron803/oat-btn</property>
+    <property>instrumentation/davtron803/oat-btn</property>
     <factor>-0.003</factor>
     <axis>
         <x>1</x>
@@ -123,20 +123,20 @@
         <button>0</button>
         <binding>
             <command>property-toggle</command>
-            <property>/instrumentation/davtron803/oat-btn</property>
+            <property>instrumentation/davtron803/oat-btn</property>
         </binding>
         <mod-up>
             <binding>
                 <command>property-toggle</command>
-            <property>/instrumentation/davtron803/oat-btn</property>
+            <property>instrumentation/davtron803/oat-btn</property>
             </binding>
         </mod-up>
         <binding>
             <condition>
-                <property>/instrumentation/davtron803/operable</property>
+                <property>instrumentation/davtron803/operable</property>
             </condition>
             <command>property-cycle</command>
-            <property>/instrumentation/davtron803/internal/top-mode</property>
+            <property>instrumentation/davtron803/internal/top-mode</property>
             <value>0</value>
             <value>1</value>
             <value>2</value>
@@ -155,7 +155,7 @@
         <type>slider</type>
         <object-name>Select.btn</object-name>
         <object-name>Select.btn.cs</object-name>
-        <property>/instrumentation/davtron803/select-btn</property>
+        <property>instrumentation/davtron803/select-btn</property>
         <factor>-0.003</factor>
         <axis>
             <x>1</x>
@@ -166,45 +166,45 @@
         <action>
             <binding>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/select-btn</property>
+                <property>instrumentation/davtron803/select-btn</property>
                 <value>1</value>
             </binding>
             <binding>
                 <condition>
-                    <property>/instrumentation/davtron803/operable</property>
-                    <not><property>/instrumentation/davtron803/logic/test</property></not>
-                    <not><property>/instrumentation/davtron803/internal/select-btn-timer</property></not>
-                    <not><property>/instrumentation/davtron803/internal/both-btn-timer</property></not>
+                    <property>instrumentation/davtron803/operable</property>
+                    <not><property>instrumentation/davtron803/logic/test</property></not>
+                    <not><property>instrumentation/davtron803/internal/select-btn-timer</property></not>
+                    <not><property>instrumentation/davtron803/internal/both-btn-timer</property></not>
                 </condition>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/internal/select-btn-timer</property>
+                <property>instrumentation/davtron803/internal/select-btn-timer</property>
                 <property>sim/time/elapsed-sec</property>
             </binding>
         </action>
         <release>
             <binding>   <!-- Change mode -->
                 <condition>
-                    <property>/instrumentation/davtron803/operable</property>
-                    <not><property>/instrumentation/davtron803/internal/bot-mode-set</property></not>
-                    <not><property>/instrumentation/davtron803/logic/test</property></not>
-                    <not><property>/instrumentation/davtron803/internal/both-btn-timer</property></not>
-                    <not><property>/instrumentation/davtron803/annunciators/alarm</property></not>
+                    <property>instrumentation/davtron803/operable</property>
+                    <not><property>instrumentation/davtron803/internal/bot-mode-set</property></not>
+                    <not><property>instrumentation/davtron803/logic/test</property></not>
+                    <not><property>instrumentation/davtron803/internal/both-btn-timer</property></not>
+                    <not><property>instrumentation/davtron803/annunciators/alarm</property></not>
                     <greater-than>
-                        <property>/instrumentation/davtron803/internal/select-btn-timer</property>
+                        <property>instrumentation/davtron803/internal/select-btn-timer</property>
                         <value>0</value>
                     </greater-than>
                     <less-than>
                         <expression>
                             <dif>
                                 <property>sim/time/elapsed-sec</property>
-                                <property>/instrumentation/davtron803/internal/select-btn-timer</property>
+                                <property>instrumentation/davtron803/internal/select-btn-timer</property>
                             </dif>
                         </expression>
                         <value>1.0</value>
                     </less-than>
                 </condition>
                 <command>property-adjust</command>
-                <property>/instrumentation/davtron803/internal/bot-mode</property>
+                <property>instrumentation/davtron803/internal/bot-mode</property>
                 <step>1</step>
                 <min>0</min>
                 <max>4</max>
@@ -212,30 +212,30 @@
             </binding>
             <binding>   <!-- Change selected digit in adjust mode -->
                 <condition>
-                    <property>/instrumentation/davtron803/operable</property>
-                    <not><property>/instrumentation/davtron803/annunciators/alarm</property></not>
+                    <property>instrumentation/davtron803/operable</property>
+                    <not><property>instrumentation/davtron803/annunciators/alarm</property></not>
                     <greater-than>
-                        <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                        <property>instrumentation/davtron803/internal/bot-mode-set</property>
                         <value>0</value>
                     </greater-than>
-                    <not><property>/instrumentation/davtron803/logic/test</property></not>
-                    <not><property>/instrumentation/davtron803/internal/both-btn-timer</property></not>
+                    <not><property>instrumentation/davtron803/logic/test</property></not>
+                    <not><property>instrumentation/davtron803/internal/both-btn-timer</property></not>
                     <greater-than>
-                        <property>/instrumentation/davtron803/internal/select-btn-timer</property>
+                        <property>instrumentation/davtron803/internal/select-btn-timer</property>
                         <value>0</value>
                     </greater-than>
                     <less-than>
                         <expression>
                             <dif>
                                 <property>sim/time/elapsed-sec</property>
-                                <property>/instrumentation/davtron803/internal/select-btn-timer</property>
+                                <property>instrumentation/davtron803/internal/select-btn-timer</property>
                             </dif>
                         </expression>
                         <value>1.0</value>
                     </less-than>
                 </condition>
                 <command>property-adjust</command>
-                <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                <property>instrumentation/davtron803/internal/bot-mode-set</property>
                 <step>1</step>
                 <min>0</min>
                 <max>6</max>
@@ -243,24 +243,24 @@
             </binding>
             <binding>
                 <command>property-interpolate</command>
-                <property>/instrumentation/davtron803/select-btn</property>
+                <property>instrumentation/davtron803/select-btn</property>
                 <value type="double">0</value>
                 <time>0.1</time>
             </binding>
             <binding>
                 <command>property-interpolate</command>
-                <property>/instrumentation/davtron803/control-btn</property>
+                <property>instrumentation/davtron803/control-btn</property>
                 <value type="double">0</value>
                 <time>0.1</time>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/internal/select-btn-timer</property>
+                <property>instrumentation/davtron803/internal/select-btn-timer</property>
                 <value>0</value>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/internal/both-btn-timer</property>
+                <property>instrumentation/davtron803/internal/both-btn-timer</property>
                 <value>0</value>
             </binding>
         </release>
@@ -269,39 +269,39 @@
             <repeatable>false</repeatable>
             <binding>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/select-btn</property>
+                <property>instrumentation/davtron803/select-btn</property>
                 <value>1</value>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/control-btn</property>
+                <property>instrumentation/davtron803/control-btn</property>
                 <value>1</value>
             </binding>
             <binding>
                 <condition>
-                    <property>/instrumentation/davtron803/operable</property>
-                    <not><property>/instrumentation/davtron803/internal/bot-mode-set</property></not>
-                    <not><property>/instrumentation/davtron803/logic/test</property></not>
-                    <not><property>/instrumentation/davtron803/internal/both-btn-timer</property></not>
-                    <not><property>/instrumentation/davtron803/annunciators/alarm</property></not>
+                    <property>instrumentation/davtron803/operable</property>
+                    <not><property>instrumentation/davtron803/internal/bot-mode-set</property></not>
+                    <not><property>instrumentation/davtron803/logic/test</property></not>
+                    <not><property>instrumentation/davtron803/internal/both-btn-timer</property></not>
+                    <not><property>instrumentation/davtron803/annunciators/alarm</property></not>
                 </condition>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/internal/both-btn-timer</property>
+                <property>instrumentation/davtron803/internal/both-btn-timer</property>
                 <property>sim/time/elapsed-sec</property>
             </binding>
             
             <binding>  <!-- Enter adjust mode -->
                 <condition>
-                    <property>/instrumentation/davtron803/operable</property>
-                    <not><property>/instrumentation/davtron803/annunciators/alarm</property></not>
+                    <property>instrumentation/davtron803/operable</property>
+                    <not><property>instrumentation/davtron803/annunciators/alarm</property></not>
                     <or>
-                        <property>/instrumentation/davtron803/logic/mode-ft</property>
-                        <property>/instrumentation/davtron803/logic/mode-et</property>
+                        <property>instrumentation/davtron803/logic/mode-ft</property>
+                        <property>instrumentation/davtron803/logic/mode-et</property>
                     </or>
-                    <not><property>/instrumentation/davtron803/internal/bot-mode-set</property></not>
+                    <not><property>instrumentation/davtron803/internal/bot-mode-set</property></not>
                 </condition>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                <property>instrumentation/davtron803/internal/bot-mode-set</property>
                 <value>-1</value>
             </binding>
         </shift-action>
@@ -318,7 +318,7 @@
         <type>slider</type>
         <object-name>Control.btn</object-name>
         <object-name>Control.btn.cs</object-name>
-        <property>/instrumentation/davtron803/control-btn</property>
+        <property>instrumentation/davtron803/control-btn</property>
         <factor>-0.003</factor>
         <axis>
             <x>1</x>
@@ -329,18 +329,18 @@
         <action>
             <binding>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/control-btn</property>
+                <property>instrumentation/davtron803/control-btn</property>
                 <value>1</value>
             </binding>
             <binding>
                 <condition>
-                    <property>/instrumentation/davtron803/operable</property>
-                    <not><property>/instrumentation/davtron803/logic/test</property></not>
-                    <not><property>/instrumentation/davtron803/internal/control-btn-timer</property></not>
-                    <not><property>/instrumentation/davtron803/internal/both-btn-timer</property></not>
+                    <property>instrumentation/davtron803/operable</property>
+                    <not><property>instrumentation/davtron803/logic/test</property></not>
+                    <not><property>instrumentation/davtron803/internal/control-btn-timer</property></not>
+                    <not><property>instrumentation/davtron803/internal/both-btn-timer</property></not>
                 </condition>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/internal/control-btn-timer</property>
+                <property>instrumentation/davtron803/internal/control-btn-timer</property>
                 <property>sim/time/elapsed-sec</property>
             </binding>
         </action>
@@ -348,46 +348,46 @@
             <binding>    <!-- Apply FT timer reset -->
                 <condition>
                     <and>
-                        <property>/instrumentation/davtron803/operable</property>
-                        <property>/instrumentation/davtron803/logic/mode-ft</property>
+                        <property>instrumentation/davtron803/operable</property>
+                        <property>instrumentation/davtron803/logic/mode-ft</property>
                         <equals>
-                            <property>/instrumentation/davtron803/flight-time-secs</property>
+                            <property>instrumentation/davtron803/flight-time-secs</property>
                             <value>999999</value>
                         </equals>
                     </and>
                 </condition>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/flight-time-secs</property>
+                <property>instrumentation/davtron803/flight-time-secs</property>
                 <value>0</value>
             </binding>
             
             
             <binding>   <!-- See if we need to evaluate ET timer actions -->
                 <condition>
-                    <property>/instrumentation/davtron803/operable</property>
-                    <property>/instrumentation/davtron803/logic/mode-et</property>
-                    <not><property>/instrumentation/davtron803/internal/bot-mode-set</property></not>
+                    <property>instrumentation/davtron803/operable</property>
+                    <property>instrumentation/davtron803/logic/mode-et</property>
+                    <not><property>instrumentation/davtron803/internal/bot-mode-set</property></not>
                     <greater-than>
-                        <property>/instrumentation/davtron803/internal/control-btn-timer</property>
+                        <property>instrumentation/davtron803/internal/control-btn-timer</property>
                         <value>0</value>
                     </greater-than>
                 </condition>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/internal/elapsed-timer-checkme</property>
+                <property>instrumentation/davtron803/internal/elapsed-timer-checkme</property>
                 <value>1</value>
             </binding>
             <binding>   <!-- start ET timer (count-up) -->
                 <condition>
-                    <property>/instrumentation/davtron803/internal/elapsed-timer-checkme</property>
+                    <property>instrumentation/davtron803/internal/elapsed-timer-checkme</property>
                     <equals>
-                        <property>/instrumentation/davtron803/internal/elapsed-timer-step</property>
+                        <property>instrumentation/davtron803/internal/elapsed-timer-step</property>
                         <value>0</value>
                     </equals>
                     <equals>
-                        <property>/instrumentation/davtron803/elapsed-time-secs</property>
+                        <property>instrumentation/davtron803/elapsed-time-secs</property>
                         <value>0</value>
                     </equals>
-                    <not><property>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</property></not>
+                    <not><property>instrumentation/davtron803/internal/elapsed-timer-alarm-armed</property></not>
                 </condition>
                 <command>nasal</command>
                 <script>
@@ -397,17 +397,17 @@
             </binding>
             <binding>   <!-- start ET timer (count-down) -->
                 <condition>
-                    <property>/instrumentation/davtron803/internal/elapsed-timer-checkme</property>
+                    <property>instrumentation/davtron803/internal/elapsed-timer-checkme</property>
                     <equals>
-                        <property>/instrumentation/davtron803/internal/elapsed-timer-step</property>
+                        <property>instrumentation/davtron803/internal/elapsed-timer-step</property>
                         <value>0</value>
                     </equals>
                     <and>
                         <greater-than>
-                            <property>/instrumentation/davtron803/elapsed-time-secs</property>
+                            <property>instrumentation/davtron803/elapsed-time-secs</property>
                             <value>0</value>
                         </greater-than>
-                        <property>/instrumentation/davtron803/internal/elapsed-timer-alarm-armed</property>
+                        <property>instrumentation/davtron803/internal/elapsed-timer-alarm-armed</property>
                     </and>
                 </condition>
                 <command>nasal</command>
@@ -418,13 +418,13 @@
             </binding>
             <binding>   <!-- stop ET timer -->
                 <condition>
-                    <property>/instrumentation/davtron803/internal/elapsed-timer-checkme</property>
+                    <property>instrumentation/davtron803/internal/elapsed-timer-checkme</property>
                     <greater-than>
-                        <property>/instrumentation/davtron803/internal/control-btn-timer</property>
+                        <property>instrumentation/davtron803/internal/control-btn-timer</property>
                         <value>0</value>
                     </greater-than>
                     <not-equals>
-                        <property>/instrumentation/davtron803/internal/elapsed-timer-step</property>
+                        <property>instrumentation/davtron803/internal/elapsed-timer-step</property>
                         <value>0</value>
                     </not-equals>
                 </condition>
@@ -436,17 +436,17 @@
             </binding>
             <binding>   <!-- reset ET timer -->
                 <condition>
-                    <property>/instrumentation/davtron803/internal/elapsed-timer-checkme</property>
+                    <property>instrumentation/davtron803/internal/elapsed-timer-checkme</property>
                     <greater-than>
-                        <property>/instrumentation/davtron803/internal/control-btn-timer</property>
+                        <property>instrumentation/davtron803/internal/control-btn-timer</property>
                         <value>0</value>
                     </greater-than>
                     <equals>
-                        <property>/instrumentation/davtron803/internal/elapsed-timer-step</property>
+                        <property>instrumentation/davtron803/internal/elapsed-timer-step</property>
                         <value>0</value>
                     </equals>
                     <greater-than>
-                        <property>/instrumentation/davtron803/elapsed-time-secs</property>
+                        <property>instrumentation/davtron803/elapsed-time-secs</property>
                         <value>0</value>
                     </greater-than>
                 </condition>
@@ -458,28 +458,28 @@
             </binding>
             <binding>   <!-- In any case reset the ET cehck logic ath the end -->
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/internal/elapsed-timer-checkme</property>
+                <property>instrumentation/davtron803/internal/elapsed-timer-checkme</property>
                 <value>0</value>
             </binding>
             
             <binding>   <!-- Adjust selected digit in adjust mode -->
                 <condition>
-                    <property>/instrumentation/davtron803/operable</property>
+                    <property>instrumentation/davtron803/operable</property>
                     <greater-than>
-                        <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                        <property>instrumentation/davtron803/internal/bot-mode-set</property>
                         <value>0</value>
                     </greater-than>
-                    <not><property>/instrumentation/davtron803/logic/test</property></not>
-                    <not><property>/instrumentation/davtron803/internal/both-btn-timer</property></not>
+                    <not><property>instrumentation/davtron803/logic/test</property></not>
+                    <not><property>instrumentation/davtron803/internal/both-btn-timer</property></not>
                     <greater-than>
-                        <property>/instrumentation/davtron803/internal/control-btn-timer</property>
+                        <property>instrumentation/davtron803/internal/control-btn-timer</property>
                         <value>0</value>
                     </greater-than>
                     <less-than>
                         <expression>
                             <dif>
                                 <property>sim/time/elapsed-sec</property>
-                                <property>/instrumentation/davtron803/internal/control-btn-timer</property>
+                                <property>instrumentation/davtron803/internal/control-btn-timer</property>
                             </dif>
                         </expression>
                         <value>1.0</value>
@@ -491,24 +491,24 @@
             
             <binding>
                 <command>property-interpolate</command>
-                <property>/instrumentation/davtron803/select-btn</property>
+                <property>instrumentation/davtron803/select-btn</property>
                 <value type="double">0</value>
                 <time>0.1</time>
             </binding>
             <binding>
                 <command>property-interpolate</command>
-                <property>/instrumentation/davtron803/control-btn</property>
+                <property>instrumentation/davtron803/control-btn</property>
                 <value type="double">0</value>
                 <time>0.1</time>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/internal/control-btn-timer</property>
+                <property>instrumentation/davtron803/internal/control-btn-timer</property>
                 <value>0</value>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/internal/both-btn-timer</property>
+                <property>instrumentation/davtron803/internal/both-btn-timer</property>
                 <value>0</value>
             </binding>
         </release>
@@ -516,37 +516,37 @@
         <shift-action>
             <binding>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/select-btn</property>
+                <property>instrumentation/davtron803/select-btn</property>
                 <value>1</value>
             </binding>
             <binding>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/control-btn</property>
+                <property>instrumentation/davtron803/control-btn</property>
                 <value>1</value>
             </binding>
             <binding>
                 <condition>
-                    <property>/instrumentation/davtron803/operable</property>
-                    <not><property>/instrumentation/davtron803/internal/bot-mode-set</property></not>
-                    <not><property>/instrumentation/davtron803/logic/test</property></not>
-                    <not><property>/instrumentation/davtron803/internal/both-btn-timer</property></not>
+                    <property>instrumentation/davtron803/operable</property>
+                    <not><property>instrumentation/davtron803/internal/bot-mode-set</property></not>
+                    <not><property>instrumentation/davtron803/logic/test</property></not>
+                    <not><property>instrumentation/davtron803/internal/both-btn-timer</property></not>
                 </condition>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/internal/both-btn-timer</property>
+                <property>instrumentation/davtron803/internal/both-btn-timer</property>
                 <property>sim/time/elapsed-sec</property>
             </binding>
             
             <binding> <!-- Enter adjust mode -->
                 <condition>
-                    <property>/instrumentation/davtron803/operable</property>
+                    <property>instrumentation/davtron803/operable</property>
                     <or>
-                        <property>/instrumentation/davtron803/logic/mode-ft</property>
-                        <property>/instrumentation/davtron803/logic/mode-et</property>
+                        <property>instrumentation/davtron803/logic/mode-ft</property>
+                        <property>instrumentation/davtron803/logic/mode-et</property>
                     </or>
-                    <not><property>/instrumentation/davtron803/internal/bot-mode-set</property></not>
+                    <not><property>instrumentation/davtron803/internal/bot-mode-set</property></not>
                 </condition>
                 <command>property-assign</command>
-                <property>/instrumentation/davtron803/internal/bot-mode-set</property>
+                <property>instrumentation/davtron803/internal/bot-mode-set</property>
                 <value>-1</value>
             </binding>
         </shift-action>

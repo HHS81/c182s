@@ -80,15 +80,16 @@ var refresh_com0_volume = func {
     var svcabl = gma340_serviceable.getValue();
     var volts  = getprop("/systems/electrical/outputs/audio-panel");
     var com0_volts  = getprop("/systems/electrical/outputs/comm[0]");
+    var tgt = 0.0;
 
     #print("com0 change: pwrSw='", pwrSw, "'; svcabl='", svcabl, "';  volts='", volts, "'");
     if (pwrSw and svcabl and volts) {
         # Normal operation
         if (gma340_com0.getValue() and comm0_pwrSwitch.getValue() and comm0_pwrSwitch.getValue() and comm0_serviceable.getValue() and com0_volts) {
             #print("unmute com0:", comm0_volume_selected.getValue());
-            comm0_volume.setDoubleValue(comm0_volume_selected.getValue());
+            tgt = comm0_volume_selected.getValue();
         } else {
-            comm0_volume.setDoubleValue(0);
+            tgt = 0.0;
             #print("muted com0");
         }
         
@@ -97,34 +98,41 @@ var refresh_com0_volume = func {
         if (comm0_pwrSwitch.getValue() and comm0_serviceable.getValue() and com0_volts) {
             # wire directly to com0; for that com0 must be operable
             #print("unmute com0 (fail-safe):", comm0_volume_selected.getValue());
-            comm0_volume.setDoubleValue(comm0_volume_selected.getValue());
+            tgt = comm0_volume_selected.getValue();
         } else {
             #print("muted com0 (fail-safe failed)");
-            comm0_volume.setDoubleValue(0);
+            tgt = 0.0;
         }
     }
+
+    if (comm0.getValue("ptt")) tgt = 0.0;  # mute when PTT
+    comm0_volume.setDoubleValue(tgt);
 };
 var refresh_com1_volume = func {
     var pwrSw  = gma340_powerbtn.getValue();
     var svcabl = gma340_serviceable.getValue();
     var volts  = getprop("/systems/electrical/outputs/audio-panel");
     var com1_volts  = getprop("/systems/electrical/outputs/comm[1]");
+    var tgt = 0.0;
 
     if (pwrSw and svcabl and volts) {
         # Normal operation
         if (gma340_com1.getValue() and comm1_pwrSwitch.getValue() and comm1_pwrSwitch.getValue() and comm1_serviceable.getValue() and com1_volts) {
             #print("unmute com1:", comm1_volume_selected.getValue());
-            comm1_volume.setDoubleValue(comm1_volume_selected.getValue());
+            tgt = comm1_volume_selected.getValue();
         } else {
-            comm1_volume.setDoubleValue(0);
+            tgt = 0.0;
             #print("muted com1");
         }
         
     } else {
         # power-loss: no volume
-        comm1_volume.setDoubleValue(0);
+        tgt = 0.0;
         #print("muted com1 (power loss)");
     }
+
+    if (comm1.getValue("ptt")) tgt = 0.0;  # mute when PTT
+    comm1_volume.setDoubleValue(tgt);
 };
 var refresh_marker_volume = func {
     var pwrSw  = gma340_powerbtn.getValue();
@@ -437,6 +445,8 @@ setlistener("/sim/signals/fdm-initialized", func {
         # Monitor changes to volume selection knob of comms
         setlistener("/instrumentation/comm[0]/volume-selected", refresh_com_volumes, 1, 0);
         setlistener("/instrumentation/comm[1]/volume-selected", refresh_com_volumes, 1, 0);
+        setlistener("/instrumentation/comm[0]/ptt", refresh_com_volumes, 1, 0);
+        setlistener("/instrumentation/comm[1]/ptt", refresh_com_volumes, 1, 0);
         
         # Monitor also state changes to the power unit switch of the COMMs
         setlistener("/instrumentation/comm[0]/power-btn", refresh_com_volumes, 1, 0);

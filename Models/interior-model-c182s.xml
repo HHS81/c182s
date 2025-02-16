@@ -839,7 +839,7 @@
   <expression>
       <product>
           <property>controls/flight/yoke-unlocked</property>
-          <property>controls/flight/elevator</property>
+          <property>fdm/jsbsim/fcs/elevator-pos-norm</property>
           <value>-0.11</value>
       </product>
   </expression>
@@ -878,7 +878,7 @@
   <expression>
       <product>
           <property>controls/flight/yoke-unlocked</property>
-          <property>controls/flight/elevator</property>
+          <property>fdm/jsbsim/fcs/elevator-pos-norm</property>
           <value>-0.11</value>
       </product>
   </expression>
@@ -1445,8 +1445,8 @@
   <object-name>Pedal21</object-name>
   <object-name>Pedal11.001</object-name>
   <object-name>Pedal21.001</object-name>
-  <property>controls/flight/rudder</property>
-  <factor>0.05</factor>
+  <property>fdm/jsbsim/fcs/rudder-pos-norm</property>
+  <factor>-0.05</factor>
   <axis>
    <x>1.0</x>
    <y>0.0</y>
@@ -1478,8 +1478,8 @@
   <object-name>Pedal22</object-name>
   <object-name>Pedal12.001</object-name>
   <object-name>Pedal22.001</object-name>
-  <property>controls/flight/rudder</property>
-  <factor>-0.05</factor>
+  <property>fdm/jsbsim/fcs/rudder-pos-norm</property>
+  <factor>0.05</factor>
   <axis>
    <x>1.0</x>
    <y>0.0</y>

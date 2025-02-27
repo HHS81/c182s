@@ -1223,8 +1223,7 @@ setlistener("/sim/signals/fdm-initialized", func {
         "\n" ~
         "\n...and now: always blue skies!",
         nil,
-        canvas.MessageBox.Ok | canvas.MessageBox.DontShowAgain,
-        [700, 470]
+        canvas.MessageBox.Ok | canvas.MessageBox.DontShowAgain
     );
 
 });

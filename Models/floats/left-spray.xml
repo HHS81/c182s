@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+    <params>
+        <!-- IMPORTANT: int properties 14 to 19, both included, are reserved
+             for the immat system. Do not use them!
+        -->
+        <spray_wake_speed_kt>
+            <property>sim/multiplay/generic/float[6]</property>
+        </spray_wake_speed_kt>
+    </params>
+
+    <particlesystem>
+        <name>left-float</name>
+        <texture>spray.png</texture>
+        <emissive>false</emissive>
+        <lighting>false</lighting>
+
+        <condition>
+            <greater-than>
+                <property alias="/params/spray_wake_speed_kt/property"/>
+                <value>6</value>
+            </greater-than>
+        </condition>
+
+        <align>billboard</align>
+        <attach>world</attach>
+
+        <placer>
+            <type>point</type>
+        </placer>
+
+        <shooter>
+            <theta-min-deg>45</theta-min-deg>
+            <theta-max-deg>85</theta-max-deg>
+            <phi-min-deg>-10</phi-min-deg>
+            <phi-max-deg>10</phi-max-deg>
+            <speed-mps>
+                <value>0</value>
+                <spread>5</spread>
+            </speed-mps>
+            <rotation-speed>
+                <x-max-deg-sec>15</x-max-deg-sec>
+                <x-min-deg-sec>-15</x-min-deg-sec>
+                <y-max-deg-sec>15</y-max-deg-sec>
+                <y-min-deg-sec>-15</y-min-deg-sec>
+                <z-max-deg-sec>15</z-max-deg-sec>
+                <z-min-deg-sec>-15</z-min-deg-sec>
+            </rotation-speed>
+        </shooter>
+
+        <counter>
+            <particles-per-sec>
+                <value>30</value>
+                <spread>100</spread>
+            </particles-per-sec>
+        </counter>
+
+        <particle>
+            <start>
+                <color>
+                    <red>
+                        <property>/sim/model/c172p/lighting/particles/redcombinedstart</property>
+                    </red>
+                    <green>
+                        <property>/sim/model/c172p/lighting/particles/greencombinedstart</property>
+                    </green>
+                    <blue>
+                        <property>/sim/model/c172p/lighting/particles/bluecombinedstart</property>
+                    </blue>
+                    <alpha>
+                        <value>0.5</value>
+                    </alpha>
+                </color>
+                <size>
+                    <value>0.5</value>
+                </size>
+            </start>
+            <end>
+                <color>
+                    <red>
+                        <property>/sim/model/c172p/lighting/particles/redcombinedend</property>
+                    </red>
+                    <green>
+                        <property>/sim/model/c172p/lighting/particles/greencombinedend</property>
+                    </green>
+                    <blue>
+                        <property>/sim/model/c172p/lighting/particles/bluecombinedend</property>
+                    </blue>
+                    <alpha>
+                        <value>0.001</value>
+                    </alpha>
+                </color>
+                <size>
+                    <value>5</value>
+                </size>
+            </end>
+            <life-sec>
+                <value>2.5</value>
+            </life-sec>
+            <mass-kg>0.15</mass-kg>
+            <radius-m>0.175</radius-m>
+        </particle>
+        <program>
+            <fluid>water</fluid>
+            <gravity>true</gravity>
+            <wind>false</wind>
+        </program>
+    </particlesystem>
+
+</PropertyList>

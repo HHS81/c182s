@@ -251,7 +251,7 @@
       <realistic-instruments type="bool">false</realistic-instruments>
     </instruments>
     <systems>
-      <drain-battery type="bool">false</drain-battery>
+      <drain-battery type="bool">true</drain-battery>
     </systems>
   </realism>
 

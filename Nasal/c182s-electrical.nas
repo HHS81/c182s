@@ -94,6 +94,7 @@ BatteryClass.new = func() {
                 amp_hours : 12.75,
                 charge_percent : getprop("/systems/electrical/battery-charge-percent") or 1.0,
                 charge_amps : 7.0 };
+    print("Battery charge state: "~obj.charge_percent);
     return obj;
 }
 
@@ -103,7 +104,7 @@ BatteryClass.new = func() {
 #
 
 BatteryClass.apply_load = func( amps, dt ) {
-    var old_charge_percent = getprop("/systems/electrical/battery-charge-percent") or 0;
+    var old_charge_percent = getprop("/systems/electrical/battery-charge-percent") or 0.0;
     var capacity_factor = getprop("/systems/electrical/battery-capacity-factor") or 1.0;
     var amphrs_used = amps * dt / 3600.0;
     var percent_used = amphrs_used / me.amp_hours;
@@ -407,11 +408,12 @@ update_virtual_bus = func( dt ) {
             ammeter = battery.charge_amps;
         }
     }
-    # print( "ammeter = ", ammeter );
+    #print( "ammeter = ", ammeter );
 
     # charge/discharge the battery
-    if ( power_source == "battery" ) {
-        battery.apply_load( load, dt );
+    var drain = getprop("/sim/realism/systems/drain-battery");
+    if ( power_source == "battery") {
+        if (drain) battery.apply_load( load, dt );
     } elsif ( bus_volts > battery_volts ) {
         battery.apply_load( -battery.charge_amps, dt );
     }

@@ -102,6 +102,7 @@ BatteryClass.new = func(name) {
                 amp_hours : 12.75,
                 charge_percent : getprop("/systems/electrical/"~name~"-charge-percent") or 1.0,
                 charge_amps : 7.0 };
+    print("Battery "~name~" charge state: "~obj.charge_percent);
     return obj;
 }
 
@@ -442,10 +443,11 @@ update_virtual_bus = func( dt ) {
 
     # charge/discharge the battery
     #print( "loading SBY:  power_source=",power_source, " battery_sby.isServiceable()=",battery_sby.isServiceable(),"; battery_sby_armed=", battery_sby_armed);
+    var drain = getprop("/sim/realism/systems/drain-battery");
     if ( power_source == "battery" ) {
-        battery.apply_load( load, dt );
+        if (drain) battery.apply_load( load, dt );
     } elsif ( power_source == "battery-sby" ) {
-        battery_sby.apply_load( load, dt );
+        if (drain) battery_sby.apply_load( load, dt );
     } elsif ( bus_volts > battery_volts ) {
         if (battery.isServiceable())
             battery.apply_load( -battery.charge_amps, dt );

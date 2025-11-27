@@ -232,6 +232,9 @@
     <instruments>
       <realistic-instruments type="bool">false</realistic-instruments>
     </instruments>
+    <systems>
+      <drain-battery type="bool">false</drain-battery>
+    </systems>
   </realism>
 
 <instrumentation n="0">
@@ -990,6 +993,7 @@
             <path>/instrumentation/heading-indicator/caged-flag</path>
             <path>/instrumentation/heading-indicator/latitude-nut-setting</path>
             <path>/sim/realism/instruments/realistic-instruments</path>
+            <path>/sim/realism/systems/drain-battery</path>
             <path>/autopilot/settings/heading-bug-deg</path>
             <path>/instrumentation/transponder/id-code</path>
             <path>/instrumentation/transponder/factory-vfr-code</path>

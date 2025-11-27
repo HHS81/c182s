@@ -43,12 +43,36 @@ Author: 12/2017  Benedikt Hallinger
             <output>/engines/engine/external-heat/applied-degF</output>
         </aerosurface_scale>
         
-        <!-- todo: could be modelled more realistical, since engine radiation should also have a little effect -->
+        <!-- Engine radiation should also have a little effect -->
+        <!-- Note: The numbers of the effects are totally made up. Further research is neccessary to get good numbers. -->
+        <fcs_function name="Cowling engine radiation">
+            <function>
+                <product>
+                    <sum>
+                        <!-- base reference is oil temperature as proxy for engine temperature -->
+                        <property>-/environment/temperature-degf</property>
+                        <property>/engines/engine/oil-final-temperature-degf</property>
+                    </sum>
+                    <value>0.25</value> <!-- engine temperature cannot heat the air efficientily -->
+                    <table>
+                        <!-- adjust engine radiation with an effect: flight makes airflow, which also cools cowling -->
+                        <independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+                        <tableData breakPoint="0">
+                             0   1.00
+                            80   0.15
+                        </tableData>
+                    </table>
+                </product>
+            </function>
+            <output>/engines/engine/cowling-engine-radiation-degf</output>
+        </fcs_function>
+        
         <fcs_function name="Cowling environment air Temperature">
             <function>
                 <sum>
                     <property>/environment/temperature-degf</property>
                     <property>/engines/engine/external-heat/applied-degF</property>
+                    <property>/engines/engine/cowling-engine-radiation-degf</property>
                 </sum>
             </function>
             <output>/engines/engine/cowling-air-temperature-degf</output>   

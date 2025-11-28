@@ -102,6 +102,7 @@ BatteryClass.new = func(name) {
                 amp_hours : 12.75,
                 charge_percent : getprop("/systems/electrical/"~name~"-charge-percent") or 1.0,
                 charge_amps : 7.0 };
+    print("Battery "~name~" charge state: "~obj.charge_percent);
     return obj;
 }
 
@@ -119,8 +120,9 @@ BatteryClass.isServiceable = func {
 BatteryClass.apply_load = func( amps, dt ) {
     var old_charge_percent = getprop("/systems/electrical/"~me.name~"-charge-percent") or 0;
     var capacity_factor = getprop("/systems/electrical/battery-capacity-factor") or 1.0;
+    var capacity = me.amp_hours * capacity_factor;
     var amphrs_used = amps * dt / 3600.0;
-    var percent_used = amphrs_used / me.amp_hours;
+    var percent_used = amphrs_used / capacity;
     var charge_percent = old_charge_percent;
     charge_percent -= percent_used;
     if ( charge_percent < 0.0 ) {
@@ -133,9 +135,16 @@ BatteryClass.apply_load = func( amps, dt ) {
         print("Warning: Low "~me.name~"! Enable alternator or apply external power to recharge battery.");
     }
     me.charge_percent = charge_percent;
-    setprop("/systems/electrical/"~me.name~"-charge-percent", charge_percent * capacity_factor);
-    setprop("/systems/electrical/"~me.name~"-charge-percent-100", 100*charge_percent * capacity_factor);
-    #print( me.name~"percent = ", charge_percent);
+    setprop("/systems/electrical/"~me.name~"-charge-percent", charge_percent);
+    setprop("/systems/electrical/"~me.name~"-charge-percent-100", 100*charge_percent);
+
+    #print( me.name~" BatteryClass.apply_load("~amps~", "~dt~"):");
+    #print( "  cowling-air °F  = ", getprop("/engines/engine/cowling-air-temperature-degf"));
+    #print( "  amphrs_used     = ", sprintf("%.10f", amphrs_used) ~ "Ah of "~ sprintf("%.10f", capacity) ~ "Ah");
+    #print( "  battery percent = ", sprintf("%.10f", charge_percent));
+    #print( "  capacity_factor = ", sprintf("%.10f", capacity_factor));
+    #print( "  percent_used    = ", sprintf("%.10f", percent_used));
+
     return me.amp_hours * charge_percent;
 }
 
@@ -442,10 +451,11 @@ update_virtual_bus = func( dt ) {
 
     # charge/discharge the battery
     #print( "loading SBY:  power_source=",power_source, " battery_sby.isServiceable()=",battery_sby.isServiceable(),"; battery_sby_armed=", battery_sby_armed);
+    var drain = getprop("/sim/realism/systems/drain-battery");
     if ( power_source == "battery" ) {
-        battery.apply_load( load, dt );
+        if (drain) battery.apply_load( load, dt );
     } elsif ( power_source == "battery-sby" ) {
-        battery_sby.apply_load( load, dt );
+        if (drain) battery_sby.apply_load( load, dt );
     } elsif ( bus_volts > battery_volts ) {
         if (battery.isServiceable())
             battery.apply_load( -battery.charge_amps, dt );
@@ -455,7 +465,7 @@ update_virtual_bus = func( dt ) {
     }
 
     # If SBY battery test switch is invoked, drain directly from that battery without indicating
-    if (battery_sby_switch == 2 and battery_sby.isServiceable())
+    if (battery_sby_switch == 2 and battery_sby.isServiceable() and drain)
         battery_sby.apply_load( 1.0, dt );
 
     # filter ammeter needle pos

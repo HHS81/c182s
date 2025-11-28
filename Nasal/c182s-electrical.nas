@@ -94,6 +94,7 @@ BatteryClass.new = func() {
                 amp_hours : 12.75,
                 charge_percent : getprop("/systems/electrical/battery-charge-percent") or 1.0,
                 charge_amps : 7.0 };
+    print("Battery charge state: "~obj.charge_percent);
     return obj;
 }
 
@@ -103,10 +104,11 @@ BatteryClass.new = func() {
 #
 
 BatteryClass.apply_load = func( amps, dt ) {
-    var old_charge_percent = getprop("/systems/electrical/battery-charge-percent") or 0;
+    var old_charge_percent = getprop("/systems/electrical/battery-charge-percent") or 0.0;
     var capacity_factor = getprop("/systems/electrical/battery-capacity-factor") or 1.0;
+    var capacity = me.amp_hours * capacity_factor;
     var amphrs_used = amps * dt / 3600.0;
-    var percent_used = amphrs_used / me.amp_hours;
+    var percent_used = amphrs_used / capacity;
     var charge_percent = old_charge_percent;
     charge_percent -= percent_used;
     if ( charge_percent < 0.0 ) {
@@ -119,9 +121,16 @@ BatteryClass.apply_load = func( amps, dt ) {
         print("Warning: Low battery! Enable alternator or apply external power to recharge battery.");
     }
     me.charge_percent = charge_percent;
-    setprop("/systems/electrical/battery-charge-percent", charge_percent * capacity_factor);
-    setprop("/systems/electrical/battery-charge-percent-100", 100*charge_percent * capacity_factor);
-    # print( "battery percent = ", charge_percent);
+    setprop("/systems/electrical/battery-charge-percent", charge_percent);
+    setprop("/systems/electrical/battery-charge-percent-100", 100*charge_percent);
+
+    #print( "BatteryClass.apply_load("~amps~", "~dt~"):");
+    #print( "  cowling-air °F  = ", getprop("/engines/engine/cowling-air-temperature-degf"));
+    #print( "  amphrs_used     = ", sprintf("%.10f", amphrs_used) ~ "Ah of "~ sprintf("%.10f", capacity) ~ "Ah");
+    #print( "  battery percent = ", sprintf("%.10f", charge_percent));
+    #print( "  capacity_factor = ", sprintf("%.10f", capacity_factor));
+    #print( "  percent_used    = ", sprintf("%.10f", percent_used));
+    
     return me.amp_hours * charge_percent;
 }
 
@@ -407,11 +416,12 @@ update_virtual_bus = func( dt ) {
             ammeter = battery.charge_amps;
         }
     }
-    # print( "ammeter = ", ammeter );
+    #print( "ammeter = ", ammeter );
 
     # charge/discharge the battery
-    if ( power_source == "battery" ) {
-        battery.apply_load( load, dt );
+    var drain = getprop("/sim/realism/systems/drain-battery");
+    if ( power_source == "battery") {
+        if (drain) battery.apply_load( load, dt );
     } elsif ( bus_volts > battery_volts ) {
         battery.apply_load( -battery.charge_amps, dt );
     }

@@ -406,6 +406,20 @@
             </binding>
         </checkbox>
         
+        <checkbox>
+            <halign>left</halign>
+            <label>Drain battery</label>
+            <property>/sim/realism/systems/drain-battery</property>
+            <live>true</live>
+            <binding>
+                <command>property-toggle</command>
+                <property>/sim/realism/systems/drain-battery</property>
+            </binding>
+            <binding>
+                <command>dialog-update</command><!-- makes sure that command is still there when dialog is closed-->
+            </binding>
+        </checkbox>
+        
         <hrule/>
         
         <checkbox>

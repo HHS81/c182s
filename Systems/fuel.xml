@@ -604,12 +604,54 @@ Author: 09/2017  Benedikt Hallinger
             <output>/fdm/jsbsim/propulsion/tank[6]/external-flow-rate-pps</output>
         </switch>
 
+        <!-- Calculate density altitude -->
+        <!-- (taken from c172 commit e7c836858ec2843e1f5c08acf586a2b8084020a6) -->
+        <fcs_function name="density-altitude-ft">
+          <function>
+            <sum>
+              <!-- Pressure Altitude -->
+              <product>
+                <difference>
+                  <value>29.92</value>
+                  <property>/environment/pressure-inhg</property>
+                </difference>
+                <value>1000</value>
+              </product>
+              <property>/position/altitude-ft</property>
+              <!-- Temperature Offset -->
+              <product>
+                <value>120</value>
+                <difference>
+                  <property>/environment/temperature-degc</property>
+                  <difference>
+                    <value>15</value>
+                    <product>
+                      <sum>
+                        <product>
+                          <difference>
+                            <value>29.92</value>
+                            <property>/environment/pressure-inhg</property>
+                          </difference>
+                          <value>1000</value>
+                        </product>
+                        <property>/position/altitude-ft</property>
+                      </sum>
+                      <value>0.0019812</value>
+                    </product>
+                  </difference>
+                </difference>
+              </product>
+            </sum>
+          </function>
+          <output>/environment/density-altitude-ft</output>
+        </fcs_function>
+
         <!-- Defining maximal mixture levels for after start logic (too high initial mixture won't let engine start!) -->
         <!-- this should only be used as long as we are in the downwards-slope leaning mixture after start -->
         <fcs_function name="/controls/engines/engine/mixture-maxaltitude">
             <function>
                 <table>
-                    <independentVar lookup="row">/position/altitude-ft</independentVar>
+                    <independentVar lookup="row">/environment/density-altitude-ft</independentVar>
                     <tableData>
                         <!-- TODO: this table maybe needs some more tweaking, especially if autostart at a certain altitude ist not possible
                                    (however i checked 18000ft to 2000ft in 1000ft intervals!) -->
@@ -626,7 +668,7 @@ Author: 09/2017  Benedikt Hallinger
             <function>
                 <table>
                     <!-- calibrated to standard atmosphere -->
-                    <independentVar lookup="row">/position/altitude-ft</independentVar> <!-- TODO: hould be true altitude consiering actual pressure+humidity -->
+                    <independentVar lookup="row">/environment/density-altitude-ft</independentVar> <!-- TODO: hould be true altitude consiering actual pressure+humidity -->
                     <tableData>
                             0   0.86
                          1000   0.84

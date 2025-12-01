@@ -219,6 +219,11 @@
         }, 0, 0);
 
    ]]></load>
+    <unload><![CDATA[
+     livery_update.stop();
+     dim_factor_calc.stop();
+     c182_mp_slowprop_TDM1_updater.stop();
+   ]]></unload>
 </nasal>
 
 <!-- Multiplayer Sound -->

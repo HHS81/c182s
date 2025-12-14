@@ -199,7 +199,12 @@ Finally, the `GS/T` mode locks the secondary frequency selection and displays _d
 
 This way, you can scan for stations and get information about a station without the need to retune NAV1.
 
-### GMA 340 FGCom integration ###
+### GMA 340 Audio panel ###
+The GMA 340 Autdio panel is used to select which audio streams to route to your headphone/speaker. You can use this for example to enable the morse code identification for NAV sources. But also you can enable/disable streams from COM radios.
+- Just press the respective button on the panel - a bright LED will indicate "active" mode for the source.
+- Note that if you change the COM/MIC selector, the respective _other_ radio will get muted. You need to reenable it manually if you want to hear bot COMs simultaneously.
+
+#### FGCom integration ####
 If enabled, this integrates the GMA 340 audio panel with FGCom. Most notably, you can select the radio on which you want to transmit by pressing the respective COM/MIC button. Only one can be active for transmission. If you press the FGCOM PTT button (`space`), you will transmit over the selected radio, which indicates a blinking led.
 
 ### Dual Control feature

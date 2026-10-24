@@ -742,7 +742,7 @@
         <stall>
             <name>stall</name>
             <mode>looped</mode>
-            <path>Aircraft/c182s/Sounds/stall2.wav</path>
+            <path>Aircraft/c182s/Sounds/stall.wav</path>
             <condition>
                     <property>/controls/stall-horn/serviceable</property>
                     <greater-than>
@@ -777,7 +777,7 @@
         <stall-test>
             <name>stall-test</name>
             <mode>looped</mode>
-            <path>Aircraft/c182s/Sounds/stall2.wav</path>
+            <path>Aircraft/c182s/Sounds/stall.wav</path>
             <condition>
                 <property>/controls/stall-horn/serviceable</property>
                 <property>/controls/stall-horn/test</property>
